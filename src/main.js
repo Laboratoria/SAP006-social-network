@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   try {
     firebase.app();
-
+    loadPosts()
     configureLogin()
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
@@ -59,6 +59,9 @@ document.getElementById('btn-logout').addEventListener('click', (event) => {
   location.reload();
 })
 
+// Criando coleção no firebase chamda 'posts'
+const postsCollection = firebase.firestore().collection('posts')
+
 // Enviando posts para o firestore
 document.getElementById('postForm').addEventListener('submit', (event) => {
   event.preventDefault();
@@ -72,13 +75,51 @@ document.getElementById('postForm').addEventListener('submit', (event) => {
     comments:[]
   } 
 
-  const postsCollection = firebase.firestore().collection('posts')
-
-  postsCollection.add(post)
+  postsCollection
+    .add(post)
+    .then(res => {
+      text.innerHTML += ""
+      loadPosts()
+    })
 })
 
+// Adicionando posts 
+function addPost(post) {
+  const postTemplate = `
+      <li id="${post.id}"> Post: ${post.data().text} | ❤ ${post.data().likes}</li>
+  `
+  document.getElementById('posts').innerHTML += postTemplate
+}
+
 // Mostrando os posts na tela
-function loadPosts()
+function loadPosts() {
+
+  document.getElementById('posts').innerHTML = "Carregando..."
+
+  postsCollection
+    .get()
+    .then(snap => {
+      document.getElementById('posts').innerHTML = ""
+      snap.forEach(post => {
+        addPost(post)
+      })
+    })
+}
+
+// Deletando posts
+function deletePost(postId) {
+  postsCollection
+    .doc(postId)
+    .delete()
+    .then(doc => {
+      loadPosts()
+    })
+}
+
+document.getElementById('btn-deletePost').addEventListener('click', (event) => {
+  event.preventDefault()
+  deletePost("0naYLmyjJHydqRQJFuPG")
+})
 
 
 
