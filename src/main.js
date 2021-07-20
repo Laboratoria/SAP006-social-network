@@ -1,48 +1,14 @@
-import feed from './pages/feed/index.js'
-import signin from './pages/signin/index.js'
-import login from './pages/login/index.js'
-
-// myFunction();
-
-const mainLogin = document.getElementById("main")
+import auth from './auth.js';
+import signin from './pages/signin/index.js';
+import signup from './pages/signup/index.js';
 
 window.addEventListener("load", () => {
-  mainLogin.innerHTML = login()
-  const signIn = document.getElementById("signIn")
+    const signIn = document.getElementById("root");
+    signIn.innerHTML = signin();
 
-  signIn.addEventListener("click", () => {
-  mainLogin.innerHTML= signin()
-  
-  })
-})
-
-
-
-
-
-// firebase.auth().createUserWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     var user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     // ..
-//   });
-
-
-
-
-// firebase.auth().signInWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     var user = userCredential.user;
-//     console.log("logou!")
-//     // ...
-//   })
-//   .catch((error) => {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//   });
+    const enterLogin = document.getElementById("enter");
+    enterLogin.addEventListener("click", () => {
+        auth.loginPage();  
+    });
+    
+});
