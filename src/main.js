@@ -77,8 +77,8 @@ document.getElementById('postForm').addEventListener('submit', (event) => {
 
   postsCollection
     .add(post)
-    .then(res => {
-      text.innerHTML += ""
+    .then(() => {
+      document.getElementById('postText').value = ""
       loadPosts()
     })
 })
@@ -111,7 +111,7 @@ function deletePost(postId) {
   postsCollection
     .doc(postId)
     .delete()
-    .then(doc => {
+    .then(() => {
       loadPosts()
     })
 }
