@@ -9,7 +9,7 @@ export default () => {
     <input type="password" placeholder="Senha" id="loginPassword"/>
     <p class="forgetpassword">Esqueceu sua senha?</p>
     <button type="button" id="enter">Entrar</button>
-    <p class="p-signIn">Não é cadastrado? <a href="index.html" id="signUp">Cadastre-se</a></p>
+    <p class="p-signIn">Não é cadastrado? <a href="#signup" id="signup-link">Cadastre-se</a></p>
     <button type="button" id="gmail"><p class="signInGoogle"><img src="./img/logogoogle.png" class="logo-google"/>Entrar com o Google</p></button>
     </form>
     </fieldset>
