@@ -5,7 +5,7 @@ export default () => {
     <br><br>
     <input type="password" placeholder="senha" id="passwordLogin">
     <br>
-    <p>Não é cadastrado? </p><button id="signIn">Cadastre-se!</button>
+    <p>Não é cadastrado? </p><button id="signup-btn">Cadastre-se!</button>
     <br>
 
     <button id="sendLogin">Enviar</button>
