@@ -1,6 +1,7 @@
 import feed from './pages/feed/index.js'
 import signup from './pages/signup/index.js'
-import login from './pages/login/index.js'
+import auth from './auth.js';
+import signin from './pages/signin/index.js';
 import createprofile from './pages/createprofile/index.js'
 import {createUser, asyncSendProfileData} from './lib/index.js'
 
@@ -8,14 +9,18 @@ import {createUser, asyncSendProfileData} from './lib/index.js'
 // myFunction();
 
 // variável pra acessar o banco de dados
-const mainLogin = document.getElementById("main")
-
-
+const mainLogin = document.getElementById("root")
 
 window.addEventListener("load", () => {
-  mainLogin.innerHTML = login()
+  mainLogin.innerHTML = signin();
 
-  const signUpBtn = document.getElementById("signup-btn") 
+  const enterLogin = document.getElementById("enter");
+  enterLogin.addEventListener("click", () => {
+    auth.loginPage();  
+  });
+
+
+  const signUpBtn = document.getElementById("signup-link") 
   signUpBtn.addEventListener("click", (e) => {
     e.preventDefault()
     mainLogin.innerHTML= signup()
@@ -68,24 +73,3 @@ window.addEventListener("load", () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-// firebase.auth().signInWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     var user = userCredential.user;
-//     console.log("logou!")
-//     // ...
-//   })
-//   .catch((error) => {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//   });
