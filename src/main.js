@@ -69,3 +69,22 @@ myFunction();
     const password = inputPassword.value;
     const btnLogin = document.getElementById('button-login');
     btnLogin.addEventListener('click', authentication);
+
+
+    // Sign in with Google:
+    const btnLoginWithGoogle = document.getElementById("button-login-with-google");
+    
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    function signInWithGoogle () {
+      firebase.auth().signInWithPopup(googleProvider)
+      .then(() => {
+        setTimeout(() => {
+          window.location.replace("home.html")
+        }, 1000 )
+      }).catch(error =>{
+        console.error(error);
+      })
+    }
+
+    btnLoginWithGoogle.addEventListener("click", signInWithGoogle)
+    
