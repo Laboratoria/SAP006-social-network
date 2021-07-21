@@ -11,3 +11,17 @@
 img {
     width: 5%;
 }
+  
+#signup{
+    width: 350px;
+    height: 150px;
+    background-color: rgb(19, 136, 91);
+    padding: 30px;
+}
+
+#btn{
+    background-color: darkgray;
+    padding: 30px;
+    width: 350px;
+    height: auto;
+}

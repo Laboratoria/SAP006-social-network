@@ -16,22 +16,31 @@
   <body>
     <div id="root"></div>
 
-    <div id="firebaseui-auth-container"></div>
-    <div>
-      <form action="" id="postForm">
-        <input type="textarea" id="postText"/>
-        <button type="submit"> Enviar </button>
+    <img src="assets/logo.png">
 
-        <button id="btn-logout">Logout</button>
+    <div id="signup">
+      <form id="formulario">
+        <h3>Login</h3>
+        <input class="flex-itens" id="email" type="email" autocomplete="on" placeholder="E-mail" required>
+
+        <input class="flex-itens" id="password" type="password"  autocomplete="on" placeholder="Password" required>
+
+        <!-- <input class="flex-itens" id="Confpassword" type="Confpassword"  autocomplete="on" placeholder="ConfPassword" required> -->
+
+        <p class= "flex-itens" id= "nonUser"></p>
+
+        
       </form>
-
-      <img src="assets/logo.png">
-
-      <ul id="posts"></ul>
-
-      <button id="btn-deletePost">Delete</button>
-
     </div>
+
+    <div id="btn">
+      <button id="signin-button" class="flex-itens">Sign In</button>
+      <button id="signup-button" class="flex-itens">Sign up</button>
+      <button id="signout-button" class="flex-itens">Sign Out</button>
+    </div>
+
+    <div id="firebaseui-auth-container"></div>
+    
   
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->

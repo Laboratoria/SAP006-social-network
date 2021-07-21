@@ -1,16 +1,9 @@
-// Este é o ponto de entrada da sua aplicação
-
-// import { myFunction } from './lib/index.js';
-
-// myFunction();
-
 // Iniciando o firebase
 document.addEventListener('DOMContentLoaded', function() {
   const loadEl = document.querySelector('#root');
 
   try {
     firebase.app();
-    loadPosts()
     configureLogin()
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
@@ -24,6 +17,54 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('Confpassword');
+const newUser = document.getElementById('nonUser');
+const signInButton = document.getElementById('signin-button');
+
+const signUpButton = document.getElementById('signup-button');
+const signOutButton = document.getElementById('signout-button');
+
+// login usuarios existentes
+signInButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  // eslint-disable-next-line max-len
+firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    alert(`Login feito pelo Email: ${email.value}`)
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert(`Não há registro de usuário correspondente a este Email`)
+  });
+});
+// criar novo Login de usuários
+signUpButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  // eslint-disable-next-line max-len
+  firebase.auth().createUserWithEmailAndPassword(email.value, password.value).then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    console.log('deu bom', user);
+  })
+    .catch((error) => {
+      newUser.innerHTML = error.message;
+      console.log('deu ruim');
+    });
+});
+
+// sair da conta do usuario
+signOutButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  firebase.auth().signOut();
+  location.reload();
+});
+
 // Configurando as autenticações
 function uiConfig() {
   return {
@@ -31,12 +72,10 @@ function uiConfig() {
     signInSuccessUrl: '#',  //login feito com sucesso: deve enviar pra dentro do site em SPA no lugar da #
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID
     ]
   }
 }
-
 
 // Mostrando autenticações na tela 
 function configureLogin() {
@@ -51,75 +90,6 @@ function removeLogin() {
   `;
 };
 
-// Botão de logout
-document.getElementById('btn-logout').addEventListener('click', (event) => {
-  event.preventDefault();
-
-  firebase.auth().signOut();
-  location.reload();
-})
-
-// Criando coleção no firebase chamda 'posts'
-const postsCollection = firebase.firestore().collection('posts')
-
-// Enviando posts para o firestore
-document.getElementById('postForm').addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const text = document.getElementById('postText').value;
-  
-  const post = {
-    text: text,
-    user_id: 'Patrícia',
-    likes: 0,
-    comments:[]
-  } 
-
-  postsCollection
-    .add(post)
-    .then(() => {
-      document.getElementById('postText').value = ""
-      loadPosts()
-    })
-})
-
-// Adicionando posts 
-function addPost(post) {
-  const postTemplate = `
-      <li id="${post.id}"> Post: ${post.data().text} | ❤ ${post.data().likes}</li>
-  `
-  document.getElementById('posts').innerHTML += postTemplate
-}
-
-// Mostrando os posts na tela
-function loadPosts() {
-
-  document.getElementById('posts').innerHTML = "Carregando..."
-
-  postsCollection
-    .get()
-    .then(snap => {
-      document.getElementById('posts').innerHTML = ""
-      snap.forEach(post => {
-        addPost(post)
-      })
-    })
-}
-
-// Deletando posts
-function deletePost(postId) {
-  postsCollection
-    .doc(postId)
-    .delete()
-    .then(() => {
-      loadPosts()
-    })
-}
-
-document.getElementById('btn-deletePost').addEventListener('click', (event) => {
-  event.preventDefault()
-  deletePost("0naYLmyjJHydqRQJFuPG")
-})
 
 
 
@@ -127,48 +97,6 @@ document.getElementById('btn-deletePost').addEventListener('click', (event) => {
 
 
 
-
-
-// const email = 'patricia.argetlam@gmail.com';
-// const password = '123456';
-
-
-//Login de novos usuários
-
-// firebase
-//   .auth()
-//   .createUserWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     console.log('deu bom', user)
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-
-//     console.log('deu ruim', errorCode, errorMessage);
-//     // ..
-//   });
-
-
-// //Login de usuários existentes
-
-// firebase.auth().signInWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-
-//     console.log('logou!')
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-
-//     console.log('não logou')
-//   });
 
 
 
