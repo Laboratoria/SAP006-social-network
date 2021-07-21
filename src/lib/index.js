@@ -4,3 +4,4 @@ export const myFunction = () => {
   // aqui vai seu código
   console.log('Olá mundo!');
 };
+
