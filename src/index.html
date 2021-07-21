@@ -16,44 +16,40 @@
   <body>
     <div id="root"></div>
 
-    <img src="assets/logo.png">
+    <main id="container-login">
 
-    <div id="signup">
-      <form id="formulario">
-        <h3>Login</h3>
-        <input class="flex-itens" id="email" type="email" autocomplete="on" placeholder="E-mail" required>
+      <div id="logo">
+        <img src="assets/logo.png" alt="Logo">
+      </div>
 
-        <input class="flex-itens" id="password" type="password"  autocomplete="on" placeholder="Password" required>
+      <section>
+        <form id="form">
+          <input class="flex-itens input" id="email" type="email" autocomplete="on" placeholder="E-mail" required>
+          <input class="flex-itens input" id="password" type="password" autocomplete="on" placeholder="Password" required>
+          <p class= "flex-itens" id= "nonUser"></p>
+        </form>
 
-        <!-- <input class="flex-itens" id="Confpassword" type="Confpassword"  autocomplete="on" placeholder="ConfPassword" required> -->
+        <div id="btn">
+          <button id="signin-button" class="flex-itens button">Sign In</button>
+          <button id="signup-button" class="flex-itens button">Sign up</button>
+        </div>
 
-        <p class= "flex-itens" id= "nonUser"></p>
-
-        
-      </form>
-    </div>
-
-    <div id="btn">
-      <button id="signin-button" class="flex-itens">Sign In</button>
-      <button id="signup-button" class="flex-itens">Sign up</button>
-      <button id="signout-button" class="flex-itens">Sign Out</button>
-    </div>
+      </section>
+    </main>
 
     <div id="firebaseui-auth-container"></div>
-    
-  
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<!-- Configuração do Firebsase -->
     <script src="/__/firebase/8.7.1/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="/__/firebase/8.7.1/firebase-auth.js"></script>
     <script src="/__/firebase/8.7.0/firebase-firestore.js"></script>
 
-<!-- Initialize Firebase -->
+<!-- Inicializando Firebase -->
     <script src="/__/firebase/init.js?useEmulator=true"></script>
 
     <script type="module" src="main.js"></script>
+    <script type="module" src="timeline.js"></script>
   </body>
 </html>
