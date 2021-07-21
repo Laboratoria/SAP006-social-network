@@ -8,7 +8,8 @@
     vertical-align: baseline;
     list-style: none;
   }
-  body {
+  
+body {
     background-color: rgb(112, 196, 252);
     font-family: "Aquatico";
   }
@@ -19,18 +20,33 @@
 }
 
 
-logo {
+/* LOGIN */
+
+input {
+    width: 250px;
+    height: 40px;
+    margin-top: 5px;
+  }
+
+button {
+    width: 250px;
+    height: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.logo {
   display: inline-block;
   width: 20%;
 }
 
-logo img {
+.logo img {
   width: 100%;
   display: inline-block;
   align-items: center;
 }
 
-container-login {
+#container-login {
   display: inline-block;
   align-items: center;
   width: 70%;
@@ -39,31 +55,20 @@ container-login {
   background: linear-gradient(-135deg, #c850c0, #4158d0);
   padding: 10px;
 }
-.input {
-  width: 250px;
-  height: 40px;
-  margin-top: 5px;
-}
-.button {
-  width: 250px;
-  height: 40px;
-  margin-top: 10px;
-  cursor: pointer;
-}
 
-signup-button {
+#signup-button {
   background-color: rgba(0, 0, 255, 0);
   border: none;
   cursor: pointer;
   font-size: larger;
 }
 
-signup-button:hover {
+#signup-button:hover {
   background-color: rgba(0, 0, 255, 0);
   border: none;
   color: rgb(194, 194, 194);
 }
 
-/* LOGIN */
+
 
 /* TIMELINE */
