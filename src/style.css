@@ -1,56 +1,150 @@
-body {
-	padding: 0;
-	box-sizing: border-box;
-	margin: 0;
+.login-body{
+	display:flex;
+	margin:0;	
+	height:100vh;
 }
 
-.login-background {
-	background-image: url("images/login-background.jpeg");
+.f-roboto{
+	font-family:'Roboto', sans-serif;
+	font-weight:500;
+	font-size:90%;
 }
 
-.logo { 
-	max-width:500px;
-  max-height:350px;
-  width: auto;
-  height: auto;
+.f-80{
+	font-size:80%;
 }
 
-.login-section {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position:relative;
-
-	margin-bottom: 3%;
+.f-120{
+	font-size:120%;
 }
 
+.c-2f4f4f{
+	color:#2f4f4f
+}
 
-.login-placeholder-section { 
-	flex-direction: column;
-	
-	}
+.c-025159 {
+	color:#025159;
+}
 
-.login-placeholder-input {
+.c-696969 {
+	color:#696969;
+}
+
+.bg-white {
+	background-color: white;
+}
+
+.cursor-pointer {
+	cursor:pointer;
+}
+
+.p-relative{
+	position: relative;
+}
+
+.p-absolute{
+	position:absolute;
+}
+
+.mb-1 {
 	margin-bottom: 1%;
-	border-radius: 30px;
-	width:400px;
-	height:40px;
-	cursor: pointer;
+}
+
+.mt-2{
+	margin-top:2%;
+}
+
+.mt-4{
+	margin-top: 4%;
+}
+
+.m-vertical-6-center-left-right{
+	margin: 6% auto;
+}
+
+.pd-2{
+	padding:2%;
+}
+
+.pd-t-4{
+	padding-top:4%;
+}
+
+.pd-b-1{
+	padding-bottom:1%;
+}
+
+.pd-l-3{
+	padding-left:3%;
+}
+
+.w-50 {
+	width:50%;
+}
+
+.w-65{
+	width: 65%;
+}
+
+.w-100{
+	width: 100%;
+}
+
+.login-left-section {
+	text-align:center;
+}
+
+.login-left-section-header {
+	padding:1.5%;
+	text-align:start;
+}
+
+.login-input-label{
+	left:0%;
+	top:0%;
+	transition: .5s;
+	pointer-events: none;
+}
+
+.login-input {
+	border-radius: 25px;
+	border:1px solid gray;
+	box-shadow:0 4px 20px rgba(10, 54, 37, 0.4);
+	outline:none;
+}
+
+.login-input:focus ~ .login-input-label,
+.login-input:valid ~ .login-input-label{
+	top: -5px;
+	left: 4px;
+	font-weight: 600;
+	font-size: 80%;
 }
 
 
-.login-button{
-	margin-left: 1%;
-	box-shadow:0px 4px 3px rgba(0, 0, 0, 0.25);
-	background-color:#025159;
-	width:129px;
-	height:54px;
-	border-radius: 30px;
+
+.login-input-button{
+	width:25%;
+	margin-right: 3%;
+	background-color: #025159;
+	color:white;
 }
 
+.login-input-button:hover {
+	transform: translateY(-3px);
+	box-shadow:0 4px 30px rgba(10, 54, 37, 0.95);
+}
 
+.login-additional {
+	border: none;
+}
 
+.login-additional:hover{
+	transform: translateY(-2px);
+}
 
-
-
-
+.login-right-section {
+	background-image:url("./images/login-desktop-background.jpg");
+	background-size:cover;
+	background-repeat:no-repeat;
+}

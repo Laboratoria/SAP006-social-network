@@ -4,31 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Willing</title>
   </head>
-  <body class="background login-background">
+  <body class="login-body bg-white">
 
-    <main>
+    
+    <section class="login-left-section w-50">
+      <header class="login-left-section-header cursor-pointer c-2f4f4f f-roboto">
+        <a>Sobre nós</a>
+      </header>
+      <main>
 
-        <section class="login-section">
-          <img class="logo" src="./images/logo.png">
-        </section>
-       
-        <form class="login-section login-placeholder-section">
-          <input placeholder="Email"  class="login-placeholder-input" id="input-email">
-          <input placeholder="Password"  class="login-placeholder-input" id="input-password">
+        <div class="mt-4">
+          <img src="./images/logo-login.png" class="w-65"/>
+        </div>
+
+        <form class="m-vertical-6-center-left-right w-65">
+          <div class="p-relative">
+            <input required type="email" class="login-input w-100 mb-1 pd-b-1 pd-l-3 pd-t-4 c-2f4f4f f-roboto f-120" id="input-email">
+            <label class="login-input-label p-absolute pd-2 c-696969 f-roboto f-120">Email</label>
+          </div>
+          <div class="p-relative">
+            <input required type="password" class="login-input w-100 mb-1 pd-b-1 pd-l-3 pd-t-4 c-2f4f4f f-roboto f-120" id="input-password">
+            <label class="login-input-label p-absolute pd-2 c-696969 f-roboto f-120">Senha</label>
+          </div>
         </form>
-      
-        <section class="login-section">
-          <button class="login-button" id="button-login">ENTRAR</button>  
-          <button class="login-button" id="button-sign-in">CADASTRAR</button>
-        </section>
+        
+        <div class="mt-4">
+          <button class="login-input login-input-button cursor-pointer pd-2 f-roboto f-120" id="button-login">ENTRAR</button>  
+          <button class="login-input login-input-button cursor-pointer pd-2 f-roboto f-120" id="button-sign-in">CADASTRAR</button>
+        </div>
 
+        <div class="mt-4">
+          <button class="login-additional bg-white cursor-pointer mb-1 c-2f4f4f f-roboto"> Ou conecte-se com o gmail</button>
+          <br>
+          <button class="login-additional bg-white cursor-pointer mb-1 c-2f4f4f f-roboto"> Esqueceu a senha?</button>
+        </div>
+
+      </main>
+
+      <footer class="mt-2 c-2f4f4f f-roboto f-80"> Willing &copy 2021</footer>
+
+    </section>  
+
+    <section class="login-right-section w-50"></section>
       <!-- <span  class="e910_1066">Remember Me</span>
       <span  class="e910_1067">Or login with</span> -->
     
-    </main>
+  
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="/__/firebase/8.7.1/firebase-app.js"></script>
