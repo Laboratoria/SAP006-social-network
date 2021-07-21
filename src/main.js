@@ -2,10 +2,8 @@ import timeline from './pages/timeline.js'
 
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-// const confirmPassword = document.getElementById('Confpassword');
 const newUser = document.getElementById('nonUser');
 const signInButton = document.getElementById('signin-button');
-
 const signUpButton = document.getElementById('signup-button');
 
 // Iniciando o firebase
@@ -82,7 +80,7 @@ function configureLogin() {
 // Boas vindas para o usuário logado
 function removeLogin() {
   document.getElementById('firebaseui-auth-container').innerHTML = `
-  Que bom ver você ${firebase.auth().currentUser.displayName} <br>
+  Que bom ver você ${firebase.auth().currentUser.displayName} 
   `;
 
   document.getElementById('container-login').innerHTML = "";
