@@ -1,7 +1,9 @@
 .login-body{
 	display:flex;
 	margin:0;	
-	height:100vh;
+	height:60vh;
+	justify-content: center;
+	width: 100%;
 }
 
 .f-roboto{
@@ -31,7 +33,7 @@
 }
 
 .bg-white {
-	background-color: white;
+	background-color:white;
 }
 
 .cursor-pointer {
@@ -78,12 +80,8 @@
 	padding-left:3%;
 }
 
-.w-50 {
-	width:50%;
-}
-
-.w-65{
-	width: 65%;
+.w-50, .w-65 {
+	width:45%;
 }
 
 .w-100{
@@ -144,7 +142,19 @@
 }
 
 .login-right-section {
-	background-image:url("./images/login-desktop-background.jpg");
 	background-size:cover;
 	background-repeat:no-repeat;
+	width: 50%;
+
+}
+.login-right-section img{
+	max-width:100%; max-height:100%; width: auto; height: auto; 
+	margin-top: 10%;
+}
+
+.all-content{
+	justify-content: center;
+	margin: auto;
+	width: 90%;
+	height: 100%;
 }
