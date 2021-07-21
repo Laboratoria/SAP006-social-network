@@ -1,26 +1,27 @@
-// HTML
-    // <div>
-    //   <form action="" id="postForm">
-    //     <input type="textarea" id="postText"/>
-    //     <button type="submit"> Enviar </button>
+export default () => {
+   const timeline = document.getElementById("root").innerHTML = `
 
-    //     <button id="btn-logout">Logout</button>
-    //   </form>
+   <button id="signout-button" class="flex-itens">Sign Out</button>
+   <div>
+      <form action="" id="postForm">
+        <input type="textarea" id="postText"/>
+        <button type="submit"> Enviar </button>
+      </form>
 
-    //   <ul id="posts"></ul>
+      <ul id="posts"></ul>
 
-    //   <button id="btn-deletePost">Delete</button>
+      <button id="btn-deletePost">Delete</button>
 
-    // </div>
-    
+    </div>`;
 
-// Botão de logout
-document.getElementById('btn-logout').addEventListener('click', (event) => {
-    event.preventDefault();
-  
+   
+// sair da conta do usuario
+document.getElementById('signout-button').addEventListener('click', (e) => {
+    e.preventDefault();
     firebase.auth().signOut();
     location.reload();
-  })
+  });
+    
 
 // Criando coleção no firebase chamda 'posts'
 const postsCollection = firebase.firestore().collection('posts')
@@ -81,8 +82,6 @@ function deletePost(postId) {
     })
 }
 
-document.getElementById('btn-deletePost').addEventListener('click', (event) => {
-  event.preventDefault()
-  deletePost("0naYLmyjJHydqRQJFuPG")
-})
+return timeline;
 
+}

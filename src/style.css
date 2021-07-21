@@ -4,7 +4,7 @@
 }
 
  body {
-    background-color: rgb(112, 196, 252);
+    background-color: #78D6FE;
     font-family: "Aquatico";
 }
 
@@ -12,16 +12,3 @@ img {
     width: 5%;
 }
   
-#signup{
-    width: 350px;
-    height: 150px;
-    background-color: rgb(19, 136, 91);
-    padding: 30px;
-}
-
-#btn{
-    background-color: darkgray;
-    padding: 30px;
-    width: 350px;
-    height: auto;
-}
