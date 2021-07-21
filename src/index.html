@@ -4,10 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+
+    <link rel="sortcut icon" href="assets/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+
+    <title>SeriesDay</title>
   </head>
   <body>
     <div id="root"></div>
+
+    <img src="assets/logo.png">
+
+    <div id="signup">
+      <form id="formulario">
+        <h3>Login</h3>
+        <input class="flex-itens" id="email" type="email" autocomplete="on" placeholder="E-mail" required>
+
+        <input class="flex-itens" id="password" type="password"  autocomplete="on" placeholder="Password" required>
+
+        <!-- <input class="flex-itens" id="Confpassword" type="Confpassword"  autocomplete="on" placeholder="ConfPassword" required> -->
+
+        <p class= "flex-itens" id= "nonUser"></p>
+
+        
+      </form>
+    </div>
+
+    <div id="btn">
+      <button id="signin-button" class="flex-itens">Sign In</button>
+      <button id="signup-button" class="flex-itens">Sign up</button>
+      <button id="signout-button" class="flex-itens">Sign Out</button>
+    </div>
+
+    <div id="firebaseui-auth-container"></div>
+    
+  
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="/__/firebase/8.7.1/firebase-app.js"></script>
@@ -15,9 +49,10 @@
 <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="/__/firebase/8.7.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.7.0/firebase-firestore.js"></script>
 
 <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
 
     <script type="module" src="main.js"></script>
   </body>

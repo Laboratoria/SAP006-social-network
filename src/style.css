@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "Aquatico";
+    src: local(Aquatico), url(./assets/aquatico.otf);
+}
+
+ body {
+    background-color: rgb(112, 196, 252);
+    font-family: "Aquatico";
+}
+
+img {
+    width: 5%;
+}
+  
+#signup{
+    width: 350px;
+    height: 150px;
+    background-color: rgb(19, 136, 91);
+    padding: 30px;
+}
+
+#btn{
+    background-color: darkgray;
+    padding: 30px;
+    width: 350px;
+    height: auto;
+}
