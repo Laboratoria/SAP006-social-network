@@ -1,10 +1,8 @@
 import feed from './pages/feed/index.js'
 import signup from './pages/signup/index.js'
-import auth from './auth.js';
 import signin from './pages/signin/index.js';
 import createprofile from './pages/createprofile/index.js'
-import {createUser, asyncSendProfileData} from './lib/index.js'
-
+import {createUser, asyncSendProfileData, signInHome} from './lib/index.js'
 
 // myFunction();
 
@@ -16,18 +14,21 @@ window.addEventListener("load", () => {
 
   const enterLogin = document.getElementById("enter");
   enterLogin.addEventListener("click", () => {
-    auth.loginPage();  
+    signInHome.loginPage(feed); 
   });
-
 
   const signUpBtn = document.getElementById("signup-link") 
   signUpBtn.addEventListener("click", (e) => {
     e.preventDefault()
-    mainLogin.innerHTML= signup()
+    mainLogin.innerHTML = signup()
 
-    const registerBtn = document.getElementById("register-btn")
-
-    registerBtn.addEventListener("click", (e) =>{
+    const backSignIn = document.getElementById("back-sign-in");
+    backSignIn.addEventListener("click", () => {
+      mainLogin.innerHTML = signin();
+    })
+    
+    const registerBtn = document.getElementById("register-btn");
+      registerBtn.addEventListener("click", (e) =>{
       e.preventDefault()
       const registerEmail = document.getElementById("register-email").value
       const registerPassword =  document.getElementById("register-password").value
@@ -52,24 +53,22 @@ window.addEventListener("load", () => {
 
           switch(errorCode){
             case "auth/email-already-in-use":
-              alert("Esse e-mail já é cadastrado")
+              document.getElementById("register-email").style.border = "1px solid red";
+              document.getElementById("user-error-code").style.display = "block";
               break
 
             case "auth/invalid-email":
-              alert("Endereço de e-mail inválido")
+              document.getElementById("register-email").style.border = "1px solid red";
+              document.getElementById("email-error-code").innerHTML = "Endereço de e-mail inválido";
               break
 
             case "auth/weak-password":
-              alert("A senha escolhida é fraca")
+              document.getElementById("register-password").style.border = "1px solid red";
+              document.getElementById("password-error-code").innerHTML = "A senha escolhida é fraca";
               break
           }
         })
-    
-
     })   
   })
   
 })
-
-
-

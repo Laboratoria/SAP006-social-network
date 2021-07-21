@@ -7,8 +7,8 @@
 #sign-in{
     float: right;
 }
-#formSignIn{
-    padding: 55px;
+#form-sign-in, #sign-up{
+    padding: 45px 50px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@
     align-items: center;
     text-align: center;
 }
-.fieldsetSignIn{
+.fieldset-sign-in, .fieldset-sign-up, .fieldset-create-profile{
     border: none;
     width: 100%;
     box-sizing: border-box;
@@ -26,15 +26,15 @@
     align-items: center;
     text-align: center;
 }
-.formSignIn{
+.form-sign-in{
     background-color: #ebe6eb;
-    padding: 50px 30px 0px;
+    padding: 30px 30px 25px;
     border-radius: 10px;
     margin: 0px;
     width: 70%;
-    height: 320px;
+    height: 360px;
 }
-input{
+#login-email, #login-password{
     border-radius: 5px;
     border: none;
     outline: none;
@@ -45,32 +45,34 @@ input{
     margin: 10px 0px;
     color: #000000;
 }
-.forgetpassword{
-    margin: 0px 151px 0px 0px;
+.forget-password{
+    margin: 8px 150px 0px 0px;
     font-size: 14px;
 }
 #enter{
     cursor: pointer;
     background-color: #948194;
     color: #ffffff;
-    width: 60%;
+    width: 70%;
     height: 13%;
-    margin: 30px 0px 10px;
+    margin: 25px 0px 5px;
     padding: 8px 10px;
     border-radius: 5px;
+    font-size: 17px;
     border: none;
     outline: none;
 }
-#enter:hover{
+#enter:hover, #register-btn:hover, #send-profile:hover{
     background-color: rgb(159, 159, 173);
     transition: 0.7s;
 }
-.h1-login{
+.h1-login, .h1-signup{
     padding: 0px 0px 25px 0px;
 }
-.p-signIn{
-    margin: 10px 0px;
+.p-sign-in{
+    margin: 25px 0px 0px;
     color: #948194;
+    font-size: 15px;
 }
 a{
     text-decoration: none;
@@ -80,19 +82,24 @@ a:hover{
     color: #948194;
     text-decoration: underline #948194;
 }
-#gmail{
+.or{
+    padding: 10px 0px 0px;
+    font-size: 14px;
+
+}
+#gmail-btn{
     cursor: pointer;
     background-color: #bebebe;
     color: #ffffff;
-    width: 60%;
+    width: 70%;
     height: 11%;
-    margin: 12px 0px;
+    margin: 10px 0px;
     padding: 6px;
     border-radius: 5px;
     border: none;
     outline: none;
 }
-#gmail:hover{
+#gmail-btn:hover{
     background-color: grey;
     transition: 0.7s;
 }
@@ -100,10 +107,121 @@ a:hover{
     width: 20px;
     padding: 0px 3px 0px 0px;
 }
-.signInGoogle{
+.sign-google{
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: center;
     justify-content: center;
+}
+#email-error, #password-error{
+    position: absolute;
+    font-size: 12px;
+    padding: 0px;
+    margin: 53px 0px 0px 5px;
+    color: #df0000;
+}
+.user-not-found{
+    font-size: 13px;
+    padding: 0px;
+    color: #df0000;
+    display: none;
+}
+.form-sign-up{
+    background-color: #ebe6eb;
+    padding: 60px 30px 0px;
+    border-radius: 10px;
+    margin: 0px;
+    width: 80%;
+    height: 250px;
+}
+#register-email, #register-password{
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    width: 95%;
+    height: 12%;
+    padding: 5px 0px 5px;
+    padding-left: 20px;
+    margin: 10px 0px;
+    color: #000000;
+}
+#register-btn{
+    cursor: pointer;
+    background-color: #948194;
+    color: #ffffff;
+    width: 50%;
+    height: 18%;
+    margin: 35px 0px 5px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+}
+#back-sign-in{
+    font-size: 20px;
+    padding: 20px;
+    cursor: pointer;
+}
+#back-sign-in:hover{
+    color: #948194;
+    transition: 1s;
+}
+#email-error-code, #password-error-code{
+    position: absolute;
+    font-size: 12px;
+    padding: 0px;
+    margin: 53px 0px 0px 5px;
+    color: #df0000;
+}
+.user-already-in-use{
+    font-size: 13px;
+    padding: 0px;
+    margin: 0px;
+    color: #df0000;
+    display: none;
+}
+.form-create-profile{
+    background-color: #ebe6eb;
+    padding: 60px 10px 0px;
+    border-radius: 10px;
+    margin: 0px;
+    width: 80%;
+    height: 180px;
+}
+#create-profile{
+    padding: 170px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#input-profile-image, #input-username{
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    width: 40%;
+    height: 8%;
+    padding: 5px 0px 5px;
+    margin: 5px 0px;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#send-profile{
+    cursor: pointer;
+    background-color: #948194;
+    color: #ffffff;
+    width: 50%;
+    height: 22%;
+    margin: 35px 0px 5px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 17px;
+    border: none;
+    outline: none;
 }
