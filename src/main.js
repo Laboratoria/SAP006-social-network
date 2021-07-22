@@ -1,5 +1,5 @@
 // Este é o ponto de entrada da sua aplicação
 
-import { myFunction } from './lib/index.js';
+import { cadastro } from './lib/index.js';
 
-myFunction();
+cadastro('bleble@outlook.com', '977456');
