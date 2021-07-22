@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         timeline();
-         removeLogin();
+        removeLogin();
       }
     });
 
@@ -63,7 +63,7 @@ signUpButton.addEventListener('click', (e) => {
 function uiConfig() {
   return {
     signInFlow: 'popup',
-    signInSuccessUrl: '#timeline',  //login feito com sucesso: deve enviar pra dentro do site em SPA no lugar da #
+    signInSuccessUrl: '#',  //login feito com sucesso: deve enviar pra dentro do site em SPA no lugar da #
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID

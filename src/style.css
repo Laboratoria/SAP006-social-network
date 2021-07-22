@@ -10,7 +10,7 @@
   }
   
 body {
-    background:linear-gradient(-135deg, #333333, #666464);
+    background-color: #333333;
     width: 100%;
     height: 180vw;
 }
