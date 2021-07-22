@@ -1,5 +1,6 @@
-<<<<<<< HEAD
+import  { myFunction }  from  "./lib/index.js";
 
+myFunction()
 
     function authentication() {
 
@@ -33,16 +34,14 @@
     function signInWithGoogle (event) {
       event.preventDefault();
       firebase.auth().signInWithPopup(googleProvider)
-      .then(() => {
-        window.location="/home.html";
-        
+      .then((result) => {
+        window.location.href = "home.html"
+        return result
       }).catch(error =>{
         console.error(error);
       })
-    }
+    };
 
     btnLoginWithGoogle.addEventListener("click", signInWithGoogle)
     
 
-=======
->>>>>>> 2a817189616972c422699b7279cc768e4c712df0
