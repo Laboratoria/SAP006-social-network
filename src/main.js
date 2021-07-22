@@ -83,7 +83,6 @@ function removeLogin() {
   Que bom ver você ${firebase.auth().currentUser.displayName} 
   `;
 
-  document.getElementById('container-login').innerHTML = "";
 };
 
 

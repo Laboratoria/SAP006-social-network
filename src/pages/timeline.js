@@ -1,21 +1,20 @@
 export default () => {
-  const timeline = document.getElementById("root").innerHTML = `
+  
+  const timeline = document.getElementById("login-container").innerHTML = `
 
   <button id="signout-button" class="flex-itens">Sign Out</button>
   <div>
     <form action="" id="postForm">
       <input type="textarea" id="postText"/>
-      <button type="submit"> Enviar </button>
+      <button type="submit"> Postar </button>
     </form>
 
     <ul id="posts"></ul>
 
-    <button id="btn-deletePost">Delete</button>
-
   </div>`;
 
    
-  // sair da conta do usuario
+  //Sair da conta do usuário
   document.getElementById('signout-button').addEventListener('click', (e) => {
       e.preventDefault();
       firebase.auth().signOut();
@@ -23,7 +22,7 @@ export default () => {
     });
       
 
-  // Criando coleção no firebase chamda 'posts'
+  // Criando coleção no firebase chamada 'posts'
   const postsCollection = firebase.firestore().collection('posts')
 
   // Enviando posts para o firestore
@@ -48,11 +47,30 @@ export default () => {
   })
 
   // Adicionando posts 
-  function addPost(post) {
+  function createTemplatePost(post) {
     const postTemplate = `
         <li id="${post.id}"> Post: ${post.data().text} | ❤ ${post.data().likes}</li>
+        <button id="deletePost-btn">Delete</button>
+        <button id="likePost-btn">❤</button>
     `
     document.getElementById('posts').innerHTML += postTemplate
+
+  // Deletando posts  
+    document.getElementById('deletePost-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+
+      function deletePost() {
+        postsCollection
+          .doc(post.id)
+          .delete()
+          .then(() => {
+            loadPosts()
+          })
+      }
+
+      deletePost(post.id);
+      
+      });
   }
 
   // Mostrando os posts na tela
@@ -65,22 +83,12 @@ export default () => {
       .then(snap => {
         document.getElementById('posts').innerHTML = ""
         snap.forEach(post => {
-          addPost(post)
+          createTemplatePost(post)
         })
       })
   }
-
+  
   loadPosts()
-
-  // Deletando posts
-  function deletePost(postId) {
-    postsCollection
-      .doc(postId)
-      .delete()
-      .then(() => {
-        loadPosts()
-      })
-  }
 
   return timeline;
 
