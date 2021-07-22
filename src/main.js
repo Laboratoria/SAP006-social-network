@@ -77,17 +77,23 @@ myFunction();
 
    
    
-
-    const criarFirebaseconta = (email, senha, userName) => {
-        firebase.auth().createUserWithEmailAndPassword(email, senha).then((userReturn) => {
-          userReturn.user.updateProfile({
-            displayName: userName,
-          }).then(() => {
-          }, (error) => {
-            alert('Lamento, algo deu errado!', error);
+  function fire () {
+    const criarFirebaseconta = (email, senha, name) => {
+        firebase.auth().createUserWithEmailAndPassword(email, senha)
+        .then((userReturn) => {
+          const user = userReturn.user;
+          
+          })
+          .catch((error) => {
+            const errorMessage = error.message;
+            const errorCode = error.code;
+            window.alert("Error : " + errorMessage);
           });
-        });
-      };
+          
+          
+        };
+        
+      
     
 const criarConta = document.getElementById('send');
 criarConta.addEventListener('click', (event) => {
@@ -97,6 +103,8 @@ criarConta.addEventListener('click', (event) => {
    const email = document.getElementById('email').value;
    const senha = document.getElementById('password').value;
    criarFirebaseconta(email, senha, name);
+
+   /*
    if (name === '' || email === '' || senha === '') {
      alert('Por favor preencha todos os campos');
    } else {
@@ -104,24 +112,17 @@ criarConta.addEventListener('click', (event) => {
      window.history.pushState(null, null, '/');
   
    }
+    */
  });
 
 
+  }
+
+ 
+
+  fire();
 
 
   
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-   
