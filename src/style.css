@@ -4,7 +4,7 @@
     padding: 0;
     font-family: Roboto;
 }
-#sign-in{
+.form-container{
     float: right;
 }
 #form-sign-in, #sign-up{
@@ -16,7 +16,7 @@
     align-items: center;
     text-align: center;
 }
-.fieldset-sign-in, .fieldset-sign-up, .fieldset-create-profile{
+.fieldset{
     border: none;
     width: 100%;
     box-sizing: border-box;
