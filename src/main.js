@@ -11,79 +11,80 @@ const mainLogin = document.getElementById("root")
 window.addEventListener("load", () => {
   mainLogin.appendChild(signin());
 
-  // const enterLogin = document.getElementById("enter");
-  // enterLogin.addEventListener("click", () => {
-  //   auth.loginPage();  
-  // });
-
-
-  const signUpBtn = document.getElementById("signup-link") 
-  signUpBtn.addEventListener("click", (e) => {
+  const signUpLink = document.getElementById("signup-link") 
+  signUpLink.addEventListener("click", (e) => {
     e.preventDefault()
-    mainLogin.innerHTML= signup()
+    mainLogin.innerHTML=""
+    mainLogin.appendChild(signup())
 
-    const registerBtn = document.getElementById("register-btn")
-
-    registerBtn.addEventListener("click", (e) =>{
-      e.preventDefault()
-      const registerEmail = document.getElementById("register-email").value
-      const registerPassword =  document.getElementById("register-password").value
-
-      createUser(registerEmail, registerPassword)
-        .then(() => {
-          mainLogin.innerHTML = createprofile()
-          const sendProfileBtn = document.getElementById("send-profile")
-          sendProfileBtn.addEventListener("click", (e) => {
-            e.preventDefault()
-            const userName = document.getElementById("input-username").value
-            const user = currentUser()
-            const userId = user.uid
-            console.log(userId)
-          
-            uploadImage("input-profile-image", userId)
-            const URLProfileImage =getURLImage(userId)
-            console.log(URLProfileImage)
-            asyncSendProfileData(userName, URLProfileImage)
-
-          
-           
-
-            mainLogin.innerHTML = profile()
-           
-          
-
-            // const userImage = document.getElementById("user-image")
-            // image.src = 
-
-
-          })
-        })
-        
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("error", errorCode,errorMessage)
-
-          switch(errorCode){
-            case "auth/email-already-in-use":
-              alert("Esse e-mail já é cadastrado")
-              break
-
-            case "auth/invalid-email":
-              alert("Endereço de e-mail inválido")
-              break
-
-            case "auth/weak-password":
-              alert("A senha escolhida é fraca")
-              break
-          }
-        })
-    
-
-    })   
+    const backSignIn = document.querySelector("#back-sign-in");
+    backSignIn.addEventListener("click", () => {
+      mainLogin.innerHTML=""
+      mainLogin.appendChild(signin())
+      
+    })
   })
-  
 })
+    
+//     const registerBtn = document.getElementById("register-btn");
+//       registerBtn.addEventListener("click", (e) =>{
+//       e.preventDefault()
+//       const registerEmail = document.getElementById("register-email").value
+//       const registerPassword =  document.getElementById("register-password").value
+
+//       createUser(registerEmail, registerPassword)
+//         .then(() => {
+//           mainLogin.innerHTML = createprofile()
+//           const sendProfileBtn = document.getElementById("send-profile")
+//           sendProfileBtn.addEventListener("click", (e) => {
+//             e.preventDefault()
+//             const userName = document.getElementById("input-username").value
+//             const user = currentUser()
+//             const userId = user.uid
+//             console.log(userId)
+          
+//             uploadImage("input-profile-image", userId)
+//             const URLProfileImage =getURLImage(userId)
+//             console.log(URLProfileImage)
+//             asyncSendProfileData(userName, URLProfileImage)
+
+          
+           
+
+//             mainLogin.innerHTML = profile()
+           
+          
+
+//             const userImage = document.getElementById("user-image")
+//             image.src = 
 
 
+//           })
+//         })
+        
+//         .catch((error) => {
+//           const errorCode = error.code;
+//           const errorMessage = error.message;
+//           console.log("error", errorCode,errorMessage)
 
+//           switch(errorCode){
+//             case "auth/email-already-in-use":
+//               document.getElementById("register-email").style.border = "1px solid red";
+//               document.getElementById("user-error-code").style.display = "block";
+//               break
+
+//             case "auth/invalid-email":
+//               document.getElementById("register-email").style.border = "1px solid red";
+//               document.getElementById("email-error-code").innerHTML = "Endereço de e-mail inválido";
+//               break
+
+//             case "auth/weak-password":
+//               document.getElementById("register-password").style.border = "1px solid red";
+//               document.getElementById("password-error-code").innerHTML = "A senha escolhida é fraca";
+//               break
+//           }
+//         })
+//     })   
+//   })
+  
+// })

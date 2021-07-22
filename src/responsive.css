@@ -2,7 +2,7 @@
     #sign-in{
         float: none;
     }
-    #formSignIn{
+    #form-sign-in{
         padding: 8vw 5em;
         box-sizing: border-box;
         display: flex;
@@ -12,7 +12,7 @@
         text-align: center;
         font-size: 1em;
     }
-    .fieldsetSignIn{
+    .fieldset{
         border: none;
         width: 5rem;
         box-sizing: border-box;
@@ -22,40 +22,60 @@
         align-items: center;
         text-align: center;
     }
-    .formSignIn{
-        padding: 8vh 1.5rem 0px;
+    .form-sign-in{
+        padding: 8vh 1.5rem 2.5rem;
         width: 75vw;
-        height: 75vh;
+        height: 60vh;
     }
-    .forgetpassword{
+    .forget-password{
         float: left;
-        margin: 0px;
-        padding: 5px;
+        margin: 1em 0em;
         font-size: 0.9em;
     }
     #enter{
         width: 75vw;
-        margin: 1em 0em 0em;
+        margin: 0em 0em 0em;
         padding: 0.5em 1em;
-        font-size: 1.4em;
+        font-size: 1.2em;
         box-shadow: 0px 0px 3px #615564;
     }
-    .p-signIn{
+    .p-sign-in{
         margin: 1em 0em;
         color: #948194;
         font-size: 0.9em;
     }
-    input{
+    #login-email, #login-password{
         font-size: 1.1em;
     }
-    #gmail{
+    .or{
+        padding: 0em;
+    }
+    #gmail-btn{
         width: 75vw;
         height: 8vh;
         margin: 2vh 0px;
         padding: 0rem;
         font-size: 0.8em;
     }
-    .signInGoogle{
+    .sign-google{
         font-size: 1.2em;
     }
+    #email-error, #password-error{
+        display: none;
+    }
+    .user-not-found{
+        font-size: 1.2rem;
+    }
+    #sign-up{
+        padding: 7rem 0rem;
+    }
+    .form-sign-up{
+        padding: 5rem 1rem 0rem;
+        width: 80vw;
+        height: 40vh;
+    }
+    .h1-login, .h1-signup{
+       font-size: 1.7em;
+    }
+
 }
