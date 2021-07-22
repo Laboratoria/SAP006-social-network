@@ -1,9 +1,9 @@
 export default () => {
   const createProfileTemplate = `
   <form action="">
-    <input type="text" placeholder="Foto de perfil" id="input-profile-image">
+    <input type="file" placeholder="Foto de perfil" id="input-profile-image"/>
     <br><br>
-    <input type="text" placeholder="Nome de usuário" id="input-username">
+    <input type="text" placeholder="Nome de usuário" id="input-username"/>
     <br>
     
 

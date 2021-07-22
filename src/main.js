@@ -1,23 +1,20 @@
 import feed from './pages/feed/index.js'
-import signup from './pages/signup/index.js'
-import auth from './auth.js';
+import signup from './pages/signup/index.js';
 import signin from './pages/signin/index.js';
 import createprofile from './pages/createprofile/index.js'
-import {createUser, asyncSendProfileData} from './lib/index.js'
+import profile from './pages/profile/index.js';
+import {loginPage, createUser, asyncSendProfileData,uploadImage, currentUser,getURLImage} from './lib/index.js'
 
 
-// myFunction();
-
-// variável pra acessar o banco de dados
 const mainLogin = document.getElementById("root")
 
 window.addEventListener("load", () => {
-  mainLogin.innerHTML = signin();
+  mainLogin.appendChild(signin());
 
-  const enterLogin = document.getElementById("enter");
-  enterLogin.addEventListener("click", () => {
-    auth.loginPage();  
-  });
+  // const enterLogin = document.getElementById("enter");
+  // enterLogin.addEventListener("click", () => {
+  //   auth.loginPage();  
+  // });
 
 
   const signUpBtn = document.getElementById("signup-link") 
@@ -39,8 +36,25 @@ window.addEventListener("load", () => {
           sendProfileBtn.addEventListener("click", (e) => {
             e.preventDefault()
             const userName = document.getElementById("input-username").value
-            const image = document.getElementById("input-profile-image").value
-            asyncSendProfileData(userName, image)
+            const user = currentUser()
+            const userId = user.uid
+            console.log(userId)
+          
+            uploadImage("input-profile-image", userId)
+            const URLProfileImage =getURLImage(userId)
+            console.log(URLProfileImage)
+            asyncSendProfileData(userName, URLProfileImage)
+
+          
+           
+
+            mainLogin.innerHTML = profile()
+           
+          
+
+            // const userImage = document.getElementById("user-image")
+            // image.src = 
+
 
           })
         })
