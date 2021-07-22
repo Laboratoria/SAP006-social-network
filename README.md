@@ -424,7 +424,6 @@ implementação.
 
 O [vídeo](https://youtu.be/hf8x3A1e57Y) da Paloma pode ajudar nessa etapa.
 
-### 8.4. Gravação de dados
 
 Nos projetos anteriores, consumimos dados, mas ainda não tínhamos escrito dados
 (salvar alterações, criar dados, excluir, etc). Neste projeto, você precisará

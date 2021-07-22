@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
     function authentication() {
@@ -43,3 +44,5 @@
     btnLoginWithGoogle.addEventListener("click", signInWithGoogle)
     
 
+=======
+>>>>>>> 2a817189616972c422699b7279cc768e4c712df0
