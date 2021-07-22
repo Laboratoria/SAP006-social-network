@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <link rel="sortcut icon" href="assets/logo.png" type="image/x-icon" />
+
     <link rel="stylesheet" href="style.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300&display=swap" rel="stylesheet">
 
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
@@ -16,29 +19,39 @@
   <body>
     <div id="root"></div>
 
-    <main id="container-login">
+      <div class="box">
 
-      <div id="logo">
-        <img src="assets/logo.png" alt="Logo">
+        <main id="container-login">
+
+          <div class="banner">
+            <img src="assets/logo.png" alt="Logo">
+            <div class="title-container">
+              <h1 class="title">SeriesDay</h1>
+              <h3 class="subtitle">review de séries</h3>
+            </div>
+          </div>
+
+          <section>
+            <form class="form">
+              <input class="input" id="email" type="email" autocomplete="on" placeholder="E-mail" required>
+              <input class="input" id="password" type="password" autocomplete="on" placeholder="Senha" required>
+              <p id= "nonUser"></p>
+            </form>
+
+            <div class="signin">
+              <button id="signin-button" class="login-buttons">Entrar</button>
+              <p> OU </p>
+            </div>
+
+          </section>
+
+        </main>
+      
+        <div id="firebaseui-auth-container"></div>
+
+        <button id="signup-button" class="login-buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
+
       </div>
-
-      <section>
-        <form id="form">
-          <input class="flex-itens input" id="email" type="email" autocomplete="on" placeholder="E-mail" required>
-          <input class="flex-itens input" id="password" type="password" autocomplete="on" placeholder="Password" required>
-          <p class= "flex-itens" id= "nonUser"></p>
-        </form>
-
-        <div id="btn">
-          <button id="signin-button" class="flex-itens button">Sign In</button>
-          <button id="signup-button" class="flex-itens button">Sign up</button>
-        </div>
-
-      </section>
-    </main>
-
-    <div id="firebaseui-auth-container"></div>
-
 
 <!-- Configuração do Firebsase -->
     <script src="/__/firebase/8.7.1/firebase-app.js"></script>
