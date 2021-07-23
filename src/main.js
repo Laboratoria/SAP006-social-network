@@ -4,7 +4,7 @@ import { myFunction } from './lib/index.js';
 
 
 
-myFunction();
+/*myFunction();
 
 function signup() {
     const email = document.querySelector('#')
@@ -15,3 +15,4 @@ const button = document.getElementById("")
 button.addEventListener('click', signup)
 
 //console.log(button)
+*/
