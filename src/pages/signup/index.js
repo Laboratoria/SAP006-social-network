@@ -1,25 +1,39 @@
-export default () => {
+import {createUser} from '../../lib/index.js'
+
+export default () => { 
+
+  const sectionElement = document.createElement("section")
+  sectionElement.setAttribute("id","sign-up")
+  // sectionElement.setAttribute("class","form-container")
+
+  const signUpTemplate = `
+  <p id="back-sign-in">← Voltar</p>
+  <section id="sign-up" class="form-container>
+  <div id="form-sign-up">
+    <h1 class="h1-signup">CADASTRO</h1>
+    <fieldset class="fieldset-sign-up fieldset">
+    <form class="form-sign-up" action="">
+    <p class="user-already-in-use" id="user-error-code">Esse e-mail já é cadastrado</p>
+    <p id="email-error-code"></p>
+      <input type="email" placeholder="Email" id="register-email">
+    <p id="password-error-code"></p>
+      <input type="password" placeholder="Senha" id="register-password">
+      <button type="submit" id="register-btn">Enviar</button>
+    </form>
+    </fieldset>
+  </div>
+  </section>
+  `
   
-  
-    const signUpTemplate = 
-    `
-    <section id="signup">
-      <p>CADASTRE-SE</p>
-      <form action="">
-        <input type="email" placeholder="email" id="register-email">
-        <br><br>
-        <input type="password" placeholder="senha" id="register-password">
-        <br>
+  sectionElement.innerHTML = signUpTemplate
 
-        <button type="submit" id="register-btn">Enviar</button>
-        <br>
-        <br>
+  const registerBtn = sectionElement.querySelector("#register-btn")
+  registerBtn.addEventListener("click", (e) =>{
+    e.preventDefault()
+    const registerEmail = sectionElement.querySelector("#register-email").value
+    const registerPassword =  sectionElement.querySelector("#register-password").value
+    createUser(registerEmail, registerPassword)
+  })
 
-      </form>
-    </section>
-    `
-
-    return signUpTemplate
-  
-
+  return sectionElement
 }
