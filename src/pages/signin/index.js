@@ -1,4 +1,6 @@
 import {loginPage} from '../../lib/index.js'
+import { navigateTo } from '../../routes.js'
+import feed from '../feed/index.js'
 
 export default () => {
 
@@ -38,6 +40,27 @@ export default () => {
     const email = sectionElement.querySelector("#login-email").value
     const password = sectionElement.querySelector("#login-password").value
     loginPage(email,password)
+    .then(() => {
+      alert("Login realizado")
+      setTimeout( () => {
+          navigateTo("feed",feed())
+      }, 1000)
+    })
+    .catch((error) => {
+      const errorCode = error.code
+      if(errorCode == "auth/user-not-found"){
+          alert(`Usuário não encontrado`)
+      }
+      else if(errorCode == "auth/wrong-password"){
+          alert("Senha invalida")
+      }
+      else if(errorCode == "auth/invalid-email"){
+          alert("E-mail invalido")
+      }
+      else{
+          alert(error.message)
+      }
+    })
   })
  
 
