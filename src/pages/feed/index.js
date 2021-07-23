@@ -1,10 +1,26 @@
-export default () =>{
-  const sectionElement = document.createElement("section")
+import { } from '../../lib/index.js'
 
-  const createFeedTemplate=
-  `<h1>BEM VINDO <3</h1>`
+export default () => {
 
-sectionElement.innerHTML= createFeedTemplate
+    const sectionElement = document.createElement("section")
+    sectionElement.setAttribute("id","feed")
+    sectionElement.setAttribute("class","form-container")
 
-return sectionElement
+    const feedTemplate = `<h1>BEM VINDO <3</h1>`
+
+    sectionElement.innerHTML = feedTemplate
+
+
+// botao curtir
+
+// botao comentar
+
+//botao criar review
+
+//botao logOut
+
+    return sectionElement
+
 }
+
+

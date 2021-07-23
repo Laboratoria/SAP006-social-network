@@ -1,4 +1,4 @@
-import {loginPage} from '../../lib/index.js'
+import {loginPage, signInGoogleAccount} from '../../lib/index.js'
 import { navigateTo } from '../../routes.js'
 import feed from '../feed/index.js'
 
@@ -34,6 +34,7 @@ export default () => {
   sectionElement.innerHTML = signInTemplate
 
   const enterLogin = sectionElement.querySelector("#enter")
+  const loginWithGoogle = sectionElement.querySelector("#gmail-btn")
   
 
   enterLogin.addEventListener("click", () =>{
@@ -63,7 +64,7 @@ export default () => {
     })
   })
  
-
+  loginWithGoogle.addEventListener("click", signInGoogleAccount)
 
 
   return sectionElement;
