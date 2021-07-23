@@ -3,64 +3,28 @@ import signup from './pages/signup/index.js';
 import signin from './pages/signin/index.js';
 import createprofile from './pages/createprofile/index.js'
 import profile from './pages/profile/index.js';
-import {loginPage, createUser, asyncSendProfileData,uploadImage, currentUser,getURLImage} from './lib/index.js'
-
+import {loginPage, createUser, asyncSendProfileData,uploadImage, currentUser} from './lib/index.js'
+import { navigateTo } from './routes.js';
 
 const mainLogin = document.getElementById("root")
 
 window.addEventListener("load", () => {
-  mainLogin.appendChild(signin());
+  navigateTo("signin", signin())
 
   const signUpLink = document.getElementById("signup-link") 
   signUpLink.addEventListener("click", (e) => {
     e.preventDefault()
-    mainLogin.innerHTML=""
-    mainLogin.appendChild(signup())
-
+    navigateTo("signup", signup())
+    const registerBtn = document.getElementById("register-btn");
+    
     const backSignIn = document.querySelector("#back-sign-in");
     backSignIn.addEventListener("click", () => {
-      mainLogin.innerHTML=""
-      mainLogin.appendChild(signin())
-      
+      navigateTo("signin",signin()) 
     })
+
   })
 })
-    
-//     const registerBtn = document.getElementById("register-btn");
-//       registerBtn.addEventListener("click", (e) =>{
-//       e.preventDefault()
-//       const registerEmail = document.getElementById("register-email").value
-//       const registerPassword =  document.getElementById("register-password").value
 
-//       createUser(registerEmail, registerPassword)
-//         .then(() => {
-//           mainLogin.innerHTML = createprofile()
-//           const sendProfileBtn = document.getElementById("send-profile")
-//           sendProfileBtn.addEventListener("click", (e) => {
-//             e.preventDefault()
-//             const userName = document.getElementById("input-username").value
-//             const user = currentUser()
-//             const userId = user.uid
-//             console.log(userId)
-          
-//             uploadImage("input-profile-image", userId)
-//             const URLProfileImage =getURLImage(userId)
-//             console.log(URLProfileImage)
-//             asyncSendProfileData(userName, URLProfileImage)
-
-          
-           
-
-//             mainLogin.innerHTML = profile()
-           
-          
-
-//             const userImage = document.getElementById("user-image")
-//             image.src = 
-
-
-//           })
-//         })
         
 //         .catch((error) => {
 //           const errorCode = error.code;

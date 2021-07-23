@@ -5,77 +5,43 @@ export const loginPage = (email,password) => {
   if (firebase.auth().currentUser){
       firebase.auth().signOut()
   }
-  firebase
+  return firebase
   .auth()
   .signInWithEmailAndPassword(email, password)
-  .then(() => {
-      alert("Login realizado")
-      feed()
-      setTimeout( () => {
-          window.location.replace(feed)
-      }, 1000)
-  })
-  .catch((error) => {
-      const errorCode = error.code
-      if(errorCode == "auth/user-not-found"){
-          alert(`Usuário não encontrado`)
-      }
-      else if(errorCode == "auth/wrong-password"){
-          alert("Senha invalida")
-      }
-      else if(errorCode == "auth/invalid-email"){
-          alert("E-mail invalido")
-      }
-      else{
-          alert(error.message)
-      }
-  })
+  // .then(() => {
+  //     alert("Login realizado")
+  //     feed()
+  //     setTimeout( () => {
+  //         window.location.replace(feed)
+  //     }, 1000)
+  // })
+  // .catch((error) => {
+  //     const errorCode = error.code
+  //     if(errorCode == "auth/user-not-found"){
+  //         alert(`Usuário não encontrado`)
+  //     }
+  //     else if(errorCode == "auth/wrong-password"){
+  //         alert("Senha invalida")
+  //     }
+  //     else if(errorCode == "auth/invalid-email"){
+  //         alert("E-mail invalido")
+  //     }
+  //     else{
+  //         alert(error.message)
+  //     }
+  // })
 }
 
-
-
-export const signInHome = {
-  loginPage: (feed) => {
-      if (firebase.auth().currentUser){
-          firebase.auth().signOut()
-      }
-      const email = document.getElementById("login-email").value
-      const password = document.getElementById("login-password").value
-      firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-          document.getElementById("root").innerHTML = feed;
-          setTimeout( () => {
-              window.location.replace("index.html")
-          }, 1000)
-      })
-      .catch((error) => {
-          const errorCode = error.code
-          if(errorCode == "auth/user-not-found"){
-              document.getElementById("user-error").style.display = "block";
-              document.getElementById("login-email").style.border = "1px solid red";
-              document.getElementById("login-password").style.border = "1px solid red";
-          }
-          else if(errorCode == "auth/invalid-email"){
-            document.getElementById("login-email").style.border = "1px solid red";
-            document.getElementById("email-error").innerHTML = "E-mail inválido";
-          }
-          else if(errorCode == "auth/wrong-password"){
-            document.getElementById("login-password").style.border = "1px solid red";
-            document.getElementById("password-error").innerHTML = "Senha inválida";
-          }
-          else{
-              alert(error.message)
-          }
-      })
-   }
-  }
 
 export const createUser = async(email, password) =>{
   await firebase
   .auth()
   .createUserWithEmailAndPassword(email, password)
+  .then(()=>{
+    alert("Cadastro efetuado com sucesso")
+    //redirecionar para tela profile
+  })
+ 
 
 }
 
@@ -188,41 +154,14 @@ export const uploadImage = (id, userid) =>{
     contentType:file.type,
   }
 
-  ref.child(imageName).put(file, metadata)
+  return ref.child(imageName).put(file, metadata)
 
-  // uploading
+  //uploading
   // .then(snapshot => snapshot.ref.getDownloadURL())
   // .then (url => {
   //   const urlImage = url
-  //   alert("Imagem enviada com sucesso")
+  //   console.log(urlImage)
   //   return urlImage
   // })
 
-}
-
-export const getURLImage = (imageName) => {
-  storage.ref().child(imageName).getDownloadURL()
-  .then((url)=> {
-    return url
-  })
-
-  .catch((error) => {
-  switch (error.code) {
-    case 'storage/object-not-found':
-      // File doesn't exist
-      break;
-
-    case 'storage/unauthorized':
-      // User doesn't have permission to access the object
-      break;
-
-    case 'storage/canceled':
-      // User canceled the upload
-      break;
-
-    case 'storage/unknown':
-      // Unknown error occurred, inspect the server response
-      break;
-  }
-});
 }

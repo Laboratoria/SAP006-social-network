@@ -1,6 +1,11 @@
 import {createUser} from '../../lib/index.js'
+import { navigateTo } from '../../routes.js'
+import createprofile from '../createprofile/index.js'
+
 
 export default () => { 
+
+  history.pushState(null,null,"about")
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","sign-up")
@@ -33,6 +38,26 @@ export default () => {
     const registerEmail = sectionElement.querySelector("#register-email").value
     const registerPassword =  sectionElement.querySelector("#register-password").value
     createUser(registerEmail, registerPassword)
+    .then(()=>{
+      navigateTo("create-profile", createprofile())
+    })
+    .catch((error)=>{
+      const errorCode = error.code
+      switch(errorCode){
+        case "auth/email-already-in-use":
+          alert("E-mail já cadastrado")
+          break
+  
+        case "auth/invalid-email":
+          alert("Formato de e-mail inválido")
+          break
+  
+        case "auth/weak-password":
+          alert("Senha fraca")
+          break
+      }
+    })
+   
   })
 
   return sectionElement

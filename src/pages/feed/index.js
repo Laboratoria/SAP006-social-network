@@ -19,6 +19,8 @@ export default () => {
 
 //botao logOut
 
+    return sectionElement
+
 }
 
 
