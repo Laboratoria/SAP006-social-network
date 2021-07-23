@@ -35,7 +35,7 @@ myFunction()
       event.preventDefault();
       firebase.auth().signInWithPopup(googleProvider)
       .then((result) => {
-        window.location.href = "home.html"
+        window.location.replace("home.html")
         return result
       }).catch(error =>{
         console.error(error);
