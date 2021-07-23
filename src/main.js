@@ -1,10 +1,9 @@
-// Este é o ponto de entrada da sua aplicação
 import login from './lib/login/login';
-//import cadastro from './lib/...';
-//import home from './lib/...';
-import { myFunction } from './lib/index.js';
+import landing from './lib/landing';
 
-myFunction();
+// import { myFunction } from './lib/index.js';
+
+// myFunction();
 
 const div = document.querySelector('#root');
 
@@ -24,3 +23,34 @@ window.addEventListener('load', () => {
   div.appendChild(login());
   init();
 });
+
+const main = document.querySelector('#root');
+
+window.addEventListener('load', () => {
+  main.appendChild(landing())
+});
+
+firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+
+firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });
+
+// myFunction();
