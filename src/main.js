@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Este é o ponto de entrada da sua aplicação
 
 /* import { myFunction } from './lib/index.js';
@@ -125,3 +126,5 @@ criarConta.addEventListener('click', (event) => {
 
 
    
+=======
+>>>>>>> a7ffe86b316b2addd60224dc35797db3f32861f2
