@@ -1,5 +1,5 @@
 export default () => {
-  
+
   const timeline = document.getElementById("login-container").innerHTML = `
 
   <button id="signout-button" class="flex-itens">Sign Out</button>
@@ -33,7 +33,7 @@ export default () => {
     
     const post = {
       text: text,
-      user_id: 'Patrícia',
+      userId: "Patrícia",
       likes: 0,
       comments:[]
     } 
@@ -44,14 +44,16 @@ export default () => {
         document.getElementById('postText').value = ""
         loadPosts()
       })
+
   })
 
   // Adicionando posts 
   function createTemplatePost(post) {
     const postTemplate = `
-        <li id="${post.id}"> Post: ${post.data().text} | ❤ ${post.data().likes}</li>
-        <button id="deletePost-btn">Delete</button>
-        <button id="likePost-btn">❤</button>
+        <li id="${post.id}"> Post: ${post.data().text} | ❤️ ${post.data().likes} | 💬 | </li>
+        <button id="deletePost-btn">🗑️</button>
+        <button id="likePost-btn">❤️</button>
+        <button id="commentPost-btn">💬</button>
     `
     document.getElementById('posts').innerHTML += postTemplate
 
@@ -59,24 +61,60 @@ export default () => {
     document.getElementById('deletePost-btn').addEventListener('click', (e) => {
       e.preventDefault();
 
-      function deletePost() {
+      function deletePost(id) {
         postsCollection
-          .doc(post.id)
+          .doc(id)
           .delete()
           .then(() => {
             loadPosts()
           })
       }
-
-      deletePost(post.id);
       
-      });
+      deletePost(post.id);     
+    });
+
+  // Curtindo posts
+    document.getElementById('likePost-btn').addEventListener('click', (e) => {
+      e.preventDefault()
+
+      function addLikes() {
+
+        const userId = firebase.auth().currentUser.uid
+        const postId = post.id
+
+        postsCollection
+        .doc(postId)
+        .get()
+        .then((snapshot) => {
+          const dados = snapshot.data();
+
+          if (dados.likes && !dados.likes.includes(userId)) {
+            postsCollection
+              .doc(postId)
+              .update({
+                likes: firebase.firestore.FieldValue
+                  .arrayUnion(firebase.auth().currentUser.uid),
+              });
+          } else {
+            postsCollection
+              .doc(postId)
+              .update({
+                likes: firebase.firestore.FieldValue
+                  .arrayRemove(firebase.auth().currentUser.uid),
+              });
+          }
+          
+        })
+      }
+      addLikes(post.id)
+
+    });
   }
 
   // Mostrando os posts na tela
   function loadPosts() {
 
-    document.getElementById('posts').innerHTML = "Carregando..."
+    document.getElementById('posts').innerHTML = "Carregando posts..."
 
     postsCollection
       .get()
