@@ -1,6 +1,8 @@
 const database = firebase.firestore()
 const storage = firebase.storage()
 
+
+
 export const loginPage = (email,password) => {
   if (firebase.auth().currentUser){
       firebase.auth().signOut()
@@ -41,28 +43,32 @@ export const createUser = async(email, password) =>{
     alert("Cadastro efetuado com sucesso")
     //redirecionar para tela profile
   })
- 
+}
 
+export const setPersistence = () =>{
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+  
 }
 
 export const currentUser = () =>{
-  const user = firebase.auth().currentUser;
-  return user
+  const user = firebase.auth().currentUser
+  if (user) {
+    return user
+  } else {
+    return null
+  }
 }
 
 export const getUser = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if(user){
-      console.log(user)
-      return user.uid
-
-    }else{
-      setTimeout(()=>{
-        window.location.replace("./index.html")
-      },1000)
-
-    }
+    firebase.auth().onAuthStateChanged((user)=>{
+    return user
   })
+}
+  
+
+
+export const logout = () =>{
+  firebase.auth().signOut()
 }
 
 export const asyncGetProfileData = async () => {
@@ -87,22 +93,10 @@ export const asyncSendProfileData= async (name, image) => {
 export const signInGoogleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  firebase
+  return firebase
     .auth()
     .signInWithPopup(provider)
-    .then(() => {
-      alert("Login realizado")
-  })
-  .catch((error) => {
-      const errorCode = error.code
-     if(errorCode == "auth/invalid-email"){
-        alert("E-mail invalido")
-      }
-      else{
-        alert(error.message)
-      }
-  })
-  
+    
 }
 /*
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');

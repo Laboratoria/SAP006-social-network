@@ -1,19 +1,18 @@
 import {createUser} from '../../lib/index.js'
-import { navigateTo } from '../../routes.js'
+import {changeContent } from '../../routes.js'
 import createprofile from '../createprofile/index.js'
 
 
 export default () => { 
 
-  history.pushState(null,null,"about")
+  window.history.pushState("signup", null, "signup");
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","sign-up")
-  // sectionElement.setAttribute("class","form-container")
+  sectionElement.setAttribute("class","form-container")
 
   const signUpTemplate = `
-  <p id="back-sign-in">← Voltar</p>
-  <section id="sign-up" class="form-container>
+
   <div id="form-sign-up">
     <h1 class="h1-signup">CADASTRO</h1>
     <fieldset class="fieldset-sign-up fieldset">
@@ -27,7 +26,7 @@ export default () => {
     </form>
     </fieldset>
   </div>
-  </section>
+ 
   `
   
   sectionElement.innerHTML = signUpTemplate
@@ -39,7 +38,7 @@ export default () => {
     const registerPassword =  sectionElement.querySelector("#register-password").value
     createUser(registerEmail, registerPassword)
     .then(()=>{
-      navigateTo("create-profile", createprofile())
+      changeContent("createprofile")
     })
     .catch((error)=>{
       const errorCode = error.code

@@ -1,9 +1,11 @@
 import { currentUser , uploadImage, asyncSendProfileData} from "../../lib/index.js"
-import { navigateTo } from '../../routes.js'
+import { changeContent} from '../../routes.js'
 import feed from "../feed/index.js"
 
 
 export default () => {
+
+  window.history.pushState("createprofile", null, "createprofile")
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","create-profile")
@@ -43,7 +45,8 @@ export default () => {
 
     })
     .then(()=>{
-      navigateTo("feed", feed())
+      changePathName("feed")
+      changeContent("feed")
     })
   })
          
