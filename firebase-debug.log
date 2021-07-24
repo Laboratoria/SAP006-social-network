@@ -1405,3 +1405,40 @@
 [info] i  hosting: 127.0.0.1 - - [23/Jul/2021:17:14:26 +0000] "GET /__/firebase/8.7.1/firebase-auth.js.map HTTP/1.1" 200 2397738 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [23/Jul/2021:17:14:26 +0000] \"GET /__/firebase/8.7.1/firebase-auth.js.map HTTP/1.1\" 200 2397738 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36\""}}
 >>>>>>> eaa9604f3bfaa7ac625b074dc24b040e30950a21
 >>>>>>> 00508f30c759fd67a63a3590f755409aa5ca2590
+[debug] [2021-07-24T01:52:15.320Z] ----------------------------------------------------------------------
+[debug] [2021-07-24T01:52:15.335Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Usuario\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2021-07-24T01:52:15.335Z] CLI Version:   9.16.0
+[debug] [2021-07-24T01:52:15.335Z] Platform:      win32
+[debug] [2021-07-24T01:52:15.336Z] Node Version:  v14.15.5
+[debug] [2021-07-24T01:52:15.376Z] Time:          Fri Jul 23 2021 22:52:15 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2021-07-24T01:52:15.377Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-07-24T01:52:15.381Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-07-24T01:52:15.678Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-07-24T01:52:15.679Z] > authorizing via signed-in user (jullimayanne9@gmail.com)
+[debug] [2021-07-24T01:52:15.679Z] [iam] checking project rede-social-ab0d1 for permissions ["firebase.projects.get"]
+[debug] [2021-07-24T01:52:15.682Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-07-24T01:52:15.683Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-07-24T01:52:17.647Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-07-24T01:52:17.648Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2021-07-24T01:52:18.069Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sat, 24 Jul 2021 01:52:19 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-24T01:52:18.121Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/rede-social-ab0d1:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-07-24T01:52:19.263Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Jul 2021 01:52:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=798","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-24T01:52:19.264Z] > refreshing access token with scopes: []
+[debug] [2021-07-24T01:52:19.264Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-07-24T01:52:19.660Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sat, 24 Jul 2021 01:52:20 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-24T01:52:19.727Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-ab0d1 [none]
+[debug] [2021-07-24T01:52:20.956Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-ab0d1 200
+[debug] [2021-07-24T01:52:20.956Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-ab0d1 {"projectId":"rede-social-ab0d1","projectNumber":"758620603236","displayName":"rede social","name":"projects/rede-social-ab0d1","resources":{"hostingSite":"rede-social-ab0d1"},"state":"ACTIVE"}
+[debug] [2021-07-24T01:52:20.959Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/rede-social-ab0d1/sites 
+[debug] [2021-07-24T01:52:22.221Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/rede-social-ab0d1/sites 200
+[debug] [2021-07-24T01:52:22.221Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/rede-social-ab0d1/sites {"sites":[{"name":"projects/758620603236/sites/rede-social-ab0d1","defaultUrl":"https://rede-social-ab0d1.web.app","appId":"1:758620603236:web:59428c8af51c7903733071","type":"DEFAULT_SITE"}]}
+[debug] [2021-07-24T01:52:22.222Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-ab0d1/webApps/1:758620603236:web:59428c8af51c7903733071/config [none]
+[debug] [2021-07-24T01:52:23.011Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-ab0d1/webApps/1:758620603236:web:59428c8af51c7903733071/config 200
+[debug] [2021-07-24T01:52:23.011Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-ab0d1/webApps/1:758620603236:web:59428c8af51c7903733071/config {"projectId":"rede-social-ab0d1","appId":"1:758620603236:web:59428c8af51c7903733071","storageBucket":"rede-social-ab0d1.appspot.com","apiKey":"AIzaSyAko8aOE5bPPb9zavfMamWdCx8HSKYOt3U","authDomain":"rede-social-ab0d1.firebaseapp.com","messagingSenderId":"758620603236"}
+[warn] !  hosting: Port 5000 is not available. Trying another port... {"metadata":{"emulator":{"name":"hosting"},"message":"\u001b[33mhosting: \u001b[39mPort 5000 is not available. Trying another port..."}}
+[info] i  hosting: Serving hosting files from: src {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1msrc\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5005 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5005\u001b[22m\u001b[24m"}}
