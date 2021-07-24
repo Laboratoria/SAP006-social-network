@@ -8,68 +8,53 @@ myFunction();
 //Login de novos usuários
 
 
-//const email = 'lediane141@gmail.com';//aqui só exemplo, pegar do input
-//const password = '123456';
-
-/*firebase
-.auth()
-.createUserWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    console.log('deu bom', user)
-    // ...
-  
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-    console.log('não logou', errorCode, errorMessage)
-  });
-
- 
-  //Deslogar conta do google
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  }); */
-
-
   //Ledi
-  /* Vou precisar:
-   <input placeholder="Email"  class="login-placeholder-input" id="input-email">
-   <input placeholder="Password"  class="login-placeholder-input" id="input-password"> 
 
-    <button class="login-button" id="button-login">ENTRAR</button>  
-   */
+const txtEmail = document.getElementById('input-email');
+const txtPassword = document.getElementById('input-password');
+const btnLogin = document.getElementById('button-login');
+
+btnLogin.addEventListener('click', error => {
+  const email = txtEmail.value;
+  const pass= txtPassword.value;
+  const auth = firebase.auth();
+  const promise = auth.signInWithEmailAndPassword(email, pass) 
+promise.then(()=>{
+  alert('tudo ok!')//aqui colocar caminho para próxima página
+})
+
+  promise.catch(error => alert(error.message));
+
+});
+
+  /*testando...
 
 
-
-    function authentication() {
-
-      firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        // ...
-        console.log('Success')
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log('Failure')
-      });
-
+  const loginEmailPassword = (event) => {
+    event.preventDefault()
+    if(firebase.auth().currentUser) {
+      firebase.auth().signOut()
     }
 
-    const inputEmail = document.getElementById('input-email');
-    const email = inputEmail.value;
-    const inputPassword = document.getElementById('input-password');
-    const password = inputPassword.value;
-    const btnLogin = document.getElementById('button-login');
-    btnLogin.addEventListener('click', authentication);
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      alert('logado com sucesso!')
+    })
+    .then(() => {
+      setTimeOut(() => {
+        window.location.replace('home.html');
+      }, 1000);
+    })
+    .catch((error) => {
+      alert('Ops, algo deu errado!')
+    });
+  }; 
+
+
+const email = document.getElementById('input-email').value;
+const password = document.getElementById('input-password').value;
+const btnLogin = document.getElementById('button-login');
+btnLogin.addEventListener('click', loginEmailPassword);*/
 
 
 
@@ -109,51 +94,11 @@ criarConta.addEventListener('click', (event) => {
 
 
 
-
   
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-import {
-    myFunction,
-} from "./lib/index.js";
-
-
-myFunction()
-
-function authentication() {
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed in
-      var user = userCredential.user;
-      // ...
-      console.log('Success')
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
- console.log('Failure')
-});
-}
-
-const inputEmail = document.getElementById('input-email');
-const email = inputEmail.value;
-const inputPassword = document.getElementById('input-password');
-const password = inputPassword.value;
-const btnLogin = document.getElementById('button-login');
-btnLogin.addEventListener('click', authentication); 
 
 // Sign in with Google:
 const btnLoginWithGoogle = document.getElementById("button-login-with-google");

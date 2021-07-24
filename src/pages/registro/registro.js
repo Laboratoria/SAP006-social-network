@@ -1,5 +1,4 @@
 
-
 function fire () {
 
     const criarFirebaseconta = (email, senha, name) => {
