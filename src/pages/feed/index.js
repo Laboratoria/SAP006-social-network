@@ -1,26 +1,27 @@
-import { } from '../../lib/index.js'
-
-export default () => {
-
-    const sectionElement = document.createElement("section")
-    sectionElement.setAttribute("id","feed")
-    sectionElement.setAttribute("class","form-container")
-
-    const feedTemplate = `<h1>BEM VINDO <3</h1>`
-
-    sectionElement.innerHTML = feedTemplate
+import { logout} from "../../lib/index.js"
+import { changeContent } from "../../routes.js"
+import signin from "../signin/index.js"
 
 
-// botao curtir
+export default () =>{
 
-// botao comentar
+  window.history.pushState("feed", null, "feed")
+  const sectionElement = document.createElement("section")
 
-//botao criar review
+  const createFeedTemplate=`
+  <button id="logout-btn">Logout</button>
+  <h1>BEM VINDO <3</h1>`
 
-//botao logOut
+  sectionElement.innerHTML= createFeedTemplate
+  const logoutBtn = sectionElement.querySelector("#logout-btn")
+  
+  const mainLogin = document.getElementById("root")
+  logoutBtn.addEventListener("click", ()=>{
+      logout()
+      mainLogin.appendChild(signin())
 
-    return sectionElement
+  })
 
+
+  return sectionElement
 }
-
-

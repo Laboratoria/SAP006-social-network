@@ -1,8 +1,9 @@
 import {loginPage, signInGoogleAccount} from '../../lib/index.js'
-import { navigateTo } from '../../routes.js'
-import feed from '../feed/index.js'
+import { changeContent} from '../../routes.js'
+
 
 export default () => {
+  window.history.pushState("signin", null, "signin");
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","sign-in")
@@ -35,6 +36,13 @@ export default () => {
 
   const enterLogin = sectionElement.querySelector("#enter")
   const loginWithGoogle = sectionElement.querySelector("#gmail-btn")
+
+  const signUpLink = sectionElement.querySelector("#signup-link") 
+  signUpLink.addEventListener("click", (e) => {
+    e.preventDefault()
+    changeContent("signup")
+
+  })
   
 
   enterLogin.addEventListener("click", () =>{
@@ -44,7 +52,7 @@ export default () => {
     .then(() => {
       alert("Login realizado")
       setTimeout( () => {
-          navigateTo("feed",feed())
+        changeContent("feed")
       }, 1000)
     })
     .catch((error) => {
@@ -64,7 +72,24 @@ export default () => {
     })
   })
  
-  loginWithGoogle.addEventListener("click", signInGoogleAccount)
+  loginWithGoogle.addEventListener("click", () =>{
+    signInGoogleAccount()
+    .then(() => {
+      alert("Login realizado")
+    })
+    .then(() => {
+      changeContent("feed")
+    })
+    .catch((error) => {
+        const errorCode = error.code
+      if(errorCode == "auth/invalid-email"){
+          alert("E-mail invalido")
+        }
+        else{
+          alert(error.message)
+        }
+    })
+  })
 
 
   return sectionElement;
