@@ -153,7 +153,7 @@ const email = inputEmail.value;
 const inputPassword = document.getElementById('input-password');
 const password = inputPassword.value;
 const btnLogin = document.getElementById('button-login');
-btnLogin.addEventListener('click', authentication);
+btnLogin.addEventListener('click', authentication); 
 
 // Sign in with Google:
 const btnLoginWithGoogle = document.getElementById("button-login-with-google");
