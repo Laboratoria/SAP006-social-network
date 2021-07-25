@@ -21,10 +21,10 @@ btnLogin.addEventListener('click', error => {
   const promise = auth.signInWithEmailAndPassword(email, pass) 
 promise.then(()=>{
   alert('tudo ok!')//aqui colocar caminho para próxima página
+  //window.location.hash('#nomedapágina');
+  //return result;
 })
-
   promise.catch(error => alert(error.message));
-
 });
 
   /*testando...
