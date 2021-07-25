@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+}
+
+.root{
+    display: flex;
+    align-items: center;
+    height: 736px;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login, .register{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 400px;
+    gap: 20px;
+}
+
+.logo{
+    background-color: grey;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+}
+
+.pagebuttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 200px;
+    gap: 10px;
+}
+
+.hide{
+    display: flex;
+    justify-content: center;
+}

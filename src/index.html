@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="main.js"></script>
-    <script src="/__/firebase/8.7.1/firebase-app.js"></script>
-    <script src="/__/firebase/init.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <main id="root" class="root"></main>
+  <nav id="pagebuttons" class="pagebuttons">
+    <a href="/#main-screen">
+      <button type="submit" id="login">Login</button>
+    </a>
+    <p class="text">ou</p>
+    <a href="/#googlelogin">
+      <button type="submit" id="google-login">Continuar com o Google</button>
+    </a>
+    <p class="text">Ainda não é membro?</p>
+    <a href="/#register">
+      <button type="submit" id="register">Cadastrar-se</button>
+    </a>
+  </nav>
+  <section class="hide">
+    <button type="submit" id="signup">Efetuar cadastro</button>
+  </section>
+  <script type="module" src="index.js"></script>
+  <script src="/__/firebase/8.7.1/firebase-app.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="/__/firebase/8.7.0/firebase-auth.js"></script>
+</body>
+
 </html>
