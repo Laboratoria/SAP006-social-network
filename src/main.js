@@ -8,8 +8,8 @@ myFunction();
 //Login de novos usuários
 
 
-  //Ledi
-
+  //Ledi login usuário já cadastrado
+/*
 const txtEmail = document.getElementById('input-email');
 const txtPassword = document.getElementById('input-password');
 const btnLogin = document.getElementById('button-login');
@@ -20,49 +20,20 @@ btnLogin.addEventListener('click', error => {
   const auth = firebase.auth();
   const promise = auth.signInWithEmailAndPassword(email, pass) 
 promise.then(()=>{
-  alert('tudo ok!')//aqui colocar caminho para próxima página
+  alert('tudo ok!')
+  window.location.replace('home.html')
+  
+  //window.history.pushState(null, null, '/home');//aqui colocar caminho para próxima página
   //window.location.hash('#nomedapágina');
   //return result;
 })
   promise.catch(error => alert(error.message));
 });
 
-  /*testando...
-
-
-  const loginEmailPassword = (event) => {
-    event.preventDefault()
-    if(firebase.auth().currentUser) {
-      firebase.auth().signOut()
-    }
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(() => {
-      alert('logado com sucesso!')
-    })
-    .then(() => {
-      setTimeOut(() => {
-        window.location.replace('home.html');
-      }, 1000);
-    })
-    .catch((error) => {
-      alert('Ops, algo deu errado!')
-    });
-  }; 
-
-
-const email = document.getElementById('input-email').value;
-const password = document.getElementById('input-password').value;
-const btnLogin = document.getElementById('button-login');
-btnLogin.addEventListener('click', loginEmailPassword);*/
 
 
 
    //julli crate account 
-
-
-   
-   
 
     const criarFirebaseconta = (email, senha, userName) => {
         firebase.auth().createUserWithEmailAndPassword(email, senha).then((userReturn) => {
@@ -97,9 +68,6 @@ criarConta.addEventListener('click', (event) => {
   
 
 
-
-
-
 // Sign in with Google:
 const btnLoginWithGoogle = document.getElementById("button-login-with-google");
 
@@ -119,6 +87,13 @@ function signInWithGoogle(event) {
 btnLoginWithGoogle.addEventListener("click", signInWithGoogle)
 
 
+*/
 
+import home from "./pages/home/index.js";
+
+const main = document.querySelector('#root');
+window.addEventListener('load', () => {
+  main.appendChild(home());
+} )
 
 
