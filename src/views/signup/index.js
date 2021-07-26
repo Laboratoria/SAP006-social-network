@@ -10,7 +10,7 @@ export default () => {
     <input type="text" placeholder="Confirmar Senha"id="password">
     <a class="button" id="login" href="/#homepage" data-link>Cadastrar</a>
     <span>ou</span>
-    <button class="google-btn">Continuar com o Google</button>
+    <a class="google-btn" id="google-btn" href="/#googlelogin">Continuar com o Google</a>
     <p class="text">Já tem uma conta?</p>
     <a class="button" id="login" href="/#" data-link>Entrar</a>
     </div>

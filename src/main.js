@@ -3,6 +3,7 @@ import signup from './views/signup/index.js';
 import homepage from './views/homepage/index.js';
 
 const main = document.querySelector('#root');
+const provider = new firebase.auth.GoogleAuthProvider();
 
 const renderPage = () => {
   main.innerHTML = '';
@@ -15,6 +16,10 @@ const renderPage = () => {
       break;
     case '#homepage':
       main.appendChild(homepage());
+      break;
+    case '#googlelogin':
+      firebase.auth().signInWithRedirect(provider);
+      history.pushState(null, null, '#homepage');
       break;
     default:
       break;
@@ -37,12 +42,12 @@ window.onload = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        alert("Email ou senha incorretos");
       });
-  });
-};
+  });  
+}

@@ -8,7 +8,7 @@ export default () => {
     <input type="password" placeholder="Senha" value="" class="login" id="password" autocomplete="off"/>
     <a class="button" id="login" href="/#homepage">Entrar</a>
     <span>ou</span>
-    <button class="google-btn">Continuar com o Google</button>
+    <a class="google-btn" id="google-btn" href="/#googlelogin">Continuar com o Google</a>
     </form>
     <p class="text">Ainda não é membro?</p>
     <a class="button" id="btn-signUp" href="/#Cadastrar">Cadastrar</a>
