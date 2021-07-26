@@ -1,4 +1,4 @@
-export const login = () => {
+export const Login = () => {
   const rootElement = document.createElement('div');
   const container = `
     <div>

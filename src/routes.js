@@ -1,15 +1,22 @@
-import { login } from './lib/login/login.js';
+import { Comunique } from './lib/landing_pages/comunique.js';
+import { Conecte } from './lib/landing_pages/conecte.js';
+import { Welcome } from './lib/landing_pages/welcome.js';
+import { Login } from './lib/login/login.js';
 
-const routRender = () => {
-  const elemento = document.querySelector('#root');
+const routeRender = () => {
+  const element = document.querySelector('#root');
   const routes = {
-    '/': login
+    '/': Welcome,
+    '/welcome': Welcome,
+    '/conecte': Conecte,
+    '/comunique': Comunique,
+    '/login': Login,
   };
-  elemento.innerHTML = '';
-  elemento.appendChild(routes['/']());
+  element.innerHTML = '';
+  element.appendChild(routes[window.location.pathname]());
 };
 
-window.addEventListener('popstate', routRender);
+window.addEventListener('popstate', routeRender);
 window.addEventListener('load', () => {
-  routRender();
+  routeRender();
 });
