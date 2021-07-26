@@ -1,9 +1,9 @@
+/*
 import login from './lib/login/login';
 import landing from './lib/landing';
 
-// import { myFunction } from './lib/index.js';
 
-// myFunction();
+import { signUp } from './lib/signup';
 
 const div = document.querySelector('#root');
 
@@ -53,4 +53,7 @@ firebase.auth().signInWithEmailAndPassword(email, password)
     var errorMessage = error.message;
   });
 
-// myFunction();
+window.addEventListener('load', () => {
+
+})
+*/

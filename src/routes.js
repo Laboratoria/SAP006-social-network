@@ -1,5 +1,15 @@
-import login from './lib/login/login.js';
+import { signUp } from './lib/signUp/index.js';
 
-export default {
-    login: login()
+const routeRender = () => {
+  const element = document.querySelector("#root")
+  const routes = {
+    "/": signUp  
+  }
+  element.innerHTML = "";
+  element.appendChild(routes[window.location.pathname]())
 }
+
+window.addEventListener('popstate', routeRender);
+window.addEventListener('load', () => {
+  routeRender()
+});
