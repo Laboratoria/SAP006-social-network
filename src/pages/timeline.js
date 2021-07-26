@@ -51,15 +51,24 @@ export default () => {
   function createTemplatePost(post) {
     const postTemplate = `
         <li id="${post.id}"> Post: ${post.data().text} | ❤️ ${post.data().likes} | 💬 | </li>
-        <button id="deletePost-btn">🗑️</button>
-        <button id="likePost-btn">❤️</button>
-        <button id="commentPost-btn">💬</button>
+        <div id=${post.id}>
+          <button class="deletePost-btn">🗑️</button>
+          <button class="likePost-btn">❤️</button>
+          <button class="commentPost-btn">💬</button>
+          <div></div>
+        </div>
     `
     document.getElementById('posts').innerHTML += postTemplate
 
   // Deletando posts  
-    document.getElementById('deletePost-btn').addEventListener('click', (e) => {
-      e.preventDefault();
+  const buttons = document.querySelectorAll(".deletePost-btn")
+    for (const button of buttons) {
+      button.addEventListener('click', function(event) {
+        console.log(event.target.parentNode.id)
+        deletePost(event.target.parentNode.id)
+      })
+    }
+    
 
       function deletePost(id) {
         postsCollection
@@ -68,13 +77,11 @@ export default () => {
           .then(() => {
             loadPosts()
           })
-      }
-      
-      deletePost(post.id);     
-    });
+      }  
+
 
   // Curtindo posts
-    document.getElementById('likePost-btn').addEventListener('click', (e) => {
+    document.querySelector('.likePost-btn').addEventListener('click', (e) => {
       e.preventDefault()
 
       function addLikes() {
