@@ -1,20 +1,24 @@
 export const Login = () => {
   const root = document.createElement('div');
   root.innerHTML = `
+  <section id='' class='loginPage'>
+    <section id=''>  
+      <img src="img/download.png" class='img' alt='veleiro em mar calmo ao por do sol'>
+    </section>
     <section id='login' class='container'>
-    <form id='labelsForLogin' class='login-signup'>
-      <label for='email'>E-mail:</label>
-      <input id='email' type='e-mail'>
+      <form id='labelsForLogin' class='login-signup'>
+        <label for='email'>E-mail:</label>
+        <input id='email' type='e-mail' class='inputs'>
 
-      <label for='password'>Senha:</label>
-      <input id='password' type='password'>
+        <label for='password'>Senha:</label>
+        <input id='password' type='password' class='inputs'>
       
-      <button type='button' id='buttonLogin' class='btn'>Entrar</button>
+        <button type='button' id='buttonLogin' class='btn'>Entrar</button>
 
-      <p>
-        Ainda não é cadastrado? 
-        <button type='button' id='buttonSignUp' class='btn'>Clique Aqui</button>
-      </p>
+        <p class='signUpHere'>
+          Ainda não é cadastrado? 
+          <button type='button' id='buttonSignUp' class='btn'>Clique Aqui</button>
+        </p>
 
       </form>
     </section>
