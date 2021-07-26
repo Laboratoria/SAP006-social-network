@@ -9,7 +9,7 @@ myFunction();
 
 
   //Ledi login usuário já cadastrado
-/*
+
 const txtEmail = document.getElementById('input-email');
 const txtPassword = document.getElementById('input-password');
 const btnLogin = document.getElementById('button-login');
@@ -86,14 +86,11 @@ function signInWithGoogle(event) {
 
 btnLoginWithGoogle.addEventListener("click", signInWithGoogle)
 
-
-*/
-
+/*
 import home from "./pages/home/index.js";
 
 const main = document.querySelector('#root');
 window.addEventListener('load', () => {
   main.appendChild(home());
 } )
-
-
+*/
