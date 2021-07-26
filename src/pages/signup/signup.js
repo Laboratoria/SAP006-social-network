@@ -5,16 +5,16 @@ export const SignUp = () => {
     <form id='labelsForSignUp' class='login-signup'>
 
       <label for='firstName'>Primeiro Nome:</label>
-      <input id='name' type='name' >
+      <input id='name' type='name' class='inputs'>
     
       <label for='lastName'>Último nome:</label>
-      <input id='name' type='name'>
+      <input id='name' type='name' class='inputs'>
 
       <label for='email'>E-mail:</label>
-      <input id='email' type='e-mail'>
+      <input id='email' type='e-mail' class='inputs'>
     
       <label for='password'>Senha:</label>
-      <input id='password' type='password'>
+      <input id='password' type='password' class='inputs'>
     
       <button type='button' id='signUpButton' class='btn'>Cadastrar</button>
 
