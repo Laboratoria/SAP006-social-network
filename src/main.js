@@ -1,8 +1,11 @@
+// window.addEventListener('load', () => {
+//   div.appendChild(login());
+// });
+
 // import { Welcome } from './lib/landing_pages/welcome.js';
 // import { Conecte } from './lib/landing_pages/conecte.js';
 // import { Comunique } from './lib/landing_pages/comunique.js';
 // import Login from './lib/login/login.js';
-
 
 // import { myFunction } from './lib/index.js';
 
@@ -32,7 +35,6 @@
 //   });
 // };
 
-
 // window.addEventListener('load', () => {
 //   div.appendChild(login());
 //   init();
@@ -45,8 +47,6 @@
 //   // continueBtn.addEventListener('click', () => {
 //   //   main.appendChild(conecte());
 // });
-
-
 
 // firebase.auth().createUserWithEmailAndPassword(email, password)
 //   .then((userCredential) => {
@@ -70,5 +70,3 @@
 //     var errorCode = error.code;
 //     var errorMessage = error.message;
 //   });
-
-// // myFunction();
