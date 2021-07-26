@@ -5,7 +5,7 @@ import signin from "../signin/index.js"
 
 export default () =>{
 
-  window.history.pushState("feed", null, "feed")
+  window.history.pushState("feed", null, "/feed")
   const sectionElement = document.createElement("section")
 
   const createFeedTemplate=`

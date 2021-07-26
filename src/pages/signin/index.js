@@ -3,27 +3,31 @@ import { changeContent} from '../../routes.js'
 
 
 export default () => {
-  window.history.pushState("signin", null, "signin");
+  window.history.pushState("signin", null, "/signin");
 
   const sectionElement = document.createElement("section")
-  sectionElement.setAttribute("id","sign-in")
-  sectionElement.setAttribute("class","form-container")
+  sectionElement.setAttribute("id","signin-page")
+  sectionElement.setAttribute("class","form-page")
+  
 
   const signInTemplate = `
-  <div id="form-sign-in">
+  <div class="logo-container">
+    <img class="site-logo" src="./img/logo.png">
+  </div>
+  <div  class="form-container" id="form-sign-in">
     <h1 class="h1-login">Login</h1>
     <fieldset class="fieldset-sign-in fieldset">
-      <form class="form-sign-in" action="">
+      <form class="form" action="">
         <p class="user-not-found" id="user-error">Usuário não encontrado</p>
         <p id="email-error"></p>
-        <input type="email" placeholder="Email" id="login-email"/>
+        <input class="form-input" type="email" placeholder="Email" id="login-email"/>
         <p id="password-error"></p>
-        <input type="password" placeholder="Senha" id="login-password"/>
+        <input class="form-input"  type="password" placeholder="Senha" id="login-password"/>
         <p class="forget-password"><a href = "index.html">Esqueceu sua senha?</a></p>
-        <button type="button" id="enter">Entrar</button>
-        <p class="p-sign-in">Não é cadastrado? <a href="" id="signup-link">Cadastre-se</a></p>    
+        <button type="button" class="btn" id="enter">Entrar</button>
+        <p class="p-sign-in">Não tem uma conta? <a href="" class="forget-password-link" id="signup-link">Cadastre-se</a></p>    
         <p class="or">OU</p>
-        <button type="button" id="gmail-btn"><p class="sign-google"><img src="./img/logogoogle.png" class="logo-google"/>Entrar com o Google</p></button>
+        <button class="btn gmail-btn" type="button" id="gmail-btn"><p class="sign-google"><img class="logo-google" src="./img/logogoogle.png" class="logo-google"/>Entre com uma conta Google</p></button>
       </form>
     </fieldset>
   </div>
