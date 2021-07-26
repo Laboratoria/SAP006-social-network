@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,62 +12,17 @@
     <link rel="stylesheet" href="style.css">
     <title>Willing</title>
   </head>
-  <body class="login-body bg-white">
-
-    
-    <section class="login-left-section w-50">
-      <header class="login-left-section-header cursor-pointer c-2f4f4f f-roboto">
-        <a>Sobre nós</a>
-      </header>
-      <main>
-
-        <div class="mt-4">
-          <img src="./images/logo-login.png" class="w-65"/>
-        </div>
-
-        <form class="m-vertical-6-center-left-right w-65">
-          <div class="p-relative">
-            <input required type="email" class="login-input w-100 mb-1 pd-b-1 pd-l-3 pd-t-4 c-2f4f4f f-roboto f-120" id="input-email">
-            <label class="login-input-label p-absolute pd-2 c-696969 f-roboto f-120">Email</label>
-          </div>
-          <div class="p-relative">
-            <input required type="password" class="login-input w-100 mb-1 pd-b-1 pd-l-3 pd-t-4 c-2f4f4f f-roboto f-120" id="input-password">
-            <label class="login-input-label p-absolute pd-2 c-696969 f-roboto f-120">Senha</label>
-          </div>
-        </form>
-        
-        <div class="mt-4">
-          <button class="login-input login-input-button cursor-pointer pd-2 f-roboto f-120" id="button-login">ENTRAR</button>  
-          <button class="login-input login-input-button cursor-pointer pd-2 f-roboto f-120" id="button-sign-in">CADASTRAR</button>
-        </div>
-
-        <div class="mt-4">
-          <button class="login-additional bg-white cursor-pointer mb-1 c-2f4f4f f-roboto"> Ou conecte-se com o gmail</button>
-          <br>
-          <button class="login-additional bg-white cursor-pointer mb-1 c-2f4f4f f-roboto"> Esqueceu a senha?</button>
-        </div>
-
-      </main>
-
-      <footer class="mt-2 c-2f4f4f f-roboto f-80"> Willing &copy 2021</footer>
-
-    </section> 
-
-
-
-
-    <section class="login-right-section w-50"></section>
-   
-    
-
-    <script src="/__/firebase/8.7.1/firebase-app.js"></script>
-    
   
-    <script src="/__/firebase/8.7.1/firebase-auth.js"></script>
-   
-    <script src="/__/firebase/init.js"></script>
+  <body>
 
-    <script  src= "main.js" ></script>
+    <div id="root"></div>
+    <script src="/__/firebase/8.7.1/firebase-app.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script type="module" src= "main.js" ></script>
+    <script type="module" src= "router.js"></script>
+    <script type="module" src= "./lib/auth.js"></script>
 
   </body>
+
 </html>
