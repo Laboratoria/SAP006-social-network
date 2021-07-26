@@ -1,49 +1,55 @@
 export const Login = () => {
   const root = document.createElement('div');
-
-  //const login = document.createTextNode()
   root.innerHTML = `
-    <section id="login">
-    <form id="labelsForLogin">
-      <label for="email">E-mail:</label>
-      <input id="email" type="e-mail">
+    <section id='login' class='container'>
+    <form id='labelsForLogin' class='login-signup'>
+      <label for='email'>E-mail:</label>
+      <input id='email' type='e-mail'>
 
-      <label for="password">Senha:</label>
-      <input id="password" type="">
+      <label for='password'>Senha:</label>
+      <input id='password' type='password'>
+      
+      <button type='button' id='buttonLogin' class='btn'>Entrar</button>
 
-      Ainda não é cadastrado? <a href="click here">Clique Aqui</a>
-      <button type="button" id="buttonLogin" class="btn">Enviar</button>
-    </form>
-  </section>
-    `;
+      <p>
+        Ainda não é cadastrado? 
+        <button type='button' id='buttonSignUp' class='btn'>Clique Aqui</button>
+      </p>
 
-  //root.innerHTML = login
-  //root.appendChild(login);
-  const novaDiv = document.getElementById('.');
-  document.body.insertBefore(root, novaDiv);
+      </form>
+    </section>
+  `;
+//console.log(root);
 
-  const btnLogin = root.querySelector('#buttonLogin');
-  btnLogin.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log('clicou')
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    console.log(email, password)
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        let user = userCredential.user;
-        console.log('deu certo', user)
-      })
-      .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
+  const btnSignUp = root.querySelector('#buttonSignUp');
+  btnSignUp.addEventListener('click', () => {
+    window.history.pushState({}, '', '/signup');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    dispatchEvent(popStateEvent);
+  })
+  return root;
+}
 
-        console.log('deu ruim', errorCode, errorMessage)
-      });
-  });
-};
 
-Login()
+/*
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  console.log(email, password)
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      let user = userCredential.user;
+      console.log('deu certo', user)
+    })
+    .catch((error) => {
+      let errorCode = error.code;
+      let errorMessage = error.message;
+
+      console.log('deu ruim', errorCode, errorMessage)
+    });
+});
+*/
+
+
