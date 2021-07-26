@@ -1,5 +1,5 @@
 body {
-    /*background-color: aquamarine;*/
+    background-color: aquamarine;
     margin: 0%;
     font-family: 'Open Sans', sans-serif;
 }
@@ -7,11 +7,11 @@ body {
 header{
     font-weight: bold;
     font-size: 20px;
-    /*color: #ffff;*/
+    color: #ffff;
     text-align: center;
 }
 
-#login {
+.container {
     display: table;
     flex-wrap: nowrap;
     align-items: center;
@@ -19,7 +19,7 @@ header{
     position: relative;
     border: 1px black solid;
     border-radius: 10px;
-    /*background-color: #eaeaea;*/
+    background-color: #eaeaea;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -28,6 +28,6 @@ header{
     width: auto;
 }
 
-#labelsForLogin {
+.login-signup {
     display: inline-grid;
 }
