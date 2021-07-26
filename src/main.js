@@ -18,11 +18,9 @@ window.addEventListener("load", () => {
   console.log(loggedUser)
   if(loggedUser == undefined || loggedUser == null){
     mainLogin.appendChild(signin())
-    // window.history.pushState("signin", null, "signin")
 
   }else{
     mainLogin.appendChild(feed())
-    // window.history.pushState("feed", null, "feed")
     
   }
   // const url = window.location.pathname

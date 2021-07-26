@@ -19,9 +19,9 @@ export const changeContent = (page) => {
     case 'createprofile':
       main.appendChild(createprofile())
       break
-    // case 'feed':
-    //   main.appendChild(feed());
-    //   break
+    case 'feed':
+      main.appendChild(feed());
+      break
     case 'profile':
       main.appendChild(profile())
       break

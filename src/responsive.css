@@ -1,4 +1,90 @@
-@media (min-width: 200px) and (max-width: 1200px) {
+@media (min-width:1400px){
+    :root{
+        font-size: 16px;
+    }
+
+    .site-logo{
+        width:20rem;
+        height: 20rem;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .logo-container{
+        width:40vw;
+    }
+    
+    .form-container{
+        width:60vw;
+    }
+
+    .form{
+        width:60%
+    }
+}
+
+@media (max-width: 1200px) {
+    
+    .form{
+        width:80%
+    }
+   
+}
+
+@media (max-width: 992px) {
+    .form-page{
+        width:100vw; 
+        min-height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+    }
+
+    .logo-container{
+        width: 100vw;
+        height: auto;
+        margin:2rem 0;
+    }
+
+    .logo-container-register{
+        display:none;
+    }
+    
+    
+    .form-container{
+        width:100vw;
+        height: auto;
+    }   
+    .site-logo{
+        width:12rem;
+        height: 12rem;
+    }
+
+    .form{
+        width:50%;
+    }
+
+   
+}
+
+
+@media (max-width: 768px) {
+
+    .form{
+        width:70%
+    }
+}
+
+@media (max-width: 576px) {
+
+    .form{
+        width:80%
+    }
+}
+
+
+/* 
+@media (min-width: 200px) and (max-width: 576px) {
     #sign-in{
         float: none;
     }
@@ -78,4 +164,5 @@
        font-size: 1.7em;
     }
 
-}
+} */
+
