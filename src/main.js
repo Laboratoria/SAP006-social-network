@@ -1,5 +1,53 @@
-// Este é o ponto de entrada da sua aplicação
+import login from './views/login/index.js';
+import signup from './views/signup/index.js';
+import homepage from './views/homepage/index.js';
 
-import { myFunction } from './lib/index.js';
+const main = document.querySelector('#root');
+const provider = new firebase.auth.GoogleAuthProvider();
 
-myFunction();
+const renderPage = () => {
+  main.innerHTML = '';
+  switch (window.location.hash) {
+    case '':
+      main.appendChild(login());
+      break;
+    case '#Cadastrar':
+      main.appendChild(signup());
+      break;
+    case '#homepage':
+      main.appendChild(homepage());
+      break;
+    case '#googlelogin':
+      firebase.auth().signInWithRedirect(provider);
+      history.pushState(null, null, '#homepage');
+      break;
+    default:
+      break;
+  }
+};
+
+const init = () => window.addEventListener('hashchange', renderPage);
+window.addEventListener('load', () => {
+  renderPage();
+  init();
+});
+
+window.onload = () => {
+  const loginButton = document.getElementById('login');
+  loginButton.addEventListener('click', () => {
+    const userEmail = document.getElementById('email');
+    const userPassword = document.getElementById('password');
+    firebase.auth().signInWithEmailAndPassword(userEmail.value, userPassword.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        alert("Email ou senha incorretos");
+      });
+  });  
+}
