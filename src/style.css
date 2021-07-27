@@ -2,7 +2,7 @@ body {
     margin: 0%;
     font-family: 'Open Sans', sans-serif;
     background: linear-gradient(180deg, rgba(91, 136, 166, 0.2) 16.67%, rgba(41, 139, 204, 0.25) 100%);
-
+    box-sizing: border-box;
 }
 
 header{
@@ -14,27 +14,24 @@ header{
 
 .loginPage {
     display:flex;
-	max-height: 200px;
-	margin:0;
-    width: 180px;
+	margin: auto;
+    width: fit-content;
     border-radius: 10px;
     flex-wrap: nowrap;
-    flex-direction: row;
-    margin-left: 5%;
-    margin-right: 5%;
-    align-items: flex-start;
 }
 
 .loginImage {
-    justify-content: flex-end;
-    height: 100%;
-    width: 100%;
-    position: relative;
+    height: 500px;
     align-items: center;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
-    display: flex;
     box-shadow: 5px 5px 5px #000000;
+}
+
+.img {
+    max-height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 /*.start {
@@ -64,7 +61,6 @@ header{
     margin-right: auto;
     line-height: 2;
     height: 400px;
-    width: 400px;
     box-shadow: 5px 5px 5px #000000;
 }
 
