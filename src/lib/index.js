@@ -1,8 +1,6 @@
 const database = firebase.firestore()
 const storage = firebase.storage()
 
-
-
 export const loginPage = (email,password) => {
   if (firebase.auth().currentUser){
       firebase.auth().signOut()
@@ -10,41 +8,16 @@ export const loginPage = (email,password) => {
   return firebase
   .auth()
   .signInWithEmailAndPassword(email, password)
-  // .then(() => {
-  //     alert("Login realizado")
-  //     feed()
-  //     setTimeout( () => {
-  //         window.location.replace(feed)
-  //     }, 1000)
-  // })
-  // .catch((error) => {
-  //     const errorCode = error.code
-  //     if(errorCode == "auth/user-not-found"){
-  //         alert(`Usuário não encontrado`)
-  //     }
-  //     else if(errorCode == "auth/wrong-password"){
-  //         alert("Senha invalida")
-  //     }
-  //     else if(errorCode == "auth/invalid-email"){
-  //         alert("E-mail invalido")
-  //     }
-  //     else{
-  //         alert(error.message)
-  //     }
-  // })
 }
-
 
 export const createUser = async(email, password) =>{
   await firebase
   .auth()
   .createUserWithEmailAndPassword(email, password)
-
 }
 
 export const setPersistence = () =>{
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-  
 }
 
 export const currentUser = () =>{
@@ -62,8 +35,6 @@ export const getUser = () => {
   })
 }
   
-
-
 export const logout = () =>{
   firebase.auth().signOut()
 }

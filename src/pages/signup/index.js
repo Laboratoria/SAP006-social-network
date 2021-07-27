@@ -1,8 +1,6 @@
 import {createUser} from '../../lib/index.js'
 import {changeContent } from '../../routes.js'
-import createprofile from '../createprofile/index.js'
 import { errorInput, errorPassword } from '../../error.js'
-
 
 export default () => { 
 
@@ -14,22 +12,23 @@ export default () => {
 
   const signUpTemplate = `
     <div class="logo-container">
+    <button class="back-to-login">← Voltar</button>
+    <h1 id="bookish">BOOKISH</h1>
       <img class="site-logo" src="./img/logo.png">
     </div>
     <div  class="form-container" id="form-sign-up">
-      <h1 class="h1-login">CADASTRO</h1>
+      <h1 class="h1-login">Cadastro</h1>
     
       <fieldset class="fieldset-sign-up fieldset">
         <form class="form" action="">          
           <input type="email" placeholder="Email" class="form-input" id="register-email"> 
           <input type="password" placeholder="Senha" class="form-input" id="register-password">
-          <button type="submit" id="register-btn" class="btn">Enviar</button>
+          <button type="submit" id="register-btn" class="btn">Cadastrar</button>
         </form>
       </fieldset>
     </div>
  
   `
-  
   sectionElement.innerHTML = signUpTemplate
 
   const registerBtn = sectionElement.querySelector("#register-btn")
@@ -68,8 +67,12 @@ export default () => {
             alert(error.message)
       }
     })
-   
+    
   })
 
+  const backToLogin = sectionElement.querySelector(".back-to-login")
+  backToLogin.addEventListener("click", () => {
+    changeContent('signin')
+  })
   return sectionElement
 }
