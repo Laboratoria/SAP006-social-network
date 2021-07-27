@@ -2,7 +2,7 @@
 function uiConfig() {
   return {
     signInFlow: "popup",
-    signInSuccessUrl: "#",
+    signInSuccessUrl: "#timeline",
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID,

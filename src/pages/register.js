@@ -68,4 +68,4 @@ export default () => {
   });
 
     return template;
-  };
+};
