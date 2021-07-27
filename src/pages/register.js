@@ -64,7 +64,7 @@ export default () => {
   gobackButton.addEventListener('click', (e) => {
         e.preventDefault();
         console.log('funcionou button img');
-        window.history.back();
+        window.location.hash = '';
   });
 
     return template;
