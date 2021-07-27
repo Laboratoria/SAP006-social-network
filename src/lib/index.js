@@ -39,10 +39,7 @@ export const createUser = async(email, password) =>{
   await firebase
   .auth()
   .createUserWithEmailAndPassword(email, password)
-  .then(()=>{
-    alert("Cadastro efetuado com sucesso")
-    //redirecionar para tela profile
-  })
+
 }
 
 export const setPersistence = () =>{

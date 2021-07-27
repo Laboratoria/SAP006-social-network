@@ -1,5 +1,6 @@
 import { currentUser , uploadImage, asyncSendProfileData} from "../../lib/index.js"
 import { changeContent} from '../../routes.js'
+import { errorInput } from '../../error.js'
 import feed from "../feed/index.js"
 
 
@@ -62,25 +63,38 @@ export default () => {
   const sendProfileBtn = sectionElement.querySelector("#send-profile")
   sendProfileBtn.addEventListener("click", (e) => {
     e.preventDefault()
-    const userName = sectionElement.querySelector("#input-username").value
+    const userNameInput = sectionElement.querySelector("#input-username")
+    const userName = userNameInput.value
     const user = currentUser()
+    const image = document.getElementById("input-profile-img").files[0]
+    console.log(image)
     const userId = user.uid
-    console.log(userId)
-    uploadImage("input-profile-img", ""+userId+"")
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then (url => {
-      const urlImage = url
-      console.log(urlImage)
-      return urlImage
-    })
-    .then((urlImage)=>{
-      asyncSendProfileData(userName, urlImage)
 
-    })
-    .then(()=>{
-      changeContent("feed")
-    })
-  })
-         
+    if(userName ==""){
+      const text = "Escolha um nome de usuário"
+      errorInput(text, userNameInput)
+
+    }else{
+      if (image === undefined){
+        asyncSendProfileData(userName, null)
+  
+      }else{
+        uploadImage("input-profile-img", ""+userId+"")
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then (url => {
+          const urlImage = url
+          console.log(urlImage)
+          return urlImage
+        })
+        .then((urlImage)=>{
+          asyncSendProfileData(userName, urlImage)
+    
+        })
+        .then(()=>{
+          changeContent("feed")
+        })  
+      }
+    }
+  })    
   return sectionElement
 }

@@ -156,7 +156,7 @@ a:hover{
 
 
 #gmail-btn:hover{
-    background-color: rgb(192, 125, 214);
+    background-color: rgb(205, 161, 219);
     transition: 0.7s;
 }
 .logo-google{
@@ -176,35 +176,6 @@ a:hover{
 .logo-google{
     margin-right: 1rem;
 }
-#email-error, #password-error{
-    position: absolute;
-    font-size: 12px;
-    padding: 0px;
-    margin: 53px 0px 0px 5px;
-    color: #df0000;
-}
-.user-not-found{
-    font-size: 13px;
-    padding: 0px;
-    color: #df0000;
-    display: none;
-}
-
-#email-error-code, #password-error-code{
-    position: absolute;
-    font-size: 12px;
-    padding: 0px;
-    margin: 53px 0px 0px 5px;
-    color: #df0000;
-}
-.user-already-in-use{
-    font-size: 13px;
-    padding: 0px;
-    margin: 0px;
-    color: #df0000;
-    display: none;
-}
-
 .container-file-img{
     width:10rem;
     height:10rem;

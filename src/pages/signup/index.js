@@ -1,6 +1,7 @@
 import {createUser} from '../../lib/index.js'
 import {changeContent } from '../../routes.js'
 import createprofile from '../createprofile/index.js'
+import { errorInput, errorPassword } from '../../error.js'
 
 
 export default () => { 
@@ -19,12 +20,9 @@ export default () => {
       <h1 class="h1-login">CADASTRO</h1>
     
       <fieldset class="fieldset-sign-up fieldset">
-        <form class="form" action="">
-          <p id="email-error-code"></p>
-          <input type="email" placeholder="Email" class="form-input" id="register-email">
-          <p id="email-error-code"></p>
+        <form class="form" action="">          
+          <input type="email" placeholder="Email" class="form-input" id="register-email"> 
           <input type="password" placeholder="Senha" class="form-input" id="register-password">
-          <p id="password-error-code"></p>
           <button type="submit" id="register-btn" class="btn">Enviar</button>
         </form>
       </fieldset>
@@ -37,26 +35,37 @@ export default () => {
   const registerBtn = sectionElement.querySelector("#register-btn")
   registerBtn.addEventListener("click", (e) =>{
     e.preventDefault()
-    const registerEmail = sectionElement.querySelector("#register-email").value
-    const registerPassword =  sectionElement.querySelector("#register-password").value
+    const emailInput = sectionElement.querySelector("#register-email")
+    const passwordInput =  sectionElement.querySelector("#register-password")
+
+    const registerEmail = emailInput.value
+    const registerPassword =  passwordInput.value
+    let text
     createUser(registerEmail, registerPassword)
     .then(()=>{
       changeContent("createprofile")
     })
+    
     .catch((error)=>{
       const errorCode = error.code
       switch(errorCode){
         case "auth/email-already-in-use":
-          alert("E-mail já cadastrado")
+          text = "E-mail já cadastrado"
+          errorInput(text, emailInput)
           break
   
         case "auth/invalid-email":
-          alert("Formato de e-mail inválido")
+          text = "Formato de e-mail inválido"
+          errorInput(text, emailInput)
           break
   
         case "auth/weak-password":
-          alert("Senha fraca")
+          text = " As senhas devem ter no mínimo 6 caracteres"
+          errorPassword(text, passwordInput)
           break
+        
+          default:
+            alert(error.message)
       }
     })
    

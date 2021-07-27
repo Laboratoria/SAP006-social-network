@@ -1,5 +1,6 @@
 import {loginPage, signInGoogleAccount} from '../../lib/index.js'
 import { changeContent} from '../../routes.js'
+import { errorInput, errorPassword } from '../../error.js'
 
 
 export default () => {
@@ -18,10 +19,7 @@ export default () => {
     <h1 class="h1-login">Login</h1>
     <fieldset class="fieldset-sign-in fieldset">
       <form class="form" action="">
-        <p class="user-not-found" id="user-error">Usuário não encontrado</p>
-        <p id="email-error"></p>
         <input class="form-input" type="email" placeholder="Email" id="login-email"/>
-        <p id="password-error"></p>
         <input class="form-input"  type="password" placeholder="Senha" id="login-password"/>
         <p class="forget-password"><a href = "index.html">Esqueceu sua senha?</a></p>
         <button type="button" class="btn" id="enter">Entrar</button>
@@ -50,28 +48,38 @@ export default () => {
   
 
   enterLogin.addEventListener("click", () =>{
-    const email = sectionElement.querySelector("#login-email").value
-    const password = sectionElement.querySelector("#login-password").value
+    let text
+    const emailInput= sectionElement.querySelector("#login-email")
+    const passwordInput= sectionElement.querySelector("#login-password")
+    const email = emailInput.value
+    const password = passwordInput.value
     loginPage(email,password)
     .then(() => {
-      alert("Login realizado")
       setTimeout( () => {
         changeContent("feed")
       }, 1000)
     })
     .catch((error) => {
       const errorCode = error.code
-      if(errorCode == "auth/user-not-found"){
-          alert(`Usuário não encontrado`)
-      }
-      else if(errorCode == "auth/wrong-password"){
-          alert("Senha invalida")
-      }
-      else if(errorCode == "auth/invalid-email"){
-          alert("E-mail invalido")
-      }
-      else{
+      switch(errorCode){
+        case "auth/user-not-found":
+          text = "Usuário não encontrado"
+          errorInput(text, emailInput)
+          break
+        
+        case "auth/wrong-password":
+          text = "Senha inválida"
+          errorPassword(text, passwordInput)
+          break
+  
+        case "auth/invalid-email":
+          text = "E-mail inválido"
+          errorInput(text, emailInput)
+          break
+
+        default:
           alert(error.message)
+
       }
     })
   })
@@ -85,13 +93,13 @@ export default () => {
       changeContent("feed")
     })
     .catch((error) => {
-        const errorCode = error.code
+      const errorCode = error.code
       if(errorCode == "auth/invalid-email"){
-          alert("E-mail invalido")
-        }
-        else{
-          alert(error.message)
-        }
+        alert("E-mail invalido")
+      }
+      else{
+        alert(error.message)
+      }
     })
   })
 
