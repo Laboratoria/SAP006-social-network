@@ -12,10 +12,23 @@ header{
     text-align: center;
 }
 
-.img {
-    size: portrait;
-    height: 383px;
-    width: 50%;
+.loginPage {
+    display:flex;
+	max-height: 200px;
+	margin:0;
+    width: 180px;
+    border-radius: 10px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-left: 5%;
+    margin-right: 5%;
+    align-items: flex-start;
+}
+
+.loginImage {
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
     position: relative;
     align-items: center;
     border-bottom-left-radius: 10px;
@@ -24,7 +37,7 @@ header{
     box-shadow: 5px 5px 5px #000000;
 }
 
-.start {
+/*.start {
     width: 1000px;
     display: flex;
     height: 600px;
@@ -34,39 +47,41 @@ header{
     align-items: flex-start;
     justify-content: center;
     
-}
+}*/
 
 .container {
     display: flex;
-    flex-wrap: nowrap;
     align-items: center;
-    padding: 70px;
+    padding-top: 100px;
+    padding-bottom: 0px;
+    padding-left: 75px;
+    padding-right: 75px;
     position: relative;
     border: 1px transparent;
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     background: linear-gradient(135deg, #fdb35fb9, #DA4532, #181863c4);
     margin-right: auto;
-    justify-content: center;
     line-height: 2;
-    height: auto;
-    width: 50%;
+    height: 400px;
+    width: 400px;
     box-shadow: 5px 5px 5px #000000;
 }
 
 .login-signup {
     display: inline-grid;
+    width: 250px;
 }
 
 .inputs {
     background-color: #E5E5E5;
     border-radius: 5px;
+    border: 1px, transparent;
 }
 
-.signUpHere {
-    justify-content: end;
-    padding-block-end: initial;
+.signUpHere {  
     font-size: small;
+    padding-top: 50%
 }
 
 .btn {
