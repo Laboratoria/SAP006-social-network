@@ -76,6 +76,7 @@ export default () => {
 
     // Curtindo posts
     const likeButtons = document.querySelectorAll(".likePost-btn");
+
     for (const button of likeButtons) {
       button.addEventListener("click", function (event) {
         console.log(event.target.parentNode.id);
@@ -85,11 +86,13 @@ export default () => {
 
     function addLikes(id) {
       postsCollection
-        // .doc(id)
-        // .delete()
-        // .then(() => {
-        //   loadPosts();
-        // });
+        .doc(id)
+        .update({
+          likes: firebase.firestore.FieldValue.increment(1),
+        })
+        .then(() => {
+          loadPosts();
+        });
     }
   }
 
