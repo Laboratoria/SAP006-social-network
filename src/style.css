@@ -23,7 +23,7 @@ body {
 
 /* LOGIN */
 
-#container-login {
+#login-container {
     display: inline-block;
     align-items: center;
     width: 100%;
@@ -128,6 +128,9 @@ body {
   color: #f3f3f3;
   width: 100%;
   font-size: 15pt;
+  position: absolute;
+  top: 90%;
+  right: -1%;
 }
 
 span{
@@ -139,7 +142,8 @@ span:hover {
 }
 
 #firebaseui-auth-container {
-    margin-top: 25%;
+    margin: 25% 0 15% 0;
+
 }
 
 

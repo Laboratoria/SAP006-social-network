@@ -1,87 +1,111 @@
 export default () => {
-  const timeline = document.getElementById("root").innerHTML = `
+  const timeline = (document.getElementById("login-container").innerHTML = `
 
   <button id="signout-button" class="flex-itens">Sign Out</button>
   <div>
     <form action="" id="postForm">
       <input type="textarea" id="postText"/>
-      <button type="submit"> Enviar </button>
+      <button type="submit"> Postar </button>
     </form>
 
     <ul id="posts"></ul>
 
-    <button id="btn-deletePost">Delete</button>
+  </div>`);
 
-  </div>`;
+  //Sair da conta do usuário
+  document.getElementById("signout-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    firebase.auth().signOut();
+    location.reload();
+  });
 
-   
-  // sair da conta do usuario
-  document.getElementById('signout-button').addEventListener('click', (e) => {
-      e.preventDefault();
-      firebase.auth().signOut();
-      location.reload();
-    });
-      
-
-  // Criando coleção no firebase chamda 'posts'
-  const postsCollection = firebase.firestore().collection('posts')
+  // Criando coleção no firebase chamada 'posts'
+  const postsCollection = firebase.firestore().collection("posts");
 
   // Enviando posts para o firestore
-  document.getElementById('postForm').addEventListener('submit', (event) => {
+  document.getElementById("postForm").addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const text = document.getElementById('postText').value;
-    
+    const text = document.getElementById("postText").value;
+
     const post = {
       text: text,
-      user_id: 'Patrícia',
+      userId: "Patrícia",
       likes: 0,
-      comments:[]
-    } 
+      comments: [],
+    };
 
-    postsCollection
-      .add(post)
-      .then(() => {
-        document.getElementById('postText').value = ""
-        loadPosts()
-      })
-  })
+    postsCollection.add(post).then(() => {
+      document.getElementById("postText").value = "";
+      loadPosts();
+    });
+  });
 
-  // Adicionando posts 
-  function addPost(post) {
+  // Adicionando posts
+  function createTemplatePost(post) {
     const postTemplate = `
-        <li id="${post.id}"> Post: ${post.data().text} | ❤ ${post.data().likes}</li>
-    `
-    document.getElementById('posts').innerHTML += postTemplate
+        <li id="${post.id}"> Post: ${post.data().text} | ❤️ ${
+      post.data().likes
+    } | 💬 | </li>
+        <div id=${post.id}>
+          <button class="deletePost-btn">🗑️</button>
+          <button class="likePost-btn">❤️</button>
+          <button class="commentPost-btn">💬</button>
+          <div></div>
+        </div>
+    `;
+    document.getElementById("posts").innerHTML += postTemplate;
+
+    // Deletando posts
+    const deleteButtons = document.querySelectorAll(".deletePost-btn");
+    for (const button of deleteButtons) {
+      button.addEventListener("click", function (event) {
+        console.log(event.target.parentNode.id);
+        deletePost(event.target.parentNode.id);
+      });
+    }
+
+    function deletePost(id) {
+      postsCollection
+        .doc(id)
+        .delete()
+        .then(() => {
+          loadPosts();
+        });
+    }
+
+    // Curtindo posts
+    const likeButtons = document.querySelectorAll(".likePost-btn");
+    for (const button of likeButtons) {
+      button.addEventListener("click", function (event) {
+        console.log(event.target.parentNode.id);
+        addLikes(event.target.parentNode.id);
+      });
+    }
+
+    function addLikes(id) {
+      postsCollection
+        // .doc(id)
+        // .delete()
+        // .then(() => {
+        //   loadPosts();
+        // });
+    }
   }
 
   // Mostrando os posts na tela
   function loadPosts() {
+    document.getElementById("posts").innerHTML = "Carregando posts...";
 
-    document.getElementById('posts').innerHTML = "Carregando..."
-
-    postsCollection
-      .get()
-      .then(snap => {
-        document.getElementById('posts').innerHTML = ""
-        snap.forEach(post => {
-          addPost(post)
-        })
-      })
+    postsCollection.get().then((snap) => {
+      document.getElementById("posts").innerHTML = "";
+      snap.forEach((post) => {
+        createTemplatePost(post);
+      });
+    });
   }
 
-  loadPosts()
-
-  // Deletando posts
-  function deletePost(postId) {
-    postsCollection
-      .doc(postId)
-      .delete()
-      .then(() => {
-        loadPosts()
-      })
-  }
+  loadPosts();
 
   return timeline;
-
-}
+};
