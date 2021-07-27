@@ -2,18 +2,17 @@ import {loginPage, signInGoogleAccount} from '../../lib/index.js'
 import { changeContent} from '../../routes.js'
 import { errorInput, errorPassword } from '../../error.js'
 
-
 export default () => {
   window.history.pushState("signin", null, "/signin");
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","signin-page")
   sectionElement.setAttribute("class","form-page")
-  
 
   const signInTemplate = `
   <div class="logo-container">
-    <img class="site-logo" src="./img/logo.png">
+  <h1 id="bookish">BOOKISH</h1>
+    <img class="site-logo" src="./img/logo.png"/>
   </div>
   <div  class="form-container" id="form-sign-in">
     <h1 class="h1-login">Login</h1>
@@ -30,9 +29,7 @@ export default () => {
     </fieldset>
   </div>
 
-  `;
-
-  
+  `; 
 
   sectionElement.innerHTML = signInTemplate
 
@@ -43,10 +40,8 @@ export default () => {
   signUpLink.addEventListener("click", (e) => {
     e.preventDefault()
     changeContent("signup")
-
   })
   
-
   enterLogin.addEventListener("click", () =>{
     let text
     const emailInput= sectionElement.querySelector("#login-email")
@@ -56,7 +51,7 @@ export default () => {
     loginPage(email,password)
     .then(() => {
       setTimeout( () => {
-        changeContent("feed")
+        changeContent("home")
       }, 1000)
     })
     .catch((error) => {
@@ -90,7 +85,7 @@ export default () => {
       alert("Login realizado")
     })
     .then(() => {
-      changeContent("feed")
+      changeContent("home")
     })
     .catch((error) => {
       const errorCode = error.code

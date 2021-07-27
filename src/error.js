@@ -1,4 +1,4 @@
-export const errorInput = (text, element ) => {
+export const errorInput = (text, element) => {
   element.style.border = "1px solid red"
   element.style.color = "red"
   element.value = text
