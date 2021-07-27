@@ -1,11 +1,11 @@
-import { Cadastro } from "./pages/cadastro.js";
+import { cadastro } from "./pages/cadastro.js";
 import { Login } from "./pages/login.js"
 
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
     "/":Login,
-    "/cadastro":Cadastro
+    "/cadastro":cadastro
 
   }
   elemento.innerHTML = "";
