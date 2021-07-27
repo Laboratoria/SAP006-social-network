@@ -20,20 +20,23 @@ export const setPersistence = () =>{
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 }
 
-export const currentUser = () =>{
-  const user = firebase.auth().currentUser
-  if (user) {
-    return user
-  } else {
-    return null
-  }
+export const currentUser = async() =>{
+  const user = await firebase.auth().currentUser
+  console.log(user)
+  
 }
 
-export const getUser = () => {
-    firebase.auth().onAuthStateChanged((user)=>{
-    return user
-  })
-}
+
+
+// export const getUser = () => {
+//     firebase.auth().onAuthStateChanged((user)=>{
+//     if (user !=null) {
+//       return true
+//     } else {
+//       return false
+//     }
+//     })
+// }
   
 export const logout = () =>{
   firebase.auth().signOut()

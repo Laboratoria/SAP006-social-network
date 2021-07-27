@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root{
+    --text-color: rgb(70, 60, 75);
+    --dark-purple: #4D3D7B;
+}
+
+
 *{
     margin: 0;
     padding: 0;
@@ -53,7 +59,7 @@ body{
     text-align: center;
 }
 .form{
-    width:50%;
+    width:60%;
     display:flex;
     flex-direction: column;
 }
@@ -64,7 +70,7 @@ body{
     outline: none;
     font-size: 1.2rem;
     width:100%;
-    padding: 20px;
+    padding: 1.8rem;
     margin: 1rem 0;
     color:var(--text-color)
 
@@ -84,7 +90,7 @@ body{
     width: 100%;
     height: 13%;
     margin: 3rem 0;
-    padding: 12px;
+    padding: 1.2rem;
     border-radius: 5px;
     font-size: 1.6rem;
     align-self: center;
@@ -118,19 +124,21 @@ a:hover{
 #gmail-btn{
     width:100%;
     cursor: pointer;
-    background-color: #f1f1f1d3;
+    background-color: #f5e3fad3;
     border-radius: 5px;
     border: none;
     outline: none;
     margin:0 0 2rem 0;
+    padding: 1.2rem;
 }
 #gmail-btn:hover{
-    background-color: #c07dd6;
+    background-color: #deb7eb;
     transition: 0.7s;
 }
 .logo-google{
     width: 20px;
     padding: 0px 3px 0px 0px;
+    margin-right: 1rem;
 }
 .sign-google{
     display: flex;
@@ -138,42 +146,11 @@ a:hover{
     align-items: center;
     text-align: center;
     justify-content: center;
-    color:var(--dark-purple);
+    color: var(--dark-purple);
     font-size: 1.2rem;
 }
-.sign-google:hover{
-    color: white;
-}
-.logo-google{
-    margin-right: 1rem;
-}
-#email-error, #password-error{
-    position: absolute;
-    font-size: 12px;
-    padding: 0px;
-    margin: 53px 0px 0px 5px;
-    color: #df0000;
-}
-.user-not-found{
-    font-size: 13px;
-    padding: 0px;
-    color: #df0000;
-    display: none;
-}
-#email-error-code, #password-error-code{
-    position: absolute;
-    font-size: 12px;
-    padding: 0px;
-    margin: 53px 0px 0px 5px;
-    color: #df0000;
-}
-.user-already-in-use{
-    font-size: 13px;
-    padding: 0px;
-    margin: 0px;
-    color: #df0000;
-    display: none;
-}
+
+
 .container-file-img{
     width:10rem;
     height:10rem;
@@ -197,85 +174,7 @@ a:hover{
 .file-input{
     display:none;
 }
-/* .form-create-profile{
-    background-color: #ebe6eb;
-    padding: 60px 10px 0px;
-    border-radius: 10px;
-    margin: 0px;
-    width: 80%;
-    height: 180px;
-}
-#create-profile{
-    padding: 170px 50px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-#input-profile-image, #input-username{
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    width: 40%;
-    height: 8%;
-    padding: 5px 0px 5px;
-    margin: 5px 0px;
-    color: #000000;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-#send-profile{
-    cursor: pointer;
-    background-color: #948194;
-    color: #ffffff;
-    width: 50%;
-    height: 22%;
-    margin: 35px 0px 5px;
-    padding: 8px 10px;
-    border-radius: 5px;
-    font-size: 17px;
-    border: none;
-    outline: none;
-}  */
 
-/* 
-
-/* .form-sign-up{
-    background-color: #ebe6eb;
-    padding: 60px 30px 0px;
-    border-radius: 10px;
-    margin: 0px;
-    width: 80%;
-    height: 250px;
-}
-#register-email, #register-password{
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    width: 95%;
-    height: 12%;
-    padding: 5px 0px 5px;
-    padding-left: 20px;
-    margin: 10px 0px;
-    color: #000000;
-}
-#register-btn{
-    cursor: pointer;
-    background-color: #948194;
-    color: #ffffff;
-    width: 50%;
-    height: 18%;
-    margin: 35px 0px 5px;
-    padding: 8px 10px;
-    border-radius: 5px;
-    font-size: 17px;
-    border: none;
-    outline: none;
-}
-/*  */
 .back-to-login{
     position: absolute;
     font-size: 15px;

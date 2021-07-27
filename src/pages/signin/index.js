@@ -1,10 +1,8 @@
 import {loginPage, signInGoogleAccount} from '../../lib/index.js'
-import { changeContent} from '../../routes.js'
 import { errorInput, errorPassword } from '../../error.js'
 
 export default () => {
-  window.history.pushState("signin", null, "/signin");
-
+ 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","signin-page")
   sectionElement.setAttribute("class","form-page")
@@ -39,7 +37,10 @@ export default () => {
   const signUpLink = sectionElement.querySelector("#signup-link") 
   signUpLink.addEventListener("click", (e) => {
     e.preventDefault()
-    changeContent("signup")
+    window.history.pushState(null, null, "/cadastro")
+    const popStateEvent = new PopStateEvent("popstate", {state:{}})
+    
+    dispatchEvent(popStateEvent)
   })
   
   enterLogin.addEventListener("click", () =>{
@@ -51,7 +52,9 @@ export default () => {
     loginPage(email,password)
     .then(() => {
       setTimeout( () => {
-        changeContent("home")
+        window.history.pushState(null, null, "/home")
+        const popStateEvent = new PopStateEvent("popstate", {state:{}})
+        dispatchEvent(popStateEvent)
       }, 1000)
     })
     .catch((error) => {
@@ -82,10 +85,9 @@ export default () => {
   loginWithGoogle.addEventListener("click", () =>{
     signInGoogleAccount()
     .then(() => {
-      alert("Login realizado")
-    })
-    .then(() => {
-      changeContent("home")
+      window.history.pushState(null, null, "/home")
+      const popStateEvent = new PopStateEvent("popstate", {state:{}})
+      dispatchEvent(popStateEvent)
     })
     .catch((error) => {
       const errorCode = error.code

@@ -1,9 +1,8 @@
 import { logout} from "../../lib/index.js"
-import { changeContent } from "../../routes.js"
 
 export default () =>{
 
-  window.history.pushState("home", null, "/home")
+  
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id", "home-content")
 
@@ -17,7 +16,9 @@ export default () =>{
   
   logoutBtn.addEventListener("click", ()=>{
       logout()
-      changeContent("signin")
+      window.history.pushState(null, null, "/login")
+      const popStateEvent = new PopStateEvent("popstate", {state:{}})
+      dispatchEvent(popStateEvent)
   })
 
   return sectionElement

@@ -1,10 +1,9 @@
 import { currentUser , uploadImage, asyncSendProfileData} from "../../lib/index.js"
-import { changeContent} from '../../routes.js'
 import { errorInput } from '../../error.js'
 
 export default () => {
 
-  window.history.pushState("createprofile", null, "/createprofile")
+  //y.pushState("createprofile", null, "/createprofile")
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","create-profile")
@@ -60,8 +59,8 @@ export default () => {
   })
 
   const sendProfileBtn = sectionElement.querySelector("#send-profile")
-  sendProfileBtn.addEventListener("click", (e) => {
-    e.preventDefault()
+  sendProfileBtn.addEventListener("click", () => {
+   
     const userNameInput = sectionElement.querySelector("#input-username")
     const userName = userNameInput.value
     const user = currentUser()
@@ -76,6 +75,11 @@ export default () => {
     }else{
       if (image === undefined){
         asyncSendProfileData(userName, null)
+        .then(()=>{
+          window.history.pushState(null, null, "/home")
+          const popStateEvent = new PopStateEvent("popstate", {state:{}})
+          dispatchEvent(popStateEvent)
+        })  
   
       }else{
         uploadImage("input-profile-img", ""+userId+"")
@@ -87,10 +91,13 @@ export default () => {
         })
         .then((urlImage)=>{
           asyncSendProfileData(userName, urlImage)
+          
     
         })
         .then(()=>{
-          changeContent("home")
+          window.history.pushState(null, null, "/home")
+          const popStateEvent = new PopStateEvent("popstate", {state:{}})
+          dispatchEvent(popStateEvent)
         })  
       }
     }
