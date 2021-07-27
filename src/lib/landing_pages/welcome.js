@@ -1,14 +1,12 @@
-// aqui você exportará as funções que precisa
 export const Welcome = () => {
 
   const template = `
-<div class="esmaece">
-  <section class="logotipo">
-    <img src="./img/logo.png" alt="Logotipo do Fort" class="logoimg">
-  </section>
-</div>
 
-
+  <div class="esmaece">
+    <section class="logotipo">
+      <img src="./img/logo.png" alt="Logotipo do Fort" class="logoimg">
+    </section>
+  </div>
 
   <section class="slider-content">
     <div class="slide">
@@ -42,7 +40,7 @@ export const Welcome = () => {
     event.preventDefault()
     window.history.pushState({}, null, '/login')
 
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
+    const popStateEvent = new PopStateEvent('popstate', {state:{}})
     dispatchEvent(popStateEvent)
   })
   

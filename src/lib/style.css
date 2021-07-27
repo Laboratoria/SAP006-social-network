@@ -36,7 +36,7 @@ body,
 input,
 select {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--color-background);
+  /* background-color: var(--color-background); */
 }
 
 a {
@@ -55,6 +55,9 @@ ol, ul {
 	list-style: none;
 }
 
+.everything {
+  background-color: var(--color-background);
+}
 
 .esmaece {
   opacity: 40%;

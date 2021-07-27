@@ -4,15 +4,16 @@ export const Login = () => {
     <div>
       <img id="background" src="./lib/login/img/paleta3.jpg" alt="">
       <h4>Nova por aqui? <span><a href="link-cadastro">Cadastre-se</a></span></h4>
-      <input type="text" class="input" placeholder="Login">
-      <input type="password" class="input" placeholder="Senha">
+      <input id="email" type="text" class="input" placeholder="Login">
+      <input id="senha" type="password" class="input" placeholder="Senha">
       <a href="">Esqueceu a senha?</a><br>
-      <button id="btn-login" class="login btn">LOGIN</button>
+      <button id="btn-login" class="login btn" onclick="(loginUser())">LOGIN</button>
       <div>
         <h4><a id="btn-google" href="" target="_blank">Login com o Google</a></h4>
       </div>
     </div> 
   `;
+  
   rootElement.innerHTML = container;
   const botao = rootElement.querySelector('#btn-login');
   botao.addEventListener('click', () => {
@@ -22,6 +23,33 @@ export const Login = () => {
   });
   return rootElement;
 };
+
+function loginUser () {
+  if(firebase.auth().currentUser) {
+    firebase.auth().signOut()
+  }
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('senha').value;
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, senha)
+    .then ( () => {
+      swal.fire({
+        icon:'sucess',
+        title: 'Login realizado com sucesso',
+      }).then ( () => {
+        setTimeout( () => {
+          window.location.replace('index.html')
+        }, 1000)
+      }) 
+    })
+  .catch((error) => {
+    swal.fire({
+      icon: 'error',
+      title: error.message,
+    })
+  })
+} 
 
 // const provider = new firebase.auth.GoogleAuthProvider();
 // provider.setCustomParameters({
