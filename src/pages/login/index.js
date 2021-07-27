@@ -1,9 +1,9 @@
 export const Login = () => {
   const root = document.createElement('div');
   root.innerHTML = `
-  <section id='' class='loginPage'>
-    <section id=''>  
-      <img src="img/download.png" class='img' alt='veleiro em mar calmo ao por do sol'>
+  <section id='loginPage' class='loginPage'>
+    <section id='loginImage' class='loginImage'>  
+      <img src="img/login-image.png" class='img' alt='veleiro em mar calmo ao por do sol'>
     </section>
     <section id='login' class='container'>
       <form id='labelsForLogin' class='login-signup'>
@@ -22,6 +22,7 @@ export const Login = () => {
 
       </form>
     </section>
+  </section>
   `;
 //console.log(root);
 
