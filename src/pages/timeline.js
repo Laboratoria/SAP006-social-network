@@ -137,4 +137,4 @@ export default () => {
 
   return timeline;
 
-}
+};

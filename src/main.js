@@ -31,16 +31,12 @@ window.addEventListener('load', () => {
   init();
 
   // VARIAVEIS
-  const name = document.getElementById('name');
   const email = document.getElementById('email');
   const password = document.getElementById('password');
-  const passwordConfirm = document.getElementById('password-confirm');
   const newUser = document.getElementById('nonUser');
   const signInButton = document.getElementById('signin-button');
   const signUpButton = document.getElementById('signup-button');
-  const signUpButtonRegister = document.getElementById('signup-button-register');
-  const signOutButton = document.getElementById('signout-button');
-  const gobackButton = document.getElementById('gobackButton');
+
   const firebaseSection = document.getElementById('firebaseui-auth-container');
 
   // LOGIN DE USUARIOS EXISTENTES POR EMAIL E SENHA
@@ -65,32 +61,6 @@ window.addEventListener('load', () => {
     e.preventDefault();
     window.location.hash = 'register'; // ir para pagina cadastro
     firebaseSection.innerHTML = ' ';
-  });
-
-  // INPUTS PARA CADASTRO
-  signUpButtonRegister.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log('funcionou');
-
-    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
-      .then((userCredential) => {
-        if(password === passwordConfirm) {
-          const user = userCredential.user;
-          window.location.hash = 'timeline';
-          console.log('senhas corretas', name + user);
-        }
-    })
-      .catch((error) => {
-        newUser.innerHTML = error.message;
-        console.log('deu ruim');
-      });
-  });
-
-  // BOTÃO DE VOLTAR PARA PÁGINA DE LOGIN
-  gobackButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('funcionou button img');
-        window.history.back();
   });
 
 });

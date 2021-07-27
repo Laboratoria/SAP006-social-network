@@ -2,15 +2,15 @@ export default () => {
     document.querySelector('#root').innerHTML = ' ';
     const container = document.createElement('div');
     const template = `
-    <div class="box">
+    <main class="box">
 
-        <main id="login-container">
+        <div id="login-container">
 
             <div class="banner">
                 <img src="assets/logo.png" alt="Logo">
                 <div class="title-container">
-                <h1 class="title">SeriesDay</h1>
-                <h3 class="subtitle">review de séries</h3>
+                    <h1 class="title">SeriesDay</h1>
+                    <h3 class="subtitle">review de séries</h3>
                 </div>
             </div>
 
@@ -30,9 +30,9 @@ export default () => {
 
             <button id="signup-button" class="login-buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
 
-        </main>
+        </div>
 
-    </div>
+    </main>
     `;
 
     container.innerHTML = template;

@@ -6,7 +6,6 @@ function uiConfig() {
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      console.log("google"),
     ],
   };
 }
