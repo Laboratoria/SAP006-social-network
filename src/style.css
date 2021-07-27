@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-:root{
-    --text-color: rgb(70, 60, 75);
-    --dark-purple: #4D3D7B;
-}
-
 *{
     margin: 0;
     padding: 0;
@@ -12,34 +7,28 @@
     box-sizing: border-box;
     color:var(--text-color);
     font-size:10px;
-    
 }
-
 body{
     width:100vw;
     font-size: 1.6rem;
-    background: linear-gradient(90deg, #29055B 0%, #A74AC2 47.4%, #DBD65C 100%);
-
 }
-
+#sign-up, #signin-page, #create-profile{
+    background: linear-gradient(90deg, #29055B 0%, #A74AC2 47.4%, #DBD65C 100%);
+}
 .form-page{
     display:flex
-
 }
-
 .logo-container{
     width:50vw;
     display:flex;
     align-items: center;
     justify-content: center;
+    margin: 0px 0px 0px 100px;
 }
-
 .site-logo{
-    width:25rem;
-    height: 25rem;
+    width: 75rem;
+    height: 55rem;
 }
-
-
 .form-container{
     width:50vw;
     height: 100vh;
@@ -49,17 +38,10 @@ body{
     align-items: center;
     text-align: center;
 }
-
 .h1-login{
     color:white;
     font-size: 2rem;
     margin-bottom: 1.6rem;
-}
-
-
-
-#form-sign-in, #sign-up{
-  
 }
 .fieldset{
     border: none;
@@ -70,7 +52,6 @@ body{
     align-items: center;
     text-align: center;
 }
-
 .form{
     width:50%;
     display:flex;
@@ -88,17 +69,14 @@ body{
     color:var(--text-color)
 
 }
-   
 .forget-password{
     align-self: flex-start;
 }
-
 .forget-password a{
     font-size: 1.2rem;
     color:white;
 
 }
-
 .btn{
     cursor: pointer;
     background-color: #4D3D7B;
@@ -113,16 +91,13 @@ body{
     border: none;
     outline: none;
 }
-
 .btn:hover{
-    background-color:rgb(134, 75, 134);
+    background-color:#864b86;
     transition: 0.7s;
 }
-
 .p-sign-in{
     color:white;
     font-size: 1.2rem;
-    
 }
 a{
     text-decoration: none;
@@ -134,14 +109,11 @@ a{
 a:hover{
     color:rgb(116, 43, 116);
     text-decoration: underline rgb(116, 43, 116);
-   
 }
 .or{
-    
     font-size: 1.6rem;
-    color:white;
+    color:#ffffff;
     margin:2rem 0;
-
 }
 #gmail-btn{
     width:100%;
@@ -152,11 +124,8 @@ a:hover{
     outline: none;
     margin:0 0 2rem 0;
 }
-
-
-
 #gmail-btn:hover{
-    background-color: rgb(205, 161, 219);
+    background-color: #c07dd6;
     transition: 0.7s;
 }
 .logo-google{
@@ -172,9 +141,38 @@ a:hover{
     color:var(--dark-purple);
     font-size: 1.2rem;
 }
-
+.sign-google:hover{
+    color: white;
+}
 .logo-google{
     margin-right: 1rem;
+}
+#email-error, #password-error{
+    position: absolute;
+    font-size: 12px;
+    padding: 0px;
+    margin: 53px 0px 0px 5px;
+    color: #df0000;
+}
+.user-not-found{
+    font-size: 13px;
+    padding: 0px;
+    color: #df0000;
+    display: none;
+}
+#email-error-code, #password-error-code{
+    position: absolute;
+    font-size: 12px;
+    padding: 0px;
+    margin: 53px 0px 0px 5px;
+    color: #df0000;
+}
+.user-already-in-use{
+    font-size: 13px;
+    padding: 0px;
+    margin: 0px;
+    color: #df0000;
+    display: none;
 }
 .container-file-img{
     width:10rem;
@@ -182,7 +180,6 @@ a:hover{
     align-self: center;
     margin:2rem 0; 
 }
-
 .file-img{
     width:100%;
     height: 100%;
@@ -192,17 +189,14 @@ a:hover{
 	-webkit-transition: 0.3s;
 	transition: 0.3s;
 }
-
 .file-img:hover{
     -moz-transform: scale(1.1);
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
 }
-
 .file-input{
     display:none;
 }
-
 /* .form-create-profile{
     background-color: #ebe6eb;
     padding: 60px 10px 0px;
@@ -281,12 +275,58 @@ a:hover{
     border: none;
     outline: none;
 }
-#back-sign-in{
-    font-size: 20px;
-    padding: 20px;
+/*  */
+.back-to-login{
+    position: absolute;
+    font-size: 15px;
+    padding: 5px;
+    margin: 0px 590px 530px 0px;
     cursor: pointer;
+    float: left;
+    width: 8%;
+    height: 6%;
+    font-weight: bold;
 }
-#back-sign-in:hover{
-    color: #948194;
+.back-to-login:hover{
+    border: none;
+    background-color: #864b86;
+    color: #ffffff;
     transition: 1s;
-} */
+}
+#home-content{
+    background-color: white;
+    height: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 30px;
+}
+#logout-btn{
+    cursor: pointer;
+    position: absolute;
+    margin: 0px 0px 0px 900px;
+    background-color: #864b86;
+    font-size: 15px;
+    padding: 5px;
+    width: 8%;
+    height: 6%;
+    border: none;
+    color: white;
+}
+#logout-btn:hover{
+    background-color: #4b4b4b;
+    border: none;
+    height: 7%;
+    transition: 1s;
+}
+.h1-home{
+    color: black; 
+    font-size: 35px;
+}
+#bookish{
+    color: #ffffff;
+    position: absolute;
+    font-size: 50px;
+    margin: 0px 350px 400px 0px;
+}
