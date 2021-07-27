@@ -12,12 +12,17 @@ window.addEventListener("load", () => {
   console.log(loggedUser)
   if(loggedUser == undefined || loggedUser == null){
     mainLogin.appendChild(signin())
+
+  }else{
+    mainLogin.appendChild(home())
+    
   }
-  else{
-    mainLogin.appendChild(home())    
-  }
+  // const url = window.location.pathname
+  // const path = url.slice(1)
+  // console.log(path)
+  // changeContent(path) 
+
   window.addEventListener('popstate', (e) =>{
-    console.log(e.state)
 
     if(loggedUser == undefined || loggedUser == null){
       mainLogin.innerHTML=""

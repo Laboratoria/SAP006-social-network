@@ -127,3 +127,10 @@ export const uploadImage = (id, userid) =>{
   // })
 
 }
+
+export const forgotPassword = (email) =>{
+  if(email !== ''){
+    return firebase.auth()
+    .sendPasswordResetEmail(email)
+  }
+}
