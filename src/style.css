@@ -12,6 +12,12 @@ header{
     text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+    .loginImage{
+        display: none;
+    }
+}
+
 .loginPage {
     display:flex;
 	margin: auto;
@@ -33,18 +39,6 @@ header{
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
-
-/*.start {
-    width: 1000px;
-    display: flex;
-    height: 600px;
-    margin: 0 auto;
-    margin-left: 5%;
-    margin-right: 5%;
-    align-items: flex-start;
-    justify-content: center;
-    
-}*/
 
 .container {
     display: flex;
