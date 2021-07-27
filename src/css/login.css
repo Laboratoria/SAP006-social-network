@@ -1,0 +1,71 @@
+/* @import url(...fonte); coloquei direto no index html - acho que assim lê para todas as pages msm com reload */
+.container {
+  background: #97cf6e;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: 4% auto;
+}
+div{
+  background: #97cf6e;
+}
+.justify-register,
+.justify-google {
+  display: flex;
+  justify-content: center;
+}
+.password,
+.login {
+  width: 200px;
+  padding: 7px;
+  text-align: center;
+  justify-content: center;
+  margin-top: 7%;
+  margin-bottom: 3px;
+  border: 1px solid #ffffffde;
+  color: rgb(0, 0, 0);
+  box-shadow: 0px -3px 1px #a09f9f5e;
+}
+
+#entrar {
+  width: 100px;
+  padding: 9px;
+  font-size: 13px;
+  border: 1px solid #ffffffde;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(20, 20, 20, 0.37);
+  margin-top: 25px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+#google-login {
+  width: 200px;
+  padding: 7px;
+  font-size: 15px;
+  color: rgb(119, 117, 117);
+  border: 1px solid #ffffffde;
+  box-sizing: border-box;
+  margin-top: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-logo {
+  width: 20px;
+  padding: 0px 5px 0px 0px;
+}
+
+.line {
+  padding-top: 5%;
+  margin-top: 20px 0 20px 0;
+  width: 90%;
+}
+#cadastro {
+  padding-top: 5%;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+

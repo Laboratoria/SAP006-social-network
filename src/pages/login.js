@@ -1,8 +1,9 @@
 export const Login = () => {
     const rootElement = document.createElement("div");
     rootElement.innerHTML = `<div class="container">
-    <div class="card">
-      <img src="img/GOVEG.png" width="200px">
+    <div class="logo">
+      <img src="img/logo.png" alt="GO VEG - logo">
+      </div>
       <div class="label-float">
         <input class="login" type="text" id="usuario" placeholder="E-mail">
         <span class="focus-input100"></span>
@@ -13,19 +14,18 @@ export const Login = () => {
         <span class="focus-input100"></span>
       </div>
 
-      <div class="justify-center">
-        <button type="submit" name="botao" id="entrar">ENTRAR</button>
+      <div class="justify-enter">
+        <button type="button" name="botao" id="entrar">ENTRAR</button>
       </div>
 
-      <div class="justify-center">
-        <button type="submit" name="botao" id="google-login"> <img src="./img/google.png" class="google-logo" />Sign in
+      <div class="justify-google">
+        <button type="button" name="botao" id="google-login"> <img src="./img/google.png" class="google-logo" />Sign in
           with Google</button>
       </div>
-
-      <div class="justify-center">
+      <div class="line">
         <hr>
       </div>
-      <div class="justify-center">
+      <div class="justify-register">
         <a id="cadastro" href="#">Cadastre-se</a>
       </div>
     </div>`;

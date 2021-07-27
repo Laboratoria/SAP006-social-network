@@ -29,13 +29,13 @@ firebase
   .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
-    console.log('logou!')
+    console.log("logou!");
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log('não logou.')
+    console.log("não logou.");
   });
 
 //   firebase.auth().onAuthStateChanged((user) => {
@@ -50,3 +50,50 @@ firebase
 //     }
 //   });
 
+// ** Sign-in with Google
+function googleProvider() {
+  // [START auth_google_provider_create]
+  const provider = new firebase.auth.GoogleAuthProvider();
+  // [END auth_google_provider_create]
+
+  // [START auth_google_provider_scopes]
+  provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
+
+  // [START auth_google_provider_params]
+  provider.setCustomParameters({
+    user: "@nickname",
+  });
+}
+function googleSignInRedirectResult() {
+  // [START auth_google_signin_redirect_result]
+  firebase
+    .auth()
+    .getRedirectResult()
+    .then((result) => {
+      if (result.credential) {
+        /** @type {firebase.auth.OAuthCredential} */
+        let credential = result.credential;
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        let token = credential.accessToken;
+        // ...
+      }
+      // The signed-in user info.
+      let user = result.user;
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      let errorCode = error.code;
+      let errorMessage = error.message;
+      // The email of the user's account used.
+      let email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      let credential = error.credential;
+     
+    });
+}
+// Start a sign in process for an unauthenticated user.
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.addScope("profile");
+provider.addScope("email");
+document.getElementById("google-login").addEventListener("click", firebase.auth().signInWithRedirect(provider));

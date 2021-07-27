@@ -1,0 +1,13 @@
+body {
+  background: #97cf6e;
+  font-family: "Russo One", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
