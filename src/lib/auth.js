@@ -20,24 +20,15 @@ export const criarFirebaseconta = (email, senha, name) => {
           const errorCode = error.code;
           window.alert("Error : " + errorMessage);
         });
-
-
       };
 
 
 export const loginWithEmailAndPassword = (email, pass) => {
-  firebase.auth().signInWithEmailAndPassword(email, pass) 
-  .then(() => {
-  alert('tudo ok!')
-    window.location.replace('home.html')
-  }).catch((error) => {
-  const errorMessage = error.message;
-  const errorCode = error.code;
-  window.alert("Error : " + errorMessage);
-  });
-
-
-};
-
-  
-  
+firebase.auth().signInWithEmailAndPassword(email, pass)
+.then(() => {
+window.alert("foooi Julli")
+})
+.catch(() => {
+ window.alert("não logooou!")
+});
+}
