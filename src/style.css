@@ -23,7 +23,7 @@ body {
 
 /* LOGIN */
 
-#login-container {
+#container {
     display: inline-block;
     align-items: center;
     width: 100%;
@@ -39,7 +39,7 @@ body {
     box-shadow: inset 0 0 1em #F15E75, 0 0 1em black;
     border-radius: 15px;
     position: absolute;
-    top: 13%;
+    top: 10%;
     left: 5%;
     padding: 5%;
 }
@@ -91,7 +91,7 @@ body {
     margin-top: 5%;
 }
 
-.login-buttons {
+.buttons {
     width: 30%;
     height: 40px;
     margin-top: 3%;
@@ -126,11 +126,8 @@ body {
   font-size: larger;
   margin-top: -1%;
   color: #f3f3f3;
-  width: 100%;
+  width: 103%;
   font-size: 15pt;
-  position: absolute;
-  top: 90%;
-  right: -1%;
 }
 
 span{
@@ -142,10 +139,24 @@ span:hover {
 }
 
 #firebaseui-auth-container {
-    margin: 25% 0 15% 0;
-
+    margin: 5% 0 15% 0;
 }
 
+/* REGISTER */
+.register-button {
+    width: 40%;
+    margin-left: 55%;
+}
 
+.goback-button {
+    border: none;
+    background: none;
+    width: 100%;
+}
+
+.goback-button img {
+    width: 20%;
+    margin-left: -70%;
+}
 
 /* TIMELINE */

@@ -4,7 +4,7 @@ export default () => {
     const template = `
     <main class="box">
 
-        <div id="login-container">
+        <div id="container">
 
             <div class="banner">
                 <img src="assets/logo.png" alt="Logo">
@@ -22,17 +22,21 @@ export default () => {
                 </form>
 
                 <div class="signin">
-                <button id="signin-button" class="login-buttons">Entrar</button>
+                <button id="signin-button" class="buttons">Entrar</button>
                 <p> OU </p>
                 </div>
 
             </section>
 
-            <button id="signup-button" class="login-buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
+            <div id="firebaseui-auth-container"></div>
+
+            <button id="signup-button" class="buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
 
         </div>
 
+
     </main>
+    
     `;
 
     container.innerHTML = template;

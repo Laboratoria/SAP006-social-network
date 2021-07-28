@@ -1,5 +1,5 @@
 export default () => {
-  const timeline = (document.getElementById("login-container").innerHTML = `
+  const timeline = (document.getElementById("container").innerHTML = `
 
   <button id="signout-button" class="flex-itens">Sign Out</button>
   <div>
