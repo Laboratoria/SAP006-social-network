@@ -1,11 +1,13 @@
 import { Register } from "./pages/register/register.js";
 import { Login } from "./pages/login/login.js"
+import { Feed } from "./pages/feed/feed.js"
 
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
     "/":Login,
-    "/register":Register
+    "/register":Register,
+    "/feed":Feed
   }
   elemento.innerHTML = "";
   elemento.appendChild(routes[window.location.pathname]())
@@ -19,4 +21,10 @@ window.addEventListener("load", () => {
   routRender();
   console.log("caiuuuuu no load")
 
-} )
+});
+
+export const getTheRoad = (state) => {
+  window.history.pushState({}, "", state);
+  const popstateEvent = new PopStateEvent("popstate", {state:{}});
+  dispatchEvent(popstateEvent);
+}
