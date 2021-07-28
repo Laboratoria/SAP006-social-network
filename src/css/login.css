@@ -1,13 +1,20 @@
 /* @import url(...fonte); coloquei direto no index html - acho que assim lê para todas as pages msm com reload */
+.page {
+  background: #97cf6e;
+  margin: 0;
+  padding: 0;
+}
 .container {
   background: #97cf6e;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 50%;
-  margin: 4% auto;
+  margin: 3% auto;
 }
-div{
-  background: #97cf6e;
+.logo{
+  width: 50%;
+  margin: auto;
 }
 .justify-register,
 .justify-google {
@@ -16,22 +23,21 @@ div{
 }
 .password,
 .login {
-  width: 200px;
+  width: 80%;
   padding: 7px;
   text-align: center;
   justify-content: center;
-  margin-top: 7%;
-  margin-bottom: 3px;
+  margin: 3% 0 3% 0;
   border: 1px solid #ffffffde;
   color: rgb(0, 0, 0);
   box-shadow: 0px -3px 1px #a09f9f5e;
 }
 
 #entrar {
-  width: 100px;
+  width: 30%;
   padding: 9px;
-  font-size: 13px;
-  border: 1px solid #ffffffde;
+  font-size: 80%;
+  border: 1px solid #9b9b9bde;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(20, 20, 20, 0.37);
   margin-top: 25px;
@@ -40,13 +46,13 @@ div{
 }
 
 #google-login {
-  width: 200px;
+  width: 60%;
   padding: 7px;
-  font-size: 15px;
+  font-size: 100%;
   color: rgb(119, 117, 117);
-  border: 1px solid #ffffffde;
+  border: 1px solid #9b9b9bde;
   box-sizing: border-box;
-  margin-top: 25px;
+  margin: 5% auto;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -59,11 +65,13 @@ div{
 }
 
 .line {
-  padding-top: 5%;
-  margin-top: 20px 0 20px 0;
+  margin: 2% auto;
   width: 90%;
 }
+
 #cadastro {
+  width: 100%;
+  font-size: 25px;
   padding-top: 5%;
   text-decoration: none;
   color: rgb(0, 0, 0);

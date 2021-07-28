@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- <link rel="stylesheet" href=""/> -->
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./css/login.css" />
     <link rel="stylesheet" href="./css/cadastro.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,33 +19,12 @@
   </head>
 
   <body>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
- https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/8.8.0/firebase-auth.js"></script>
-
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyDZsobzbWYCkV_lDocfccutJLJsZXdNNtg",
-        authDomain: "sap006-socialnetwork.firebaseapp.com",
-        projectId: "sap006-socialnetwork",
-        storageBucket: "sap006-socialnetwork.appspot.com",
-        messagingSenderId: "163375419778",
-        appId: "1:163375419778:web:3d72e6c3e6855d517dff9b",
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>
-
-    <!-- <nav id="pagebuttons" class="pagebuttons"> -->
     <div class="root" id="root"></div>
 
-    <!-- </nav> -->
-
-    <script type="module" src="main.js"></script>
     <script type="module" src="router.js"></script>
   </body>
 </html>

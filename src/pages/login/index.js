@@ -1,9 +1,10 @@
-export const Login = () => {
+export const login = () => {
     const rootElement = document.createElement("div");
+    rootElement.setAttribute("class", "page")
     rootElement.innerHTML = `<div class="container">
-    <div class="logo">
-      <img src="img/logo.png" alt="GO VEG - logo">
-      </div>
+
+      <img class="logo" src="img/logo.png" alt="GO VEG - logo">
+
       <div class="label-float">
         <input class="login" type="text" id="usuario" placeholder="E-mail">
         <span class="focus-input100"></span>
@@ -22,15 +23,15 @@ export const Login = () => {
         <button type="button" name="botao" id="google-login"> <img src="./img/google.png" class="google-logo" />Sign in
           with Google</button>
       </div>
+
       <div class="line">
         <hr>
       </div>
+
       <div class="justify-register">
         <a id="cadastro" href="#">Cadastre-se</a>
-      </div>
+      </div> 
     </div>`;
-
-    console.log(rootElement)
 
     const botao = rootElement.querySelector("#cadastro")
     botao.addEventListener("click", () => {
@@ -38,7 +39,8 @@ export const Login = () => {
         const popstateEvent = new PopStateEvent("popstate", { state: {} })
         dispatchEvent(popstateEvent)
     })
+    const botaoGoogle = rootElement.querySelector("#google-login")
+    botaoGoogle.addEventListener("click", console.log("funcionou o botao"))
 
     return rootElement;
-
 }

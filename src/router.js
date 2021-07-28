@@ -1,10 +1,11 @@
-import { cadastro } from "./pages/cadastro.js";
-import { Login } from "./pages/login.js"
+import { cadastro } from "./pages/cadastro/index.js";
+import { login } from "./pages/login/index.js"
 
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
-    "/":Login,
+    "/":login,
+    "/login": login,
     "/cadastro":cadastro
 
   }
@@ -19,5 +20,4 @@ window.addEventListener("load", () => {
   /*window.history.pushState({},"","/")*/
   routRender();
   console.log("caiuuuuu no load")
-
-} )
+});

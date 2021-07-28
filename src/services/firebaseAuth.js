@@ -1,13 +1,9 @@
-// Este é o ponto de entrada da sua aplicação
+// aqui você exportará as funções que precisa
 
-// import { myFunction } from './lib/index.js';
+const email = 'isisbeatriz@gmail.com';
+const password = '123456';
 
-// myFunction();
-
-const email = "isisbeatriz@gmail.com";
-const password = "123456";
-
-// firebase
+ // firebase
 //   .auth()
 //   .createUserWithEmailAndPassword(email, password)
 //   .then((userCredential) => {
@@ -24,19 +20,19 @@ const password = "123456";
 //   });
 
 firebase
-  .auth()
-  .signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    console.log("logou!");
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log("não logou.");
-  });
+.auth()
+.signInWithEmailAndPassword(email, password)
+.then((userCredential) => {
+  // Signed in
+  const user = userCredential.user;
+  console.log("logou!");
+  // ...
+})
+.catch((error) => {
+  const errorCode = error.code;
+  const errorMessage = error.message;
+  console.log("não logou.");
+});
 
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -50,15 +46,12 @@ firebase
 //     }
 //   });
 
-// ** Sign-in with Google
+  // ** Sign-in with Google
 function googleProvider() {
   // [START auth_google_provider_create]
   const provider = new firebase.auth.GoogleAuthProvider();
-  // [END auth_google_provider_create]
-
   // [START auth_google_provider_scopes]
   provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-
   // [START auth_google_provider_params]
   provider.setCustomParameters({
     user: "@nickname",
@@ -73,10 +66,8 @@ function googleSignInRedirectResult() {
       if (result.credential) {
         /** @type {firebase.auth.OAuthCredential} */
         let credential = result.credential;
-
         // This gives you a Google Access Token. You can use it to access the Google API.
         let token = credential.accessToken;
-        // ...
       }
       // The signed-in user info.
       let user = result.user;
@@ -89,11 +80,12 @@ function googleSignInRedirectResult() {
       let email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       let credential = error.credential;
-     
     });
 }
 // Start a sign in process for an unauthenticated user.
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.addScope("profile");
 provider.addScope("email");
-document.getElementById("google-login").addEventListener("click", firebase.auth().signInWithRedirect(provider));
+firebase.auth().signInWithRedirect(provider);
+
+

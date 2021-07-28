@@ -21,7 +21,7 @@ export const cadastro = () => {
       <input class="register" type="submit" id="btnRegister" value="Cadastrar" />
     </form>
   
-    <button class="enter" type="submit" name="botao" id="entrar"><img src="./img/login.png" alt="Entrar - Página de Login"</button>
+    <a id="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
   </fieldset>`;
 
   return rootElement;
