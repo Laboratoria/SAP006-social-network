@@ -1,5 +1,7 @@
 export default () => {
     const template = document.getElementById("container").innerHTML =`
+      <link rel="stylesheet" href="./pages/Register/style.css" />
+
       <main id="box">
 
           <div class="container">

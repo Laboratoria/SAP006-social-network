@@ -1,29 +1,4 @@
-/* GERAL  */
-
-* {
-    padding: 0;
-    margin: 0;
-    outline: none;
-    box-sizing: border-box;
-    vertical-align: baseline;
-    list-style: none;
-  }
-  
-body {
-    background-color: #333333;
-    width: 100%;
-    height: 180vw;
-}
-
-@font-face {
-  font-family: "Aquatico";
-  src: local(Aquatico), url(./assets/aquatico.otf);
-}
-
-
-/* LOGIN */
-
-#container {
+.container {
     display: inline-block;
     align-items: center;
     width: 100%;
@@ -35,7 +10,6 @@ body {
 .box {
     background: linear-gradient(-135deg, #78D6FE, #FFCA19);
     width: 90%;
-    border: 1px solid linear-gradient(-135deg, #78D6FE, #FFCA19);
     box-shadow: inset 0 0 1em #F15E75, 0 0 1em black;
     border-radius: 15px;
     position: absolute;
@@ -49,7 +23,7 @@ body {
     width: 100%;
     justify-content:space-between;
     margin-bottom: 10%;
-  }
+}
   
 .banner img {
     width: 30%;
@@ -141,22 +115,3 @@ span:hover {
 #firebaseui-auth-container {
     margin: 5% 0 15% 0;
 }
-
-/* REGISTER */
-.register-button {
-    width: 40%;
-    margin-left: 55%;
-}
-
-.goback-button {
-    border: none;
-    background: none;
-    width: 100%;
-}
-
-.goback-button img {
-    width: 20%;
-    margin-left: -70%;
-}
-
-/* TIMELINE */

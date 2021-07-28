@@ -2,9 +2,11 @@ export default () => {
     document.querySelector('#root').innerHTML = ' ';
     const container = document.createElement('div');
     const template = `
+    <link rel="stylesheet" href="./pages/Login/style.css" />
+
     <main class="box">
 
-        <div id="container">
+        <div id="container" class="container">
 
             <div class="banner">
                 <img src="assets/logo.png" alt="Logo">
@@ -30,10 +32,9 @@ export default () => {
 
             <div id="firebaseui-auth-container"></div>
 
-            <button id="signup-button" class="buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
+             <button id="signup-button" class="buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
 
         </div>
-
 
     </main>
     

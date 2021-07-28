@@ -1,0 +1,15 @@
+.register-button {
+    width: 40%;
+    margin-left: 55%;
+}
+
+.goback-button {
+    border: none;
+    background: none;
+    width: 100%;
+}
+
+.goback-button img {
+    width: 20%;
+    margin-left: -70%;
+}

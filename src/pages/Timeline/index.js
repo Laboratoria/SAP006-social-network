@@ -1,14 +1,25 @@
 export default () => {
   const timeline = (document.getElementById("container").innerHTML = `
-
-  <button id="signout-button" class="flex-itens">Sign Out</button>
+  <link rel="stylesheet" href="./pages/Timeline/style.css" />
+  
   <div>
+
+    <div class="banner">
+      <img src="assets/logo.png" alt="Logo">
+      <div class="title-container">
+          <h1 class="title">SeriesDay</h1>
+          <h3 class="subtitle">review de séries</h3>
+      </div>
+    </div>
+
     <form action="" id="postForm">
-      <input type="textarea" id="postText"/>
-      <button type="submit"> Postar </button>
+      <textarea type="textarea" id="postText" class="post-text" rows="5" cols="50" placeholder="Digite aqui sua review..."></textarea>
+      <button type="submit" class="buttons post-button"> Publicar </button>
     </form>
 
     <ul id="posts"></ul>
+
+    <button id="signout-button" class="signout-button buttons">Sair</button>
 
   </div>`);
 
@@ -44,15 +55,23 @@ export default () => {
   // Adicionando posts
   function createTemplatePost(post) {
     const postTemplate = `
-        <li id="${post.id}"> Post: ${post.data().text} | ❤️ ${
-      post.data().likes
-    } | 💬 | </li>
-        <div id=${post.id}>
-          <button class="deletePost-btn">🗑️</button>
-          <button class="likePost-btn">❤️</button>
-          <button class="commentPost-btn">💬</button>
+      <li class="posts-box">
+        <div id="${post.id}"class="post-container">
+          <p> Post: ${post.data().text} </p>
+      
+          <div class="like-comment">
+            <p> ❤️ ${post.data().likes} </p>
+            <p> 💬 </p> 
+          </div>
+        </div>
+          
+        <div id=${post.id} class="buttons-container">
+          <button class="deletePost-btn timeline-buttons">🗑️</button>
+          <button class="likePost-btn timeline-buttons">❤️</button>
+          <button class="commentPost-btn timeline-buttons">💬</button>
           <div></div>
         </div>
+      </li>
     `;
     document.getElementById("posts").innerHTML += postTemplate;
 

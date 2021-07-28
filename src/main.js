@@ -1,6 +1,6 @@
-import timeline from './pages/timeline.js'
-import login from './pages/login.js'
-import register from './pages/register.js'
+import timeline from './pages/Timeline/index.js'
+import login from './pages/Login/index.js'
+import register from './pages/Register/index.js'
 
 import { configureLogin, removeLogin } from './lib/index.js';
 

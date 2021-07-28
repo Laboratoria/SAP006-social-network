@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    list-style: none;
+  }
+  
+body {
+    background-color: #333333;
+    width: 100%;
+    height: 180vw;
+}
+
+@font-face {
+  font-family: "Aquatico";
+  src: local(Aquatico), url(./assets/aquatico.otf);
+}
+
+
