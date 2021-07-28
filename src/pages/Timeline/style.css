@@ -1,5 +1,6 @@
 body {
     background: linear-gradient(-135deg, #78D6FE, #FFCA19);
+    height: 100%;
 }
 
 .box {
@@ -54,7 +55,7 @@ body {
     margin-bottom: 1%;
 }
 
-.post-text {
+.post-textarea {
     font-family: 'Averia Sans Libre', cursive;
     border: none;
     background-color: ghostwhite;
@@ -90,7 +91,6 @@ body {
 }
 
 .signout-button {
-    margin: 0 0 5% 0;
     width: 15%;
     border: solid 1px #000;
     transition: 0.5s ease-in-out;
@@ -98,4 +98,30 @@ body {
 
 .signout-button:hover {
     background-color: #F15E75;
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.user-photo {
+    width: 12%;
+    border-radius: 50%;
+    border: solid 1px #000;
+}
+
+.post-value {
+    background-color: rgb(255, 231, 199);
+    padding: 3%;
+    border-radius: 5px;
+}
+
+.username-date-container {
+    margin-left: 2%;
+}
+
+.date {
+    font-size: 9pt;
 }

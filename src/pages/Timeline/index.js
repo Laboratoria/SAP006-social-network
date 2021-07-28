@@ -13,7 +13,7 @@ export default () => {
     </div>
 
     <form action="" id="postForm">
-      <textarea type="textarea" id="postText" class="post-text" rows="5" cols="50" placeholder="Digite aqui sua review..."></textarea>
+      <textarea type="textarea" id="postText" class="post-textarea" rows="5" cols="50" placeholder="Digite aqui sua review..."></textarea>
       <button type="submit" class="buttons post-button"> Publicar </button>
     </form>
 
@@ -33,6 +33,7 @@ export default () => {
 
   // Criando coleção no firebase chamada 'posts'
   const postsCollection = firebase.firestore().collection("posts");
+  const user = firebase.auth().currentUser;
 
   // Enviando posts para o firestore
   document.getElementById("postForm").addEventListener("submit", (event) => {
@@ -55,10 +56,20 @@ export default () => {
 
   // Adicionando posts
   function createTemplatePost(post) {
+    const date = new Date();
+    
     const postTemplate = `
       <li class="posts-box">
         <div id="${post.id}"class="post-container">
-          <p> ${post.data().text} </p>
+          <div class="user-container">
+            <img src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo">
+            <div class="username-date-container">
+              <p class="username"> ${user.displayName || "Usuário"} </p>
+              <time class="date">${date.toLocaleString('pt-BR')}</time>
+            </div>
+          </div>
+
+          <p class="post-value"> ${post.data().text} </p>
       
           <div class="like-comment">
             <p> ❤️ ${post.data().likes} </p>
