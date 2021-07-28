@@ -34,7 +34,13 @@ export const router = () =>{
       path = '/home'
       window.history.replaceState(null, null, path);
     }
-    main.innerHTML = "";
+    if(routes[window.location.pathname] != undefined){
+      main.innerHTML = "";
       main.appendChild(routes[path]())
+    }
+    else{
+      main.innerHTML = "";
+      main.appendChild(routes["/pagina-nao-encontrada"]())
+    }
 })
 }
