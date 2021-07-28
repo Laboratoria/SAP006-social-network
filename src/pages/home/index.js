@@ -7,8 +7,12 @@ export default () =>{
   sectionElement.setAttribute("id", "home-content")
 
   const createFeedTemplate=`
-  <h1 class="h1-home">Bem vindoooo <3</h1>
+  <h1 class="h1-home">Bem vindoooo, ${firebase.auth().currentUser.displayName} <3</h1>
   <button id="logout-btn">Logout</button>
+
+  <form class="form" action="">
+        <textarea class="post-input" id="text" cols="30" rows="5" data-post-input required placeholder =" Sua review ..."></textarea>
+    </div
   `
 
   sectionElement.innerHTML= createFeedTemplate
