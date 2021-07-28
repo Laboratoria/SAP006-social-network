@@ -28,10 +28,16 @@ export const signUp = () => {
 
     </div>
     `
-    
+
 
     divRoot.innerHTML = container;
 /*
+
+
+
+
+
+
     const nameUser = document.querySelector('#username');
     const emailUser = document.querySelector('#useremail');
     const passwordUser = document.querySelector('#userpassword');

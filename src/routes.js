@@ -1,4 +1,4 @@
-import { signUp } from './lib/signUp/index.js';
+import { signUp } from './lib/signup/index.js';
 
 const routeRender = () => {
   const element = document.querySelector("#root")
