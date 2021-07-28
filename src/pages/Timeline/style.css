@@ -34,7 +34,12 @@ body {
 
 .timeline-buttons {
     border: none;
-    background: none
+    background: none;
+}
+
+.timeline-buttons:hover {
+    animation:shake 2s infinite;
+    cursor: pointer;
 }
 
 .posts-box {
@@ -67,6 +72,10 @@ body {
     margin-left: 80%;
 }
 
+.post-button:hover {
+    background-color: #FFCA19;
+}
+
 .buttons-container {
     margin-left: 80%;
 }
@@ -81,4 +90,8 @@ body {
 .signout-button {
     margin: 0 0 5% 0;
     width: 15%;
+}
+
+.signout-button:hover {
+    background-color: #F15E75;
 }
