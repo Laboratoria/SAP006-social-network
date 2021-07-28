@@ -1,3 +1,5 @@
+// import { navigation } from './routes.js';
+
 export const Welcome = () => {
 
   const template = `
@@ -29,6 +31,8 @@ export const Welcome = () => {
 
   const continueBtn = rootElement.querySelector('.btn-continue')
   continueBtn.addEventListener('click', () => {
+//   navigation('/conecte');
+  // })
     window.history.pushState({}, null, '/conecte')
 
     const popStateEvent = new PopStateEvent("popstate", {state:{}})

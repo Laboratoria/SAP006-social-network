@@ -22,3 +22,14 @@ window.addEventListener('popstate', routeRender);
 window.addEventListener('load', () => {
   routeRender();
 });
+
+// export const navigation = (path, state = {}) => {
+//   window.history.pushState(
+//     state,
+//     null,
+//     path,
+//   );
+
+//   const popStateEvent = new PopStateEvent('popstate', { state: state });
+//   dispatchEvent(popStateEvent);
+// };
