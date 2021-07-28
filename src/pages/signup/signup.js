@@ -6,13 +6,7 @@ export const SignUp = () => {
       <img src="img/login-image.png" class='img' alt='veleiro em mar calmo ao por do sol'>
     </section>
     <section id='signUp' class='container'>
-      <form id='labelsForSignUp' class='login-signup'>
-        <label class='label-login' for='firstName'>Primeiro Nome:</label>
-        <input id='firstName' type='name' class='inputs form-item'>
-      
-        <label class='label-login' for='lastName'>Último nome:</label>
-        <input id='lastName' type='name' class='inputs form-item'>
-
+      <form id='labelsForSignUp' class='login-signup'>        
         <label class='label-login' for='email'>E-mail:</label>
         <input id='email' type='e-mail' class='inputs form-item'>
       
