@@ -20,13 +20,21 @@ export const router = () =>{
     "/recuperacao-senha": forgotpassword,
     "/pagina-nao-encontrada":pagenotfound
   }
-
-  main.innerHTML = "";
-  if (routes[window.location.pathname] != undefined){
-    main.appendChild(routes[window.location.pathname]())
-
-  } else
   
-    main.appendChild(routes["/pagina-nao-encontrada"]())
-}
+  firebase.auth()
+  .onAuthStateChanged(() => {
+    let path = window.location.pathname;
+    let user = firebase.auth().currentUser;
 
+    if (!user && path == '/home') {
+      path = '/';
+      window.history.replaceState(null, null, path);
+    }
+    if(user){
+      path = '/home'
+      window.history.replaceState(null, null, path);
+    }
+    main.innerHTML = "";
+      main.appendChild(routes[path]())
+})
+}
