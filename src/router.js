@@ -1,12 +1,17 @@
+import { Feed } from './pages/feed/index.js';
 import { Login } from './pages/login/index.js';
-import { SignUp } from './pages/signup/signup.js';
+import { Profile } from './pages/profile/index.js';
+import { SignUp } from './pages/signup/index.js';
 
 const routeRender = () => {
   const elements = document.getElementById('root');
   const routes = {
     '/': Login,
-    '/signup': SignUp
+    '/signup': SignUp,
+    '/feed': Feed,
+    '/profile': Profile
   }
+
   elements.innerHTML = '';
   elements.appendChild(routes[window.location.pathname]());
   //elements.appendChild(routes['/signup']());
