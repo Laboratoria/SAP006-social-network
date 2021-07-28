@@ -1,5 +1,6 @@
-import { loginWithEmailAndPassword } from "../../lib/auth.js";
-import { loginWithGoogle} from "../../lib/auth.js";
+import { loginWithEmailAndPassword } from "../../services/auth.js";
+import { loginWithGoogle} from "../../services/auth.js";
+import { getTheRoad } from "../../router.js";
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -49,25 +50,19 @@ export const Login = () => {
 
   const signButton = rootElement.querySelector("#button-sign-in")
   signButton.addEventListener("click", () => {
-    window.history.pushState({}, "", "/register")
-    const popstateEvent = new PopStateEvent("popstate", {state:{}})
-    dispatchEvent(popstateEvent)
+    getTheRoad("/register");
   })
-
 
   const btnLoginWithGoogle = rootElement.querySelector("#button-login-with-google")
   btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
 
-  const txtEmail = rootElement.querySelector('#input-email');
-  const txtPassword = rootElement.querySelector('#input-password');
-  const btnLogin = rootElement.querySelector('#button-login');
-  const email = txtEmail.value;
-  const pass= txtPassword.value;
 
-  btnLogin.addEventListener('click', error => {
-    loginWithEmailAndPassword(email, pass)
+  const btnLogin = rootElement.querySelector("#button-login");
+  btnLogin.addEventListener('click', () => {
+  const email = rootElement.querySelector('#input-email').value;
+  const pass = rootElement.querySelector("#input-password").value;
+  loginWithEmailAndPassword(email, pass);
   })
-
 
    
 
@@ -76,6 +71,3 @@ export const Login = () => {
 
 }
 
-
-`<h1> babla </h1>
-  <button id="cadastro"> Cadastre-se </button>`;

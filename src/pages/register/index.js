@@ -1,4 +1,4 @@
-import {criarFirebaseconta} from "../../lib/auth.js"
+import {criarFirebaseconta} from "../../services/auth.js"
 
 export const Register = () => {
   const rootElement = document.createElement("div");
