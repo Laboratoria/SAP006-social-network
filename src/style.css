@@ -86,3 +86,8 @@ header{
     margin-top: 100px;
 }
 
+.keep-me-logged {
+    display: inline-flexbox;
+    line-height: 5px;
+    font-size: 12px;
+}

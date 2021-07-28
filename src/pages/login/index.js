@@ -1,6 +1,12 @@
+import { loginEmailAndPassword } from "../../services/index.js";
+
 export const Login = () => {
-  const root = document.createElement('div');
+  const root = document.createElement("div");
   root.innerHTML = `
+  <header>
+    <h1>SAILERS</h1>
+    <h2>A Rede Social dos Velejadores</h2>
+  </header>
   <section id='loginPage' class='loginPage'>
     <section id='loginImage' class='loginImage'>  
       <img src="img/login-image.png" class='img' alt='veleiro em mar calmo ao por do sol'>
@@ -12,49 +18,39 @@ export const Login = () => {
 
         <label class='label-login' for='password'>Senha:</label>
         <input id='password' type='password' class='inputs form-item'>
-      
+
+        <div id='keepMeLogged' >
+          <input type='checkbox' id='keepMeLogged' name='Mantenha-me Conectado'>
+          <label class='keep-me-logged' for='keepMeLogged'> Mantenha-me Conectado</label>
+        </div>
+
         <button type='button' id='buttonLogin' class='btn-login form-item'>Entrar</button>
 
         <p class='signUpHere'>
           Ainda não é cadastrado? 
-          <a href="#" id="buttonSignUp" class="link-signup">Cadastre-se!</a>
+          <a href='#' id='linkSignUp' class="link-signup">Cadastre-se!</a>
         </p>
 
       </form>
     </section>
   </section>
   `;
-//console.log(root);
 
-  const btnSignUp = root.querySelector('#buttonSignUp');
-  btnSignUp.addEventListener('click', () => {
-    window.history.pushState({}, '', '/signup');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+  const btnSignUp = root.querySelector("#linkSignUp");
+  const btnLogin = root.querySelector("#buttonLogin");
+
+  btnSignUp.addEventListener("click", () => {
+    window.history.pushState({}, "", "/signup");
+    const popStateEvent = new PopStateEvent("popstate", { state: {} });
     dispatchEvent(popStateEvent);
-  })
+  });
+
+  btnLogin.addEventListener("click", () => {
+    /*window.history.pushState({}, "", "/feed");*/
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    loginEmailAndPassword(email, password);
+  });
+
   return root;
-}
-
-
-/*
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  console.log(email, password)
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      let user = userCredential.user;
-      console.log('deu certo', user)
-    })
-    .catch((error) => {
-      let errorCode = error.code;
-      let errorMessage = error.message;
-
-      console.log('deu ruim', errorCode, errorMessage)
-    });
-});
-*/
-
-
+};
