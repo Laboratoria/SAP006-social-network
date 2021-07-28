@@ -27,6 +27,7 @@ export default () => {
   document.getElementById("signout-button").addEventListener("click", (e) => {
     e.preventDefault();
     firebase.auth().signOut();
+    window.location.hash = '';
     location.reload();
   });
 
@@ -57,7 +58,7 @@ export default () => {
     const postTemplate = `
       <li class="posts-box">
         <div id="${post.id}"class="post-container">
-          <p> Post: ${post.data().text} </p>
+          <p> ${post.data().text} </p>
       
           <div class="like-comment">
             <p> ❤️ ${post.data().likes} </p>

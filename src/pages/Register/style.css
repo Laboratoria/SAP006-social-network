@@ -1,15 +1,30 @@
+.title-container {
+    margin-left: 3%;
+}
+
 .register-button {
     width: 40%;
-    margin-left: 55%;
+    margin-left: 58%;
+    border: solid 1px #000;
+    transition: 0.5s ease-in-out;
+}
+
+.register-button:hover {
+    background-color: #FFCA19;
 }
 
 .goback-button {
     border: none;
     background: none;
     width: 100%;
+    cursor: pointer;
 }
 
 .goback-button img {
     width: 20%;
     margin-left: -70%;
+}
+
+.input:hover {
+    border: solid 1px #000;
 }

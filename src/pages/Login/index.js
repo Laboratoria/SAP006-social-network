@@ -24,15 +24,15 @@ export default () => {
                 </form>
 
                 <div class="signin">
-                <button id="signin-button" class="buttons">Entrar</button>
+                <button id="signin-button" class="signin-button buttons">Entrar</button>
                 <p> OU </p>
                 </div>
 
             </section>
 
-            <div id="firebaseui-auth-container"></div>
+            <div id="firebaseui-auth-container" class="firebaseui-auth-container"></div>
 
-             <button id="signup-button" class="buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
+            <button id="signup-button" class="signup-button buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
 
         </div>
 

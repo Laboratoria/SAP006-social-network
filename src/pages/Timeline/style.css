@@ -70,6 +70,8 @@ body {
     margin-top: 1%;
     height: 30px;
     margin-left: 80%;
+    border: solid 1px #000;
+    transition: 0.5s ease-in-out;
 }
 
 .post-button:hover {
@@ -90,6 +92,8 @@ body {
 .signout-button {
     margin: 0 0 5% 0;
     width: 15%;
+    border: solid 1px #000;
+    transition: 0.5s ease-in-out;
 }
 
 .signout-button:hover {

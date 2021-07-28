@@ -64,9 +64,9 @@ export default () => {
 
   // BOTÃO DE VOLTAR PARA PÁGINA DE LOGIN
   gobackButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('funcionou button img');
-        window.location.hash = '';
+    e.preventDefault();
+    console.log('funcionou button img');
+    window.location.hash = '';
   });
 
     return template;

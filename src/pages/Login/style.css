@@ -89,11 +89,16 @@
     margin-top: 8%;
 }
 
-#signin-button:hover{
+.signin-button {
+    border: solid 1px #000;
+    transition: 0.5s ease-in-out;
+}
+
+.signin-button:hover{
     background-color: #FFCA19;
 }
 
-#signup-button {
+.signup-button {
   background-color: rgba(0, 0, 255, 0);
   border: none;
   cursor: pointer;
@@ -106,12 +111,13 @@
 
 span{
   color: rgb(54, 54, 54);
+  transition: 0.5s ease-in-out;
 }
 
 span:hover {
     color: #f3f3f3;
 }
 
-#firebaseui-auth-container {
+.firebaseui-auth-container {
     margin: 5% 0 15% 0;
 }

@@ -2,7 +2,7 @@ import timeline from './pages/Timeline/index.js'
 import login from './pages/Login/index.js'
 import register from './pages/Register/index.js'
 
-import { configureLogin, removeLogin } from './lib/index.js';
+import { configureLogin } from './lib/index.js';
 
 const container = document.querySelector('#root');
 
@@ -10,7 +10,7 @@ const container = document.querySelector('#root');
 const init = () => {
   window.addEventListener('hashchange', () => {
     switch (window.location.hash) {
-      case ' ':
+      case '':
         container.appendChild(login());
         break;
       case '#register':
@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
     configureLogin();
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
-        removeLogin();
+        window.location.hash = 'timeline'
+        timeline();
       }
     });
 
