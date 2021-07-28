@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 
 // Este é o ponto de entrada da sua aplicação
 
 /* import { myFunction } from './lib/index.js';
 
 myFunction(); 
- */
+ 
 //Login de novos usuários
 
 
@@ -32,7 +31,7 @@ promise.then(()=>{
 });
 
 
-
+/*
 
    //julli crate account 
 
@@ -95,5 +94,3 @@ window.addEventListener('load', () => {
   main.appendChild(home());
 } )
 */
-=======
->>>>>>> 21678b7c42569e98a470975bdd74233dc3990eb6
