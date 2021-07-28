@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-
-=======
 import { getTheRoad } from "../../router.js";
->>>>>>> 08ef583c5e7d77853bba0aa281137c164799bcb5
 
 export const loginWithGoogle = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -28,18 +24,6 @@ export const criarFirebaseconta = (email, senha, name) => {
 
 
 export const loginWithEmailAndPassword = (email, pass) => {
-<<<<<<< HEAD
-firebase.auth().signInWithEmailAndPassword(email, pass)
-.then(() => {
-window.history.pushState({}, "", "/register")
-const popstateEvent = new PopStateEvent("popstate", {state:{}})
-dispatchEvent(popstateEvent)
-})
-.catch(() => {
- window.alert("não logooou!")
-});
-}
-=======
   firebase.auth().signInWithEmailAndPassword(email, pass) 
   .then(() => {
     getTheRoad("/feed");
@@ -54,4 +38,3 @@ dispatchEvent(popstateEvent)
 
   
   
->>>>>>> 08ef583c5e7d77853bba0aa281137c164799bcb5

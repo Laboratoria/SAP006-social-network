@@ -7,11 +7,7 @@ const routRender = () => {
   const routes = {
     "/":Login,
     "/register":Register,
-<<<<<<< HEAD
-    //"/feed" : feed (aqui construir a página)
-=======
     "/feed":Feed
->>>>>>> 08ef583c5e7d77853bba0aa281137c164799bcb5
   }
   elemento.innerHTML = "";
   elemento.appendChild(routes[window.location.pathname]())

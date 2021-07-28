@@ -1,9 +1,4 @@
-export const Feed = () => {
-  const rootElement = document.createElement("div");
-  rootElement.className = "login-container"
-  rootElement.innerHTML = `
-  <h1> FEEEEEEEEED </h1>
-`
-
-return rootElement;
- }
+export const feed =() => {
+    const rootElement = document.createElement('div');
+    rootElement.setAttribute("id", "divfeed");
+}
