@@ -12,8 +12,9 @@ export default () => {
       <h1 class="h1">Esqueceu sua senha?</h1>
       <fieldset class="fieldset-forgot-password fieldset">
         <form class="form" action="">
-          <input type="email" placeholder="E-mail" class="form-input" id="input-email">
-          <button id="send-forgot-password" class="btn">Recuperar Senha</button>
+        <input type="text" placeholder="Email" class="form-input" id="none"/>
+        <input type="email" placeholder="Email" class="form-input" id="input-email"/>
+          <button type="button" id="send-forgot-password" class="btn">Recuperar Senha</button>
         </form>
       </fieldset>
     </div>

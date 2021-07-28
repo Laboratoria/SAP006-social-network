@@ -18,8 +18,8 @@ export default () => {
     
       <fieldset class="fieldset-sign-up fieldset">
         <form class="form" action="">          
-          <input type="email" placeholder="Email" class="form-input" id="register-email"> 
-          <input type="password" placeholder="Senha" class="form-input" id="register-password">
+          <input type="email" placeholder="Email" class="form-input" id="register-email"/> 
+          <input type="password" placeholder="Senha" class="form-input" id="register-password"/>
           <button type="submit" id="register-btn" class="btn">Cadastrar</button>
         </form>
       </fieldset>
