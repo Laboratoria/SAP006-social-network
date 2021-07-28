@@ -7,19 +7,19 @@ export const SignUp = () => {
     </section>
     <section id='signUp' class='container'>
       <form id='labelsForSignUp' class='login-signup'>
-        <label for='firstName'>Primeiro Nome:</label>
-        <input id='firstName' type='name' class='inputs'>
+        <label class='label-login' for='firstName'>Primeiro Nome:</label>
+        <input id='firstName' type='name' class='inputs form-item'>
       
-        <label for='lastName'>Último nome:</label>
-        <input id='lastName' type='name' class='inputs'>
+        <label class='label-login' for='lastName'>Último nome:</label>
+        <input id='lastName' type='name' class='inputs form-item'>
 
-        <label for='email'>E-mail:</label>
-        <input id='email' type='e-mail' class='inputs'>
+        <label class='label-login' for='email'>E-mail:</label>
+        <input id='email' type='e-mail' class='inputs form-item'>
       
-        <label for='password'>Senha:</label>
-        <input id='password' type='password' class='inputs'>
+        <label class='label-login' for='password'>Senha:</label>
+        <input id='password' type='password' class='inputs form-item'>
       
-        <button type='button' id='signUpButton' class='btn'>Cadastrar</button>
+        <button type='button' id='signUpButton' class='btn-signup form-item'>Cadastrar</button>
       </form>
     </section>
   </section>

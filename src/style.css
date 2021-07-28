@@ -63,18 +63,26 @@ header{
     width: 250px;
 }
 
-.inputs {
+.label-login {
+    margin-top: 5px;
+    font-size: 15px;    
+}
+
+.form-item{
     background-color: #E5E5E5;
     border-radius: 5px;
-    border: 1px, transparent;
+    border:none;
+    height: 25px;    
 }
 
-.signUpHere {  
-    font-size: small;
-    padding-top: 50%
+.btn-login, .btn-signup {    
+    margin-top: 40px;     
 }
 
-.btn {
-    margin-top: 20px;
-
+.signUpHere {
+    text-align: center;
+    line-height: 5px;
+    font-size: 12px;
+    margin-top: 100px;
 }
+

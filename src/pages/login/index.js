@@ -7,17 +7,17 @@ export const Login = () => {
     </section>
     <section id='login' class='container'>
       <form id='labelsForLogin' class='login-signup'>
-        <label for='email'>E-mail:</label>
-        <input id='email' type='e-mail' class='inputs'>
+        <label class='label-login' for='email'>E-mail:</label>
+        <input id='email' type='e-mail' class='inputs form-item'>
 
-        <label for='password'>Senha:</label>
-        <input id='password' type='password' class='inputs'>
+        <label class='label-login' for='password'>Senha:</label>
+        <input id='password' type='password' class='inputs form-item'>
       
-        <button type='button' id='buttonLogin' class='btn'>Entrar</button>
+        <button type='button' id='buttonLogin' class='btn-login form-item'>Entrar</button>
 
         <p class='signUpHere'>
           Ainda não é cadastrado? 
-          <button type='button' id='buttonSignUp' class='btn'>Clique Aqui</button>
+          <a href="#" id="buttonSignUp" class="link-signup">Cadastre-se!</a>
         </p>
 
       </form>
