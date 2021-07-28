@@ -30,11 +30,17 @@ export const router = () =>{
       path = '/';
       window.history.replaceState(null, null, path);
     }
-    if(user){
+    if(user && (path=="/" || path=="/cadastro" || path=="/login")){
       path = '/home'
       window.history.replaceState(null, null, path);
     }
-    main.innerHTML = "";
+    if(routes[window.location.pathname] != undefined){
+      main.innerHTML = "";
       main.appendChild(routes[path]())
-  })
+    }
+    else{
+      main.innerHTML = "";
+      main.appendChild(routes["/pagina-nao-encontrada"]())
+    }
+})
 }

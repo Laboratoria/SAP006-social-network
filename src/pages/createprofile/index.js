@@ -1,4 +1,4 @@
-import { currentUser , uploadImage, asyncSendProfileData} from "../../lib/index.js"
+import { currentUser , uploadImage, updateUserImage, updateUserName} from "../../lib/index.js"
 import { errorInput } from '../../error.js'
 
 export default () => {
@@ -73,12 +73,11 @@ export default () => {
 
     }else{
       if (image === undefined){
-        asyncSendProfileData(userName, null)
-        .then(()=>{
-          window.history.pushState(null, null, "/home")
-          const popStateEvent = new PopStateEvent("popstate", {state:{}})
-          dispatchEvent(popStateEvent)
-        })  
+        updateUserName(userName)
+        window.history.pushState(null, null, "/home")
+        const popStateEvent = new PopStateEvent("popstate", {state:{}})
+        dispatchEvent(popStateEvent)
+        
   
       }else{
         uploadImage("input-profile-img", ""+userId+"")
@@ -89,7 +88,8 @@ export default () => {
           return urlImage
         })
         .then((urlImage)=>{
-          asyncSendProfileData(userName, urlImage)
+          updateUserName(userName)
+          updateUserImage(urlImage)
           
     
         })
