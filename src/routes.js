@@ -25,8 +25,11 @@ export const router = () =>{
   if (routes[window.location.pathname] != undefined){
     main.appendChild(routes[window.location.pathname]())
 
-  } else
+  } else {
   
     main.appendChild(routes["/pagina-nao-encontrada"]())
+  }
 }
+ 
+
 

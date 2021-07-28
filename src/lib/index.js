@@ -111,6 +111,7 @@ export const signOut = () => {
   });
  */
 }
+
 export const uploadImage = (id, userid) =>{
   const ref = storage.ref()
   const file = document.getElementById(id).files[0]
