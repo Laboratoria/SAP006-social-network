@@ -1,3 +1,5 @@
+
+
 export const loginWithGoogle = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleProvider)
@@ -26,7 +28,9 @@ export const criarFirebaseconta = (email, senha, name) => {
 export const loginWithEmailAndPassword = (email, pass) => {
 firebase.auth().signInWithEmailAndPassword(email, pass)
 .then(() => {
-window.alert("foooi Julli")
+window.history.pushState({}, "", "/register")
+const popstateEvent = new PopStateEvent("popstate", {state:{}})
+dispatchEvent(popstateEvent)
 })
 .catch(() => {
  window.alert("não logooou!")

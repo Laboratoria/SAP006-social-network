@@ -5,11 +5,12 @@ const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
     "/":Login,
-    "/register":Register
+    "/register":Register,
+    //"/feed" : feed (aqui construir a página)
   }
   elemento.innerHTML = "";
   elemento.appendChild(routes[window.location.pathname]())
- /* elemento.appendChild(routes["abacaxi"]())*/
+ /* elemento.appendChild(routes["pathname"]())*/
   console.log(window.location.pathname)
 }
 

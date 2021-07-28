@@ -58,22 +58,19 @@ export const Login = () => {
   const btnLoginWithGoogle = rootElement.querySelector("#button-login-with-google")
   btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
 
-  
-
 
   const btnLogin = rootElement.querySelector("#button-login");
-  btnLogin.addEventListener('click', () =>{
+  btnLogin.addEventListener('click', () => {
   const email = rootElement.querySelector('#input-email').value;
   const pass = rootElement.querySelector("#input-password").value;
   loginWithEmailAndPassword(email, pass);
   })
 
-   
-
-
   return rootElement;
 
 }
+
+
 
 
 `<h1> babla </h1>
