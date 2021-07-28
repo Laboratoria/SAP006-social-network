@@ -9,7 +9,7 @@ export default () => {
 
   const signUpTemplate = `
     <div class="logo-container">
-
+    <button class="back-to-login">← Voltar</button>
     <h1 id="bookish">BOOKISH</h1>
       <img class="site-logo" src="./img/logo.png">
     </div>
@@ -69,9 +69,11 @@ export default () => {
     
   })
 
-  // const backToLogin = sectionElement.querySelector(".back-to-login")
-  // backToLogin.addEventListener("click", () => {
-  //   changeContent('signin')
-  // })
+  const backToLogin = sectionElement.querySelector(".back-to-login")
+  backToLogin.addEventListener("click", () => {
+    window.history.pushState(null, null, "/login")
+          const popStateEvent = new PopStateEvent("popstate", {state:{}})
+          dispatchEvent(popStateEvent)
+  })
   return sectionElement
 }

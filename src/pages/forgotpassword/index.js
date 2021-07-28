@@ -8,7 +8,7 @@ export default () => {
 
   const pageForgotPassword = `
    <div class="form-container" id="form-container-forgot-password">
-   
+   <button class="back-to-login-fp">← Voltar</button>
       <h1 class="h1">Esqueceu sua senha?</h1>
       <fieldset class="fieldset-forgot-password fieldset">
         <form class="form" action="">
@@ -18,7 +18,6 @@ export default () => {
       </fieldset>
     </div>
   `
-  //<button class="back-to-login-fp">← Voltar</button>
   sectionElement.innerHTML= pageForgotPassword  
 
   const btnResetPassword = sectionElement.querySelector("#send-forgot-password");
@@ -39,7 +38,7 @@ export default () => {
           window.history.pushState(null, null, "/login")
           const popStateEvent = new PopStateEvent("popstate", {state:{}})
           dispatchEvent(popStateEvent)
-        }, 2000)
+        }, 2500)
   })
   .catch((error) => {
       const errorCode = error.code
@@ -59,11 +58,13 @@ export default () => {
   } 
   })  
  })
-//  const backToLogin = sectionElement.querySelector(".back-to-login-fp")
-//   backToLogin.addEventListener("click", (e) => {
-//     e.preventDefault
-//     changeContent('signin')
-//   })
+ const backToLogin = sectionElement.querySelector(".back-to-login-fp")
+  backToLogin.addEventListener("click", (e) => {
+    e.preventDefault
+    window.history.pushState(null, null, "/login")
+          const popStateEvent = new PopStateEvent("popstate", {state:{}})
+          dispatchEvent(popStateEvent)
+  })
   
   return sectionElement
 }
