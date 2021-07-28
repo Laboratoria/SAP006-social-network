@@ -1,7 +1,8 @@
-import { Comunique } from './lib/landing_pages/comunique.js';
-import { Conecte } from './lib/landing_pages/conecte.js';
-import { Welcome } from './lib/landing_pages/welcome.js';
-import { Login } from './lib/login/login.js';
+import { Comunique } from './pages/landing_pages/comunique.js';
+import { Conecte } from './pages/landing_pages/conecte.js';
+import { Welcome } from './pages/landing_pages/welcome.js';
+import { Login } from './pages/login/login.js';
+import { signUp } from './pages/signup/index.js';
 
 const routeRender = () => {
   const element = document.querySelector('#root');
@@ -11,6 +12,7 @@ const routeRender = () => {
     '/conecte': Conecte,
     '/comunique': Comunique,
     '/login': Login,
+    '/signup': signUp,
   };
   element.innerHTML = '';
   element.appendChild(routes[window.location.pathname]());
