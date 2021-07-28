@@ -1,10 +1,7 @@
 import {createUser} from '../../lib/index.js'
-import {changeContent } from '../../routes.js'
 import { errorInput, errorPassword } from '../../error.js'
 
 export default () => { 
-
-  window.history.pushState("signup", null, "/signup");
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","sign-up")
@@ -12,7 +9,7 @@ export default () => {
 
   const signUpTemplate = `
     <div class="logo-container">
-    <button class="back-to-login">← Voltar</button>
+
     <h1 id="bookish">BOOKISH</h1>
       <img class="site-logo" src="./img/logo.png">
     </div>
@@ -42,7 +39,9 @@ export default () => {
     let text
     createUser(registerEmail, registerPassword)
     .then(()=>{
-      changeContent("createprofile")
+      window.history.pushState({}, "", "/cadastro-perfil")
+      const popStateEvent = new PopStateEvent("popstate", {state:{}})
+      dispatchEvent(popStateEvent)
     })
     
     .catch((error)=>{
@@ -70,9 +69,9 @@ export default () => {
     
   })
 
-  const backToLogin = sectionElement.querySelector(".back-to-login")
-  backToLogin.addEventListener("click", () => {
-    changeContent('signin')
-  })
+  // const backToLogin = sectionElement.querySelector(".back-to-login")
+  // backToLogin.addEventListener("click", () => {
+  //   changeContent('signin')
+  // })
   return sectionElement
 }

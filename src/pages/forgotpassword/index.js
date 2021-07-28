@@ -1,18 +1,15 @@
 import {forgotPassword} from '../../lib/index.js'
-import {changeContent} from '../../routes.js'
 import {errorInput} from '../../error.js'
 
 export default () => {
-
-  window.history.pushState("forgotpassword", null, "/forgotpassword")
 
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id","forgot-password")
 
   const pageForgotPassword = `
    <div class="form-container" id="form-container-forgot-password">
-   <button class="back-to-login-fp">← Voltar</button>
-      <h1 class="h1-forgot-password">Esqueceu sua senha?</h1>
+   
+      <h1 class="h1">Esqueceu sua senha?</h1>
       <fieldset class="fieldset-forgot-password fieldset">
         <form class="form" action="">
           <input type="email" placeholder="E-mail" class="form-input" id="input-email">
@@ -21,6 +18,7 @@ export default () => {
       </fieldset>
     </div>
   `
+  //<button class="back-to-login-fp">← Voltar</button>
   sectionElement.innerHTML= pageForgotPassword  
 
   const btnResetPassword = sectionElement.querySelector("#send-forgot-password");
@@ -38,7 +36,9 @@ export default () => {
         </div>
         `
         setTimeout( () => {
-          changeContent("signin")
+          window.history.pushState(null, null, "/login")
+          const popStateEvent = new PopStateEvent("popstate", {state:{}})
+          dispatchEvent(popStateEvent)
         }, 2000)
   })
   .catch((error) => {
@@ -59,11 +59,11 @@ export default () => {
   } 
   })  
  })
- const backToLogin = sectionElement.querySelector(".back-to-login-fp")
-  backToLogin.addEventListener("click", (e) => {
-    e.preventDefault
-    changeContent('signin')
-  })
+//  const backToLogin = sectionElement.querySelector(".back-to-login-fp")
+//   backToLogin.addEventListener("click", (e) => {
+//     e.preventDefault
+//     changeContent('signin')
+//   })
   
   return sectionElement
 }

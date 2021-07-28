@@ -3,10 +3,11 @@
         font-size: 16px;
     }
 
-    .site-logo{
-        width:20rem;
-        height: 20rem;
+    .form-input{
+        padding: 1.3rem;
     }
+    
+    
 }
 @media (min-width: 1200px) and (max-width: 1400px) {
     .logo-container{
@@ -56,17 +57,14 @@
         height: auto;
     }   
     .site-logo{
-        width:12rem;
+        width:17rem;
         height: 12rem;
     }
 
     .form{
         width:50%;
     }
-
-   
 }
-
 
 @media (max-width: 768px) {
 
