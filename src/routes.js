@@ -3,6 +3,8 @@ import signup from './pages/signup/index.js'
 import createprofile from './pages/createprofile/index.js'
 import home from './pages/home/index.js'
 import profile from './pages/profile/index.js'
+import forgotpassword from './pages/forgotpassword/index.js'
+import pagenotfound from './pages/pagenotfound/index.js'
 
 
 export const router = () =>{
@@ -14,11 +16,17 @@ export const router = () =>{
     "/cadastro": signup,
     "/cadastro-perfil": createprofile,
     "/home": home,
-    "/perfil": profile
+    "/perfil": profile,
+    "/recuperacao-senha": forgotpassword,
+    "/pagina-nao-encontrada":pagenotfound
   }
 
   main.innerHTML = "";
-  main.appendChild(routes[window.location.pathname]())
-  console.log(window.location.pathname)
+  if (routes[window.location.pathname] != undefined){
+    main.appendChild(routes[window.location.pathname]())
+
+  } else
+  
+    main.appendChild(routes["/pagina-nao-encontrada"]())
 }
 

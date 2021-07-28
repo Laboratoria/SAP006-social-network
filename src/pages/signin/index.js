@@ -18,7 +18,7 @@ export default () => {
       <form class="form" action="">
         <input class="form-input" type="email" placeholder="Email" id="login-email"/>
         <input class="form-input"  type="password" placeholder="Senha" id="login-password"/>
-        <p class="forget-password"><a href = "index.html">Esqueceu sua senha?</a></p>
+        <p class="forget-password" id="text-forgot-password">Esqueceu sua senha?</p>
         <button type="button" class="btn" id="enter">Entrar</button>
         <p class="p-sign-in">Não tem uma conta? <a href="" class="forget-password-link" id="signup-link">Cadastre-se</a></p>    
         <p class="or">OU</p>
@@ -39,7 +39,12 @@ export default () => {
     e.preventDefault()
     window.history.pushState(null, null, "/cadastro")
     const popStateEvent = new PopStateEvent("popstate", {state:{}})
-    
+    dispatchEvent(popStateEvent)
+  })
+  const forgotPassword = sectionElement.querySelector("#text-forgot-password")
+  forgotPassword.addEventListener("click", (e) => { 
+    window.history.pushState(null, null, "/recuperacao-senha")
+    const popStateEvent = new PopStateEvent("popstate", {state:{}})
     dispatchEvent(popStateEvent)
   })
   
