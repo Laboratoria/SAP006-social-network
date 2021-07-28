@@ -9,7 +9,6 @@ export default () => {
   sectionElement.setAttribute("id","create-profile")
   sectionElement.setAttribute("class","form-page")
 
-
   const createProfileTemplate = `
     <div class="logo-container logo-container-register">
     <h1 id="bookish">BOOKISH</h1>
