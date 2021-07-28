@@ -1,21 +1,23 @@
+<<<<<<< HEAD
 
+=======
+import { getTheRoad } from "../../router.js";
+>>>>>>> 08ef583c5e7d77853bba0aa281137c164799bcb5
 
 export const loginWithGoogle = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleProvider)
     .then(() => {
-      console.log("login");
+    getTheRoad("/feed");
     }).catch(error => {
       console.error(error);
     });
 };
-        
 
 export const criarFirebaseconta = (email, senha, name) => {
   firebase.auth().createUserWithEmailAndPassword(email, senha)
   .then((userReturn) => {
-  
-    const user = userReturn.user;
+    getTheRoad("/feed");
 })
         .catch((error) => {
           const errorMessage = error.message;
@@ -26,6 +28,7 @@ export const criarFirebaseconta = (email, senha, name) => {
 
 
 export const loginWithEmailAndPassword = (email, pass) => {
+<<<<<<< HEAD
 firebase.auth().signInWithEmailAndPassword(email, pass)
 .then(() => {
 window.history.pushState({}, "", "/register")
@@ -36,3 +39,19 @@ dispatchEvent(popstateEvent)
  window.alert("não logooou!")
 });
 }
+=======
+  firebase.auth().signInWithEmailAndPassword(email, pass) 
+  .then(() => {
+    getTheRoad("/feed");
+  }).catch((error) => {
+  const errorMessage = error.message;
+  const errorCode = error.code;
+  window.alert("Error : " + errorMessage);
+  });
+
+
+};
+
+  
+  
+>>>>>>> 08ef583c5e7d77853bba0aa281137c164799bcb5

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 // Este é o ponto de entrada da sua aplicação
 
@@ -94,3 +95,5 @@ window.addEventListener('load', () => {
   main.appendChild(home());
 } )
 */
+=======
+>>>>>>> 08ef583c5e7d77853bba0aa281137c164799bcb5
