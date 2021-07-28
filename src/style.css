@@ -1,0 +1,93 @@
+body {
+    margin: 0%;
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(180deg, rgba(91, 136, 166, 0.2) 16.67%, rgba(41, 139, 204, 0.25) 100%);
+    box-sizing: border-box;
+}
+
+header{
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffff;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .loginImage{
+        display: none;
+    }
+}
+
+.loginPage {
+    display:flex;
+	margin: auto;
+    width: fit-content;
+    border-radius: 10px;
+    flex-wrap: nowrap;
+}
+
+.loginImage {
+    height: 500px;
+    align-items: center;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: 5px 5px 5px #000000;
+}
+
+.img {
+    max-height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 0px;
+    padding-left: 75px;
+    padding-right: 75px;
+    position: relative;
+    border: 1px transparent;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    background: linear-gradient(135deg, #fdb35fb9, #DA4532, #181863c4);
+    margin-right: auto;
+    line-height: 2;
+    height: 400px;
+    box-shadow: 5px 5px 5px #000000;
+}
+
+.login-signup {
+    display: inline-grid;
+    width: 250px;
+}
+
+.label-login {
+    margin-top: 5px;
+    font-size: 15px;    
+}
+
+.form-item{
+    background-color: #E5E5E5;
+    border-radius: 5px;
+    border:none;
+    height: 25px;    
+}
+
+.btn-login, .btn-signup {    
+    margin-top: 40px;     
+}
+
+.signUpHere {
+    text-align: center;
+    line-height: 5px;
+    font-size: 12px;
+    margin-top: 100px;
+}
+
+.keep-me-logged {
+    display: inline-flexbox;
+    line-height: 5px;
+    font-size: 12px;
+}
