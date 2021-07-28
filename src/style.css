@@ -296,5 +296,6 @@ font-size: 3rem;
     text-decoration: underline rgb(116, 43, 116);
 }
     
-
-
+#none{
+    display: none;
+}
