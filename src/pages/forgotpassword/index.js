@@ -13,7 +13,7 @@ export default () => {
       <fieldset class="fieldset-forgot-password fieldset">
         <form class="form" action="">
           <input type="email" placeholder="E-mail" class="form-input" id="input-email">
-          <button type="button" id="send-forgot-password" class="btn">Recuperar Senha</button>
+          <button id="send-forgot-password" class="btn">Recuperar Senha</button>
         </form>
       </fieldset>
     </div>
@@ -30,7 +30,7 @@ export default () => {
     .then(() => {
       sectionElement.querySelector("#form-container-forgot-password").innerHTML = `
         <div class="content">
-            <img src="img/check.png" class="check"/>
+            <img src="img/sucessful.png" class="check"/>
             <h1 class="h1-fp">A redefinição de senha foi enviada para o seu e-mail</h1>
         </div>
         `
