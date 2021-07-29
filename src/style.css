@@ -10,7 +10,7 @@
   display: block;
 }
 
-#input-email, #input-password {
+.signIn-input, .signUp-input {
   position: relative;
   width: 250px;
   height: 40px;
@@ -25,7 +25,7 @@
   margin-top: 15%;
 }
 
-#enter-acc {
+.btn-login {
   position: relative;
   width: 250px;
   height: 40px;
@@ -68,10 +68,10 @@
 .btn-google {
   position: relative;
   display: block;
-  margin: 10px auto;
+  margin: 20px auto;
   width: 35vw;
   height: 40px;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .google-icon {
@@ -85,7 +85,16 @@
   vertical-align: middle;
 }
 
+.small-logo{
+  width: 25%;
+  margin: 25px auto 10px auto;
+  display: block;
+}
+
+.title-createAcc {
+  text-align: center;
+}
+
 button:hover {
   cursor: pointer;
 }
-
