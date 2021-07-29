@@ -1,6 +1,8 @@
+import { signIn } from '../../lib/index.js';
+
 export default () => {
   const loginScreenContainer = document.createElement('div');
-
+  //console.log('heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
   const loginScreenButtons = `
   <img class="logo" src="image/Logotipo(1).png">
   

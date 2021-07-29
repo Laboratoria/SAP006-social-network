@@ -1,10 +1,5 @@
 // export {firebase.auth().createUserWithEmailAndPassword(email, password)}
 
-export const myFunction = () => {
-  // aqui vai seu código
-  console.log('Olá mundo!');
-};
-
 export const cadastro = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -22,17 +17,26 @@ export const cadastro = (email, password) => {
     });
 };
 
-// firebase.auth().signInWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//   });
+// export const signIn = (email, password) => {
+//   firebase.auth().signInWithEmailAndPassword(email, password)
+//     .then((userCredential) => {
+//       // Signed in
+//       const user = userCredential.user;
+//       console.log('logou!!');
+//       window.location.hash = '#feed';
+//       //window.history.pushState('./lib/index2.html');
+//       // ...
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//     });
+// };
 
+export const signIn = () => {
+  console.log("heyyy");
+  window.location.hash = '#feed';
+};
 
 // firebase.auth().signOut().then(() => {
 //   // Sign-out successful.
