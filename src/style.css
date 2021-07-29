@@ -206,18 +206,12 @@ a:hover{
     position: absolute;
     margin: 0rem 0rem 30rem 80vw;
     cursor: pointer;
-    background-color: #864b86;
+    background-color: transparent;
     font-size: 15px;
     height: 3.5rem;
     width: 7rem;
     border: none;
     color: white;
-}
-#logout-btn:hover{
-    background-color: #4b4b4b;
-    border: none;
-    height: 7%;
-    transition: 1s;
 }
 .h1-home{
     color: black; 
@@ -334,4 +328,12 @@ font-size: 3rem;
 
 .new-review{
     padding: 1rem;
+}
+.logout-img{
+    width: 3rem;
+    margin: 0.2rem 0rem 0rem 0rem;
+}
+.logout-img:hover{
+    width: 4rem;
+    transition: 1s;
 }

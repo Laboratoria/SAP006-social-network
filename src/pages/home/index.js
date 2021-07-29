@@ -13,7 +13,7 @@ export default () =>{
   console.log(userName)
 
   const createFeedTemplate=`
-  <button id="logout-btn">Logout</button>
+  <button id="logout-btn"><img class="logout-img" src="../img/logout.png"/></button>
   <h1 class="h1-home">Olá, ${firebase.auth().currentUser.displayName} ❤</h1> 
   <img class="photo-profile" src=${imageUrl}>
     <div class="timeline">
@@ -28,10 +28,7 @@ export default () =>{
 
   `
 
-
   sectionElement.innerHTML= createFeedTemplate
-
-  
 
   const publishReview = (e) => {
     e.preventDefault()
