@@ -194,19 +194,20 @@ a:hover{
     background-color: white;
     height: 200%;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 30px;
+    margin: 2rem 1rem;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
 }
+
 #logout-btn{
     cursor: pointer;
-    position: absolute;
-    margin: 0px 0px 0px 900px;
+    margin: 1rem;
     background-color: #864b86;
     font-size: 15px;
-    padding: 5px;
-    width: 8%;
+    padding: 1rem;
     height: 6%;
     border: none;
     color: white;
@@ -220,6 +221,7 @@ a:hover{
 .h1-home{
     color: black; 
     font-size: 35px;
+    padding: 1rem;
 }
 #bookish{
     color: #ffffff;
@@ -298,4 +300,31 @@ font-size: 3rem;
     
 #none{
     display: none;
+}
+/* home area */
+.review-area{
+    text-align: center;
+    display: flex;
+    padding: 1rem;
+}
+
+.content-area{
+    text-align: center;
+    margin: 1rem;
+}
+
+.posted-review{
+    margin: 1rem;
+}
+
+.timeline{
+    margin: 1rem;
+}
+
+.publish-btn{
+    padding: 1rem;
+}
+
+.new-review{
+    padding: 1rem;
 }

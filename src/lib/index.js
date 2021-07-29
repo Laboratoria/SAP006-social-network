@@ -137,3 +137,33 @@ export const forgotPassword = (email) =>{
     .sendPasswordResetEmail(email)
   }
 }
+
+/*
+export const createPost = (bookUser, edition, author, review) => { 
+  bookUser:,
+  edition:,
+  author:,
+  review:,
+  userId:,
+}
+*/ 
+
+export const newReview = (review) => {
+  const reviewTemplate = `
+  <li id="${review.id}>
+  ${review.data().text}  &#9734 ${review.data().likes}
+  </li>`
+
+}
+
+export const loadReviews = () => {
+  const postCollections = firebase.firestore().collection("reviews").orderBy()
+  postCollections.get()
+  .then(snap => {
+    snap.forEach(post => {
+      newReview(post)
+      
+    });
+
+  })
+}
