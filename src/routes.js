@@ -1,7 +1,7 @@
 import { Comunique } from './pages/landing_pages/comunique.js';
 import { Conecte } from './pages/landing_pages/conecte.js';
 import { Welcome } from './pages/landing_pages/welcome.js';
-import { Login } from './pages/login/login.js';
+import { Login } from './pages/login/index.js';
 import { signUp } from './pages/signup/index.js';
 
 const routeRender = () => {
@@ -19,4 +19,15 @@ const routeRender = () => {
 };
 
 window.addEventListener('popstate', routeRender);
-window.addEventListener(routeRender());
+window.addEventListener('load', routeRender());
+
+// export const navigation = (path, state = {}) => {
+//   window.history.pushState(
+//     state,
+//     null,
+//     path,
+//   );
+
+//   const popStateEvent = new PopStateEvent('popstate', { state: state });
+//   dispatchEvent(popStateEvent);
+// };
