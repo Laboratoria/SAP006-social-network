@@ -202,14 +202,17 @@ body {
 }
 
 .signout-button {
-    width: 15%;
-    border: solid 1px #000;
+    position: absolute;
+    top: -147%;
+    left: -7%;
     transition: 0.5s ease-in-out;
-    margin-top: -10%;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
-.signout-button:hover {
-    background-color: #F15E75;
+.signout-button img {
+    width: 32%;
 }
 
 .user-container {

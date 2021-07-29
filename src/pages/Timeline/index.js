@@ -30,6 +30,10 @@ export default () => {
       <li>
         <p class="email-menu"> ${user.email || "Usuário"} </p>
       </li>
+
+      <button id="signout-button" class="signout-button buttons">
+        <img src="./assets/exit.png" alt="Ícone de Saída">
+      </button>
     </ul>
 
     <form action="" id="postForm">
@@ -38,8 +42,6 @@ export default () => {
     </form>
 
     <ul id="posts"></ul>
-
-    <button id="signout-button" class="signout-button buttons">Sair</button>
 
   `);
 
