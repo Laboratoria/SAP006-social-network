@@ -16,6 +16,13 @@ header{
     .loginImage{
         display: none;
     }
+
+    .btnGmail {
+        background-image: url(img/btn_google_light_normal_hdpi.9.png);
+        background-size: cover;
+        width: 15%;
+        background-position: center;
+    }
 }
 
 .loginPage {
@@ -75,9 +82,19 @@ header{
     height: 25px;    
 }
 
-.btn-login, .btn-signup {    
+.btn-login, .btn-signup{    
     margin-top: 40px;     
 }
+
+.btn-login:hover{
+    background: linear-gradient(135deg, #181863c4, #DA4532, #fdb35fb9);
+}
+
+/*.btn-login, .btn-signup :active{    
+    position: relative;
+    background: linear-gradient(135deg, #181863c4, #DA4532, #fdb35fb9);
+    top: 2px;     
+}*/
 
 .signUpHere {
     text-align: center;
@@ -91,3 +108,23 @@ header{
     line-height: 5px;
     font-size: 12px;
 }
+.or {
+    text-align: center;
+    line-height: 5px;
+    font-size: 12px
+}
+
+.btnGoogle {
+  text-align: center;
+}
+
+.btnGmail {
+    background-image: url(img/btn-google-web.png);
+    background-size: cover;
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+    image-rendering: pixelated;
+    border: none;
+}
+
