@@ -78,6 +78,7 @@
     border-radius: 15px;
     font-family: 'Averia Sans Libre', cursive;
     font-size: 12pt;
+    font-weight: bolder;
 }
 
 .signin {
@@ -111,6 +112,7 @@
   color: #f3f3f3;
   width: 103%;
   font-size: 15pt;
+  font-weight: lighter;
 }
 
 span{

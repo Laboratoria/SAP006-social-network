@@ -28,7 +28,6 @@ export const loginWithEmail = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         if(password) {
-          saveInfoProfile(userName);
           const user = userCredential.user;
           window.location.hash = 'timeline';
           console.log('senhas corretas', name + user);
