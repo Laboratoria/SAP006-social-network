@@ -12,16 +12,3 @@ window.addEventListener("popstate", router);
 window.addEventListener("load", router)
 
 
-// window.addEventListener("load", () => {
-//   currentUserId()
-  // main.innerHTML = "";
-  // const checkLoggedUser = getUser()
-  // console.log(checkLoggedUser)
-  // if(checkLoggedUser === false){
-  //   main.appendChild(signin())
-  // }
-  // else{
-  //   router()  
-  // }
-// })
-

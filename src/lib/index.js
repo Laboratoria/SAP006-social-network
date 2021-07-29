@@ -20,46 +20,43 @@ export const setPersistence = () =>{
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 }
 
-export const currentUser = async() =>{
-  const user = await firebase.auth().currentUser
-  console.log(user)
+export const currentUser = () =>{
+  return firebase.auth().currentUser
   
 }
 
-
-
-// export const getUser = () => {
-//     firebase.auth().onAuthStateChanged((user)=>{
-//     if (user !=null) {
-//       return true
-//     } else {
-//       return false
-//     }
-//     })
-// }
   
 export const logout = () =>{
   firebase.auth().signOut()
 }
 
-export const asyncGetProfileData = async () => {
-  const logProfiles = await database.collection("profiles").get()
-  for ( data of logProfiles.docs){
-    profile = {
-      name: document.id,
-      image: document.image
-    }
-    console.log(profile)
-  }
+export const updateUserName = (userName) => {
+  const user = firebase.auth().currentUser;
+
+  user.updateProfile({
+    displayName: userName,
+  })
 }
 
-export const asyncSendProfileData= async (name, image) => {
-  await database.collection("profiles").add({
-    name:name,
-    image:image,
+export const updateUserImage = (urlImage) => {
+  const user = firebase.auth().currentUser;
+
+  user.updateProfile({
+    photoURL: urlImage,
   })
-  console.log("deu certo")
 }
+
+// export const asyncGetProfileData = async () => {
+//   const logProfiles = await database.collection("profiles").get()
+//   for ( data of logProfiles.docs){
+//     profile = {
+//       name: document.id,
+//       image: document.image
+//     }
+//     console.log(profile)
+//   }
+// }
+
 
 export const signInGoogleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -111,6 +108,7 @@ export const signOut = () => {
   });
  */
 }
+
 export const uploadImage = (id, userid) =>{
   const ref = storage.ref()
   const file = document.getElementById(id).files[0]

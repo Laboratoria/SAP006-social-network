@@ -1,10 +1,16 @@
-import { logout, loadReviews} from "../../lib/index.js"
+import { currentUser, logout, loadReviews} from "../../lib/index.js"
 
 export default () =>{
 
   
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id", "home-content")
+
+  const user = currentUser()
+  const imageUrl = user.photoURL
+  const userName=user.displayName
+  console.log(imageUrl)
+  console.log(userName)
 
   const createFeedTemplate=`
   <h1 class="h1-home">Bem vindoooo, ${firebase.auth().currentUser.displayName} <3</h1>
@@ -19,7 +25,10 @@ export default () =>{
     <div data-new-review class ="posted-review">
     
     </div>
+  <img src=${imageUrl}>
+
   `
+
 
   sectionElement.innerHTML= createFeedTemplate
 

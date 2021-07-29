@@ -30,7 +30,7 @@ export const router = () =>{
       path = '/';
       window.history.replaceState(null, null, path);
     }
-    if(user){
+    if(user && (path=="/" || path=="/cadastro" || path=="/login")){
       path = '/home'
       window.history.replaceState(null, null, path);
     }
