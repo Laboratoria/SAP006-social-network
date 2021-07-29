@@ -13,9 +13,9 @@ export default () =>{
   console.log(userName)
 
   const createFeedTemplate=`
-  <h1 class="h1-home">Bem vindoooo, ${firebase.auth().currentUser.displayName} <3</h1>
   <button id="logout-btn">Logout</button>
-
+  <h1 class="h1-home">Olá, ${firebase.auth().currentUser.displayName} ❤</h1> 
+  <img class="photo-profile" src=${imageUrl}>
     <div class="timeline">
      <form class="review-area" action="">
         <textarea class="post-input" id="text" cols="30" rows="5" data-post-input required placeholder =" Sua review ..."></textarea>
@@ -25,7 +25,6 @@ export default () =>{
     <div data-new-review class ="posted-review">
     
     </div>
-  <img src=${imageUrl}>
 
   `
 

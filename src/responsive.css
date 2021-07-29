@@ -37,6 +37,15 @@
         width: 2rem;
         margin: 0rem 0.5rem 0rem 0rem;
     }
+
+    .back-to-login{
+        margin: 0rem 48rem 42rem 0rem
+    }
+
+    #logout-btn{
+        margin: 0rem 0rem 0rem 80vw;
+        position: unset;
+    }
 }
 @media (min-width: 1200px) and (max-width: 1400px) {
     .logo-container{
@@ -116,7 +125,7 @@
         border: none;
     }
     
-    #form-container-forgot-password{
+    #form-container-forgot-password, #form-create-profile{
         width: 100vw;
         min-height: 100vh;
         flex-direction: column;
@@ -126,6 +135,12 @@
         padding: 0rem;
         
     }
+
+    #logout-btn{
+        margin: 0rem 0rem 0rem 60vw;
+        position: unset;
+    }
+    
 }
 
 @media (max-width: 768px) {

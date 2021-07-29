@@ -203,12 +203,13 @@ a:hover{
 }
 
 #logout-btn{
+    position: absolute;
+    margin: 0rem 0rem 30rem 80vw;
     cursor: pointer;
-    margin: 1rem;
     background-color: #864b86;
     font-size: 15px;
-    padding: 1rem;
-    height: 6%;
+    height: 3.5rem;
+    width: 7rem;
     border: none;
     color: white;
 }
@@ -234,7 +235,7 @@ a:hover{
     font-size: 2rem;
     margin-bottom: 1.6rem;
 }
-#form-container-forgot-password{
+#form-container-forgot-password, #form-create-profile{
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -300,6 +301,12 @@ font-size: 3rem;
     
 #none{
     display: none;
+}
+.photo-profile{
+    border-radius: 50%;
+    border: #742b74 2px solid;
+    height: 10rem;
+    width: 10rem;
 }
 /* home area */
 .review-area{
