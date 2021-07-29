@@ -1,11 +1,11 @@
-import { cadastro } from "./pages/cadastro.js";
-import { Login } from "./pages/login.js"
+import { cadastrarComEmailSenha } from "./pages/cadastro/index.js";
+import { Login } from "./pages/login/index.js"
 
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
     "/":Login,
-    "/cadastro":cadastro
+    "/cadastro":cadastrarComEmailSenha
 
   }
   elemento.innerHTML = "";

@@ -1,8 +1,17 @@
-// Este é o ponto de entrada da sua aplicação
+export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
+    return firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister)
+    
+  };
+  
+  export const atualizarUsuario = (nome) =>{
+    return firebase.auth().currentUser.updateProfile({
+    displayName: nome,
+   
+  })
+}
 
-// import { myFunction } from './lib/index.js';
 
-// myFunction();
+
 
 const email = "isisbeatriz@gmail.com";
 const password = "123456";
@@ -49,4 +58,9 @@ firebase
 //       // ...
 //     }
 //   });
+
+
+
+
+
 
