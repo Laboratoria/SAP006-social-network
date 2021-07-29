@@ -5,7 +5,7 @@ const loginEmailAndPassword = (email, password) => {
     .then((userCredential) => {
       let user = userCredential.user;
       //console.log('deu certo', user)
-      window.location.replace('/feed')
+      window.location.replace('/feed');
 
     })
     .catch((error) => {
@@ -25,7 +25,7 @@ const loginWithGmail = () => {
       const credential = result.credential;
       const token = credential.accessToken;
       const user = result.user;
-      window.location.replace('/feed')
+      window.location.replace('/feed');
       //console.log('funcionaaaaa', credential, token, user)
     })
     .catch((error) => {
@@ -49,4 +49,15 @@ const signInWithGoogle = () => {
     });
 }
 
-export { loginEmailAndPassword, loginWithGmail, signInWithGoogle }
+const signOut = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.location.replace('/');
+    }).catch((error) => {
+      // An error happened.
+    });
+}
+
+export { loginEmailAndPassword, loginWithGmail, signInWithGoogle, signOut }
