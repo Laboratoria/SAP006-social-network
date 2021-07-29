@@ -1,4 +1,4 @@
-import { signInWithGoogle } from '../../services/index.js'
+import { signUpWithGoogle } from '../../services/index.js'
 
 export const SignUp = () => {
   const root = document.createElement('div');
@@ -29,9 +29,10 @@ export const SignUp = () => {
   const btnSignUp = root.querySelector('#signUpButton');
   
   btnSignUp.addEventListener('click', () => {
-    window.history.pushState({}, '', '/profile');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
-  })
+    /*window.history.pushState({}, '', '/feed');*/
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    signUpWithGoogle(email, password);
+  });
   return root;
 }

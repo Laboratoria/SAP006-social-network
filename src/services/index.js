@@ -36,7 +36,7 @@ const loginWithGmail = () => {
     });
 }
 
-const signInWithGoogle = () => {
+const signUpWithGoogle = () => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -60,4 +60,4 @@ const signOut = () => {
     });
 }
 
-export { loginEmailAndPassword, loginWithGmail, signInWithGoogle, signOut }
+export { loginEmailAndPassword, loginWithGmail, signUpWithGoogle, signOut }
