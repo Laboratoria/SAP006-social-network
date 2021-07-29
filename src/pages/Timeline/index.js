@@ -1,9 +1,10 @@
 import { signOut } from '../../services/index.js';
 
 export default () => {
+  const user = firebase.auth().currentUser;
   const timeline = (document.getElementById("container").innerHTML = `
   <link rel="stylesheet" href="./pages/Timeline/style.css" />
-  
+
     <div class="banner">
       <img src="assets/logo.png" alt="Logo">
       <div class="title-container">
@@ -11,6 +12,25 @@ export default () => {
           <h3 class="subtitle">review de séries</h3>
       </div>
     </div>
+
+    <input id="navbar" type='checkbox' class="input">
+    <label for="navbar">
+      <div class='menu'>
+          <span class='hamburger'></span>
+      </div>
+    </label>
+
+    <ul class="inside-menu">
+      <li>
+        <img src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
+      </li>
+      <li>
+        <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
+      </li>
+      <li>
+        <p class="email-menu"> ${user.email || "Usuário"} </p>
+      </li>
+    </ul>
 
     <form action="" id="postForm">
       <textarea type="textarea" id="postText" class="post-textarea" rows="5" cols="50" placeholder="Digite aqui sua review..."></textarea>
@@ -31,7 +51,6 @@ export default () => {
 
   // Criando coleção no firebase chamada 'posts'
   const postsCollection = firebase.firestore().collection("posts");
-  const user = firebase.auth().currentUser;
 
   // Enviando posts para o firestore
   document.getElementById("postForm").addEventListener("submit", (event) => {

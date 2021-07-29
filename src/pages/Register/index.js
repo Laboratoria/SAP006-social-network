@@ -1,3 +1,5 @@
+import { loginWithEmail } from '../../services/index.js';
+
 export default () => {
     const template = document.getElementById("container").innerHTML =`
       <link rel="stylesheet" href="./pages/Register/style.css" />
@@ -47,19 +49,7 @@ export default () => {
   signUpButtonRegister.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('funcionou');
-
-    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
-      .then((userCredential) => {
-        if(password === passwordConfirm) {
-          const user = userCredential.user;
-          window.location.hash = 'timeline';
-          console.log('senhas corretas', name + user);
-        }
-    })
-      .catch((error) => {
-        newUser.innerHTML = error.message;
-        console.log('deu ruim');
-      });
+    loginWithEmail(email.value, password.value)
   });
 
   // BOTÃO DE VOLTAR PARA PÁGINA DE LOGIN

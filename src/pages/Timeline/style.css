@@ -13,24 +13,135 @@ body {
     padding: 0;
 }
 
+.menu {
+    background: #F15E75;
+    border: solid 3px #000;
+    border-radius: 50%;
+    top: 2.5%;
+    box-shadow: 0 0 0 0 #FFF, 0 0 0 0 #FFF;
+    cursor: pointer;
+    height: 6%;
+    position: absolute;
+    right: 3%;
+    transition: box-shadow 1.1s cubic-bezier(.19,1,.22,1);
+    width: 10%;
+    z-index: 2;
+}
+
+.menu:hover {
+    box-shadow: 0 0 0 5px #FFF, 0 0 0 5px #FFF;
+}
+
+.hamburger {
+    position: relative;
+    top: 50%;
+    left: 30%;
+    width: 40%;
+    height: 8%;
+    background: #000;
+    display: block;
+    transform-origin: center;
+    transition: .5s ease-in-out;
+}
+
+.hamburger:after,
+.hamburger:before {
+        background: #000;
+        content: "";
+        display: block;
+        transition: .5s ease-in-out;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+}
+
+.hamburger:before {
+    top: -10px;
+}
+
+.hamburger:after {
+    bottom: -10px;
+}
+
+.input {
+    display: none;
+}
+
+.input:checked ~ label .menu {
+    box-shadow: 0 0 0 130vw #FFF, 0 0 0 130vh #FFF;
+}
+
+.input:checked ~ label .hamburger {
+    transform: rotate(45deg);
+}
+
+.input:checked ~ label .hamburger:after {
+    transform: rotate(90deg);
+    bottom: 0;
+}
+
+.input:checked ~ label .hamburger:before {
+    transform: rotate(90deg);
+    top: 0;
+}
+
+.input:checked ~ ul {
+    opacity: 1;
+    visibility: visible;
+}
+
+.inside-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    font-size: 45px;
+    opacity: 0;
+    transition: .25s .1s cubic-bezier(0, 1.07, 0, 1.02);
+    visibility: hidden;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.username-menu {
+    font-family: 'Averia Sans Libre', cursive;
+    font-size: 20pt;
+}
+
+.user-photo-menu {
+    width: 100%;
+    border-radius: 50%;
+    border: solid 3px #000;
+}
+
+.email-menu {
+    font-family: 'Averia Sans Libre', cursive;
+    font-size: 12pt;
+}
+
 .banner  {
     justify-content:flex-start;
 }
 
 .banner img {
-    width: 12%;
+    width: 15%;
 }
 
 .title-container {
-    margin-left: 2%;
+    margin: 2% 0 0 2%;
 }
 
 .title {
-    font-size: 12pt;
+    font-size: 15pt;
 }
 
 .subtitle {
-    font-size: 8pt;
+    font-size: 10pt;
 }
 
 .timeline-buttons {
@@ -126,3 +237,4 @@ body {
 .date {
     font-size: 9pt;
 }
+
