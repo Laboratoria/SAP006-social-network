@@ -17,10 +17,11 @@ export const Login = () => {
     </div>
 
     <form class="m-vertical-6-center-left-right w-40">
-      <div class="p-relative">
+     <div class="p-relative">
         <input required type="email" class="login-input w-100 mb-1 pd-b-1 pd-l-3 pd-t-4 c-2f4f4f f-roboto f-120" id="input-email">
         <label class="login-input-label p-absolute pd-2 c-696969 f-roboto f-120">Email</label>
       </div>
+
       <div class="p-relative">
         <input required type="password" class="login-input w-100 mb-1 pd-b-1 pd-l-3 pd-t-4 c-2f4f4f f-roboto f-120" id="input-password">
         <label class="login-input-label p-absolute pd-2 c-696969 f-roboto f-120">Senha</label>
@@ -58,16 +59,12 @@ export const Login = () => {
   const btnLoginWithGoogle = rootElement.querySelector("#button-login-with-google")
   btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
 
-  const txtEmail = rootElement.querySelector('#input-email');
-  const txtPassword = rootElement.querySelector('#input-password');
-  const btnLogin = rootElement.querySelector('#button-login');
-  const email = txtEmail.value;
-  const pass= txtPassword.value;
-
-  btnLogin.addEventListener('click', error => {
-    loginWithEmailAndPassword(email, pass)
+  const btnLogin = rootElement.querySelector("#button-login");
+  btnLogin.addEventListener('click', () => {
+  const email = rootElement.querySelector('#input-email').value;
+  const pass = rootElement.querySelector("#input-password").value;
+  loginWithEmailAndPassword(email, pass);
   })
-
 
    
 
