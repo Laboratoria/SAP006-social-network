@@ -2,8 +2,6 @@ import timeline from './pages/Timeline/index.js'
 import login from './pages/Login/index.js'
 import register from './pages/Register/index.js'
 
-import { configureLogin } from './lib/index.js';
-
 const container = document.querySelector('#root');
 
 // SINGLE PAGE APLICATION
@@ -37,8 +35,6 @@ window.addEventListener('load', () => {
   const signInButton = document.getElementById('signin-button');
   const signUpButton = document.getElementById('signup-button');
 
-  const firebaseSection = document.getElementById('firebaseui-auth-container');
-
   // LOGIN DE USUARIOS EXISTENTES POR EMAIL E SENHA
   signInButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -60,7 +56,6 @@ window.addEventListener('load', () => {
   signUpButton.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.hash = 'register'; // ir para pagina cadastro
-    firebaseSection.innerHTML = ' ';
   });
 
 });
@@ -71,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   try {
     firebase.app();
-    configureLogin();
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         window.location.hash = 'timeline'

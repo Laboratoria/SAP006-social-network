@@ -1,3 +1,5 @@
+import { googleLogin } from '../../services/index.js';
+
 export default () => {
     document.querySelector('#root').innerHTML = ' ';
     const container = document.createElement('div');
@@ -30,7 +32,10 @@ export default () => {
 
             </section>
 
-            <div id="firebaseui-auth-container" class="firebaseui-auth-container"></div>
+            <button id="google-button" class="google-button buttons">
+                <img class="google-icon-btn" src="../../assets/google-icon.svg" alt="Ícone do Google"/>
+                Entrar com Conta Google
+            </button>
 
             <button id="signup-button" class="signup-button buttons"> Não possui cadastro? <span>Clique aqui</span> </button>
 
@@ -41,6 +46,17 @@ export default () => {
     `;
 
     container.innerHTML = template;
+
+    //  AUTENTICAÇÃO COM CONTA GOOGLE
+    const googleButton = container.querySelector('#google-button');
+
+    googleButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("pegou")
+        const provider = new firebase.auth.GoogleAuthProvider();
+        googleLogin(provider);
+    });
+
     return container;
 };
 

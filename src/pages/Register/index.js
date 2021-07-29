@@ -26,7 +26,7 @@ export default () => {
                 <button id="signup-button-register" class="buttons register-button">Cadastrar-se</button>
 
                 <button id="gobackButton" class="goback-button">
-                    <img src="./assets/arrow.png" > 
+                    <img src="./assets/arrow.png" alt="Ícone de Seta"> 
                 </button>
             </section>
 

@@ -1,9 +1,9 @@
+import { signOut } from '../../services/index.js';
+
 export default () => {
   const timeline = (document.getElementById("container").innerHTML = `
   <link rel="stylesheet" href="./pages/Timeline/style.css" />
   
-  <div>
-
     <div class="banner">
       <img src="assets/logo.png" alt="Logo">
       <div class="title-container">
@@ -21,14 +21,12 @@ export default () => {
 
     <button id="signout-button" class="signout-button buttons">Sair</button>
 
-  </div>`);
+  `);
 
   //Sair da conta do usuário
   document.getElementById("signout-button").addEventListener("click", (e) => {
     e.preventDefault();
-    firebase.auth().signOut();
-    window.location.hash = '';
-    location.reload();
+    signOut();
   });
 
   // Criando coleção no firebase chamada 'posts'
