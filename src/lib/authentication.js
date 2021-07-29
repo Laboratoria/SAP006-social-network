@@ -1,4 +1,4 @@
-import { home } from '../views/homepage/index.js';
+import { onNavigate } from '../navigate.js';
 
 export const loginWithGoogleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -9,10 +9,7 @@ export const loginWithGoogleAccount = () => {
 export const loginWithEmailAndPassword = (userEmail, userPassword) => {
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
     .then(() => {
-      const main = document.getElementById('root');
-      window.history.pushState(null, null, '/home');
-      main.innerHTML = '';
-      main.innerHTML = home;
+      onNavigate('/home');
     })
     .catch((error) => {
       const errorMessage = error.message;

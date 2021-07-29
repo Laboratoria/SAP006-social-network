@@ -12,8 +12,3 @@ export const renderPage = () => {
   main.innerHTML = '';
   main.appendChild(routes[window.location.pathname]());
 };
-
-window.addEventListener('popstate', renderPage);
-window.addEventListener('load', () => {
-  renderPage();
-});
