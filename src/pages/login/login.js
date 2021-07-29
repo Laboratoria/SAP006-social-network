@@ -1,52 +1,54 @@
+import { signInEmailPassword, signInGoogle } from "../../services/index.js"; 
+
 export const Login = () => {
-  const rootElement = document.createElement('div');
+  const rootElement = document.createElement("div");
   const container = `
     <div>
-      <img id="background" src="./lib/login/img/paleta3.jpg" alt="">
-      <h4>Nova por aqui? <span><a href="link-cadastro">Cadastre-se</a></span></h4>
-      <input type="text" class="input" placeholder="Login">
-      <input type="password" class="input" placeholder="Senha">
-      <a href="">Esqueceu a senha?</a><br>
-      <button id="btn-login" class="login btn">LOGIN</button>
-      <div>
-        <h4><a id="btn-google" href="" target="_blank">Login com o Google</a></h4>
+      <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
+      <div class="esmaeceHeader logotipo-text">
+        <section>
+          <h2>FORT</h2>
+        </section>
       </div>
+      <h4>Nova por aqui? <span><a href="link-cadastro">Cadastre-se</a></span></h4>
+      <div class="inputAndReset">
+        <input type="text" id="email" class="input" placeholder="Email">
+        <input type="password" id="password" class="input" placeholder="Senha">
+        <a class="reset-password" href="">Esqueceu a senha?</a><br>
+      </div>
+      <div class="google">
+        <button id="btn-login" class="login btn">LOGIN</button>
+        <img id="icon-google" src="./pages/login/img/icon-google-white.png">
+      </div>
+      <form>
+        <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
+      </form>
+      
     </div> 
   `;
   rootElement.innerHTML = container;
-  const botao = rootElement.querySelector('#btn-login');
-  botao.addEventListener('click', () => {
-    window.history.pushState({}, '', '/signup');
-    const popstateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popstateEvent);
+  const btnLogin = rootElement.querySelector("#btn-login");
+  const btnGoogle = rootElement.querySelector("#icon-google");
+  const email = rootElement.querySelector('#email');
+  const password = rootElement.querySelector('#password');
+  const checkbox = rootElement.querySelector('.checkbox');
+  btnLogin.addEventListener("click", () => {
+    signInEmailPassword(email.value, password.value);
   });
-  return rootElement;
+  btnGoogle.addEventListener("click", () => {
+    signInGoogle();
+  });
+  // checkbox.addEventListener("change", () => {
+  //   persistence();
+  // })
+  // usar local storage
+  // funcao para mudar a persistencia com if logado com local ou none
+  const none
+  const local
+
+  return rootElement;  
+  // window.history.pushState({}, "", "/signup");
+  // const popstateEvent = new PopStateEvent("popstate", { state: {} });
+  // dispatchEvent(popstateEvent);
 };
 
-// const provider = new firebase.auth.GoogleAuthProvider();
-// provider.setCustomParameters({
-//   login_user: 'nome@email.com',
-//   login_password: '123456'
-// });
-
-// firebase.auth()
-//   .signInWithPopup(provider)
-//   .then((result) => {
-//     /** @type {firebase.auth.OAuthCredential} */
-//     const credential = result.credential;
-
-//     // This gives you a Google Access Token. You can use it to access the Google API.
-//     const token = credential.accessToken;
-//     // The signed-in user info.
-//     const user = result.user;
-//     // ...
-//   }).catch((error) => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.email;
-//     // The firebase.auth.AuthCredential type that was used.
-//     const credentialError = error.credential;
-//     // ...
-//   });

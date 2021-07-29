@@ -19,6 +19,4 @@ const routeRender = () => {
 };
 
 window.addEventListener('popstate', routeRender);
-window.addEventListener('load', () => {
-  routeRender();
-});
+window.addEventListener(routeRender());
