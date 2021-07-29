@@ -1,4 +1,4 @@
-import { loginEmailAndPassword } from "../../services/index.js";
+import { loginEmailAndPassword, loginWithGmail } from "../../services/index.js";
 
 export const Login = () => {
   const root = document.createElement("div");
@@ -26,6 +26,12 @@ export const Login = () => {
 
         <button type='button' id='buttonLogin' class='btn-login form-item'>Entrar</button>
 
+        <p class='or'>ou</p>        
+        
+        <nav class='btnGoogle'>
+          <button type='button' id='btnGmail' class='btnGmail'></button>
+        </nav>
+
         <p class='signUpHere'>
           Ainda não é cadastrado? 
           <a href='#' id='linkSignUp' class="link-signup">Cadastre-se!</a>
@@ -36,20 +42,26 @@ export const Login = () => {
   </section>
   `;
 
-  const btnSignUp = root.querySelector("#linkSignUp");
-  const btnLogin = root.querySelector("#buttonLogin");
+  const btnSignUp = root.querySelector('#linkSignUp');
+  const btnLogin = root.querySelector('#buttonLogin');
+  const btnGmail = root.querySelector('#btnGmail');
+  //const keepMeLogged = root.querySelector('keep-me-logged');
 
-  btnSignUp.addEventListener("click", () => {
-    window.history.pushState({}, "", "/signup");
-    const popStateEvent = new PopStateEvent("popstate", { state: {} });
+  btnSignUp.addEventListener('click', () => {
+    window.history.pushState({}, '', '/signup');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
   });
 
-  btnLogin.addEventListener("click", () => {
-    /*window.history.pushState({}, "", "/feed");*/
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  btnLogin.addEventListener('click', () => {
+    /*window.history.pushState({}, '', '/feed');*/
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
     loginEmailAndPassword(email, password);
+  });
+
+  btnGmail.addEventListener('click', () => {
+    loginWithGmail();
   });
 
   return root;

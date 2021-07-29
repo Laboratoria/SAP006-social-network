@@ -1,3 +1,5 @@
+import { signInWithGoogle } from '../../services/index.js'
+
 export const SignUp = () => {
   const root = document.createElement('div');
   root.innerHTML = `
@@ -24,13 +26,12 @@ export const SignUp = () => {
   </section>
   `;
 
-  /*const btnSignUp = root.querySelector('#signUpButton');
+  const btnSignUp = root.querySelector('#signUpButton');
+  
   btnSignUp.addEventListener('click', () => {
-    //e.preventDefault();
-    //console.log('clicou')
-    window.history.pushState({}, '', '/signup');
+    window.history.pushState({}, '', '/profile');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
-  })*/
+  })
   return root;
 }
