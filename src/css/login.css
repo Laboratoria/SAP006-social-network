@@ -32,7 +32,6 @@
   color: rgb(0, 0, 0);
   box-shadow: 0px -3px 1px #a09f9f5e;
 }
-
 #entrar {
   width: 30%;
   padding: 9px;
@@ -77,3 +76,19 @@
   color: rgb(0, 0, 0);
 }
 
+@media (max-width: 500px){
+  #cadastro{
+    font-size: 100%;
+  }
+
+ #google-login{
+  width: 100%;
+  margin: 8% auto;
+  }
+
+  #entrar{
+    width: 60%;
+    padding: 6px;
+    font-size: 100%
+  }
+}

@@ -24,5 +24,12 @@ export const cadastro = () => {
     <a id="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
   </fieldset>`;
 
+  const pageLogin = rootElement.querySelector("#buttonLogin");
+
+  pageLogin.addEventListener("click", () => {
+    window.history.pushState({}, "", "/login");
+    const popstateEvent = new PopStateEvent("popstate", { state: {} });
+    dispatchEvent(popstateEvent);
+  });
   return rootElement;
 };

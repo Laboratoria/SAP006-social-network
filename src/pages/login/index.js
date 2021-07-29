@@ -1,7 +1,8 @@
+import { googleLogin } from "../../services/firebaseAuth.js";
 export const login = () => {
-    const rootElement = document.createElement("div");
-    rootElement.setAttribute("class", "page")
-    rootElement.innerHTML = `<div class="container">
+  const rootElement = document.createElement("div");
+  rootElement.setAttribute("class", "page");
+  rootElement.innerHTML = `<div class="container">
 
       <img class="logo" src="img/logo.png" alt="GO VEG - logo">
 
@@ -33,14 +34,22 @@ export const login = () => {
       </div> 
     </div>`;
 
-    const botao = rootElement.querySelector("#cadastro")
-    botao.addEventListener("click", () => {
-        window.history.pushState({}, "", "/cadastro")
-        const popstateEvent = new PopStateEvent("popstate", { state: {} })
-        dispatchEvent(popstateEvent)
-    })
-    const botaoGoogle = rootElement.querySelector("#google-login")
-    botaoGoogle.addEventListener("click", console.log("funcionou o botao"))
+  const botaoCadastro = rootElement.querySelector("#cadastro");
+  const botaoGoogle = rootElement.querySelector("#google-login");
 
-    return rootElement;
-}
+  botaoCadastro.addEventListener("click", (f) => {
+    f.preventDefault();
+    window.history.pushState({}, "", "/cadastro");
+    const popstateEvent = new PopStateEvent("popstate", { state: {} });
+    dispatchEvent(popstateEvent);
+  });
+
+  botaoGoogle.addEventListener("click", (e) => {
+    e.preventDefault();
+    googleLogin().then().catch();
+  });
+
+  return rootElement;
+};
+
+
