@@ -1,8 +1,10 @@
-export default () => {
-    const template = document.getElementById("login-container").innerHTML =`
-      <main id="box">
+import { loginWithEmail } from '../../services/index.js';
 
-          <div class="login-container">
+export default () => {
+    const template = document.getElementById("container").innerHTML =`
+      <link rel="stylesheet" href="./pages/Register/style.css" />
+      <main id="box">
+          <div class="container">
             <div class="banner">
                 <img src="assets/logo.png" alt="Logo">
                 <div class="title-container">
@@ -10,26 +12,21 @@ export default () => {
                     <h3 class="subtitle">review de séries</h3>
                 </div>
             </div>
-
               
             <section>
                 <form class="form">
-                    <input class="input" id="name" type="name" autocomplete="on" placeholder="Nome Completo" required>
-                    <input class="input" id="email" type="email" autocomplete="on" placeholder="E-mail" required>
-                    <input class="input" id="password" type="password" autocomplete="on" placeholder="Senha" required>
-                    <input class="input" id="password-Confirm" type="password-Confirm" autocomplete="on" placeholder="Confirmar Senha" required>
+                    <input class="input" id="name" type="name" autocomplete="on" placeholder="🗒  Nome Completo" required>
+                    <input class="input" id="email" type="email autocomplete="on" placeholder="✉  E-mail" required>
+                    <input class="input" id="password" type="password" autocomplete="on" placeholder="⚙  Senha" required>
+                    <input class="input" id="password-confirm" type="password" autocomplete="on" placeholder="⚙  Confirmar Senha" required>
                     <p id="nonUser"></p>
                 </form>
-
-                <button id="signup-button-register" class="login-buttons">Cadastrar-se</button>
-
+                <button id="signup-button-register" class="buttons register-button">Cadastrar-se</button>
                 <button id="gobackButton" class="goback-button">
-                    <img src="./assets/arrow.png" > 
+                    <img src="./assets/arrow.png" alt="Ícone de Seta"> 
                 </button>
             </section>
-
           </div>
-
       </main>
     `;
 
@@ -45,26 +42,14 @@ export default () => {
   signUpButtonRegister.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('funcionou');
-
-    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
-      .then((userCredential) => {
-        if(password === passwordConfirm) {
-          const user = userCredential.user;
-          window.location.hash = 'timeline';
-          console.log('senhas corretas', name + user);
-        }
-    })
-      .catch((error) => {
-        newUser.innerHTML = error.message;
-        console.log('deu ruim');
-      });
+    loginWithEmail(email.value, password.value)
   });
 
   // BOTÃO DE VOLTAR PARA PÁGINA DE LOGIN
   gobackButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('funcionou button img');
-        window.location.hash = '';
+    e.preventDefault();
+    console.log('funcionou button img');
+    window.location.hash = '';
   });
 
     return template;
