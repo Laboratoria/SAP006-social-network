@@ -17,23 +17,17 @@ export const signInEmailPassword = (email, password) => {
       }
       console.log(error);
     });
-    console.log('signInEmailPassword');
     return signIn
 };
 
-//google
+// google
 export const signInGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-//   provider.setCustomParameters({
-//     login_user: "nome@email.com",
-//     login_password: "123456",
-//   });
 
   return firebase
     .auth()
     .signInWithPopup(provider)
     .then((result) => {
-      // @type {firebase.auth.OAuthCredential}
       const credential = result.credential;
 
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -54,19 +48,19 @@ export const signInGoogle = () => {
     });
 };
 
-function logado (persistence)
-// firebase.auth().setPersistence(firebase.auth.Auth.Persistence.persistence)
-firebase.auth().setPersistence(persistence)
-//
-.then(() => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  // In memory persistence will be applied to the signed in Google user
-  // even though the persistence was set to 'none' and a page redirect
-  // occurred.
-  return firebase.auth().signInWithRedirect(provider);
-})
-.catch((error) => {
-  // Handle Errors here.
-  const errorCode = error.code;
-  const errorMessage = error.message;
-});
+export function keepLogged (persistence) {
+  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.persistence)
+  firebase.auth().setPersistence(persistence)
+  .then(() => {
+    const provider = new firebase.auth();
+    // In memory persistence will be applied to the signed in Google user
+    // even though the persistence was set to 'none' and a page redirect
+    // occurred.
+    return firebase.auth().signInWithRedirect(provider);
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+}

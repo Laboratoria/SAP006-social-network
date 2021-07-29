@@ -1,4 +1,4 @@
-import { signInEmailPassword, signInGoogle } from "../../services/index.js"; 
+import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -28,28 +28,35 @@ export const Login = () => {
   `;
   
   rootElement.innerHTML = container;
+
   const btnLogin = rootElement.querySelector("#btn-login");
   const btnGoogle = rootElement.querySelector("#icon-google");
   const email = rootElement.querySelector('#email');
   const password = rootElement.querySelector('#password');
   const checkbox = rootElement.querySelector('.checkbox');
-  btnLogin.addEventListener("click", () => {
+
+  const loginWithEmail = btnLogin.addEventListener("click", () => {
     signInEmailPassword(email.value, password.value);
   });
-  btnGoogle.addEventListener("click", () => {
+
+  const loginWithGoogle = btnGoogle.addEventListener("click", () => {
     signInGoogle();
   });
-  // checkbox.addEventListener("change", () => {
-  //   persistence();
-  // })
-  // usar local storage
-  // funcao para mudar a persistencia com if logado com local ou none
-  const none
-  const local
+
+
+
+  checkbox.addEventListener("change", () => {
+    const none = firebase.auth.Auth.Persistence.NONE
+    const local = firebase.auth.Auth.Persistence.LOCAL
+
+      if (checkbox.checked === true && loginWithGoogle) {
+        keepLogged(local)
+      } else if (checkbox.checked === true && loginWithEmail) {
+        keepLogged(local)
+      }
+      keepLogged(none)
+  })
 
   return rootElement;  
-  // window.history.pushState({}, "", "/signup");
-  // const popstateEvent = new PopStateEvent("popstate", { state: {} });
-  // dispatchEvent(popstateEvent);
 };
 
