@@ -11,12 +11,8 @@ export default () => {
 
 
   const createProfileTemplate = `
-    <div class="logo-container logo-container-register">
-    <h1 id="bookish">BOOKISH</h1>
-      <img class="site-logo" src="./img/logo.png">
-    </div>
     <div  class="form-container" id="form-create-profile">
-      <h1 class="h1-login">CADASTRO</h1>
+      <h1 class="h1-login">Alterar perfil</h1>
       <fieldset class="fieldset-create-profile fieldset">
         <form class="form" action="">
           <div class="container-file-img">
@@ -28,7 +24,6 @@ export default () => {
         </form>
       </fieldset>
     </div>
-
   `
 
   sectionElement.innerHTML= createProfileTemplate
