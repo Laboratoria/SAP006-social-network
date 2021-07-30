@@ -1,0 +1,1 @@
+// todos os métodos do firebase vão aqui e serão puxados em login, cadastro e etc.
