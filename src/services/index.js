@@ -65,7 +65,7 @@ export const signInGoogle = () => {
 };
 
 export function keepLogged (persistence) {
-  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.persistence)
+  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
   firebase.auth().setPersistence(persistence)
   .then(() => {
     const provider = new firebase.auth();
