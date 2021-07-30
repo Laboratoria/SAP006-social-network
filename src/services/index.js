@@ -20,8 +20,7 @@ const loginWithGmail = () => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then((result) => {
-      /** @type {firebase.auth.OAuthCredential} */
+    .then((result) => {      
       const credential = result.credential;
       const token = credential.accessToken;
       const user = result.user;
