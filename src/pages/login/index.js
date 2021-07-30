@@ -7,42 +7,41 @@ export const Login = () => {
     <h1>SAILERS</h1>
     <h2>A Rede Social dos Velejadores</h2>
   </header>
-  <section id='loginPage' class='loginPage'>
-    <section id='loginImage' class='loginImage'>  
-      <img src="img/login-image.png" class='img' alt='veleiro em mar calmo ao por do sol'>
-    </section>
-    <section id='login' class='container'>
-      <form id='labelsForLogin' class='login-signup'>
-        <label class='label-login' for='email'>E-mail:</label>
-        <input id='email' type='e-mail' class='inputs form-item'>
+  <main class='container'>  
+    <section class='img-container'>
+    </section>    
+      <section id='login' class='login-container'>
+       <header class='form-options'>
+          <span class='opt-login'>Login</span>
+          <span class='opt-signup linkSignUp'>Cadastro</span>
+        </header>
+        <section class='form-container'>
+          <form>
+            <div class='form-fields'>
+              <label for='email'>E-mail</label>
+              <input id='email' type='e-mail' class='input-email'>
+              
+              <label class='label-login' for='password'>Senha:</label>
+              <input id='password' type='password' class='input-password'>
+            </div>
 
-        <label class='label-login' for='password'>Senha:</label>
-        <input id='password' type='password' class='inputs form-item'>
+            <div class='rememberForgot' >
+              <label><input type="checkbox">Manter-me conectado</label>
+              <a href='#'>Esqueci a senha</a>
+            </div>
 
-        <div id='keepMeLogged' >
-          <input type='checkbox' id='keepMeLogged' name='Mantenha-me Conectado'>
-          <label class='keep-me-logged' for='keepMeLogged'> Mantenha-me Conectado</label>
-        </div>
-
-        <button type='button' id='buttonLogin' class='btn-login form-item'>Entrar</button>
-
-        <p class='or'>ou</p>        
-        
-        <nav class='btnGoogle'>
-          <button type='button' id='btnGmail' class='btnGmail'></button>
-        </nav>
-
-        <p class='signUpHere'>
-          Ainda não é cadastrado? 
-          <a href='#' id='linkSignUp' class="link-signup">Cadastre-se!</a>
-        </p>
-
-      </form>
-    </section>
-  </section>
+              <button type='button' id='buttonLogin' class='btn-login btn form-item'>Entrar</button>
+              <p class='separator form-item'>ou</p>                      
+              <button type='button' id='btnGmail' class='btnGmail btn form-item'>
+                <img src='./img/logo-google.png' class='google-icon'></img>
+                <span>Entrar com o Google</span>
+              </button>
+          </form>
+      </section>
+    </main>
   `;
 
-  const btnSignUp = root.querySelector('#linkSignUp');
+  const btnSignUp = root.querySelector('.linkSignUp');
   const btnLogin = root.querySelector('#buttonLogin');
   const btnGmail = root.querySelector('#btnGmail');
   //const keepMeLogged = root.querySelector('keep-me-logged');
