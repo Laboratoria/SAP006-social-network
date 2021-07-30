@@ -1,59 +1,91 @@
+import { createUserWithEmailAndPassword } from "../../services";
+
 
 export const signUp = () => {
-    const divRoot = document.createElement('div');
-    //divRoot.className = 'area-signup'
+  const divRoot = document.createElement('div');
+  //divRoot.className = 'area-signup'
 
-    const container = `
-    <div>
+  const container = `
+  <div>
     <form class="form-register">
-    <label class="value-register" for="name"></label>
-    <input class="value-register" type="text" name="user-name" id="username">
+      <input
+        class="profile-pic"
+        type="file"
+        name="profile-pic"
+        id="profile-pic"
+        accept="image/jpeg, image/png, image/jpg"
+        capture="profile-pic">
 
-    <label class="value-register" for="email"></label>
-    <input class="value-register" type="text" name="adress-email" id="useremail">
+      <input
+        class="value-register"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Nome completo">
 
-    <label class="value-register" for="password"></label>
-    <input class="value-register" type="text" name="user-password" id="userpassword">
+      <input
+        class="value-register"
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Nome de usuário">
 
-    <label class="value-register" for="confirm-password"></label>
-    <input class="value-register" type="text" name="confirm-user-password" id="user-confirm-password">
+      <input
+        class="value-register"
+        type="email"
+        name="adress-email"
+        id="useremail"
+        placeholder="E-mail">
 
-    <label class="value-register" for="telephone"></label>
-    <input class="value-register" type="text" name="user-telephone" id="usertelephone">
+      <input
+        class="value-register"
+        type="password"
+        name="user-password"
+        id="userpassword"
+        placeholder="Senha">
 
-    <button id="btn-signup">Cadastrar</button>
+      <input
+        class="value-register"
+        type="password"
+        name="confirm-user-password"
+        id="user-confirm-password"
+        placeholder="Confirme a senha">
+
+      <input
+        class="value-register"
+        type="tel"
+        name="user-telephone"
+        id="usertelephone"
+        placeholder="Celular">
+
+      <button id="btn-signup">Cadastrar</button>
+
     </form>
 
     <p>Já tem uma conta? Faça seu login aqui</p>
 
-    </div>
-    `
+  </div>
+  `
 
+  divRoot.innerHTML = container;
 
-    divRoot.innerHTML = container;
-/*
+  const nameUser = divRoot.querySelector('#username');
+  const emailUser = divRoot.querySelector('#useremail');
+  const passwordUser = divRoot.querySelector('#userpassword');
+  const confirmpassword = divRoot.querySelector('#user-confirm-password');
+  const telephoneUser = divRoot.querySelector('#usertelephone');
+  const signUpBtn = divRoot.querySelector('#btn-signup')
 
+  signUpBtn.addEventListener('click', () => {
 
+    const valueName = nameUser.value;
+    const valueEmail = emailUser.value;
+    const valuePassword = passwordUser.value;
+    const valueConfirm = confirmpassword.value;
+    const valueTel = telephoneUser.value;
+      
+    createUserWithEmailAndPassword(valueName)
+  })
 
-
-
-
-    const nameUser = document.querySelector('#username');
-    const emailUser = document.querySelector('#useremail');
-    const passwordUser = document.querySelector('#userpassword');
-    const confirmpassword = document.querySelector('#user-confirm-password');
-    const telephoneUser = document.querySelector('#usertelephone');
-
-    btn-signup.addEventListener('click', (event) => {
-        event.preventDefault();
-        const valueName = nameUser.value;
-        const valueEmail = emailUser.value;
-        const valuePassword = passwordUser.value;
-        const valueConfirm = confirmpassword.value;
-        const valueTel = telephoneUser.value;
-        
-        // aqui vem a função que vai criar a conta do usuário
-    })
-*/
 return divRoot
 }

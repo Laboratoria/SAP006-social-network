@@ -1,4 +1,5 @@
 import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
+import { navigation, routeRender } from "../../routes.js";
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -10,7 +11,7 @@ export const Login = () => {
           <h2>FORT</h2>
         </section>
       </div>
-      <h4>Nova por aqui? <span><a href="link-cadastro">Cadastre-se</a></span></h4>
+      <h4>Nova por aqui? <span><a href="/signup" id="signup">Cadastre-se</a></span></h4>
       <div class="inputAndReset">
         <input type="text" id="email" class="input" placeholder="Email">
         <input type="password" id="password" class="input" placeholder="Senha">
@@ -34,6 +35,15 @@ export const Login = () => {
   const email = rootElement.querySelector('#email');
   const password = rootElement.querySelector('#password');
   const checkbox = rootElement.querySelector('.checkbox');
+  const signUpBtn = rootElement.querySelector('#signup');
+
+  signUpBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.history.pushState({}, null, '/signup')
+
+    const popStateEvent = new PopStateEvent("popstate", {state:{}})
+    dispatchEvent(popStateEvent)
+  });
 
   const loginWithEmail = btnLogin.addEventListener("click", () => {
     signInEmailPassword(email.value, password.value);
@@ -42,8 +52,6 @@ export const Login = () => {
   const loginWithGoogle = btnGoogle.addEventListener("click", () => {
     signInGoogle();
   });
-
-
 
   checkbox.addEventListener("change", () => {
     const none = firebase.auth.Auth.Persistence.NONE

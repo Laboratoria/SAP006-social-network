@@ -4,7 +4,7 @@ import { Welcome } from './pages/landing_pages/welcome.js';
 import { Login } from './pages/login/index.js';
 import { signUp } from './pages/signup/index.js';
 
-const routeRender = () => {
+export const routeRender = () => {
   const element = document.querySelector('#root');
   const routes = {
     '/': Welcome,
@@ -21,13 +21,13 @@ const routeRender = () => {
 window.addEventListener('popstate', routeRender);
 window.addEventListener('load', routeRender());
 
-// export const navigation = (path, state = {}) => {
-//   window.history.pushState(
-//     state,
-//     null,
-//     path,
-//   );
+export const navigation = (path, state = {}) => {
+  window.history.pushState(
+    state,
+    null,
+    path,
+  );
 
-//   const popStateEvent = new PopStateEvent('popstate', { state: state });
-//   dispatchEvent(popStateEvent);
-// };
+  const popStateEvent = new PopStateEvent('popstate', { state: state });
+  dispatchEvent(popStateEvent);
+};
