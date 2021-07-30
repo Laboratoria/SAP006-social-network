@@ -19,7 +19,7 @@ const loginWithGmail = () => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then((result) => {      
+    .then((result) => {
       const credential = result.credential;
       const token = credential.accessToken;
       const user = result.user;
@@ -48,6 +48,20 @@ const signUpWithGoogle = (email, password) => {
     });
 }
 
+const keepMeLogged = (persistence) => {
+  firebase
+    .auth()
+    .setPersistence(persistence)
+    .then(() => {
+      const provider = new firebase.auth();
+      return firebase.auth().signInWithRedirect(provider);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+}
+
 const signOut = () => {
   firebase
     .auth()
@@ -59,4 +73,4 @@ const signOut = () => {
     });
 }
 
-export { loginEmailAndPassword, loginWithGmail, signUpWithGoogle, signOut }
+export { loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, signOut }
