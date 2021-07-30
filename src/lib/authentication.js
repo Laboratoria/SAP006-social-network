@@ -24,3 +24,19 @@ export const loginWithEmailAndPassword = (userEmail, userPassword) => {
       console.log(errorMessage);
     });
 };
+
+export const createWithEmailAndPassword = (emailInput, passwordInput) => {
+  firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user)
+      alert('Cadastro realizado com sucesso');
+      onNavigate('/');
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+      alert('Falha ao cadastrar')
+    });
+};

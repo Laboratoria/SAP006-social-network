@@ -1,3 +1,4 @@
+import { createWithEmailAndPassword } from '../../lib/authentication.js';
 import { onNavigate } from '../../navigate.js';
 
 export const signup = () => {
@@ -8,8 +9,8 @@ export const signup = () => {
       <form class="form">
         <input type="text" placeholder="Nome" id="name">
         <input type="text" placeholder="Email" id="email">
-        <input type="text" placeholder="Senha" id="new-password">
-        <input type="text" placeholder="Confirmar Senha" id="password">
+        <input type="password" placeholder="Senha" class="new-register" id="new-password" autocomplete="off">
+        <input type="password" placeholder="Confirmar Senha" class="register" id="password" autocomplete="off">
         <button id="sign-up-btn">Cadastrar</button>
       </form>
       <span>ou</span>
@@ -21,8 +22,11 @@ export const signup = () => {
   container.querySelector('#sign-up-btn')
     .addEventListener('click', (e) => {
       e.preventDefault();
-      onNavigate('/home');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('new-password');
+      createWithEmailAndPassword(emailInput.value, passwordInput.value);
     });
+
   container.querySelector('#google-btn')
     .addEventListener('click', (e) => {
       e.preventDefault();
