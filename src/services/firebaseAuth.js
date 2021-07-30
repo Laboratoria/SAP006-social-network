@@ -1,20 +1,16 @@
-export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
-    return firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister)
-    
-  };
-  
-  export const atualizarUsuario = (nome) =>{
-    return firebase.auth().currentUser.updateProfile({
-    displayName: nome,
-   
-  })
-}
+export const cadastrarComEmailSenha = (emailUser, passwordRegister) => 
+ firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister);
+
+export const atualizarUsuario = (nome) => 
+ firebase.auth().currentUser.updateProfile({
+        displayName: nome,
+     return: atualizarUsuario})
+
+console.log(atualizarUsuario)
 
 
 
 
-const email = "isisbeatriz@gmail.com";
-const password = "123456";
 
 // firebase
 //   .auth()
@@ -32,20 +28,20 @@ const password = "123456";
 //     // ..
 //   });
 
-firebase
-  .auth()
-  .signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    console.log('logou!')
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log('não logou.')
-  });
+// firebase
+//     .auth()
+//     .signInWithEmailAndPassword(email, password)
+//     .then((userCredential) => {
+//         // Signed in
+//         const user = userCredential.user;
+//         console.log('logou!')
+//         // ...
+//     })
+//     .catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         console.log('não logou.')
+//     });
 
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {

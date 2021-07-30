@@ -1,4 +1,4 @@
-export const Login = () => {
+export const login = () => {
     const rootElement = document.createElement("div");
     rootElement.innerHTML = `<div class="container">
     <div class="card">
