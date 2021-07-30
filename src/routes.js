@@ -1,4 +1,5 @@
 import feed from './pages/feed/feed.js';
+import perfil from './pages/perfil';
 import loginScreen from './pages/tela inicial/LogIn.js';
 
 const main = document.getElementById('root');
@@ -12,6 +13,9 @@ export default () => {
         break;
       case '#feed':
         main.appendChild(feed());
+        break;
+      case '#perfil':
+        main.appendChild(perfil());
         break;
       default:
         break;

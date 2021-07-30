@@ -2,7 +2,6 @@ import { signIn } from '../../lib/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
-  //console.log('heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
   const loginScreenButtons = `
   <img class="logo" src="image/Logotipo(1).png">
   
@@ -23,6 +22,9 @@ export default () => {
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
+
+  const btnLogin = loginScreenContainer.querySelector('#enter-acc');
+  btnLogin.addEventListener('click', signIn);
 
   return loginScreenContainer;
 };
