@@ -1,4 +1,4 @@
-// aqui você exportará as funções que precisa
+import { route } from "../router.js";
 
 const email = "isisbeatriz@gmail.com";
 const password = "123456";
@@ -56,39 +56,47 @@ export const googleLogin = () => {
   provider.addScope("https://www.googleapis.com/auth/userinfo.email");
   provider.addScope("https://www.googleapis.com/auth/userinfo.profile");
 
-  firebase.auth().signInWithRedirect(provider);
   firebase
     .auth()
-    .getRedirectResult()
-    .then((result) => {
-      if (result.credential) {
-        /** @type {firebase.auth.OAuthCredential} */
-        var credential = result.credential;
-        var token = credential.accessToken;
-       
-      }
-      var user = result.user;
-    })
-    .catch((error) => {
-      let errorCode = error.code;
-      let email = error.email;
-      let credential = error.credential;
-      if (
-        errorCode === "auth/credential-already-in-use" ||
-        errorCode === "auth/account-exists-with-different-credential" ||
-        email === "auth/credential-already-in-use" ||
-        email === "auth/email-already-in-use" ||
-        credential === "auth/credential-already-in-use" ||
-        credential === "auth/email-already-in-use"
-      ) {
-        alert("Você já é cadastrado em nossa plataforma!");
-      }
-    });
+    .signInWithRedirect(provider)
+    .then(
+      firebase
+        .auth()
+        .getRedirectResult()
+        .then((result) => {
+          if (result.credential) {
+            /** @type {firebase.auth.OAuthCredential} */
+            const credential = result.credential;
+            const token = credential.accessToken;
+          }
+          const user = result.user;
+          route("/login");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const email = error.email;
+          const credential = error.credential;
+          if (
+            errorCode === "auth/credential-already-in-use" ||
+            errorCode === "auth/account-exists-with-different-credential" ||
+            email === "auth/credential-already-in-use" ||
+            email === "auth/email-already-in-use" ||
+            credential === "auth/credential-already-in-use" ||
+            credential === "auth/email-already-in-use"
+          ) {
+            alert("Você já é cadastrado em nossa plataforma!");
+          }
+        })
+    );
 };
 
 //* SIGN OUT  */
-firebase.auth().signOut().then(() => {
-  // Sign-out successful.
-}).catch((error) => {
-  // An error happened.
-});
+firebase
+  .auth()
+  .signOut()
+  .then(() => {
+    // Sign-out successful.
+  })
+  .catch((error) => {
+    // An error happened.
+  });

@@ -1,3 +1,5 @@
+import { route } from "../../router.js";
+
 export const cadastro = () => {
   const rootElement = document.createElement("div");
   rootElement.innerHTML = `<fieldset class="box">
@@ -26,10 +28,9 @@ export const cadastro = () => {
 
   const pageLogin = rootElement.querySelector("#buttonLogin");
 
-  pageLogin.addEventListener("click", () => {
-    window.history.pushState({}, "", "/login");
-    const popstateEvent = new PopStateEvent("popstate", { state: {} });
-    dispatchEvent(popstateEvent);
+  pageLogin.addEventListener("click", (e) => {
+   e.preventDefault();
+   route("/login");
   });
   return rootElement;
 };

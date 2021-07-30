@@ -1,3 +1,4 @@
+import { route } from "../../router.js";
 import { googleLogin } from "../../services/firebaseAuth.js";
 export const login = () => {
   const rootElement = document.createElement("div");
@@ -37,16 +38,14 @@ export const login = () => {
   const botaoCadastro = rootElement.querySelector("#cadastro");
   const botaoGoogle = rootElement.querySelector("#google-login");
 
-  botaoCadastro.addEventListener("click", (f) => {
-    f.preventDefault();
-    window.history.pushState({}, "", "/cadastro");
-    const popstateEvent = new PopStateEvent("popstate", { state: {} });
-    dispatchEvent(popstateEvent);
+  botaoCadastro.addEventListener("click", (e) => {
+    e.preventDefault();
+    route("/cadastro");
   });
 
   botaoGoogle.addEventListener("click", (e) => {
     e.preventDefault();
-    googleLogin().then().catch();
+    googleLogin();
   });
 
   return rootElement;
