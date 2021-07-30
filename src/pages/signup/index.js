@@ -1,11 +1,16 @@
-import { createUserWithEmailAndPassword } from "../../services";
-
+// import { createUserWithEmailAndPassword } from "../../services";
 
 export const signUp = () => {
-  const divRoot = document.createElement('div');
-  //divRoot.className = 'area-signup'
+  const rootElement = document.createElement('div');
+  //rootElement.className = 'area-signup'
 
   const container = `
+  <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
+      <div class="esmaeceHeader logotipo-text">
+        <section>
+          <h2>FORT</h2>
+        </section>
+      </div>
   <div>
     <form class="form-register">
       <input
@@ -58,23 +63,25 @@ export const signUp = () => {
         id="usertelephone"
         placeholder="Celular">
 
-      <button id="btn-signup">Cadastrar</button>
-
     </form>
 
-    <p>Já tem uma conta? Faça seu login aqui</p>
+    <div class="btnDiv">
+      <button id="btn-signup" class="btn">Cadastrar</button>
+      <p>Já tem uma conta? <span><a href="/login">Faça seu login aqui</a></span></p>
 
+    </div>
+    
   </div>
   `
 
-  divRoot.innerHTML = container;
+  rootElement.innerHTML = container;
 
-  const nameUser = divRoot.querySelector('#username');
-  const emailUser = divRoot.querySelector('#useremail');
-  const passwordUser = divRoot.querySelector('#userpassword');
-  const confirmpassword = divRoot.querySelector('#user-confirm-password');
-  const telephoneUser = divRoot.querySelector('#usertelephone');
-  const signUpBtn = divRoot.querySelector('#btn-signup')
+  const nameUser = rootElement.querySelector('#username');
+  const emailUser = rootElement.querySelector('#useremail');
+  const passwordUser = rootElement.querySelector('#userpassword');
+  const confirmpassword = rootElement.querySelector('#user-confirm-password');
+  const telephoneUser = rootElement.querySelector('#usertelephone');
+  const signUpBtn = rootElement.querySelector('#btn-signup')
 
   signUpBtn.addEventListener('click', () => {
 
@@ -87,5 +94,5 @@ export const signUp = () => {
     createUserWithEmailAndPassword(valueName)
   })
 
-return divRoot
+return rootElement
 }
