@@ -83,8 +83,8 @@ export const signUp = () => {
   const telephoneUser = rootElement.querySelector('#usertelephone');
   const signUpBtn = rootElement.querySelector('#btn-signup')
 
-  signUpBtn.addEventListener('click', () => {
-
+  signUpBtn.addEventListener('click', (e) => {
+    event.preventDefault();
     const valueName = nameUser.value;
     const valueEmail = emailUser.value;
     const valuePassword = passwordUser.value;
