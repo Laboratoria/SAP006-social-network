@@ -1,33 +1,44 @@
 import { createWithEmailAndPassword } from '../../lib/authentication.js';
+import { onNavigate } from '../../navigate.js';
 
-
-export default () => {
+export const signup = () => {
   const container = document.createElement('div');
-
+  container.className = 'signUp-container';
   const template = `
-    <div class="signUp-container">
-    <h2>Crie sua conta</h2>
-    <input type="text" placeholder="Nome" id="name">
-    <input type="text" placeholder="Email" id="email">
-    <input type="text" placeholder="Senha"id="new-password">
-    <input type="text" placeholder="Confirmar Senha"id="password">
-    <a class="button" id="login-btn" href="/homepage" data-link>Cadastrar</a>
-    <span>ou</span>
-    <a class="google-btn" id="google-btn" href="/googlelogin">Continuar com o Google</a>
-    <p class="text">Já tem uma conta?</p>
-    <a class="button" id="login" href="/" data-link>Entrar</a>
-    </div>
-    `;
-  container.innerHTML = template;
-  console.log('cadastro');
+      <h2>Crie sua conta</h2>
+      <form class="form">
+        <input type="text" placeholder="Nome" id="name">
+        <input type="text" placeholder="Email" id="email">
+        <input type="password" placeholder="Senha" class="new-register" id="new-password" autocomplete="off">
+        <input type="password" placeholder="Confirmar Senha" class="register" id="password" autocomplete="off">
+        <button id="sign-up-btn">Cadastrar</button>
+      </form>
+      <span>ou</span>
+      <button class="google-btn" id="google-btn">Continuar com o Google</button>
+      <p class="text">Já tem uma conta?</p>
+      <button class="button" id="login-btn">Entrar</button
+  `;
 
-  container.querySelector('#login-btn');
-  addEventListener('click', (e) => {
-    e.preventDefault();
-    const emailInput = document.getElementById('email').value;
-    const passwordInput = document.getElementById('new-password').value;
-    createWithEmailAndPassword(emailInput.value, passwordInput.value);
-  });
+  container.innerHTML = template;
+  container.querySelector('#sign-up-btn')
+    .addEventListener('click', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('new-password');
+      createWithEmailAndPassword(emailInput.value, passwordInput.value);
+    });
+
+  container.querySelector('#google-btn')
+    .addEventListener('click', (e) => {
+      e.preventDefault();
+      onNavigate('/home');
+    });
+
+  container.querySelector('#login-btn')
+    .addEventListener('click', (e) => {
+      e.preventDefault();
+      onNavigate('/');
+    });
 
   return container;
 };
