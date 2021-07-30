@@ -3,6 +3,9 @@
 img#background {
     position: absolute;
     z-index: -1;
+    height: 100%;
+    width: 130%;
+    opacity: 0.4;
 } 
     
 h2 {
