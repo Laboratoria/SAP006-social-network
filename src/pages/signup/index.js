@@ -34,9 +34,16 @@ export const SignUp = () => {
   </main>
   `;
 
+  const btnLogin = root.querySelector('.opt-login');
   const btnSignUp = root.querySelector('#signUpButton');
-  const btnGoogle = root.querySelector('#btnGmail')
+  const btnGoogle = root.querySelector('#btnGmail');
   
+  btnLogin.addEventListener('click', () => {
+    window.history.pushState({}, '', '/');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    dispatchEvent(popStateEvent);
+  })
+
   btnSignUp.addEventListener('click', () => {
     /*window.history.pushState({}, '', '/feed');*/
     const email = document.getElementById('email').value;
@@ -46,7 +53,7 @@ export const SignUp = () => {
 
   btnGoogle.addEventListener('click', () => {
     loginWithGmail();
-  })
-  
+  });
+    
   return root;
 }

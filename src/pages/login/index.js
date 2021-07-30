@@ -13,7 +13,7 @@ export const Login = () => {
       <section id='login' class='login-container'>
        <header class='form-options'>
           <span class='opt-login'>Login</span>
-          <span class='opt-signup linkSignUp'>Cadastro</span>
+          <span class='opt-signup'>Cadastro</span>
         </header>
         <section class='form-container'>
           <form>
@@ -41,7 +41,7 @@ export const Login = () => {
     </main>
   `;
 
-  const btnSignUp = root.querySelector('.linkSignUp');
+  const btnSignUp = root.querySelector('.opt-signup');
   const btnLogin = root.querySelector('#buttonLogin');
   const btnGmail = root.querySelector('#btnGmail');
   //const keepMeLogged = root.querySelector('keep-me-logged');
@@ -52,10 +52,12 @@ export const Login = () => {
     dispatchEvent(popStateEvent);
   });
 
-  btnLogin.addEventListener('click', () => {
-    /*window.history.pushState({}, '', '/feed');*/
+  btnLogin.addEventListener('click', () => {    
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    if(email === '' || password === ''){
+      alert('Preencha os campos corretamente');
+    }
     loginEmailAndPassword(email, password);
   });
 
