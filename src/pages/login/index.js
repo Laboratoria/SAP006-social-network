@@ -1,5 +1,5 @@
 import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
-import { navigation, routeRender } from "../../routes.js";
+// import { navigation, routeRender } from "../../routes.js";
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -15,7 +15,7 @@ export const Login = () => {
       <div class="inputAndReset">
         <input type="text" id="email" class="input" placeholder="Email">
         <input type="password" id="password" class="input" placeholder="Senha">
-        <a class="reset-password" href="">Esqueceu a senha?</a><br>
+        <a class="reset-password" id="reset" href="/reset">Esqueceu a senha?</a><br>
       </div>
       <div class="google">
         <button id="btn-login" class="login btn">LOGIN</button>
@@ -40,13 +40,14 @@ export const Login = () => {
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
     window.history.pushState({}, null, '/signup')
-
+  
     const popStateEvent = new PopStateEvent("popstate", {state:{}})
     dispatchEvent(popStateEvent)
   });
 
   const loginWithEmail = btnLogin.addEventListener("click", () => {
     signInEmailPassword(email.value, password.value);
+    window.history.pushState({}, null, '/feed')
   });
 
   const loginWithGoogle = btnGoogle.addEventListener("click", () => {
@@ -63,8 +64,16 @@ export const Login = () => {
         keepLogged(local)
       }
       keepLogged(none)
+  });
+
+  const resetLink = rootElement.querySelector('#reset');
+  resetLink.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    window.history.pushState({}, null, '/reset')
+    const popStateEvent = new PopStateEvent("popstate", {state:{}})
+    dispatchEvent(popStateEvent)
   })
 
   return rootElement;  
 };
-

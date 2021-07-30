@@ -1,19 +1,28 @@
 //senha
 export const createUserWithEmailAndPassword = () => {
-  firebase.auth().createUserWithEmailAndPassword(picture, fullName, username, email, password, confirmPassword, telephone)
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(
+      picture,
+      fullName,
+      username,
+      email,
+      password,
+      confirmPassword,
+      telephone
+    )
 
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
-
-}
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+};
 
 export const signInEmailPassword = (email, password) => {
   const signIn = firebase
@@ -33,7 +42,7 @@ export const signInEmailPassword = (email, password) => {
       }
       console.log(error);
     });
-    return signIn
+  return signIn;
 };
 
 // google
@@ -64,19 +73,34 @@ export const signInGoogle = () => {
     });
 };
 
-export function keepLogged (persistence) {
+export function keepLogged(persistence) {
   // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.persistence)
-  firebase.auth().setPersistence(persistence)
-  .then(() => {
-    const provider = new firebase.auth();
-    // In memory persistence will be applied to the signed in Google user
-    // even though the persistence was set to 'none' and a page redirect
-    // occurred.
-    return firebase.auth().signInWithRedirect(provider);
-  })
-  .catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+  firebase
+    .auth()
+    .setPersistence(persistence)
+    .then(() => {
+      const provider = new firebase.auth();
+      // In memory persistence will be applied to the signed in Google user
+      // even though the persistence was set to 'none' and a page redirect
+      // occurred.
+      return firebase.auth().signInWithRedirect(provider);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
 }
+
+export const resetPassword = (email) => {
+  firebase
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then(() => {
+      console.log("Password reset email sent successfully");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+};
