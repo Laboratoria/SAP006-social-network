@@ -1,7 +1,7 @@
-import { loginEmailAndPassword, loginWithGmail } from "../../services/index.js";
+import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from "../../services/index.js";
 
 export const Login = () => {
-  const root = document.createElement("div");
+  const root = document.createElement('div');
   root.innerHTML = `
   <header>
     <h1>SAILERS</h1>
@@ -26,7 +26,7 @@ export const Login = () => {
             </div>
 
             <div class='rememberForgot' >
-              <label><input type="checkbox">Manter-me conectado</label>
+              <label><input type='checkbox' id='keep-me-logged'>Manter-me conectado</label>
               <a href='#'>Esqueci a senha</a>
             </div>
 
@@ -39,12 +39,23 @@ export const Login = () => {
           </form>
       </section>
     </main>
-  `;
+  `; 
 
+  const keepLogged = root.querySelector('#keep-me-logged');
   const btnSignUp = root.querySelector('.opt-signup');
   const btnLogin = root.querySelector('#buttonLogin');
   const btnGmail = root.querySelector('#btnGmail');
-  //const keepMeLogged = root.querySelector('keep-me-logged');
+  
+  keepLogged.addEventListener('change', () => {
+    const local = firebase.auth.Auth.Persistence.LOCAL;  
+    const none = firebase.auth.Auth.Persistence.NONE;
+    if (keepLogged.checked === true && btnLogin) {
+      keepMeLogged(local);
+    } else if (keepLogged.checked === true && btnGmail) {
+      keepMeLogged(local);
+    }
+    keepMeLogged(none);
+  });
 
   btnSignUp.addEventListener('click', () => {
     window.history.pushState({}, '', '/signup');
@@ -52,10 +63,10 @@ export const Login = () => {
     dispatchEvent(popStateEvent);
   });
 
-  btnLogin.addEventListener('click', () => {    
+  btnLogin.addEventListener('click', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    if(email === '' || password === ''){
+    if (email === '' || password === '') {
       alert('Preencha os campos corretamente');
     }
     loginEmailAndPassword(email, password);
