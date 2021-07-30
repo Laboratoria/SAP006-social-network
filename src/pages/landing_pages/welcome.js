@@ -1,14 +1,14 @@
-// aqui você exportará as funções que precisa
+// import { navigation } from './routes.js';
+
 export const Welcome = () => {
 
   const template = `
-<div class="esmaece">
-  <section class="logotipo">
-    <img src="./img/logo.png" alt="Logotipo do Fort" class="logoimg">
-  </section>
-</div>
 
-
+  <div class="esmaece">
+    <section class="logotipo">
+      <img src="./img/logo.png" alt="Logotipo do Fort" class="logoimg">
+    </section>
+  </div>
 
   <section class="slider-content">
     <div class="slide">
@@ -31,6 +31,8 @@ export const Welcome = () => {
 
   const continueBtn = rootElement.querySelector('.btn-continue')
   continueBtn.addEventListener('click', () => {
+//   navigation('/conecte');
+  // })
     window.history.pushState({}, null, '/conecte')
 
     const popStateEvent = new PopStateEvent("popstate", {state:{}})
@@ -42,7 +44,7 @@ export const Welcome = () => {
     event.preventDefault()
     window.history.pushState({}, null, '/login')
 
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
+    const popStateEvent = new PopStateEvent('popstate', {state:{}})
     dispatchEvent(popStateEvent)
   })
   
