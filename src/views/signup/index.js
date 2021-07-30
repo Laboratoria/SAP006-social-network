@@ -30,7 +30,7 @@ export const signup = () => {
   container.querySelector('#google-btn')
     .addEventListener('click', (e) => {
       e.preventDefault();
-      onNavigate('/home');
+      loginWithGoogleAccount();
     });
 
   container.querySelector('#login-btn')
