@@ -1,5 +1,6 @@
 
 export const signInWithGoogle = () => {
+
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth()
     .signInWithPopup(provider)
@@ -13,9 +14,13 @@ export const signInWithGoogle = () => {
       return credentials
     })
     .catch(error => {
-
-      alert(`Atenção, o email ${error.email} não foi possível efetuar o cadastro.
-    Atenção, página ${error.code} não encontrada. Por favor, verifique se não
-    há erro de digitação ${error.message}. Por favor, confire sua credencial${error.credecial}.`);
+      const errorCode = error.code;
+      if (errorCode === "auth/credential-already-in-use") {
+        alert('Opa, está credencial já está em uso')
+      }
+      else {
+        alert(error.message)
+      }
     });
 }
+
