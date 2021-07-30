@@ -6,7 +6,6 @@ const loginEmailAndPassword = (email, password) => {
       let user = userCredential.user;
       //console.log('deu certo', user)
       window.location.replace('/feed');
-
     })
     .catch((error) => {
       let errorCode = error.code;
@@ -35,16 +34,17 @@ const loginWithGmail = () => {
     });
 }
 
-const signUpWithGoogle = () => {
+const signUpWithGoogle = (email, password) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
+      window.location.replace('/profile');
     })
     .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      const errorCode = error.code;
+      const errorMessage = error.message;
     });
 }
 
