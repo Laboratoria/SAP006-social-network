@@ -1,9 +1,17 @@
 import { onNavigate } from '../navigate.js';
 
-export const loginWithGoogleAccount = () => {
+export const loginPersistence = () =>{
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+}
+
+export async function loginWithGoogleAccount(){
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithRedirect(provider);
-  window.history.pushState(null, null, '#homepage');
+  await firebase.auth().signInWithPopup(provider)
+  .then((result) => {
+    const user = result.user;
+    console.log(user.displayName)
+    (onNavigate('/home'));
+  })
 };
 
 export const loginWithEmailAndPassword = (userEmail, userPassword) => {

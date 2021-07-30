@@ -1,4 +1,4 @@
-import { loginWithEmailAndPassword } from '../../lib/authentication.js';
+import { loginWithEmailAndPassword, loginWithGoogleAccount } from '../../lib/authentication.js';
 import { onNavigate } from '../../navigate.js';
 
 export const login = () => {
@@ -29,7 +29,8 @@ export const login = () => {
   container.querySelector('#google-btn')
     .addEventListener('click', (event) => {
       event.preventDefault();
-      onNavigate('/home');
+      loginWithGoogleAccount();
+      
     });
 
   container.querySelector('#btn-signUp')
