@@ -183,6 +183,8 @@ footer {
 	border: 1px solid black;
 	width: 200px;
 	height: 100px;
-	margin: auto;
+	float: left;
 	margin-top: 10px;
+	margin-left: 10px;
+	background-color: lightblue;
 }
