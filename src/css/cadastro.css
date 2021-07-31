@@ -16,11 +16,11 @@
   width: 50%;
 }
 
-#name,
+#nameUser,
 #username,
-#email,
+#emailUser,
 #tel,
-#password,
+#passwordRegister,
 #confPass {
   text-align: center;
   padding: 3%;
@@ -41,7 +41,7 @@
   text-align: center;
   width: 40%;
 }
-#buttonLogin {
+#enter {
   background-color: #fff;
   border: none;
   box-shadow: none;

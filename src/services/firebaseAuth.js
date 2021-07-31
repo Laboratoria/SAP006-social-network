@@ -1,23 +1,30 @@
-// // aqui você exportará as funções que precisa
+import { route } from "../router.js";
 
-// const email = 'isisbeatriz@gmail.com';
-// const password = '123456';
+export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
+  return firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister)
+
+};
+
+export const atualizarUsuario = (nome) =>
+  firebase.auth().currentUser.updateProfile({
+    displayName: nome,
+    return: atualizarUsuario
+  })
+
+console.log(atualizarUsuario)
+
+// ** SIGN IN E-MAIL AND PASSOWORD //
+export const SignIn = (usuario, passwordLogin) => {
+  return firebase
+    .auth().
+    signInWithEmailAndPassword(usuario, passwordLogin);
+};
+
+export const stayLogged = () => {
+  return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+};
 
 
-// firebase
-// .auth()
-// .signInWithEmailAndPassword(email, password)
-// .then((userCredential) => {
-//   // Signed in
-//   const user = userCredential.user;
-//   console.log("logou!");
-//   // ...
-// })
-// .catch((error) => {
-//   const errorCode = error.code;
-//   const errorMessage = error.message;
-//   console.log("não logou.");
-// });
 
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -31,53 +38,64 @@
 //     }
 //   });
 
-  // ** Sign-in with Google
-function googleProvider() {
-  // [START auth_google_provider_create]
+// ** SIGN IN GOOGLE //
+export const googleLogin = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  // [START auth_google_provider_scopes]
   provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-  // [START auth_google_provider_params]
-  provider.setCustomParameters({
-    user: "@nickname",
-  });
-}
-function googleSignInRedirectResult() {
-  // [START auth_google_signin_redirect_result]
+  provider.addScope("https://www.googleapis.com/auth/user.birthday.read");
+  provider.addScope("https://www.googleapis.com/auth/user.emails.read");
+  provider.addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
+  provider.addScope("https://www.googleapis.com/auth/userinfo.email");
+  provider.addScope("https://www.googleapis.com/auth/userinfo.profile");
+
   firebase
     .auth()
-    .getRedirectResult()
-    .then((result) => {
-      if (result.credential) {
-        /** @type {firebase.auth.OAuthCredential} */
-        let credential = result.credential;
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        let token = credential.accessToken;
-      }
-      // The signed-in user info.
-      let user = result.user;
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      // The email of the user's account used.
-      let email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      let credential = error.credential;
-    });
-}
-// Start a sign in process for an unauthenticated user.
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.addScope("profile");
-provider.addScope("email");
-firebase.auth().signInWithRedirect(provider);
+    .signInWithRedirect(provider)
+    .then(
+      firebase
+        .auth()
+        .getRedirectResult()
+        .then((result) => {
+          if (result.credential) {
+            /** @type {firebase.auth.OAuthCredential} */
+            const credential = result.credential;
+            const token = credential.accessToken;
+          }
+          const user = result.user;
+          route("/login");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const email = error.email;
+          const credential = error.credential;
+          if (
+            errorCode === "auth/credential-already-in-use" ||
+            errorCode === "auth/account-exists-with-different-credential" ||
+            email === "auth/credential-already-in-use" ||
+            email === "auth/email-already-in-use" ||
+            credential === "auth/credential-already-in-use" ||
+            credential === "auth/email-already-in-use"
+          ) {
+            alert("Você já é cadastrado em nossa plataforma!");
+          }
+        })
+    );
+};
+
+//* SIGN OUT  */
+firebase
+  .auth()
+  .signOut()
+  .then(() => {
+    // Sign-out successful.
+  })
+  .catch((error) => {
+    // An error happened.
+  });
 
 
 // Envie um e-mail de verificação de endereço a um usuário 
-
-// firebase.auth().currentUser.sendEmailVerification()
-//   .then(() => {
+// firebase.auth().currentUser.sendEmailVerification().then(() => {
 //     // Email verification sent!
-//     // ...
 //   });
+

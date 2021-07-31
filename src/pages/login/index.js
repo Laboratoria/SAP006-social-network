@@ -1,3 +1,6 @@
+import { SignIn, googleLogin } from '../../services/firebaseAuth.js';
+import { route } from "../../router.js";
+
 export const Login = () => {
   const rootElement = document.createElement("div");
   rootElement.setAttribute("class", "page")
@@ -26,54 +29,43 @@ export const Login = () => {
     </div> 
   </div>`;
 
-  rootElement.querySelector('#entrar').addEventListener('click', () => {
-    let usuario = document.getElementById('usuario').value;
-    let passwordLogin = document.getElementById('passwordLogin').value;
-    firebase
-        .auth()
-        .signInWithEmailAndPassword(usuario, passwordLogin)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log(user);
-            window.history.pushState({}, "", "/home")
-            const popstateEvent = new PopStateEvent("popstate", { state: {} })
-            dispatchEvent(popstateEvent)
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            alert('E-mail ou senha incorretos, por favor, verifique!')
-        });
+  const usuario = rootElement.querySelector('#usuario');
+  const passwordLogin = rootElement.querySelector('#senha');
+  const signInButton = rootElement.querySelector('#entrar');
 
-});
+  signInButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    SignIn(usuario.value, passwordLogin.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        window.history.pushState({}, "", "/home")
+        const popstateEvent = new PopStateEvent("popstate", { state: {} })
+        dispatchEvent(popstateEvent)
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        alert('E-mail ou senha incorretos, por favor, verifique!')
+      });
+  });
 
-  const botao = rootElement.querySelector("#cadastro")
-  botao.addEventListener("click", () => {
-      window.history.pushState({}, "", "/cadastro")
-      const popstateEvent = new PopStateEvent("popstate", { state: {} })
-      dispatchEvent(popstateEvent)
-  })
-  const botaoGoogle = rootElement.querySelector("#google-login")
-  botaoGoogle.addEventListener("click", console.log("funcionou o botao"))
+
+  const botaoCadastro = rootElement.querySelector("#cadastro");
+  const botaoGoogle = rootElement.querySelector("#google-login");
+
+  botaoCadastro.addEventListener("click", (e) => {
+    e.preventDefault();
+    route("/cadastro");
+  });
+
+  botaoGoogle.addEventListener("click", (e) => {
+    e.preventDefault();
+    googleLogin();
+  });
 
   return rootElement;
-}
-
-    //   const signButton = rootElement.querySelector("#button-sign-in")
-    //   signButton.addEventListener("click", () => {
-    //     window.history.pushState({}, "", "/register")
-    //     const popstateEvent = new PopStateEvent("popstate", {state:{}})
-    //     dispatchEvent(popstateEvent)
-    //   })
-
-    // console.log(rootElement)
-
-    // const signInButton = rootElement.querySelector("#signin-form");
-
-   
-
-
- 
+};
