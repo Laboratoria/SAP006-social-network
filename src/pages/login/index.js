@@ -1,19 +1,19 @@
-export default () => {
-// export const loginScreen = () => {
-  const loginScreenContainer = document.createElement('div');
+import { signIn } from '../../services/index.js';
 
-  const loginScreen = `
+export default () => {
+  const loginScreenContainer = document.createElement('div');
+  const loginScreenButtons = `
   <img class="logo" src="image/Logotipo(1).png">
   
-  <form action='/signUp'>
-    <input type="email" class="signIn-input" id="input-email" placeholder="E-mail">
-    <input type="password" class="signIn-input" id="input-password" placeholder="Senha">
+  <form>
+    <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
+    <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
 
-    <button type="submit" class="btn-login" id="enter-acc">Entrar</button>
+    <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
 
     <div class="signUp-link">
-      <span> Ainda não tem conta? </span>
-      <a href="/signUp"> CADASTRE-SE </a>
+      <span> Ainda não tem conta? </span> 
+      <a href="#signUp"> CADASTRE-SE </a>
     </div>
   </form>
 
@@ -21,13 +21,10 @@ export default () => {
   <button type="button" class="btn-google"> <span class="google-icon"></span> Google</button>
   `;
 
-  loginScreenContainer.innerHTML = loginScreen;
-  const main = document.getElementById('root');
-  main.appendChild(loginScreenContainer);
+  loginScreenContainer.innerHTML = loginScreenButtons;
 
-  // document.getElementById('enter-acc').addEventListener('click', () => {
-  //   window.history.pushState({ page_id: 2 }, null, '/signUp');
-  // });
+  const btnLogin = loginScreenContainer.querySelector('#enter-acc');
+  btnLogin.addEventListener('click', signIn);
 
-  return main;
+  return loginScreenContainer;
 };
