@@ -5,7 +5,7 @@ export const Feed = () => {
   rootElement.innerHTML = `
 <form action = "" id="postForm">
   <textarea id='postText' placeholder='O que você quer compartilhar?'></textarea>
-  <button type="submit" id='publicar' class='btn btn-small publish-btn purple'>Publicar</button>
+  <button id='publicar'>Publicar</button>
 </form>
 <section id='postado' class='posts-container'>
 
@@ -18,19 +18,26 @@ const post = {
   text: text,
   user_id: firebase.auth().currentUser.email,
   likes: [],
-  comments: []
+  comments: [],
 }
 const postsCollection = firebase.firestore().collection("posts");
-postsCollection.add(post);
+postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim que postar
+  rootElement.querySelector("#postText").value= "";
+  rootElement.querySelector('#postado').innerHTML = "";
+  loadPosts();
+  })
 })
 
 function addPost(post){
   const postTemplate = `
   <div id="${post.id}" class="div-postados">
-  ${post.data().text}
+  ${post.data().text}</br></br>
+ <img src="./images/like.png">${post.data().likes}  ${post.data().comments} 
+ <button id="deletar"> Deletar</button>
   </div>
   `
 rootElement.querySelector("#postado").innerHTML += postTemplate
+
 }
 
 function loadPosts() {
@@ -43,10 +50,16 @@ function loadPosts() {
 }
 loadPosts();
 
+function deletePost(postId){
+  const postsCollection=firebase.firestore().collection("posts")
+  postsCollection.doc(postId).delete().then(() => {
+    loadPosts();
+  })
+}
+
+//const btnDeletarPost = rootElement.querySelector("#deletar")
+//btnDeletarPost.addEventListener("click", deletePost);
+
 return rootElement;
- }
 
-
-
-
-
+}
