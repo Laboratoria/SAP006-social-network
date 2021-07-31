@@ -1,7 +1,5 @@
-import { signIn } from '../../services/index.js';
-// import { render } from '../../routes.js';
-
 export default () => {
+// export const loginScreen = () => {
   const loginScreenContainer = document.createElement('div');
 
   const loginScreen = `
@@ -24,16 +22,12 @@ export default () => {
   `;
 
   loginScreenContainer.innerHTML = loginScreen;
+  const main = document.getElementById('root');
+  main.appendChild(loginScreenContainer);
 
-  const enter = loginScreenContainer.querySelector('#enter-acc');
-  enter.addEventListener('click', signIn);
+  // document.getElementById('enter-acc').addEventListener('click', () => {
+  //   window.history.pushState({ page_id: 2 }, null, '/signUp');
+  // });
 
-  return loginScreenContainer;
+  return main;
 };
-
-// const main = document.getElementById('root');
-// main.appendChild(loginScreenContainer);
-
-// document.getElementById('enter-acc').addEventListener('click', () => {
-//   window.history.pushState({ page_id: 2 }, null, '/signUp');
-// });
