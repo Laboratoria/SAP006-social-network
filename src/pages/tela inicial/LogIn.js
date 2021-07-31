@@ -1,4 +1,4 @@
-import { signIn } from '../../lib/index.js';
+import { signIn } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -24,7 +24,11 @@ export default () => {
   loginScreenContainer.innerHTML = loginScreenButtons;
 
   const btnLogin = loginScreenContainer.querySelector('#enter-acc');
-  btnLogin.addEventListener('click', signIn);
+  btnLogin.addEventListener('click', () => {
+    const inputEmail = loginScreenContainer.querySelector('#input-email').value;
+    const inputPassword = loginScreenContainer.querySelector('#input-password').value;
+    signIn(inputEmail, inputPassword);
+  });
 
   return loginScreenContainer;
 };

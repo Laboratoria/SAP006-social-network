@@ -1,20 +1,29 @@
-// Este é o ponto de entrada da sua aplicação
-
 import loginScreen from './pages/tela inicial/LogIn.js';
-import routes from './routes.js';
+import feed from './pages/feed/feed.js';
+import perfil from './pages/perfil/perfil.js';
 
 const main = document.getElementById('root');
 
+const routes = () => {
+  window.addEventListener('hashchange', () => {
+    main.innerHTML = '';
+    switch (window.location.hash) {
+      case '':
+        main.appendChild(loginScreen());
+        break;
+      case '#feed':
+        main.appendChild(feed());
+        break;
+      case '#perfil':
+        main.appendChild(perfil());
+        break;
+      default:
+        break;
+    }
+  });
+};
+
 window.addEventListener('load', () => {
   main.appendChild(loginScreen());
-  // function signingIn() {
-  //   // const inputEmail = document.getElementById('input-email').value;
-  //   // const inputPassword = document.getElementById('input-password').value;
-  //   // signIn(inputEmail, inputPassword);
-  //   signIn();
-  // }
-
-  // const btnLogin = document.getElementById('enter-acc');
-  // btnLogin.addEventListener('click', signingIn);
   routes();
 });
