@@ -174,3 +174,15 @@ footer {
 	color:white;
 	border-radius: 25px;
 }
+
+/*Aqui teste do feed*/
+.feed-container{
+	text-align: center;
+}
+.div-postados{
+	border: 1px solid black;
+	width: 200px;
+	height: 100px;
+	margin: auto;
+	margin-top: 10px;
+}
