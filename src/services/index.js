@@ -31,20 +31,34 @@ export const createUser = async(email, password) =>{
   .createUserWithEmailAndPassword(email, password)
 }
 
-export const createUser = async(email, password) =>{
-  await firebase
-  .auth()
-  .createUserWithEmailAndPassword(email, password)
+const verifyUser = () => {
+  firebase.auth().onAuthStateChanged((currentUser) => {
+  if (currentUser) {
+    const uid = currentUser.uid;
+    console.log(uid);
+    window.history.pushState({}, null, "/feed");
+    //   // User is signed in
+    const popStateEvent = new PopStateEvent("popstate", { state: {} });
+    dispatchEvent(popStateEvent);
+  } else {
+    // User is signed out
+    console.log('usuária não cadastrada')
+  }
+});
 }
 
 export const signInEmailPassword = (email, password) => {
+  verifyUser();
   const signIn = firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      console.log(user);
+
     })
+
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
