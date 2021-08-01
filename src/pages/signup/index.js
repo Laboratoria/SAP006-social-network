@@ -76,22 +76,25 @@ export const signUp = () => {
 
   rootElement.innerHTML = container;
 
-  const nameUser = rootElement.querySelector('#username');
-  const emailUser = rootElement.querySelector('#useremail');
-  const passwordUser = rootElement.querySelector('#userpassword');
-  const confirmpassword = rootElement.querySelector('#user-confirm-password');
-  const telephoneUser = rootElement.querySelector('#usertelephone');
-  const signUpBtn = rootElement.querySelector('#btn-signup')
+  const userPicture = rootElement.querySelector('#profile-pic'),
+        userFullName = rootElement.querySelector('#name'),
+        username = rootElement.querySelector('#username'),
+        userEmail = rootElement.querySelector('#useremail'),
+        userPassword = rootElement.querySelector('#userpassword'),
+        userConfirmPassword = rootElement.querySelector('#user-confirm-password'),
+        userTelephone = rootElement.querySelector('#usertelephone'),
+        signUpBtn = rootElement.querySelector('#btn-signup')
 
-  signUpBtn.addEventListener('click', () => {
-
-    const valueName = nameUser.value;
-    const valueEmail = emailUser.value;
-    const valuePassword = passwordUser.value;
-    const valueConfirm = confirmpassword.value;
-    const valueTel = telephoneUser.value;
-      
-    createUserWithEmailAndPassword(valueName)
+  signUpBtn.addEventListener('click', () => {      
+    createUserWithEmailAndPassword(
+      userPicture.nodeValue,
+      userFullName,
+      username,
+      userEmail,
+      userPassword,
+      userConfirmPassword,
+      userTelephone
+    )
   })
 
 return rootElement

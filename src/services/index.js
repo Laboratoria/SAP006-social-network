@@ -24,6 +24,19 @@ export const createUserWithEmailAndPassword = () => {
     });
 };
 
+
+export const createUser = async(email, password) =>{
+  await firebase
+  .auth()
+  .createUserWithEmailAndPassword(email, password)
+}
+
+export const createUser = async(email, password) =>{
+  await firebase
+  .auth()
+  .createUserWithEmailAndPassword(email, password)
+}
+
 export const signInEmailPassword = (email, password) => {
   const signIn = firebase
     .auth()
