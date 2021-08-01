@@ -1,4 +1,4 @@
-// import { navigation } from './routes.js';
+import { navigation } from "../../routes.js";
 
 export const Welcome = () => {
 
@@ -31,21 +31,13 @@ export const Welcome = () => {
 
   const continueBtn = rootElement.querySelector('.btn-continue')
   continueBtn.addEventListener('click', () => {
-//   navigation('/conecte');
-  // })
-    window.history.pushState({}, null, '/conecte')
-
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
-    dispatchEvent(popStateEvent)
+  navigation('/conecte');
   });
 
   const skipBtn = rootElement.querySelector('.skip')
   skipBtn.addEventListener('click', (event) => {
     event.preventDefault()
-    window.history.pushState({}, null, '/login')
-
-    const popStateEvent = new PopStateEvent('popstate', {state:{}})
-    dispatchEvent(popStateEvent)
+    navigation('/login')
   })
   
   return rootElement;
