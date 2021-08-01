@@ -1,4 +1,4 @@
-// import { createUserWithEmailAndPassword } from "../../services";
+import { createAccount } from "../../services/index.js";
 
 export const signUp = () => {
   const rootElement = document.createElement('div');
@@ -14,28 +14,6 @@ export const signUp = () => {
   <div>
     <form class="form-register">
       <input
-        class="profile-pic"
-        type="file"
-        name="profile-pic"
-        id="profile-pic"
-        accept="image/jpeg, image/png, image/jpg"
-        capture="profile-pic">
-
-      <input
-        class="value-register"
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Nome completo">
-
-      <input
-        class="value-register"
-        type="text"
-        name="username"
-        id="username"
-        placeholder="Nome de usuário">
-
-      <input
         class="value-register"
         type="email"
         name="adress-email"
@@ -50,18 +28,11 @@ export const signUp = () => {
         placeholder="Senha">
 
       <input
-        class="value-register"
-        type="password"
-        name="confirm-user-password"
-        id="user-confirm-password"
-        placeholder="Confirme a senha">
-
-      <input
-        class="value-register"
-        type="tel"
-        name="user-telephone"
-        id="usertelephone"
-        placeholder="Celular">
+      class="value-register"
+      type="password"
+      name="confirm-user-password"
+      id="user-confirm-password"
+      placeholder="Confirme a senha">
 
     </form>
 
@@ -76,26 +47,49 @@ export const signUp = () => {
 
   rootElement.innerHTML = container;
 
-  const userPicture = rootElement.querySelector('#profile-pic'),
-        userFullName = rootElement.querySelector('#name'),
-        username = rootElement.querySelector('#username'),
-        userEmail = rootElement.querySelector('#useremail'),
-        userPassword = rootElement.querySelector('#userpassword'),
-        userConfirmPassword = rootElement.querySelector('#user-confirm-password'),
-        userTelephone = rootElement.querySelector('#usertelephone'),
-        signUpBtn = rootElement.querySelector('#btn-signup')
+  const userEmail = rootElement.querySelector('#useremail');
+  const userPassword = rootElement.querySelector('#userpassword');
+  const userConfirmPassword = rootElement.querySelector('#user-confirm-password');
+  const signUpBtn = rootElement.querySelector('#btn-signup');
 
-  signUpBtn.addEventListener('click', () => {      
-    createUserWithEmailAndPassword(
-      userPicture.nodeValue,
-      userFullName,
-      username,
-      userEmail,
-      userPassword,
-      userConfirmPassword,
-      userTelephone
-    )
+  signUpBtn.addEventListener('click', (event) => {
+    event.preventDefault(); 
+    createAccount(userEmail.value, userPassword.value, userConfirmPassword.value)
   })
 
 return rootElement
+
 }
+
+
+// <input
+//         class="profile-pic"
+//         type="file"
+//         name="profile-pic"
+//         id="profile-pic"
+//         accept="image/jpeg, image/png, image/jpg"
+//         capture="profile-pic">
+
+//       <input
+//         class="value-register"
+//         type="text"
+//         name="name"
+//         id="name"
+//         placeholder="Nome completo">
+
+//       <input
+//         class="value-register"
+//         type="text"
+//         name="username"
+//         id="username"
+//         placeholder="Nome de usuário">
+//         </input>
+
+
+  
+//         <input
+//         class="value-register"
+//         type="tel"
+//         name="user-telephone"
+//         id="usertelephone"
+//         placeholder="Celular">
