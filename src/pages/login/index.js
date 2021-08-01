@@ -69,10 +69,7 @@ export const Login = () => {
   const resetLink = rootElement.querySelector('#reset');
   resetLink.addEventListener("click", (event) => {
     event.preventDefault();
-
-    window.history.pushState({}, null, '/reset')
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
-    dispatchEvent(popStateEvent)
+    navigation('/reset');
   })
 
   return rootElement;  

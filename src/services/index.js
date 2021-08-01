@@ -1,26 +1,35 @@
 //senha
-export const createUserWithEmailAndPassword = () => {
+export const createAccount = (email, password, confirmPassword) => {
+  if (password !== confirmPassword) {
+    alert('Algo errado não está certo, verifique a senha digitada!');
+    return false;
+  }
+
   firebase
     .auth()
-    .createUserWithEmailAndPassword(
-      picture,
-      fullName,
-      username,
-      email,
-      password,
-      confirmPassword,
-      telephone
-    )
+    .createUserWithEmailAndPassword(email, password)
+    .then((user) => {
+      console.log(user);
+      // User is signed in
+      window.history.pushState({}, null, "/feed");
 
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
+      const popStateEvent = new PopStateEvent("popstate", { state: {} });
+      dispatchEvent(popStateEvent);
+    })
+    .then(() => {
+      firebase.auth().currentUser.sendEmailVerification()
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
+      if (errorCode === 'auth/email-already-in-use') {
+        alert('E-mail já cadastrado');
+      } else if (errorCode === 'auth/invalid-email') {
+        alert('E-mail inválido');
+      } else if (errorCode === 'auth/weak-password') {
+        alert('Senha fraca');
+      } else {
+        alert('Algo deu errado. Por favor, tente novamente.');
+      }
     });
 };
 
@@ -33,9 +42,6 @@ const verifyUser = () => {
     //   // User is signed in
     const popStateEvent = new PopStateEvent("popstate", { state: {} });
     dispatchEvent(popStateEvent);
-  } else {
-    // User is signed out
-    console.log('usuária não cadastrada')
   }
 });
 }
@@ -51,21 +57,24 @@ export const signInEmailPassword = (email, password) => {
       console.log(user);
 
     })
-
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      if (errorCode === "auth/wrong-password") {
-        alert("Senha incorreta.");
+
+      if (errorCode === 'auth/invalid-email') {
+        alert('Poxa, mana, digita um e-mail válido');
+      } else if (errorCode === 'auth/user-disabled') {
+        alert('ihhh... parece que essa conta foi desativada');
+      } else if (errorCode === 'auth/user-not-found') {
+        alert('Para tudooo, vai se cadastrar primeiro!');
+      } else if (errorCode === 'auth/wrong-password') {
+        alert('Deu ruim! A senha ou o e-mail estão errados...');
       } else {
-        alert(errorMessage);
+        alert('Algo deu errado. Por favor, tente novamente.');
       }
-      console.log(error);
     });
   return signIn;
 };
 
-// google
 export const signInGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -82,7 +91,6 @@ export const signInGoogle = () => {
       // ...
     })
     .catch((error) => {
-      // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
       // The email of the user's account used.
@@ -94,19 +102,14 @@ export const signInGoogle = () => {
 };
 
 export function keepLogged(persistence) {
-  // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.persistence)
   firebase
     .auth()
     .setPersistence(persistence)
     .then(() => {
       const provider = new firebase.auth();
-      // In memory persistence will be applied to the signed in Google user
-      // even though the persistence was set to 'none' and a page redirect
-      // occurred.
       return firebase.auth().signInWithRedirect(provider);
     })
     .catch((error) => {
-      // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
     });
@@ -117,7 +120,7 @@ export const resetPassword = (email) => {
     .auth()
     .sendPasswordResetEmail(email)
     .then(() => {
-      console.log("Password reset email sent successfully");
+      alert('Corre lá e muda sua senha, miga!');
     })
     .catch((error) => {
       const errorCode = error.code;
