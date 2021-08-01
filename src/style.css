@@ -181,8 +181,8 @@ footer {
 }
 .div-postados{
 	border: 1px solid black;
-	width: 200px;
-	height: 100px;
+	width: 300px;
+	/*height: 150px;*/
 	float: left;
 	margin-top: 10px;
 	margin-left: 10px;
@@ -191,4 +191,24 @@ footer {
 .div-postados img{
 	width: 20px;
 	height: 20px;
+}
+.user-post{
+	margin-top: 0;
+	margin-left: 1%;
+	font-size: 13px;
+	text-align: start;
+	background-color: white;
+}
+.likes-comments-bar{
+	margin-top: 10px;
+	margin-left: 1%;
+	font-size: 3px;
+	text-align: start;
+	background-color: white;
+}
+.likes-comments-bar button {
+	margin-left: 60%;
+}
+.icones{
+	display: inline;
 }

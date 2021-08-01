@@ -13,32 +13,52 @@ export const Feed = () => {
 rootElement.querySelector('#postForm').addEventListener('submit', function(event){
 event.preventDefault();
 const text = rootElement.querySelector('#postText').value;
+/*const postData = () => { laís, aqui estou tentando pegar a data e horário do post pra exibir por ordem de lançamento, vou mexer mais ainda.
+  const datapost = new Date();
+  return datapost.toLocaleString();
+}*/
+
 
 const post = {
   text: text,
   user_id: firebase.auth().currentUser.email,
+  data: [],
   likes: [],
   comments: [],
-}
+} 
+
 const postsCollection = firebase.firestore().collection("posts");
 postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim que postar
   rootElement.querySelector("#postText").value= "";
-  rootElement.querySelector('#postado').innerHTML = "";
+  rootElement.querySelector("#postado").innerHTML = "";
   loadPosts();
   })
 })
 
+
+
 function addPost(post){
+     
   const postTemplate = `
   <div id="${post.id}" class="div-postados">
-  ${post.data().text}</br></br>
- <img src="./images/like.png">${post.data().likes}  ${post.data().comments} 
- <button id="deletar"> Deletar</button>
+
+    <p class="user-post">Postado por ${firebase.auth().currentUser.email}</p>
+    ${post.data().text}</br></br>
+    <section class="likes-comments-bar">
+      <div class="icones" id="icone-like"><img src="./images/like.png"> ${post.data().likes}</div>
+      <div class="icones" id="icone-comment"><img src="./images/comment.png">  ${post.data().comments} </div>
+      <button id="deletar"> Deletar</button>
+    </section>
+    
+
   </div>
   `
-rootElement.querySelector("#postado").innerHTML += postTemplate
+  
+rootElement.querySelector("#postado").innerHTML += postTemplate;
 
 }
+
+
 
 function loadPosts() {
   const postsCollection = firebase.firestore().collection("posts")
@@ -50,8 +70,9 @@ function loadPosts() {
 }
 loadPosts();
 
+
 function deletePost(postId){
-  const postsCollection=firebase.firestore().collection("posts")
+  const postsCollection = firebase.firestore().collection("posts")
   postsCollection.doc(postId).delete().then(() => {
     loadPosts();
   })
