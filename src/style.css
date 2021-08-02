@@ -64,11 +64,14 @@
     margin-top: 20px;
   }
   
-  .divider::before,
-  .divider::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid rgb(180, 177, 177);
+
+  .btn-google {
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    width: 35vw;
+    height: 40px;
+    font-size: 15px;
   }
   
   .google-icon {
