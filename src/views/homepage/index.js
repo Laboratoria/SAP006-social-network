@@ -11,39 +11,39 @@ export const home = () => {
  `;
   container.innerHTML = template;
   container.querySelector('#postForm')
-  .addEventListener('submit', (event) => {
-    event.preventDefault();
-    const text = document.querySelector('#postText').value;
-    const post = {
-      text: text,
-      user_id: 'nessa',
-      likes: 0,
-      comments: []
-    };
-    const postsCollection = firebase.firestore().collection("posts");
-    postsCollection.add(post);
-  });
+    .addEventListener('submit', (event) => {
+      event.preventDefault();
+      const text = document.querySelector('#postText').value;
+      const post = {
+        text,
+        user_id: 'nessa',
+        likes: 0,
+        comments: [],
+      };
+      const postsCollection = firebase.firestore().collection('posts');
+      postsCollection.add(post);
+    });
 
   const addPosts = (post) => {
     const postTemplate = `
     <li id="${post.id}">
       ${post.data().text}
     </li>
-    `
+    `;
     container.querySelector('#postsList').innerHTML += postTemplate;
-  }
+  };
 
   const loadPosts = () => {
-    const postsCollection = firebase.firestore().collection("posts");
-    container.querySelector('#postsList').innerHTML = "Carregando...";
-    postsCollection.get().then(snap => {
-      container.querySelector('#postsList').innerHTML = "";
-      snap.forEach(post => {
-        addPosts(post)
-      })
-    })
-  }
+    const postsCollection = firebase.firestore().collection('posts');
+    container.querySelector('#postsList').innerHTML = 'Carregando...';
+    postsCollection.get().then((snap) => {
+      container.querySelector('#postsList').innerHTML = '';
+      snap.forEach((post) => {
+        addPosts(post);
+      });
+    });
+  };
 
-  loadPosts()  
+  loadPosts();
   return container;
 };
