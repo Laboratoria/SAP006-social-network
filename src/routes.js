@@ -14,7 +14,7 @@ export const router = () =>{
     "/": signin,
     "/login": signin,
     "/cadastro": signup,
-    "/cadastro-perfil": createprofile,
+    "/editar-perfil": createprofile,
     "/home": home,
     "/perfil": profile,
     "/recuperacao-senha": forgotpassword,
@@ -26,7 +26,7 @@ export const router = () =>{
     let path = window.location.pathname;
     let user = firebase.auth().currentUser;
 
-    if (!user && path == '/home') {
+    if (!user && (path == '/home'||path=="/editar-perfil")) {
       path = '/';
       window.history.replaceState(null, null, path);
     }

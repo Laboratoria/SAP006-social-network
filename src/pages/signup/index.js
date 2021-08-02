@@ -39,7 +39,7 @@ export default () => {
     let text
     createUser(registerEmail, registerPassword)
     .then(()=>{
-      window.history.pushState({}, "", "/cadastro-perfil")
+      window.history.pushState({}, "", "/editar-perfil")
       const popStateEvent = new PopStateEvent("popstate", {state:{}})
       dispatchEvent(popStateEvent)
     })
