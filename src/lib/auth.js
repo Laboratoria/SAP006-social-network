@@ -24,7 +24,7 @@ export const criarFirebaseconta = (email, senha, name) => {
 
       };
 
-
+firebase.auth().languageCode = 'PT_br';     
 export const loginWithEmailAndPassword = (email, pass) => {
   firebase.auth().signInWithEmailAndPassword(email, pass) 
   .then(() => {
@@ -37,6 +37,12 @@ export const loginWithEmailAndPassword = (email, pass) => {
 
 
 };
-
-  
-  
+ export const resetPassword = (email) => {
+   firebase.auth().sendPasswordResetEmail(email)
+   .then(()=>{
+     window.alert('Link enviado para o email')
+   })
+   .catch((error)=> {
+     window.alert(error)
+   })
+ }

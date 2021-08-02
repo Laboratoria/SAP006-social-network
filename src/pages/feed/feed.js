@@ -13,16 +13,16 @@ export const Feed = () => {
 rootElement.querySelector('#postForm').addEventListener('submit', function(event){
 event.preventDefault();
 const text = rootElement.querySelector('#postText').value;
-/*const postData = () => { laís, aqui estou tentando pegar a data e horário do post pra exibir por ordem de lançamento, vou mexer mais ainda.
-  const datapost = new Date();
-  return datapost.toLocaleString();
-}*/
 
+const postData = () => {
+  const data = new Date();
+  return data.toLocaleString();
+};
 
 const post = {
   text: text,
   user_id: firebase.auth().currentUser.email,
-  data: [],
+  data: postData(),
   likes: [],
   comments: [],
 } 
@@ -36,29 +36,36 @@ postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim qu
 })
 
 
-
 function addPost(post){
-     
   const postTemplate = `
   <div id="${post.id}" class="div-postados">
-
-    <p class="user-post">Postado por ${firebase.auth().currentUser.email}</p>
-    ${post.data().text}</br></br>
+    <p class="user-post">Postado por ${post.data().user_id} </br>
+    ${post.data().data} </p>
+    <p class="txt-post">${post.data().text}</p>
     <section class="likes-comments-bar">
       <div class="icones" id="icone-like"><img src="./images/like.png"> ${post.data().likes}</div>
       <div class="icones" id="icone-comment"><img src="./images/comment.png">  ${post.data().comments} </div>
-      <button id="deletar"> Deletar</button>
+      <button id="deletar" class="deletar"> Deletar</button>
     </section>
     
-
   </div>
   `
-  
+
 rootElement.querySelector("#postado").innerHTML += postTemplate;
 
+
+
+const btnDeletarPost = rootElement.querySelector("#deletar")
+btnDeletarPost.addEventListener("click", () => {
+  //const postId = `${post.id}`;
+  const postsCollection = firebase.firestore().collection("posts")
+  postsCollection.doc(post.id).delete().then(() => {
+    rootElement.querySelector("#postado").innerHTML = "";
+    loadPosts();
+  })
+})
+
 }
-
-
 
 function loadPosts() {
   const postsCollection = firebase.firestore().collection("posts")
@@ -71,16 +78,23 @@ function loadPosts() {
 loadPosts();
 
 
-function deletePost(postId){
+
+
+/*function deletePost(postId){
   const postsCollection = firebase.firestore().collection("posts")
   postsCollection.doc(postId).delete().then(() => {
     loadPosts();
   })
-}
+}*/
 
 //const btnDeletarPost = rootElement.querySelector("#deletar")
 //btnDeletarPost.addEventListener("click", deletePost);
 
-return rootElement;
+
+  return rootElement;
 
 }
+
+
+
+

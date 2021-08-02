@@ -212,3 +212,7 @@ footer {
 .icones{
 	display: inline;
 }
+.txt-post{
+	width: 100%;
+	height: 90px ;
+}

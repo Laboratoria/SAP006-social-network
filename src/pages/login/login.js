@@ -1,5 +1,6 @@
 import { loginWithEmailAndPassword } from "../../lib/auth.js";
 import { loginWithGoogle} from "../../lib/auth.js";
+import { resetPassword } from "../../lib/auth.js";
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -36,7 +37,7 @@ export const Login = () => {
     <div class="mt-4">
       <button class="login-additional bg-white cursor-pointer mb-1 c-2f4f4f f-roboto" id="button-login-with-google"> Ou conecte-se com o gmail</button>
       <br>
-      <button class="login-additional bg-white cursor-pointer mb-1 c-2f4f4f f-roboto"> Esqueceu a senha?</button>
+      <button class="login-additional bg-white cursor-pointer mb-1 c-2f4f4f f-roboto" id= "button-forgot-password"> Esqueceu a senha?</button>
     </div>
 
   </main>
@@ -66,7 +67,12 @@ export const Login = () => {
   loginWithEmailAndPassword(email, pass);
   })
 
-   
+
+  const btnResetPassword = rootElement.querySelector("#button-forgot-password");
+  btnResetPassword.addEventListener("click", () => {
+     const email = rootElement.querySelector('#input-email').value;
+    resetPassword(email);
+  })
 
 
   return rootElement;
