@@ -1,8 +1,8 @@
 import { onNavigate } from '../navigate.js';
 
 export const loginPersistence = () => {
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-}
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+};
 
 export async function loginWithGoogleAccount() {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -11,9 +11,9 @@ export async function loginWithGoogleAccount() {
       (onNavigate('/home'));
     }).catch((error) => {
       const message = error.message;
-      alert(message)
+      alert(message);
     });
-};
+}
 
 export const loginWithEmailAndPassword = (userEmail, userPassword) => {
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
@@ -30,7 +30,7 @@ export const createWithEmailAndPassword = (emailInput, passwordInput) => {
   firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user)
+      console.log(user);
       alert('Cadastro realizado com sucesso');
       onNavigate('/');
     })
@@ -38,7 +38,7 @@ export const createWithEmailAndPassword = (emailInput, passwordInput) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
-      alert('Falha ao cadastrar')
+      alert('Falha ao cadastrar');
     });
 };
 
@@ -46,7 +46,8 @@ export const verifyUser = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       const userId = user.uid;
-      onNavigate('/home')
+      onNavigate('/home');
+      console.log(userId);
     }
-  })
-}
+  });
+};
