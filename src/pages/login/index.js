@@ -3,7 +3,8 @@ import { signIn, signInWithGoogle } from '../../services/index.js';
 export default () => {
   const loginScreenContainer = document.createElement('div');
   const loginScreenButtons = `
-  <img class="logo" src="image/Logotipo(1).png">
+  <div class="body">
+  <img class="logo" src="image/logotipo.png">
   
   <form>
     <input type="email" id="input-email" placeholder="E-mail">
@@ -19,7 +20,7 @@ export default () => {
 
   <span class="divider"> ou entre com </span>
   <button type="button" class="btn-google" id="btn-google"> <span class="google-icon"></span> Google</button>
-  <p id="test">olá</p> 
+  <div>olá</div> 
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
