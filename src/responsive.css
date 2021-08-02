@@ -16,9 +16,17 @@
         padding: 0rem;
     }
 
+    .btn{
+        margin: 0rem;
+        padding: 0.8rem 0.1rem;
+        font-size:1.2rem;
+
+    }
+
     #gmail-btn{
         margin: 0rem;
         padding: 0.8rem 0.1rem;
+        font-size:1rem;
     }
     #bookish{
         margin: 0rem 30rem 28rem 0rem
@@ -46,6 +54,49 @@
         margin: 0rem 0rem 0rem 60vw;
         position: unset;
     }
+
+    .sidebar-user-img{
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .sidebar-text{
+        font-size:1.3rem;
+    }
+
+    #edit-profile-link{
+        
+        font-size:1.3rem;
+    }
+
+    .num{
+        width:2rem;
+        height: 2rem;
+    }
+    #sidebar-img-logout{
+        width:3rem;
+    }
+
+    .fieldset-forgot-password, .fieldset-create-profile{
+        width:50%;
+    }
+
+    #send-forgot-password, #send-profile{
+        margin-top:2rem;
+
+    }
+
+    .back-to-login{
+        top:5rem;
+        left:5rem;
+        width:15%;
+        font-size: 1.5rem;
+    }
+
+    #register-btn{
+        margin-top:1rem;
+    }
+  
 }
 @media (min-width: 1200px) and (max-width: 1400px) {
     .logo-container{
@@ -66,10 +117,21 @@
     .form{
         width:80%
     }
+    .sidebar{
+        width:25vw;
+    }
+    .home-container{
+        
+        width:75vw;
+    }
    
 }
 
 @media (max-width: 1024px) {
+    #sign-up, #signin-page, #create-profile, #forgot-password, #modal-sucessful{
+        background: linear-gradient(180deg,  #4c63a1 0%, #637cc0 25%,  #5d88b9 70%, #5E97AF 90% );
+    }
+
     .form-page{
         width:100vw; 
         min-height: 100vh;
@@ -108,21 +170,15 @@
     }
 
     .back-to-login{
-        margin: 0rem 60vw 25rem 0rem;
-        width: auto;
-        height: 3rem;
-        color: #bbafc9;
-        background-color: transparent;
-        border: none;
+        top:2rem;
+        left:2rem;
+        width:15%;
     }
     
-    .back-to-login-fp{
+    #back-to-login-fp{
         margin: 0rem 50vw 35rem 0rem;
         width: auto;
         height: 3rem;
-        color: #bbafc9;
-        background-color: transparent;
-        border: none;
     }
     
     #form-container-forgot-password, #form-create-profile{
@@ -136,18 +192,113 @@
         
     }
 
+    .fieldset-forgot-password, .fieldset-create-profile{
+        width:80%;
+    }
+
     #logout-btn{
         margin: 0rem 0rem 0rem 75vw;
         position: unset;
     }
+
+    .sidebar{
+        width:30vw;
+    }
+    .home-container{
+        
+        width:70vw;
+    }
+
+    
+  
     
 }
 
-@media (max-width: 768px) {
-
+@media (max-width:768px){
     .form{
         width:70%
     }
+  
+    .home-container{
+        
+        width:100vw;
+    }
+
+    .home-navbar{
+        display:block;
+        width:100vw;
+        position:fixed;
+        top:0;
+        left:0;
+        padding:2rem;
+        display:flex;
+        align-items:flex-start;
+        background-color:white;
+    }
+
+    .menu-mobile-btn{
+        border:none;
+    }
+
+    .menu-img{
+        width:3rem;
+    }
+
+    .close-mobile-sidebar{
+        display:block;
+    }
+
+  
+/* menu home modal */
+@media (max-width: 768px) and (min-width:576px){ 
+
+    
+
+    .sidebar-container{
+        width:50%;
+        height: 100vh;
+        position:fixed;
+        top:0;
+        left:0;
+        margin:0;
+        background: linear-gradient(359.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
+        padding:3rem;
+    }
+
+   
+    .mobile-menu{
+        width:100vw;
+        height: 100vh;
+        position:fixed;
+        top:0;
+        left:0;
+        color:white;
+        display: flex;
+        display:none;
+        margin:0;
+        padding:0;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 10;
+          
+    }
+
+    @keyframes sidebar {
+        from {
+          opacity: 0;
+          transform:translate3d(-60px, 0, 0)
+        }
+        to {
+          opacity: 1;
+          transform:translate3d(0, 0, 0)
+        }
+      }
+      
+      .sidebar-container{
+        animation:sidebar 0.5s;
+      }
+
+}
+
 }
 
 @media (max-width: 576px) {
@@ -155,4 +306,87 @@
     .form{
         width:80%
     }
+
+    .sidebar-container{
+        width:60%;
+        height: 100vh;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5rem ;
+    }
+   
+
+    .mobile-menu{
+        width:100vw;
+        position:fixed;
+        top:0;
+        right:0;
+        background: linear-gradient(359.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
+        color:white;
+        display: flex;
+        justify-content: center;
+        display:none;
+          
+    }
+
+    @keyframes sidebar {
+        from {
+          opacity: 0;
+          transform:translate3d(-60px, 0, 0)
+        }
+        to {
+          opacity: 1;
+          transform:translate3d(0, 0, 0)
+        }
+      }
+
+    .sidebar{
+        animation:sidebar 0.3s;
+    }
+
+    
+  
+  
+    
+}
+
+@media(max-width: 496px){
+    .sidebar-container{
+        width:80%;
+    }
+
+    .back-to-login{
+        top:0.2rem;
+        left:0.2rem;
+        width:20%;
+        font-size: 12px;
+    }
+    
+}
+
+@media(max-width: 320px){
+    .sidebar-user-img{
+        width: 10rem;
+        height: 10rem;
+    }
+    .user-information{
+        margin-top:1rem;
+    }
+
+    .sidebar-container{
+        margin-top:0;
+        justify-content: center;
+        align-items:center;
+    }
+
+    #gmail-btn{
+        padding:1.5rem 0.5rem
+    }
+    .logo-google{
+        margin-right:0.5rem;
+        padding:0;
+    }
+
+  
+
 }

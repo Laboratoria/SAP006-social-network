@@ -22,7 +22,7 @@ export default () => {
         <button type="button" class="btn" id="enter">Entrar</button>
         <p class="p-sign-in">Não tem uma conta? <a href="" class="forget-password-link" id="signup-link">Cadastre-se</a></p>    
         <p class="or">OU</p>
-        <button class="btn gmail-btn" type="button" id="gmail-btn"><p class="sign-google"><img class="logo-google" src="./img/logogoogle.png" class="logo-google"/>Entre com uma conta Google</p></button>
+        <button class="btn gmail-btn" type="button" id="gmail-btn"><img class="logo-google" src="./img/logogoogle.png" class="logo-google"/>Entre com uma conta Google</button>
       </form>
     </fieldset>
   </div>

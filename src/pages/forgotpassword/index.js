@@ -8,12 +8,12 @@ export default () => {
 
   const pageForgotPassword = `
    <div class="form-container" id="form-container-forgot-password">
-   <button class="back-to-login-fp">← Voltar</button>
+   <button class=" back-to-login" id="back-to-login-fp">← Voltar</button>
       <h1 class="h1">Esqueceu sua senha?</h1>
       <fieldset class="fieldset-forgot-password fieldset">
-        <form class="form" action="">
-        <input type="text" placeholder="Email" class="form-input" id="none"/>
-        <input type="email" placeholder="Email" class="form-input" id="input-email"/>
+        <form class="form"  action="">
+          <input type="text" placeholder="Email" class="form-input" id="none"/>
+          <input type="email" placeholder="Email" class="form-input" id="input-email"/>
           <button type="button" id="send-forgot-password" class="btn">Recuperar Senha</button>
         </form>
       </fieldset>
@@ -59,7 +59,7 @@ export default () => {
   } 
   })  
  })
- const backToLogin = sectionElement.querySelector(".back-to-login-fp")
+ const backToLogin = sectionElement.querySelector("#back-to-login-fp")
   backToLogin.addEventListener("click", (e) => {
     e.preventDefault
     window.history.pushState(null, null, "/login")
