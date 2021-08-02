@@ -1,91 +1,99 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;   
+@media (min-width:320px) and (max-width:480px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   
+  }
+  
+  .body {
+    background-color: #ef5734;
+    background-image: linear-gradient(315deg, #ef5734 0%, #ffcc2f 74%);
+  }
+  
+  .logo {
+    width: 50%;
+    margin: 50px auto auto auto;
+    display: block;
+  }
+  
+  #input-email, #input-password {
+    position: relative;
+    width: 250px;
+    height: 40px;
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #e47127;
+    border-radius: 5px;
+    padding: 15px;
+  }
+  
+  #input-email {
+    margin-top: 15%;
+  }
+  
+  #enter-acc {
+    position: relative;
+    width: 250px;
+    height: 40px;
+    display: block;
+    margin: 10px auto;
+    border: none;
+    border-radius: 5px;
+    background-color: #d3db3b;
+  }
+  
+  .credit {
+    position: absolute;
+    font-size: 12px;
+    bottom: 0px;
+    color: #e47127;
+  }
+  
+  .signUp-link {
+    display: block;
+    position: relative;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .divider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgb(180, 177, 177);
+  }
+  
+  .btn-google {
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    width: 35vw;
+    height: 40px;
+    font-size: 15px;
+  }
+  
+  .google-icon {
+    background: url("https://img.icons8.com/color/48/000000/google-logo.png") no-repeat;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: center center;
+    background-size: 25px;
+    margin: auto;
+    vertical-align: middle;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
 }
 
-.logo {
-  width: 50%;
-  margin: 50px auto auto auto;
-  display: block;
-}
-
-#input-email, #input-password {
-  position: relative;
-  width: 250px;
-  height: 40px;
-  display: block;
-  margin: 10px auto;
-  border: 1px solid #e47127;
-  border-radius: 5px;
-  padding: 15px;
-}
-
-#input-email {
-  margin-top: 15%;
-}
-
-#enter-acc {
-  position: relative;
-  width: 250px;
-  height: 40px;
-  display: block;
-  margin: 10px auto;
-  border: none;
-  border-radius: 5px;
-  background-color: #e47127;
-}
-
-.credit {
-  position: absolute;
-  font-size: 12px;
-  bottom: 0px;
-  color: #e47127;
-}
-
-.signUp-link {
-  display: block;
-  position: relative;
-  font-size: 12px;
-  text-align: center;
-}
-
-.divider {
-  position: relative;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid rgb(180, 177, 177);
-}
-
-.btn-google {
-  position: relative;
-  display: block;
-  margin: 10px auto;
-  width: 35vw;
-  height: 40px;
-  font-size: 15px;
-}
-
-.google-icon {
-  background: url("https://img.icons8.com/color/48/000000/google-logo.png") no-repeat;
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  background-position: center center;
-  background-size: 25px;
-  margin: auto;
-  vertical-align: middle;
-}
-
-button:hover {
-  cursor: pointer;
-}
 
