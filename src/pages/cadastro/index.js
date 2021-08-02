@@ -3,7 +3,7 @@ import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebas
 
 export const cadastro = () => {
   const rootElement = document.createElement('div');
-  rootElement.innerHTML = `<fieldset class="box">
+  rootElement.innerHTML = `<fieldset class='box' name='dados'>
  <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro"></legend>
  <form class="forms">
  <input type="text" id="nameUser" placeholder="Nome">
@@ -11,14 +11,14 @@ export const cadastro = () => {
  <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
  <input type="password" id="confPass" placeholder="Confirme sua senha">
 
-   <input class="register" type="submit" id="btnRegister" value="Cadastrar" />
+  <input class="register" type="submit" id="btnRegister" value="Cadastrar" />
  </form>
 
  <button type="submit" name="botao" id="enter">ENTRAR</button>   
 
  </fieldset>`;
 
-  //funções para receber dos dados de cadastro//
+  // funções para receber dos dados de cadastro//
   rootElement.querySelector('#enter').addEventListener('click', (e) => {
     e.preventDefault();
     const emailUser = rootElement.querySelector('#emailUser').value;
@@ -26,11 +26,10 @@ export const cadastro = () => {
     const nomeUsuario = rootElement.querySelector('#nameUser').value;
     cadastrarComEmailSenha(emailUser, passwordRegister)
       .then((userCredential) => {
-        let user = userCredential.user;
+        const user = userCredential.user;
         atualizarUsuario(nomeUsuario)
           .then((result) => {
             // Update successful
-            console.log(result)
           }).catch((error) => {
             // An error occurred
             // ...

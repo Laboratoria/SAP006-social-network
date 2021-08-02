@@ -1,13 +1,13 @@
-import { cadastro } from "./pages/cadastro/index.js";
-import { Login } from "./pages/login/index.js"
-import { home } from "./pages/home.js";
+import { cadastro } from './pages/cadastro/index.js';
+import { Login } from './pages/login/index.js';
+import { home } from './pages/home/index.js";
 
 const routRender = () => {
     const elemento = document.getElementById("root");
     const routes = {
         "/": Login,
         "/cadastro": cadastro,
-        "/home": home
+        "/home": home,
 
     }
     elemento.innerHTML = "";

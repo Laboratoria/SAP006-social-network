@@ -1,30 +1,26 @@
+/* eslint-disable no-alert */
+/* eslint-disable arrow-body-style */
 import { route } from "../router.js";
 
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
-  return firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister)
-
+  return firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister);
 };
 
-export const atualizarUsuario = (nome) =>
-  firebase.auth().currentUser.updateProfile({
-    displayName: nome,
-    return: atualizarUsuario
-  })
+export const atualizarUsuario = (nome) => firebase.auth().currentUser.updateProfile({
+  displayName: nome,
+  return: atualizarUsuario,
+});
 
-console.log(atualizarUsuario)
+// console.log(atualizarUsuario)
 
 // ** SIGN IN E-MAIL AND PASSOWORD //
 export const SignIn = (usuario, passwordLogin) => {
-  return firebase
-    .auth().
-    signInWithEmailAndPassword(usuario, passwordLogin);
+  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin);
 };
 
 export const stayLogged = () => {
   return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 };
-
-
 
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -41,12 +37,12 @@ export const stayLogged = () => {
 // ** SIGN IN GOOGLE //
 export const googleLogin = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-  provider.addScope("https://www.googleapis.com/auth/user.birthday.read");
-  provider.addScope("https://www.googleapis.com/auth/user.emails.read");
-  provider.addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
-  provider.addScope("https://www.googleapis.com/auth/userinfo.email");
-  provider.addScope("https://www.googleapis.com/auth/userinfo.profile");
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  provider.addScope('https://www.googleapis.com/auth/user.birthday.read');
+  provider.addScope('https://www.googleapis.com/auth/user.emails.read');
+  provider.addScope('https://www.googleapis.com/auth/user.phonenumbers.read');
+  provider.addScope('https://www.googleapis.com/auth/userinfo.email');
+  provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
 
   firebase
     .auth()
@@ -62,40 +58,38 @@ export const googleLogin = () => {
             const token = credential.accessToken;
           }
           const user = result.user;
-          route("/login");
+          route('/login');
         })
         .catch((error) => {
           const errorCode = error.code;
           const email = error.email;
           const credential = error.credential;
           if (
-            errorCode === "auth/credential-already-in-use" ||
-            errorCode === "auth/account-exists-with-different-credential" ||
-            email === "auth/credential-already-in-use" ||
-            email === "auth/email-already-in-use" ||
-            credential === "auth/credential-already-in-use" ||
-            credential === "auth/email-already-in-use"
+            errorCode === 'auth/credential-already-in-use'
+            || errorCode === 'auth/account-exists-with-different-credential'
+            || email === 'auth/credential-already-in-use'
+            || email === 'auth/email-already-in-use'
+            || credential === 'auth/credential-already-in-use'
+            || credential === 'auth/email-already-in-use'
           ) {
-            alert("Você já é cadastrado em nossa plataforma!");
+            alert('Você já é cadastrado em nossa plataforma!');
           }
-        })
+        }),
     );
 };
 
 //* SIGN OUT  */
-firebase
-  .auth()
-  .signOut()
-  .then(() => {
-    // Sign-out successful.
+export const outLogin = () => {
+  firebase.auth().signOut().then(() => {
+    alert('Volte logo!');
+    window.location.replace('/');
   })
-  .catch((error) => {
-    // An error happened.
-  });
+    .catch((error) => {
+      // An error happened.
+    });
+};
 
-
-// Envie um e-mail de verificação de endereço a um usuário 
+// Envie um e-mail de verificação de endereço a um usuário
 // firebase.auth().currentUser.sendEmailVerification().then(() => {
 //     // Email verification sent!
 //   });
-
