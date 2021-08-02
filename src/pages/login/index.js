@@ -1,6 +1,7 @@
+import { signIn, signInWithGoogle } from '../../services/index.js';
+
 export default () => {
   const loginScreenContainer = document.createElement('div');
-
   const loginScreenButtons = `
   <img class="logo" src="image/Logotipo(1).png">
   
@@ -22,9 +23,16 @@ export default () => {
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
- 
+
+  const btnLogin = loginScreenContainer.querySelector('#enter-acc');
+  btnLogin.addEventListener('click', () => {
+    const inputEmail = loginScreenContainer.querySelector('#input-email').value;
+    const inputPassword = loginScreenContainer.querySelector('#input-password').value;
+    signIn(inputEmail, inputPassword);
+  });
+
+  const btnGoogle = loginScreenContainer.querySelector('#btn-google');
+  btnGoogle.addEventListener('click', signInWithGoogle);
+
   return loginScreenContainer;
-
-  
-
 };
