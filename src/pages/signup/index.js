@@ -15,29 +15,30 @@ export const SignUp = () => {
         <span class='opt-signup linkSignUp'>Cadastro</span>
       </header>
       <section class='form-container'>
-      <form>
-        <div class='form-fields'>
-          <label for='email'>E-mail</label>
-          <input id='email' type='e-mail' class='input-email'>
-          
-          <label class='label-login' for='password'>Senha:</label>
-          <input id='password' type='password' class='input-password'>
-        </div>
+        <form>
+          <div class='form-fields'>
+            <label for='email'>E-mail</label>
+            <input id='email' type='e-mail' class='input-email'>
+            
+            <label class='label-login' for='password'>Senha:</label>
+            <input id='password' type='password' class='input-password'>
+          </div>
 
           <button type='button' id='signUpButton' class='btn-signup btn form-item'>Cadastrar</button>
           <button type='button' id='btnGmail' class='btnGmail btn form-item'>
-              <img src='./img/logo-google.png' class='google-icon'></img>
-                <span>Entrar com o Google</span>
+            <img src='./img/logo-google.png' class='google-icon'></img>
+            <span>Entrar com o Google</span>
           </button>
-      </form>
-  </section>
+        </form>
+      </section>
+    </section>
   </main>
   `;
 
   const btnLogin = root.querySelector('.opt-login');
   const btnSignUp = root.querySelector('#signUpButton');
   const btnGoogle = root.querySelector('#btnGmail');
-  
+
   btnLogin.addEventListener('click', () => {
     window.history.pushState({}, '', '/');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
@@ -45,7 +46,6 @@ export const SignUp = () => {
   })
 
   btnSignUp.addEventListener('click', () => {
-    /*window.history.pushState({}, '', '/feed');*/
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     signUpWithGoogle(email, password);
@@ -54,6 +54,6 @@ export const SignUp = () => {
   btnGoogle.addEventListener('click', () => {
     loginWithGmail();
   });
-    
+
   return root;
 }
