@@ -1,4 +1,4 @@
-import { signIn } from '../../services/index.js';
+import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -20,14 +20,21 @@ export default () => {
   <div class="divider">
     <hr> 
     <span class="hr-label"> ou entre com </span>
-    <button type="button" class="btn-google"> <span class="google-icon"></span> Google</button>
+    <button type="button" id="btn-google" class="btn-google"> <span class="google-icon"></span> Google</button>
   </div>
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
 
   const btnLogin = loginScreenContainer.querySelector('#enter-acc');
-  btnLogin.addEventListener('click', signIn);
+  btnLogin.addEventListener('click', () => {
+    const inputEmail = loginScreenContainer.querySelector('#input-email').value;
+    const inputPassword = loginScreenContainer.querySelector('#input-password').value;
+    signIn(inputEmail, inputPassword);
+  });
+
+  const btnGoogle = loginScreenContainer.querySelector('#btn-google');
+  btnGoogle.addEventListener('click', signInWithGoogle);
 
   return loginScreenContainer;
 };

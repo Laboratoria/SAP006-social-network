@@ -1,11 +1,11 @@
-// Este é o ponto de entrada da sua aplicação
 import loginScreen from './pages/login/index.js';
+import feed from './pages/feed/index.js';
+import profile from './pages/profile/index.js';
 import signUpScreen from './pages/signUp/index.js';
-import profileScreen from './pages/profile/index.js';
 
 const main = document.getElementById('root');
 
-const render = () => {
+const routes = () => {
   window.addEventListener('hashchange', () => {
     main.innerHTML = '';
     switch (window.location.hash) {
@@ -16,16 +16,18 @@ const render = () => {
         main.appendChild(signUpScreen());
         break;
       case '#profile':
-        main.appendChild(profileScreen());
+        main.appendChild(profile());
+        break;
+      case '#feed':
+        main.appendChild(feed());
         break;
       default:
         main.appendChild(loginScreen());
-        break;
     }
   });
 };
 
 window.addEventListener('load', () => {
   main.appendChild(loginScreen());
-  render();
+  routes();
 });
