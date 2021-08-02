@@ -17,10 +17,14 @@ export default () => {
   </form>
 
   <span class="divider"> ou entre com </span>
-  <button type="button" class="btn-google"> <span class="google-icon"></span> Google</button>
+  <button type="button" class="btn-google" id="btn-google"> <span class="google-icon"></span> Google</button>
+  <p id="test">olá</p> 
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
-
+ 
   return loginScreenContainer;
+
+  
+
 };
