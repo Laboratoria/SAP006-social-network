@@ -5,12 +5,12 @@
 }
 
 .logo {
-  width: 50%;
+  width: 160px;
   margin: 50px auto auto auto;
   display: block;
 }
 
-#input-email, #input-password {
+.signIn-input, .signUp-input {
   position: relative;
   width: 250px;
   height: 40px;
@@ -22,10 +22,10 @@
 }
 
 #input-email {
-  margin-top: 15%;
+  margin-top: 40px;
 }
 
-#enter-acc {
+.btn-login {
   position: relative;
   width: 250px;
   height: 40px;
@@ -36,42 +36,41 @@
   background-color: #e47127;
 }
 
-.credit {
-  position: absolute;
-  font-size: 12px;
-  bottom: 0px;
-  color: #e47127;
-}
-
 .signUp-link {
   display: block;
   position: relative;
   font-size: 12px;
   text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.hr-label {
+  position: absolute;
+  display: block;
+  left:50%;
+  transform: translate(-50%, -60%);
+  background-color: white;
+  padding: 3px;
 }
 
 .divider {
-  position: relative;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
-.divider::before,
+/* .divider::before,
 .divider::after {
   content: '';
   flex: 1;
   border-bottom: 1px solid rgb(180, 177, 177);
-}
+} */
 
 .btn-google {
   position: relative;
   display: block;
-  margin: 10px auto;
+  margin: 20px auto;
   width: 35vw;
   height: 40px;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .google-icon {
@@ -85,7 +84,23 @@
   vertical-align: middle;
 }
 
+.small-logo{
+  width: 25%;
+  margin: 25px auto 10px auto;
+  display: block;
+}
+
+.title-createAcc {
+  text-align: center;
+}
+
+#notice {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
 button:hover {
   cursor: pointer;
 }
-
