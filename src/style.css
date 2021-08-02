@@ -307,6 +307,8 @@ font-size: 3rem;
     text-align: center;
     display: flex;
     padding: 1rem;
+    background-color: purple;
+    flex-direction: column;
 }
 
 .content-area{
@@ -329,6 +331,19 @@ font-size: 3rem;
 .new-review{
     padding: 1rem;
 }
+
+.review-book{
+    padding: 1rem;
+}
+
+.review-author{
+    padding: 1rem;
+}
+
+.review-author{
+    padding: 1rem;
+}
+
 .logout-img{
     width: 3rem;
     margin: 0.2rem 0rem 0rem 0rem;
