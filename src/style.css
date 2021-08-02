@@ -5,7 +5,7 @@
 }
 
 .logo {
-  width: 50%;
+  width: 160px;
   margin: 50px auto auto auto;
   display: block;
 }
@@ -22,7 +22,7 @@
 }
 
 #input-email {
-  margin-top: 15%;
+  margin-top: 40px;
 }
 
 .btn-login {
@@ -36,34 +36,33 @@
   background-color: #e47127;
 }
 
-.credit {
-  position: absolute;
-  font-size: 12px;
-  bottom: 0px;
-  color: #e47127;
-}
-
 .signUp-link {
   display: block;
   position: relative;
   font-size: 12px;
   text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.hr-label {
+  position: absolute;
+  display: block;
+  left:50%;
+  transform: translate(-50%, -60%);
+  background-color: white;
+  padding: 3px;
 }
 
 .divider {
-  position: relative;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
-.divider::before,
+/* .divider::before,
 .divider::after {
   content: '';
   flex: 1;
   border-bottom: 1px solid rgb(180, 177, 177);
-}
+} */
 
 .btn-google {
   position: relative;
@@ -93,6 +92,13 @@
 
 .title-createAcc {
   text-align: center;
+}
+
+#notice {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
 button:hover {

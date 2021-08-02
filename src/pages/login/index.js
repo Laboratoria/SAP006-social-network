@@ -17,8 +17,11 @@ export default () => {
     </div>
   </form>
 
-  <span class="divider"> ou entre com </span>
-  <button type="button" class="btn-google"> <span class="google-icon"></span> Google</button>
+  <div class="divider">
+    <hr> 
+    <span class="hr-label"> ou entre com </span>
+    <button type="button" class="btn-google"> <span class="google-icon"></span> Google</button>
+  </div>
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;

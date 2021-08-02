@@ -1,16 +1,22 @@
-// export {firebase.auth().createUserWithEmailAndPassword(email, password)}
+const db = firebase.firestore();
 
-export const signUp = (email, password, errorMessage) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      window.location.hash = '#profile';
-      // ..
+export const signUp = (email, password, errorMessage, name) => {
+  db.collection('users').doc().set({
+    name,
+    email,
+  })
+    .then(() => {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.hash = '#profile';
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          return errorMessage(errorCode);
+        });
     })
     .catch((error) => {
-      const errorCode = error.code;
-      return errorMessage(errorCode);
+      errorMessage('Error writing document: ', error);
     });
 };
 
@@ -33,7 +39,7 @@ export const signOut = () => {
   firebase.auth().signOut().then(() => {
     // Sign-out successful.
   }).catch((error) => {
-    console.log("saiii");
+    console.log('saiii');
     // An error happened.
   });
 };
