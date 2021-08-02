@@ -45,7 +45,7 @@ function addPost(post){
     <section class="likes-comments-bar">
       <div class="icones" id="icone-like"><img src="./images/like.png"> ${post.data().likes}</div>
       <div class="icones" id="icone-comment"><img src="./images/comment.png">  ${post.data().comments} </div>
-      <button id="deletar" class="deletar"> Deletar</button>
+      <button id="deletar" class="delete-button" value="${post.id}"> Deletar</button>
     </section>
     
   </div>
@@ -53,19 +53,7 @@ function addPost(post){
 
 rootElement.querySelector("#postado").innerHTML += postTemplate;
 
-
-
-const btnDeletarPost = rootElement.querySelector("#deletar")
-btnDeletarPost.addEventListener("click", () => {
-  //const postId = `${post.id}`;
-  const postsCollection = firebase.firestore().collection("posts")
-  postsCollection.doc(post.id).delete().then(() => {
-    rootElement.querySelector("#postado").innerHTML = "";
-    loadPosts();
-  })
-})
-
-}
+};
 
 function loadPosts() {
   const postsCollection = firebase.firestore().collection("posts")
@@ -73,27 +61,53 @@ function loadPosts() {
     snap.forEach(post => {
       addPost(post);
     })
+
+    const deleteButtons = rootElement.querySelectorAll(".delete-button")
+    deleteButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const buttonValue = button.value;
+        const deleteConfirmation = confirm("Você realmente gostaria de deletar este post?");
+        if (deleteConfirmation)
+          deletePost(buttonValue);
+        else
+          return false;
+      })
+    })
+    const likeButtons = rootElement.querySelectorAll(".like-button")
+    likeButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const buttonValue = button.value;
+        likePost(buttonValue)
+        console.log(buttonValue)
+        
+      })
+    })
   })
 }
-loadPosts();
 
-
-
-
-/*function deletePost(postId){
+function deletePost(postId){
   const postsCollection = firebase.firestore().collection("posts")
   postsCollection.doc(postId).delete().then(() => {
+    rootElement.querySelector("#postado").innerHTML = "";
     loadPosts();
   })
-}*/
+}
 
-//const btnDeletarPost = rootElement.querySelector("#deletar")
-//btnDeletarPost.addEventListener("click", deletePost);
-
-
-  return rootElement;
+function likePost(postId) {
+  const increment = firebase.firestore.FieldValue.increment(1);
+  const postsCollection = firebase.firestore().collection("posts").doc(postId)
+  postsCollection.update({likes:increment})
+  rootElement.querySelector("#postado").innerHTML = "";
+  loadPosts();
 
 }
+loadPosts();
+return rootElement;
+
+}
+
+
+
 
 
 
