@@ -30,7 +30,7 @@ export default () => {
       </main>
     `;
 
-    const name = document.getElementById('name');
+    const profileName = document.getElementById('name');
     const email = document.getElementById('email');
     const password = document.getElementById('password');
     const passwordConfirm = document.getElementById('password-confirm');
@@ -42,7 +42,7 @@ export default () => {
   signUpButtonRegister.addEventListener('click', (e) => {
     e.preventDefault();
     console.log('funcionou');
-    loginWithEmail(email.value, password.value)
+    loginWithEmail(email.value, password.value, profileName.value)
   });
 
   // BOTÃO DE VOLTAR PARA PÁGINA DE LOGIN

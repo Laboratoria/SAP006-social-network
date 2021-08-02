@@ -24,13 +24,21 @@ export const signOut = () => {
   location.reload();
 }
 
-export const loginWithEmail = (email, password) => {
+export const loginWithEmail = (email, password, profileName) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        if(password) {
-          const user = userCredential.user;
-          window.location.hash = 'timeline';
-          console.log('senhas corretas', name + user);
-        }
-    })
-}
+    .then((result) => {
+      const user = result.user;
+      const userUp = firebase.auth().currentUser;
+      userUp.updateProfile({
+        displayName: profileName,
+        photoURL: 'urlImg',
+      });
+      firebase.firestore().collection('users').doc(user.email)
+        .set({
+          name: profileName,
+          id: user.uid,
+          photo: 'botão add url photo',
+        });
+      console.log(user);
+    });
+};

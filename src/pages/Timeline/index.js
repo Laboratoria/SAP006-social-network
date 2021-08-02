@@ -22,7 +22,9 @@ export default () => {
 
     <ul class="inside-menu">
       <li>
-        <img src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
+        <img id="preview" src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
+        <input type="file" id="photo" class="inputImg">
+        <button id="uploadImage" class="buttonImg">Alterar Foto Perfil</button>
       </li>
       <li>
         <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
@@ -145,6 +147,32 @@ export default () => {
         });
     }
   }
+
+  // Adicionando foto do perfil
+  const uploadImage = document.querySelector('#uploadImage');
+  uploadImage.addEventListener('click', () => {
+    console.log('botão de upa img');
+    const ref = firebase.storage().ref();
+    const file = document.querySelector('#photo').files[0];
+    const name = new Date() + '-' + file.name
+    const metadata = {
+      contentType: file.type,
+    };
+    const task = ref.child(name).put(file, metadata);
+    task
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then(url => {
+        console.log(url);
+        console.log('imagem upada');
+        const image = document.querySelector('#preview');
+        image.src = url;
+        const userUp = firebase.auth().currentUser;
+        userUp.updateProfile({
+          photoURL: url,
+        });
+        location.reload();
+      });
+  });
 
   // Mostrando os posts na tela
   function loadPosts() {
