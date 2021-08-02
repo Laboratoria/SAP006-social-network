@@ -1,6 +1,8 @@
-import loginScreen from './pages/tela inicial/LogIn.js';
+import loginScreen from './pages/login/index.js';
 import feed from './pages/feed/feed.js';
 import perfil from './pages/perfil/perfil.js';
+
+// Este é o ponto de entrada da sua aplicação
 
 const main = document.getElementById('root');
 

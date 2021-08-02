@@ -1,4 +1,4 @@
-import { signIn } from '../../services/index.js';
+import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -18,7 +18,8 @@ export default () => {
   </form>
 
   <span class="divider"> ou entre com </span>
-  <button type="button" class="btn-google"> <span class="google-icon"></span> Google</button>
+  <button type="button" class="btn-google" id="btn-google"> <span class="google-icon"></span> Google</button>
+  <p id="test">olá</p> 
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
@@ -29,6 +30,9 @@ export default () => {
     const inputPassword = loginScreenContainer.querySelector('#input-password').value;
     signIn(inputEmail, inputPassword);
   });
+
+  const btnGoogle = loginScreenContainer.querySelector('#btn-google');
+  btnGoogle.addEventListener('click', signInWithGoogle);
 
   return loginScreenContainer;
 };
