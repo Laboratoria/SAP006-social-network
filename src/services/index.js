@@ -70,7 +70,7 @@ export const signInWithGoogle = () => {
         token: result.credential.accessToken,
         user: result.user,
       };
-      console.log(credentials);
+      window.location.hash = '#feed';
       return credentials;
     })
     .catch((error) => {
