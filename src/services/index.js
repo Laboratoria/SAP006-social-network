@@ -1,19 +1,22 @@
-// export {firebase.auth().createUserWithEmailAndPassword(email, password)}
+const db = firebase.firestore();
 
-export const cadastro = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-      console.log('Cadastroooo!!');
-      // ...
+export const signUp = (email, password, errorMessage, name) => {
+  db.collection('users').doc().set({
+    name,
+    email,
+  })
+    .then(() => {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          window.location.hash = '#profile';
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          return errorMessage(errorCode);
+        });
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('Deu errado', errorCode, errorMessage);
-      // ..
+      errorMessage('Error writing document: ', error);
     });
 };
 
@@ -23,10 +26,7 @@ export const signIn = (email, password) => {
       // Signed in
       const user = userCredential.user;
       console.log(user);
-      console.log('logou!!');
       window.location.hash = '#feed';
-      // window.history.pushState('./lib/index2.html');
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -46,19 +46,6 @@ export const signIn = (email, password) => {
       }
     });
 };
-
-// export const signIn = () => {
-//   console.log("heyyy");
-//   window.location.hash = '#feed';
-// };
-
-// firebase.auth().signOut().then(() => {
-//   // Sign-out successful.
-// }).catch((error) => {
-//   // An error happened.
-// });
-
-// export default cadastro();
 
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -81,4 +68,13 @@ export const signInWithGoogle = () => {
         alert(error.message);
       }
     });
+};
+
+export const signOut = () => {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    console.log(error);
+    // An error happened.
+  });
 };
