@@ -1,200 +1,398 @@
 body {
 	width: 100%;
 	margin: 0%;
-	text-align:center;
+	text-align: center;
 	font-family: "Roboto";
-	color:#025159;
+	color: #025159;
 	background-color: #edeae5;
-}
-
-.login-container, .register-container {
+  }
+  
+  .login-container,
+  .register-container {
 	height: 100vh;
 	display: flex;
-	
-}
-
-.login-container {
+  }
+  
+  .login-container {
 	background-image: url("./images/testeee.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-}
-
-.register-container{
+  }
+  
+  .register-container {
 	background-image: url("./images/tesste.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-}
-
-.login-left-section {
+  }
+  
+  .login-left-section {
 	width: 35%;
 	height: 90vh;
 	margin-top: 3%;
 	margin-left: 33%;
 	border-radius: 25px;
-	background-color: rgba(255, 255, 255, 0.5);	
-}
-
-.login-right-section{
+	background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .login-right-section {
 	margin: auto;
 	width: 50%;
-}
-
-.login-left-section header {
+  }
+  
+  .login-left-section header {
 	margin-bottom: 5%;
-	padding:1.5% 2%;
-	text-align:start;
+	padding: 1.5% 2%;
+	text-align: start;
 	font-size: 90%;
 	cursor: pointer;
-}
-
-.login-left-section img {
+  }
+  
+  .login-left-section img {
 	width: 75%;
 	margin-bottom: 8%;
-}
-
-.login-right-section img{
+  }
+  
+  .login-right-section img {
 	margin-top: auto;
 	margin-left: -30%;
 	max-width: 100%;
 	border-radius: 4%;
-}
-
-.login-left-section button, .login-left-section input{
+  }
+  
+  .login-left-section button,
+  .login-left-section input {
 	font-family: "Roboto";
-	color:#025159;
+	color: #025159;
 	outline: none;
 	cursor: pointer;
 	border-radius: 25px;
-}
-
-.login-btn-sig-log button, .login-left-section input{
+  }
+  
+  .login-btn-sig-log button,
+  .login-left-section input {
 	font-size: 110%;
 	font-weight: 500;
-	box-shadow:0 4px 20px rgba(10, 54, 37, 0.4);
-}
-
-.login-btn-sig-log button {
+	box-shadow: 0 4px 20px rgba(10, 54, 37, 0.4);
+  }
+  
+  .login-btn-sig-log button {
 	width: 30%;
-	padding: 2% 2%;	
+	padding: 2% 2%;
 	margin-bottom: 5%;
 	margin-right: 2.5%;
 	border: solid 0pt;
 	color: white !important;
 	background-color: #025159;
-}
-
-
-.login-left-section button:hover {
+  }
+  
+  .login-left-section button:hover {
 	transform: translateX(-2px);
-}
-
-.login-btn-sig-log button:hover{
-	box-shadow:0 4px 30px rgba(10, 54, 37, 0.95);
-}
-
-.register-btn-register{
+  }
+  
+  .login-btn-sig-log button:hover {
+	box-shadow: 0 4px 30px rgba(10, 54, 37, 0.95);
+  }
+  
+  .register-btn-register {
 	margin-top: -2%;
-}
-
-.login-left-section input {
+  }
+  
+  .login-left-section input {
 	width: 60%;
-	padding: 3% 3% 1% 3%;	
+	padding: 3% 3% 1% 3%;
 	margin-bottom: 1%;
 	border: solid 1pt;
-}
-
-.login-left-section form {
+  }
+  
+  .login-left-section form {
 	position: relative;
-}
-
-.login-input-label {
+  }
+  
+  .login-input-label {
 	position: absolute;
 	left: 20%;
 	margin-top: 1.8%;
-}
-
-.login-left-section input:focus ~ .login-input-label,
-.login-left-section input:valid ~ .login-input-label,
-.login-input-label-up {
+  }
+  
+  .login-left-section input:focus ~ .login-input-label,
+  .login-left-section input:valid ~ .login-input-label,
+  .login-input-label-up {
 	font-size: 65%;
 	margin-top: 0.8%;
-	color:grey;
-}
-
-.login-left-section input:focus {
-	border:solid 2pt;
-}
-
-.login-additionals button {	
+	color: grey;
+  }
+  
+  .login-left-section input:focus {
+	border: solid 2pt;
+  }
+  
+  .login-additionals button {
 	font-size: 90%;
 	border: 0pt;
 	background-color: transparent;
-}
-
-.transparent {
+  }
+  
+  .transparent {
 	color: transparent;
-}
-
-.login-input-has-an-error{
+  }
+  
+  .login-input-has-an-error {
 	border: #ff6666 solid 1.5pt !important;
 	background-color: #ffe6e6;
-}
-
-.login-error-div{
-	margin-top:-1.5%;
-}
-
-.login-error{
-	color:#ff3333;
+  }
+  
+  .login-error-div {
+	margin-top: -1.5%;
+  }
+  
+  .login-error {
+	color: #ff3333;
 	font-weight: 500;
-}
-
-.login-left-section footer {
+  }
+  
+  .login-left-section footer {
 	margin-top: 3%;
 	font-size: 80%;
-}
-
-.register-footer{
+  }
+  
+  .button-submit button {
+	width: 30%;
+	padding: 2% 0%;
+	background-color: #025159;
+	color: white;
+	border-radius: 25px;
+  }
+  
+  .register-footer {
 	position: relative;
-	bottom:0%;
-}
-
-.feed-container{
-	text-align: center;
-}
-.div-postados{
-	border: 1px solid black;
+	bottom: 0%;
+  }
+  
+  * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+  }
+  
+  .aside {
+	display: flex;
+	position: fixed;
+	width: 200px;
+	height: 2000px;
+	flex-direction: column;
+  }
+  
+  .icons {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+	color: grey;
+	margin-top: 300px;
+	margin-left: -100px;
+  }
+  
+  .icons img {
+	width: 25px;
+	height: 25px;
+	margin: 25px;
+  }
+  
+  .text-icon {
+	display: flex;
+	position: relative;
+	margin-left: 140px;
+	margin-top: -40px;
+  }
+  
+  .wrap {
+	margin: 0 auto;
+	margin-left: 380px;
+	margin-top: 15px;
+	height: 180px;
+	width: 880px;
+	position: absolute;
+	overflow: hidden;
+  }
+  
+  .slider {
+	padding-left: 40px;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden;
+	scroll-behavior: smooth;
+  }
+  
+  .storie-img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: transparent;
+	border-radius: 24px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 50%;
+	border-image-source: linear-gradient(to bottom, #025159, grey);
+	border-image-slice: 1;
+	background-image: linear-gradient(to bottom, #f9e6e6, #c5e0c3),
+	  linear-gradient(to bottom, #025159, #f9e6e6);
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+  }
+  
+  #previous,
+  #next {
+	cursor: pointer;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  
+	top: calc(45% - 25px);
+	left: -10px;
+  }
+  
+  #next {
+	left: unset;
+	right: 30px;
+  }
+  
+  .photo {
+	margin: 0 auto;
+	width: 120px;
+	height: 120px;
+	border: 1px solid rgb(175, 30, 30);
+	border-radius: 50%;
+	outline: none;
+	cursor: pointer;
+  }
+  
+  #input-file-profileImg {
+	  opacity: 0;
+  }
+  
+  .icon-principal img {
+	max-width: 300px;
+	max-height: 300px;
+	width: auto;
+	height: auto;
+	top: 0;
+  }
+  
+  .post-container {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	position: relative;
+	top: 225px;
+	justify-content: center;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin-left: 25%;
+  }
+  
+  .post {
+	border: black solid 1px;
 	width: 300px;
-	/*height: 150px;*/
-	float: left;
-	margin-top: 10px;
-	margin-left: 10px;
-	background-color: lightblue;
-}
-.div-postados img{
+	height: 350px;
+	border-radius: 15px;
+  }
+  
+  .break {
+	flex-basis: 100%;
+	height: 0;
+  }
+  
+  #button-signout {
+	border: none !important;
+	background-color: transparent !important;
+	color: grey;
+	cursor: pointer;
+  }
+  
+  .button-submit button {
+	width: 30%;
+	padding: 2% 0%;
+	background-color: #025159;
+	color: white;
+	border-radius: 25px;
+  }
+  
+  /*Aqui teste do feed*/
+  
+  .feed-container {
+	text-align: center;
+  }
+  .div-postados img {
 	width: 20px;
 	height: 20px;
-}
-.user-post{
-	margin-top: 0;
-	margin-left: 1%;
-	font-size: 13px;
-	text-align: start;
-	background-color: white;
-}
-.likes-comments-bar{
-	margin-top: 10px;
-	font-size: 20px;
-	text-align: start;
-	background-color: white;
-	color:black;
-}
-.likes-comments-bar button {
-	margin-left: 60%;
-}
-.icones{
-	display: inline;
-}
+  }
+  
+  .feed-container{
+	  text-align: center;
+  }
+  
+  #lala{
+	  background-color: red;
+	  
+  }
+  
+  
+  .div-postados{
+	  border-radius: 12px;
+  
+	  border: 1px solid black;
+	  width: 300px;
+	  height: 150px;
+	  float: left;
+	  margin-top: 10px;
+	  background-color: rgb(53, 8, 105);
+  }
+  
+  .div-postados img{
+	  width: 20px;
+	  height: 20px;
+  }
+  .user-post{
+	  margin-top: 0;
+	  margin-left: 1%;
+	  font-size: 13px;
+	  text-align: start;
+	  background-color: white;
+  }
+  .likes-comments-bar{
+	  margin-top: 10px;
+	  margin-left: 1%;
+	  font-size: 3px;
+	  text-align: start;
+	  background-color: white;
+  }
+  .likes-comments-bar button {
+	  margin-left: 60%;
+  }
+  .icones{
+	  display: inline;
+  }
+  
+  
+  
+  textarea {
+	  width: 600px;
+	  height: 160px;
+	  background:url(img/textarea-background.png) center center no-repeat; /* "Quebra" o padrão de textarea */
+	  border:1px solid #888; 
+	  background-color: aliceblue;
+	  align-items: center;
+	  border-radius: 25px;
+	  margin-top: 15px;
+	  margin-left: 65px;
+  }
 .txt-post{
 	width: 100%;
 	height: 90px ;

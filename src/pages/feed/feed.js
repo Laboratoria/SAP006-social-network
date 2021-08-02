@@ -1,8 +1,14 @@
+//import { changeProfileImage } from "../../lib/auth.js";
+//import { logOut } from "../../lib/auth.js";
+
 
 export const Feed = () => {
   const rootElement = document.createElement("div");
   rootElement.className = "feed-container"
   rootElement.innerHTML = `
+ 
+
+
 <form action = "" id="postForm">
   <textarea id='postText' placeholder='O que você quer compartilhar?'></textarea>
   <button id='publicar'>Publicar</button>
@@ -34,7 +40,6 @@ postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim qu
   loadPosts();
   })
 })
-
 
 function addPost(post){
   const postTemplate = `
@@ -100,7 +105,8 @@ function likePost(postId) {
   rootElement.querySelector("#postado").innerHTML = "";
   loadPosts();
 
-}
+} 
+
 loadPosts();
 return rootElement;
 
