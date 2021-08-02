@@ -59,10 +59,8 @@ export default () =>{
     const sidebar = sectionElement.querySelector("#sidebar")
     sidebar.style.display="block"
     sidebar.classList.remove("sidebar-desktop")
-   
+  }) 
     
-
-  })
 
   const publishReview = (e) => {
     e.preventDefault()
@@ -85,7 +83,7 @@ export default () =>{
 
 
   const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
-  // const logoutBtn = sectionElement.querySelector("#logout-btn")
+  const logoutBtn = sectionElement.querySelector("#logout-btn")
   
 
   createReviewBtn.addEventListener ("click", publishReview)
@@ -95,6 +93,8 @@ export default () =>{
   //     const popStateEvent = new PopStateEvent("popstate", {state:{}})
   //     dispatchEvent(popStateEvent)
   // })
+
+
 
   return sectionElement
 }
