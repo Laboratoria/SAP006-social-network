@@ -9,12 +9,15 @@ export default () => {
   sectionElement.setAttribute("id","create-profile")
   sectionElement.setAttribute("class","form-page")
 
+  
+  // const userName = user.displayName
+
 
   const createProfileTemplate = `
-    <div  class="form-container" id="form-create-profile">
-      <h1 class="h1-login">Alterar perfil</h1>
-      <fieldset class="fieldset-create-profile fieldset">
-        <form class="form" action="">
+    <div  class="form-container container-center" id="form-create-profile">
+      <h1 class="h1-login">Editar perfil</h1>
+      <fieldset class=" fieldset fieldset-create-profile">
+        <form class="form"  action="">
           <div class="container-file-img">
             <img src="./img/camera.png" class="file-img">
           </div>
@@ -30,17 +33,39 @@ export default () => {
 
   let photo = sectionElement.querySelector(".file-img")
   let file = sectionElement.querySelector(".file-input")
+  const userNameInput = sectionElement.querySelector("#input-username")
+
+  
+  
+  
+
+  const user= currentUser()
+  const name = currentUser().displayName
+  const photoLink = currentUser().photoURL
+
+  if(name!=null){
+    userNameInput.value = name
+  }
+
+  if(photoLink!=null){
+    photo.src=photoLink;
+    photo.style.borderRadius = "50%"
+
+  }
+
 
   photo.addEventListener("click", () =>{
     file.click()
   })
 
   file.addEventListener("change", (e) => {
+    photo.style.borderRadius = "50%"
     if(file.files.legth <= 0){
+      
+  
       return;
     }
-    photo.style.borderRadius = "50%"
-    photo.style.boxShadow="0px 0px 14px 4px rgba(100,100,100,0.7)"
+    
   
     
     let reader =  new FileReader()
@@ -58,9 +83,7 @@ export default () => {
    
     const userNameInput = sectionElement.querySelector("#input-username")
     const userName = userNameInput.value
-    const user = currentUser()
     const image = document.getElementById("input-profile-img").files[0]
-    console.log(image)
     const userId = user.uid
 
     if(userName ==""){
@@ -70,9 +93,12 @@ export default () => {
     }else{
       if (image === undefined){
         updateUserName(userName)
-        window.history.pushState(null, null, "/home")
-        const popStateEvent = new PopStateEvent("popstate", {state:{}})
-        dispatchEvent(popStateEvent)
+     
+          setTimeout( () => {
+            window.history.pushState(null, null, "/home")
+            const popStateEvent = new PopStateEvent("popstate", {state:{}})
+            dispatchEvent(popStateEvent)
+          }, 1000)
         
   
       }else{
@@ -90,9 +116,11 @@ export default () => {
     
         })
         .then(()=>{
-          window.history.pushState(null, null, "/home")
-          const popStateEvent = new PopStateEvent("popstate", {state:{}})
-          dispatchEvent(popStateEvent)
+          setTimeout( () => {
+            window.history.pushState(null, null, "/home")
+            const popStateEvent = new PopStateEvent("popstate", {state:{}})
+            dispatchEvent(popStateEvent)
+          }, 1000)
         })  
       }
     }

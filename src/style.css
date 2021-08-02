@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 :root{
     --text-color: rgb(70, 60, 75);
-    --dark-purple: #4D3D7B;
+    --dark-purple: #894796;
+    --default-blue:#515fad;
+   
 }
 
 *{
@@ -16,8 +18,14 @@ body{
     width:100vw;
     font-size: 1.6rem;
 }
-#sign-up, #signin-page, #create-profile, #forgot-password, #modal-sucessful{
-    background: linear-gradient(90deg, #29055B 0%, #A74AC2 47.4%, #DBD65C 100%);
+#sign-up, #signin-page{
+    background: linear-gradient(90deg,  #415792 0%, #637cc0 25%,  #5d88b9 70%, #5E97AF 90% );
+}
+
+#create-profile, #forgot-password, #modal-sucessful{
+    background: linear-gradient(180deg,  #4c63a1 0%, #637cc0 25%,  #5d88b9 70%, #5E97AF 90% );
+    /* background: linear-gradient(359.92deg, #5E97AF -0.09%, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%); */
+
 }
 .form-page{
     display:flex
@@ -78,14 +86,16 @@ body{
     color:white;
 }
 .forget-password:hover{
-    color: #4D3D7B;
+    color:var(--default-blue);
+    text-decoration: underline var(--default-blue);
 }
 .btn{
     cursor: pointer;
-    background-color: #4D3D7B;
-    color: #ffffff;
+    background-color: #e3eafad3;
+    color: var(--default-blue);
+    font-weight: bolder;
     width: 100%;
-    height: 13%;
+    
     margin: 3rem 0;
     padding: 1.2rem;
     border-radius: 5px;
@@ -95,8 +105,9 @@ body{
     outline: none;
 }
 .btn:hover{
-    background-color:#864b86;
+    background-color:var(--default-blue);
     transition: 0.7s;
+    color:white;
 }
 .p-sign-in{
     color:white;
@@ -104,15 +115,15 @@ body{
 }
 a{
     text-decoration: none;
-    color: var(--dark-purple);
+    color: white;
     font-size: 1.2rem;
     font-weight: bold;
     cursor:pointer;
     
 }
 a:hover{
-    color:rgb(116, 43, 116);
-    text-decoration: underline rgb(116, 43, 116);
+    color:var(--default-blue);
+    text-decoration: underline var(--default-blue);
 }
 .or{
     font-size: 1.6rem;
@@ -122,16 +133,22 @@ a:hover{
 #gmail-btn{
     width:100%;
     cursor: pointer;
-    background-color: #f5e3fad3;
+    color:var(--default-blue);
+    background-color: #e3eafad3;
     border-radius: 5px;
     border: none;
     outline: none;
     margin:0 0 2rem 0;
-    padding: 1.2rem;
+    padding: 1.5rem;
+    font-size:1.2rem;
+    display:flex;
+    align-items:center;
+    justify-content: center;
 }
 #gmail-btn:hover{
-    background-color: #deb7eb;
+    background-color:var(--default-blue);
     transition: 0.7s;
+    color:white;
 }
 .logo-google{
     width: 20px;
@@ -183,26 +200,31 @@ a:hover{
     width: 8%;
     height: 6%;
     font-weight: bold;
+    color: #9fd3d4;
+    background-color: transparent;
+    border: none;
 }
 .back-to-login:hover{
     border: none;
-    background-color: #864b86;
+    background-color: #90c1cf;
     color: #ffffff;
     transition: 1s;
+    border-radius: 5px;
 }
-#home-content{
+
+
+.home-container{
     background-color: white;
-    height: 200%;
+    width:80vw;
     display: flex;
     align-items: center;
     text-align: center;
-    margin: 2rem 1rem;
     padding: 1rem;
     flex-direction: column;
     justify-content: center;
 }
 
-#logout-btn{
+/* #logout-btn{
     position: absolute;
     margin: 0rem 0rem 30rem 80vw;
     cursor: pointer;
@@ -212,6 +234,10 @@ a:hover{
     width: 7rem;
     border: none;
     color: white;
+} */
+
+.home-navbar{
+    display:none
 }
 .h1-home{
     color: black; 
@@ -236,36 +262,38 @@ a:hover{
     padding: 0px 200px;
     width: 100%;
 }
-.back-to-login-fp{
+#back-to-login-fp{
     position: absolute;
-    font-size: 15px;
+    font-size: 1.5rem;
     padding: 5px;
-    margin: 0px 1160px 530px 0px;
+    margin: 0rem 50vw 35rem 0rem;
     cursor: pointer;
     float: left;
     width: 8%;
     height: 6%;
     font-weight: bold;
 }
-.back-to-login-fp:hover{
-    border: none;
-    background-color: #864b86;
-    color: #ffffff;
-    transition: 1s;
-}
-.fieldset-forgot-password{
+
+
+
+.fieldset-forgot-password, .fieldset-create-profile{
     align-items: center;
     text-align: center;
     justify-content: center;
+    width:60%;
 }
+
+
+
 .content{
     position: absolute;
     margin: 0px 0px 100px 0px
 }
 .h1-fp{
-color: white;
-font-size: 3rem;
-}
+    color: white;
+    font-size: 3rem;
+    }
+
 .check{
     height: 17rem;
 }
@@ -279,6 +307,8 @@ font-size: 3rem;
     width: 100%;
     height: 100vh;
 }
+
+
 
 #back{
     color:white;
@@ -352,3 +382,246 @@ font-size: 3rem;
     width: 4rem;
     transition: 1s;
 }
+
+#input-username{
+    width:80%;
+    align-self: center;
+
+}
+
+#send-profile{
+    width:80%;
+    align-self: center;
+
+}
+
+/* Sidebar component */
+
+.sidebar-desktop{
+    width:20vw;
+    min-height:100vh;
+    position:fixed;
+    top:0;
+    right:0;
+    background: linear-gradient(359.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
+    color:white;
+    display: flex;
+    justify-content: center;
+}
+  
+  
+.sidebar-container{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin:3rem;;
+
+}
+
+.close-mobile-sidebar{
+    position:absolute;
+    top:2rem;
+    right:2rem;
+    width:3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: transparent;
+    border:solid 1px white;
+    font-size: 1.5rem;
+    color: white;
+    cursor:pointer;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.3);
+    display:none;
+
+}
+
+.close-mobile-sidebar:hover{
+    cursor:pointer;
+    background-color:#47b4a598;
+    transition: .3s ease-in;
+    
+  }
+  
+  .user-data{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+  
+  }
+
+  .sidebar-text{
+    color:white;
+    font-size:1.5rem;
+  }
+
+  .user-name{
+    font-size:1.8rem;
+  }
+  
+  .sidebar-user-img{
+    width: 12rem;
+    height: 12rem;
+    border-radius: 100%;
+    object-fit: cover;
+    align-self: center;
+    border: double 3px transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(360deg,#5755b9 0%, #3180a5 53.12%, #65a4b8 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box; 
+    align-self: center;
+    
+  }
+  .user-information{
+    margin-top:4rem;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+  
+  }
+  
+  .sidebar-user-name{
+    align-self: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-user{
+    margin-bottom: 3rem;
+    color:rgb(200, 231, 255);
+  }
+  
+  .sidebar-profile{
+    width:100%;
+    padding: 3rem 0;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+    display:flex;
+    flex-direction: column;
+    
+  }
+  
+  .profile-line{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+    align-items:center;
+    margin-bottom: 2.5rem;
+   
+  }
+  
+  .sidebar-line{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+  
+  }
+  
+  #edit-profile-link{
+    color:rgb(200, 231, 255);
+    font-size:1.4rem;
+  }
+
+  #edit-profile-link:hover{
+    color:var(--default-blue);
+    text-decoration: none;
+    transition:0.7s
+  }
+  
+  
+  .num{
+    width:2.2rem;
+    height: 2.2rem;
+    border-radius:100%;
+    background-color:white;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin-left:1rem;
+  }
+
+  .num-text{
+      font-size:1.3rem;
+      font-weight: bold;
+      color:var(--default-blue);
+  }
+  
+  .review-line{
+    margin-bottom:2rem;
+  }
+  
+  .sidebar-tools{
+    width:100%;
+    padding: 2rem 0;
+    border-bottom: solid 1px white;
+    display:flex;
+    align-self: center;
+    justify-content: center;
+   
+  }
+  
+  .sidebar-div-links{
+    width:100%;
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items:center;
+    font-weight:normal;
+  }
+
+ 
+  .sidebar-div-links img{
+    margin-right:10px
+  }
+
+  #sidebar-review:hover{
+    text-decoration: none;
+    transition:0.7s
+
+  }
+
+  
+
+  #logout-btn-sidebar{
+    background-color: transparent;
+    border:none;
+    
+  }
+  
+
+ 
+  
+  .sidebar-btn{
+    border:none;
+    background: transparent;
+    color:white;
+    cursor:pointer
+  }
+
+
+  
+
+  
+  .sidebar-logout{
+    font-size: 1.5rem;
+    border-bottom: none;
+  }
+
+  .sidebar-btn:hover{
+    filter:invert(77%) sepia(58%) saturate(1717%) hue-rotate(203deg) brightness(100%) contrast(88%);
+    transition:0.3s
+}
+
+  #sidebar-img-logout{
+      width:4rem;
+  }
+  
+
+  
+  
+
+  
