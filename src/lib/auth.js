@@ -21,10 +21,19 @@ export const criarFirebaseconta = (email, senha, name) => {
           window.alert("Error : " + errorMessage);
         });
 
-
       };
 
+ export const logOut = () => {
+        firebase.auth().signOut()
+        .then(() => {
+          getTheRoad("/");
+        }).catch((error) => {
+          getError(error);
+        });
+      };
+      
 
+firebase.auth().languageCode = 'PT_br';     
 export const loginWithEmailAndPassword = (email, pass) => {
   firebase.auth().signInWithEmailAndPassword(email, pass) 
   .then(() => {
@@ -37,6 +46,28 @@ export const loginWithEmailAndPassword = (email, pass) => {
 
 
 };
+ export const resetPassword = (email) => {
+   firebase.auth().sendPasswordResetEmail(email)
+   .then(()=>{
+     window.alert('Link enviado para o email')
+   })
+   .catch((error)=> {
+     window.alert(error)
+   })
+ }
 
-  
-  
+ export const changeProfileImage = (file, callbackToSetNewImage) => {
+  const ref = firebase.storage().ref("perfil-pic/img")
+  ref.child(file.name).put(file)
+    .then(() => {
+      ref.child(file.name).getDownloadURL()
+        .then((url) => {
+          callbackToSetNewImage(url);
+          firebase.auth().currentUser
+            .updateProfile({
+              photoURL: url,
+            });
+        });
+    });
+};
+
