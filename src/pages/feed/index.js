@@ -11,7 +11,7 @@ export default () => {
 
   const perfilButton = feedConteiner.querySelector('#perfilPage');
   perfilButton.addEventListener('click', () => {
-    window.location.hash = '#perfil';
+    window.location.hash = '#profile';
   });
   return feedConteiner;
 };

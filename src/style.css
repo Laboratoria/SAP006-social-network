@@ -71,15 +71,6 @@
     border-bottom: 1px solid rgb(180, 177, 177);
   }
   
-  .btn-google {
-    position: relative;
-    display: block;
-    margin: 10px auto;
-    width: 35vw;
-    height: 40px;
-    font-size: 15px;
-  }
-  
   .google-icon {
     background: url("https://img.icons8.com/color/48/000000/google-logo.png") no-repeat;
     display: inline-block;
@@ -89,6 +80,17 @@
     background-size: 25px;
     margin: auto;
     vertical-align: middle;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+
+  #notice {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
   }
   
   button:hover {

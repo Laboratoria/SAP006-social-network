@@ -1,8 +1,7 @@
 import loginScreen from './pages/login/index.js';
-import feed from './pages/feed/feed.js';
-import perfil from './pages/perfil/perfil.js';
-
-// Este é o ponto de entrada da sua aplicação
+import feed from './pages/feed/index.js';
+import profile from './pages/profile/index.js';
+import signUpScreen from './pages/signUp/index.js';
 
 const main = document.getElementById('root');
 
@@ -13,14 +12,17 @@ const routes = () => {
       case '':
         main.appendChild(loginScreen());
         break;
+      case '#signUp':
+        main.appendChild(signUpScreen());
+        break;
+      case '#profile':
+        main.appendChild(profile());
+        break;
       case '#feed':
         main.appendChild(feed());
         break;
-      case '#perfil':
-        main.appendChild(perfil());
-        break;
       default:
-        break;
+        main.appendChild(loginScreen());
     }
   });
 };
