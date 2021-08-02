@@ -45,6 +45,7 @@ export const createWithEmailAndPassword = (emailInput, passwordInput) => {
 export const verifyUser = () => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      const userId = user.uid;
       onNavigate('/home')
     }
   })
