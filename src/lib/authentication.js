@@ -7,11 +7,12 @@ export const loginPersistence = () =>{
 export async function loginWithGoogleAccount(){
   const provider = new firebase.auth.GoogleAuthProvider();
   await firebase.auth().signInWithPopup(provider)
-  .then((result) => {
-    const user = result.user;
-    console.log(user.displayName)
+  .then(() => {
     (onNavigate('/home'));
-  })
+  }).catch((error) => {
+    const message = error.message;
+    alert(message)
+  });
 };
 
 export const loginWithEmailAndPassword = (userEmail, userPassword) => {
@@ -40,3 +41,11 @@ export const createWithEmailAndPassword = (emailInput, passwordInput) => {
       alert('Falha ao cadastrar')
     });
 };
+
+export const verifyUser = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      onNavigate('/home')
+    }
+  })
+}
