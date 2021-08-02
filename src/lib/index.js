@@ -136,32 +136,36 @@ export const forgotPassword = (email) =>{
   }
 }
 
-/*
-export const createPost = (bookUser, edition, author, review) => { 
-  bookUser:,
-  edition:,
-  author:,
-  review:,
-  userId:,
-}
-*/ 
 
-export const newReview = (review) => {
-  const reviewTemplate = `
-  <li id="${review.id}>
-  ${review.data().text}  &#9734 ${review.data().likes}
-  </li>`
-
-}
-
-export const loadReviews = () => {
-  const postCollections = firebase.firestore().collection("reviews").orderBy()
-  postCollections.get()
-  .then(snap => {
-    snap.forEach(post => {
-      newReview(post)
-      
-    });
+export const createReview = (bookUser, editionUser, authorUser, reviewUser, ratingStars, name) => { 
+  const db = firebase.firestore()
+  db.collection("reviews").add({
+    book: bookUser,
+    edition: editionUser,
+    author: authorUser,
+    review: reviewUser,
+    rating: ratingStars,
+    userName: name
 
   })
+  .then(() => {
+    console.log("Document successfully written!");
+  })
+  .catch((error) => {
+      console.error("Error writing document: ", error);
+  });
 }
+
+
+
+// export const getReviews = () => {
+//   const postCollections = firebase.firestore().collection("reviews").orderBy("time", "desc")
+
+//   postCollections.get()
+//   // .then(snap => {
+//   //   snap.forEach(post => {
+//   //     newReview(post)
+//   //   });
+
+//   // })
+//}
