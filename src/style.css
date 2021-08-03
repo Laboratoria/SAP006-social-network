@@ -1,98 +1,19 @@
-/* @import url(...fonte); */
-
-* {
-    margin: 0;
-    padding: 5;
-    font-family: 'Roboto', sans-serif
-
-}
-
 body {
-    background-color: #97CF6E;
+  font-family: "Russo One", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 100px;
-    
-}
+.root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 
-
-.card{
-    justify-content: center;
-}
-
-input::placeholder {
+ input::placeholder {
     color: rgb(0, 0, 0);
   }
 
-.password, .login{
-    width: 200px;
-    padding: 7px;
-    text-align: center;
-    justify-content: center;
-    margin-top: 7%;
-    margin-bottom: 3px ;
-    border: 1px solid #ffffffde;
-    color:rgb(0, 0, 0);
-    box-shadow: 0px -3px 1px #a09f9f5e;
-    
-}
-
-#entrar{
-    width: 100px;
-    padding: 9px;
-    font-size: 13px;
-    border: 1px solid #ffffffde;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(20, 20, 20, 0.37);
-    margin-top: 25px;
-    border-radius: 7px;
-    cursor: pointer;
-    
-}
-
-#google-login{
-    width: 200px;
-    padding: 7px;
-    font-size: 15px;
-    color:rgb(119, 117, 117);
-    border: 1px solid #ffffffde;
-    box-sizing: border-box;
-    margin-top: 25px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.google-logo{
-    width: 20px;
-    padding: 0px 5px 0px 0px;
-}
-
-.justify-center{
-    display: flex;
-    justify-content: center;
-}
-
-hr{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 90%;
-    
-}
-
-a{
-    text-decoration: none;
-    color:rgb(0, 0, 0)
-
-}
-
-.justify-center{
-    display: flex;
-    justify-content: center;
-}
 

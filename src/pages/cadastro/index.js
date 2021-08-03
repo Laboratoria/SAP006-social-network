@@ -1,23 +1,33 @@
 import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebaseAuth.js';
+import { route } from '../../router.js';
 
 export const cadastro = () => {
   const rootElement = document.createElement('div');
-  rootElement.innerHTML = ` <fieldset class='box' name='dados'>
-  <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro">Cadastro</legend>
-  <form class="forms">
+  rootElement.innerHTML = `<fieldset class="box">
+    <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro"></legend>
+    <form class="forms">
+      
     <input type="text" id="nameUser" placeholder="Nome">
     <p id="textErrorName"></p>
     <input type="email" id="emailUser" placeholder="seuemail@dominio.com">
     <p id="textErrorEmail"></p>
     <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
-     <p id="textErrorPassword"></p>
+    <p id="textErrorPassword"></p>
     <input type="password" id="confPass" placeholder="Confirme sua senha">
     <p id="textErrorConfPassword"></p>
-  </form>
-  <button class="register" type="button" name="botao" id="enter">CADASTRAR</button>   
-</fieldset>`;
+    </form>
+    
+    <button class="register" type="button" name="botao" id="enter">ENTRAR</button> 
+  
+    <a id="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
+  </fieldset>`;
+
+  const pageLogin = rootElement.querySelector('#buttonLogin');
+  const enterButton = rootElement.querySelector('#enter');
+       
   // funções para receber dos dados de cadastro//
-  rootElement.querySelector('#enter').addEventListener('click', (e) => {
+  
+    enterButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     const nameUser = rootElement.querySelector('#nameUser').value;
@@ -54,13 +64,23 @@ export const cadastro = () => {
             const popstateEvent = new PopStateEvent('popstate', { state: {} });
             dispatchEvent(popstateEvent);
           }).catch((error) => {
+
           });
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+
+      });
+  });
+
+  pageLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    route('/login');
+  });
         console.log(errorCode, errorMessage);
       });
   });
+
   return rootElement;
 };

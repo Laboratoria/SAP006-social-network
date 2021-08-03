@@ -1,29 +1,30 @@
+import { login } from "./pages/login/index.js";
 import { cadastro } from './pages/cadastro/index.js';
-import { Login } from './pages/login/index.js';
-import { home } from './pages/home/index.js";
+import { home } from './pages/home/index.js';
+import { postar } from './pages/postar/index.js';
+
 
 const routRender = () => {
-    const elemento = document.getElementById("root");
-    const routes = {
-        "/": Login,
-        "/cadastro": cadastro,
-        "/home": home,
-
-    }
-    elemento.innerHTML = "";
-    elemento.appendChild(routes[window.location.pathname]())
-    console.log(window.location.pathname)
+  const elemento = document.getElementById("root");
+  const routes = {
+    '/':login,
+    '/login': login,
+    '/cadastro':cadastro, 
+    '/feed': home, 
+    '/posts': postar
+  }
+  elemento.innerHTML = '';
+  elemento.appendChild(routes[window.location.pathname]())
 }
 
-window.addEventListener("popstate", routRender);
-window.addEventListener("load", () => {
-    routRender();
-    console.log("caiuuuuu no load")
-
-})
+window.addEventListener('popstate', routRender);
+window.addEventListener('load','' () => {
+  /*window.history.pushState({},'','/')*/
+  routRender();
+});
 
 export const route = (state) => {
-    window.history.pushState({}, "", state);
-    const popstateEvent = new PopStateEvent("popstate", { state: {} });
-    dispatchEvent(popstateEvent);
+  window.history.pushState({}, ', state);
+  const popstateEvent = new PopStateEvent('popstate', {state:{}});
+  dispatchEvent(popstateEvent);
 };
