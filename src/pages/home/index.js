@@ -117,7 +117,7 @@ export default () =>{
     starsEvaluation = "" 
   }
 
-  // const loadPosts = () => {
+  // const loadPosts = () => { 
 
   //    const userAllReviews = document.querySelector("[data-all-reviews]")
   //    const printAllReviews = document.createElement("article")
