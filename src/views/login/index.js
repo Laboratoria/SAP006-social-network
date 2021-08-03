@@ -7,6 +7,7 @@ export const login = () => {
   const template = `
     <p class="subtitle">Uma rede para tutores e amantes de animais</p>
     <form class="form">
+      <span id="error-message"></span>
       <input type="email" placeholder="Email" class="login" id="user-email" autocomplete="off" />
       <input type="password" placeholder="Senha" class="login" id="user-password" autocomplete="off" />
       <button class="button" id="login-btn">Entrar</button>
