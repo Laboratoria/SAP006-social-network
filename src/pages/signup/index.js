@@ -3,8 +3,8 @@ import { signUpWithGoogle, loginWithGmail } from '../../services/index.js'
 export const SignUp = () => {
   const root = document.createElement('div');
   root.innerHTML = `
-  <header>
-    <h1>SAILERS</h1>
+  <header class='logo'>
+    <h1>A Bordo</h1>
     <h2>A Rede Social dos Velejadores</h2>
   </header>
   <main id='loginPage' class='container'>
@@ -20,11 +20,12 @@ export const SignUp = () => {
             <label for='email'>E-mail</label>
             <input id='email' type='e-mail' class='input-email'>
             
-            <label class='label-login' for='password'>Senha:</label>
+            <label class='label-login' for='password'>Senha</label>
             <input id='password' type='password' class='input-password'>
           </div>
 
           <button type='button' id='signUpButton' class='btn-signup btn form-item'>Cadastrar</button>
+          <p class='separator form-item'>ou</p> 
           <button type='button' id='btnGmail' class='btnGmail btn form-item'>
             <img src='./img/logo-google.png' class='google-icon'></img>
             <span>Entrar com o Google</span>
