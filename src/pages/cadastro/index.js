@@ -1,38 +1,59 @@
 import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebaseAuth.js';
-// import { route } from "../../router.js";
 
 export const cadastro = () => {
   const rootElement = document.createElement('div');
-  rootElement.innerHTML = `<fieldset class='box' name='dados'>
- <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro"></legend>
- <form class="forms">
- <input type="text" id="nameUser" placeholder="Nome">
- <input type="email" id="emailUser" placeholder="seuemail@dominio.com">
- <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
- <input type="password" id="confPass" placeholder="Confirme sua senha">
-
-  <input class="register" type="submit" id="btnRegister" value="Cadastrar" />
- </form>
-
- <button type="submit" name="botao" id="enter">ENTRAR</button>   
-
- </fieldset>`;
-
+  rootElement.innerHTML = ` <fieldset class='box' name='dados'>
+  <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro">Cadastro</legend>
+  <form class="forms">
+    <input type="text" id="nameUser" placeholder="Nome">
+    <p id="textErrorName"></p>
+    <input type="email" id="emailUser" placeholder="seuemail@dominio.com">
+    <p id="textErrorEmail"></p>
+    <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
+     <p id="textErrorPassword"></p>
+    <input type="password" id="confPass" placeholder="Confirme sua senha">
+    <p id="textErrorConfPassword"></p>
+  </form>
+  <button class="register" type="button" name="botao" id="enter">CADASTRAR</button>   
+</fieldset>`;
   // funções para receber dos dados de cadastro//
   rootElement.querySelector('#enter').addEventListener('click', (e) => {
     e.preventDefault();
+
+    const nameUser = rootElement.querySelector('#nameUser').value;
+    if (nameUser === '' || nameUser.length < 3) {
+      const errorNameField = document.getElementById('textErrorName');
+      errorNameField.innerHTML = 'Preencha campo NOME corretamente';
+      nameUser.focus();
+      return false;
+    }
+
     const emailUser = rootElement.querySelector('#emailUser').value;
+    if (emailUser === '' || emailUser.indexOf('@') === -1 || emailUser.indexOf('.') === -1) {
+      const errorEmailField = document.getElementById('textErrorEmail');
+      errorEmailField.innerHTML = 'Preencha campo EMAIL corretamente';
+      emailUser.focus();
+      return false;
+    }
     const passwordRegister = rootElement.querySelector('#passwordRegister').value;
-    const nomeUsuario = rootElement.querySelector('#nameUser').value;
+    const passwordConfirm = rootElement.querySelector('#confPass').value;
+    if (passwordRegister.length < 6 || passwordRegister.match(/[0-9]/g) == null) {
+      const errorPasswordField = document.getElementById('textErrorPassword');
+      errorPasswordField.innerHTML = 'A senha precisa ter pelo menos 6 dígitos, com pelo menos um número';
+    }
+    if (passwordRegister !== passwordConfirm) {
+      document.getElementById('textErrorConfPassword').innerHTML = 'Senha não confere';
+    }
+
     cadastrarComEmailSenha(emailUser, passwordRegister)
       .then((userCredential) => {
         const user = userCredential.user;
-        atualizarUsuario(nomeUsuario)
+        atualizarUsuario(nameUser)
           .then((result) => {
-            // Update successful
+            window.history.pushState({}, '', '/home');
+            const popstateEvent = new PopStateEvent('popstate', { state: {} });
+            dispatchEvent(popstateEvent);
           }).catch((error) => {
-            // An error occurred
-            // ...
           });
       })
       .catch((error) => {
@@ -43,12 +64,3 @@ export const cadastro = () => {
   });
   return rootElement;
 };
-
-// const pageLogin = rootElement.querySelector("#buttonLogin");
-
-// pageLogin.addEventListener("click", (e) => {
-//  e.preventDefault();
-//  route("/login");
-// });
-// return rootElement;
-// };
