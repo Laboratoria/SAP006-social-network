@@ -45,48 +45,60 @@ export const loginWithEmailAndPassword = (userEmail, userPassword) => {
     });
 };
 
-export const createWithEmailAndPassword = (
+// export const validateUserNameAndPassword = (userName, userPassword, confirmPassword) => {
+//   const errorField = document.getElementById('error-sign-up-message');
+//   if (userName) {
+//     errorField.innerHTML = '';
+//   }
+//   if (!userName) {
+//     errorField.innerHTML = 'Por favor, digite o seu nome.';
+//   }
+//   if (userPassword !== confirmPassword) {
+//     errorField.innerHTML = 'As senhas não estão iguais, tente novamente.';
+//   }
+//   return false;
+// };
+
+export const createAccountWithEmailAndPassword = (
+  userName,
   userEmail,
   userPassword,
+  confirmPassword,
 ) => {
-  firebase.auth().createUserWithEmailAndPassword(
-    userEmail,
-    userPassword,
-  )
-    .catch((error) => {
-      let errorField = document.getElementById('error-sign-up-message');
-      errorField = document.getElementById('error-sign-up-message');
-      let errorMessage = error.message;
-      switch (errorMessage) {
-        case 'The email address is badly formatted.':
-          errorMessage = 'Por favor, insira um email válido.';
-          errorField.innerHTML = errorMessage;
-          break;
-        case 'The password must be 6 characters long or more.':
-          errorMessage = 'A senha deve ter 6 caracteres ou mais.';
-          errorField.innerHTML = errorMessage;
-          break;
-        case 'Password should be at least 6 characters':
-          errorMessage = 'A senha deve ter pelo menos 6 caracteres';
-          errorField.innerHTML = errorMessage;
-          break;
-        case 'The email address is already in use by another account.':
-          errorMessage = 'O email já está em uso por outra conta.';
-          errorField.innerHTML = errorMessage;
-          break;
-        default:
-          break;
-      }
-    });
-};
-
-export const validateUserNameAndPassword = (userName, userPassword, confirmPassword) => {
-  const errorField = document.getElementById('error-sign-up-message');
+  let errorField = document.getElementById('error-sign-up-message');
   if (!userName) {
     errorField.innerHTML = 'Por favor, digite o seu nome.';
-  }
-  if (userPassword !== confirmPassword) {
+  } else if (userPassword !== confirmPassword) {
     errorField.innerHTML = 'As senhas não estão iguais, tente novamente.';
+  } else {
+    firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+      .then(() => {
+        onNavigate('/home');
+      })
+      .catch((error) => {
+        errorField = document.getElementById('error-sign-up-message');
+        let errorMessage = error.message;
+        switch (errorMessage) {
+          case 'The email address is badly formatted.':
+            errorMessage = 'Por favor, insira um email válido.';
+            errorField.innerHTML = errorMessage;
+            break;
+          case 'The password must be 6 characters long or more.':
+            errorMessage = 'A senha deve ter 6 caracteres ou mais.';
+            errorField.innerHTML = errorMessage;
+            break;
+          case 'Password should be at least 6 characters':
+            errorMessage = 'A senha deve ter pelo menos 6 caracteres';
+            errorField.innerHTML = errorMessage;
+            break;
+          case 'The email address is already in use by another account.':
+            errorMessage = 'O email já está em uso por outra conta.';
+            errorField.innerHTML = errorMessage;
+            break;
+          default:
+            break;
+        }
+      });
   }
 };
 
@@ -98,4 +110,4 @@ export const validateUserNameAndPassword = (userName, userPassword, confirmPassw
 //       console.log(userId);
 //     }
 //   });
-// };
+// }
