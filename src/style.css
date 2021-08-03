@@ -1,6 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;    
+* {  
+  padding: 0;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
@@ -9,14 +8,14 @@ body {
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(180deg, rgba(91, 136, 166, 0.2) 16.67%, rgba(41, 139, 204, 0.25) 100%);
+  justify-content: center;  
+  background: linear-gradient(180deg, rgba(68, 136, 182, 0.418) 16.67%, rgba(114, 183, 211, 0.25) 100%);
 }
 
-header {
+.logo {
+  margin-bottom: 50px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   color: #ffff;
   text-align: center;  
 }
@@ -40,7 +39,8 @@ header {
 .login-container {
   border-radius: 0 20px 20px 0;
   width: 50%;
-  background: linear-gradient(135deg, #fdb35fb9, #DA4532, #181863c4);
+  /*background: linear-gradient(135deg, #ffbf49, #63eef3, #2ea0ec);*/
+  background-color: white;
 }
 
 .form-container {
@@ -51,15 +51,17 @@ header {
 
 .form-options {
   display: flex;
-  justify-content: space-between;
-  height: 5vh;    
-  text-align: center;
+  justify-content: center;
+  height: 7vh;
+  line-height: 3;    
+  text-align: center;  
 }
 
-.opt-login, .opt-signup {       
+.opt-login, .opt-signup {
+  border-bottom: 1px solid lightgrey;
+  color: black;       
   width: 50%;
-  height: 100%;
-  line-height: 2;
+  height: 100%;  
   transition: 0.3 ease;  
 }
 
@@ -68,104 +70,75 @@ header {
 }
 
 .form-options span:hover {
-  background-color:#5d4472b9;
+  color: white;
+  background-color:#FEB15E;
 }
 
 .form-fields label {
-  font-size: 16px;
+  color: rgb(85, 84, 84);
   margin-bottom: 5px;
   display: inline-block;
 }
 
 .form-fields input, button {
   width: 100%;
-  padding: 10px 20px;
+  padding: 8px 13px;
   outline: none;
-  border: none;
-  letter-spacing: 1px;
+  border: 1px solid lightgray;
+  /*letter-spacing: 1px;*/
   border-radius: 10px;  
+}
+
+.form-fields input:focus {
+  border-color: #638FB1;
 }
 
 .input-email {
   margin-bottom: 10px;
 }
 
-.rememberForgot {  
-  margin-bottom: 10px; 
+.rememberForgot {    
   margin-left: 10px; 
   display: flex;
   justify-content: space-between;    
-  color: #ffffff;
+  color: black;
   font-size: 12px;
-  padding: 5px;    
+   
 }
 
 .rememberForgot a {
   text-decoration: none;
-  color: #ffffff; 
+  color: black;   
 }
 
 .btn:hover{
-  background: linear-gradient(135deg, #181863c4, #DA4532, #fdb35fb9);
-}
-
-.form-item {
-  margin-top: 10px;
-  margin-bottom: 0;    
-}  
-
-.form-item p, a {
   color: white;
-  text-decoration: none;
+  background-color: #FEB15E;
 }
 
-.separator {
-  display: flex;
-  justify-content: center;
-  color: #ffffff;
+.btn-login, .btn-signup {
+  margin-top: 30px;
+}
+
+.separator {  
+  text-align: center;
+  color: rgb(85, 84, 84);  
 }
 
 .btnGmail {
   display: flex;
+  align-items: center;
   justify-content: center;
-    
 }
 
 .google-icon {
   width: 20px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
-.clickHere {    
-  text-align: center;
-  font-size: 12px;
-}
-
-@media (max-width: 1100px) {
-  .container {
-    width: 60vw;
-    height: 40vh;
-        
-  }
-    
-  .img-container {
-    display: none;
-  }
-
-  .login-container{
-    width: 100%;
-  }
-
-  .signUpHere {
-    margin-top: 20px;
-    text-align: center;
+@media screen and (max-width: 768px) {  
+  .logo {
     font-size: 12px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  * {
-    font-size: 10px;
   }
 
   .container {
@@ -173,16 +146,21 @@ header {
     height: 65vh;                     
   }
     
-  .login-image {
+  .img-container {
     display: none;
   }
 
   .login-container {
+    width: 100%;
     border-radius: 20px;
   }
-
+  
   .form-fields {
     margin-bottom: 5px;
+  }
+
+  .btn {
+    font-size: 12px;
   }
 }
 

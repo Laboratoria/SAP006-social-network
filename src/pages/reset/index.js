@@ -3,15 +3,15 @@ import { resetPassword } from "../../services/index.js";
 export const Reset = () => {
   const root = document.createElement('div');
   root.innerHTML = `
-  <header>
-    <h1>SAILERS</h1>
+  <header class='logo'>
+    <h1>>A Bordo</h1>
     <h2>A Rede Social dos Velejadores</h2>
   </header>
   <main class='container'>  
     <section class='img-container'>
     </section>    
     <section id='login' class='login-container'>
-      <header>
+      <header class='form-options'>
         Recuperação de Senha
       </header>
       <section class='form-container'>

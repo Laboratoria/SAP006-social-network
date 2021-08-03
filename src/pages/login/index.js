@@ -3,8 +3,8 @@ import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from "../../servi
 export const Login = () => {
   const root = document.createElement('div');
   root.innerHTML = `
-  <header>
-    <h1>SAILERS</h1>
+  <header class='logo'>
+    <h1>A Bordo</h1>
     <h2>A Rede Social dos Velejadores</h2>
   </header>
   <main class='container'>  
@@ -21,13 +21,13 @@ export const Login = () => {
             <label for='email'>E-mail</label>
             <input id='email' type='e-mail' class='input-email'>
               
-            <label class='label-login' for='password'>Senha:</label>
+            <label class='label-login' for='password'>Senha</label>
             <input id='password' type='password' class='input-password'>
           </div>
           <div class='rememberForgot' >
             <label><input type='checkbox' id='keep-me-logged'>Manter-me conectado</label>
             <a href='#' id='reset'>Esqueci a senha</a>
-          </div>
+          </div>  
 
           <button type='button' id='buttonLogin' class='btn-login btn form-item'>Entrar</button>
           <p class='separator form-item'>ou</p>                      
@@ -35,7 +35,6 @@ export const Login = () => {
             <img src='./img/logo-google.png' class='google-icon'></img>
             <span>Entrar com o Google</span>
           </button>
-
         </form>
       </section>
     </section>
