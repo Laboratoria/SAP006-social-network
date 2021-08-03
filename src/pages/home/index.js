@@ -30,12 +30,10 @@ export default () =>{
 
   const createFeedTemplate=`
   <div class="home-container">
-    <navbar  class="home-navbar" id="nav">
-      <button class="menu-mobile-btn"><img src="./img/menu.png" class="menu-img"></button>  
-    </navbar/>
+   
     <header>
-    <h1 class="header-home">Home</h1>
-    <img class="favicon-home" src="img/favicon.png">
+      <h1 class="header-home">Home</h1>
+      <img class="favicon-home" src="img/favicon.png">
     </header>
     <div class="timeline">
     <div class="welcome">
@@ -44,8 +42,8 @@ export default () =>{
     </div>
     
     <div class="make-review">
-    <p class="p-make-review">PUBLIQUE UM REVIEW</p>
-    <button class="button-make-review" id="add-review">+</button>
+      <p class="p-make-review">PUBLIQUE UM REVIEW</p>
+      <button class="button-make-review" id="add-review">+</button>
     </div>
      <form class="review-area" action="">
      
@@ -86,21 +84,40 @@ export default () =>{
     <div data-all-reviews class= "all-reviews">
       
     </div>
+    <navbar  class="home-navbar" id="nav">
+      <button class="menu-mobile-btn"><img src="./img/home-navbar.png" class="menu-img"></button> 
+      <button class="menu-mobile-btn" id="add-review-navbar"><img src="./img/add-navbar.png" class="menu-img"></button>   
+      <button class="menu-mobile-btn" ><img src="./img/profile-navbar.png" class="menu-img"></button> 
+      <button class="menu-mobile-btn" id="open-sidebar"><img src="./img/menu-navbar.png" class="menu-img" ></button>  
+    </navbar/>
   `
   sectionElement.innerHTML= createFeedTemplate
 
   sectionElement.appendChild(sidebar())
 
   const buttonAddReview = sectionElement.querySelector("#add-review")
-  buttonAddReview.addEventListener("click", () => {
+
+  const showReviewArea = () =>{
     const formReview = sectionElement.querySelector(".review-area");
     formReview.style.display="flex";
+    sectionElement.appendChild(sidebar())
     sectionElement.querySelector(".welcome").style.display="none"
     sectionElement.querySelector(".button-make-review").style.display="none";
     sectionElement.querySelector(".make-review").style.background="linear-gradient(300.92deg, #5E97AF 6.15%, #6D9ACE 80.44%, #5694DC 100.96%)";
     sectionElement.querySelector(".p-make-review").style.display="none"
     document.querySelector(".sidebar-desktop").style.display="none"
+
+  }
+  buttonAddReview.addEventListener("click", () => {
+    showReviewArea()
   })
+
+  const buttonAddReviewNavbar = sectionElement.querySelector("#add-review-navbar")
+  buttonAddReviewNavbar.addEventListener("click", () => {
+    showReviewArea()
+  })
+
+  
   
   const cancelReview = sectionElement.querySelector(".cancel-btn")
   cancelReview.addEventListener("click", () => {
@@ -111,8 +128,8 @@ export default () =>{
     sectionElement.querySelector(".p-make-review").style.display="block"    
     document.querySelector(".sidebar-desktop").style.display="flex"
   })
-  const menuBtn = sectionElement.querySelector(".menu-mobile-btn")
-  menuBtn.addEventListener("click", (e)=>{
+  const openSidebar = sectionElement.querySelector("#open-sidebar")
+  openSidebar.addEventListener("click", (e)=>{
     e.preventDefault()
     const sidebar = sectionElement.querySelector("#sidebar")
     sidebar.style.display="block"

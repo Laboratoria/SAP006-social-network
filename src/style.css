@@ -220,6 +220,8 @@ a:hover{
     position: absolute;
     font-size: 50px;
     margin: 0px 350px 400px 0px;
+    text-shadow: black 0.1em 0.1em 0.2em
+
 }
 .h1{
     color:white;
@@ -364,9 +366,11 @@ a:hover{
 }
 .buttons{
     display: flex;
+    width:100%;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding:0 10rem;
 }
 #button-review{
     background-color: #253a68;
@@ -375,7 +379,7 @@ a:hover{
     border: none;
     cursor: pointer;
     font-size: 1.9rem;
-    margin: 1rem 15rem;
+    margin: 2rem 0 1rem 0;
     color: white;
 }
 #button-review:hover{
@@ -389,40 +393,32 @@ a:hover{
 }
 
 /* Sidebar component */
-
 .sidebar-desktop{
     width:20vw;
     min-height:100vh;
     position:fixed;
     top:0;
+    right:0;
     background: linear-gradient(359.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
     color:white;
     display: flex;
     justify-content: center;
-    margin: 0rem 0rem 0rem 113vw;
 }
-
-.open-sidebar{
-    position: absolute;
-    font-size: 4rem;
-    margin: 0rem 20vw 0rem 0rem;
-    background: transparent;
-    color: rgb(35, 47, 88);
-    border: none;
-}
+  
   
 .sidebar-container{
     width:100%;
     display: flex;
     flex-direction: column;
     align-items:center;
-    margin: 1rem 3rem;
+    padding:3rem;
+
 }
 
 .close-mobile-sidebar{
     position:absolute;
     top:2rem;
-    right:2rem;
+    right:3rem;
     width:3rem;
     height: 3rem;
     border-radius: 50%;
@@ -467,7 +463,7 @@ a:hover{
     align-self: center;
     border: double 3px transparent;
     border-radius: 50%;
-    background-image: linear-gradient(white, white),
+    background-image: linear-gradient(white, white), 
                       linear-gradient(360deg,#5755b9 0%, #3180a5 53.12%, #65a4b8 100%);
     background-origin: border-box;
     background-clip: content-box, border-box; 
@@ -499,8 +495,10 @@ a:hover{
     border-top: solid 1px white;
     border-bottom: solid 1px white;
     display:flex;
-    flex-direction: column; 
+    flex-direction: column;
+    
   }
+  
   .profile-line{
     display:flex;
     flex-direction: row;
@@ -508,7 +506,9 @@ a:hover{
     width:100%;
     align-items:center;
     margin-bottom: 2.5rem;
+   
   }
+  
   .sidebar-line{
     width:100%;
     display:flex;
@@ -516,15 +516,19 @@ a:hover{
     align-items:center;
   
   }
+  
   #edit-profile-link{
     color:rgb(200, 231, 255);
     font-size:1.4rem;
   }
+
   #edit-profile-link:hover{
     color:var(--default-blue);
     text-decoration: none;
     transition:0.7s
   }
+  
+  
   .num{
     width:2.2rem;
     height: 2.2rem;
@@ -535,14 +539,17 @@ a:hover{
     align-items:center;
     margin-left:1rem;
   }
+
   .num-text{
       font-size:1.3rem;
       font-weight: bold;
       color:var(--default-blue);
   }
+  
   .review-line{
     margin-bottom:2rem;
   }
+  
   .sidebar-tools{
     width:100%;
     padding: 2rem 0;
@@ -552,6 +559,7 @@ a:hover{
     justify-content: center;
    
   }
+  
   .sidebar-div-links{
     width:100%;
     display:flex;
@@ -560,6 +568,8 @@ a:hover{
     align-items:center;
     font-weight:normal;
   }
+
+ 
   .sidebar-div-links img{
     margin-right:10px
   }
@@ -569,17 +579,29 @@ a:hover{
     transition:0.7s
 
   }
+
+  
+
   #logout-btn-sidebar{
     background-color: transparent;
     border:none;
     
   }
+  
+
+ 
+  
   .sidebar-btn{
     border:none;
     background: transparent;
     color:white;
     cursor:pointer
   }
+
+
+  
+
+  
   .sidebar-logout{
     font-size: 1.5rem;
     border-bottom: none;
@@ -594,25 +616,29 @@ a:hover{
       width:4rem;
   }
   
+  
 #home-content{
     background-color: #f0f0f0;
     background-repeat: repeat;
     display: flex;
     justify-content: center;
+    width: 80vw;
 }
 .home-container{
     background-color: #ffffff;
     align-items: unset;
     justify-content: unset;
-    width: 60vw;
+    width: 80%;
+    height: 200vh;
 }
 header{
     position: sticky;
-    width: 60vw;
+    width: 100%;
     border-bottom: 1px solid black;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 0.5rem;
     background-color: #ffffff;
 }
@@ -627,7 +653,7 @@ header{
 }
 .favicon-home{
     width: 4.5rem;
-    margin: 0px 47vw;
+    margin-right: 2rem;
 }
 .welcome{
     display: flex;

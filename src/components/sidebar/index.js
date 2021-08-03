@@ -117,17 +117,17 @@ export const sidebar = () => {
 
   })
 
-  const showSideBar = asideElement.querySelector(".sidebar-container") 
-  showSideBar.addEventListener('mouseover', () => {
-    document.querySelector(".sidebar-desktop").style.transition="1s"
-    document.querySelector(".sidebar-desktop").style.margin="0rem 0rem 0rem 80vw"
-  })
+  // const showSideBar = asideElement.querySelector(".sidebar-container") 
+  // showSideBar.addEventListener('mouseover', () => {
+  //   document.querySelector(".sidebar-desktop").style.transition="1s"
+  //   document.querySelector(".sidebar-desktop").style.margin="0rem 0rem 0rem 80vw"
+  // })
 
-  const hideSideBar = asideElement.querySelector(".sidebar-container") 
-  hideSideBar.addEventListener('mouseout', () => {
-    document.querySelector(".sidebar-desktop").style.transition="1s"
-    document.querySelector(".sidebar-desktop").style.margin="0rem 0rem 0rem 113vw"
-  })
+  // const hideSideBar = asideElement.querySelector(".sidebar-container") 
+  // hideSideBar.addEventListener('mouseout', () => {
+  //   document.querySelector(".sidebar-desktop").style.transition="1s"
+  //   document.querySelector(".sidebar-desktop").style.margin="0rem 0rem 0rem 113vw"
+  // })
 return asideElement
 
 }
