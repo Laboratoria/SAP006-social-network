@@ -15,6 +15,7 @@ const handleError = () => {
     }
   }
 }
+
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
@@ -37,6 +38,16 @@ export const stayLogged = () => {
   return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 };
 
+export const cadastrarComEmailSenha = (emailUser, passwordRegister) => 
+ firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister);
+
+export const atualizarUsuario = (nome) => 
+ firebase.auth().currentUser.updateProfile({
+        displayName: nome,
+     return: atualizarUsuario})
+
+console.log(atualizarUsuario)
+
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
 //       // User is signed in, see docs for a list of available properties
@@ -48,6 +59,7 @@ export const stayLogged = () => {
 //       // ...
 //     }
 //   });
+
 // ** SIGN IN GOOGLE //
 export const googleLogin = () => {
   const provider = new firebase.auth.GoogleAuthProvider();

@@ -1,3 +1,5 @@
+import { outLogin } from '../../services/firebaseAuth.js';
+
 export const home = () => {
   const rootElement = document.createElement('div');
   rootElement.innerHTML = ` 
@@ -29,6 +31,16 @@ export const home = () => {
 </div>
 `;
 
+  // botão sair para fazer logout
+  const btnLogout = rootElement.querySelector('#btnLogout');
+  btnLogout.addEventListener('click', (event) => {
+    event.preventDefault();
+    outLogin();
+  });
+
+  return rootElement;
+};
+
 // <!-- BUTAO MENU function myFunction() {
 //     var x = document.getElementById("myLinks");
 //     if (x.style.display === "block") {
@@ -40,3 +52,4 @@ export const home = () => {
 
 //   return rootElement;
 // };
+

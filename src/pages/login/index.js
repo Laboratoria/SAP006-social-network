@@ -5,9 +5,10 @@ export const login = () => {
   const rootElement = document.createElement('div');
   rootElement.setAttribute('class', 'page');
   rootElement.innerHTML = `<div class="container">
-
-      <img class="logo" src="img/logo.png" alt="GO VEG - logo">
-
+  <header>
+  <img class="logo" src="img/logo.png" alt="GO VEG - logo">
+  </header>
+  <main>
       <div class="label-float">
         <input class="login" type="text" id="usuario" placeholder="E-mail">
         <span class="focus-input100"></span>
@@ -17,7 +18,6 @@ export const login = () => {
         <input class="password" type="password" id="senha" placeholder="Senha">
         <span class="focus-input100"></span>
       </div>
-
       <div class="justify-enter">
         <button type="button" name="botao" id="entrar">ENTRAR</button>
       </div>
@@ -34,6 +34,7 @@ export const login = () => {
       <div class="justify-register">
         <a id="cadastro" href="#">Cadastre-se</a>
       </div> 
+    <main>
     </div>`;
 
   const botaoCadastro = rootElement.querySelector('#cadastro');
@@ -70,5 +71,9 @@ export const login = () => {
     e.preventDefault();
     googleLogin();
   });
+  
   return rootElement;
 };
+
+   
+ 
