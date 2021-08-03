@@ -3,7 +3,6 @@ import { sidebar } from "../../components/sidebar/index.js"
 
 export default () =>{
 
-  
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id", "home-content")
 
@@ -34,29 +33,49 @@ export default () =>{
     <navbar  class="home-navbar" id="nav">
       <button class="menu-mobile-btn"><img src="./img/menu.png" class="menu-img"></button>  
     </navbar/>
-    <h1 class="h1-home">Olá, ${firebase.auth().currentUser.displayName} ❤</h1> 
-    <img class="photo-profile" src=${profileImg}>
+    <header>
+    <h1 class="header-home">Home</h1>
+    <img class="favicon-home" src="img/favicon.png">
+    </header>
     <div class="timeline">
+    <div class="welcome">
+    <img class="photo-profile-feed" src=${profileImg}>
+    <h1 class="h1-welcome">Olá, ${firebase.auth().currentUser.displayName} :)</h1> 
+    </div>
+    
+    <div class="make-review">
+    <p class="p-make-review">PUBLIQUE UM REVIEW</p>
+    <button class="button-make-review" id="add-review">+</button>
+    </div>
      <form class="review-area" action="">
      
-      <label class="review-label" for="book-name"> Book: </label>
-      <input class="review-book" data-book-input type="text" placeholder="" required>
-      <label class="review-label" for="book-author"> Author: </label>
-      <input class="review-author" data-author-input type="text" placeholder="" required>
-      <label class="review-label" for="book-edition"> Edition: </label>
-      <input class="review-author" data-edition-input type="text" placeholder="" required>
-      <textarea class="post-input" id="text" cols="30" rows="5" data-post-input required placeholder =" Sua review ..."></textarea>
-
-      <label class="rating">Rating:</label>
-        <select class="stars" id="stars" data-stars-form>
-          <option value="one">1</option>
-          <option value="two">2</option>
-          <option value="three">3</option>
-          <option value="four">4</option>
-          <option value="five">5</option>
-        </select>
+      <label class="review-label" for="book-name">Livro:</label>
+      <input class="review-input" data-book-input type="text" placeholder="" required/>
+      <label class="review-label" for="book-author">Autor</label>
+      <input class="review-input" data-author-input type="text" placeholder="" required/>
+      <label class="review-label" for="book-edition">URL</label>
+      <input class="review-input" data-edition-input type="text" placeholder="https://" required/>
+      <textarea class="post-input" id="text" cols="30" rows="5" data-post-input required placeholder ="Escreva sua review..."></textarea>
+      
+      <label class="review-available">Avalie</label>
+      <div class="estrelas" >
+      <input type="radio" id="cm_star-empty" name="stars" value="" checked/>
+      <label for="star-1" class="stars"></label>
+      <input type="radio" id="star-1" data-stars-form name="stars" value="★"/>
+      <label for="star-2" class="stars"></label>
+      <input type="radio" id="star-2" data-stars-form name="stars" value="★★"/>
+      <label for="star-3" class="stars"></label>
+      <input type="radio" id="star-3" data-stars-form name="stars" value="★★★"/>
+      <label for="star-4" class="stars"></label>
+      <input type="radio" id="star-4" data-stars-form name="stars" value="★★★★"/>
+      <label for="star-5" class="stars"></label>
+      <input type="radio" id="star-5" data-stars-form name="stars" value="★★★★★"/>
+    </div>
+        <div class="buttons">
+        <button class="publish-btn" data-publish-btn id="button-review">Publicar</button>
+        <button class="cancel-btn" id="button-review">Cancelar</button>
+        </div>
      </form>   
-        <button class="publish-btn" data-publish-btn> Publish review </button>
     </div>
     <div data-new-review class ="posted-review">
     
@@ -68,10 +87,30 @@ export default () =>{
       
     </div>
   `
-  // <button id="logout-btn"><img class="logout-img" src="../img/logout.png"/></button>
   sectionElement.innerHTML= createFeedTemplate
+
   sectionElement.appendChild(sidebar())
 
+  const buttonAddReview = sectionElement.querySelector("#add-review")
+  buttonAddReview.addEventListener("click", () => {
+    const formReview = sectionElement.querySelector(".review-area");
+    formReview.style.display="flex";
+    sectionElement.querySelector(".welcome").style.display="none"
+    sectionElement.querySelector(".button-make-review").style.display="none";
+    sectionElement.querySelector(".make-review").style.background="linear-gradient(300.92deg, #5E97AF 6.15%, #6D9ACE 80.44%, #5694DC 100.96%)";
+    sectionElement.querySelector(".p-make-review").style.display="none"
+    document.querySelector(".sidebar-desktop").style.display="none"
+  })
+  
+  const cancelReview = sectionElement.querySelector(".cancel-btn")
+  cancelReview.addEventListener("click", () => {
+    sectionElement.querySelector(".review-area").style.display="none"
+    sectionElement.querySelector(".welcome").style.display="flex"
+    sectionElement.querySelector(".button-make-review").style.display="block";
+    sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
+    sectionElement.querySelector(".p-make-review").style.display="block"    
+    document.querySelector(".sidebar-desktop").style.display="flex"
+  })
   const menuBtn = sectionElement.querySelector(".menu-mobile-btn")
   menuBtn.addEventListener("click", (e)=>{
     e.preventDefault()
@@ -79,10 +118,23 @@ export default () =>{
     sidebar.style.display="block"
     sidebar.classList.remove("sidebar-desktop")
   }) 
+
+  // const postReview = sectionElement.querySelector(".review-area")
+  // postReview.style.display="none";
     
 
   const publishReview = (e) => {
     e.preventDefault()
+
+    sectionElement.querySelector(".review-area").style.display="none"
+    sectionElement.querySelector(".welcome").style.display="flex"
+    sectionElement.querySelector(".button-make-review").style.display="block";
+    sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
+    sectionElement.querySelector(".p-make-review").style.display="block" 
+    document.querySelector(".sidebar-desktop").style.display="flex"
+
+    const formReview = sectionElement.querySelector(".review-area");
+    formReview.style.display="none";
 
     const bookName = document.querySelector("[data-book-input]").value
     const authorName = document.querySelector("[data-author-input]").value
@@ -96,12 +148,24 @@ export default () =>{
     const printReview = document.createElement("article")
     printReview.classList.add("new-review")
 
-    const content = `<div>
+    const userName = user.displayName
+    const userName2 = userName.replace(/\s/g, '').toLowerCase();
+    
+    
+
+    const content = 
+                  `<div id="posts-reviews">
+                  <div class="data-post">
+                    <img class="photo-post-review" src=${profileImg}>
+                    <h1 class="name-profile-post">${firebase.auth().currentUser.displayName}</h1>
+                    <p class="username-post">@${userName2}</p>
+                    <p class="stars-show">${starsEvaluation}</p>
+                    </div>
+                    <div class="data-book-post">
                     <h2 class="title-book"> ${bookName} </h2>
                     <h3 class="name-author"> ${authorName} </h3>
-                    <p class="edition-content"> ${editionBook}</p> </br>
                     <p class="content-review">${valueReview}</p> </br>
-                    <p class="stars-show">${starsEvaluation}</p> 
+                    </div>
                     </div>`
 
     printReview.innerHTML = content 
