@@ -10,38 +10,40 @@ export const Login = () => {
   <main class='container'>  
     <section class='img-container'>
     </section>    
-      <section id='login' class='login-container'>
-       <header class='form-options'>
-          <span class='opt-login'>Login</span>
-          <span class='opt-signup'>Cadastro</span>
-        </header>
-        <section class='form-container'>
-          <form>
-            <div class='form-fields'>
-              <label for='email'>E-mail</label>
-              <input id='email' type='e-mail' class='input-email'>
+    <section id='login' class='login-container'>
+      <header class='form-options'>
+        <span class='opt-login'>Login</span>
+        <span class='opt-signup'>Cadastro</span>
+      </header>
+      <section class='form-container'>
+        <form>
+          <div class='form-fields'>
+            <label for='email'>E-mail</label>
+            <input id='email' type='e-mail' class='input-email'>
               
-              <label class='label-login' for='password'>Senha:</label>
-              <input id='password' type='password' class='input-password'>
-            </div>
+            <label class='label-login' for='password'>Senha:</label>
+            <input id='password' type='password' class='input-password'>
+          </div>
+          <div class='rememberForgot' >
+            <label><input type='checkbox' id='keep-me-logged'>Manter-me conectado</label>
+            <a href='#' id='reset'>Esqueci a senha</a>
+          </div>
 
-            <div class='rememberForgot' >
-              <label><input type='checkbox' id='keep-me-logged'>Manter-me conectado</label>
-              <a href='#'>Esqueci a senha</a>
-            </div>
+          <button type='button' id='buttonLogin' class='btn-login btn form-item'>Entrar</button>
+          <p class='separator form-item'>ou</p>                      
+          <button type='button' id='btnGmail' class='btnGmail btn form-item'>
+            <img src='./img/logo-google.png' class='google-icon'></img>
+            <span>Entrar com o Google</span>
+          </button>
 
-              <button type='button' id='buttonLogin' class='btn-login btn form-item'>Entrar</button>
-              <p class='separator form-item'>ou</p>                      
-              <button type='button' id='btnGmail' class='btnGmail btn form-item'>
-                <img src='./img/logo-google.png' class='google-icon'></img>
-                <span>Entrar com o Google</span>
-              </button>
-          </form>
+        </form>
       </section>
-    </main>
+    </section>
+  </main>
   `; 
 
   const keepLogged = root.querySelector('#keep-me-logged');
+  const reset = root.querySelector('#reset');
   const btnSignUp = root.querySelector('.opt-signup');
   const btnLogin = root.querySelector('#buttonLogin');
   const btnGmail = root.querySelector('#btnGmail');
@@ -57,6 +59,11 @@ export const Login = () => {
     keepMeLogged(none);
   });
 
+  reset.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.replace('/reset');
+  });
+
   btnSignUp.addEventListener('click', () => {
     window.history.pushState({}, '', '/signup');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
@@ -66,9 +73,6 @@ export const Login = () => {
   btnLogin.addEventListener('click', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    if (email === '' || password === '') {
-      alert('Preencha os campos corretamente');
-    }
     loginEmailAndPassword(email, password);
   });
 
