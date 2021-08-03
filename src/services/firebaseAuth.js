@@ -1,38 +1,41 @@
-import { route } from "../router.js";
+/* eslint-disable arrow-body-style */
+const handleError = () => {
+  if (error.code) {
+    switch (error.code) {
+      case 'auth/account-exists-with-different-credential':
+          alert("Você já possui uma conta!")
+      break;
+      case 'auth/credential-already-in-use'
+//             || errorCode === 'auth/account-exists-with-different-credential'
+//             || email === 'auth/credential-already-in-use'
+//             || email === 'auth/email-already-in-use'
+//             || credential === 'auth/credential-already-in-use'
+//             || credential === 'auth/email-already-in-use'
 
-const email = "isisbeatriz@gmail.com";
-const password = "123456";
+    }
+  }
+}
+export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
+  return firebase
+    .auth()
+    .createUserWithEmailAndPassword(emailUser, passwordRegister);
+};
 
-// firebase
-//   .auth()
-//   .createUserWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     console.log('deu bom', user);
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     console.log('deu ruim', errorCode, errorMessage);
-//     // ..
-//   });
+export const atualizarUsuario = (nome) => firebase.auth().currentUser.updateProfile({
+  displayName: nome,
+  return: atualizarUsuario,
+});
 
-firebase
-  .auth()
-  .signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    console.log("logou!");
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log("não logou.");
-  });
+console.log(atualizarUsuario);
+
+// ** SIGN IN E-MAIL AND PASSOWORD //
+export const SignIn = (usuario, passwordLogin) => {
+  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin);
+};
+
+export const stayLogged = () => {
+  return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+};
 
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -45,49 +48,25 @@ firebase
 //       // ...
 //     }
 //   });
-
 // ** SIGN IN GOOGLE //
 export const googleLogin = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-  provider.addScope("https://www.googleapis.com/auth/user.birthday.read");
-  provider.addScope("https://www.googleapis.com/auth/user.emails.read");
-  provider.addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
-  provider.addScope("https://www.googleapis.com/auth/userinfo.email");
-  provider.addScope("https://www.googleapis.com/auth/userinfo.profile");
-
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  provider.addScope('https://www.googleapis.com/auth/user.birthday.read');
+  provider.addScope('https://www.googleapis.com/auth/user.emails.read');
+  provider.addScope('https://www.googleapis.com/auth/user.phonenumbers.read');
+  provider.addScope('https://www.googleapis.com/auth/userinfo.email');
+  provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
   firebase
     .auth()
-    .signInWithRedirect(provider)
-    .then(
-      firebase
-        .auth()
-        .getRedirectResult()
-        .then((result) => {
-          if (result.credential) {
-            /** @type {firebase.auth.OAuthCredential} */
-            const credential = result.credential;
-            const token = credential.accessToken;
-          }
-          const user = result.user;
-          route("/login");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const email = error.email;
-          const credential = error.credential;
-          if (
-            errorCode === "auth/credential-already-in-use" ||
-            errorCode === "auth/account-exists-with-different-credential" ||
-            email === "auth/credential-already-in-use" ||
-            email === "auth/email-already-in-use" ||
-            credential === "auth/credential-already-in-use" ||
-            credential === "auth/email-already-in-use"
-          ) {
-            alert("Você já é cadastrado em nossa plataforma!");
-          }
-        })
-    );
+    .signInWithPopup(provider)
+    .then((result) => {
+      /** @type {firebase.auth.OAuthCredential} */
+      const credential = result.credential;
+      const token = credential.accessToken;
+      const user = result.user;
+    })
+    .catch(handleError);
 };
 
 //* SIGN OUT  */
@@ -95,8 +74,42 @@ firebase
   .auth()
   .signOut()
   .then(() => {
-    // Sign-out successful.
+    
   })
   .catch((error) => {
     // An error happened.
   });
+  
+//   firebase
+//     .auth()
+//     .signInWithRedirect(provider)
+//     .then(
+//       window.onload =
+//       firebase
+//         .auth()
+//         .getRedirectResult()
+//         .then((result) => {
+//           if (result.credential) {
+//             /** @type {firebase.auth.OAuthCredential} */
+//             const credential = result.credential;
+//             const token = credential.accessToken;
+//           }
+//           const user = result.user;
+//         })
+//         .catch((error) => {
+//           const errorCode = error.code;
+//           const email = error.email;
+//           const credential = error.credential;
+//           if (
+//             errorCode === 'auth/credential-already-in-use'
+//             || errorCode === 'auth/account-exists-with-different-credential'
+//             || email === 'auth/credential-already-in-use'
+//             || email === 'auth/email-already-in-use'
+//             || credential === 'auth/credential-already-in-use'
+//             || credential === 'auth/email-already-in-use'
+//           ) {
+//             alert('Você já é cadastrado em nossa plataforma!');
+//           }
+//         })
+//     );
+// };

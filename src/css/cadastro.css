@@ -16,18 +16,16 @@
   width: 50%;
 }
 
-#name,
-#username,
-#email,
-#tel,
-#password,
+#nameUser,
+#emailUser,
+#passwordRegister,
 #confPass {
   text-align: center;
   padding: 3%;
   margin: 1%;
   border: 1px solid #51fa02;
   box-shadow: 0px 4px 4px 0px rgba(73, 73, 73, 0.25) inset;
-  font-size: 120%;
+  font-size: 100%;
 }
 .register {
   font-family: "Russo One", sans-serif;
@@ -45,7 +43,7 @@
   background-color: #fff;
   border: none;
   box-shadow: none;
-  width: 13%;
+  width: 30%;
   margin: 4% auto;
 }
 #buttonLogin img {
@@ -58,14 +56,12 @@
   width: 50%;
   padding: 8% 0 8% 0;
 }
-#name,
-#username,
-#email,
-#tel,
-#password,
+
+#nameUser,
+#emailUser,
+#passwordRegister,
 #confPass {
   padding: 5%;
-  margin: 5%;
   font-size: 60%;
 }
 .register {

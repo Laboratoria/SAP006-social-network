@@ -1,8 +1,9 @@
-import { route } from "../../router.js";
-import { googleLogin } from "../../services/firebaseAuth.js";
+import { googleLogin, SignIn} from '../../services/firebaseAuth.js';
+import { route } from '../../router.js';
+
 export const login = () => {
-  const rootElement = document.createElement("div");
-  rootElement.setAttribute("class", "page");
+  const rootElement = document.createElement('div');
+  rootElement.setAttribute('class', 'page');
   rootElement.innerHTML = `<div class="container">
 
       <img class="logo" src="img/logo.png" alt="GO VEG - logo">
@@ -35,20 +36,39 @@ export const login = () => {
       </div> 
     </div>`;
 
-  const botaoCadastro = rootElement.querySelector("#cadastro");
-  const botaoGoogle = rootElement.querySelector("#google-login");
+  const botaoCadastro = rootElement.querySelector('#cadastro');
+  const botaoGoogle = rootElement.querySelector('#google-login');
+  const usuario = rootElement.querySelector('#usuario');
+  const passwordLogin = rootElement.querySelector('#senha');
+  const signInButton = rootElement.querySelector('#entrar');
 
-  botaoCadastro.addEventListener("click", (e) => {
+  signInButton.addEventListener('click', (e) => {
     e.preventDefault();
-    route("/cadastro");
+    SignIn(usuario.value, passwordLogin.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        window.history.pushState({}, '', '/home');
+        const popstateEvent = new PopStateEvent('popstate', { state: {} });
+        dispatchEvent(popstateEvent);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        alert('E-mail ou senha incorretos, por favor, verifique!');
+      });
   });
 
-  botaoGoogle.addEventListener("click", (e) => {
+  botaoCadastro.addEventListener('click', (e) => {
+    e.preventDefault();
+    route('/cadastro');
+  });
+
+  botaoGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     googleLogin();
   });
-
   return rootElement;
 };
-
-
