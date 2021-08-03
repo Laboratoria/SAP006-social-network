@@ -30,6 +30,7 @@ export const sidebar = () => {
     <div class="sidebar-container">
       <button class="close-mobile-sidebar" id="close-mobile-sidebar">x</button>
       <section class="user-data">
+      
         <img src="${profileImg}"   class="sidebar-user-img"/>
         <div class="user-information">
           <h3 class="sidebar-user-name sidebar-text user-name">${user.displayName}</h3>
@@ -87,6 +88,7 @@ export const sidebar = () => {
 
 
   asideElement.innerHTML = sidebarTemplate
+
   const logoutBtn = asideElement.querySelector("#logout-btn-sidebar")
   const editProfileLink = asideElement.querySelector("#edit-profile-link")
 
@@ -115,6 +117,17 @@ export const sidebar = () => {
 
   })
 
+  const showSideBar = asideElement.querySelector(".sidebar-container") 
+  showSideBar.addEventListener('mouseover', () => {
+    document.querySelector(".sidebar-desktop").style.transition="1s"
+    document.querySelector(".sidebar-desktop").style.margin="0rem 0rem 0rem 80vw"
+  })
+
+  const hideSideBar = asideElement.querySelector(".sidebar-container") 
+  hideSideBar.addEventListener('mouseout', () => {
+    document.querySelector(".sidebar-desktop").style.transition="1s"
+    document.querySelector(".sidebar-desktop").style.margin="0rem 0rem 0rem 113vw"
+  })
 return asideElement
 
 }

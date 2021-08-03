@@ -212,37 +212,8 @@ a:hover{
     border-radius: 5px;
 }
 
-
-.home-container{
-    background-color: white;
-    width:80vw;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* #logout-btn{
-    position: absolute;
-    margin: 0rem 0rem 30rem 80vw;
-    cursor: pointer;
-    background-color: transparent;
-    font-size: 15px;
-    height: 3.5rem;
-    width: 7rem;
-    border: none;
-    color: white;
-} */
-
 .home-navbar{
     display:none
-}
-.h1-home{
-    color: black; 
-    font-size: 35px;
-    padding: 1rem;
 }
 #bookish{
     color: #ffffff;
@@ -326,69 +297,91 @@ a:hover{
 #none{
     display: none;
 }
-.photo-profile{
-    border-radius: 50%;
-    border: #742b74 2px solid;
-    height: 10rem;
-    width: 10rem;
-}
 /* home area */
 .review-area{
+    display: none;
+    justify-content: center;
     text-align: center;
-    display: flex;
-    padding: 1rem;
-    background-color: purple;
+    background: linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
     flex-direction: column;
+    color: white;
+    padding: 0rem 5rem 2rem;
+    margin: 0rem 0rem;
 }
 
-.content-area{
+.review-input{
+    border: none;
+    border-radius: 10px;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    outline: none;
+}
+.review-label{
+    font-size: 1.8rem;
+    padding: 0.6rem;
+    color: #ffffff;
+    text-align: left;
+}
+
+.post-input{
+    margin: 2rem 0rem;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.7rem;
+    outline: none;
+    border: none;
+}
+.review-available{
+    font-size: 1.9rem;
+    color: #ffffff;
     text-align: center;
-    margin: 1rem;
+    padding: 1rem 0rem 0rem;
+    border-top: 1px solid #ffffff;
+    font-weight: bold;
 }
-
-.posted-review{
-    margin: 1rem;
-}
-
-.timeline{
-    margin: 1rem;
-}
-
-.publish-btn{
-    padding: 1rem;
-}
-
-.new-review{
-    padding: 1rem;
-}
-
-.review-book{
-    padding: 1rem;
-}
-
-.review-author{
-    padding: 1rem;
-}
-
-.review-author{
-    padding: 1rem;
-}
-
-.logout-img{
-    width: 3rem;
-    margin: 0.2rem 0rem 0rem 0rem;
-}
-.logout-img:hover{
-    width: 4rem;
-    transition: 1s;
-}
-
 #input-username{
     width:80%;
     align-self: center;
-
+}
+.estrelas input[type=radio] {
+    display: none;
+}
+.estrelas label.stars{
+    cursor: pointer;
+    font-size: 5rem;
+    color: #e7e7e7;
+}
+.estrelas label.stars:before {
+    content:'★';
+    color: #FC0;
+}
+.estrelas input[type=radio]:checked ~ label.stars:before {
+    color: #e6f5ff;
 }
 
+.estrelas{
+    border-bottom: 1px solid #fafafa;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#button-review{
+    background-color: #253a68;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.9rem;
+    margin: 1rem 15rem;
+    color: white;
+}
+#button-review:hover{
+    filter:invert(77%) sepia(58%) saturate(1717%) hue-rotate(203deg) brightness(100%) contrast(88%);
+    transition: 1s
+}
 #send-profile{
     width:80%;
     align-self: center;
@@ -402,21 +395,28 @@ a:hover{
     min-height:100vh;
     position:fixed;
     top:0;
-    right:0;
     background: linear-gradient(359.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
     color:white;
     display: flex;
     justify-content: center;
+    margin: 0rem 0rem 0rem 113vw;
 }
-  
+
+.open-sidebar{
+    position: absolute;
+    font-size: 4rem;
+    margin: 0rem 20vw 0rem 0rem;
+    background: transparent;
+    color: rgb(35, 47, 88);
+    border: none;
+}
   
 .sidebar-container{
     width:100%;
     display: flex;
     flex-direction: column;
     align-items:center;
-    margin:3rem;;
-
+    margin: 1rem 3rem;
 }
 
 .close-mobile-sidebar{
@@ -467,7 +467,7 @@ a:hover{
     align-self: center;
     border: double 3px transparent;
     border-radius: 50%;
-    background-image: linear-gradient(white, white), 
+    background-image: linear-gradient(white, white),
                       linear-gradient(360deg,#5755b9 0%, #3180a5 53.12%, #65a4b8 100%);
     background-origin: border-box;
     background-clip: content-box, border-box; 
@@ -499,10 +499,8 @@ a:hover{
     border-top: solid 1px white;
     border-bottom: solid 1px white;
     display:flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
   }
-  
   .profile-line{
     display:flex;
     flex-direction: row;
@@ -510,9 +508,7 @@ a:hover{
     width:100%;
     align-items:center;
     margin-bottom: 2.5rem;
-   
   }
-  
   .sidebar-line{
     width:100%;
     display:flex;
@@ -520,19 +516,15 @@ a:hover{
     align-items:center;
   
   }
-  
   #edit-profile-link{
     color:rgb(200, 231, 255);
     font-size:1.4rem;
   }
-
   #edit-profile-link:hover{
     color:var(--default-blue);
     text-decoration: none;
     transition:0.7s
   }
-  
-  
   .num{
     width:2.2rem;
     height: 2.2rem;
@@ -543,17 +535,14 @@ a:hover{
     align-items:center;
     margin-left:1rem;
   }
-
   .num-text{
       font-size:1.3rem;
       font-weight: bold;
       color:var(--default-blue);
   }
-  
   .review-line{
     margin-bottom:2rem;
   }
-  
   .sidebar-tools{
     width:100%;
     padding: 2rem 0;
@@ -563,7 +552,6 @@ a:hover{
     justify-content: center;
    
   }
-  
   .sidebar-div-links{
     width:100%;
     display:flex;
@@ -572,8 +560,6 @@ a:hover{
     align-items:center;
     font-weight:normal;
   }
-
- 
   .sidebar-div-links img{
     margin-right:10px
   }
@@ -583,29 +569,17 @@ a:hover{
     transition:0.7s
 
   }
-
-  
-
   #logout-btn-sidebar{
     background-color: transparent;
     border:none;
     
   }
-  
-
- 
-  
   .sidebar-btn{
     border:none;
     background: transparent;
     color:white;
     cursor:pointer
   }
-
-
-  
-
-  
   .sidebar-logout{
     font-size: 1.5rem;
     border-bottom: none;
@@ -620,8 +594,150 @@ a:hover{
       width:4rem;
   }
   
-
-  
-  
-
-  
+#home-content{
+    background-color: #f0f0f0;
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+}
+.home-container{
+    background-color: #ffffff;
+    align-items: unset;
+    justify-content: unset;
+    width: 60vw;
+}
+header{
+    position: sticky;
+    width: 60vw;
+    border-bottom: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #ffffff;
+}
+.header-home{
+    font-size: 2.2rem;
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem 2rem
+}
+.timeline{
+    margin: 0.5rem 0rem;
+}
+.favicon-home{
+    width: 4.5rem;
+    margin: 0px 47vw;
+}
+.welcome{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0px 0.5rem;
+}
+.photo-profile-feed{
+    width: 5rem;
+    border-radius: 50%;
+    border: 2px solid rgb(89, 136, 189);
+}
+.h1-welcome{
+    font-size: 2rem;
+    font-weight: 100;
+    color: black;
+    padding: 0rem 0rem 0rem 1rem;
+}
+.make-review{
+    padding: 1.5rem;
+    background: linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.p-make-review{
+    font-size: 2rem;
+    color: white;
+}
+.button-make-review{
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 4rem;
+    border: 2px solid white;
+    font-size: 3rem;
+    color: white;
+    margin: 0px 0rem 0px 2rem;
+}
+.button-make-review:hover{
+    filter:invert(77%) sepia(58%) saturate(1717%) hue-rotate(203deg) brightness(100%) contrast(88%);
+    transition: 1s;
+}
+.h1-review{
+    font-size: 2rem;
+}
+#posts-reviews{
+    margin: 1rem;
+    padding: 1rem;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+}
+.photo-post-review{
+    width: 7rem;
+    border-radius: 50%;
+    border: 2px solid rgb(89, 136, 189);
+}
+.data-post{
+    display: flex;
+    flex-direction: row;
+    margin: 0px 3rem;
+}
+.name-profile-post{
+    margin: 1rem 0.5rem 0rem 1rem;
+    font-size: 2rem;
+    color: black;
+}
+.username-post{
+    font-size: 1.6rem;
+    margin: 1.3rem 0rem;
+    color: grey;
+}
+.data-book-post{
+    margin: 0rem 3rem;
+    display: block;
+    text-align: left;
+}
+.title-book{
+    margin: 1rem 0rem 0rem;
+    font-size: 2.2rem;
+    color: black;
+    font-weight: bold;
+    width: 60%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+.name-author{
+    margin: 0rem 0rem 1rem;
+    font-size: 1.8rem;
+    color: #202020;
+    width: 60%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+.content-review{
+    color: black;
+    margin: 0.5rem 0rem;
+    text-align: justify;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    font-size: 1.5rem;
+    font-weight: lighter;
+}
+.stars-show{
+    color: #FC0;
+    font-size: 3rem;
+    margin: 0rem 0.5rem;
+}
