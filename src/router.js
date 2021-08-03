@@ -1,24 +1,29 @@
-import { login } from './pages/login/index.js';
 import { cadastro } from './pages/cadastro/index.js';
-import { home } from './pages/home/index.js';
+import { Login } from './pages/login/index.js';
+import { home } from './pages/home/index.js";
 
 const routRender = () => {
-  const elemento = document.getElementById('root');
-  const routes = {
-    '/': login,
-    '/cadastro': cadastro,
-    '/home': home,
+    const elemento = document.getElementById("root");
+    const routes = {
+        "/": Login,
+        "/cadastro": cadastro,
+        "/home": home,
 
-  };
-  elemento.innerHTML = '';
-  elemento.appendChild(routes[window.location.pathname]());
-  /* elemento.appendChild(routes["abacaxi"]()) */
-  console.log(window.location.pathname);
+    }
+    elemento.innerHTML = "";
+    elemento.appendChild(routes[window.location.pathname]())
+    console.log(window.location.pathname)
+}
+
+window.addEventListener("popstate", routRender);
+window.addEventListener("load", () => {
+    routRender();
+    console.log("caiuuuuu no load")
+
+})
+
+export const route = (state) => {
+    window.history.pushState({}, "", state);
+    const popstateEvent = new PopStateEvent("popstate", { state: {} });
+    dispatchEvent(popstateEvent);
 };
-
-window.addEventListener('popstate', routRender);
-window.addEventListener('load', () => {
-  /* window.history.pushState({},"","/") */
-  routRender();
-  console.log('caiuuuuu no load');
-});

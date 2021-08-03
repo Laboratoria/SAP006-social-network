@@ -2,8 +2,7 @@ import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebas
 
 export const cadastro = () => {
   const rootElement = document.createElement('div');
-  rootElement.innerHTML = `<link rel="stylesheet" href="./css/styleCadastro.css"/>
- <fieldset class='box' name='dados'>
+  rootElement.innerHTML = ` <fieldset class='box' name='dados'>
   <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro">Cadastro</legend>
   <form class="forms">
     <input type="text" id="nameUser" placeholder="Nome">
@@ -15,7 +14,7 @@ export const cadastro = () => {
     <input type="password" id="confPass" placeholder="Confirme sua senha">
     <p id="textErrorConfPassword"></p>
   </form>
-  <button type="button" name="botao" id="enter">CADASTRAR</button>   
+  <button class="register" type="button" name="botao" id="enter">CADASTRAR</button>   
 </fieldset>`;
   // funções para receber dos dados de cadastro//
   rootElement.querySelector('#enter').addEventListener('click', (e) => {

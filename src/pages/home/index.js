@@ -1,4 +1,4 @@
-//import { outLogin } from '../../services/firebaseAuth.js';
+import { outLogin } from '../../services/firebaseAuth.js';
 
 export const home = () => {
   const rootElement = document.createElement('div');
