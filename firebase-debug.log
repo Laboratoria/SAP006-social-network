@@ -1,0 +1,81 @@
+[debug] [2021-08-03T13:28:51.455Z] ----------------------------------------------------------------------
+[debug] [2021-08-03T13:28:51.458Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2021-08-03T13:28:51.459Z] CLI Version:   9.16.0
+[debug] [2021-08-03T13:28:51.459Z] Platform:      win32
+[debug] [2021-08-03T13:28:51.459Z] Node Version:  v14.17.0
+[debug] [2021-08-03T13:28:51.471Z] Time:          Tue Aug 03 2021 10:28:51 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2021-08-03T13:28:51.472Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-08-03T13:28:51.478Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-08-03T13:28:51.626Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-03T13:28:51.626Z] > authorizing via signed-in user (magdutra.jobs@gmail.com)
+[debug] [2021-08-03T13:28:51.626Z] [iam] checking project rede-social-70f9c for permissions ["firebase.projects.get"]
+[debug] [2021-08-03T13:28:51.628Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-08-03T13:28:51.629Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-03T13:28:51.866Z] <<< HTTP RESPONSE 200 {"date":"Tue, 03 Aug 2021 13:28:52 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-03T13:28:51.886Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/rede-social-70f9c:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-08-03T13:28:52.169Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-08-03T13:28:52.169Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2021-08-03T13:28:52.910Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 03 Aug 2021 13:28:53 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=764","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-03T13:28:52.911Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project rede-social-70f9c:
+
+  firebase.projects.get
+[debug] [2021-08-03T13:28:52.911Z] > refreshing access token with scopes: []
+[debug] [2021-08-03T13:28:52.912Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-03T13:28:53.188Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 03 Aug 2021 13:28:53 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-03T13:28:53.200Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-70f9c [none]
+[debug] [2021-08-03T13:28:53.720Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-70f9c 403
+[debug] [2021-08-03T13:28:53.720Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-70f9c {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2021-08-03T13:28:53.721Z] HTTP Error: 403, The caller does not have permission
+[debug] [2021-08-03T13:28:53.722Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:23)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Client.request (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async getProjectNumber (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\getProjectNumber.js:11:22)
+    at async C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:17
+[error] 
+[error] Error: Failed to get Firebase project rede-social-70f9c. Please make sure the project exists and your account has permission to access it.
+[debug] [2021-08-03T19:41:40.031Z] ----------------------------------------------------------------------
+[debug] [2021-08-03T19:41:40.035Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2021-08-03T19:41:40.035Z] CLI Version:   9.16.0
+[debug] [2021-08-03T19:41:40.035Z] Platform:      win32
+[debug] [2021-08-03T19:41:40.035Z] Node Version:  v14.17.0
+[debug] [2021-08-03T19:41:40.043Z] Time:          Tue Aug 03 2021 16:41:40 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2021-08-03T19:41:40.043Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-08-03T19:41:40.159Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-03T19:41:40.160Z] > authorizing via signed-in user (magdutra.jobs@gmail.com)
+[debug] [2021-08-03T19:41:40.161Z] [iam] checking project rede-social-70f9c for permissions ["firebase.projects.get"]
+[debug] [2021-08-03T19:41:40.165Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-08-03T19:41:40.166Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-03T19:41:40.436Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 03 Aug 2021 19:41:41 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-03T19:41:40.451Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/rede-social-70f9c:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-08-03T19:41:40.963Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 03 Aug 2021 19:41:42 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=344","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-03T19:41:40.964Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project rede-social-70f9c:
+
+  firebase.projects.get
+[debug] [2021-08-03T19:41:40.964Z] > refreshing access token with scopes: []
+[debug] [2021-08-03T19:41:40.964Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-08-03T19:41:41.248Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 03 Aug 2021 19:41:42 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-03T19:41:41.259Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-70f9c [none]
+[debug] [2021-08-03T19:41:41.835Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-70f9c 403
+[debug] [2021-08-03T19:41:41.835Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/rede-social-70f9c {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2021-08-03T19:41:41.835Z] HTTP Error: 403, The caller does not have permission
+[debug] [2021-08-03T19:41:41.837Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at module.exports (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:38:12)
+    at Client.doRequest (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:238:23)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)
+    at async Client.request (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:96:20)
+    at async Object.getFirebaseProject (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async getProjectNumber (C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\getProjectNumber.js:11:22)
+    at async C:\Users\maagd\AppData\Roaming\npm\node_modules\firebase-tools\lib\command.js:169:17
+[error] 
+[error] Error: Failed to get Firebase project rede-social-70f9c. Please make sure the project exists and your account has permission to access it.
