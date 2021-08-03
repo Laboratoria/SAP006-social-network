@@ -137,16 +137,21 @@ export const forgotPassword = (email) =>{
 }
 
 
-export const createReview = (bookUser, editionUser, authorUser, reviewUser, ratingStars, name) => { 
-  const db = firebase.firestore()
-  db.collection("reviews").add({
+export const createReview = (bookUser, editionUser, authorUser, reviewUser, ratingStars, nameUser) => { 
+  const dateReview = new Date()
+  
+  firebase
+  .firestore()
+  .collection("reviews").add({
     book: bookUser,
     edition: editionUser,
     author: authorUser,
     review: reviewUser,
     rating: ratingStars,
-    userName: name
-
+    userName: nameUser,
+    userId: firebase.auth().currentUser.uid,
+    datePost: `${dateReview.toLocaleDateString()} ${dateReview.getHours()}:${dateReview.getMinutes()}`,
+    savingForLater: [] //likes? list?
   })
   .then(() => {
     console.log("Document successfully written!");
@@ -158,14 +163,8 @@ export const createReview = (bookUser, editionUser, authorUser, reviewUser, rati
 
 
 
-// export const getReviews = () => {
-//   const postCollections = firebase.firestore().collection("reviews").orderBy("time", "desc")
-
-//   postCollections.get()
-//   // .then(snap => {
-//   //   snap.forEach(post => {
-//   //     newReview(post)
-//   //   });
-
-//   // })
-//}
+export const getReviews = () => {
+  firebase
+  .firestore()
+  .collection("reviews").orderBy("time", "desc").get()   
+}

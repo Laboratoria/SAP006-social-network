@@ -337,7 +337,7 @@ a:hover{
     text-align: center;
     display: flex;
     padding: 1rem;
-    background-color: purple;
+    background-color: palegreen;
     flex-direction: column;
 }
 

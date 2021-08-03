@@ -1,4 +1,4 @@
-import { currentUser, logout, createReview} from "../../lib/index.js"
+import { currentUser, logout, createReview, getReviews} from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
 
 export default () =>{
@@ -96,6 +96,8 @@ export default () =>{
     const printReview = document.createElement("article")
     printReview.classList.add("new-review")
 
+    createReview(bookName, editionBook, authorName, valueReview, starsEvaluation, userNameFirebase)
+
     const content = `<div>
                     <h2 class="title-book"> ${bookName} </h2>
                     <h3 class="name-author"> ${authorName} </h3>
@@ -107,7 +109,6 @@ export default () =>{
     printReview.innerHTML = content 
     local.appendChild(printReview)
 
-    createReview(bookName, editionBook, authorName, valueReview, starsEvaluation, userNameFirebase)
 
     reviewUser.value = ""
     bookName = ""
@@ -118,20 +119,25 @@ export default () =>{
 
   // const loadPosts = () => {
 
-  //   const userAllReviews = document.querySelector("[data-all-reviews]")
-  //   const printAllReviews = document.createElement("article")
-  //   printAllReviews.classList.add("all-users-reviews")
+  //    const userAllReviews = document.querySelector("[data-all-reviews]")
+  //    const printAllReviews = document.createElement("article")
+  //    printAllReviews.classList.add("all-users-reviews")
 
-  //   const reviewsData = getReviews()
-  //   .then(snap => {
-  //     snap.forEach(post => {
-  //       post.data()
-        
-  //     });
-  //   })
+  //    const reviewsData = getReviews()
+  //     .then((reviews) => {
+  //      reviews.forEach((doc) => {
+            //console.log(doc)
+  //        const reviewTemplate = `<h2>${doc.book}</h2>
+  //                              <h3>${doc.author}</h3>`
 
-  //   printAllReviews.innerHTML = reviewsData
-  //   userAllReviews.appendChild(printAllReviews)
+  //     const allReviews = document.querySelector("[data-all-reviews]")
+  //     allReviews.innerHTML += reviewTemplate
+  //     })
+       
+  //   });
+
+  //    printAllReviews.innerHTML = reviewsData
+  //    userAllReviews.appendChild(printAllReviews)
 
   // }
 
