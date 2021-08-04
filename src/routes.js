@@ -6,7 +6,10 @@ import { signUp } from './pages/signup/index.js';
 import { Reset } from './pages/signup/reset.js';
 import { Feed } from './pages/feed/index.js';
 
+console.log('aqui');
+
 export const routeRender = () => {
+  console.log(window.location.pathname);
   const element = document.querySelector('#root');
   const routes = {
     '/': Welcome,
@@ -21,15 +24,7 @@ export const routeRender = () => {
 
   element.innerHTML = '';
   element.appendChild(routes[window.location.pathname]());
-
 };
 
-window.addEventListener('popstate', routeRender);
 window.addEventListener('load', routeRender);
-
-export const navigation = (path) => {
-  window.history.pushState({}, null, path);
-
-  const popStateEvent = new PopStateEvent('popstate', { state: {} });
-  dispatchEvent(popStateEvent);
-};
+window.addEventListener('popstate', routeRender);

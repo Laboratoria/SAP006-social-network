@@ -1,19 +1,11 @@
-img#background {
-  position: absolute;
-  z-index: -1;
-  height: 100%;
-  width: 130%;
-  opacity: 0.4;
-}
-
-h2 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bolder;
-  font-size: 27px;
-  line-height: 31px;
-  letter-spacing: 0.35px;
-  font-feature-settings: "pnum" on, "lnum" on;
-  color: var(--color-primary);
+   h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+    font-size: 27px;
+    line-height: 31px;
+    letter-spacing: 0.35px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: var(--color-primary);
 }
 
 .esmaeceHeader {
@@ -21,14 +13,27 @@ h2 {
   background-color: #ffd2bf;
 }
 
-section {
-  padding: 20% 0% 5% 5%;
+section.title {
+    padding: 20% 0% 5% 5%;
 }
 
 .logotipo-text {
   height: 20%;
   width: 100%;
   z-index: -1;
+}
+
+.content-opacity {
+    background-image: url(./img/paleta3.jpg);
+    filter: opacity(0.4);
+    z-index: -1;
+    padding: 10% 5% 5% 5%;
+    /* height: 100%; */
+    /* width: 130%; */
+}
+
+.without-opacity {
+    filter: none;
 }
 
 span {
@@ -58,10 +63,10 @@ a {
 }
 
 .inputAndReset {
-  margin-top: 78%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    margin-top: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input {
@@ -107,17 +112,17 @@ form {
 }
 
 .btn {
-  height: 53px;
-  width: 245px;
-  border-radius: 50px;
-  background: var(--color-primary);
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 20px;
-  letter-spacing: 0.0168em;
-  color: #ffd2bf;
-  margin: 0% 20% 3% 20%;
+    height: 53px;
+    width: 245px;
+    border-radius: 50px;
+    background: var(--color-primary);
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px;
+    letter-spacing: 0.0168em;
+    color: #FFD2BF;
+    margin: 0% 20% 3% 20%;
 }
 
 .google {
@@ -144,3 +149,73 @@ img#icon-google {
         -moz-box-shadow: inset 0px 0px 10px #a7a3a3;
             box-shadow: inset 0px 0px 10px #a7a3a3;
 } */
+
+
+/* tablet */
+@media only screen and (min-width: 600px) {
+    .h2 {
+        font-size: 5vh;
+        line-height: none;
+    }
+
+    .logotipo-text {
+        height: 15vh;
+    }
+
+    section.title {
+        padding: 16% 0% 1% 5%;
+    }
+
+    .content-opacity {
+        padding: none;
+    }
+
+    .inputAndReset {
+        margin-top: 32.5vh;
+    }
+
+    input {
+        height: 5vh;
+        width: 40vh;
+    }
+
+    .reset-password {
+        margin-right: 16vh;
+    }
+
+    .btn {
+        height: 6vh;
+        width: 20vh;
+        font-size: 1.5vh;
+    }
+
+    img#icon-google {
+        width: 20vh;
+        height: 5vh;
+    }
+
+    .checkbox {
+        height: 1.7vh;
+        width: 1.7vh;
+    }
+}
+
+ /* desktop */
+ @media (min-width: 1200px) {
+    .logotipo-text {
+        width: 50%;
+        height: 100vh;
+    }
+    
+    section.title {
+        padding: none;
+    }
+
+    h2 {
+        display: none;
+    }
+
+    .content-opacity {
+        background-image: none;
+    }    
+ }

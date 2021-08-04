@@ -1,4 +1,4 @@
-import { navigation } from '../../routes.js';
+import { navigation } from "../../navigation.js";
 
 export const Comunique = () => {
 
