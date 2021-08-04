@@ -5,6 +5,7 @@ export default () => {
   const timeline = (document.getElementById("container").innerHTML = `
   <link rel="stylesheet" href="./pages/Timeline/style.css" />
 
+  <div class="banner-menu">
     <div class="banner">
       <img src="assets/logo.png" alt="Logo">
       <div class="title-container">
@@ -21,23 +22,29 @@ export default () => {
     </label>
 
     <ul class="inside-menu">
-      <li>
-        <img id="preview" src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
-        <input type="file" id="photo" class="inputImg">
-        <button id="uploadImage" class="buttonImg">Alterar Foto Perfil</button>
-      </li>
-      <li>
-        <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
-      </li>
-      <li>
-        <p class="email-menu"> ${user.email || "Usuário"} </p>
-      </li>
+      <div class="profile-container">
+        <li class="upload-photo">
+
+            <img id="preview" src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
+            <div class="hidden-div">
+              <input type="file" id="photo" class="inputImg">
+              <button id="uploadImage" class="buttonImg">Alterar Foto Perfil</button>
+            </div>
+          
+        </li>
+        <li>
+          <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
+        </li>
+        <li>
+          <p class="email-menu"> ${user.email || "Usuário"} </p>
+        </li>
+      </div>
 
       <button id="signout-button" class="signout-button buttons">
         <img src="./assets/exit.png" alt="Ícone de Saída">
       </button>
     </ul>
-
+  </div>
     <form action="" id="postForm">
       <textarea type="textarea" id="postText" class="post-textarea" rows="5" cols="50" placeholder="Digite aqui sua review..."></textarea>
       <button type="submit" class="buttons post-button"> Publicar </button>
@@ -62,11 +69,16 @@ export default () => {
 
     const text = document.getElementById("postText").value;
 
+    const getData = () => {
+      const data = new Date();
+      return data.toLocaleString();
+    };
+
     const post = {
+      user: firebase.auth().currentUser.email,
       text: text,
-      userId: "Patrícia",
-      likes: 0,
-      comments: [],
+      likes: [],
+      data: getData(),
     };
 
     postsCollection.add(post).then(() => {
@@ -92,17 +104,14 @@ export default () => {
 
           <p class="post-value"> ${post.data().text} </p>
       
-          <div class="like-comment">
-            <p> ❤️ ${post.data().likes} </p>
-            <p> 💬 </p> 
+          <div id=${post.id} class="like-comment">
+            <button class="likePost-btn timeline-buttons">❤️ ${post.data().likes}</button>  
           </div>
         </div>
           
         <div id=${post.id} class="buttons-container">
+          <button class="editPost-btn timeline-buttons">✏️</button>
           <button class="deletePost-btn timeline-buttons">🗑️</button>
-          <button class="likePost-btn timeline-buttons">❤️</button>
-          <button class="commentPost-btn timeline-buttons">💬</button>
-          <div></div>
         </div>
       </li>
     `;
@@ -112,8 +121,15 @@ export default () => {
     const deleteButtons = document.querySelectorAll(".deletePost-btn");
     for (const button of deleteButtons) {
       button.addEventListener("click", function (event) {
-        console.log(event.target.parentNode.id);
-        deletePost(event.target.parentNode.id);
+        const deleteConfirmation = confirm("Tem certeza quer deseja deletar esse post?");
+
+        if(deleteConfirmation) {
+          deletePost(event.target.parentNode.id);
+        }
+        else {
+          return false;
+        }
+        
       });
     }
 
@@ -146,7 +162,18 @@ export default () => {
           loadPosts();
         });
     }
+
+    const visibilityOfButtons = (document, user) => {
+      if (user !== firebase.auth().currentUser.email) {
+        document.querySelector('.deletePost-btn').classList.add('visibility-hidden');
+        document.querySelector('.editPost-btn').classList.add('visibility-hidden');
+      }
+    };
+  
+    visibilityOfButtons(document, user);
   }
+
+  
 
   // Adicionando foto do perfil
   const uploadImage = document.querySelector('#uploadImage');
@@ -176,7 +203,7 @@ export default () => {
 
   // Mostrando os posts na tela
   function loadPosts() {
-    document.getElementById("posts").innerHTML = "Carregando posts...";
+    document.getElementById("posts").innerHTML = `<span class="loading-post">Carregando posts...</span>`;
 
     postsCollection.get().then((snap) => {
       document.getElementById("posts").innerHTML = "";

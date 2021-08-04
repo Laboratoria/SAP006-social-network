@@ -13,6 +13,14 @@ body {
     height: 180vw;
 }
 
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.display-none {
+  display: none;
+}
+
 @font-face {
   font-family: "Aquatico";
   src: local(Aquatico), url(./assets/aquatico.otf);
