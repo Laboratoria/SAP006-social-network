@@ -52,7 +52,6 @@ export default () => {
 
     googleButton.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("pegou")
         const provider = new firebase.auth.GoogleAuthProvider();
         googleLogin(provider);
     });

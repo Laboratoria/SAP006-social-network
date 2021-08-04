@@ -66,19 +66,18 @@ export default () => {
   // Enviando posts para o firestore
   document.getElementById("postForm").addEventListener("submit", (event) => {
     event.preventDefault();
-
     const text = document.getElementById("postText").value;
 
-    const getData = () => {
-      const data = new Date();
-      return data.toLocaleString();
+    const getDate = () => {
+      const date = new Date();
+      return date.toLocaleString('pt-BR');    
     };
-
+  
     const post = {
       user: firebase.auth().currentUser.email,
       text: text,
-      likes: [],
-      data: getData(),
+      likes: 0,
+      date: getDate(),
     };
 
     postsCollection.add(post).then(() => {
@@ -89,7 +88,6 @@ export default () => {
 
   // Adicionando posts
   function createTemplatePost(post) {
-    const date = new Date();
     
     const postTemplate = `
       <li class="posts-box">
@@ -98,12 +96,16 @@ export default () => {
             <img src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo">
             <div class="username-date-container">
               <p class="username"> ${user.displayName || "Usuário"} </p>
-              <time class="date">${date.toLocaleString('pt-BR')}</time>
+              <time class="date">${post.data().date}</time>
             </div>
           </div>
+        
+          <div id=${post.id}>
+            <textarea disabled class="post-value"> ${post.data().text} </textarea>
+          
+            <button class='save-edit-button buttons display-none' type='button'>Salvar</button>
+          </div>
 
-          <p class="post-value"> ${post.data().text} </p>
-      
           <div id=${post.id} class="like-comment">
             <button class="likePost-btn timeline-buttons">❤️ ${post.data().likes}</button>  
           </div>
@@ -115,9 +117,11 @@ export default () => {
         </div>
       </li>
     `;
-    document.getElementById("posts").innerHTML += postTemplate;
 
-    // Deletando posts
+    const postBox = document.getElementById("posts");
+    postBox.innerHTML += postTemplate;
+
+    // Deletar posts
     const deleteButtons = document.querySelectorAll(".deletePost-btn");
     for (const button of deleteButtons) {
       button.addEventListener("click", function (event) {
@@ -142,7 +146,7 @@ export default () => {
         });
     }
 
-    // Curtindo posts
+    // Curtir posts
     const likeButtons = document.querySelectorAll(".likePost-btn");
 
     for (const button of likeButtons) {
@@ -163,6 +167,31 @@ export default () => {
         });
     }
 
+    // Editar post
+    const editButtons = document.querySelectorAll(".editPost-btn");
+    
+    for (const button of editButtons) {
+      button.addEventListener("click", function (event) {
+        openEditPost(postBox);
+      });
+    }
+
+    function openEditPost (element) {
+        element.querySelector('.post-value').removeAttribute('disabled');
+        element.querySelector('.save-edit-button').classList.remove('display-none');
+    }
+
+    // editPost(event.target.parentNode.id);
+    
+    // function editPost (newText, id) {
+    //   postsCollection
+    //     .doc(id)
+    //     .update({ 
+    //       text: newText 
+    //     });
+    // };
+
+    // Visibilidade dos botões de editar e deletar
     const visibilityOfButtons = (document, user) => {
       if (user !== firebase.auth().currentUser.email) {
         document.querySelector('.deletePost-btn').classList.add('visibility-hidden');
@@ -172,8 +201,6 @@ export default () => {
   
     visibilityOfButtons(document, user);
   }
-
-  
 
   // Adicionando foto do perfil
   const uploadImage = document.querySelector('#uploadImage');

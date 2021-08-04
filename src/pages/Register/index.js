@@ -41,14 +41,12 @@ export default () => {
     // INPUTS PARA CADASTRO
   signUpButtonRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('funcionou');
     loginWithEmail(email.value, password.value, profileName.value)
   });
 
   // BOTÃO DE VOLTAR PARA PÁGINA DE LOGIN
   gobackButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('funcionou button img');
     window.location.hash = '';
   });
 
