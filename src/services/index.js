@@ -69,9 +69,6 @@ const signOut = () => {
   });
 }
 
-
-//export { loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, signOut }
-
 const resetPassword = (email) => {
  firebase
   .auth()
