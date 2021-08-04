@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --background-color: #131140;
+  --button-color: #F28705;
+  --title-color: #FAFAFA;
+  --text-box: #F2D479;
+  --text-color-: #040911;
+}
+
+
 header,
 .container,
 .signUp-container {
@@ -21,7 +30,6 @@ header,
 .logo {
   font-size: 2.5rem;
   text-decoration: none;
-  background: #c4c4c4;
   padding: 1.5rem;
   border-radius: 30rem;
 }
@@ -32,14 +40,14 @@ header,
 
 .login,
 .button,
-#name,
-#email,
-#password,
-#new-password {
+#user-name,
+#user-email,
+#new-password,
+#confirm-password {
   width: 14rem;
   height: 2.5rem;
   margin: 0.35rem;
-  background: #c4c4c4;
+  background: var(--text-box);
   text-decoration: none;
   border: none;
   border-radius: 0.25rem;
@@ -53,7 +61,7 @@ header,
   margin-top: 1.5rem;
 }
 
-#btn-signUp {
+#sign-up-btn {
   width: 9rem;
   padding: 0.75rem;
 }
