@@ -390,7 +390,7 @@ body {
 	 white-space: nowrap;
 	
   }
-  
+ 
   
   textarea {
 	  width: 500px;
@@ -425,4 +425,12 @@ body {
 .likes-comments-bar img{
 	height: 20px;
 	width: 20px;
+}
+
+.publishContent{
+	width: 600px;
+	margin: auto;
+}
+#edit-text-area{
+	background-color: rgb(160, 180, 140);
 }

@@ -42,6 +42,7 @@ export const Login = () => {
   </section> 
  
 `
+
   const getEmail = rootElement.querySelector("#input-email");
   getEmail.addEventListener("keyup", (event) => {
     const labelEmail = rootElement.querySelector("#label-input-email");
@@ -72,6 +73,8 @@ export const Login = () => {
      const email = rootElement.querySelector('#input-email').value;
     resetPassword(email);
   })
+
+
 
   return rootElement;
 
