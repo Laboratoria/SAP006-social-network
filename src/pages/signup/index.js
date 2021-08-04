@@ -1,6 +1,4 @@
 import { createAccount } from "../../services/index.js";
-// import { navigation } from "../../routes.js";
-
 
 export const signUp = () => {
   const rootElement = document.createElement('div');
@@ -46,6 +44,7 @@ export const signUp = () => {
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
     createAccount(userEmail.value, userPassword.value, userConfirmPassword.value)
+    navigation('/feed')
   })
 
   return rootElement
