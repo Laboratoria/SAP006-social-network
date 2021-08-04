@@ -1,4 +1,4 @@
-import { signOut } from "../../services/index.js";
+// import { signOut } from "../../services/index.js";
 
 export const Feed = () => {
   const root = document.createElement('div');
@@ -14,7 +14,6 @@ export const Feed = () => {
     window.history.pushState({}, '', '/');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
-  })
-
+  });
   return root;
-}
+};
