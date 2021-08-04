@@ -5,17 +5,23 @@ export const login = () => {
   const container = document.createElement('div');
   container.className = 'container';
   const template = `
-    <p class="subtitle">Uma rede para tutores e amantes de animais</p>
-    <form class="form">
+    <div class="header">
+       <h1 class="logo">Pet</h1>
+    </div>
+    <p class="subtitle">Uma rede para tutores e amantes de animais.</p>
+    <form class="form-login">
       <span id="error-message"></span>
-      <input type="email" placeholder="Email" class="login" id="user-email" autocomplete="off" />
-      <input type="password" placeholder="Senha" class="login" id="user-password" autocomplete="off" />
-      <button class="button" id="login-btn">Entrar</button>
-      <span>ou</span>
-      <button class="button" id="google-btn">Continuar com o Google</button>
+      <input type="email" placeholder="Email" class="input-field" id="user-email" autocomplete="off" />
+      <input type="password" placeholder="Senha" class="input-field" id="user-password" autocomplete="off" />
+      <button class="button" id="login-btn" type="submit">Entrar</button>
+      <span class="option">ou</span>
+      <button class="button" id="google-btn" type="submit">
+        <img src="../img/icongoogle.png" alt="Google icon" width="20px"/>
+        <span class="button-google">Continuar com o Google</span>
+      </button>
     </form>
-    <p class="text">Ainda não é membro?</p>
-    <button class="button" id="btn-signUp">Cadastrar</button>
+    <p class="sign-up-text">Ainda não é membro?</p>
+    <button class="button" id="btn-signUp">Cadastrar-se</button>
 `;
   container.innerHTML = template;
 
