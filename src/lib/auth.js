@@ -1,4 +1,6 @@
 import { getTheRoad } from "../../router.js";
+import { getError } from "./errors.js";
+
 
 export const loginWithGoogle = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -6,7 +8,7 @@ export const loginWithGoogle = () => {
     .then(() => {
     getTheRoad("/feed");
     }).catch(error => {
-      console.error(error);
+      getError(error);
     });
 };
 
@@ -16,9 +18,7 @@ export const criarFirebaseconta = (email, senha, name) => {
     getTheRoad("/feed");
 })
         .catch((error) => {
-          const errorMessage = error.message;
-          const errorCode = error.code;
-          window.alert("Error : " + errorMessage);
+          getError(error);
         });
 
       };
@@ -39,9 +39,7 @@ export const loginWithEmailAndPassword = (email, pass) => {
   .then(() => {
     getTheRoad("/feed");
   }).catch((error) => {
-  const errorMessage = error.message;
-  const errorCode = error.code;
-  window.alert("Error : " + errorMessage);
+ getError(error)
   });
 
 
@@ -52,7 +50,7 @@ export const loginWithEmailAndPassword = (email, pass) => {
      window.alert('Link enviado para o email')
    })
    .catch((error)=> {
-     window.alert(error)
+     getError(error)
    })
  }
 

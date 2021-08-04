@@ -1,59 +1,93 @@
 //import { changeProfileImage } from "../../lib/auth.js";
-//import { logOut } from "../../lib/auth.js";
+import { logOut } from "../../lib/auth.js";
 
 
 export const Feed = () => {
+  
   const rootElement = document.createElement("div");
   rootElement.className = "feed-container"
   rootElement.innerHTML = `
-  <aside class="aside" id="aside-um">
-  <div class="icon-principal">
-  <img src="./images/name-icon.png" alt="">
-</div>
+  <main class="all-container" id="all-container">
+  <div class="wrap">
+    <div class="container-carousel">
+    <div>
+    <img class="pictures" src="./images/one.png"></img>
+    <img class="pictures" src="./images/one.png"></img>
+    <img class="pictures" src="./images/one.png"></img>
+    <img class="pictures" src="./images/one.png"></img>
+    <img class="pictures" src="./images/one.png"></img>
+    <img class="pictures" src="./images/one.png"></img>
+    <img class="pictures" src="./images/one.png"></img>
+   
+  </div>
+      <span id="previous"><i data-feather="chevron-left"></i></span>
+      <span id="next"><i data-feather="chevron-right"></i></span>
+      <div id="slider" class="slider"></div>
+    </div>
+  </div>
+  <aside> 
   <section class='profile-area'>
-    <figure class='profile-area-photo-box'>
-      <img class = "photo" id = "photo">
-      <input required type="file" id="input-file-profileImg" class='input-file-profileImg transparency'
-        accept=".jpg, .jpeg, .png">
-        </section>
-  <div class="icons">
-    <img src="./images/icon-home.png" alt="">
-    <span class="text-icon">Inicio</span>
-
-    <img src="./images/icon-settings.png" alt="">
-    <span class="text-icon">Perfil </span>
-
-    <img src="./images/icon-dark.png" alt="">
-    <button class="text-icon" id="button-dark"> Modo escuro </button>
-    <form action="" id="postForm">
-
-    <img src="./images/icon-dark.png" alt="">
-    <button class="text-icon" id="button-signout"> Sair </button>
-    <form action="" id="postForm">
+  <figure class='profile-area-photo-box'>
+    <img class = "photo" id = "photo">
+    <input required type="file" id="input-file-profileImg" class='input-file-profileImg transparency'
+      accept=".jpg, .jpeg, .png">
+      </section>
+      <div class="icons">
+      
+      <img src="./images/home-icon.png" alt="">
+  
+      <button class="text-icon" id=""> Inicio </button>
+      <img src="./images/config-icon.png" alt="">
+  
+      <button class="text-icon" id=""> Perfil </button>
+      
+      <img src="./images/dark-icon.png" alt="">
+  
+      <button class="text-icon" id="button-dark"> Modo Escuro </button>
+      <img src="./images/out-icon.png" alt="">
+  
+      <button class="text-icon" id="button-signout"> Sair </button>
       </div>
-</aside>
+  
+  
+  </aside>
+
 
 <form action = "" id="postForm">
   <textarea id='postText' placeholder='O que você quer compartilhar?'></textarea>
-  <button id='publicar'>Publicar</button>
+  <button id='publicar' class='publicar'>Publicar</button>
 </form>
 <section id='postado' class='posts-container'></section>
 
 
 `
+
+const darkMode = () => {
+
+  rootElement.querySelector("#button-dark").addEventListener('click', () => {
+    const change = rootElement.querySelector("#all-container");
+    change.style.background = "black";
+
+  })
+    
+}
+darkMode()
+
+
 rootElement.querySelector('#postForm').addEventListener('submit', function(event){
 event.preventDefault();
 const text = rootElement.querySelector('#postText').value;
 
-const postData = () => {
-  const data = new Date();
-  return data.toLocaleString();
-};
+//const postData = () => {
+  const data = new Date().toLocaleString('pt-BR')
+ //return data.toLocaleString('pt-BR');
+//};
+
 
 const post = {
   text: text,
   user_id: firebase.auth().currentUser.email,
-  data: postData(),
+  data: data,//postData(),
   likes: [],
   comments: [],
 } 
@@ -67,28 +101,35 @@ postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim qu
 })
 
 function addPost(post){
-  const postTemplate = `
+  const postTemplate = 
+  `
   <div id="${post.id}" class="div-postados">
     <p class="user-post">Postado por ${post.data().user_id} </br>
     ${post.data().data} </p>
     <p class="txt-post">${post.data().text} </p>
-    <div class="edit-area" style = "display:none;">
-    <textarea id="edit-area" class="edit-post"></textarea>
-    <button id="edit-save" class="button-edit-save"> Salvar </button>
     </div>
+
+    <div class='text'>
+            <textarea disabled id='edit-text-area' hidden>${post.text}</textarea>
+    </div>
+
     <section class="likes-comments-bar">
       <div class="icones" id="icone-like"><img src="./images/like.png"> ${post.data().likes}</div>
       <div class="icones" id="icone-comment"><img src="./images/comment.png">  ${post.data().comments} </div>
-      <button id="editar" class="edit-button" value="${post.id}">Editar</button>
       <button id="deletar" class="delete-button" value="${post.id}"> Deletar</button>
     </section>
-    
+    <div class="post-edit">
+    <button  id="btnEdit" value="${post.id}">Editar</button>
+    <button id="btn-cancel-edit" value="${post.id}" hidden> Cancelar</button>
+    <button  id="btn-edit-save" value="${post.id}" hidden> Salvar </button>
+    </div>
   </div>
   `
 
 rootElement.querySelector("#postado").innerHTML += postTemplate;
 
 };
+
 
 function loadPosts() {
   const postsCollection = firebase.firestore().collection("posts").orderBy('data', 'desc')
@@ -109,13 +150,6 @@ function loadPosts() {
       })
     })
 
-    /*const editButtons = rootElement.querySelectorAll(".edit-button")
-    editButtons.forEach(button => {
-      button.addEventListener("click", () =>{
-        const buttonValue = button.value;
-        editPost(buttonValue)
-      })
-    })*/
 
 
     const likeButtons = rootElement.querySelectorAll(".like-button")
@@ -130,13 +164,35 @@ function loadPosts() {
   })
 }
 
+const editBotoes = rootElement.querySelectorAll(".post-edit")
+editBotoes.forEach((btnEdit) => {
+  btnEdit.addEventListener("click", () => {
+    const btnEditValue = btnEdit.value;
+    window.alert(btnEditValue)
+  })
+})
 
-     
-/*function editPost(editedText, postId){//aqui mudar para auth e exportar
-  const postsCollection = firebase.firestore().collection("posts")
-  postsCollection.doc(postId).update({text : editedText})
-}
-*/
+/*const editBtn = rootElement.querySelectorAll(".btn-edit");
+editBtn.forEach(button => {
+  button.addEventListener("click", () => {
+    const buttonValue = button.value;
+    console.log(buttonValue)
+  })
+})*/
+
+
+ /*const editBtn = rootElement.querySelectorAll("btn-edit");
+ const cancelEditBtn =rootElement.querySelectorAll(".btn-cancel-edit");
+ const btnEditSave = rootElement.querySelectorAll(".btn-edit-save");
+
+
+ editBtn.addEventListener("click", ()=> {
+   editBtn.hidden = true;
+   cancelEditBtn.hidden = false;
+   saveEditBtn.hidden = false;
+   editBtn.textArea.disabled = false;
+ })*/
+
 
 
 function deletePost(postId){//aqui mudar para auth e exportar
@@ -162,10 +218,6 @@ loadPosts();
 return rootElement;
 
 }
-
-
-
-
 
 
 
