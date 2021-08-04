@@ -46,6 +46,14 @@ export const updateUserImage = (urlImage) => {
   })
 }
 
+export const updateImageBook = (urlImageBook) => {
+  const user = firebase.auth().currentUser;
+
+  user.updateProfile({
+    photoBook: urlImageBook,
+  })
+}
+
 // export const asyncGetProfileData = async () => {
 //   const logProfiles = await database.collection("profiles").get()
 //   for ( data of logProfiles.docs){
@@ -91,7 +99,6 @@ provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     // ...
   });
 */
-
  
 export const signOut = () => {
   firebase
@@ -117,7 +124,7 @@ export const uploadImage = (id, userid) =>{
     contentType:file.type,
   }
 
-  return ref.child(imageName).put(file, metadata)
+  return ref.child("profilephotos").child(imageName).put(file, metadata)
 
   //uploading
   // .then(snapshot => snapshot.ref.getDownloadURL())
@@ -144,7 +151,6 @@ export const createReview = (bookUser, editionUser, authorUser, reviewUser, rati
   .firestore()
   .collection("reviews").add({
     book: bookUser,
-    edition: editionUser,
     author: authorUser,
     review: reviewUser,
     rating: ratingStars,
@@ -157,12 +163,12 @@ export const createReview = (bookUser, editionUser, authorUser, reviewUser, rati
   .then(() => {
     console.log("Document successfully written!");
   })
-  .catch((error) => {
-      console.error("Error writing document: ", error);
-  });
 }
 
-
+export const uploadImageBooks = (image, userid) => {
+  const imageName = userid
+  return storage.ref().child("bookcover").child(imageName).put(image)
+   }
 
 export const getReviews = () => {
   return firebase

@@ -15,6 +15,7 @@ export default () => {
 
   const createProfileTemplate = `
     <div  class="form-container container-center" id="form-create-profile">
+    <button class=" back-to-login" id="back-to-login-fp">← Voltar</button>
       <h1 class="h1-login">Editar perfil</h1>
       <fieldset class=" fieldset fieldset-create-profile">
         <form class="form"  action="">
@@ -35,8 +36,13 @@ export default () => {
   let file = sectionElement.querySelector(".file-input")
   const userNameInput = sectionElement.querySelector("#input-username")
 
-  
-  
+  const backToLogin = sectionElement.querySelector("#back-to-login-fp")
+  backToLogin.addEventListener("click", (e) => {
+    e.preventDefault
+    window.history.pushState(null, null, "/home")
+          const popStateEvent = new PopStateEvent("popstate", {state:{}})
+          dispatchEvent(popStateEvent)
+  }) 
   
 
   const user= currentUser()
