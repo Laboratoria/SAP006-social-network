@@ -1,4 +1,4 @@
-import { createWithEmailAndPassword } from '../../lib/authentication.js';
+import { createWithEmailAndPassword, loginWithGoogleAccount } from '../../lib/authentication.js';
 import { onNavigate } from '../../navigate.js';
 
 export const signup = () => {
@@ -22,6 +22,7 @@ export const signup = () => {
   container.querySelector('#sign-up-btn')
     .addEventListener('click', (e) => {
       e.preventDefault();
+      const nameInput = document.getElementById('name')
       const emailInput = document.getElementById('email');
       const passwordInput = document.getElementById('new-password');
       createWithEmailAndPassword(emailInput.value, passwordInput.value);

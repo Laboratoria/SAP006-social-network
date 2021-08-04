@@ -1,4 +1,5 @@
 import { onNavigate } from '../navigate.js';
+//import { createPost } from '../views/homepage/index.js';
 
 export const loginPersistence = () => {
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
@@ -28,26 +29,34 @@ export const loginWithEmailAndPassword = (userEmail, userPassword) => {
 
 export const createWithEmailAndPassword = (emailInput, passwordInput) => {
   firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
+    .then((userData) => {
+      getNewUserData(userData);
       alert('Cadastro realizado com sucesso');
       onNavigate('/');
-    })
-    .catch((error) => {
+    }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
       alert('Falha ao cadastrar');
-    });
+    })
 };
 
-export const verifyUser = () => {
-  firebase.auth().onAuthStateChanged((user) => {
+export const getNewUserData = (userData) => {
+  const usersCollection = firebase.firestore().collection('users');
+  const user = {
+    id: userData.user.uid,
+    name: userData.user.displayName,
+    email: userData.user.email,
+  }
+  usersCollection.add(user);
+}
+
+export const verifyUser = async () => {
+  await firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      const userId = user.uid;
-      onNavigate('/home');
-      console.log(userId);
-    }
-  });
+      console.log("usuário logado")
+    } else {
+      console.log("usuário não logado")
+    } 
+  })
 };
