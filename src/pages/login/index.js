@@ -1,5 +1,5 @@
-import { googleLogin, SignIn} from '../../services/firebaseAuth.js';
-import { route } from '../../router.js';
+import { googleLogin, SignIn } from '../../services/firebaseAuth.js';
+import { route, handleError } from '../../services/utils.js';
 
 export const login = () => {
   const rootElement = document.createElement('div');
@@ -46,20 +46,15 @@ export const login = () => {
   signInButton.addEventListener('click', (e) => {
     e.preventDefault();
     SignIn(usuario.value, passwordLogin.value)
-      .then((userCredential) => {
+      .then(() => {
         // Signed in
-        const user = userCredential.user;
-        console.log(user);
+        // const user = userCredential.user;
+        // console.log(user);
         window.history.pushState({}, '', '/home');
         const popstateEvent = new PopStateEvent('popstate', { state: {} });
         dispatchEvent(popstateEvent);
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        alert('E-mail ou senha incorretos, por favor, verifique!');
-      });
+      .catch((handleError()));
   });
 
   botaoCadastro.addEventListener('click', (e) => {
@@ -71,9 +66,5 @@ export const login = () => {
     e.preventDefault();
     googleLogin();
   });
-  
   return rootElement;
 };
-
-   
- 

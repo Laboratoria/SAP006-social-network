@@ -11,9 +11,10 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-
- input::placeholder {
+}
+ 
+input::placeholder {
     color: rgb(0, 0, 0);
-  }
+}
 
 
