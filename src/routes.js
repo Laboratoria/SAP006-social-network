@@ -25,7 +25,7 @@ export const routeRender = () => {
 };
 
 window.addEventListener('popstate', routeRender);
-window.addEventListener('load', routeRender());
+window.addEventListener('load', routeRender);
 
 export const navigation = (path) => {
   window.history.pushState({}, null, path);
