@@ -1,4 +1,4 @@
-export const post = () => {
+export const postar = () => {
   const rootElement = document.createElement('div');
   rootElement.innerHTML = ` 
     <div class="containerPost">
