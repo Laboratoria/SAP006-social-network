@@ -368,6 +368,9 @@
 }
 
 @media(max-width: 496px){
+    .form{
+        width:95%
+    } 
     .sidebar-container{
         width:80%;
     }
@@ -387,6 +390,8 @@
        
         padding:0;
     }
+
+   
     
 }
 
@@ -405,13 +410,7 @@
         align-items:center;
     }
 
-    #gmail-btn{
-        padding:1.5rem 0.5rem
-    }
-    .logo-google{
-        margin-right:0.5rem;
-        padding:0;
-    }
+  
 
   
 

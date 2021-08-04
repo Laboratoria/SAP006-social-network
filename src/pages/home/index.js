@@ -45,6 +45,12 @@ export default () =>{
       <p class="p-make-review">PUBLIQUE UM REVIEW</p>
       <button class="button-make-review" id="add-review">+</button>
     </div>
+    <div class="likes-container">
+                      <div class="like">&#10084;</div>
+                      <span id="num-likes">4</span>
+                    </div>
+
+   
      <form class="review-area" action="">
      
       <label class="review-label" for="book-name">Livro:</label>
@@ -84,6 +90,7 @@ export default () =>{
     <div data-all-reviews class= "all-reviews">
       
     </div>
+   
     <navbar  class="home-navbar" id="nav">
       <button class="menu-mobile-btn"><img src="./img/home-navbar.png" class="menu-img"></button> 
       <button class="menu-mobile-btn" id="add-review-navbar"><img src="./img/add-navbar.png" class="menu-img"></button>   
@@ -126,7 +133,7 @@ export default () =>{
     sectionElement.querySelector(".button-make-review").style.display="block";
     sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
     sectionElement.querySelector(".p-make-review").style.display="block"    
-    document.querySelector(".sidebar-desktop").style.display="flex"
+    
   })
   const openSidebar = sectionElement.querySelector("#open-sidebar")
   openSidebar.addEventListener("click", (e)=>{
@@ -148,7 +155,7 @@ export default () =>{
     sectionElement.querySelector(".button-make-review").style.display="block";
     sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
     sectionElement.querySelector(".p-make-review").style.display="block" 
-    document.querySelector(".sidebar-desktop").style.display="flex"
+    
 
     const formReview = sectionElement.querySelector(".review-area");
     formReview.style.display="none";
@@ -172,18 +179,23 @@ export default () =>{
 
     const content = 
                   `<div id="posts-reviews">
-                  <div class="data-post">
-                    <img class="photo-post-review" src=${profileImg}>
-                    <h1 class="name-profile-post">${firebase.auth().currentUser.displayName}</h1>
-                    <p class="username-post">@${userName2}</p>
-                    <p class="stars-show">${starsEvaluation}</p>
+                    <div class="data-post">
+                      <img class="photo-post-review" src=${profileImg}>
+                      <h1 class="name-profile-post">${firebase.auth().currentUser.displayName}</h1>
+                      <p class="username-post">@${userName2}</p>
+                      <p class="stars-show">${starsEvaluation}</p>
                     </div>
                     <div class="data-book-post">
-                    <h2 class="title-book"> ${bookName} </h2>
-                    <h3 class="name-author"> ${authorName} </h3>
-                    <p class="content-review">${valueReview}</p> </br>
+                      <h2 class="title-book"> ${bookName} </h2>
+                      <h3 class="name-author"> ${authorName} </h3>
+                      <p class="content-review">${valueReview}</p> </br>
                     </div>
-                    </div>`
+                    <div class="likes-container">
+                      <div class="like" id=>&#10084;</div>
+                      <span id="num-likes">4</span>
+                    </div>
+                    
+                  </div>`
 
     printReview.innerHTML = content 
     local.appendChild(printReview)
@@ -229,6 +241,14 @@ export default () =>{
   //     const popStateEvent = new PopStateEvent("popstate", {state:{}})
   //     dispatchEvent(popStateEvent)
   // })
+
+ 
+const like = sectionElement.querySelector(".like")
+like.addEventListener("click", ()=>{
+  like.classList.toggle("active")
+})
+ 
+
 
 
 

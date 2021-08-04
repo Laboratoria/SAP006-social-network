@@ -38,8 +38,7 @@ body{
     margin: 0px 0px 0px 100px;
 }
 .site-logo{
-    width: 75rem;
-    height: 55rem;
+    width: 70rem;
 }
 .form-container{
     width:50vw;
@@ -767,3 +766,49 @@ header{
     font-size: 3rem;
     margin: 0rem 0.5rem;
 }
+
+.likes-container{
+    width:100%;
+    padding: 0 6rem;
+    display:flex;
+    justify-content: flex-start;
+    align-items:center;
+
+}
+.like{
+    color: rgb(158, 149, 149);
+    text-decoration:none;
+    font-size:3rem;
+    transition:all 0.3s;
+    width:3rem;
+    height: 4rem;
+    margin-right:0.5rem;
+
+}
+
+.like:hover{
+    cursor: pointer;
+}
+
+
+ 
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+  
+
+.active{
+    color:rgb(219, 48, 48);
+    animation: animateHeart 1s;
+}
+
+#num-likes{
+    font-size: 2rem;
+    color: grey;
+    margin:0;
+}
+   
+
+

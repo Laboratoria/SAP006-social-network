@@ -169,3 +169,23 @@ export const createReview = (bookUser, editionUser, authorUser, reviewUser, rati
 
 //   // })
 //}
+
+export const like= (postUID, userUID) =>{
+  database.collection("reviews").doc(postUID)
+  .update({ 
+    likes: firebase.firestore.FieldValue.arrayUnion(userUID) 
+  })
+  .then(() => {
+    console.log("Document successfully written!");
+  })
+  .catch((error) => {
+      console.error("Error writing document: ", error);
+  })
+}
+
+export const removeLike = (postUID, userUID) =>{
+  database.collection("reviews").doc(postUID)
+  .update({ 
+    likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
+  })
+}
