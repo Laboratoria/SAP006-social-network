@@ -1,5 +1,7 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-alert */
 import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebaseAuth.js';
-import { route } from '../../router.js';
+import { route, handleError } from '../../services/utils.js';
 
 export const cadastro = () => {
   const rootElement = document.createElement('div');
@@ -24,10 +26,9 @@ export const cadastro = () => {
 
   const pageLogin = rootElement.querySelector('#buttonLogin');
   const enterButton = rootElement.querySelector('#enter');
-       
+
   // funções para receber dos dados de cadastro//
-  
-    enterButton.addEventListener('click', (e) => {
+  enterButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     const nameUser = rootElement.querySelector('#nameUser').value;
@@ -56,31 +57,19 @@ export const cadastro = () => {
     }
 
     cadastrarComEmailSenha(emailUser, passwordRegister)
-      .then((userCredential) => {
-        const user = userCredential.user;
+      .then(() => {
         atualizarUsuario(nameUser)
-          .then((result) => {
-            window.history.pushState({}, '', '/home');
-            const popstateEvent = new PopStateEvent('popstate', { state: {} });
-            dispatchEvent(popstateEvent);
-          }).catch((error) => {
-
+          .then(() => {
+            route('/home');
           });
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+      .catch(handleError());
 
-      });
+    return rootElement;
   });
 
   pageLogin.addEventListener('click', (e) => {
     e.preventDefault();
     route('/login');
   });
-        console.log(errorCode, errorMessage);
-      });
-  });
-
-  return rootElement;
 };

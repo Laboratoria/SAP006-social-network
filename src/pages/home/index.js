@@ -29,6 +29,7 @@ export const home = () => {
     <div class="publish"></div>
   </main>
 </div>
+<button class='btn ' id='btnLogout'>Sair</button>
 `;
 
   // botão sair para fazer logout
@@ -52,4 +53,3 @@ export const home = () => {
 
 //   return rootElement;
 // };
-

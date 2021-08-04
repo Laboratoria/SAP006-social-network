@@ -1,20 +1,5 @@
 /* eslint-disable arrow-body-style */
-const handleError = () => {
-  if (error.code) {
-    switch (error.code) {
-      case 'auth/account-exists-with-different-credential':
-          alert("Você já possui uma conta!")
-      break;
-      case 'auth/credential-already-in-use'
-//             || errorCode === 'auth/account-exists-with-different-credential'
-//             || email === 'auth/credential-already-in-use'
-//             || email === 'auth/email-already-in-use'
-//             || credential === 'auth/credential-already-in-use'
-//             || credential === 'auth/email-already-in-use'
-
-    }
-  }
-}
+import { handleError, route } from './utils.js';
 
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
@@ -27,7 +12,7 @@ export const atualizarUsuario = (nome) => firebase.auth().currentUser.updateProf
   return: atualizarUsuario,
 });
 
-console.log(atualizarUsuario);
+// console.log(atualizarUsuario);
 
 // ** SIGN IN E-MAIL AND PASSOWORD //
 export const SignIn = (usuario, passwordLogin) => {
@@ -37,16 +22,6 @@ export const SignIn = (usuario, passwordLogin) => {
 export const stayLogged = () => {
   return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 };
-
-export const cadastrarComEmailSenha = (emailUser, passwordRegister) => 
- firebase.auth().createUserWithEmailAndPassword(emailUser, passwordRegister);
-
-export const atualizarUsuario = (nome) => 
- firebase.auth().currentUser.updateProfile({
-        displayName: nome,
-     return: atualizarUsuario})
-
-console.log(atualizarUsuario)
 
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -72,26 +47,17 @@ export const googleLogin = () => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then((result) => {
-      /** @type {firebase.auth.OAuthCredential} */
-      const credential = result.credential;
-      const token = credential.accessToken;
-      const user = result.user;
-    })
     .catch(handleError);
 };
 
 //* SIGN OUT  */
-firebase
-  .auth()
-  .signOut()
-  .then(() => {
-    
+export const outLogin = () => {
+  firebase.auth().signOut().then(() => {
+    route('/login');
   })
-  .catch((error) => {
-    // An error happened.
-  });
-  
+    .catch((handleError()));
+};
+
 //   firebase
 //     .auth()
 //     .signInWithRedirect(provider)

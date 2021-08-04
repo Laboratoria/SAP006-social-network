@@ -1,5 +1,5 @@
-import { googleLogin, SignIn} from '../../services/firebaseAuth.js';
-import { route } from '../../router.js';
+import { googleLogin, SignIn } from '../../services/firebaseAuth.js';
+import { route, handleError } from '../../services/utils.js';
 
 export const login = () => {
   const rootElement = document.createElement('div');
@@ -11,11 +11,13 @@ export const login = () => {
   <main>
       <div class="label-float">
         <input class="login" type="text" id="usuario" placeholder="E-mail">
+        <p id="textErrorEmail"></p>
         <span class="focus-input100"></span>
       </div>
 
       <div class="label-float">
         <input class="password" type="password" id="senha" placeholder="Senha">
+        <p id="textErrorPassword"></p>
         <span class="focus-input100"></span>
       </div>
       <div class="justify-enter">
@@ -46,20 +48,15 @@ export const login = () => {
   signInButton.addEventListener('click', (e) => {
     e.preventDefault();
     SignIn(usuario.value, passwordLogin.value)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        window.history.pushState({}, '', '/home');
-        const popstateEvent = new PopStateEvent('popstate', { state: {} });
-        dispatchEvent(popstateEvent);
+      .then(() => {
+        route('/home');
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        alert('E-mail ou senha incorretos, por favor, verifique!');
-      });
+      .catch((handleError()));
+
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
+    // console.log(errorCode, errorMessage);
+    // alert('E-mail ou senha incorretos, por favor, verifique!');
   });
 
   botaoCadastro.addEventListener('click', (e) => {
@@ -71,9 +68,6 @@ export const login = () => {
     e.preventDefault();
     googleLogin();
   });
-  
+
   return rootElement;
 };
-
-   
- 
