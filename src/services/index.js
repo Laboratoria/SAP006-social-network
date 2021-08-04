@@ -1,4 +1,3 @@
-//senha
 export const createAccount = (email, password, confirmPassword) => {
   if (password !== confirmPassword) {
     alert('Algo errado não está certo, verifique a senha digitada!');
