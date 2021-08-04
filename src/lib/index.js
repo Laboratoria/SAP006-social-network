@@ -150,6 +150,7 @@ export const createReview = (bookUser, editionUser, authorUser, reviewUser, rati
     rating: ratingStars,
     userName: nameUser,
     userId: firebase.auth().currentUser.uid,
+    userImg: firebase.auth().currentUser.photoURL,
     datePost: `${dateReview.toLocaleDateString()} ${dateReview.getHours()}:${dateReview.getMinutes()}`,
     savingForLater: [] //likes? list?
   })
@@ -164,7 +165,21 @@ export const createReview = (bookUser, editionUser, authorUser, reviewUser, rati
 
 
 export const getReviews = () => {
+  return firebase
+  .firestore()
+  .collection("reviews").get()
+
+}
+
+
+export const deleteReview = (doc) => {
   firebase
   .firestore()
-  .collection("reviews").orderBy("time", "desc").get()   
+  .collection("reviews").doc(doc).delete()
+  .then(() => {
+    console.log("Document successfully deleted!");
+  })
+  .catch((error) => {
+      console.error("Error removing document: ", error);
+  });
 }
