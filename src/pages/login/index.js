@@ -1,5 +1,5 @@
 import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
-import { navigation } from "../../routes.js";
+import { navigation } from "../../navigation.js";
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -15,7 +15,7 @@ export const Login = () => {
         <div class="inputAndReset">
             <input type="text" id="email" class="input" placeholder="Email">
             <input type="password" id="password" class="input" placeholder="Senha">
-            <a class="reset-password" id="reset" href="/reset">Esqueceu a senha?</a><br>
+            <button class="reset-password" id="reset">Esqueceu a senha?</button><br>
         </div>
         <div class="google">
             <button id="btn-login" class="login btn">LOGIN</button>

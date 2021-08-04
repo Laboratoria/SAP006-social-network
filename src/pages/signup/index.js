@@ -1,4 +1,5 @@
 import { createAccount } from "../../services/index.js";
+// import { navigation } from "../../routes.js";
 
 export const signUp = () => {
   const rootElement = document.createElement('div');
