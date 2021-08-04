@@ -1,4 +1,5 @@
 export const createAccount = (email, password, confirmPassword) => {
+
   if (password !== confirmPassword) {
     alert('Algo errado não está certo, verifique a senha digitada!');
     return false;
@@ -9,11 +10,7 @@ export const createAccount = (email, password, confirmPassword) => {
     .createUserWithEmailAndPassword(email, password)
     .then((user) => {
       console.log(user);
-      // User is signed in
-      window.history.pushState({}, null, "/feed");
-
-      const popStateEvent = new PopStateEvent("popstate", { state: {} });
-      dispatchEvent(popStateEvent);
+      navigation('/feed')
     })
     .then(() => {
       firebase.auth().currentUser.sendEmailVerification()
@@ -34,15 +31,12 @@ export const createAccount = (email, password, confirmPassword) => {
 
 const verifyUser = () => {
   firebase.auth().onAuthStateChanged((currentUser) => {
-  if (currentUser) {
-    const uid = currentUser.uid;
-    console.log(uid);
-    window.history.pushState({}, null, "/feed");
-    //   // User is signed in
-    const popStateEvent = new PopStateEvent("popstate", { state: {} });
-    dispatchEvent(popStateEvent);
-  }
-});
+    if (currentUser) {
+      const uid = currentUser.uid;
+      console.log(uid);
+      navigation('/feed')
+    }
+  });
 }
 
 export const signInEmailPassword = (email, password) => {
@@ -51,10 +45,7 @@ export const signInEmailPassword = (email, password) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in
       const user = userCredential.user;
-      console.log(user);
-
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -100,7 +91,7 @@ export const signInGoogle = () => {
     });
 };
 
-export function keepLogged(persistence) {
+export const keepLogged = (persistence) => {
   firebase
     .auth()
     .setPersistence(persistence)

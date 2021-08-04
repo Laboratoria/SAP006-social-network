@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap');
+
+/** WELCOME PAGE **/
+.logotipo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25%;
+  background-image: url(https://www.imagemhost.com.br/images/2021/07/23/background.jpg);
+  background-repeat: repeat;
+  filter: opacity(70%);
+}
+
+.logoimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+}
+
+.welcome-bar {
+  padding: 0;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background);
+  color: var(--color-primary)
+}
+
+.welcome-content {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.welcome-content header {
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: #a5a4a0 2px solid;
+  letter-spacing: 0.017em;
+}
+
+.welcome-content p {
+  display: flex;
+  text-align: center;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  max-width: 50%;
+}
+
+.welcome-paragraph {
+  font-size: 1.2rem;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/** OTHER PAGES **/
+.sidebar {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  padding: 0;
+}
+
+.content {
+  max-height: 40vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.content header {
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-bottom: #a5a4a0 2px solid;
+  letter-spacing: 0.017em;
+}
+
+.sidebar-paragraph {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+.content p {
+  display: flex;
+  text-align: center;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  max-width: 50%;
+}
+
+
+/** CONFIG GERAL **/
+
+.continuebutton, .skipbutton {
+  background-color: var(--color-background);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+}
+
+.btn-continue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+  border-radius: 50px;
+  width: 130px;
+  padding: 0.5rem 1.5rem;
+  color: var(--color-background);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: var(--color-brown) 0px 0px 5px 1px;
+}
+
+.skip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  background: transparent;
+  margin-top: 20px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  text-transform: uppercase;
+  padding-bottom: 10%;
+}
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .logotipo {
+    padding: 10%;
+  }
+  .logoimg {
+    width: 30%;
+  }
+  .welcome-content header, .content header {
+    font-size: 2rem;
+  }
+  .welcome-paragraph {
+    margin-top: 10%;
+    font-size: 1.5rem;
+  }
+  .btn-continue {
+    width: 200px;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+  }
+  .skip {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+  .sidebar {
+    padding: 0;
+  }
+  .sidebar-paragraph {
+    font-size: 1.5rem;
+  }
+  .skipbutton {
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1200px) {
+  .logotipo {
+    
+  }
+  .welcome-bar {
+    
+  }
+  /* .logoimg {
+    width: 30%;
+  } */
+  /* .welcome-content header, .content header {
+    font-size: 2rem;
+  }
+  .welcome-paragraph {
+    margin-top: 10%;
+    font-size: 1.5rem;
+  }
+  .btn-continue {
+    width: 200px;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+  }
+  .skip {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+  .sidebar {
+    padding: 0;
+  }
+  .sidebar-paragraph {
+    font-size: 1.5rem;
+  }
+  .skipbutton {
+    justify-content: flex-end;
+  } */
+}

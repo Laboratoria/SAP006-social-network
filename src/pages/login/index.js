@@ -42,15 +42,12 @@ export const Login = () => {
 
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    window.history.pushState({}, null, '/signup')
-  
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
-    dispatchEvent(popStateEvent)
+    navigation('/signup')
   });
 
   const loginWithEmail = btnLogin.addEventListener("click", () => {
     signInEmailPassword(email.value, password.value);
-    window.history.pushState({}, null, '/feed')
+    navigation('/feed')
   });
 
   const loginWithGoogle = btnGoogle.addEventListener("click", () => {

@@ -26,7 +26,5 @@ export const routeRender = () => {
   element.appendChild(routes[window.location.pathname]());
 };
 
-
 window.addEventListener('load', routeRender);
 window.addEventListener('popstate', routeRender);
-
