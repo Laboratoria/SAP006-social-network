@@ -1,4 +1,4 @@
-// aqui você exportará as funções que precisa
+import { navigation } from "../../navigation.js";
 export const Conecte = () => {
 
   const template = `
