@@ -1,4 +1,5 @@
-// aqui você exportará as funções que precisa
+import { navigation } from "../../routes.js";
+
 export const Comunique = () => {
 
   const template = `

@@ -1,5 +1,5 @@
 import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
-// import { navigation, routeRender } from "../../routes.js";
+ import { navigation, routeRender } from "../../routes.js";
 
 export const Login = () => {
   const rootElement = document.createElement("div");
