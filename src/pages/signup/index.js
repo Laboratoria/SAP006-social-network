@@ -1,11 +1,12 @@
 import { createAccount } from "../../services/index.js";
+import { navigation } from '../../routes.js';
 
 export const signUp = () => {
   const rootElement = document.createElement('div');
   //rootElement.className = 'area-signup'
 
   const container = `
-  <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
+  <img id="background" class="img-background" src="./pages/login/img/paleta3.jpg" alt="">
       <div class="esmaeceHeader logotipo-text">
         <section>
           <h2>FORT</h2>
@@ -55,14 +56,14 @@ export const signUp = () => {
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault(); 
     createAccount(userEmail.value, userPassword.value, userConfirmPassword.value)
+    navigation('/feed')
   })
 
 return rootElement
 
 }
 
-
-// <input
+//       <input
 //         class="profile-pic"
 //         type="file"
 //         name="profile-pic"
@@ -85,8 +86,6 @@ return rootElement
 //         placeholder="Nome de usuário">
 //         </input>
 
-
-  
 //         <input
 //         class="value-register"
 //         type="tel"

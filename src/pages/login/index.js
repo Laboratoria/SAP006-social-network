@@ -1,5 +1,5 @@
 import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
-// import { navigation, routeRender } from "../../routes.js";
+import { navigation } from '../../routes.js';
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -39,15 +39,12 @@ export const Login = () => {
 
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    window.history.pushState({}, null, '/signup')
-  
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
-    dispatchEvent(popStateEvent)
+    navigation('/signup')
   });
 
   const loginWithEmail = btnLogin.addEventListener("click", () => {
     signInEmailPassword(email.value, password.value);
-    window.history.pushState({}, null, '/feed')
+    navigation('/feed')
   });
 
   const loginWithGoogle = btnGoogle.addEventListener("click", () => {

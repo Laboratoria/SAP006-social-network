@@ -1,18 +1,25 @@
-// aqui você exportará as funções que precisa
+import { navigation } from '../../routes.js';
+
 export const Conecte = () => {
 
   const template = `
 
-  <section class="slider-content">
-    <div class="slide">
+  <section class="sidebar">
+    <div class="content">
       <header>
         Conecte-se...
       </header>
-      <main class="content">
+      <section class="sidebar-paragraph">
         <p>Acompanhe mulheres incríveis e tudo o que elas têm a dizer!</p> 
-        <button class="btn-continue">Continuar</button>
-        <button class="skip">PULAR</button>
-      </main>
+      </section>
+
+      <section class="continuebutton">
+        <button class="btn-continue" id="btn-continue">Continuar</button>
+      </section>
+
+      <section class="skipbutton">
+       <button class="skip">Pular</button>
+      </section>
     </div>
   </section>
 

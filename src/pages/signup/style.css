@@ -1,6 +1,4 @@
-@import url('/src/style.css');
-
-img#background {
+.img-background {
     position: absolute;
     z-index: -1;
     height: 100%;
