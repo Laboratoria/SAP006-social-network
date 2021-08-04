@@ -403,15 +403,16 @@ a:hover{
     color:white;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
   
-  
 .sidebar-container{
-    width:100%;
+    z-index: 2;
+    width:100vw;
     display: flex;
     flex-direction: column;
     align-items:center;
-    padding:3rem;
+    padding: 1rem 3rem;
 
 }
 
@@ -460,7 +461,6 @@ a:hover{
     height: 12rem;
     border-radius: 100%;
     object-fit: cover;
-    align-self: center;
     border: double 3px transparent;
     border-radius: 50%;
     background-image: linear-gradient(white, white), 
@@ -629,7 +629,6 @@ a:hover{
     align-items: unset;
     justify-content: unset;
     width: 80%;
-    height: 200vh;
 }
 header{
     position: sticky;
@@ -663,8 +662,11 @@ header{
     padding: 0px 0px 0.5rem;
 }
 .photo-profile-feed{
-    width: 5rem;
-    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 100%;
+    object-fit: cover;
+    align-self: center;
     border: 2px solid rgb(89, 136, 189);
 }
 .h1-welcome{
@@ -711,8 +713,11 @@ header{
     flex-direction: column;
 }
 .photo-post-review{
-    width: 7rem;
-    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 100%;
+    object-fit: cover;
+    align-self: center;
     border: 2px solid rgb(89, 136, 189);
 }
 .data-post{
@@ -754,7 +759,7 @@ header{
 }
 .content-review{
     color: black;
-    margin: 0.5rem 0rem;
+    margin: 0.5rem 0rem 0.2rem;
     text-align: justify;
     width: 100%;
     overflow-wrap: break-word;
@@ -762,8 +767,50 @@ header{
     font-size: 1.5rem;
     font-weight: lighter;
 }
+.review-label1{
+    align-items: center;
+    font-size: 2rem;
+    padding: 1.7rem 0rem 0rem;
+    color: #ffffff;
+}
+.file-img1{
+    width:142%;
+    height:155%;
+    object-fit: cover;
+    cursor:pointer;
+    -moz-transition:  0.3s;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+}
+.file-img1:hover{
+    -moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+.container-file-img1{
+    width:10rem;
+    height:10rem;
+    align-self: center;
+    margin:1rem 0rem 5.5rem; 
+}
+
+.aboutbook{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+.photo-book-review-post{
+    width: 10rem;
+    height: 12rem;
+    position: absolute;
+    margin: 0rem 0rem 0rem 57rem;
+}
 .stars-show{
     color: #FC0;
-    font-size: 3rem;
-    margin: 0rem 0.5rem;
+    font-size: 2.3rem;
+    margin: 8.7rem 57.2rem;
+    position: absolute;
+    z-index: 1;
+    align-items: center;
+    text-align: center;
 }

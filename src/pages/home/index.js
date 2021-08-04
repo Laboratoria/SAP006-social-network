@@ -1,4 +1,4 @@
-import { currentUser, logout, createReview} from "../../lib/index.js"
+import { currentUser, createReview, uploadImageBooks, updateImageBook} from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
 
 export default () =>{
@@ -13,7 +13,7 @@ export default () =>{
   if (imageUrl!=null){
     profileImg = user.photoURL
   } else{
-    profileImg = "./img/menu.png"
+    profileImg = "./img/default-img.png"
   }
 
   let userName
@@ -24,9 +24,6 @@ export default () =>{
   }else{
     userName== "Username não definido"
   }
-
-  console.log(imageUrl)
-  console.log(userName)
 
   const createFeedTemplate=`
   <div class="home-container">
@@ -51,8 +48,11 @@ export default () =>{
       <input class="review-input" data-book-input type="text" placeholder="" required/>
       <label class="review-label" for="book-author">Autor</label>
       <input class="review-input" data-author-input type="text" placeholder="" required/>
-      <label class="review-label" for="book-edition">URL</label>
-      <input class="review-input" data-edition-input type="text" placeholder="https://" required/>
+      <label class="review-label1" for="book-edition">Anexe a imagem da capa do livro</label>
+      <div class="container-file-img1">
+            <img src="./img/imagebooks.png" class="file-img1">
+          </div>
+      <input type="file" class="file-input" id="input-profile-img" accept="image/*">
       <textarea class="post-input" id="text" cols="30" rows="5" data-post-input required placeholder ="Escreva sua review..."></textarea>
       
       <label class="review-available">Avalie</label>
@@ -75,9 +75,6 @@ export default () =>{
         </div>
      </form>   
     </div>
-    <div data-new-review class ="posted-review">
-    
-    </div>
   </div>
   
 
@@ -94,6 +91,61 @@ export default () =>{
   sectionElement.innerHTML= createFeedTemplate
 
   sectionElement.appendChild(sidebar())
+  
+  let photo = sectionElement.querySelector(".file-img1")
+    let file = sectionElement.querySelector(".file-input")
+    let textearea = sectionElement.querySelector("#text")
+  
+    photo.addEventListener("click", () =>{
+      file.click()
+    })
+  
+    const userId = user.uid
+    let imageSelect
+    file.addEventListener("change", function (event) {
+  
+  
+      let imageUrl = event.target.files[0]
+      
+      photo.file = imageUrl
+  
+      imageSelect = imageUrl
+  
+    if(imageSelect != null){
+      textearea.style.margin = "8.5rem 0rem 0rem" 
+      photo.style.margin = "2rem 0rem"
+      photo.style.height = "190%"
+      photo.style.width = "140%"
+      const reader = new FileReader()
+  
+      reader.onload = (function (img) {
+        return function (e) {
+          img.src = e.target.result
+        }
+  
+      })(photo)
+      
+      reader.readAsDataURL(imageUrl)
+      uploadImageBooks(imageSelect, ""+userId+"")
+      .then(snapshot => snapshot.ref.getDownloadURL().then (url => {
+       const urlImageBook = url
+       console.log(urlImageBook)
+       return urlImageBook
+  })
+  .then((urlImageBook)=>{
+    updateImageBook(urlImageBook)
+  }))
+  }
+  })
+
+  const imageUrlBook = user.photoBook
+  let imageBook
+  
+  if (imageUrlBook!=null){
+    imageBook = user.photoBook
+  } else{
+    imageBook = "./img/default-book.png"
+  }
 
   const buttonAddReview = sectionElement.querySelector("#add-review")
 
@@ -105,7 +157,6 @@ export default () =>{
     sectionElement.querySelector(".button-make-review").style.display="none";
     sectionElement.querySelector(".make-review").style.background="linear-gradient(300.92deg, #5E97AF 6.15%, #6D9ACE 80.44%, #5694DC 100.96%)";
     sectionElement.querySelector(".p-make-review").style.display="none"
-    document.querySelector(".sidebar-desktop").style.display="none"
 
   }
   buttonAddReview.addEventListener("click", () => {
@@ -125,8 +176,7 @@ export default () =>{
     sectionElement.querySelector(".welcome").style.display="flex"
     sectionElement.querySelector(".button-make-review").style.display="block";
     sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
-    sectionElement.querySelector(".p-make-review").style.display="block"    
-    document.querySelector(".sidebar-desktop").style.display="flex"
+    sectionElement.querySelector(".p-make-review").style.display="block"
   })
   const openSidebar = sectionElement.querySelector("#open-sidebar")
   openSidebar.addEventListener("click", (e)=>{
@@ -142,41 +192,39 @@ export default () =>{
 
   const publishReview = (e) => {
     e.preventDefault()
-
     sectionElement.querySelector(".review-area").style.display="none"
     sectionElement.querySelector(".welcome").style.display="flex"
     sectionElement.querySelector(".button-make-review").style.display="block";
     sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
-    sectionElement.querySelector(".p-make-review").style.display="block" 
-    document.querySelector(".sidebar-desktop").style.display="flex"
+    sectionElement.querySelector(".p-make-review").style.display="block"
 
     const formReview = sectionElement.querySelector(".review-area");
     formReview.style.display="none";
 
     const bookName = document.querySelector("[data-book-input]").value
     const authorName = document.querySelector("[data-author-input]").value
-    const editionBook = document.querySelector("[data-edition-input]").value
-    const starsEvaluation = document.querySelector("[data-stars-form]").value
-
+    const starsEvaluation = document.querySelector('input[name="stars"]:checked').value
     const reviewUser = document.querySelector("[data-post-input]")
     const valueReview = reviewUser.value
-
-    const local = document.querySelector("[data-new-review]")
+    
+    const local = document.querySelector(".timeline")
     const printReview = document.createElement("article")
     printReview.classList.add("new-review")
 
     const userName = user.displayName
     const userName2 = userName.replace(/\s/g, '').toLowerCase();
     
-    
-
+  
     const content = 
                   `<div id="posts-reviews">
                   <div class="data-post">
+                  <div class="aboutbook">
+                    <p class="stars-show">${starsEvaluation}</p>
+                    <img class="photo-book-review-post" src=${imageBook}>
+                    </div>
                     <img class="photo-post-review" src=${profileImg}>
                     <h1 class="name-profile-post">${firebase.auth().currentUser.displayName}</h1>
-                    <p class="username-post">@${userName2}</p>
-                    <p class="stars-show">${starsEvaluation}</p>
+                    <p class="username-post">@${userName2}</p>                
                     </div>
                     <div class="data-book-post">
                     <h2 class="title-book"> ${bookName} </h2>
@@ -188,13 +236,13 @@ export default () =>{
     printReview.innerHTML = content 
     local.appendChild(printReview)
 
-    createReview(bookName, editionBook, authorName, valueReview, starsEvaluation, userNameFirebase)
-
-    reviewUser.value = ""
-    bookName = ""
-    authorName = ""
-    editionBook = ""
-    starsEvaluation = "" 
+    createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase)
+    .then(() => {
+      console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
   }
 
   // const loadPosts = () => {
@@ -217,12 +265,12 @@ export default () =>{
   // }
 
 
-
-  const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
+   const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
   const logoutBtn = sectionElement.querySelector("#logout-btn")
   
 
   createReviewBtn.addEventListener ("click", publishReview)
+  
   // logoutBtn.addEventListener("click", ()=>{
   //     logout()
   //     window.history.pushState(null, null, "/login")
