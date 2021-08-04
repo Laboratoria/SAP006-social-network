@@ -46,6 +46,14 @@ export const updateUserImage = (urlImage) => {
   })
 }
 
+export const updateImageBook = (urlImageBook) => {
+  const reviewCollection = database.collection("posts")
+
+  user.updateProfile({
+    photoBook: urlImageBook,
+  })
+}
+
 // export const asyncGetProfileData = async () => {
 //   const logProfiles = await database.collection("profiles").get()
 //   for ( data of logProfiles.docs){
@@ -91,7 +99,6 @@ provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     // ...
   });
 */
-
  
 export const signOut = () => {
   firebase
@@ -117,7 +124,27 @@ export const uploadImage = (id, userid) =>{
     contentType:file.type,
   }
 
-  return ref.child(imageName).put(file, metadata)
+  return ref.child("profilephotos").child(imageName).put(file, metadata)
+
+  //uploading
+  // .then(snapshot => snapshot.ref.getDownloadURL())
+  // .then (url => {
+  //   const urlImage = url
+  //   console.log(urlImage)
+  //   return urlImage
+  // })
+
+}
+
+export const uploadImageBooks = (id, name) =>{
+  const ref = storage.ref()
+  const imageName = name
+  const file = document.getElementById(id).files[0]
+  const metadata = {
+    contentType:file.type,
+  }
+
+  return ref.child("bookcover").child(imageName).put(file, metadata)
 
   //uploading
   // .then(snapshot => snapshot.ref.getDownloadURL())
@@ -136,27 +163,22 @@ export const forgotPassword = (email) =>{
   }
 }
 
-
-export const createReview = (bookUser, editionUser, authorUser, reviewUser, ratingStars, name) => { 
+export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name, image) => { 
   const db = firebase.firestore()
-  db.collection("reviews").add({
+  return db.collection("reviews").add({
     book: bookUser,
-    edition: editionUser,
     author: authorUser,
     review: reviewUser,
     rating: ratingStars,
-    userName: name
-
+    userName: name,
+    imageUrl:image
   })
-  .then(() => {
-    console.log("Document successfully written!");
-  })
-  .catch((error) => {
-      console.error("Error writing document: ", error);
-  });
 }
 
-
+// export const uploadImageBooks = (image, userid) => {
+//   const imageName = userid
+//   return storage.ref().child("bookcover").child(imageName).put(image)
+//    }
 
 // export const getReviews = () => {
 //   const postCollections = firebase.firestore().collection("reviews").orderBy("time", "desc")

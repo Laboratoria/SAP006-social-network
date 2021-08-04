@@ -104,7 +104,34 @@
     #register-btn{
         margin-top:1rem;
     }
-  
+    .sidebar-desktop{
+        width:25vw;
+        
+    }
+    .user-data{
+        height: 40  vh;
+        padding: 0rem;
+        margin: 0rem;
+    }
+    .sidebar-profile{
+        height: 29vh;
+        margin: 0rem;
+        padding: 1rem 0rem;
+    }
+    .sidebar-tools{
+        height: 10vh;
+        padding: 1rem;
+    }
+    #sidebar-logout{
+        height: 10vh;
+    }
+
+    .photo-book-review-post{
+        margin: 0rem 0rem 0rem 42vw;
+    }
+    .stars-show{
+        margin: 9.2rem 42.2vw;
+    }    
 }
 @media (min-width: 1200px) and (max-width: 1400px) {
     .logo-container{
@@ -217,14 +244,20 @@
         width:70vw;
     }
 
+    .home-container{
+        width:100%;
+    }
+
     .buttons{
        
         padding:0 2rem;
     }
-
-    
-  
-    
+    .photo-book-review-post{
+        margin: 0rem 0rem 0rem 37vw;
+    }
+    .stars-show{
+        margin: 9.2rem 37.2vw;
+    }    
 }
 
 @media (max-width:768px){
@@ -235,6 +268,9 @@
     #home-content{
         
         width:100vw;
+    }
+    #sidebar{
+        z-index: 2;
     }
 
     .home-navbar{
@@ -248,6 +284,7 @@
         padding:2rem 10rem;
         background-color: white;
         border-top:thin solid #d4d4d4;
+        z-index: 2;
         
    
      
@@ -267,12 +304,18 @@
     .close-mobile-sidebar{
         display:block;
     }
+
+    .home-container{
+        width: 100vw;
+    }
 }
   
 /* menu home modal */
-@media (max-width: 768px) and (min-width:576px){ 
+@media (max-width: 768px) and (min-width:492px){ 
 
-    
+    #sidebar{
+        z-index: 2;
+    }
 
     .sidebar-container{
         width:50%;
@@ -315,14 +358,24 @@
       .sidebar-container{
         animation:sidebar 0.5s;
       }
+      .container-file-img1{
+        margin:1rem 2rem 5.5rem 0rem; 
+    }
+
+    .photo-book-review-post{
+        margin: 0rem 0rem 0rem 70vw;
+    }
+    .stars-show{
+        margin: 9.2rem 70.2vw;
+    }    
 
 }
 
-
-
 @media (max-width: 576px) {
 
-
+    #sidebar{
+        z-index: 2;
+    }
     .sidebar-container{
         width:60%;
         height: 100vh;
@@ -346,6 +399,7 @@
 
     .home-navbar{
         padding:2rem 4rem;
+        z-index: 2;
    
     }
 
@@ -364,7 +418,6 @@
         animation:sidebar 0.5s;
       }
 
-
 }
 
 @media(max-width: 496px){
@@ -373,6 +426,10 @@
     } 
     .sidebar-container{
         width:80%;
+    }
+
+    #sidebar{
+        z-index: 2;
     }
 
     .back-to-login{
@@ -390,12 +447,41 @@
        
         padding:0;
     }
-
-   
+    .data-post{
+        margin: 0px 0rem;
+    }
+    .photo-post-review{
+        width: 6rem;
+    }
+    .name-profile-post{ 
+        font-size: 1.8rem;
+        margin: 1rem 1rem;
+    }
+    .username-post{
+        position: absolute;
+        margin: 3rem 7rem;
+    }
+    .data-book-post{
+        margin: 0rem 1rem;
+    }
+    .container-file-img1{
+        margin:1rem 2rem 5.5rem 0rem; 
+    }
+    .photo-book-review-post{
+        margin: 0rem 0rem 0rem 60vw;
+    }
+    .stars-show{
+        margin: 9.2rem 60.6vw;
+    }
     
 }
 
 @media(max-width: 320px){
+
+    #sidebar{
+        z-index: 2;
+    }
+
     .sidebar-user-img{
         width: 10rem;
         height: 10rem;
@@ -410,8 +496,79 @@
         align-items:center;
     }
 
-  
+    #gmail-btn{
+        padding:1.5rem 0.5rem
+    }
+    .logo-google{
+        margin-right:0.5rem;
+        padding:0;
+    }
+    .data-post{
+        margin: 0px 0rem;
+    }
+    .photo-post-review{
+        width: 6rem;
+    }
+    .name-profile-post{ 
+        font-size: 1.8rem;
+        margin: 1rem 1rem;
+    }
+    .username-post{
+        position: absolute;
+        margin: 3rem 7rem;
+    }
+    .data-book-post{
+        margin: 0rem 1rem;
+    }  
+    .container-file-img1{
+        margin:1rem 2rem 5.5rem 0rem; 
+    }
+    .photo-book-review-post{
+        margin: 4rem 0rem 0rem 67vw;
+        width: 6rem;
+        height: 8rem;
+    }
+    .stars-show{
+        margin: 10rem 67.8vw;
+        font-size: 1.3rem;
+    }
 
-  
+}
+@media(max-width: 280px){
 
+    #sidebar{
+        z-index: 2;
+    }
+    .review-area{
+        height: 150vh;
+    }
+    .photo-book-review-post{
+        margin: 6rem 0rem 0rem 67vw;
+        width: 5rem;
+        height: 7rem;
+    }
+    .stars-show{
+        margin: 11rem 67.2vw;
+        font-size: 1.1rem;
+    }
+    .estrelas{
+        padding: 1rem 0rem 0rem 0rem;
+        font-size: 2rem;
+        line-height: 30px;
+    }
+    .buttons{
+        padding:0rem 0rem 0rem 0rem;
+        flex-direction: column;
+        margin: 0rem;
+    }
+
+}
+@media (min-width:2560px){
+
+    .photo-book-review-post{
+        margin: 0rem 0rem 0rem 42vw;
+    }
+    .stars-show{
+        margin: 9.2rem 42.2vw;
+    }    
 }
