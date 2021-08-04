@@ -30,4 +30,9 @@ export const Feed = () => {
     rootElement.querySelector('send-post')
 
     return rootElement;
+
+
+    const dataPost = () => {
+        
+    }
 }
