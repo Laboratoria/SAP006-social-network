@@ -6,12 +6,28 @@ export const Feed = () => {
             <div class="esmaeceHeader logotipo-text">
                 <section>
                 <h2>FORT FEED</h2>
-                </section>
             </div> 
+
+            <section class="post">
+                <form action="" id="published-form">
+                <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
+                <button id="send-post">Enviar</button>
+                </form>
+            </section>
         </div> 
     `;
-  
-  rootElement.innerHTML = container;
 
-  return rootElement;
+    rootElement.innerHTML = container;
+
+    rootElement.querySelector('#published-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const text = rootElement.querySelector('#text-post').value; 
+        console.log(text);
+    })
+
+
+
+    rootElement.querySelector('send-post')
+
+    return rootElement;
 }
