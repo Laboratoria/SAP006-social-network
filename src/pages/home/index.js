@@ -1,4 +1,4 @@
-import { currentUser, createReview, uploadImageBooks, updateImageBook, getReviews} from "../../lib/index.js"
+import { currentUser, createReview, uploadImageBooks, updateImageBook, getReviews } from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
 
   if (imageUrl != null) {
     profileImg = user.photoURL
-  } else{
+  } else {
     profileImg = "./img/default-img.png"
   }
 
@@ -25,7 +25,7 @@ export default () => {
     userName == "Username não definido"
   }
 
-  const createFeedTemplate=`
+  const createFeedTemplate = `
   <div class="home-container">
    
     <header>
@@ -92,59 +92,59 @@ export default () => {
   sectionElement.innerHTML = createFeedTemplate
 
   sectionElement.appendChild(sidebar())
-  
+
   let photo = sectionElement.querySelector(".file-img1")
-    let file = sectionElement.querySelector(".file-input")
-    let textearea = sectionElement.querySelector("#text")
-  
-    photo.addEventListener("click", () =>{
-      file.click()
-    })
-  
-    const userId = user.uid
-    let imageSelect
-    file.addEventListener("change", function (event) {
-  
-  
-      let imageUrl = event.target.files[0]
-      
-      photo.file = imageUrl
-  
-      imageSelect = imageUrl
-  
-    if(imageSelect != null){
-      textearea.style.margin = "8.5rem 0rem 0rem" 
+  let file = sectionElement.querySelector(".file-input")
+  let textearea = sectionElement.querySelector("#text")
+
+  photo.addEventListener("click", () => {
+    file.click()
+  })
+
+  const userId = user.uid
+  let imageSelect
+  file.addEventListener("change", function (event) {
+
+
+    let imageUrl = event.target.files[0]
+
+    photo.file = imageUrl
+
+    imageSelect = imageUrl
+
+    if (imageSelect != null) {
+      textearea.style.margin = "8.5rem 0rem 0rem"
       photo.style.margin = "2rem 0rem"
       photo.style.height = "190%"
       photo.style.width = "140%"
       const reader = new FileReader()
-  
+
       reader.onload = (function (img) {
         return function (e) {
           img.src = e.target.result
         }
-  
+
       })(photo)
-      
+
       reader.readAsDataURL(imageUrl)
-      uploadImageBooks(imageSelect, ""+userId+"")
-      .then(snapshot => snapshot.ref.getDownloadURL().then (url => {
-       const urlImageBook = url
-       console.log(urlImageBook)
-       return urlImageBook
-  })
-  .then((urlImageBook)=>{
-    updateImageBook(urlImageBook)
-  }))
-  }
+      uploadImageBooks(imageSelect, "" + userId + "")
+        .then(snapshot => snapshot.ref.getDownloadURL().then(url => {
+          const urlImageBook = url
+          console.log(urlImageBook)
+          return urlImageBook
+        })
+          .then((urlImageBook) => {
+            updateImageBook(urlImageBook)
+          }))
+    }
   })
 
   const imageUrlBook = user.photoBook
   let imageBook
-  
-  if (imageUrlBook!=null){
+
+  if (imageUrlBook != null) {
     imageBook = user.photoBook
-  } else{
+  } else {
     imageBook = "./img/default-book.png"
   }
 
@@ -154,10 +154,10 @@ export default () => {
     const formReview = sectionElement.querySelector(".review-area");
     formReview.style.display = "flex";
     sectionElement.appendChild(sidebar())
-    sectionElement.querySelector(".welcome").style.display="none"
-    sectionElement.querySelector(".button-make-review").style.display="none";
-    sectionElement.querySelector(".make-review").style.background="linear-gradient(300.92deg, #5E97AF 6.15%, #6D9ACE 80.44%, #5694DC 100.96%)";
-    sectionElement.querySelector(".p-make-review").style.display="none"
+    sectionElement.querySelector(".welcome").style.display = "none"
+    sectionElement.querySelector(".button-make-review").style.display = "none";
+    sectionElement.querySelector(".make-review").style.background = "linear-gradient(300.92deg, #5E97AF 6.15%, #6D9ACE 80.44%, #5694DC 100.96%)";
+    sectionElement.querySelector(".p-make-review").style.display = "none"
 
   }
   buttonAddReview.addEventListener("click", () => {
@@ -173,11 +173,11 @@ export default () => {
 
   const cancelReview = sectionElement.querySelector(".cancel-btn")
   cancelReview.addEventListener("click", () => {
-    sectionElement.querySelector(".review-area").style.display="none"
-    sectionElement.querySelector(".welcome").style.display="flex"
-    sectionElement.querySelector(".button-make-review").style.display="block";
-    sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
-    sectionElement.querySelector(".p-make-review").style.display="block"
+    sectionElement.querySelector(".review-area").style.display = "none"
+    sectionElement.querySelector(".welcome").style.display = "flex"
+    sectionElement.querySelector(".button-make-review").style.display = "block";
+    sectionElement.querySelector(".make-review").style.background = "linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
+    sectionElement.querySelector(".p-make-review").style.display = "block"
   })
   const openSidebar = sectionElement.querySelector("#open-sidebar")
   openSidebar.addEventListener("click", (e) => {
@@ -193,11 +193,11 @@ export default () => {
 
   const publishReview = (e) => {
     e.preventDefault()
-    sectionElement.querySelector(".review-area").style.display="none"
-    sectionElement.querySelector(".welcome").style.display="flex"
-    sectionElement.querySelector(".button-make-review").style.display="block";
-    sectionElement.querySelector(".make-review").style.background="linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
-    sectionElement.querySelector(".p-make-review").style.display="block"
+    sectionElement.querySelector(".review-area").style.display = "none"
+    sectionElement.querySelector(".welcome").style.display = "flex"
+    sectionElement.querySelector(".button-make-review").style.display = "block";
+    sectionElement.querySelector(".make-review").style.background = "linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
+    sectionElement.querySelector(".p-make-review").style.display = "block"
 
     const formReview = sectionElement.querySelector(".review-area");
     formReview.style.display = "none";
@@ -207,7 +207,7 @@ export default () => {
     const starsEvaluation = document.querySelector('input[name="stars"]:checked').value
     const reviewUser = document.querySelector("[data-post-input]")
     const valueReview = reviewUser.value
-    
+
     const local = document.querySelector(".timeline")
     const printReview = document.createElement("article")
     printReview.classList.add("new-review")
@@ -218,30 +218,27 @@ export default () => {
 
     const content =
       `<div id="posts-reviews">
-                   <div class="data-post">
-                     <img class="photo-post-review" src=${profileImg}>
-                     <h1 class="name-profile-post">${firebase.auth().currentUser.displayName}</h1>
-                     <p class="username-post">@${userName2}</p>
-                     <p class="stars-show">${starsEvaluation}</p>
-                     </div>
-                     <div class="data-book-post">
-                     <h2 class="title-book"> ${bookName} </h2>
-                     <h3 class="name-author"> ${authorName} </h3>
-                     <p class="content-review">${valueReview}</p> </br>
-                     </div>
-                  </div>`
+                  <div class="data-post">
+                  <div class="aboutbook">
+                    <p class="stars-show">${starsEvaluation}</p>
+                    <img class="photo-book-review-post" src=${imageBook}>
+                    </div>
+                    <img class="photo-post-review" src=${profileImg}>
+                    <h1 class="name-profile-post">${firebase.auth().currentUser.displayName}</h1>
+                    <p class="username-post">@${userName2}</p>                
+                    </div>
+                    <div class="data-book-post">
+                    <h2 class="title-book"> ${bookName} </h2>
+                    <h3 class="name-author"> ${authorName} </h3>
+                    <p class="content-review">${valueReview}</p> </br>
+                    </div>
+                    </div>`
 
     printReview.innerHTML = content
     local.appendChild(printReview)
 
+    createReview(bookName, editionUser, authorName, valueReview, starsEvaluation, userNameFirebase)
 
-    createReview(bookName, editionBook, authorName, valueReview, starsEvaluation, userNameFirebase)
-
-    reviewUser.value = ""
-    bookName = ""
-    authorName = ""
-    editionBook = ""
-    starsEvaluation = ""
   }
 
   function loadPosts() {
@@ -252,13 +249,13 @@ export default () => {
 
     const reviewsData = () => {
       getReviews()
-        
+
         .then((snap) => {
           const allReviews = document.querySelector("[data-all-reviews]")
           allReviews.innerHTML = ""
 
           snap.forEach((doc) => {
-            
+
             console.log(doc.id, " => ", doc.data())
             const reviewTemplate = `<div class="data-post" id="${doc.id}">
                                       <h2>${doc.data().book}</h2>
@@ -270,15 +267,15 @@ export default () => {
                                     <button class="btn-delete-review" id="del-review">deletar</button>
                                     </div>`
 
-          
-          allReviews.innerHTML += reviewTemplate
-          })  
-          
+
+            allReviews.innerHTML += reviewTemplate
+          })
+
         })
         .catch((error) => {
           console.log("Error getting documents: ", error)
         })
-      
+
     }
     // printAllReviews.innerHTML = reviewsData()
     // userAllReviews.appendChild(printAllReviews)
@@ -286,11 +283,11 @@ export default () => {
   }
 
 
-   const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
+  const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
   const logoutBtn = sectionElement.querySelector("#logout-btn")
 
   createReviewBtn.addEventListener ("click", publishReview)
-  
+
   // logoutBtn.addEventListener("click", ()=>{
   //     logout()
   //     window.history.pushState(null, null, "/login")
