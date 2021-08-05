@@ -1,8 +1,8 @@
 import { onNavigate } from '../navigate.js';
 
-export const loginPersistence = () => {
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-};
+// export const loginPersistence = () => {
+//   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+// };
 
 export const getNewUserData = (userData, userName) => {
   const usersCollection = firebase.firestore().collection('users');
@@ -106,4 +106,9 @@ export const createAccountWithEmailAndPassword = (
         }
       });
   }
+};
+
+export const logOut = () => {
+  firebase.auth().signOut();
+  onNavigate('/');
 };
