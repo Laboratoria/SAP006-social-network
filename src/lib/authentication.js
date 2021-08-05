@@ -10,8 +10,17 @@ export async function loginWithGoogleAccount() {
     .then(() => {
       (onNavigate('/home'));
     }).catch((error) => {
-      const message = error.message;
-      alert(message);
+      const errorField = document.getElementById('error-message');
+      let errorMessage = error.message;
+      switch (errorMessage) {
+        case 'The popup has been closed by the user before finalizing the operation.':
+          errorMessage = 'Login com Google cancelado.';
+          errorField.innerHTML = errorMessage;
+          errorMessage = '';
+          break;
+        default:
+          break;
+      }
     });
 }
 
@@ -44,20 +53,6 @@ export const loginWithEmailAndPassword = (userEmail, userPassword) => {
       }
     });
 };
-
-// export const validateUserNameAndPassword = (userName, userPassword, confirmPassword) => {
-//   const errorField = document.getElementById('error-sign-up-message');
-//   if (userName) {
-//     errorField.innerHTML = '';
-//   }
-//   if (!userName) {
-//     errorField.innerHTML = 'Por favor, digite o seu nome.';
-//   }
-//   if (userPassword !== confirmPassword) {
-//     errorField.innerHTML = 'As senhas não estão iguais, tente novamente.';
-//   }
-//   return false;
-// };
 
 export const createAccountWithEmailAndPassword = (
   userName,
