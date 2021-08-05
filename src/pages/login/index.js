@@ -50,9 +50,7 @@ export const login = () => {
         // Signed in
         // const user = userCredential.user;
         // console.log(user);
-        window.history.pushState({}, '', '/home');
-        const popstateEvent = new PopStateEvent('popstate', { state: {} });
-        dispatchEvent(popstateEvent);
+        route('/home');
       })
       .catch((handleError()));
   });
@@ -64,7 +62,7 @@ export const login = () => {
 
   botaoGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    googleLogin();
+    googleLogin().then(() => route('/home')).catch(handleError);
   });
   return rootElement;
 };

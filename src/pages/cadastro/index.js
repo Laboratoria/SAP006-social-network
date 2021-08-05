@@ -65,11 +65,11 @@ export const cadastro = () => {
           });
       })
       .catch((handleError()));
-
-    return rootElement;
+    return false;
   });
   pageLogin.addEventListener('click', (e) => {
     e.preventDefault();
     route('/login');
   });
+  return rootElement;
 };

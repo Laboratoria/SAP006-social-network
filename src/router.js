@@ -20,9 +20,3 @@ window.addEventListener('popstate', routRender);
 window.addEventListener('load', () => {
   routRender();
 });
-
-export const route = (state) => {
-  window.history.pushState({}, '', state);
-  const popstateEvent = new PopStateEvent('popstate', { state: {} });
-  dispatchEvent(popstateEvent);
-};

@@ -44,10 +44,9 @@ export const googleLogin = () => {
   provider.addScope('https://www.googleapis.com/auth/user.phonenumbers.read');
   provider.addScope('https://www.googleapis.com/auth/userinfo.email');
   provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
-  firebase
+  return firebase
     .auth()
-    .signInWithPopup(provider)
-    .catch(handleError);
+    .signInWithPopup(provider);
 };
 
 //* SIGN OUT  */
