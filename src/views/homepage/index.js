@@ -1,12 +1,18 @@
+import { logOut } from '../../lib/authentication.js';
+import { onNavigate } from '../../navigate.js';
+
 export const home = () => {
   const container = document.createElement('div');
   container.className = 'container';
   const template = `
     <h2>Página inicial</h2>
+    <div class="logout-container">
+    <button class='logout' id='logout'><img class='logout-img' src='img/logout-icon.png'></button>
     <form id="postForm">
       <input type="textarea" id="postText">
       <button type="submit">Enviar</button>
     </form>
+    </div>
     <ul id="postsList"></ul>
  `;
   container.innerHTML = template;
@@ -45,5 +51,16 @@ export const home = () => {
   };
 
   loadPosts();
+
+
+  container.querySelector('#logout').addEventListener('click', (e) => {
+    e.preventDefault();
+    logOut();
+  });
+
   return container;
 };
+
+
+
+

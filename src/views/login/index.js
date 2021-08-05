@@ -5,9 +5,15 @@ export const login = () => {
   const container = document.createElement('div');
   container.className = 'container';
   const template = `
+    <div class ="header">
+        <h1 class="logo">Logo</h1>
+      </div>
     <p class="subtitle">Uma rede para tutores e amantes de animais</p>
     <form class="form">
       <input type="email" placeholder="Email" class="login" id="user-email" autocomplete="off" />
+      <div class="input-login ">
+          <i class="fa fa-eye" aria-hidden="true" id="eye-login" class="hidden"></i>
+      </div>
       <input type="password" placeholder="Senha" class="login" id="user-password" autocomplete="off" />
       <button class="button" id="login-btn">Entrar</button>
       <span>ou</span>
@@ -37,6 +43,19 @@ export const login = () => {
       event.preventDefault();
       onNavigate('/cadastrar');
     });
+
+    /////// MOSTRAR SENHA //////
+  container.querySelector('.fa-eye')
+  .addEventListener('click', (e) => {
+    e.preventDefault();
+    const inputSenha = document.querySelector('#user-password')
+    if (inputSenha.getAttribute('type') == 'password') {
+      inputSenha.setAttribute('type', 'text')
+    } else {
+      inputSenha.setAttribute('type', 'password')
+    }
+
+  });
 
   return container;
 };
