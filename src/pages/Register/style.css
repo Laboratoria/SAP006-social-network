@@ -23,12 +23,13 @@
 
 .goback-button img {
     width: 20%;
-    margin-left: -70%;
+    margin-left: -95%;
 }
 
 .input:hover {
     border: solid 1px #000;
 }
+
 
 /*RESPONSIVIDADE DESKTOP*/
 @media screen and (min-width: 1366px) {

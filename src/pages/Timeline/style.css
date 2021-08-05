@@ -1,6 +1,7 @@
 body {
-    background: linear-gradient(-135deg, #78D6FE, #FFCA19);
+    background: linear-gradient(-135deg, #27282A, #666562, #9b9b9b);
     height: 100%;
+    overflow: scroll;
 }
 
 .box {
@@ -21,11 +22,11 @@ body {
     position: fixed;
     padding: 10px 10px 20px 10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
-    background-color: #78D6FE;
+    background-color: #9b9b9b;
 }
 
 .menu {
-    background: #F15E75;
+    background: #990707;
     border: solid 3px #000;
     border-radius: 50%;
     top: 23%;
@@ -253,7 +254,7 @@ body {
 }
 
 .post-button:hover {
-    background-color: #FFCA19;
+    background-color: #B8824C;
 }
 
 .buttons-container {
