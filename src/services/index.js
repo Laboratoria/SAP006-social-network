@@ -22,7 +22,7 @@ export const signOut = () => {
   firebase.auth().signOut();
   window.location.hash = '';
   location.reload();
-}
+};
 
 export const loginWithEmail = (email, password, profileName) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
