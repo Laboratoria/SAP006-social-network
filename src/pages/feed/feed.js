@@ -1,13 +1,14 @@
-//import { changeProfileImage } from "../../lib/auth.js";
 import { logOut } from "../../lib/auth.js";
+import { postImage } from "../../lib/auth.js";
+import { getTheRoad } from "../../router.js";
 
 
 export const Feed = () => {
-  
   const rootElement = document.createElement("div");
   rootElement.className = "feed-container"
   rootElement.innerHTML = `
-
+  
+  <main class="all-container" id="all-container">
   <div class="wrap">
     <div class="container-carousel">
     <div>
@@ -25,12 +26,14 @@ export const Feed = () => {
       <div id="slider" class="slider"></div>
     </div>
   </div>
-  <aside> 
+  <aside>  
   <section class='profile-area'>
-  <figure class='profile-area-photo-box'>
-    <img class = "photo" id = "photo">
-    <input required type="file" id="input-file-profileImg" class='input-file-profileImg transparency'
-      accept=".jpg, .jpeg, .png">
+  <div class='div-perfil'>
+<img src='imagens/user.png' id='photo' class='photo'>
+<p>Bem vinda </p>
+<p class='name-user' id="name-user"></p> 
+</div>
+ 
       </section>
       <div class="icons">
       
@@ -39,7 +42,7 @@ export const Feed = () => {
       <button class="text-icon" id=""> Inicio </button>
       <img src="./images/config-icon.png" alt="">
   
-      <button class="text-icon" id=""> Perfil </button>
+      <button class="perfil-icon" id="perfil-icon"> Perfil </button>
       
       <img src="./images/dark-icon.png" alt="">
   
@@ -51,21 +54,90 @@ export const Feed = () => {
   
   
   </aside>
-
-
 <form action = "" id="postForm">
-
-<div class="publishContent">
   <textarea id='postText' placeholder='O que você quer compartilhar?'></textarea>
-  <button id='publicar' class='publicar'>  Publicar</button>
-  </div>
+  <div class='div-photo' id="div-photo">
+  <img src='' width='100%' class='imgPreview'>
+</div>
+  <label for='photo' class='label-camera icon-post'>📷
+  <input type='file' class='photo-um' id='photo-um' accept='image/png, image/jpeg, image/jpg'/> 
+  <button id='publicar-foto' class='publicar-foto' >Publicar foto</button> 
+</label>
+  <button id='publicar'>Publicar</button>
 </form>
-
-<section id='postado' class='posts-container'></section>
-
-
-
+<section id='postado' class='posts-container'>
+  </main>
+ 
 `
+
+
+
+const photo = rootElement.querySelector('.photo-um');
+const preview = rootElement.querySelector('.imgPreview');
+const btnsend = rootElement.querySelector(".publicar-foto")
+photo.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  preview.src = URL.createObjectURL(file);
+  postImage(photo, validarUrl);
+});
+
+const validarUrl = (url) => {
+  preview.src = '';
+  preview.src = url;
+};
+
+btnsend.addEventListener('click', (event) => {
+  event.preventDefault();
+  createPost(preview.src);
+  preview.src = '';
+
+  readPosts()
+});
+
+
+
+
+
+
+const perfil = rootElement.querySelector('.perfil-icon')
+perfil.addEventListener('click', (event) => {
+  event.preventDefault();
+  getTheRoad("/profile");
+});
+
+
+const photoPerfil = rootElement.querySelector('.photo');
+const nomeP = rootElement.querySelector('.name-user');
+firebase.auth().onAuthStateChanged((user) => {
+  if (user != null) {
+    nomeP.innerHTML = user.displayName;
+    photoPerfil.src = user.photoURL;
+  } else {
+    nomeP.innerHTML = user.email;
+    photoPerfil.src = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png";
+    
+  }
+});
+
+
+/*const setNewProfileImg = (newfile) => {
+  rootElement.querySelector('#photo').src = newfile;
+};
+const sendNewProfileImg = (callbackToSetNewImage) => {
+  rootElement.querySelector("#photo").addEventListener('click', () => {
+    const inputFile = rootElement.querySelector('#input-file-profileImg');
+    inputFile.style.opacity = 1;
+    inputFile.onchange = (event) => {
+      changeProfileImage(event.target.files[0], callbackToSetNewImage);
+      inputFile.style.opacity = 0;
+    };
+    
+  });
+};
+sendNewProfileImg(setNewProfileImg);
+*/
+
+
 
 const darkMode = () => {
 
@@ -84,10 +156,9 @@ event.preventDefault();
 const text = rootElement.querySelector('#postText').value;
 
 const postData = () => {
-  const data = new Date().toLocaleString('pt-BR')
- return data.toLocaleString('pt-BR');
+  const data = new Date();
+  return data.toLocaleString('pt-BR');
 };
-
 
 const post = {
   text: text,
@@ -95,6 +166,7 @@ const post = {
   data: postData(),
   likes: [],
   comments: [],
+  image: [],
 } 
 
 const postsCollection = firebase.firestore().collection("posts");
@@ -105,99 +177,98 @@ postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim qu
   })
 })
 
-function addPost(post){
-  const postTemplate = 
-  `
-  <div id="${post.id}" class="div-postados">
-    <p class="user-post">Postado por ${post.data().user_id} </br>
-    ${post.data().data} </p>
-    <p class="txt-post">${post.data().text} </p>
-    <div class='text'>
-            <textarea disabled class='edit-text-area' hidden>${post.text}</textarea>
-    </div>
-
-    </div>
+function addPost(post) {
+  const postElement = document.createElement("div");//aqui criou mais uma div e mandou para ela o que era a div-postados
+  postElement.id = post.id;
+  postElement.classList.add("div-postados")
+  const postTemplate = `
+    <p class="user-post">Postado por ${post.data().user_id} <br>${post.data().data} </p>
+    ${post.data().text}</br></br>
     <section class="likes-comments-bar">
-      <div class="icones" id="icone-like"><img src="./images/like.png"> ${post.data().likes}</div>
-      <div class="icones" id="icone-comment"><img src="./images/comment.png">  ${post.data().comments} </div>
-      <button id="deletar" class="delete-button" value="${post.id}"> Deletar</button>
+      <button id="curtir" value="${post.id}" class="icones like-button"> Curtir</button>
+      ${(quantityOfLikes => { 
+        if(quantityOfLikes === 1) 
+                return `<p class="f-20 like-value" data-like-id="${post.id}""> ${quantityOfLikes} ❤️ Curtida </p>`
+              else if (quantityOfLikes > 1)
+                return  `<p class="f-20 like-value" data-like-id="${post.id}"> ${quantityOfLikes}  ❤️ Curtidas </p>`
+              else
+                return `<p class="f-20 like-value" data-like-id="${post.id}"> 0 ❤️ Curtidas </p>`
+        
+      })(post.data().likes.length)}
+    <button id="comentar" value="${post.id}" class="icones comment-button"> Comentar </button>
+    <input data-comment-input-id="${post.id}" placeholder='O que você quer comentar?'></input>
+    <button id="deletar" value="${post.id}"  class="icones delete-button"> Deletar</button>
     </section>
+
     <div class="data-post-id" data-postid="${post.id}">
-    <button  type="submit" class="btn-edit">Editar</button>
-    <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
-    <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
+      <button  type="submit" class="btn-edit">Editar</button>
+      <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
+      <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
     </div>
-    
+    <div class='text'>
+      <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
+    </div>
+
   </div>
-  `
-
-rootElement.querySelector("#postado").innerHTML += postTemplate;
-
-
-//Pegando os valores dos botões para editar
-const editSaveButton = rootElement.querySelectorAll(".btn-edit-save")
-const editTextArea = rootElement.querySelectorAll(".edit-text-area")
-const editCancelBtn = rootElement.querySelectorAll(".btn-cancel-edit")
-const editBtn = rootElement.querySelectorAll(".btn-edit")
+  <ul class="comentarios" id="comments" data-comment-post-id="${post.id}"> </ul> 
+  
+` 
+postElement.innerHTML = postTemplate
+//rootElement.querySelector("#postado").innerHTML += postTemplate;
 
 
-editSaveButton.forEach(button => {
-  button.addEventListener("click", () => {
-    const editTextAreaOk = editTextArea.forEach(textarea => {
-      textarea.hidden = true;
-      textarea.disabled = true;
-    })
-    const editCancelBtnOk = editCancelBtn.forEach(button => {
-      button.hidden = true;
-    })
-    const editSaveOk = editSaveButton.forEach(button => {
-      button.hidden = true;
-    })
+//Pegando valores para edit
+const editSaveButton = postElement.querySelector(".btn-edit-save")
+const editTextArea = postElement.querySelector(".edit-text-area")
+const editCancelBtn = postElement.querySelector(".btn-cancel-edit")
+const editBtn = postElement.querySelector(".btn-edit")
+ 
+
+ editBtn.addEventListener("click", () => {
+  editSaveButton.hidden = false;
+  editCancelBtn.hidden = false;
+  editTextArea.hidden = false;
+  editTextArea.disabled = false;
+  editBtn.hidden = true;
+ })
+
+ editCancelBtn.addEventListener("click", () => {
+   editSaveButton.hidden = true;
+   editCancelBtn.hidden = true;
+   editBtn.hidden = false;
+   editTextArea.hidden = true;
+   editTextArea.hidden = true;
+ })
+
+ editSaveButton.addEventListener("click", () => {
+   editSaveButton.hidden = true;
+   editCancelBtn.hidden = true;
+   editBtn.hidden = false;
+   editTextArea.hidden = true;
+   editTextArea.hidden = true;
+   editUpdate(editTextArea.value, post.id);
+ })
+
+
+ rootElement.appendChild(postElement);
+
+};//fim da função
+
+function editUpdate(newText, postId){
+  firebase.firestore().collection("posts").doc(postId).update({
+    text: newText,
   })
-})
+}
 
-editBtn.forEach(button => {
-  button.addEventListener("click", () => {
-    //const buttonNode = button.parentNode.dataset.postid
-    const editSaveOk = editSaveButton.forEach(button => {
-      button.hidden = false;
-    })
-  const editCancelBtnOk = editCancelBtn.forEach(button => {
-  button.hidden = false;
-  })
-  const editTextAreaOk = editTextArea.forEach(textarea => {
-    textarea.hidden = false;
-    textarea.disabled = false;
-  })
-  })
-})
-
-editCancelBtn.forEach(button => {
-  button.addEventListener("click", () => {
-
-    const editSaveOk = editSaveButton.forEach(button => {
-      button.hidden = true;
-    })
-    const editCancelBtnOk = editCancelBtn.forEach(button => {
-      button.hidden = true;
-    })
-    const editTextAreaOk = editTextArea.forEach(textarea => {
-      textarea.hidden = true;
-    })
-  })
-})
-
-
-};//aqui final da função
 
 
 function loadPosts() {
-  const postsCollection = firebase.firestore().collection("posts").orderBy('data', 'desc')
+  const postsCollection = firebase.firestore().collection("posts");
   postsCollection.get().then(snap => {
     snap.forEach(post => {
       addPost(post);
     })
-    
+
     const deleteButtons = rootElement.querySelectorAll(".delete-button")
     deleteButtons.forEach(button => {
       button.addEventListener("click", () => {
@@ -210,13 +281,44 @@ function loadPosts() {
       })
     })
 
-  })
+    const likeButtons = rootElement.querySelectorAll(".like-button")
+    likeButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const buttonValue = button.value;
+        likePost(buttonValue)
 
+        const amountOfLikes  = rootElement.querySelectorAll('[data-like-id="' + buttonValue + '"]')
+        amountOfLikes.forEach(value => {
+          firebase.firestore().collection("posts").doc(buttonValue).get().then(( post => {
+            value.innerHTML = "";
+            value.innerHTML = `${(quantityOfLikes => { 
+              if(quantityOfLikes === 1) 
+                return `<p class="f-20 like-value" data-like-id="${buttonValue}"> ${quantityOfLikes} ❤️ Curtida </p>`
+              else if (quantityOfLikes > 1)
+                return  `<p class="f-20 like-value" data-like-id="${buttonValue}"> ${quantityOfLikes} ❤️ Curtidas </p>`
+              else
+                return `<p class="f-20 like-value" data-like-id="${buttonValue}"> 0 ❤️ Curtidas </p>`
+              
+              })
+              (post.data().likes.length)
+            }`
+          }))
+        })
+      })
+    })
+
+    const commentButton = rootElement.querySelectorAll(".comment-button")
+    commentButton.forEach(button => {
+      button.addEventListener("click", () => {
+        const buttonValue = button.value
+        
+        commentPost(buttonValue)
+      })
+    })
+  })
 }
 
-
-
-function deletePost(postId){//aqui mudar para auth e exportar
+function deletePost(postId){
   const postsCollection = firebase.firestore().collection("posts")
   postsCollection.doc(postId).delete().then(() => {
     rootElement.querySelector("#postado").innerHTML = "";
@@ -224,97 +326,68 @@ function deletePost(postId){//aqui mudar para auth e exportar
   })
 }
 
-
-function likePost(postId) {//aqui mudar para auth e exportar
-  const increment = firebase.firestore.FieldValue.increment(1);
-  const postsCollection = firebase.firestore().collection("posts").doc(postId)
-  postsCollection.update({likes:increment})
-  rootElement.querySelector("#postado").innerHTML = "";
-  loadPosts();
-
+function likePost(postId) {
+    firebase.firestore().collection("posts").doc(postId).get().then(( post => {
+    const people = post.data().likes;
+    if (people.length >= 1) {
+      if (people.includes(firebase.auth().currentUser.email)) {
+        firebase.firestore().collection("posts").doc(postId).update({ likes: firebase.firestore.FieldValue.arrayRemove(firebase.auth().currentUser.email)})
+      } else {
+        firebase.firestore().collection("posts").doc(postId).update({ likes: firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser.email)})
+      }
+    } else {
+      firebase.firestore().collection("posts").doc(postId).update({ likes: firebase.firestore.FieldValue.arrayUnion(firebase.auth().currentUser.email)})
+    }
+  }))
 } 
 
- const likeButtons = rootElement.querySelectorAll(".like-button")
- likeButtons.forEach(button => {
-   button.addEventListener("click", () => {
-     const buttonValue = button.value;
-     likePost(buttonValue)
 
-     const amountOfLikes  = rootElement.querySelectorAll('[data-like-id="' + buttonValue + '"]')
-     amountOfLikes.forEach(value => {
-       firebase.firestore().collection("posts").doc(buttonValue).get().then(( post => {
-         value.innerHTML = "";
-         value.innerHTML = `${(quantityOfLikes => { 
-     if(quantityOfLikes === 1) 
-       return `<p class="f-20 like-value" data-like-id="${buttonValue}"> ${quantityOfLikes} ❤️ Curtida </p>`
-     else if (quantityOfLikes !== 1)
-       return `<p class="f-20 like-value" data-like-id="${buttonValue}"> ${quantityOfLikes} ❤️ Curtidas </p>`
-     })(post.data().likes.length)}`
-       })) 
-     }) 
-   })
- })
+
+
+function commentPost(postId) {
+  const newComment  = rootElement.querySelectorAll('[data-comment-input-id="' + postId + '"]')
+  newComment.forEach(comment => {
+    firebase.firestore().collection("posts").doc(postId).get().then((post => {
+ 
+      const newCommentText = comment.value
+    
+      firebase.firestore().collection("posts").doc(postId)
+      .update({comments: firebase.firestore.FieldValue.arrayUnion({
+        owner:firebase.auth().currentUser.email, 
+        content:newCommentText,
+        postOfOrigin:postId,
+        likes:[],
+      }),});
+     
+        const commentArea = rootElement.querySelector('[data-comment-post-id="' + postId + '"]');
+
+        const comentarios = post.data().comments
+        comentarios.forEach(comment => {
+        const whoCommented = comment.owner;
+        const whatWasCommented = comment.content;
+
+        const newItem = document.createElement("li")
+        newItem.setAttribute("class", "f-20")
+        newItem.insertAdjacentHTML("beforeend", `<p> Comentários: <br> ${whoCommented} <br> ${whatWasCommented}</p>
+        <button> Curtir </button> 
+        <button> Deletar </button>`)
+        commentArea.appendChild(newItem)
+       console.log(comentarios)
+      })
+      console.log(commentArea)
+    }))
+  })
+}
+
+
+const btnSignOut = rootElement.querySelector("#button-signout")
+btnSignOut.addEventListener("click", logOut);
 
 
 
 loadPosts();
 return rootElement;
 
+
 }
 
-
-
-/*const editSaveButton = root.querySelectorAll(".btn-edit-save")
-editSaveButton.forEach(button => {
-  button.addEventListener("click", () => {
-    const buttonNode = button.parentNode.dataset.postid
-  })
-})
-
-/*const editButton = rootElement.querySelectorAll(".btn-edit")
-editButton.forEach(button => {
-  button.addEventListener("click", () => {
-    const buttonNode = button.parentNode.dataset.postid
-    console.log(buttonNode)
-  })
-})
-
-const cancelEditButton = rootElement.querySelectorAll(".btn-cancel-edit")
-cancelEditButton.forEach(button => {
-  button.addEventListener("click", () => {
-    const buttonNode = button.parentNode.dataset.postid
-    console.log(buttonNode)
-  })
-})
-
-const editTextArea = rootElement.querySelectorAll(".edit-text-area");
-editButton.forEach(textarea => {
-  textarea.addEventListener("click", () => {
-    const textareaNode = textarea.parentNode.dataset.postid
-    console.log(textareaNode)
-  })
-})
-
-const editButton = rootElement.querySelectorAll(".btn-edit")
-editButton.forEach(button => {
-  button.addEventListener("click", () => {
-    const buttonNode = button.parentNode.dataset.postid
-    console.log(buttonNode)
-  })
-})
-
-const cancelEditButton = rootElement.querySelectorAll(".btn-cancel-edit")
-cancelEditButton.forEach(button => {
-  button.addEventListener("click", () => {
-    const buttonNode = button.parentNode.dataset.postid
-    console.log(buttonNode)
-  })
-})
-
-const editSaveButton = root.querySelectorAll(".btn-edit-save")
-editSaveButton.forEach(button => {
-  button.addEventListener("click", () => {
-    const buttonNode = button.parentNode.datase.postid
-    console.log(buttonNode)
-  })
-})*/

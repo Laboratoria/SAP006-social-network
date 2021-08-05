@@ -350,7 +350,8 @@ body {
 	  border: 2px solid #EBEEF0;
 	  width: 300px;
 	  height: 150px;
-	  float: left;
+	  /*float: left;    aqui só mudei a margin e tirei float pq tava grudado no começo*/ 
+	 margin:auto;
 	  margin-top: 10px;
 	  background-color: #ffff;
   }
@@ -381,16 +382,14 @@ body {
 	  display: inline;
   }
 
- 
   .posts-container {
 	  display: flex;
 	  align-items: center;
 	  flex-direction: column;
 	  justify-content: space-between;
-	 white-space: nowrap;
-	
+	  white-space: nowrap;
   }
- 
+  
   
   textarea {
 	  width: 500px;
@@ -422,15 +421,23 @@ body {
 	border-radius: 20px;
 	border: none;
 }
+
+
+#eye {
+	
+	width: 18px;
+	position: absolute;
+	margin-left: -30px;
+	margin-top: 10px;
+}
 .likes-comments-bar img{
 	height: 20px;
 	width: 20px;
 }
 
-.publishContent{
-	width: 600px;
-	margin: auto;
+.f-20{
+	font-size:12pt;
 }
-#edit-text-area{
-	background-color: rgb(160, 180, 140);
+#postado{
+	margin-left: 20%;
 }

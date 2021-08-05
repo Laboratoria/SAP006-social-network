@@ -1,6 +1,6 @@
+
 import { getTheRoad } from "../../router.js";
 import { getError } from "./errors.js";
-
 
 export const loginWithGoogle = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -12,16 +12,53 @@ export const loginWithGoogle = () => {
     });
 };
 
+
+const updateProfileName = (name) => {
+  firebase
+  .auth()
+  .currentUser.updateProfile({displayName: name,})    
+};
+
+
+
+/*
+export const updateProfile = (name) => {
+  firebase
+    .firestore()
+    .collection('users')
+    .doc(user)
+    .update({
+      userName: name,
+    })
+    .then(() => {
+      updateProfileName(name);
+      console.log("Edited user successfully!");
+    })
+    .catch(() => {
+      console.error("You cannot cancel this edit");
+    });
+};
+*/
+
 export const criarFirebaseconta = (email, senha, name) => {
   firebase.auth().createUserWithEmailAndPassword(email, senha)
-  .then((userReturn) => {
+  .then(() => {
+    updateProfileName(name);
+  
     getTheRoad("/feed");
+  
 })
         .catch((error) => {
           getError(error);
+          
+         
         });
 
       };
+
+
+
+
 
  export const logOut = () => {
         firebase.auth().signOut()
@@ -41,9 +78,8 @@ export const loginWithEmailAndPassword = (email, pass) => {
   }).catch((error) => {
  getError(error)
   });
+}
 
-
-};
  export const resetPassword = (email) => {
    firebase.auth().sendPasswordResetEmail(email)
    .then(()=>{
@@ -54,6 +90,8 @@ export const loginWithEmailAndPassword = (email, pass) => {
    })
  }
 
+
+/*
  export const changeProfileImage = (file, callbackToSetNewImage) => {
   const ref = firebase.storage().ref("perfil-pic/img")
   ref.child(file.name).put(file)
@@ -68,4 +106,34 @@ export const loginWithEmailAndPassword = (email, pass) => {
         });
     });
 };
+*/
 
+
+export const user = (nome, url) => {
+  const user = firebase.auth().currentUser;
+  user.updateProfile({
+    displayName: nome,
+    photoURL: url,
+  }).then(() => {
+    console.log('funfou')
+  }).catch((error) => {
+    console.log(error);
+  });
+  
+};
+
+
+
+
+
+export const postImage = (photo, callback) => {
+  const file = photo.files[0];
+  const storageRef = firebase.storage().ref('imagens/' + file.name);
+
+  storageRef.put(file).then(() => {
+    storageRef.getDownloadURL().then((url) => {
+      console.log(url);
+      callback(url);
+    });
+  });
+};
