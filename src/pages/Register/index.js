@@ -5,7 +5,7 @@ export default () => {
   register.innerHTML = `
       <link rel="stylesheet" href="./pages/Register/style.css" />
 
-      <main id="box">
+      <main class="box">
           <div class="container">
             <div class="banner">
                 <img src="assets/logo.png" alt="Logo">

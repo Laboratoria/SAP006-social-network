@@ -3,8 +3,6 @@ import { signOut } from '../../services/index.js';
 export default () => {
   const user = firebase.auth().currentUser;
   const timeline = document.createElement('div');
-  // timeline.setAttribute('class', 'container2');
-
   timeline.innerHTML = `
   <link rel="stylesheet" href="./pages/Timeline/style.css" />
 
@@ -208,8 +206,8 @@ export default () => {
     // Visibilidade dos botões de editar e deletar
     // const visibilityOfButtons = (document, user) => {
     //   if (user !== firebase.auth().currentUser.email) {
-    //     document.querySelector('#deletePost-btn').classList.add('visibility-hidden');
-    //     document.querySelector('#editPost-btn').classList.add('visibility-hidden');
+    //     document.querySelector('.deletePost-btn').classList.add('visibility-hidden');
+    //     document.querySelector('.editPost-btn').classList.add('visibility-hidden');
     //   }
     // };
 
