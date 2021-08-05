@@ -171,7 +171,7 @@ export default () => {
     const editButtons = document.querySelectorAll(".editPost-btn");
     
     for (const button of editButtons) {
-      button.addEventListener("click", function (event) {
+      button.addEventListener("click", function () {
         openEditPost(postBox);
       });
     }

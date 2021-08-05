@@ -1,13 +1,12 @@
 import { googleLogin } from '../../services/index.js';
 
 export default () => {
-    document.querySelector('#root').innerHTML = ' ';
+    document.querySelector('#root').innerHTML = '';
     const container = document.createElement('div');
     const template = `
     <link rel="stylesheet" href="./pages/Login/style.css" />
 
     <main class="box">
-
         <div id="container" class="container">
 
             <div class="banner">
@@ -55,7 +54,7 @@ export default () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         googleLogin(provider);
     });
-
+    console.log(container)
     return container;
 };
 

@@ -48,6 +48,7 @@ export default () => {
   gobackButton.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.hash = '';
+    location.reload();
   });
 
     return template;

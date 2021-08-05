@@ -56,6 +56,7 @@ window.addEventListener('load', () => {
   signUpButton.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.hash = 'register'; // ir para pagina cadastro
+
   });
 
 });

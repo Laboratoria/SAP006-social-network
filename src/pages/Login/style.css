@@ -8,7 +8,7 @@
 }
 
 .box {
-    background: linear-gradient(-135deg, #78D6FE, #FFCA19);
+    background: linear-gradient(-135deg, #78fedc, #FFCA19);
     width: 90%;
     box-shadow: inset 0 0 1em #F15E75, 0 0 1em black;
     border-radius: 15px;
@@ -100,7 +100,8 @@
 }
 
 .signin-button:hover{
-    background-color: #FFCA19;
+    background-color: #000;
+    color: #FFF;
 }
 
 .signup-button {
@@ -116,7 +117,7 @@
 }
 
 span{
-  color: rgb(54, 54, 54);
+  color: black;
   transition: 0.5s ease-in-out;
 }
 
@@ -150,3 +151,72 @@ span:hover {
 .firebaseui-auth-container {
     margin: 5% 0 15% 0;
 }
+
+/*RESPONSIVIDADE DESKTOP*/
+@media screen and (min-width: 1366px) {
+
+    body {
+        background-image: url(../../assets/background-login.jpg);
+        background-size: contain;
+        background-position: top;
+        overflow: hidden;
+    }
+
+    .box {
+        background: #ffffff71;
+        width: 500px;
+        box-shadow: inset 0 0 1em black, 0 0 2em black;
+        border-radius: 15px;
+        position: absolute;
+        top: 13%;
+        left: 60%;
+        padding: 5%;
+        height: 550px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        display: inline-block;
+        align-items: center;
+        width: 300px;
+        max-width: 700px;
+        padding: 10px;
+        position: absolute;
+        top: 7%;
+    }
+
+    .banner img {
+        width: 40%;
+    }
+
+    .title-container {
+        margin-left: 5%;
+    }
+    
+    .title {
+        font-family: "Aquatico";
+        font-size: 3em;
+    }
+    
+    .subtitle {
+        font-family: 'Averia Sans Libre', cursive;
+        font-size: 1.5em;
+    }
+
+    .banner {
+        margin-left: -18%;
+    }
+
+    .input {
+        width: 270px;
+    }
+
+    .signin-button {
+        width: 40%;
+    }
+
+
+}
+
