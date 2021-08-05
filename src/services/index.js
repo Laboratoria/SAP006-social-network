@@ -70,7 +70,6 @@ const signOut = () => {
 }
 
 
-export { loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, signOut }
 
 const resetPassword = (email) => {
  firebase
@@ -85,4 +84,9 @@ const resetPassword = (email) => {
   });
 }
 
-export { loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, resetPassword, signOut }
+const createPost = (post) => {
+  firebase.firestore().collection('post').add(post);
+}
+
+
+export { loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, resetPassword, signOut, createPost }
