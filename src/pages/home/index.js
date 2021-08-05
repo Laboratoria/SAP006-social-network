@@ -1,4 +1,5 @@
 import { outLogin } from '../../services/firebaseAuth.js';
+import { route } from '../../routes/navigator';
 
 export const home = () => {
   const rootElement = document.createElement('div');
@@ -15,12 +16,14 @@ export const home = () => {
     </div>
     <nav class="navBar">
        <ul class="nav" id="nav">
-        <li><a class="links" href="./index.html">Home</a></li>
-        <li><a class="links" href="./filmography.html">Filmography</a></li>
-        <li><a class="links" href="./caracters.html">Characters</a></li>
+        <li><a class="links" href=""></a>Buscar</li>
+        <li><a class="links" href=""></a>Perfil</li>
         </ul>
     </nav>
-    <button class="addPost"><img src="<img src="./img/tomato.svg"">postar</button>
+    <div class="addPost">
+    <a id="addPost" href=""> postar</a>
+    <img class="tomato" src="./img/tomato.svg">
+    </div>
     <button class='btn' id='btnLogout'>Sair</button>
 
     <img src="./img/govegGreen.png" />
@@ -54,13 +57,15 @@ export const home = () => {
   </main>
 </div>
 `;
-
-  // botão sair para fazer logout
   const btnLogout = rootElement.querySelector('#btnLogout');
+  const btnAddPost = rootElement.querySelector('#addPost');
+  // fazer logout
   btnLogout.addEventListener('click', (event) => {
     event.preventDefault();
     outLogin();
   });
+  // postar
+  btnAddPost.addEventListener('click', () => route('/posts'));
 
   return rootElement;
 };

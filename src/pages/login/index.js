@@ -1,5 +1,6 @@
 import { googleLogin, SignIn } from '../../services/firebaseAuth.js';
-import { route, handleError } from '../../services/utils.js';
+import { handleError } from '../../services/error.js';
+import { route } from '../../routes/navigator.js';
 
 export const login = () => {
   const rootElement = document.createElement('div');
@@ -47,9 +48,6 @@ export const login = () => {
     e.preventDefault();
     SignIn(usuario.value, passwordLogin.value)
       .then(() => {
-        // Signed in
-        // const user = userCredential.user;
-        // console.log(user);
         route('/home');
       })
       .catch((handleError()));
