@@ -2,7 +2,11 @@ import { signOut } from '../../services/index.js';
 
 export default () => {
   const user = firebase.auth().currentUser;
-  const timeline = (document.getElementById("container").innerHTML = `
+ 
+  const timeline = document.createElement('div');
+  // timeline.setAttribute('class', 'container2');
+
+  timeline.innerHTML = `
   <link rel="stylesheet" href="./pages/Timeline/style.css" />
 
   <div class="banner-menu">
@@ -52,10 +56,10 @@ export default () => {
 
     <ul id="posts"></ul>
 
-  `);
+  `;
 
   //Sair da conta do usuário
-  document.getElementById("signout-button").addEventListener("click", (e) => {
+  timeline.querySelector("#signout-button").addEventListener("click", (e) => {
     e.preventDefault();
     signOut();
   });
@@ -64,9 +68,9 @@ export default () => {
   const postsCollection = firebase.firestore().collection("posts");
 
   // Enviando posts para o firestore
-  document.getElementById("postForm").addEventListener("submit", (event) => {
+   timeline.querySelector("#postForm").addEventListener("submit", (event) => {
     event.preventDefault();
-    const text = document.getElementById("postText").value;
+    const text =  timeline.querySelector("#postText").value;
 
     const getDate = () => {
       const date = new Date();
@@ -81,7 +85,7 @@ export default () => {
     };
 
     postsCollection.add(post).then(() => {
-      document.getElementById("postText").value = "";
+       timeline.querySelector("#postText").value = "";
       loadPosts();
     });
   });
@@ -118,11 +122,11 @@ export default () => {
       </li>
     `;
 
-    const postBox = document.getElementById("posts");
+    const postBox =  timeline.querySelector("#posts");
     postBox.innerHTML += postTemplate;
 
     // Deletar posts
-    const deleteButtons = document.querySelectorAll(".deletePost-btn");
+    const deleteButtons = timeline.querySelectorAll(".deletePost-btn");
     for (const button of deleteButtons) {
       button.addEventListener("click", function (event) {
         const deleteConfirmation = confirm("Tem certeza quer deseja deletar esse post?");
@@ -146,13 +150,18 @@ export default () => {
         });
     }
 
-    // Curtir posts
-    const likeButtons = document.querySelectorAll(".likePost-btn");
+    // Curtir e descurtir posts
+    const likeButtons = timeline.querySelectorAll(".likePost-btn");
 
     for (const button of likeButtons) {
       button.addEventListener("click", function (event) {
-        console.log(event.target.parentNode.id);
-        addLikes(event.target.parentNode.id);
+        if (post.data().likes.length >= 1) {
+          deleteLikes(event.target.parentNode.id)
+          console.log("oi")
+        } else {
+          addLikes(event.target.parentNode.id);
+          console.log("ola")
+        }     
       });
     }
 
@@ -167,8 +176,19 @@ export default () => {
         });
     }
 
+    function deleteLikes(id) {
+      postsCollection
+        .doc(id)
+        .update({
+          likes: firebase.firestore.FieldValue.increment(0),
+        })
+        .then(() => {
+          loadPosts();
+        });
+    }
+
     // Editar post
-    const editButtons = document.querySelectorAll(".editPost-btn");
+    const editButtons = timeline.querySelectorAll(".editPost-btn");
     
     for (const button of editButtons) {
       button.addEventListener("click", function () {
@@ -192,22 +212,22 @@ export default () => {
     // };
 
     // Visibilidade dos botões de editar e deletar
-    const visibilityOfButtons = (document, user) => {
-      if (user !== firebase.auth().currentUser.email) {
-        document.querySelector('.deletePost-btn').classList.add('visibility-hidden');
-        document.querySelector('.editPost-btn').classList.add('visibility-hidden');
-      }
-    };
+    // const visibilityOfButtons = (document, user) => {
+    //   if (user !== firebase.auth().currentUser.email) {
+    //     document.querySelector('#deletePost-btn').classList.add('visibility-hidden');
+    //     document.querySelector('#editPost-btn').classList.add('visibility-hidden');
+    //   }
+    // };
   
-    visibilityOfButtons(document, user);
+    // visibilityOfButtons(document, user);
   }
 
   // Adicionando foto do perfil
-  const uploadImage = document.querySelector('#uploadImage');
+  const uploadImage = timeline.querySelector('#uploadImage');
   uploadImage.addEventListener('click', () => {
     console.log('botão de upa img');
     const ref = firebase.storage().ref();
-    const file = document.querySelector('#photo').files[0];
+    const file = timeline.querySelector('#photo').files[0];
     const name = new Date() + '-' + file.name
     const metadata = {
       contentType: file.type,
@@ -218,7 +238,7 @@ export default () => {
       .then(url => {
         console.log(url);
         console.log('imagem upada');
-        const image = document.querySelector('#preview');
+        const image = timeline.querySelector('#preview');
         image.src = url;
         const userUp = firebase.auth().currentUser;
         userUp.updateProfile({
@@ -230,10 +250,10 @@ export default () => {
 
   // Mostrando os posts na tela
   function loadPosts() {
-    document.getElementById("posts").innerHTML = `<span class="loading-post">Carregando posts...</span>`;
+     timeline.querySelector("#posts").innerHTML = `<span class="loading-post">Carregando posts...</span>`;
 
     postsCollection.get().then((snap) => {
-      document.getElementById("posts").innerHTML = "";
+       timeline.querySelector("#posts").innerHTML = "";
       snap.forEach((post) => {
         createTemplatePost(post);
       });
