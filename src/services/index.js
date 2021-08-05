@@ -10,7 +10,7 @@ const loginEmailAndPassword = (email, password) => {
    let errorCode = error.code;
    let errorMessage = error.message;
   });
-}
+};
 
 const loginWithGmail = () => {
  const provider = new firebase.auth.GoogleAuthProvider();
@@ -29,7 +29,7 @@ const loginWithGmail = () => {
    const email = error.email;
    const credential = error.credential;
   });
-}
+};
 
 const signUpWithGoogle = (email, password) => {
  firebase
@@ -43,7 +43,7 @@ const signUpWithGoogle = (email, password) => {
    const errorCode = error.code;
    const errorMessage = error.message;
   });
-}
+};
 
 const keepMeLogged = (persistence) => {
  firebase
@@ -57,7 +57,7 @@ const keepMeLogged = (persistence) => {
    const errorCode = error.code;
    const errorMessage = error.message;
   });
-}
+};
 
 const signOut = () => {
  firebase
@@ -65,11 +65,10 @@ const signOut = () => {
   .signOut()
   .then(() => {
    window.location.replace('/');
-  }).catch((error) => {
+  })
+  .catch((error) => {
   });
-}
-
-
+};
 
 const resetPassword = (email) => {
  firebase
@@ -82,7 +81,7 @@ const resetPassword = (email) => {
    const errorCode = error.code;
    const errorMessage = error.message;
   });
-}
+};
 
 const createPost = (post) => {
   firebase.firestore().collection('post').add(post);

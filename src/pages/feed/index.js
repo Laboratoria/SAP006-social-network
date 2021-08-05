@@ -1,4 +1,4 @@
-import { createPost, signOut } from "../../services/index.js";
+// import { signOut } from "../../services/index.js";
 
 export const Feed = () => {
   const root = document.createElement('div');
