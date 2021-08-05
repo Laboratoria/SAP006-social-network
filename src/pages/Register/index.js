@@ -1,8 +1,10 @@
 import { loginWithEmail } from '../../services/index.js';
 
 export default () => {
-    const template = document.getElementById("container").innerHTML =`
+    const register = document.createElement('div');
+    register.innerHTML =`
       <link rel="stylesheet" href="./pages/Register/style.css" />
+
       <main id="box">
           <div class="container">
             <div class="banner">
@@ -28,29 +30,28 @@ export default () => {
             </section>
           </div>
       </main>
+      
     `;
 
-    const profileName = document.getElementById('name');
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const passwordConfirm = document.getElementById('password-confirm');
-    const newUser = document.getElementById('nonUser');
-    const signUpButtonRegister = document.getElementById('signup-button-register');
-    const gobackButton = document.getElementById('gobackButton');
+    const profileName = register.querySelector('#name');
+    const email = register.querySelector('#email');
+    const password = register.querySelector('#password');
+    const passwordConfirm = register.querySelector('#password-confirm');
+    const newUser = register.querySelector('#nonUser');
+    const signUpButtonRegister = register.querySelector('#signup-button-register');
+    const gobackButton = register.querySelector('#gobackButton');
 
     // INPUTS PARA CADASTRO
   signUpButtonRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('funcionou');
     loginWithEmail(email.value, password.value, profileName.value)
   });
 
   // BOTÃO DE VOLTAR PARA PÁGINA DE LOGIN
   gobackButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('funcionou button img');
     window.location.hash = '';
   });
 
-    return template;
+    return register;
 };

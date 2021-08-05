@@ -5,12 +5,21 @@
     box-sizing: border-box;
     vertical-align: baseline;
     list-style: none;
+    
   }
   
 body {
     background-color: #333333;
     width: 100%;
     height: 180vw;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.display-none {
+  display: none;
 }
 
 @font-face {
