@@ -2,7 +2,6 @@ import { signOut } from '../../services/index.js';
 
 export default () => {
   const user = firebase.auth().currentUser;
- 
   const timeline = document.createElement('div');
   // timeline.setAttribute('class', 'container2');
 
@@ -37,10 +36,10 @@ export default () => {
           
         </li>
         <li>
-          <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
+          <p class="username-menu"> <b>${user.displayName || 'Usuário'} </b> </p>
         </li>
         <li>
-          <p class="email-menu"> ${user.email || "Usuário"} </p>
+          <p class="email-menu"> ${user.email || 'Usuário'} </p>
         </li>
       </div>
 
@@ -58,48 +57,46 @@ export default () => {
 
   `;
 
-  //Sair da conta do usuário
-  timeline.querySelector("#signout-button").addEventListener("click", (e) => {
+  // Sair da conta do usuário
+  timeline.querySelector('#signout-button').addEventListener('click', (e) => {
     e.preventDefault();
     signOut();
   });
 
   // Criando coleção no firebase chamada 'posts'
-  const postsCollection = firebase.firestore().collection("posts");
+  const postsCollection = firebase.firestore().collection('posts');
 
   // Enviando posts para o firestore
-   timeline.querySelector("#postForm").addEventListener("submit", (event) => {
+  timeline.querySelector('#postForm').addEventListener('submit', (event) => {
     event.preventDefault();
-    const text =  timeline.querySelector("#postText").value;
+    const text = timeline.querySelector('#postText').value;
 
     const getDate = () => {
       const date = new Date();
-      return date.toLocaleString('pt-BR');    
+      return date.toLocaleString('pt-BR');
     };
-  
     const post = {
       user: firebase.auth().currentUser.email,
-      text: text,
+      text,
       likes: 0,
       date: getDate(),
     };
 
     postsCollection.add(post).then(() => {
-       timeline.querySelector("#postText").value = "";
+      timeline.querySelector('#postText').value = '';
       loadPosts();
     });
   });
 
   // Adicionando posts
   function createTemplatePost(post) {
-    
     const postTemplate = `
       <li class="posts-box">
         <div id="${post.id}"class="post-container">
           <div class="user-container">
             <img src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo">
             <div class="username-date-container">
-              <p class="username"> ${user.displayName || "Usuário"} </p>
+              <p class="username"> ${user.displayName || 'Usuário'} </p>
               <time class="date">${post.data().date}</time>
             </div>
           </div>
@@ -122,22 +119,19 @@ export default () => {
       </li>
     `;
 
-    const postBox =  timeline.querySelector("#posts");
+    const postBox = timeline.querySelector('#posts');
     postBox.innerHTML += postTemplate;
 
     // Deletar posts
-    const deleteButtons = timeline.querySelectorAll(".deletePost-btn");
+    const deleteButtons = timeline.querySelectorAll('.deletePost-btn');
     for (const button of deleteButtons) {
-      button.addEventListener("click", function (event) {
-        const deleteConfirmation = confirm("Tem certeza quer deseja deletar esse post?");
-
-        if(deleteConfirmation) {
+      button.addEventListener('click', (event) => {
+        const deleteConfirmation = confirm('Tem certeza quer deseja deletar esse post?');
+        if (deleteConfirmation) {
           deletePost(event.target.parentNode.id);
-        }
-        else {
+        } else {
           return false;
         }
-        
       });
     }
 
@@ -151,17 +145,17 @@ export default () => {
     }
 
     // Curtir e descurtir posts
-    const likeButtons = timeline.querySelectorAll(".likePost-btn");
+    const likeButtons = timeline.querySelectorAll('.likePost-btn');
 
     for (const button of likeButtons) {
-      button.addEventListener("click", function (event) {
+      button.addEventListener('click', (event) => {
         if (post.data().likes.length >= 1) {
-          deleteLikes(event.target.parentNode.id)
-          console.log("oi")
+          deleteLikes(event.target.parentNode.id);
+          console.log('oi');
         } else {
           addLikes(event.target.parentNode.id);
-          console.log("ola")
-        }     
+          console.log('ola');
+        }
       });
     }
 
@@ -188,26 +182,26 @@ export default () => {
     }
 
     // Editar post
-    const editButtons = timeline.querySelectorAll(".editPost-btn");
-    
+    const editButtons = timeline.querySelectorAll('.editPost-btn');
+
     for (const button of editButtons) {
-      button.addEventListener("click", function () {
+      button.addEventListener('click', () => {
         openEditPost(postBox);
       });
     }
 
-    function openEditPost (element) {
-        element.querySelector('.post-value').removeAttribute('disabled');
-        element.querySelector('.save-edit-button').classList.remove('display-none');
+    function openEditPost(element) {
+      element.querySelector('.post-value').removeAttribute('disabled');
+      element.querySelector('.save-edit-button').classList.remove('display-none');
     }
 
     // editPost(event.target.parentNode.id);
-    
+
     // function editPost (newText, id) {
     //   postsCollection
     //     .doc(id)
-    //     .update({ 
-    //       text: newText 
+    //     .update({
+    //       text: newText
     //     });
     // };
 
@@ -218,7 +212,7 @@ export default () => {
     //     document.querySelector('#editPost-btn').classList.add('visibility-hidden');
     //   }
     // };
-  
+
     // visibilityOfButtons(document, user);
   }
 
@@ -228,14 +222,14 @@ export default () => {
     console.log('botão de upa img');
     const ref = firebase.storage().ref();
     const file = timeline.querySelector('#photo').files[0];
-    const name = new Date() + '-' + file.name
+    const name = `${new Date()}-${file.name}`;
     const metadata = {
       contentType: file.type,
     };
     const task = ref.child(name).put(file, metadata);
     task
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
+      .then((snapshot) => snapshot.ref.getDownloadURL())
+      .then((url) => {
         console.log(url);
         console.log('imagem upada');
         const image = timeline.querySelector('#preview');
@@ -250,10 +244,10 @@ export default () => {
 
   // Mostrando os posts na tela
   function loadPosts() {
-     timeline.querySelector("#posts").innerHTML = `<span class="loading-post">Carregando posts...</span>`;
+    timeline.querySelector('#posts').innerHTML = '<span class="loading-post">Carregando posts...</span>';
 
     postsCollection.get().then((snap) => {
-       timeline.querySelector("#posts").innerHTML = "";
+      timeline.querySelector('#posts').innerHTML = '';
       snap.forEach((post) => {
         createTemplatePost(post);
       });
