@@ -1,4 +1,5 @@
-import { createWithEmailAndPassword, loginWithGoogleAccount } from '../../lib/authentication.js';
+import { createAccountWithEmailAndPassword, loginWithGoogleAccount } from '../../lib/authentication.js';
+
 import { onNavigate } from '../../navigate.js';
 
 export const signup = () => {
@@ -7,14 +8,15 @@ export const signup = () => {
   const template = `
       <h2>Crie sua conta</h2>
       <form class="form">
-        <input type="text" placeholder="Nome" id="name">
-        <input type="text" placeholder="Email" id="email">
+        <span id="error-sign-up-message"></span>
+        <input type="text" placeholder="Nome" id="user-name">
+        <input type="text" placeholder="Email" id="user-email">
         <input type="password" placeholder="Senha" class="new-register" id="new-password" autocomplete="off">
-        <input type="password" placeholder="Confirmar Senha" class="register" id="password" autocomplete="off">
-        <button id="sign-up-btn">Cadastrar</button>
+        <input type="password" placeholder="Confirmar Senha" class="register" id="confirm-password" autocomplete="off">
+        <button id="sign-up-btn" class="button">Cadastrar</button>
       </form>
       <span>ou</span>
-      <button class="google-btn" id="google-btn">Continuar com o Google</button>
+      <button class=button" id="google-btn">Continuar com o Google</button>
       <p class="text">Já tem uma conta?</p>
       <button class="button" id="login-btn">Entrar</button
   `;
@@ -22,10 +24,11 @@ export const signup = () => {
   container.querySelector('#sign-up-btn')
     .addEventListener('click', (e) => {
       e.preventDefault();
-      const nameInput = document.getElementById('name')
-      const emailInput = document.getElementById('email');
-      const passwordInput = document.getElementById('new-password');
-      createWithEmailAndPassword(emailInput.value, passwordInput.value);
+      const userName = document.getElementById('user-name').value;
+      const userEmail = document.getElementById('user-email').value;
+      const userPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      createAccountWithEmailAndPassword(userName, userEmail, userPassword, confirmPassword);
     });
 
   container.querySelector('#google-btn')
