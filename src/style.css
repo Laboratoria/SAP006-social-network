@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #131140;
+  /*background-color: #131140;*/
 }
 
 html,
@@ -30,7 +30,6 @@ body {
   flex-direction: column;
   margin: 130px 0 0 210px;
   align-items: center;
-  background-color:#131140;
   width: 396px;
   border-radius: 8px;
   position: relative;
@@ -38,12 +37,6 @@ body {
   line-height: 70px;
   font-size: 20px;
   margin-top: 60px;
-}
-
-h2,
-span,
-p {
-  color: white;
 }
 
 .form-login {
@@ -57,12 +50,12 @@ p {
   color: var(--title-color);
 }
 
-.subtitle, .option, .sign-up-text {
+.subtitle, .option, .sign-up-text, .login-text, .create-account {
   color: var(--title-color);
   text-align: center;
 }
 
-.option, .sign-up-text {
+.option, .sign-up-text, .login-text {
   font-size: 0.80rem;
 }
 
@@ -77,9 +70,9 @@ p {
 #user-email,
 #new-password,
 #confirm-password {
-  width: 12rem;
+  width: 14rem;
   height: 2.5rem;
-  margin: 0.35rem;
+  margin: 0.50rem;
   background: var(--text-box);
   text-decoration: none;
   border: none;
@@ -88,11 +81,21 @@ p {
   align-content: center;
   justify-content: center;
   padding: 10px;
+  font-size: 12px;
+
 }
 
 .input-field {
   font-size: 1rem;
+  margin: 0.50rem;
   text-align: center;
+  width: 14rem;
+  padding: 0.70rem;
+  border-radius: 6px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text {
@@ -100,10 +103,11 @@ p {
 }
 
 #btn-signUp {
-  width: 9rem;
+  width: 14rem;
   padding: 0.75rem;
   font-size: 1.125rem;
   padding: 10px;
+  font-size: 12px;
 }
 
 #btn-signUp, #login-btn {
@@ -162,23 +166,8 @@ p {
 #google-btn {
   background: var(--title-color);
   margin-bottom: 3rem;
-  background-color: #F28705;
-}
-
-#sign-up-btn{
   width: 14rem;
   padding: 0.70rem;
-  background-color: #F28705;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.google-btn {
-  width: 14rem;
-  padding: 0.70rem;
-  background-color: rgb(255, 255, 255);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -186,14 +175,20 @@ p {
 }
 
 .icon-google {
-  width: 18px;
+  width: 20px;
   margin-right: 8px;
+}
+
+#sign-up-btn{
+  width: 14rem;
+  padding: 0.70rem;
+  background-color: #F28705;
+  border-radius: 6px;
 }
 
 #login-btn {
   width: 14rem;
   padding: 0.70rem;
-  background-color: #F28705;
   border-radius: 6px;
   font-size: 12px;
   display: flex;
@@ -201,21 +196,23 @@ p {
   justify-content: center;
 }
 
-.input-signUp{
+.show-password{
   width: 14rem;
   padding: 0.70rem;
 
 }
-/*LOGOUT*/
+
 
 .logout{
   cursor: pointer;
-  background: #F28705;
-  border: 1px;
+  border: 5px;
   border-radius: 300px;
   width: 50px;
   height: 50px;
   margin-left: 300px;
+  background: var(--button-color);
+  text-align: center;
+  padding: 8px 10px;
 }
 
 .logout-img {
@@ -224,10 +221,8 @@ p {
   height: 35px;
 }
 
-/*MOSTRAR SENHA*/
-
-#eye-one,
-#eye-two{
+#eye-register,
+#eye-show-register{
   display: block;
   cursor: pointer;
   text-align: left;
