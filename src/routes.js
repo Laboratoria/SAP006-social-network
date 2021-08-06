@@ -1,8 +1,9 @@
 import { login } from './pages/login/index.js';
 // import { signup } from './pages/signup/index.js';
 // import { feed } from './pages/feed/index.js';
+
 export const routeRender = () => {
-    const content = document.querySelector('#root');
+    const content = document.getElementById('root');
     const routes = {
         '/': login,
         // '/signup': signup,
