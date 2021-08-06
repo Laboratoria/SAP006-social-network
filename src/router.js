@@ -11,7 +11,7 @@ const routRender = () => {
   }
   elemento.innerHTML = "";
   elemento.appendChild(routes[window.location.pathname]())
- /* elemento.appendChild(routes["abacaxi"]())*/
+ /* elemento.appendChild(routes["pathname"]())*/
   console.log(window.location.pathname)
 }
 

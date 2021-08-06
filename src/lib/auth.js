@@ -53,12 +53,7 @@ export const criarFirebaseconta = (email, senha, name) => {
           
          
         });
-
       };
-
-
-
-
 
  export const logOut = () => {
         firebase.auth().signOut()

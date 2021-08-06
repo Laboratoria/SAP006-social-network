@@ -339,11 +339,6 @@ body {
 	height: 20px;
   }
   
-  .feed-container{
-	  text-align: center;
-  }
- 
-  
   
   .div-postados{
 	  border-radius: 12px;
@@ -354,6 +349,7 @@ body {
 	 margin:auto;
 	  margin-top: 10px;
 	  background-color: #ffff;
+	  
   }
   
   .div-postados img{
@@ -383,14 +379,15 @@ body {
   }
 
   .posts-container {
-	  display: flex;
-	  align-items: center;
-	  flex-direction: column;
-	  justify-content: space-between;
-	  white-space: nowrap;
-  }
-  
-  
+	display: flex;
+	align-items: center;
+   flex-direction: column;
+	justify-content: space-between;
+	white-space: nowrap;
+   width: 70%;
+   
+}
+
   textarea {
 	  width: 500px;
 	  height: 100px;

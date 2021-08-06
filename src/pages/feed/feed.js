@@ -3,6 +3,7 @@ import { postImage } from "../../lib/auth.js";
 import { getTheRoad } from "../../router.js";
 
 
+
 export const Feed = () => {
   const rootElement = document.createElement("div");
   rootElement.className = "feed-container"
@@ -55,7 +56,7 @@ export const Feed = () => {
   
   </aside>
 <form action = "" id="postForm">
-  <textarea id='postText' placeholder='O que você quer compartilhar?'></textarea>
+  <textarea id='postText' class="postText" placeholder='O que você quer compartilhar?'></textarea>
   <div class='div-photo' id="div-photo">
   <img src='' width='100%' class='imgPreview'>
 </div>
@@ -65,9 +66,9 @@ export const Feed = () => {
 </label>
   <button id='publicar'>Publicar</button>
 </form>
-<section id='postado' class='posts-container'>
+
   </main>
- 
+  <section id='postado' class='posts-container'>
 `
 
 
@@ -135,8 +136,8 @@ const sendNewProfileImg = (callbackToSetNewImage) => {
   });
 };
 sendNewProfileImg(setNewProfileImg);
-*/
 
+*/
 
 
 const darkMode = () => {
@@ -150,6 +151,8 @@ const darkMode = () => {
 }
 darkMode()
 
+const postado = rootElement.querySelector(".posts-container");//AQUI LEDI
+console.log(postado)
 
 rootElement.querySelector('#postForm').addEventListener('submit', function(event){
 event.preventDefault();
@@ -171,13 +174,14 @@ const post = {
 
 const postsCollection = firebase.firestore().collection("posts");
 postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim que postar
-  rootElement.querySelector("#postText").value= "";
-  rootElement.querySelector("#postado").innerHTML = "";
+  rootElement.querySelector(".postText").value= "";
+  rootElement.querySelector(".posts-container").innerHTML = "";
   loadPosts();
   })
 })
 
 function addPost(post) {
+  postado.innerHTML = "";//aqui ver como "empurrar" para postados
   const postElement = document.createElement("div");//aqui criou mais uma div e mandou para ela o que era a div-postados
   postElement.id = post.id;
   postElement.classList.add("div-postados")
@@ -199,7 +203,6 @@ function addPost(post) {
     <input data-comment-input-id="${post.id}" placeholder='O que você quer comentar?'></input>
     <button id="deletar" value="${post.id}"  class="icones delete-button"> Deletar</button>
     </section>
-
     <div class="data-post-id" data-postid="${post.id}">
       <button  type="submit" class="btn-edit">Editar</button>
       <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
@@ -208,12 +211,12 @@ function addPost(post) {
     <div class='text'>
       <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
     </div>
-
   </div>
   <ul class="comentarios" id="comments" data-comment-post-id="${post.id}"> </ul> 
   
 ` 
 postElement.innerHTML = postTemplate
+
 //rootElement.querySelector("#postado").innerHTML += postTemplate;
 
 
@@ -247,11 +250,13 @@ const editBtn = postElement.querySelector(".btn-edit")
    editTextArea.hidden = true;
    editTextArea.hidden = true;
    editUpdate(editTextArea.value, post.id);
+   loadPosts()
  })
 
 
  rootElement.appendChild(postElement);
 
+ 
 };//fim da função
 
 function editUpdate(newText, postId){
@@ -321,7 +326,7 @@ function loadPosts() {
 function deletePost(postId){
   const postsCollection = firebase.firestore().collection("posts")
   postsCollection.doc(postId).delete().then(() => {
-    rootElement.querySelector("#postado").innerHTML = "";
+   rootElement.querySelector(".posts-container").innerHTML = "";
     loadPosts();
   })
 }
@@ -390,4 +395,3 @@ return rootElement;
 
 
 }
-
