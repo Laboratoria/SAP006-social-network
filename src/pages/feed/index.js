@@ -1,21 +1,18 @@
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
-    <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
     <div class="esmaeceHeader logotipo-text">
-      <section>
       <h2>FORT FEED</h2>
     </div> 
 
     <section class="post">
       <form action="" id="published-form">
       <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
-      <button id="send-post">Enviar</button>
+      <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
 
     <section class="get-post">
-    <input type="text" id="post-ready">
     </section>
   `;
 
@@ -24,22 +21,30 @@ export const Feed = () => {
   rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    console.log(text);
+    // console.log(text);
+    const post = {
+      text: text,
+      user_id: firebase.auth().currentUser.uid,
+      likes: 0,
+      comments: [],
+    };
+    const collectionOfPosts = firebase.firestore().collection('posts');
+
+    collectionOfPosts.add(post);
   });
 
-  //Objetos com propriedades utilizadas nos posts:
+  // Objetos com propriedades utilizadas nos posts:
+  // const user = firebase.auth().currentUser;
+  // if (user !== null) {
+  //   const email = user.email;
+  //   const uid = user.uid;
+  // }
 
-  const post = {
-    text: text,
-    user_id: firebase.auth().currentUser.email,
-  };
+  // Criar a collection:
 
-  //Criar a collection:
-
-  const collectionOfPosts = firebase.firestore().collection('posts');
-
-  collectionOfPosts.add(post).then(() => {
-    rootElement.querySelector('#text-post').value = '';
-    rootElement.querySelector('#post-ready').innerHTML = '';
-  });
+  // .then(() => {
+  //   rootElement.querySelector('#text-post').value = '';
+  //   rootElement.querySelector('#post-ready').innerHTML = '';
+  // });
+  return rootElement;
 };

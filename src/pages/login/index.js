@@ -51,6 +51,7 @@ export const Login = () => {
 
   const loginWithGoogle = btnGoogle.addEventListener('click', () => {
     signInGoogle();
+    navigation('/feed');
   });
 
   checkbox.addEventListener('change', () => {
