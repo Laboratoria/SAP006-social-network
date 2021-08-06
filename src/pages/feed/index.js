@@ -12,7 +12,7 @@ export const Feed = () => {
       </form>
     </section>
 
-    <section class="get-post">
+    <section class="get-post" id="postTemplate">
     </section>
   `;
 
@@ -21,7 +21,6 @@ export const Feed = () => {
   rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    // console.log(text);
     const post = {
       text: text,
       user_id: firebase.auth().currentUser.uid,
@@ -33,18 +32,34 @@ export const Feed = () => {
     collectionOfPosts.add(post);
   });
 
-  // Objetos com propriedades utilizadas nos posts:
-  // const user = firebase.auth().currentUser;
-  // if (user !== null) {
-  //   const email = user.email;
-  //   const uid = user.uid;
-  // }
+  function addPost(post) {
+    const postStructure = `
+    <section>
+      <p id='${post.id}'>${post.data().text} ❤️ ${post.data().likes}</p> 
+      <button id="btnDelete" value="${post.id}">Excluir</button>
+    </section>
+    `;
 
-  // Criar a collection:
+    document.getElementById('postTemplate').innerHTML += postStructure;
+  }
 
-  // .then(() => {
-  //   rootElement.querySelector('#text-post').value = '';
-  //   rootElement.querySelector('#post-ready').innerHTML = '';
-  // });
+  function loadPosts() {
+    const collectionOfPosts = firebase.firestore().collection('posts');
+    collectionOfPosts.get().then(snap => {
+      snap.forEach(post => {
+        addPost(post);
+      });
+    });
+  }
+
+  // const btnDelete = document.querySelector('#btnDelete').value;
+  // function deletePost(postId) {
+  //   const collectionOfPosts = firebase.firestore().collection('posts');
+  //   collectionOfPosts.doc(postId).delete().then(doc => {
+  //     loadPosts();
+  //   });
+  // } 
+  // console.log(btnDelete);
+  loadPosts();
   return rootElement;
 };
