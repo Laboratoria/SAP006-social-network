@@ -25,6 +25,18 @@ body {
     background-color: #9b9b9b;
 }
 
+.buttons {
+    width: 30%;
+    height: 40px;
+    margin-top: 3%;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Averia Sans Libre', cursive;
+    font-size: 12pt;
+    font-weight: bolder;
+}
+
 .menu {
     background: #990707;
     border: solid 3px #000;
@@ -164,6 +176,8 @@ body {
 }
 
 .banner  {
+    display: flex;
+    width: 100%;
     justify-content:flex-start;
     margin-bottom: 0;
 }
@@ -173,14 +187,20 @@ body {
 }
 
 .title-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 2% 0 0 2%;
 }
 
 .title {
+    font-family: "Aquatico";
     font-size: 15pt;
 }
 
 .subtitle {
+    font-family: 'Averia Sans Libre', cursive;
     font-size: 10pt;
 }
 
@@ -270,9 +290,7 @@ body {
 
 .signout-button {
     position: absolute;
-    margin-top: 0;
     left: -7%;
-    transition: 0.5s ease-in-out;
     border: none;
     background: none;
     cursor: pointer;
@@ -366,5 +384,6 @@ body {
     .input {
         width: 280px;
     }
+
 }
 

@@ -154,10 +154,6 @@ span:hover {
     width: 10%;
 }
 
-.firebaseui-auth-container {
-    margin: 5% 0 15% 0;
-}
-
 /*RESPONSIVIDADE DESKTOP*/
 @media screen and (min-width: 1366px) {
 
