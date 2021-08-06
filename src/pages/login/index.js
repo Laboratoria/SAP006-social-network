@@ -2,28 +2,22 @@ import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
+  loginScreenContainer.setAttribute('class', 'container');
+
   const loginScreenButtons = `
-  <div class="body">
   <img class="logo" src="image/logotipo.png">
   
-  <form>
+  <form class="initialForm">
+    <h1 class="title"> Entrar </h1>
     <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
     <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
     <div id="notice"> </div>
 
     <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
-
-    <div class="signUp-link">
-      <span> Ainda não tem conta? </span> 
-      <a href="#signUp"> CADASTRE-SE </a>
-    </div>
+    <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
+    <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
+    
   </form>
-
-  <div class="divider">
-    <hr> 
-    <span class="hr-label"> ou entre com </span>
-    <button type="button" id="btn-google" class="btn-google"> <span class="google-icon"></span> Google</button>
-  </div>
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
@@ -70,15 +64,16 @@ export default () => {
   });
 
   btnGoogle.addEventListener('click', () => {
-    signInWithGoogle.then((result) => {
-      const credentials = {
-        credecial: result.credential,
-        token: result.credential.accessToken,
-        user: result.user,
-      };
-      window.location.hash = '#feed';
-      return credentials;
-    })
+    signInWithGoogle()
+      .then((result) => {
+        const credentials = {
+          credecial: result.credential,
+          token: result.credential.accessToken,
+          user: result.user,
+        };
+        window.location.hash = '#feed';
+        return credentials;
+      })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -91,6 +86,10 @@ export default () => {
         }
         throw new Error(errorMessage);
       });
+  });
+  const btnSignUp = loginScreenContainer.querySelector('#sign-up');
+  btnSignUp.addEventListener('click', () => {
+    window.location.hash = '#signUp';
   });
   return loginScreenContainer;
 };

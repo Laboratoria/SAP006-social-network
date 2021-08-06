@@ -4,6 +4,7 @@ import profile from './pages/profile/index.js';
 import signUpScreen from './pages/signUp/index.js';
 import profileInfo from './pages/profile/profileInfo.js';
 import myRecipes from './pages/profile/myRecipes.js';
+import addRecipe from './pages/AddRecipe/index.js';
 
 const main = document.getElementById('root');
 
@@ -28,6 +29,9 @@ const routes = () => {
         break;
       case '#myRecipes':
         main.appendChild(myRecipes());
+        break;
+      case '#postRecipe':
+        main.appendChild(addRecipe());
         break;
       default:
         main.appendChild(loginScreen());
