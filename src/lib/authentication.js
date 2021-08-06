@@ -79,7 +79,7 @@ export const createAccountWithEmailAndPassword = (
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
       .then((userData) => {
         getNewUserData(userData, userName);
-        onNavigate('/home');
+        onNavigate('/');
       })
       .catch((error) => {
         errorField = document.getElementById('error-sign-up-message');
