@@ -12,7 +12,7 @@ export const Feed = () => {
       </form>
     </section>
 
-    <section class="get-post">
+    <section class="get-post" id="postTemplate">
     </section>
   `;
 
@@ -21,7 +21,6 @@ export const Feed = () => {
   rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    // console.log(text);
     const post = {
       text: text,
       user_id: firebase.auth().currentUser.uid,
@@ -33,6 +32,27 @@ export const Feed = () => {
     collectionOfPosts.add(post);
   });
 
+  function addPost(post) {
+    const postStructure = `
+    <section>
+      <p id='${post.id}'>${post.data().text} ❤️ ${post.data().likes}</p>
+    </section>
+    `;
+
+    document.getElementById('postTemplate').innerHTML += postStructure;
+  }
+
+  function loadPosts() {
+    const collectionOfPosts = firebase.firestore().collection('posts');
+    collectionOfPosts.get().then(snap => {
+      snap.forEach(post => {
+        addPost(post);
+      });
+    });
+  }
+  loadPosts();
+  return rootElement;
+};
   // Objetos com propriedades utilizadas nos posts:
   // const user = firebase.auth().currentUser;
   // if (user !== null) {
@@ -40,11 +60,9 @@ export const Feed = () => {
   //   const uid = user.uid;
   // }
 
-  // Criar a collection:
+// Criar a collection:
 
-  // .then(() => {
-  //   rootElement.querySelector('#text-post').value = '';
-  //   rootElement.querySelector('#post-ready').innerHTML = '';
-  // });
-  return rootElement;
-};
+// .then(() => {
+//   rootElement.querySelector('#text-post').value = '';
+//   rootElement.querySelector('#post-ready').innerHTML = '';
+// });
