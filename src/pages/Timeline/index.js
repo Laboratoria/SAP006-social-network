@@ -2,6 +2,9 @@ import { signOut } from '../../services/index.js';
 
 export default () => {
   const user = firebase.auth().currentUser;
+  if(!user){
+    signOut();
+  }
   const timeline = document.createElement('div');
   timeline.innerHTML = `
   <link rel="stylesheet" href="./pages/Timeline/style.css" />
@@ -73,6 +76,7 @@ export default () => {
       const date = new Date();
       return date.toLocaleString('pt-BR');
     };
+
     const post = {
       user: firebase.auth().currentUser.email,
       text,
@@ -147,37 +151,71 @@ export default () => {
 
     for (const button of likeButtons) {
       button.addEventListener('click', (event) => {
-        if (post.data().likes.length >= 1) {
-          deleteLikes(event.target.parentNode.id);
-          console.log('oi');
-        } else {
-          addLikes(event.target.parentNode.id);
-          console.log('ola');
-        }
+        likePost(event.target.parentNode.id)
       });
     }
 
-    function addLikes(id) {
-      postsCollection
-        .doc(id)
-        .update({
-          likes: firebase.firestore.FieldValue.increment(1),
-        })
-        .then(() => {
-          loadPosts();
-        });
+    function likePost(id) {
+      const promiseLikes = postsCollection.doc(id).get().then((post => {
+        const countLikes = post.data().likes;
+        if(countLikes >= 1) {
+          postsCollection
+            .doc(id)
+            .update({
+              likes: post.data().likes - 1,
+            })
+            .then(() => {
+              loadPosts();
+            });
+        } else {
+          postsCollection
+            .doc(id)
+            .update({
+              likes: post.data().likes + 1,
+            })
+            .then(() => {
+              loadPosts();
+            });   
+        }
+      }))
+      return promiseLikes.then()
     }
 
-    function deleteLikes(id) {
-      postsCollection
-        .doc(id)
-        .update({
-          likes: firebase.firestore.FieldValue.increment(0),
-        })
-        .then(() => {
-          loadPosts();
-        });
-    }
+    // for (const button of likeButtons) {
+    //   button.addEventListener('click', (event) => {
+    //     if (post.data().likes >= 1) {
+    //       deleteLikes(event.target.parentNode.id);
+    //       console.log('oi');
+    //       console.log(post.data().likes)
+    //     } else {
+    //       addLikes(event.target.parentNode.id);
+    //       console.log('ola');
+    //       console.log(post.data().likes)
+    //     }
+    //   });
+    // }
+
+    // function addLikes(id) {
+    //   postsCollection
+    //     .doc(id)
+    //     .update({
+    //       likes: post.data().likes + 1,
+    //     })
+    //     .then(() => {
+    //       loadPosts();
+    //     });
+    // }
+
+    // function deleteLikes(id) {
+    //   postsCollection
+    //     .doc(id)
+    //     .update({
+    //       likes: post.data().likes - 1,
+    //     })
+    //     .then(() => {
+    //       loadPosts();
+    //     });
+    // }
 
     // Editar post
     const editButtons = timeline.querySelectorAll('.editPost-btn');
