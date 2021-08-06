@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto&display=swap');
 
 * {
@@ -312,6 +313,58 @@ button:hover {
 
 /*   Fim da página de perfil:  */
 
+/* header contener  */
+
+*,
+*:before,
+*:after { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav {
+  background-color: rgb(177, 83, 177);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+}
+
+#nav-hurguer {
+  display: none;
+}
+
+#nav-hurguer ~ .label .hamburguer {
+  transform: rotate(45deg);
+}
+
+.hamburguer {
+  position: relative;
+  display: block;
+  background-color: #000;
+  width: 30px;
+  height: 2px;
+  top: 29px;
+  left: 15px;
+}
+
+.hamburguer:before, .hamburguer:after {
+  display: block;
+  background-color: #000;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.hamburguer:before {
+  top: -10px;
+}
+
+.hamburguer:after {
+  bottom: -10px;
+}
 
 
 @media screen and (min-width: 481px) and (max-width: 768px){
@@ -321,3 +374,4 @@ button:hover {
 @media screen and (min-width: 769px){
 
 }
+

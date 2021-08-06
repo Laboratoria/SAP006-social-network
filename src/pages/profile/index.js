@@ -1,5 +1,8 @@
+import header from '../../components/header/index.js';
+
 export default () => {
   const perfilContainer = document.createElement('div');
+  perfilContainer.append(header());
   const perfilContent = `
         <section class="profile-nav-bar">
           <div class="profileInfo">

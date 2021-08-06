@@ -1,8 +1,12 @@
 // importamos a função que vamos testar
-import { myFunction } from '../src/lib/index';
+// import { signInWithGoogle } from '../src/services/index.js';
 
-describe('myFunction', () => {
-  it('should be a function', () => {
-    expect(typeof myFunction).toBe('function');
-  });
-});
+// describe('myFunction', () => {
+//   it('should be a function', () => {
+//     expect(typeof signInWithGoogle).toBe('function');
+//   });
+//   it('auth with firebase', () => {
+//     signInWithGoogle('provider');
+//     expect(firebase.auth).tobeCalled();
+//   })
+// });
