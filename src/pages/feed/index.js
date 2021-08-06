@@ -26,22 +26,22 @@ export const Feed = () => {
   rootElement.querySelector('#published-form').addEventListener('submit', event => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    console.log(text);
+
+    const post = {
+      text: text,
+      user_id:'bruna.ppp8@gmail.com',
+      likes: [],
+      comments: [],
+    }
+
+    const collectionOfPosts = firebase.firestore().collection('posts');
+
+    collectionOfPosts.add(post).then(() => {
+      rootElement.querySelector('#text-post').value = "";
+      rootElement.querySelector('#post-ready').innerHTML = "";
+    })
   })
 
-  //Objetos com propriedades utilizadas nos posts:
 
-  const post = {
-    text: text,
-    user_id: firebase.auth().currentUser.email
-  }
-
-  //Criar a collection:
-
-  const collectionOfPosts = firebase.firestore().collection('posts');
-
-  collectionOfPosts.add(post).then(() => {
-    rootElement.querySelector('#text-post').value = "";
-    rootElement.querySelector('#post-ready').innerHTML = "";
-  } )
+  return rootElement
 }

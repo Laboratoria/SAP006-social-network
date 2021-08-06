@@ -7,7 +7,7 @@ import { Reset } from './pages/signup/reset.js';
 import { Feed } from './pages/feed/index.js';
 
 export const routeRender = () => {
-  const element = document.querySelector('#root');
+  const elementRoute = document.querySelector('#root');
   const routes = {
     '/': Welcome,
     '/welcome': Welcome,
@@ -19,8 +19,8 @@ export const routeRender = () => {
     '/feed': Feed
   };
 
-  element.innerHTML = '';
-  element.appendChild(routes[window.location.pathname]());
+  elementRoute.innerHTML = '';
+  elementRoute.appendChild(routes[window.location.pathname]());
 };
 
 window.addEventListener('load', routeRender);
