@@ -1,8 +1,8 @@
-import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
-import { navigation } from "../../navigation.js";
+import { signInEmailPassword, signInGoogle, keepLogged } from '../../services/index.js';
+import { navigation } from '../../navigation.js';
 
 export const Login = () => {
-  const rootElement = document.createElement("div");
+  const rootElement = document.createElement('div');
   const container = `
     <header class="esmaeceHeader logotipo-text">
       <section class="title">
@@ -30,11 +30,10 @@ export const Login = () => {
 
 
   `;
-  
   rootElement.innerHTML = container;
 
-  const btnLogin = rootElement.querySelector("#btn-login");
-  const btnGoogle = rootElement.querySelector("#icon-google");
+  const btnLogin = rootElement.querySelector('#btn-login');
+  const btnGoogle = rootElement.querySelector('#icon-google');
   const email = rootElement.querySelector('#email');
   const password = rootElement.querySelector('#password');
   const checkbox = rootElement.querySelector('.checkbox');
@@ -42,35 +41,36 @@ export const Login = () => {
 
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    navigation('/signup')
+    navigation('/signup');
   });
 
-  const loginWithEmail = btnLogin.addEventListener("click", () => {
+  const loginWithEmail = btnLogin.addEventListener('click', () => {
     signInEmailPassword(email.value, password.value);
-    navigation('/feed')
+    navigation('/feed');
   });
 
-  const loginWithGoogle = btnGoogle.addEventListener("click", () => {
+  const loginWithGoogle = btnGoogle.addEventListener('click', () => {
     signInGoogle();
+    navigation('/feed');
   });
 
-  checkbox.addEventListener("change", () => {
-    const none = firebase.auth.Auth.Persistence.NONE
-    const local = firebase.auth.Auth.Persistence.LOCAL
+  checkbox.addEventListener('change', () => {
+    const none = firebase.auth.Auth.Persistence.NONE;
+    const local = firebase.auth.Auth.Persistence.LOCAL;
 
-      if (checkbox.checked === true && loginWithGoogle) {
-        keepLogged(local)
-      } else if (checkbox.checked === true && loginWithEmail) {
-        keepLogged(local)
-      }
-      keepLogged(none)
+    if (checkbox.checked === true && loginWithGoogle) {
+      keepLogged(local);
+    } else if (checkbox.checked === true && loginWithEmail) {
+      keepLogged(local);
+    }
+    keepLogged(none);
   });
 
   const resetLink = rootElement.querySelector('#reset');
-  resetLink.addEventListener("click", (event) => {
+  resetLink.addEventListener('click', (event) => {
     event.preventDefault();
     navigation('/reset');
-  })
+  });
 
-  return rootElement;  
+  return rootElement;
 };

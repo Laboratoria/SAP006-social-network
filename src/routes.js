@@ -16,7 +16,7 @@ export const routeRender = () => {
     '/login': Login,
     '/reset': Reset,
     '/signup': signUp,
-    '/feed': Feed
+    '/feed': Feed,
   };
 
   element.innerHTML = '';

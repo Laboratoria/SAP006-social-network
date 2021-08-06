@@ -1,6 +1,5 @@
-import { createAccount } from "../../services/index.js";
-import { navigation } from "../../navigation.js";
-
+import { createAccount } from '../../services/index.js';
+import { navigation } from '../../navigation.js';
 
 export const signUp = () => {
   const rootElement = document.createElement('div');
@@ -34,7 +33,7 @@ export const signUp = () => {
           </form>
 
   </div>
-  `
+  `;
 
   rootElement.innerHTML = container;
 
@@ -45,10 +44,9 @@ export const signUp = () => {
 
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    createAccount(userEmail.value, userPassword.value, userConfirmPassword.value)
-    navigation('/feed')
-  })
+    createAccount(userEmail.value, userPassword.value, userConfirmPassword.value);
+    navigation('/feed');
+  });
 
-  return rootElement
-
-}
+  return rootElement;
+};
