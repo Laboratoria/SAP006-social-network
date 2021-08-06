@@ -1,5 +1,5 @@
 import { createAccount } from "../../services/index.js";
-import { navigation } from "../../navigation.js";
+import { navigation } from "../../routes.js";
 
 
 export const signUp = () => {

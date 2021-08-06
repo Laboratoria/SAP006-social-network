@@ -1,5 +1,3 @@
-import { navigation } from "../../navigation.js";
-
 export const createAccount = (email, password, confirmPassword) => {
 
   if (password !== confirmPassword) {
@@ -34,7 +32,6 @@ const verifyUser = () => {
   firebase.auth().onAuthStateChanged((currentUser) => {
     if (currentUser) {
       const uid = currentUser.uid;
-      console.log(uid);
     }
   });
 }

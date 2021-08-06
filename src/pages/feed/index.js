@@ -1,5 +1,3 @@
-
-
 export const Feed = () => {
   const rootElement = document.createElement("div");
   const container = `
