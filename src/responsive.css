@@ -1,137 +1,14 @@
 @media (min-width:1400px){
-    :root{
-        font-size: 16px;
-    }
+   
+:root{
+    font-size:12px
+}
 
-    .form-input{
-        padding: 1rem;
-        margin: 0.8rem 0rem;
-    }
+.sidebar-tools{
 
-    #enter{
-        margin: 1.5rem;
-    }
-
-    #or{
-        padding: 0rem;
-    }
-
-    .btn{
-        margin: 0rem;
-        padding: 0.8rem 0.1rem;
-        font-size:1.2rem;
-
-    }
-
-    #gmail-btn{
-        margin: 0rem;
-        padding: 0.8rem 0.1rem;
-        font-size:1rem;
-    }
-    #bookish{
-        margin: 0rem 30rem 28rem 0rem
-    }
+    padding: 3rem 0;
+}
     
-    .sign-google{
-        font-size: 1.1rem;    
-    }
-
-    .site-logo{
-        height: 37rem;
-        width: 50rem;
-    }
-    
-    .logo-google{
-        width: 2rem;
-        margin: 0rem 0.5rem 0rem 0rem;
-    }
-
-    .back-to-login{
-        margin: 0rem 48rem 42rem 0rem
-    }
-
-    #logout-btn{
-        margin: 0rem 0rem 0rem 60vw;
-        position: unset;
-    }
-
-    .sidebar-desktop{
-        width:20vw;
-    }
-
-    .sidebar-user-img{
-        width: 9rem;
-        height: 9rem;
-    }
-
-    .user-information{
-        margin-top:2rem;
-    }
-
-    .sidebar-text{
-        font-size:1.3rem;
-    }
-
-    #edit-profile-link{
-        
-        font-size:1.3rem;
-    }
-
-    .num{
-        width:2rem;
-        height: 2rem;
-    }
-    #sidebar-img-logout{
-        width:3rem;
-    }
-
-    .fieldset-forgot-password, .fieldset-create-profile{
-        width:50%;
-    }
-
-    #send-forgot-password, #send-profile{
-        margin-top:2rem;
-
-    }
-
-    .back-to-login{
-        top:5rem;
-        left:5rem;
-        width:15%;
-        font-size: 1.5rem;
-    }
-
-    #register-btn{
-        margin-top:1rem;
-    }
-    .sidebar-desktop{
-        width:25vw;
-        
-    }
-    .user-data{
-        height: 40  vh;
-        padding: 0rem;
-        margin: 0rem;
-    }
-    .sidebar-profile{
-        height: 29vh;
-        margin: 0rem;
-        padding: 1rem 0rem;
-    }
-    .sidebar-tools{
-        height: 10vh;
-        padding: 1rem;
-    }
-    #sidebar-logout{
-        height: 10vh;
-    }
-
-    .photo-book-review-post{
-        margin: 0rem 0rem 0rem 42vw;
-    }
-    .stars-show{
-        margin: 9.2rem 42.2vw;
-    }    
 }
 @media (min-width: 1200px) and (max-width: 1400px) {
     .logo-container{
@@ -158,6 +35,10 @@
     #home-content{
         
         width:75vw;
+    }
+
+    .home-container{
+        width:90%;
     }
    
 }
@@ -236,42 +117,18 @@
         position: unset;
     }
 
-    .sidebar{
-        width:30vw;
-    }
-    #home-content{
-        
-        width:70vw;
-    }
-
-    .home-container{
-        width:100%;
-    }
+  
 
     .buttons{
        
         padding:0 2rem;
     }
-    .photo-book-review-post{
-        margin: 0rem 0rem 0rem 37vw;
-    }
-    .stars-show{
-        margin: 9.2rem 37.2vw;
-    }    
-}
-
-@media (max-width:768px){
-    .form{
-        width:70%
-    }
-  
+    
     #home-content{
         
         width:100vw;
     }
-    #sidebar{
-        z-index: 2;
-    }
+  
 
     .home-navbar{
         display:flex;
@@ -285,9 +142,11 @@
         background-color: white;
         border-top:thin solid #d4d4d4;
         z-index: 2;
-        
-   
      
+    }
+
+    .home-container{
+        margin-bottom: 6rem;
     }
 
     .menu-mobile-btn{
@@ -306,19 +165,16 @@
     }
 
     .home-container{
-        width: 100vw;
+        width: 80%;
     }
-}
-  
-/* menu home modal */
-@media (max-width: 768px) and (min-width:492px){ 
 
-    #sidebar{
-        z-index: 2;
+    .sidebar{
+        display:none;
+        z-index:2;
     }
 
     .sidebar-container{
-        width:50%;
+        width:40%;
         height: 100vh;
         position:fixed;
         top:0;
@@ -326,6 +182,14 @@
         background: linear-gradient(359.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
         padding:3rem;
     }
+}
+
+@media (max-width: 1024px) and (min-width:496px){ 
+
+    #sidebar{
+        z-index: 2;
+    }
+
 
    
     .mobile-menu{
@@ -362,26 +226,62 @@
         margin:1rem 2rem 5.5rem 0rem; 
     }
 
-    .photo-book-review-post{
-        margin: 0rem 0rem 0rem 70vw;
-    }
-    .stars-show{
-        margin: 9.2rem 70.2vw;
-    }    
-
 }
+
+@media (max-width:768px){
+    .form{
+        width:70%
+    }
+    
+  
+    #home-content{
+        
+        width:100vw;
+    }
+    
+
+    .home-navbar{
+        display:flex;
+        width:100vw;
+        justify-content: space-between;
+        align-items:center;
+        position:fixed;
+        bottom:0;
+        left:0;
+        padding:2rem 10rem;
+        background-color: white;
+        border-top:thin solid #d4d4d4;
+        z-index: 2;
+     
+    }
+
+    .sidebar-container{
+        width:50%;
+    }
+
+   
+   
+}
+  
+/* menu home modal */
+
 
 @media (max-width: 576px) {
 
     #sidebar{
         z-index: 2;
+        width:100vw;
+       
     }
     .sidebar-container{
-        width:60%;
         height: 100vh;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 5rem ;
+        width:100%;
+        margin: auto;
+        justify-content: center;
+        padding:0 10rem;
+
+       
+      
     }
    
 
@@ -418,18 +318,40 @@
         animation:sidebar 0.5s;
       }
 
+      .main-information-post{
+          flex-direction: column;
+      }
+
+      .book-image{
+          display:flex;
+          justify-content: center;
+          margin-bottom: 2rem;
+      }
+
+      .photo-book-review-post{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      
+    }
+
 }
 
 @media(max-width: 496px){
+    :root{
+        font-size:8px;
+    }
     .form{
         width:95%
     } 
-    .sidebar-container{
-        width:80%;
-    }
+   
 
     #sidebar{
         z-index: 2;
+    }
+
+    .sidebar-container{
+        padding:0 7rem;
     }
 
     .back-to-login{
@@ -447,34 +369,14 @@
        
         padding:0;
     }
-    .data-post{
-        margin: 0px 0rem;
+
+    #posts-reviews {
+    margin: 1rem; 
+    padding: 1rem;
     }
-    .photo-post-review{
-        width: 6rem;
-    }
-    .name-profile-post{ 
-        font-size: 1.8rem;
-        margin: 1rem 1rem;
-    }
-    .username-post{
-        position: absolute;
-        margin: 3rem 7rem;
-    }
-    .data-book-post{
-        margin: 0rem 1rem;
-    }
-    .container-file-img1{
-        margin:1rem 2rem 5.5rem 0rem; 
-    }
-    .photo-book-review-post{
-        margin: 0rem 0rem 0rem 60vw;
-    }
-    .stars-show{
-        margin: 9.2rem 60.6vw;
-    }
-    
+
 }
+
 
 @media(max-width: 320px){
 
@@ -499,40 +401,13 @@
     #gmail-btn{
         padding:1.5rem 0.5rem
     }
-    .logo-google{
-        margin-right:0.5rem;
-        padding:0;
-    }
-    .data-post{
-        margin: 0px 0rem;
-    }
-    .photo-post-review{
-        width: 6rem;
-    }
-    .name-profile-post{ 
-        font-size: 1.8rem;
-        margin: 1rem 1rem;
-    }
-    .username-post{
-        position: absolute;
-        margin: 3rem 7rem;
-    }
-    .data-book-post{
-        margin: 0rem 1rem;
-    }  
-    .container-file-img1{
-        margin:1rem 2rem 5.5rem 0rem; 
-    }
-    .photo-book-review-post{
-        margin: 4rem 0rem 0rem 67vw;
-        width: 6rem;
-        height: 8rem;
-    }
-    .stars-show{
-        margin: 10rem 67.8vw;
-        font-size: 1.3rem;
-    }
+   
 
+  
+    .username-post{
+        display:none;
+    }
+   
 }
 @media(max-width: 280px){
 
@@ -542,7 +417,7 @@
     .review-area{
         height: 150vh;
     }
-    .photo-book-review-post{
+    /* .photo-book-review-post{
         margin: 6rem 0rem 0rem 67vw;
         width: 5rem;
         height: 7rem;
@@ -550,7 +425,7 @@
     .stars-show{
         margin: 11rem 67.2vw;
         font-size: 1.1rem;
-    }
+    } */
     .estrelas{
         padding: 1rem 0rem 0rem 0rem;
         font-size: 2rem;
@@ -562,13 +437,4 @@
         margin: 0rem;
     }
 
-}
-@media (min-width:2560px){
-
-    .photo-book-review-post{
-        margin: 0rem 0rem 0rem 42vw;
-    }
-    .stars-show{
-        margin: 9.2rem 42.2vw;
-    }    
 }

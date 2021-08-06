@@ -136,9 +136,9 @@ export const uploadImage = (id, userid) =>{
 
 }
 
-export const uploadImageBooks = (id, name) =>{
+export const uploadImageBooks = (id) =>{
   const ref = storage.ref()
-  const imageName = name
+  const imageName = ((new Date().getTime() / 1000) * Math.random()).toString()
   const file = document.getElementById(id).files[0]
   const metadata = {
     contentType:file.type,
@@ -163,15 +163,27 @@ export const forgotPassword = (email) =>{
   }
 }
 
-export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name, image) => { 
-  const db = firebase.firestore()
-  return db.collection("reviews").add({
+
+export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
+  //const dateReview = new Date()
+  
+  firebase
+  .firestore()
+  .collection("reviews").add({
     book: bookUser,
     author: authorUser,
     review: reviewUser,
     rating: ratingStars,
-    userName: name,
+    userName: nameUser,
+    userId: firebase.auth().currentUser.uid,
+    userImg: firebase.auth().currentUser.photoURL,
+    datePost: date,
+    hourPost:hour,
+    savingForLater: [], //likes? list?
     imageUrl:image
+  })
+  .then(() => {
+    console.log("Document successfully written!");
   })
 }
 
@@ -180,14 +192,13 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
 //   return storage.ref().child("bookcover").child(imageName).put(image)
 //    }
 
-// export const getReviews = () => {
-//   const postCollections = firebase.firestore().collection("reviews").orderBy("time", "desc")
+export const getReviews = () => {
+  return firebase
+  .firestore()
+  .collection("reviews").get()
 
-//   postCollections.get()
-//   // .then(snap => {
-//   //   snap.forEach(post => {
-//   //     newReview(post)
-//   //   });
+}
+
 
 //   // })
 //}
@@ -210,4 +221,15 @@ export const removeLike = (postUID, userUID) =>{
   .update({ 
     likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
   })
+}
+export const deleteReview = (doc) => {
+  firebase
+  .firestore()
+  .collection("reviews").doc(doc).delete()
+  .then(() => {
+    console.log("Document successfully deleted!");
+  })
+  .catch((error) => {
+      console.error("Error removing document: ", error);
+  });
 }
