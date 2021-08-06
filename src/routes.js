@@ -6,10 +6,7 @@ import { signUp } from './pages/signup/index.js';
 import { Reset } from './pages/signup/reset.js';
 import { Feed } from './pages/feed/index.js';
 
-console.log('aqui');
-
 export const routeRender = () => {
-  console.log(window.location.pathname);
   const element = document.querySelector('#root');
   const routes = {
     '/': Welcome,

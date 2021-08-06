@@ -1,5 +1,7 @@
+import { dbFirebase } from '../../config/firebaseConfig.js';
+
 export const Feed = () => {
-  const rootElement = document.createElement("div");
+  const rootElement = document.createElement('div');
   const container = `
     <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
     <div class="esmaeceHeader logotipo-text">
@@ -17,21 +19,41 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
-  rootElement.querySelector('#published-form').addEventListener('submit', event => {
+  rootElement
+    .querySelector('#published-form')
+    .addEventListener('submit', (event) => {
       event.preventDefault();
-      const text = rootElement.querySelector('#text-post').value; 
+      const text = rootElement.querySelector('#text-post').value;
       console.log(text);
+    });
+
+  rootElement.querySelector('send-post');
+
+  dbFirebase.collection('users')
+    .add({
+      first: 'Ada',
+      last: 'Lovelace',
+      born: 1815,
+    })
+    .then((docRef) => {
+      console.log('Document written with ID: ', docRef.id);
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+    });
+
+  // Add a second document with a generated ID.
+  dbFirebase.collection('users').add({
+    email: userEmail.value,
+    idUser: idUser.value,
+    born: 1912,
   })
+    .then((docRef) => {
+      console.log('Document written with ID: ', docRef.id);
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+    });
 
-  rootElement.querySelector('send-post')
-
-
-    rootElement.querySelector('send-post')
-
-    return rootElement;
-
-
-    const dataPost = () => {
-        
-    }
-}
+  return rootElement;
+};
