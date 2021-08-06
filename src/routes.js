@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-cycle
 import { Comunique } from './pages/landing_pages/comunique.js';
 import { Conecte } from '/pages/landing_pages/conecte.js';
 import { Welcome } from './pages/landing_pages/welcome.js';

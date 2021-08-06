@@ -15,7 +15,6 @@ export const Feed = () => {
     </section>
 
     <section class="get-post">
-    <input type="text" id="post-ready">
     </section>
   `;
 
@@ -30,8 +29,8 @@ export const Feed = () => {
   // Objetos com propriedades utilizadas nos posts
 
   const post = {
-    text: 'textcontent',
-    user_id: firebase.auth().currentUser.email,
+    text: 'text',
+    user_id: currentUser.uid,
   };
 
   // Criar a collection:
@@ -40,6 +39,36 @@ export const Feed = () => {
 
   collectionOfPosts.add(post).then(() => {
     rootElement.querySelector('#text-post').value = '';
-    rootElement.querySelector('#post-ready').innerHTML = '';
+    rootElement.querySelector('#get-post').innerHTML = '';
+    loadPosts();
   });
-};
+
+  // function addPost(post){
+  //   const postTemplate = `
+  //   <div id="${post.id}" class="div-postados">
+  //     <p class="user-post">Postado por ${post.data().user_id} </br>
+  //     ${post.data().data} </p>
+  //     <p class="txt-post">${post.data().text}</p>
+  //     <section class="likes-comments-bar">
+  //       <div class="icones" id="icone-like"><img src="./images/like.png"> ${post.data().likes}</div>
+  //       <div class="icones" id="icone-comment"><img src="./images/comment.png">  ${post.data().comments} </div>
+  //       <button id="deletar" class="delete-button" value="${post.id}"> Deletar</button>
+  //     </section>
+      
+  //   </div>
+  //   `
+  
+  // rootElement.querySelector("#postado").innerHTML += postTemplate;
+  
+  // };
+
+  function loadPosts() {
+    const postsCollection = firebase.firestore().collection("posts")
+    postsCollection.get().then(print => {
+      print.forEach(post => {
+        addPost(post);
+      })
+    })}
+
+  return rootElement;
+}

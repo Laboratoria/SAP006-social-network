@@ -52,6 +52,7 @@ export const Login = () => {
   });
 
   checkbox.addEventListener("change", () => {
+    navigation('/feed')
     const none = firebase.auth.Auth.Persistence.NONE
     const local = firebase.auth.Auth.Persistence.LOCAL
 
