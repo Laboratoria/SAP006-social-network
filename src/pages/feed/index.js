@@ -1,6 +1,3 @@
-// import { navigation } from '../../routes.js';
-import { database } from '../../config.js'
-
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
@@ -16,6 +13,10 @@ export const Feed = () => {
       <button id="send-post">Enviar</button>
       </form>
     </section>
+
+    <section class="get-post">
+    <input type="text" id="post-ready">
+    </section>
   `;
 
   rootElement.innerHTML = container;
@@ -26,25 +27,19 @@ export const Feed = () => {
     console.log(text);
   });
 
-  rootElement.querySelector('send-post');
+  // Objetos com propriedades utilizadas nos posts
 
+  const post = {
+    text: 'textcontent',
+    user_id: firebase.auth().currentUser.email,
+  };
 
+  // Criar a collection:
 
-  //   database.collection("users").add({
-  //     first: "Ada",
-  //     last: "Lovelace",
-  //     born: 1815
-  // })
-  // .then((docRef) => {
-  //     console.log("Document written with ID: ", docRef.id);
-  // })
-  // .catch((error) => {
-  //     console.error("Error adding document: ", error);
-  // });
+  const collectionOfPosts = firebase.firestore().collection('posts');
 
-  return rootElement;
-
-
-  // const dataPost = () => {
-  // }
-}
+  collectionOfPosts.add(post).then(() => {
+    rootElement.querySelector('#text-post').value = '';
+    rootElement.querySelector('#post-ready').innerHTML = '';
+  });
+};
