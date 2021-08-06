@@ -150,6 +150,77 @@ body {
     visibility: visible;
 }
 
+#nope {
+    display: none;
+}
+
+.nomeDoDiv{
+    display: none;
+}
+
+#nope:checked ~ .nomeDoDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.seta{
+    padding: 13px;
+    box-shadow: 5px -5px 0 0px #990707 inset;
+    border: solid transparent;
+    border-width: 0 0 2px 2px;
+    transform: rotate(315deg);
+    cursor: pointer;
+}
+
+/* class="boxnope" */
+.boxnope{ 
+    font-size: 0.3em;
+    text-align: center;
+    line-height: 13px;
+    color: rgb(255, 255, 255);
+    width: 122px;
+    height: 35px;
+    background: rgb(235,133,105);
+    background: linear-gradient(61deg, rgba(235,133,105,1) 27%, rgba(235,108,105,1) 67%);
+    font-family: "Work Sans", sans-serif;
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 8px 0px 10px 0px;
+}
+
+.buttonImg{
+    color: #34cb5e;
+    background: #fff;
+    border: 1px solid #34cb5e;
+    font-size: 0.3em;
+    padding: 3px 55px 3px 55px;
+}
+.buttonImg:active{
+    color:#fff;
+    background:#34cb5e;
+}
+input[type='file'] {
+    display: none 
+}
+.labelfile{
+    border-radius: 5px;
+    color: rgb(148, 148, 148);
+    cursor: pointer;
+    margin: 10px;
+    padding: 6px 20px;
+    border-style: dashed;
+    font-size: 0.3em;
+}
+.labelfile:hover{
+    color: #990707d8;
+}
 .username-menu {
     font-family: 'Averia Sans Libre', cursive;
     font-size: 20pt;

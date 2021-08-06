@@ -28,13 +28,15 @@ export default () => {
     <ul class="inside-menu">
       <div class="profile-container">
         <li class="upload-photo">
-
-            <img id="preview" src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
-            <div class="hidden-div">
-              <input type="file" id="photo" class="inputImg">
-              <button id="uploadImage" class="buttonImg">Alterar Foto Perfil</button>
-            </div>
-          
+          <img id="preview" src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
+          <input type="checkbox" id="nope" />
+          <div class="nomeDoDiv">
+            <label class="labelfile"for="photo">Selecionar Imagem</label>
+            <input type="file" id="photo" class="inputImg" accept=".jpg, .jpeg, .png">
+            <button id="uploadImage" class="buttonImg">Enviar</button>
+            <label for="nope"></label>
+          </div>
+          <label class="seta" for="nope"></label>
         </li>
         <li>
           <p class="username-menu"> <b>${user.displayName || 'Usuário'} </b> </p>
