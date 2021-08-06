@@ -107,9 +107,16 @@ export default () => {
         
           <div id=${post.id}>
             <textarea disabled class="post"> ${post.data().text} </textarea>
-            <textarea class="post edited-post display-none" placeholder="Escreva seu novo post..."></textarea>
-          
-            <button class='save-edit-button buttons display-none' type='button'>Salvar</button>
+            <div id=${post.id} class="edit-container display-none">
+              <textarea class="post edited-post display-none" placeholder="Escreva seu novo post..."></textarea>
+
+              <p class="empty-text"></p>
+            
+              <div id=${post.id} class="edit-buttons-container">
+                <button class='close-edit-button buttons display-none' type='button'> Cancelar </button>
+                <button class='save-edit-button buttons display-none' type='button'>Salvar</button>
+              </div>
+            </div>
           </div>
 
           <div id=${post.id} class="like-comment">
@@ -196,17 +203,42 @@ export default () => {
     function openEditPost(element) {
       element.querySelector('.edited-post').classList.remove('display-none');
       element.querySelector('.save-edit-button').classList.remove('display-none');
+      element.querySelector('.close-edit-button').classList.remove('display-none');
+      element.querySelector('.edit-container').classList.remove('display-none');
+    }
+
+    // Fechar área de editar post
+    const closeEditButtons = timeline.querySelectorAll('.close-edit-button');
+
+    for (const button of closeEditButtons) {
+      button.addEventListener('click', () => {
+        closeEditPost(postBox);
+      });
+    }
+
+    function closeEditPost(element) {
+      element.querySelector('.edited-post').classList.add('display-none');
+      element.querySelector('.save-edit-button').classList.add('display-none');
+      element.querySelector('.close-edit-button').classList.add('display-none');
+      element.querySelector('.edit-container').classList.add('display-none');
+      element.querySelector('.empty-text').innerHTML = '';
     }
 
     // Editar post
     const saveEditPost = timeline.querySelectorAll('.save-edit-button');
+    const emptyText = timeline.querySelector('.empty-text');
 
     for (const button of saveEditPost) {
       button.addEventListener('click', (event) => {
         event.preventDefault();
         const editedPost = timeline.querySelector('.edited-post').value;
-        editPost(editedPost, event.target.parentNode.id)
-        console.log(editedPost)
+        if(editedPost) {
+          editPost(editedPost, event.target.parentNode.id)
+        }
+        else {
+          emptyText.style.color = 'red';
+          emptyText.innerHTML = 'Escreva uma nova review antes de salvar.'
+        } 
       })
     }
 
@@ -220,20 +252,6 @@ export default () => {
           loadPosts();
         }); 
     };
-    
-    // export const editPost = (postID, newPostText) =>
-    //   firebase
-    //     .firestore()
-    //     .collection("posts")
-    //     .doc(postID)
-    //     .update({ text: newPostText });
-
-    // export const editPost = (idPost, editedPost) => firebase.firestore()
-    //   .collection('posts').doc(idPost).update({
-    //     text: editedPost,
-    //   })
-    //   .then(() => true)
-    //   .catch((error) => error);
 
     // Visibilidade dos botões de editar e deletar
     // const visibilityOfButtons = (document, user) => {
