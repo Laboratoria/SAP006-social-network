@@ -32,8 +32,8 @@ const verifyUser = () => {
     if (currentUser) {
       const uid = currentUser.uid;
     }
-  })
-}
+  });
+};
 
 export const signInEmailPassword = (email, password) => {
   verifyUser();
