@@ -1,24 +1,8 @@
 const db = firebase.firestore();
+// const user = firebase.auth().currentUser;
 
-export const signUp = (email, password, errorMessage, name) => {
-  db.collection('users').doc().set({
-    name,
-    email,
-  })
-    .then(() => {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.hash = '#profile';
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          return errorMessage(errorCode);
-        });
-    })
-    .catch((error) => {
-      errorMessage('Error writing document: ', error);
-    });
-};
+export const signUp = (email, password) => firebase.auth()
+  .createUserWithEmailAndPassword(email, password);
 
 export const signIn = (email, password) => {
   firebase.auth().signInWithEmailAndPassword(email, password)
@@ -78,3 +62,15 @@ export const signOut = () => {
     // An error happened.
   });
 };
+
+export const userData = (name, email, uid) => db.collection('users').doc(uid).set({
+  name,
+  email,
+});
+
+export const postRecipe = (recipe) => db.collection('recipes').add({
+  likes: 0,
+  comments: 0,
+  user_id: firebase.auth().currentUser.uid,
+  ...recipe,
+});

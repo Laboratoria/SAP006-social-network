@@ -2,26 +2,21 @@ import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
+  loginScreenContainer.setAttribute('class', 'container');
+
   const loginScreenButtons = `
-  <img class="logo" src="image/Logotipo(1).png">
+  <img class="logo" src="image/logotipo.png">
   
-  <form>
+  <form class="initialForm">
+    <h1 class="title"> Entrar </h1>
     <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
     <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
 
     <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
-
-    <div class="signUp-link">
-      <span> Ainda não tem conta? </span> 
-      <a href="#signUp"> CADASTRE-SE </a>
-    </div>
+    <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
+    <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
+    
   </form>
-
-  <div class="divider">
-    <hr> 
-    <span class="hr-label"> ou entre com </span>
-    <button type="button" id="btn-google" class="btn-google"> <span class="google-icon"></span> Google</button>
-  </div>
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
@@ -36,5 +31,9 @@ export default () => {
   const btnGoogle = loginScreenContainer.querySelector('#btn-google');
   btnGoogle.addEventListener('click', signInWithGoogle);
 
+  const btnSignUp = loginScreenContainer.querySelector('#sign-up');
+  btnSignUp.addEventListener('click', () => {
+    window.location.hash = '#signUp';
+  });
   return loginScreenContainer;
 };
