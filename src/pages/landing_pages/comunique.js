@@ -1,4 +1,5 @@
 import { navigation } from "../../routes.js";
+
 export const Comunique = () => {
 
   const template = `

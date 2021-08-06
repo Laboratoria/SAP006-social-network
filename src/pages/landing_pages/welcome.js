@@ -1,4 +1,5 @@
 import { navigation } from "../../routes.js";
+
 export const Welcome = () => {
 
   const template = `

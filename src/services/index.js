@@ -9,7 +9,7 @@ export const createAccount = (email, password, confirmPassword) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((user) => {
-      console.log(user);
+      
     })
     .then(() => {
       firebase.auth().currentUser.sendEmailVerification()
@@ -34,7 +34,7 @@ const verifyUser = () => {
       const uid = currentUser.uid;
     }
   });
-}
+};
 
 export const signInEmailPassword = (email, password) => {
   verifyUser();
