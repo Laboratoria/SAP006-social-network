@@ -6,28 +6,22 @@ import signUpScreen from './pages/signUp/index.js';
 const main = document.getElementById('root');
 
 const routes = () => {
-  window.addEventListener('hashchange', () => {
-    main.innerHTML = '';
-    switch (window.location.hash) {
-      case '':
-        main.appendChild(loginScreen());
-        break;
-      case '#signUp':
-        main.appendChild(signUpScreen());
-        break;
-      case '#profile':
-        main.appendChild(profile());
-        break;
-      case '#feed':
-        main.appendChild(feed());
-        break;
-      default:
-        main.appendChild(loginScreen());
-    }
-  });
+  main.innerHTML = '';
+  switch (window.location.hash) {
+    case '#signUp':
+      main.appendChild(signUpScreen());
+      break;
+    case '#profile':
+      main.appendChild(profile());
+      break;
+    case '#feed':
+      main.appendChild(feed());
+      break;
+    default:
+      main.appendChild(loginScreen());
+  }
 };
 
-window.addEventListener('load', () => {
-  main.appendChild(loginScreen());
-  routes();
-});
+window.addEventListener('load', routes);
+
+window.addEventListener('hashchange', routes);
