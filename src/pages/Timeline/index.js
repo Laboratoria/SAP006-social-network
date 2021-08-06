@@ -106,9 +106,9 @@ export default () => {
           </div>
         
           <div id=${post.id}>
-            <textarea disabled class="post"> ${post.data().text} </textarea>
+            <textarea disabled class="post" rows="4" cols="50"> ${post.data().text} </textarea>
             <div id=${post.id} class="edit-container display-none">
-              <textarea class="post edited-post display-none" placeholder="Escreva seu novo post..."></textarea>
+              <textarea class="post edited-post display-none" rows="4" cols="50" placeholder="Escreva seu novo post..."></textarea>
 
               <p class="empty-text"></p>
             
@@ -120,13 +120,20 @@ export default () => {
           </div>
 
           <div id=${post.id} class="like-comment">
-            <button class="likePost-btn timeline-buttons">❤️ ${post.data().likes}</button>  
+            <button class="likePost-btn timeline-buttons"> 
+              <img src="./assets/heart.png" alt="Ícone de Coração">
+              ${post.data().likes}
+            </button>   
           </div>
         </div>
           
         <div id=${post.id} class="buttons-container">
-          <button class="editPost-btn timeline-buttons">✏️</button>
-          <button class="deletePost-btn timeline-buttons">🗑️</button>
+          <button class="editPost-btn timeline-buttons">
+            <img src="./assets/pencil.png" alt="Ícone de Lápis">
+          </button>
+          <button class="deletePost-btn timeline-buttons">
+            <img src="./assets/trash.png" alt="Ícone de Lixeira">
+          </button>
         </div>
       </li>
     `;

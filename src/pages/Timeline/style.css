@@ -286,6 +286,8 @@ input[type='file'] {
 .timeline-buttons {
     border: none;
     background: none;
+    font-family: "Work Sans", sans-serif;
+    font-size: 1em;
 }
 
 .timeline-buttons:hover {
@@ -328,6 +330,10 @@ input[type='file'] {
     color:#000;
 }
 
+.likePost-btn img, .editPost-btn img, .deletePost-btn img{
+    width: 18px;
+}
+
 .edit-container {
     border: solid 1px #bee4c9;
     border-radius: 5px;
@@ -336,7 +342,6 @@ input[type='file'] {
 
 .edited-post {
     background-color: #bee4c9;
-    height: 40px;
 }
 
 .edit-buttons-container {
