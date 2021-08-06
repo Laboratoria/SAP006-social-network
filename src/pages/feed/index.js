@@ -33,6 +33,13 @@ export const Feed = () => {
     collectionOfPosts.add(post);
   });
 
+  function deletePost(postId) {
+    const collectionOfPosts = firebase.firestore().collection('posts');
+    collectionOfPosts.doc(postId).delete()
+    .then(doc => {
+      loadPosts()
+  });
+
   // Objetos com propriedades utilizadas nos posts:
   // const user = firebase.auth().currentUser;
   // if (user !== null) {
