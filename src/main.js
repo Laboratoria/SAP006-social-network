@@ -1,5 +1,12 @@
-// Este é o ponto de entrada da sua aplicação
+// // Este é o ponto de entrada da sua aplicação
 
-import { myFunction } from './lib/index.js';
+import { routeRender } from './pages/routes.js';
 
-myFunction();
+
+// import { loginPersistence } from './lib/authentication.js';
+
+// window.addEventListener('load', loginPersistence());
+
+
+window.addEventListener('popstate', routeRender);
+window.addEventListener('load', routeRender);

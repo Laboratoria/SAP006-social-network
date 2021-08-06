@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ffe52190;
+    /* background-color: #379BA6; */
+
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Georama', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.box {
+    background-color: #ffffff95;
+    padding: 40px;
+    border-radius: 4%;
+    box-shadow: 3px 3px 1px 0px #00000060;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #272262;
+    font-size: 2rem;
+}
+
+.box-input input {
+    width: 100%;
+    padding: 5px;
+    display: inline-block;
+    border: 0;
+    border-bottom: 1px solid #272262;
+    background-color: transparent;
+    outline: none;
+    min-width: 180px;
+    font-size: 16px;
+    transition: all .3s ease-out;
+}
+
+.box-input {
+    position: relative;
+    padding-top: 13px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.box-input input:focus {
+    /* editar */
+    border-bottom: 2px solid #4038a0;
+}
+
+.box-input label {
+    color: #272262;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .3s ease-out;
+}
+
+.box-input input:focus+label {
+    font-size: 13px;
+    margin-top: 0;
+    color: #4038a0;
+}
+
+button {
+    background-color: transparent;
+    border-color: #272262;
+    padding: 7px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 99px;
+    cursor: pointer;
+    outline: none;
+    transition: all .4s ease-out;
+}
+
+button:hover {
+    background-color: #272262;
+    color: #fff;
+}
+
+.justify-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 1.2rem;
+}
+
+hr {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 100%;
+}
+
+p {
+    color: #272262;
+    font-size: 14pt;
+    text-align: center;
+    padding: 0.8rem;
+}
+
+a {
+    color: #8c6f16;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all .4s ease-out;
+}
+
+a:hover {
+    color: #272262;
+}
