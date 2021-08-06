@@ -97,9 +97,6 @@ btnsend.addEventListener('click', (event) => {
 
 
 
-
-
-
 const perfil = rootElement.querySelector('.perfil-icon')
 perfil.addEventListener('click', (event) => {
   event.preventDefault();
@@ -152,7 +149,7 @@ const darkMode = () => {
 darkMode()
 
 const postado = rootElement.querySelector(".posts-container");//AQUI LEDI
-console.log(postado)
+
 
 rootElement.querySelector('#postForm').addEventListener('submit', function(event){
 event.preventDefault();
@@ -181,10 +178,11 @@ postsCollection.add(post).then(()=>{//o then é pra recarregar os posts assim qu
 })
 
 function addPost(post) {
-  postado.innerHTML = "";//aqui ver como "empurrar" para postados
-  const postElement = document.createElement("div");//aqui criou mais uma div e mandou para ela o que era a div-postados
+ const postElement = document.createElement("div");//aqui criou mais uma div e mandou para ela o que era a div-postados
   postElement.id = post.id;
   postElement.classList.add("div-postados")
+  const postado = "";
+
   const postTemplate = `
     <p class="user-post">Postado por ${post.data().user_id} <br>${post.data().data} </p>
     ${post.data().text}</br></br>
@@ -215,9 +213,10 @@ function addPost(post) {
   <ul class="comentarios" id="comments" data-comment-post-id="${post.id}"> </ul> 
   
 ` 
+
 postElement.innerHTML = postTemplate
 
-//rootElement.querySelector("#postado").innerHTML += postTemplate;
+//rootElement.querySelector("#postado").innerHTML += postElement;
 
 
 //Pegando valores para edit
@@ -250,11 +249,13 @@ const editBtn = postElement.querySelector(".btn-edit")
    editTextArea.hidden = true;
    editTextArea.hidden = true;
    editUpdate(editTextArea.value, post.id);
-   loadPosts()
+   //rootElement.querySelector("#postado").innerHTML = "";
+   //loadPosts()
  })
 
 
- rootElement.appendChild(postElement);
+ rootElement.querySelector("#postado").appendChild(postElement)
+ //rootElement.appendChild(postElement);//aqui Gabs
 
  
 };//fim da função
@@ -263,13 +264,15 @@ function editUpdate(newText, postId){
   firebase.firestore().collection("posts").doc(postId).update({
     text: newText,
   })
+  rootElement.querySelector("#postado").innerHTML = "";
+  loadPosts()
 }
-
 
 
 function loadPosts() {
   const postsCollection = firebase.firestore().collection("posts");
   postsCollection.get().then(snap => {
+
     snap.forEach(post => {
       addPost(post);
     })
