@@ -1,5 +1,3 @@
-import { dbFirebase } from '../../config/firebaseConfig.js';
-
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
@@ -15,45 +13,33 @@ export const Feed = () => {
       <button id="send-post">Enviar</button>
       </form>
     </section>
+
+    <section class="get-post">
+    <input type="text" id="post-ready">
+    </section>
   `;
 
   rootElement.innerHTML = container;
 
-  rootElement
-    .querySelector('#published-form')
-    .addEventListener('submit', (event) => {
-      event.preventDefault();
-      const text = rootElement.querySelector('#text-post').value;
-      console.log(text);
-    });
+  rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const text = rootElement.querySelector('#text-post').value;
+    console.log(text);
+  });
 
-  rootElement.querySelector('send-post');
+  //Objetos com propriedades utilizadas nos posts:
 
-  dbFirebase.collection('users')
-    .add({
-      first: 'Ada',
-      last: 'Lovelace',
-      born: 1815,
-    })
-    .then((docRef) => {
-      console.log('Document written with ID: ', docRef.id);
-    })
-    .catch((error) => {
-      console.error('Error adding document: ', error);
-    });
+  const post = {
+    text: text,
+    user_id: firebase.auth().currentUser.email,
+  };
 
-  // Add a second document with a generated ID.
-  dbFirebase.collection('users').add({
-    email: userEmail.value,
-    idUser: idUser.value,
-    born: 1912,
-  })
-    .then((docRef) => {
-      console.log('Document written with ID: ', docRef.id);
-    })
-    .catch((error) => {
-      console.error('Error adding document: ', error);
-    });
+  //Criar a collection:
 
-  return rootElement;
+  const collectionOfPosts = firebase.firestore().collection('posts');
+
+  collectionOfPosts.add(post).then(() => {
+    rootElement.querySelector('#text-post').value = '';
+    rootElement.querySelector('#post-ready').innerHTML = '';
+  });
 };

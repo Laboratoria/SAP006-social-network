@@ -1,5 +1,4 @@
 import { navigation } from "../../navigation.js";
-
 export const Conecte = () => {
 
   const template = `

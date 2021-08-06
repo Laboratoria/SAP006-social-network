@@ -1,4 +1,4 @@
-import { createAccount} from '../../services/index.js';
+import { createAccount } from '../../services/index.js';
 import { navigation } from '../../navigation.js';
 
 export const signUp = () => {
