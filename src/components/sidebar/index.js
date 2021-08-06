@@ -57,7 +57,7 @@ export const sidebar = () => {
 
 
       <section class="sidebar-tools sidebar-add-review">
-        <button href="" class="sidebar-btn">
+        <button href="" class="sidebar-btn sidebar-btn-mobile">
           <div class="sidebar-div-links">
             <img src="../../img/add.png" alt="">
             <p class="sidebar-text id="sidebar-review" >Adicionar resenha</p>

@@ -47,7 +47,7 @@ export const updateUserImage = (urlImage) => {
 }
 
 export const updateImageBook = (urlImageBook) => {
-  const user = firebase.auth().currentUser;
+  const reviewCollection = database.collection("posts")
 
   user.updateProfile({
     photoBook: urlImageBook,
@@ -136,6 +136,26 @@ export const uploadImage = (id, userid) =>{
 
 }
 
+export const uploadImageBooks = (id) =>{
+  const ref = storage.ref()
+  const imageName = ((new Date().getTime() / 1000) * Math.random()).toString()
+  const file = document.getElementById(id).files[0]
+  const metadata = {
+    contentType:file.type,
+  }
+
+  return ref.child("bookcover").child(imageName).put(file, metadata)
+
+  //uploading
+  // .then(snapshot => snapshot.ref.getDownloadURL())
+  // .then (url => {
+  //   const urlImage = url
+  //   console.log(urlImage)
+  //   return urlImage
+  // })
+
+}
+
 export const forgotPassword = (email) =>{
   if(email !== ''){
     return firebase.auth()
@@ -144,8 +164,8 @@ export const forgotPassword = (email) =>{
 }
 
 
-export const createReview = (bookUser, editionUser, authorUser, reviewUser, ratingStars, nameUser) => { 
-  const dateReview = new Date()
+export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
+  //const dateReview = new Date()
   
   firebase
   .firestore()
@@ -157,18 +177,20 @@ export const createReview = (bookUser, editionUser, authorUser, reviewUser, rati
     userName: nameUser,
     userId: firebase.auth().currentUser.uid,
     userImg: firebase.auth().currentUser.photoURL,
-    datePost: `${dateReview.toLocaleDateString()} ${dateReview.getHours()}:${dateReview.getMinutes()}`,
-    savingForLater: [] //likes? list?
+    datePost: date,
+    hourPost:hour,
+    savingForLater: [], //likes? list?
+    imageUrl:image
   })
   .then(() => {
     console.log("Document successfully written!");
   })
 }
 
-export const uploadImageBooks = (image, userid) => {
-  const imageName = userid
-  return storage.ref().child("bookcover").child(imageName).put(image)
-   }
+// export const uploadImageBooks = (image, userid) => {
+//   const imageName = userid
+//   return storage.ref().child("bookcover").child(imageName).put(image)
+//    }
 
 export const getReviews = () => {
   return firebase
@@ -178,6 +200,28 @@ export const getReviews = () => {
 }
 
 
+//   // })
+//}
+
+export const like= (postUID, userUID) =>{
+  database.collection("reviews").doc(postUID)
+  .update({ 
+    likes: firebase.firestore.FieldValue.arrayUnion(userUID) 
+  })
+  .then(() => {
+    console.log("Document successfully written!");
+  })
+  .catch((error) => {
+      console.error("Error writing document: ", error);
+  })
+}
+
+export const removeLike = (postUID, userUID) =>{
+  database.collection("reviews").doc(postUID)
+  .update({ 
+    likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
+  })
+}
 export const deleteReview = (doc) => {
   firebase
   .firestore()

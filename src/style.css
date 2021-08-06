@@ -38,8 +38,7 @@ body{
     margin: 0px 0px 0px 100px;
 }
 .site-logo{
-    width: 75rem;
-    height: 55rem;
+    width: 70rem;
 }
 .form-container{
     width:50vw;
@@ -403,7 +402,7 @@ a:hover{
     color:white;
     display: flex;
     justify-content: center;
-    align-items: center;
+   
 }
   
 .sidebar-container{
@@ -412,7 +411,7 @@ a:hover{
     display: flex;
     flex-direction: column;
     align-items:center;
-    padding: 1rem 3rem;
+    padding: 3rem;
 
 }
 
@@ -632,6 +631,7 @@ a:hover{
 }
 header{
     position: sticky;
+    top:0;
     width: 100%;
     border-bottom: 1px solid black;
     display: flex;
@@ -640,6 +640,7 @@ header{
     justify-content: space-between;
     padding: 0.5rem;
     background-color: #ffffff;
+    z-index:1;
 }
 .header-home{
     font-size: 2.2rem;
@@ -712,46 +713,110 @@ header{
     display: flex;
     flex-direction: column;
 }
+
+.data-post{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 3rem;
+}
+
+.main-information-post{
+    display:flex;
+    width:100%;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    justify-content: space-between;
+}
+
+.information-post-wrapper{
+    display:flex;
+    flex-direction:column;
+}
+
+.user-post{
+    display:flex;
+    width:100%;
+    align-items: center;
+}
+
+.user-wrapper{
+    display:flex;
+    flex-direction: column;
+    
+}
+
+.user-information-post{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items:center;
+    
+}
+
+.book-information{
+    display:flex;
+    flex-direction: column;
+}
+
+.title-wrapper{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items:center;
+    margin-top:1rem;
+}
+
+.title-book{
+    margin-right:1rem;
+    font-size: 2rem;
+    color: black;
+    font-weight: bold;
+    
+}
 .photo-post-review{
-    width: 6rem;
-    height: 6rem;
+    width: 7rem;
+    height: 7rem;
     border-radius: 100%;
     object-fit: cover;
     align-self: center;
     border: 2px solid rgb(89, 136, 189);
+    
 }
-.data-post{
-    display: flex;
-    flex-direction: row;
-    margin: 0px 3rem;
-}
+
 .name-profile-post{
-    margin: 1rem 0.5rem 0rem 1rem;
+
     font-size: 2rem;
     color: black;
+    margin: 0 0 1rem 1rem;
 }
 .username-post{
     font-size: 1.6rem;
-    margin: 1.3rem 0rem;
+    margin-bottom: 1rem;
     color: grey;
+    margin: 0 0 1rem 1rem;
 }
-.data-book-post{
-    margin: 0rem 3rem;
-    display: block;
-    text-align: left;
+
+.date{
+    display:flex;
+
 }
-.title-book{
-    margin: 1rem 0rem 0rem;
-    font-size: 2.2rem;
-    color: black;
-    font-weight: bold;
-    width: 60%;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+.date-post{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: grey;
+    margin: 0 0 1rem 1rem;
 }
+
+
+.stars-show{
+    color: #FC0;
+    font-size: 2.3rem;
+    margin-right:1rem;
+}
+
 .name-author{
-    margin: 0rem 0rem 1rem;
-    font-size: 1.8rem;
+    margin: 1rem 0rem 1.5rem 0;
+    font-size: 1.6rem;
     color: #202020;
     width: 60%;
     overflow-wrap: break-word;
@@ -759,7 +824,7 @@ header{
 }
 .content-review{
     color: black;
-    margin: 0.5rem 0rem 0.2rem;
+    
     text-align: justify;
     width: 100%;
     overflow-wrap: break-word;
@@ -800,17 +865,55 @@ header{
     position: absolute;
 }
 .photo-book-review-post{
-    width: 10rem;
-    height: 12rem;
-    position: absolute;
-    margin: 0rem 0rem 0rem 57rem;
+    width: 12rem;
+    height: 14rem;
+    object-fit: cover;
+    border: 1px solid rgb(223, 216, 216);
+    
 }
-.stars-show{
-    color: #FC0;
-    font-size: 2.3rem;
-    margin: 8.7rem 57.2rem;
-    position: absolute;
-    z-index: 1;
-    align-items: center;
-    text-align: center;
+
+
+
+.likes-container{
+    width:100%;
+    border-top: solid 1px rgb(202, 196, 196);
+    display:flex;
+    justify-content: flex-start;
+    align-items:center;
+
+}
+.like{
+    color: rgb(158, 149, 149);
+    text-decoration:none;
+    font-size:2.5rem;
+    transition:all 0.3s;
+    width:3rem;
+    height: 4rem;
+    margin-right:0.3rem;
+
+
+}
+
+.like:hover{
+    cursor: pointer;
+}
+
+
+ 
+@keyframes animateHeart{
+    0%{transform:scale(.2);}
+    40%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+  
+
+.active{
+    color:rgb(219, 48, 48);
+    animation: animateHeart 1s;
+}
+
+#num-likes{
+    font-size: 1.8rem;
+    color: grey;
+    margin:0;
 }

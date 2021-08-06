@@ -3,6 +3,7 @@ import { sidebar } from "../../components/sidebar/index.js"
 
 export default () => {
 
+  
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("id", "home-content")
 
@@ -29,7 +30,7 @@ export default () => {
   <div class="home-container">
    
     <header>
-      <h1 class="header-home">Home</h1>
+      <h1 class="header-home">Bookish</h1>
       <img class="favicon-home" src="img/favicon.png">
     </header>
     <div class="timeline">
@@ -78,75 +79,53 @@ export default () => {
     <div data-all-reviews class= "all-reviews">
     
     </div>
-  </div>
-  
 
-    
-    <navbar  class="home-navbar" id="nav">
-      <button class="menu-mobile-btn"><img src="./img/home-navbar.png" class="menu-img"></button> 
+  </div>
+  <navbar  class="home-navbar" id="nav">
+      <button class="menu-mobile-btn" id = "home-navbar"><img src="./img/home-navbar.png" class="menu-img"></button> 
       <button class="menu-mobile-btn" id="add-review-navbar"><img src="./img/add-navbar.png" class="menu-img"></button>   
       <button class="menu-mobile-btn" ><img src="./img/profile-navbar.png" class="menu-img"></button> 
       <button class="menu-mobile-btn" id="open-sidebar"><img src="./img/menu-navbar.png" class="menu-img" ></button>  
     </navbar/>
+  
+
+    
+    
   `
   sectionElement.innerHTML = createFeedTemplate
 
   sectionElement.appendChild(sidebar())
-
+  
   let photo = sectionElement.querySelector(".file-img1")
-  let file = sectionElement.querySelector(".file-input")
-  let textearea = sectionElement.querySelector("#text")
-
-  photo.addEventListener("click", () => {
-    file.click()
-  })
-
-  const userId = user.uid
-  let imageSelect
-  file.addEventListener("change", function (event) {
-
-
-    let imageUrl = event.target.files[0]
-
-    photo.file = imageUrl
-
-    imageSelect = imageUrl
-
-    if (imageSelect != null) {
-      textearea.style.margin = "8.5rem 0rem 0rem"
+    let file = sectionElement.querySelector(".file-input")
+    let textearea = sectionElement.querySelector("#text")
+  
+    photo.addEventListener("click", () =>{
+      file.click()
+    })
+  
+    file.addEventListener("change", (e) => {
+      textearea.style.margin = "8.5rem 0rem 0rem" 
       photo.style.margin = "2rem 0rem"
       photo.style.height = "190%"
       photo.style.width = "140%"
-      const reader = new FileReader()
+      if(file.files.legth <= 0){
+        
+    
+        return;
+      }
+       
+      let reader =  new FileReader()
+      reader.onload = () => {
+        photo.src = reader.result
+        
+      }
+      reader.readAsDataURL(file.files[0])
+    })
+  
+    const userId = user.uid
 
-      reader.onload = (function (img) {
-        return function (e) {
-          img.src = e.target.result
-        }
 
-      })(photo)
-
-      reader.readAsDataURL(imageUrl)
-      uploadImageBooks(imageSelect, "" + userId + "")
-        .then(snapshot => snapshot.ref.getDownloadURL().then(url => {
-          const urlImageBook = url
-          console.log(urlImageBook)
-          return urlImageBook
-        })
-          .then((urlImageBook) => {
-            updateImageBook(urlImageBook)
-          }))
-    }
-  })
-
-  const imageUrlBook = user.photoBook
-  let imageBook
-
-  if (imageUrlBook != null) {
-    imageBook = user.photoBook
-  } else {
-    imageBook = "./img/default-book.png"
-  }
 
   const buttonAddReview = sectionElement.querySelector("#add-review")
 
@@ -165,9 +144,22 @@ export default () => {
   })
 
   const buttonAddReviewNavbar = sectionElement.querySelector("#add-review-navbar")
-  buttonAddReviewNavbar.addEventListener("click", () => {
+  buttonAddReviewNavbar.addEventListener("click", (e) => {
+    e.preventDefault()
+    window.scrollTo(0,0)
     showReviewArea()
   })
+
+  const buttonAddReviewSidebar = sectionElement.querySelector(".sidebar-btn")
+  buttonAddReviewSidebar.addEventListener("click", (e) => {
+    const sidebar = sectionElement.querySelector(".mobile-menu")
+    sidebar.style.display="none"
+    e.preventDefault()
+    window.scrollTo(0,0)
+    showReviewArea()
+  })
+
+  
 
 
 
@@ -185,6 +177,7 @@ export default () => {
     const sidebar = sectionElement.querySelector("#sidebar")
     sidebar.style.display = "block"
     sidebar.classList.remove("sidebar-desktop")
+    
   })
 
   // const postReview = sectionElement.querySelector(".review-area")
@@ -193,6 +186,18 @@ export default () => {
 
   const publishReview = (e) => {
     e.preventDefault()
+    const date = new Date();
+    const hourReview    = date.getHours();    
+    const minReview     = date.getMinutes();
+    // const hour= hourReview+":"+minReview
+    const completeDate = date.toLocaleDateString()
+    const hour = date.toLocaleTimeString("pt-BR", {
+      timeStyle: "short",       
+      hour12: false,          
+      numberingSystem: "latn"   
+    });
+    console.log(hour)
+
     sectionElement.querySelector(".review-area").style.display = "none"
     sectionElement.querySelector(".welcome").style.display = "flex"
     sectionElement.querySelector(".button-make-review").style.display = "block";
@@ -207,7 +212,8 @@ export default () => {
     const starsEvaluation = document.querySelector('input[name="stars"]:checked').value
     const reviewUser = document.querySelector("[data-post-input]")
     const valueReview = reviewUser.value
-
+    const image = document.getElementById("input-profile-img").files[0]
+    
     const local = document.querySelector(".timeline")
     const printReview = document.createElement("article")
     printReview.classList.add("new-review")
@@ -215,29 +221,75 @@ export default () => {
     const userName = user.displayName
     const userName2 = userName.replace(/\s/g, '').toLowerCase();
 
+      
+  
+    const content = 
+    `<div id="posts-reviews">
+    <div class="data-post">
+      <div class="main-information-post">
+        <div class="information-post-wrapper">
+          <div class="user-post">
+            <img class="photo-post-review" id="photo-book" src=${profileImg}>
+            <div class="user-wrapper">
+              <div class="user-information-post">
+                <h1 class="name-profile-post">${userName}</h1>
+                <p class="username-post">@${userName2}</p>  
+              </div>
+              <div class="date">
+                <p class="date-post">${completeDate}</p>
+                <p class="date-post">${hour}</p>
+              </div>
+              
+            </div>
+          </div>
+          <div class="book-information">
+            <div class="title-wrapper">
+              <h2 class="title-book"> ${bookName} </h2>
+              <span class="stars-show">${starsEvaluation}</span>
+            </div>
+            <h3 class="name-author">${authorName} </h3>
+          </div>
+        </div>
+        <div class="book-image" id="book-image">
+         
+        <div>
+      </div>
+    </div>
+              
+    </div>
+    <div class="data-book-post">
+        
+        <p class="content-review">${valueReview}</p> </br>
+    </div>
 
-    const content =
-      `<div id="posts-reviews">
-                  <div class="data-post">
-                  <div class="aboutbook">
-                    <p class="stars-show">${starsEvaluation}</p>
-                    <img class="photo-book-review-post" src=${imageBook}>
-                    </div>
-                    <img class="photo-post-review" src=${profileImg}>
-                    <h1 class="name-profile-post">${firebase.auth().currentUser.displayName}</h1>
-                    <p class="username-post">@${userName2}</p>                
-                    </div>
-                    <div class="data-book-post">
-                    <h2 class="title-book"> ${bookName} </h2>
-                    <h3 class="name-author"> ${authorName} </h3>
-                    <p class="content-review">${valueReview}</p> </br>
-                    </div>
-                    </div>`
+    <div class="likes-container">
+      <div class="like">&#10084;</div>
+      <span id="num-likes">4</span>
+    </div>
+    
+  </div>`
 
     printReview.innerHTML = content
     local.appendChild(printReview)
+    window.scrollTo(0,0)
 
-    createReview(bookName, editionUser, authorName, valueReview, starsEvaluation, userNameFirebase)
+    if (image != undefined){
+      uploadImageBooks("input-profile-img")
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then (url => {
+        const urlImage = url
+        //console.log(urlImage)
+        return urlImage
+      })
+      .then((urlImage)=>{
+        createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase,urlImage, completeDate, hour)
+        document.querySelector("#book-image").innerHTML = `<img class="photo-book-review-post" src=${urlImage}></img>`
+      })
+      
+    } else{
+      createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, null, completeDate, hour)
+
+    }
 
   }
 
@@ -256,19 +308,83 @@ export default () => {
 
           snap.forEach((doc) => {
 
-            console.log(doc.id, " => ", doc.data())
-            const reviewTemplate = `<div class="data-post" id="${doc.id}">
-                                      <h2>${doc.data().book}</h2>
-                                      <h3>${doc.data().author}</h3>
-                                        <p> ${doc.data().rating}</p>
-                                        <p> ${doc.data().userName}</p>
-                                        
-                                        <p> ${doc.data().review}</p>
-                                    <button class="btn-delete-review" id="del-review">deletar</button>
-                                    </div>`
+            //console.log(doc.id, " => ", doc.data())
+            const name = doc.data().userName
+            const userName = name.replace(/\s/g, '').toLowerCase();
+            const date= doc.data().datePost
+            const hour = doc.data().hourPost
+            //console.log(date)
+            const bookImageUrl = doc.data().imageUrl
+            const userImageUrl = doc.data().userImg
+            //console.log(bookImageUrl)
+            
+          
 
+            let userImage
+            if (userImageUrl!=null){
+              userImage = userImageUrl
+            } else{
+              
+              userImage = "./img/default-img.png"
+            }
+          
+            const reviewTemplate = 
+                          
+              `<div id="posts-reviews">
+                <div class="data-post">
+                  <div class="main-information-post">
+                    <div class="information-post-wrapper">
+                      <div class="user-post">
+                        <img class="photo-post-review" src=${userImage}>
+                        <div class="user-wrapper">
+                          <div class="user-information-post">
+                            <h1 class="name-profile-post">${name}</h1>
+                            <p class="username-post">@${userName}</p>  
+                          </div>
+                          <div class="date">
+                            <p class="date-post">${date}</p>
+                            <p class="date-post">${hour}</p>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <div class="book-information">
+                        <div class="title-wrapper">
+                          <h2 class="title-book"> ${doc.data().book} </h2>
+                          <span class="stars-show">${doc.data().rating}</span>
+                        </div>
+                        <h3 class="name-author">${doc.data().author} </h3>
+                      </div>
+                    </div>
+                    <div class="book-image" id="photo-${doc.id}">
+                      
+                    <div>
+                  </div>
+                </div>
+                          
+                </div>
+                <div class="data-book-post">
+                    
+                    <p class="content-review">${doc.data().review}</p> </br>
+                </div>
 
+                <div class="likes-container">
+                  <div class="like">&#10084;</div>
+                  <span id="num-likes">4</span>
+                </div>
+                
+              </div>`
+
+              
+      
+                      
             allReviews.innerHTML += reviewTemplate
+
+            if (bookImageUrl!=null){
+             document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
+            }
+
+           
           })
 
         })
@@ -280,23 +396,43 @@ export default () => {
     // printAllReviews.innerHTML = reviewsData()
     // userAllReviews.appendChild(printAllReviews)
     reviewsData()
+        
   }
 
 
-  const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
+   const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
   const logoutBtn = sectionElement.querySelector("#logout-btn")
 
   createReviewBtn.addEventListener ("click", publishReview)
+  
 
-  // logoutBtn.addEventListener("click", ()=>{
-  //     logout()
-  //     window.history.pushState(null, null, "/login")
-  //     const popStateEvent = new PopStateEvent("popstate", {state:{}})
-  //     dispatchEvent(popStateEvent)
-  // })
+ 
+ 
+ 
 
+{/* 
+
+
+<form class="review-area" action=""> */}
 
   loadPosts()
+
+ 
+
+
+  
+
+  
+  
+
+
+
+  // const like = document.getElementsByClassName("like")
+  // console.log(like)
+
+  //   like.addEventListener("click", ()=>{
+  //     like.classList.toggle("active")
+  //   })
 
 
   return sectionElement
