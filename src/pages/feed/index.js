@@ -1,3 +1,5 @@
+
+
 export const Feed = () => {
   const rootElement = document.createElement("div");
   const container = `
@@ -13,25 +15,33 @@ export const Feed = () => {
       <button id="send-post">Enviar</button>
       </form>
     </section>
+
+    <section class="get-post">
+    <input type="text" id="post-ready">
+    </section>
   `;
 
   rootElement.innerHTML = container;
 
   rootElement.querySelector('#published-form').addEventListener('submit', event => {
-      event.preventDefault();
-      const text = rootElement.querySelector('#text-post').value; 
-      console.log(text);
+    event.preventDefault();
+    const text = rootElement.querySelector('#text-post').value;
+    console.log(text);
   })
 
-  rootElement.querySelector('send-post')
+  //Objetos com propriedades utilizadas nos posts:
 
+  const post = {
+    text: text,
+    user_id: firebase.auth().currentUser.email
+  }
 
-    rootElement.querySelector('send-post')
+  //Criar a collection:
 
-    return rootElement;
+  const collectionOfPosts = firebase.firestore().collection('posts');
 
-
-    const dataPost = () => {
-        
-    }
+  collectionOfPosts.add(post).then(() => {
+    rootElement.querySelector('#text-post').value = "";
+    rootElement.querySelector('#post-ready').innerHTML = "";
+  } )
 }
