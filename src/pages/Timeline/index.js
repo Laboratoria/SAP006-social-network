@@ -30,13 +30,13 @@ export default () => {
         <li class="upload-photo">
           <img id="preview" src="${user.photoURL || '../../assets/default-user-img.png'}" class="user-photo-menu">
           <input type="checkbox" id="nope" />
-          <div class="nomeDoDiv">
+          <div class="photo-buttons">
             <label class="labelfile"for="photo">Selecionar Imagem</label>
             <input type="file" id="photo" class="inputImg" accept=".jpg, .jpeg, .png">
-            <button id="uploadImage" class="buttonImg">Enviar</button>
+            <button id="uploadImage" class="enviar-button">Enviar</button>
             <label for="nope"></label>
           </div>
-          <label class="seta" for="nope"></label>
+          <label class="arrow" for="nope"></label>
         </li>
         <li>
           <p class="username-menu"> <b>${user.displayName || 'Usuário'} </b> </p>
@@ -81,7 +81,7 @@ export default () => {
 
     const post = {
       user: firebase.auth().currentUser.email,
-      text,
+      text: text,
       likes: 0,
       date: getDate(),
     };
@@ -106,9 +106,15 @@ export default () => {
           </div>
         
           <div id=${post.id}>
-            <textarea disabled class="post-value"> ${post.data().text} </textarea>
+            <textarea disabled class="post"> ${post.data().text} </textarea>
+            <textarea class="post edited-post display-none" placeholder="Escreva seu novo post..."></textarea>
+            
+            <p class="empty-text"></p>
           
-            <button class='save-edit-button buttons display-none' type='button'>Salvar</button>
+            <div class="edit-buttons-container">
+              <button class='close-edit-button buttons display-none' type='button'> Cancelar </button>
+              <button class='save-edit-button buttons display-none' type='button'>Salvar</button>
+            </div>
           </div>
 
           <div id=${post.id} class="like-comment">
@@ -183,43 +189,7 @@ export default () => {
       return promiseLikes.then()
     }
 
-    // for (const button of likeButtons) {
-    //   button.addEventListener('click', (event) => {
-    //     if (post.data().likes >= 1) {
-    //       deleteLikes(event.target.parentNode.id);
-    //       console.log('oi');
-    //       console.log(post.data().likes)
-    //     } else {
-    //       addLikes(event.target.parentNode.id);
-    //       console.log('ola');
-    //       console.log(post.data().likes)
-    //     }
-    //   });
-    // }
-
-    // function addLikes(id) {
-    //   postsCollection
-    //     .doc(id)
-    //     .update({
-    //       likes: post.data().likes + 1,
-    //     })
-    //     .then(() => {
-    //       loadPosts();
-    //     });
-    // }
-
-    // function deleteLikes(id) {
-    //   postsCollection
-    //     .doc(id)
-    //     .update({
-    //       likes: post.data().likes - 1,
-    //     })
-    //     .then(() => {
-    //       loadPosts();
-    //     });
-    // }
-
-    // Editar post
+    // Abrir área de editar post
     const editButtons = timeline.querySelectorAll('.editPost-btn');
 
     for (const button of editButtons) {
@@ -229,19 +199,70 @@ export default () => {
     }
 
     function openEditPost(element) {
-      element.querySelector('.post-value').removeAttribute('disabled');
+      element.querySelector('.edited-post').classList.remove('display-none');
       element.querySelector('.save-edit-button').classList.remove('display-none');
+      element.querySelector('.close-edit-button').classList.remove('display-none');
     }
 
-    // editPost(event.target.parentNode.id);
+    // Fechar área de editar post
+    const closeEditButtons = timeline.querySelectorAll('.close-edit-button');
 
-    // function editPost (newText, id) {
-    //   postsCollection
-    //     .doc(id)
-    //     .update({
-    //       text: newText
-    //     });
-    // };
+    for (const button of closeEditButtons) {
+      button.addEventListener('click', () => {
+        closeEditPost(postBox);
+      });
+    }
+
+    function closeEditPost(element) {
+      element.querySelector('.edited-post').classList.add('display-none');
+      element.querySelector('.save-edit-button').classList.add('display-none');
+      element.querySelector('.close-edit-button').classList.add('display-none');
+      element.querySelector('.empty-text').innerHTML = '';
+    }
+
+
+    // Editar post
+    const saveEditPost = timeline.querySelectorAll('.save-edit-button');
+    const emptyText = timeline.querySelector('.empty-text');
+
+    for (const button of saveEditPost) {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const editedPost = timeline.querySelector('.edited-post').value;
+        if(editedPost) {
+          editPost(editedPost, event.target.parentNode.id)
+        }
+        else {
+          emptyText.style.color = 'red';
+          emptyText.innerHTML = 'Escreva uma nova review antes de salvar.'
+        } 
+      })
+    }
+
+    function editPost (newPost, id) {
+      postsCollection
+        .doc(id)
+        .update({
+          text: newPost
+        })
+        .then(() => {
+          loadPosts();
+        }); 
+    };
+    
+    // export const editPost = (postID, newPostText) =>
+    //   firebase
+    //     .firestore()
+    //     .collection("posts")
+    //     .doc(postID)
+    //     .update({ text: newPostText });
+
+    // export const editPost = (idPost, editedPost) => firebase.firestore()
+    //   .collection('posts').doc(idPost).update({
+    //     text: editedPost,
+    //   })
+    //   .then(() => true)
+    //   .catch((error) => error);
 
     // Visibilidade dos botões de editar e deletar
     // const visibilityOfButtons = (document, user) => {
