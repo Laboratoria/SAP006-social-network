@@ -35,7 +35,8 @@ export const Feed = () => {
   function addPost(post) {
     const postStructure = `
     <section>
-      <p id='${post.id}'>${post.data().text} ❤️ ${post.data().likes}</p>
+      <p id='${post.id}'>${post.data().text} ❤️ ${post.data().likes}</p> 
+      <button id="btnDelete" value="${post.id}">Excluir</button>
     </section>
     `;
 
@@ -50,19 +51,15 @@ export const Feed = () => {
       });
     });
   }
+
+  // const btnDelete = document.querySelector('#btnDelete').value;
+  // function deletePost(postId) {
+  //   const collectionOfPosts = firebase.firestore().collection('posts');
+  //   collectionOfPosts.doc(postId).delete().then(doc => {
+  //     loadPosts();
+  //   });
+  // } 
+  // console.log(btnDelete);
   loadPosts();
   return rootElement;
 };
-  // Objetos com propriedades utilizadas nos posts:
-  // const user = firebase.auth().currentUser;
-  // if (user !== null) {
-  //   const email = user.email;
-  //   const uid = user.uid;
-  // }
-
-// Criar a collection:
-
-// .then(() => {
-//   rootElement.querySelector('#text-post').value = '';
-//   rootElement.querySelector('#post-ready').innerHTML = '';
-// });

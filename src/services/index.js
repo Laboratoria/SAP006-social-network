@@ -1,5 +1,4 @@
 export const createAccount = (email, password, confirmPassword) => {
-
   if (password !== confirmPassword) {
     alert('Algo errado não está certo, verifique a senha digitada!');
     return false;
@@ -100,7 +99,7 @@ export const keepLogged = (persistence) => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
-}
+};
 
 export const resetPassword = (email) => {
   firebase
