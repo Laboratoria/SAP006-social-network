@@ -10,9 +10,7 @@ export const login = () => {
     <section class="box">
         
     <figure class="logo">
-    <img src="ellas-dev-logo.png">
-
-    <figcaption class="logo-figcaption">Logo</figcaption>
+    <img src="./img/ellas-dev-logo.png">
 
     </figure>
         <h3 class="">Login</h3>
@@ -39,7 +37,10 @@ export const login = () => {
 </section>
 
 `;
-roottemplate.innerHTML = container;
+    roottemplate.innerHTML = container;
+
+   
+
 
 roottemplate.querySelector('#login-btn')
     .addEventListener('click', (event) => {
@@ -49,17 +50,17 @@ roottemplate.querySelector('#login-btn')
         loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
     });
 
-roottemplate.querySelector('#google-btn')
-    .addEventListener('click', (event) => {
-        event.preventDefault();
-        loginWithGoogleAccount();
-    });
+// roottemplate.querySelector('#google-btn')
+//     .addEventListener('click', (event) => {
+//         event.preventDefault();
+//         loginWithGoogleAccount();
+//     });
 
-roottemplate.querySelector('#btn-signup')
-    .addEventListener('click', (event) => {
-        event.preventDefault();
-        onNavigate('/signup');
-    });
+// roottemplate.querySelector('#btn-signup')
+//     .addEventListener('click', (event) => {
+//         event.preventDefault();
+//         onNavigate('/signup');
+//     });
 
 return roottemplate;
 };
