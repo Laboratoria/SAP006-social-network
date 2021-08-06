@@ -82,7 +82,7 @@ export default () => {
 
   </div>
   <navbar  class="home-navbar" id="nav">
-      <button class="menu-mobile-btn"><img src="./img/home-navbar.png" class="menu-img"></button> 
+      <button class="menu-mobile-btn" id = "home-navbar"><img src="./img/home-navbar.png" class="menu-img"></button> 
       <button class="menu-mobile-btn" id="add-review-navbar"><img src="./img/add-navbar.png" class="menu-img"></button>   
       <button class="menu-mobile-btn" ><img src="./img/profile-navbar.png" class="menu-img"></button> 
       <button class="menu-mobile-btn" id="open-sidebar"><img src="./img/menu-navbar.png" class="menu-img" ></button>  
@@ -144,9 +144,22 @@ export default () => {
   })
 
   const buttonAddReviewNavbar = sectionElement.querySelector("#add-review-navbar")
-  buttonAddReviewNavbar.addEventListener("click", () => {
+  buttonAddReviewNavbar.addEventListener("click", (e) => {
+    e.preventDefault()
+    window.scrollTo(0,0)
     showReviewArea()
   })
+
+  const buttonAddReviewSidebar = sectionElement.querySelector(".sidebar-btn")
+  buttonAddReviewSidebar.addEventListener("click", (e) => {
+    const sidebar = sectionElement.querySelector(".mobile-menu")
+    sidebar.style.display="none"
+    e.preventDefault()
+    window.scrollTo(0,0)
+    showReviewArea()
+  })
+
+  
 
 
 
@@ -164,6 +177,7 @@ export default () => {
     const sidebar = sectionElement.querySelector("#sidebar")
     sidebar.style.display = "block"
     sidebar.classList.remove("sidebar-desktop")
+    
   })
 
   // const postReview = sectionElement.querySelector(".review-area")
