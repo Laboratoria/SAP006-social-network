@@ -1,81 +1,79 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto&display=swap');
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;   
+  box-sizing: border-box; 
+  --russet-orange: #E47127;
+  --red-plum: #7C2946;
+  --coral-haze: #E1907F;
+  --limeade: #D3D95F;
+  --pantone-142c: #F1BE48;
+  --fressia: #F6C324;
 }
 
-.body {
-  background-color: #ef5734;
-  background-image: linear-gradient(315deg, #ef5734 0%, #ffcc2f 74%);
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--pantone-142c);
+  background-attachment: fixed;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 85%;
+}
+
+.initialForm {
+  width: 100%;
+  margin: auto;
 }
 
 .logo {
   width: 160px;
-  margin: 50px auto auto auto;
+  margin: auto;
   display: block;
 }
 
 .signIn-input, .signUp-input {
   position: relative;
-  width: 250px;
+  width: 100%;
   height: 40px;
   display: block;
-  margin: 10px auto;
-  border: 1px solid #e47127;
+  margin: 15px auto;
+  border: 1px solid var(--russet-orange);
   border-radius: 5px;
   padding: 15px;
 }
 
-#input-email {
-  margin-top: 40px;
+.title {
+  font-family: 'Comfortaa', cursive;
+  letter-spacing: 2px;
+  margin: 1rem auto; 
 }
 
 .btn-login {
   position: relative;
-  width: 250px;
+  width: 100%;
   height: 40px;
   display: block;
-  margin: 10px auto;
-  border: none;
+  margin: 15px auto;
+  border: 1px solid #000;
   border-radius: 5px;
-  background-color: #e47127;
+  background-color: var(--limeade);
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.signUp-link {
-  display: block;
-  position: relative;
-  font-size: 12px;
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
-
-.hr-label {
-  position: absolute;
-  display: block;
-  left:50%;
-  transform: translate(-50%, -60%);
-  background-color: white;
-  padding: 3px;
-}
-
-.divider {
-  margin-top: 2rem;
-}
-
-/* .divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid rgb(180, 177, 177);
-} */
-
-.btn-google {
-  position: relative;
-  display: block;
-  margin: 20px auto;
-  width: 35vw;
-  height: 40px;
-  font-size: 12px;
+#sign-up {
+  background-color: var(--russet-orange);
 }
 
 .google-icon {
@@ -85,38 +83,235 @@
   height: 25px;
   background-position: center center;
   background-size: 25px;
-  margin: auto;
+  margin: auto 5px auto auto;
   vertical-align: middle;
 }
 
-.small-logo{
-  width: 25%;
-  margin: 25px auto 10px auto;
-  display: block;
-}
-
-.title-createAcc {
-  text-align: center;
-}
-
-#notice {
+.notice {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   justify-content: center;
+  font-size: 1rem;
+}
+
+.material-icons {
+  font-size: 1.2rem;
+  margin-right: 5px;
 }
 
 button:hover {
   cursor: pointer;
 }
 
+.textarea-recipe {
+  width: 100%;
+  border-radius: 5px;
+  resize: vertical;
+  overflow: scroll;
+  border: none;
+  display: block;
+  background-color:#f0dbaa;
+  margin: 1rem auto ;
+}
+
+.info-recipe-container {
+  background-color: var(--russet-orange);
+  margin: 1rem auto;
+  border-radius: 5px;
+  display: block;
+}
+
+.recipe-select, .time-input {
+  width: 80px;
+  height: 2rem;
+  border-radius: 5px;
+  margin: 1rem 0 1rem auto;
+}
+
+.filter-info-recipe {
+  display: flex;
+  border-bottom: 1px solid var(--pantone-142c);
+  margin: 0 15px;
+  align-items: center;
+}
+
+#filter-info-recipe-last {
+  border-bottom: none;
+}
+
+.time-recipe-container {
+  display: block;
+  margin: 1rem 0 1rem auto;
+}
+
+.time-recipe-container span {
+  display: block;
+  text-align: center;
+}
+
+#time-select {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  display: block;
+}
+
+.width-90 {
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+
+.info-recipe-container-flex {
+  display: flex;
+  background-color: var(--russet-orange);
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+
+#recipe-title {
+  background-color: #f0dbaa;
+}
+
+#post-recipe-title {
+  border-bottom: 2px solid var(--red-plum);
+  font-weight: bolder;
+}
+
+.popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border: 1px solid var(--russet-orange);
+  border-radius: 10px;
+  z-index: 100;
+  background-color:  #f0dbaa;
+  width: 250px;
+  padding: 20px;
+  transition: 200ms ease-in-out;
+  text-align: center;
+  letter-spacing: 1px;
+  box-shadow: 3px 3px 3px #000;
+}
+
+.popup.active {
+  transform: translate(-50%, -80%) scale(1);
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgb(0, 0, 0, 0.5);
+  transition: 200ms ease-in-out;
+  pointer-events: none; /*o valor none instrui o evento do mouse a "passar" o elemento e tudo que está "abaixo" deste elemento.*/
+}
+
+#overlay.active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.div-btns-popup {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  color: red;
+  justify-content: space-evenly;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.btn-popup {
+  width: 4rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+#btn-yes {
+  background-color: var(--coral-haze);
+}
 
 
+/*   Página de perfil:  */
 
+.profileInfo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgb(102, 102, 93);
+  padding: 6px;
+  padding-bottom: 8px;
+}
 
+.profileInfo{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
 
+.profile-nav-bar{
+  background-color: #e47127;
+  width: 155px;
+  height: 218px;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 5px;
+  justify-items: center;
+}
 
+.profile-nav-bar-options{
+  list-style-type: none;
+  width: 155px;
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+  color: black;
+}
 
+.recipes, .editProfile{
+  text-decoration: none;
+}
+
+.profile-nav-bar-options:hover{
+  background-color: rgb(102, 102, 93);
+}
+
+.profileInfo section p{
+  text-align: center;
+}
+
+.editProfileForm{
+  position: relative;
+  top: 20px;
+  /* bottom: 218px;
+  left: 300px; */
+}
+
+.editProfileForm form{
+  display: flex;
+  flex-direction: column;
+  width: 294px;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editProfileForm form input{
+  width: 280px;
+  height: 28px;
+}
+
+/*   Fim da página de perfil:  */
 
 /* header contener  */
 
@@ -172,5 +367,11 @@ button:hover {
 }
 
 
+@media screen and (min-width: 481px) and (max-width: 768px){
 
+}
+
+@media screen and (min-width: 769px){
+
+}
 
