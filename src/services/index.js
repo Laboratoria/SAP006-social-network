@@ -10,7 +10,6 @@ export const createAccount = (email, password, confirmPassword) => {
     .createUserWithEmailAndPassword(email, password)
     .then((user) => {
       console.log(user);
-      navigation('/feed')
     })
     .then(() => {
       firebase.auth().currentUser.sendEmailVerification()

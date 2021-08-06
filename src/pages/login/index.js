@@ -1,5 +1,5 @@
 import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
-import { navigation } from "../../navigation.js";
+import { navigation } from "../../routes.js";
 
 export const Login = () => {
   const rootElement = document.createElement("div");
@@ -10,25 +10,22 @@ export const Login = () => {
       </section>
     </header>
     <section class="content-opacity">
-    <div class="without-opacity">
-      <h4>Nova por aqui? <span><a href="/signup" id="signup">Cadastre-se</a></span></h4>
+      <div class="without-opacity">
+        <h4>Nova por aqui? <span><a href="/signup" id="signup">Cadastre-se</a></span></h4>
         <div class="inputAndReset">
-            <input type="text" id="email" class="input" placeholder="Email">
-            <input type="password" id="password" class="input" placeholder="Senha">
-            <button class="reset-password" id="reset">Esqueceu a senha?</button><br>
+          <input type="text" id="email" class="input" placeholder="Email">
+          <input type="password" id="password" class="input" placeholder="Senha">
+          <button class="reset-password" id="reset">Esqueceu a senha?</button><br>
         </div>
         <div class="google">
-            <button id="btn-login" class="login btn">LOGIN</button>
-            <img id="icon-google" src="./pages/login/img/icon-google-white.png">
+          <button id="btn-login" class="login btn">LOGIN</button>
+          <img id="icon-google" src="./pages/login/img/icon-google-white.png">
         </div>
         <form>
-            <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
+          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
         </form>
-    </div>
+      </div>
     </section>
-
-
-
   `;
   
   rootElement.innerHTML = container;

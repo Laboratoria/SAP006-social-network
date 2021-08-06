@@ -1,5 +1,8 @@
+// import { navigation } from '../../routes.js';
+import { database } from '../../config.js'
+
 export const Feed = () => {
-  const rootElement = document.createElement("div");
+  const rootElement = document.createElement('div');
   const container = `
     <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
     <div class="esmaeceHeader logotipo-text">
@@ -17,21 +20,31 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
-  rootElement.querySelector('#published-form').addEventListener('submit', event => {
-      event.preventDefault();
-      const text = rootElement.querySelector('#text-post').value; 
-      console.log(text);
-  })
+  rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const text = rootElement.querySelector('#text-post').value;
+    console.log(text);
+  });
 
-  rootElement.querySelector('send-post')
-
-
-    rootElement.querySelector('send-post')
-
-    return rootElement;
+  rootElement.querySelector('send-post');
 
 
-    const dataPost = () => {
-        
-    }
+
+  //   database.collection("users").add({
+  //     first: "Ada",
+  //     last: "Lovelace",
+  //     born: 1815
+  // })
+  // .then((docRef) => {
+  //     console.log("Document written with ID: ", docRef.id);
+  // })
+  // .catch((error) => {
+  //     console.error("Error adding document: ", error);
+  // });
+
+  return rootElement;
+
+
+  // const dataPost = () => {
+  // }
 }
