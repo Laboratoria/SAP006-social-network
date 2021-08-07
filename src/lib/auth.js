@@ -20,26 +20,6 @@ const updateProfileName = (name) => {
 };
 
 
-
-/*
-export const updateProfile = (name) => {
-  firebase
-    .firestore()
-    .collection('users')
-    .doc(user)
-    .update({
-      userName: name,
-    })
-    .then(() => {
-      updateProfileName(name);
-      console.log("Edited user successfully!");
-    })
-    .catch(() => {
-      console.error("You cannot cancel this edit");
-    });
-};
-*/
-
 export const criarFirebaseconta = (email, senha, name) => {
   firebase.auth().createUserWithEmailAndPassword(email, senha)
   .then(() => {
@@ -48,12 +28,11 @@ export const criarFirebaseconta = (email, senha, name) => {
     getTheRoad("/feed");
   
 })
-        .catch((error) => {
+.catch((error) => {
           getError(error);
-          
-         
         });
       };
+
 
  export const logOut = () => {
         firebase.auth().signOut()
@@ -65,15 +44,8 @@ export const criarFirebaseconta = (email, senha, name) => {
       };
       
 
-firebase.auth().languageCode = 'PT_br';     
-export const loginWithEmailAndPassword = (email, pass) => {
-  firebase.auth().signInWithEmailAndPassword(email, pass) 
-  .then(() => {
-    getTheRoad("/feed");
-  }).catch((error) => {
- getError(error)
-  });
-}
+
+firebase.auth().languageCode = 'PT_br';   
 
  export const resetPassword = (email) => {
    firebase.auth().sendPasswordResetEmail(email)
@@ -85,24 +57,14 @@ export const loginWithEmailAndPassword = (email, pass) => {
    })
  }
 
-
-/*
- export const changeProfileImage = (file, callbackToSetNewImage) => {
-  const ref = firebase.storage().ref("perfil-pic/img")
-  ref.child(file.name).put(file)
-    .then(() => {
-      ref.child(file.name).getDownloadURL()
-        .then((url) => {
-          callbackToSetNewImage(url);
-          firebase.auth().currentUser
-            .updateProfile({
-              photoURL: url,
-            });
-        });
-    });
-};
-*/
-
+ export const loginWithEmailAndPassword = (email, pass) => {
+  firebase.auth().signInWithEmailAndPassword(email, pass) 
+  .then(() => {
+    getTheRoad("/feed");
+  }).catch((error) => {
+ getError(error)
+  });
+}
 
 export const user = (nome, url) => {
   const user = firebase.auth().currentUser;
@@ -114,12 +76,7 @@ export const user = (nome, url) => {
   }).catch((error) => {
     console.log(error);
   });
-  
 };
-
-
-
-
 
 export const postImage = (photo, callback) => {
   const file = photo.files[0];
@@ -132,3 +89,4 @@ export const postImage = (photo, callback) => {
     });
   });
 };
+

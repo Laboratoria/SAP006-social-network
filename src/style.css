@@ -177,7 +177,7 @@ body {
   aside {
 	display: flex;
 	position: fixed;
-	width: 200px;
+	width: 15%;
 	height: 2000px;
 	flex-direction: column;
 	background-color: rgb(182, 179, 179);
@@ -189,7 +189,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	color: grey;
-	margin-top: 300px;
+	margin-top: 35%;/*Aqui subi*/
 	margin-left: -100px;
   }
   
@@ -339,37 +339,20 @@ body {
 	height: 20px;
   }
   
-  
-  .div-postados{
-	  border-radius: 12px;
-	  border: 2px solid #EBEEF0;
-	  width: 300px;
-	  height: 150px;
-	  /*float: left;    aqui só mudei a margin e tirei float pq tava grudado no começo*/ 
-	 margin:auto;
-	  margin-top: 10px;
-	  background-color: #ffff;
-	  
-  }
-  
-  .div-postados img{
-	  width: 20px;
-	  height: 20px;
-  }
   .user-post{
 	  margin-top: 0;
-	  margin-left: 1%;
 	  font-size: 13px;
 	  text-align: start;
 	  background-color: white;
   }
   .likes-comments-bar{
-	  margin-top: -10px;
+	  /*margin-top: -10px;/*aqui era -10px*/
 	  margin-left: 1%;
 	  font-size: 3px;
 	  text-align: start;
 	  background-color: transparent;
 	  border-top: solid #EBEEF0 1px;
+
   }
   /*.likes-comments-bar button {
 	  margin-left: 60%;
@@ -377,18 +360,9 @@ body {
   .icones{
 	  display: inline;
   }
+  
 
-  .posts-container {
-	display: flex;
-	align-items: center;
-   flex-direction: column;
-	justify-content: space-between;
-	white-space: nowrap;
-   width: 70%;
-   
-}
-
-  textarea {
+  .postText {/*aqui text area publicar*/
 	  width: 500px;
 	  height: 100px;
 	  /* "Quebra" o padrão de textarea */
@@ -399,6 +373,12 @@ body {
 	  margin-top: 150px;
 	  margin-left: 65px;
 	  overflow:auto;
+  }
+  .edit-text-area{
+	  background-color:aliceblue;
+	  width: 345px;
+	  height: 140px;
+	  margin-top: -140px;
   }
 
   textarea:focus {
@@ -435,6 +415,36 @@ body {
 .f-20{
 	font-size:12pt;
 }
-#postado{
-	margin-left: 20%;
+/*Ledi mexendo*/
+.div-postados{
+	border-radius: 12px;
+	border: 2px solid #EBEEF0;
+	width: 350px;
+	height: 250px;
+	/*float: left;    aqui só mudei a margin e tirei float pq tava grudado no começo*/ 
+   margin:auto;
+	margin-top: 10px;
+	background-color: white;
+	
 }
+.posts-container {
+	display: flex;
+	flex-wrap: wrap;/*aqui julli disse*/
+	/*align-items: center;*/
+   /* flex-direction: row;aqui ver como limitar a section*/
+	justify-content: space-between;
+	margin-left: 18%;
+	width: 80%;
+	/*background-color: lightcoral;*/
+   
+}
+.data-post-id{
+	text-align: initial;
+}
+.txt{
+	height: 130px;
+	background-color: lightblue;
+	overflow: auto; /*scrollbar*/
+}
+
+/* aqui pra testar no parágrafo:  text-overflow: ellipsis*/
