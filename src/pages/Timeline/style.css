@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(-135deg, #27282A, #666562, #9b9b9b);
+    background-color: #991e1e;
     height: 100%;
     overflow: scroll;
 }
@@ -22,7 +22,8 @@ body {
     position: fixed;
     padding: 10px 10px 20px 10px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);
-    background-color: #9b9b9b;
+    background-color: #747272;
+    width: 100%;
 }
 
 .buttons {
@@ -138,16 +139,8 @@ body {
     align-items: center;
 }
 
-.hidden-div {
-    visibility: hidden;
-}
-
-.inputImg {
+.input-img {
     display: flex;
-}
-
-.upload-photo:hover > div {
-    visibility: visible;
 }
 
 #nope {
@@ -164,12 +157,6 @@ body {
     align-items: center;
 }
 
-.flex-li{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .arrow{
     padding: 13px;
     box-shadow: 5px -5px 0 0px #990707 inset;
@@ -177,22 +164,6 @@ body {
     border-width: 0 0 2px 2px;
     transform: rotate(315deg);
     cursor: pointer;
-}
-
-.boxnope{ 
-    font-size: 0.3em;
-    text-align: center;
-    line-height: 13px;
-    color: rgb(255, 255, 255);
-    width: 122px;
-    height: 35px;
-    background: rgb(235,133,105);
-    background: linear-gradient(61deg, rgba(235,133,105,1) 27%, rgba(235,108,105,1) 67%);
-    font-family: "Work Sans", sans-serif;
-    padding: 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    margin: 8px 0px 10px 0px;
 }
 
 .enviar-button{
@@ -212,7 +183,7 @@ body {
 }
 
 input[type='file'] {
-    display: none 
+    display: none;
 }
 
 .labelfile{
@@ -229,6 +200,7 @@ input[type='file'] {
 .labelfile:hover{
     color: #990707d8;
 }
+
 .username-menu {
     font-family: 'Averia Sans Libre', cursive;
     font-size: 20pt;
@@ -243,6 +215,10 @@ input[type='file'] {
 .email-menu {
     font-family: 'Averia Sans Libre', cursive;
     font-size: 12pt;
+}
+
+.desktop-profile-container {
+    display: none;
 }
 
 .profile-container {
@@ -386,15 +362,13 @@ input[type='file'] {
 }
 
 .buttons-container {
-    margin-left: 86%;
-}
-
-.like-comment{
     display: flex;
     justify-content: space-between;
-    width: 25%;
+    width: 100%;
     margin-top: 2%;
 }
+
+
 
 .signout-button {
     position: absolute;
@@ -435,63 +409,129 @@ input[type='file'] {
 
 /*RESPONSIVIDADE DESKTOP*/
 @media screen and (min-width: 1366px) {
-
     body {
-        background-image: url(../../assets/background-login.jpg);
-        background-size: contain;
-        background-position: top;
+        /* background-image: url(../../assets/background-mobile.png);
+        background-size: cover;
+        background-attachment: fixed; */
+        background-color: #15141f;
+        overflow-x: hidden;
     }
 
-    .box {
-        background: #ffffff71;
-        width: 500px;
-        box-shadow: inset 0 0 1em black, 0 0 2em black;
-        border-radius: 15px;
-        position: absolute;
-        top: 13%;
-        left: 60%;
-        padding: 5%;
-        height: 550px;
+    .title-container {
+        margin: 0 0 0 1%;
+    }
+    
+    .title {
+        font-family: "Aquatico";
+        font-size: 1.8em;
+    }
+    
+    .subtitle {
+        font-family: 'Averia Sans Libre', cursive;
+        font-size: 0.8em;
+    }
+    
+    .banner-menu {
+        height: 70px;
+        margin-bottom: 20%;
+    }
+
+    .banner {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        margin-bottom: 0;
+    }
+
+    .banner img{
+        width: 50px;
+        height: 50px;
+    }
+    
+    .menu {
+        display: none;
+    }
+
+    .post-textarea {
+        width: 93%;
+    }
+
+    .post-container {
+        width: 93%;
+        padding: 2%;
+    }
+
+    .post-button {
+        margin-left: 75%;
+    }
+
+    .signout-button {
+        position: fixed ;
+        top: -4.5%;
+        left: 82%;
+    }
+    
+    .signout-button img {
+        width: 10%;
+    }
+
+    .desktop-profile-container {
+        /* background-image: url(../../assets/background-mobile.png); */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        margin-top: 0%;
+        top: 20%;
+        left: 17%;
+        border-radius: 5px;
+        padding: 70px;
+        background-color: beige;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    #desktop-nope {
+        display: none;
+    }
+
+    .desktop-photo-buttons{
+        display: none;
+    }
+
+    #desktop-nope:checked ~ .desktop-photo-buttons {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .container {
-        display: inline-block;
-        align-items: center;
-        width: 300px;
-        max-width: 700px;
-        padding: 10px;
-        position: absolute;
-        top: 7%;
-    }
-
-    .banner img {
-        width: 40%;
-    }
-
-    .title-container {
-        margin-left: 5%;
+    .labelfile{
+        font-size: 1em;
     }
     
-    .title {
-        font-family: "Aquatico";
-        font-size: 3em;
-    }
-    
-    .subtitle {
-        font-family: 'Averia Sans Libre', cursive;
-        font-size: 1.5em;
+    .enviar-button{
+        font-size: 1em;
     }
 
-    .banner {
-        margin: -9% 0 16% -22%;
+    .user-photo-menu {
+        width: 150px;
     }
 
-    .input {
-        width: 280px;
+    .li-post-container {
+        /* background-image: url(../../assets/background-mobile.png); */
+        width:40%;
+        border-radius: 5px;
+        margin-left: 50%;
+        padding: 2%;
     }
 
+    .post-form {
+        /* background-image: url(../../assets/background-mobile.png); */
+        width:40%;
+        border-radius: 5px;
+        margin: 0 0 3% 50%;
+        padding: 2%;
+ 
+    }
 }
 
