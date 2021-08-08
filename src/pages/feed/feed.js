@@ -1,6 +1,7 @@
 import { logOut } from "../../lib/auth.js";
 import { postImage } from "../../lib/auth.js";
 import { getTheRoad } from "../../router.js";
+//import {user} from "../../lib/auth/auth.js";
 
 
 
@@ -30,14 +31,15 @@ export const Feed = () => {
   <aside>  
 
   <img src="./images/name-icon.png">
-  <section class='profile-area'>
-  <div class='div-perfil'>
-  
-<img src='images/user.png' id='photo' class='photo'>
-<p>Bem vinda </p>
-<p class='name-user' id="name-user"></p> 
+
+ <section class='profile-area'>
+   <div class='div-perfil'>
+
+   <img src='images/user.png' id='photo' class='photo'>
+   <p>Bem vinda </p>
+   <p class='name-user' id="name-user"></p> 
 </div>
-      </section>
+ </section>
 
       <div class="icons">
       
@@ -74,8 +76,6 @@ export const Feed = () => {
   <section id='postado' class='posts-container'>
 `
 
-
-const postado = rootElement.querySelector(".posts-container");//aqui conferir
 const photo = rootElement.querySelector('.photo-um');
 const preview = rootElement.querySelector('.imgPreview');
 const btnsend = rootElement.querySelector(".publicar-foto")
@@ -156,7 +156,8 @@ rootElement.querySelector('#postForm').addEventListener('submit', function(event
 
 // Printa todos os posts existentes na tela:
 function loadPosts() {
-  postsCollection.get().then(snap => {
+
+  postsCollection.orderBy('data', 'desc').get().then(snap => {
     snap.forEach(post => {
   const postElement = document.createElement("div");//aqui criou mais uma div e mandou para ela o que era a div-postados
   postElement.id = post.id;
@@ -228,9 +229,8 @@ const editBtn = postElement.querySelector(".btn-edit")
    editTextArea.hidden = true;
    editTextArea.hidden = true;
    editUpdate(editTextArea.value, post.id);
-   //rootElement.querySelector("#postado").innerHTML = "";
-   //loadPosts()
  })
+
  rootElement.querySelector("#postado").appendChild(postElement)
     });
   });
@@ -243,7 +243,9 @@ function editUpdate(newText, postId){
   rootElement.querySelector("#postado").innerHTML = "";
   loadPosts()
 }
+
 };//fim função loadPosts
+
 
 
 // Adição dos eventos dos botões:
@@ -383,6 +385,7 @@ function commentPost(postId) {
 
 const btnSignOut = rootElement.querySelector("#button-signout");
 btnSignOut.addEventListener("click", logOut);
+
 
 loadPosts();
 return rootElement;
