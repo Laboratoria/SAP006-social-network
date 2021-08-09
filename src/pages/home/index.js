@@ -1,6 +1,7 @@
 import { currentUser} from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
-import { showReviewArea, publishReview, profileImage , loadPosts} from "../../lib/functions-home.js"
+import { showReviewArea, publishReview, profileImage, loadPosts } from "../../lib/functions-home.js"
+
 
 export default () => {
 
