@@ -42,7 +42,7 @@ export default () => {
           <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
         </li>
         <li>
-          <p class="email-menu"> ${user.email || "Usuário"} </p>
+          <p class="email-menu"> ${user.email || "usuario@email.com"} </p>
         </li>
       </div>
 
@@ -52,36 +52,36 @@ export default () => {
     </ul>
   </div>
   
-    <form action="" id="postForm" class="post-form">
-      <textarea type="textarea" id="postText" class="post-textarea" rows="5" cols="50" placeholder="Digite aqui sua review..."></textarea>
-      <button type="submit" class="buttons post-button"> Publicar </button>
-    </form>
+  <form action="" id="postForm" class="post-form">
+    <textarea type="textarea" id="postText" class="post-textarea" rows="5" cols="50" placeholder="Digite aqui sua review..."></textarea>
+    <button type="submit" class="buttons post-button"> Publicar </button>
+  </form>
 
-      <ul id="posts" class="li-post-container"></ul>
+  <ul id="posts" class="li-post-container"></ul>
     
-    <div class="desktop-profile-container">
-      <li class="upload-photo">
-        <img id="preview" src="${user.photoURL || "../../assets/default-user-img.png"}" class="user-photo-menu desktop-preview">
-        <input type="checkbox" id="desktop-nope" />
-        <div class="desktop-photo-buttons">
-          <label class="labelfile"for="photo">Selecionar Imagem</label>
-          <input type="file" id="photo" class="input-img desktop-photo" accept=".jpg, .jpeg, .png">
-          <button id="uploadImage" class="enviar-button desktop-upload-image">Enviar</button>
-          <label for="desktop-nope"></label>
-        </div>
-        <label class="arrow" for="desktop-nope"></label>
-      </li>
-      <li>
-        <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
-      </li>
-      <li>
-        <p class="email-menu"> ${user.email || "usuario@usuario@gmail.com"} </p>
-      </li>
-    </div>
+  <div class="desktop-profile-container">
+    <li class="upload-photo">
+      <img id="preview" src="${user.photoURL || "../../assets/default-user-img.png"}" class="user-photo-menu desktop-preview">
+      <input type="checkbox" id="desktop-nope" />
+      <div class="desktop-photo-buttons">
+        <label class="labelfile"for="photo">Selecionar Imagem</label>
+        <input type="file" id="photo" class="input-img desktop-photo" accept=".jpg, .jpeg, .png">
+        <button id="uploadImage" class="enviar-button desktop-upload-image">Enviar</button>
+        <label for="desktop-nope"></label>
+      </div>
+      <label class="arrow" for="desktop-nope"></label>
+    </li>
+    <li>
+      <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
+    </li>
+    <li>
+      <p class="email-menu"> ${user.email || "usuario@email.com"} </p>
+    </li>
+  </div>
 
-    <button id="desktop-signout-button" class="signout-button desktop-signout-button buttons">
-      <img src="./assets/exit.png" alt="Ícone de Saída">
-    </button>
+  <button id="desktop-signout-button" class="signout-button desktop-signout-button buttons">
+    <img src="./assets/exit.png" alt="Ícone de Saída">
+  </button>
 
   `;
 
@@ -92,9 +92,7 @@ export default () => {
   });
 
   // Sair da conta do usuário (DESKTOP)
-  timeline
-    .querySelector(".desktop-signout-button")
-    .addEventListener("click", (e) => {
+  timeline.querySelector(".desktop-signout-button").addEventListener("click", (e) => {
       e.preventDefault();
       signOut();
     });
@@ -107,22 +105,28 @@ export default () => {
     event.preventDefault();
     const text = timeline.querySelector("#postText").value;
 
-    const getDate = () => {
-      const date = new Date();
-      return date.toLocaleString("pt-BR");
-    };
-
-    const post = {
-      user: firebase.auth().currentUser.email,
-      text: text,
-      likes: 0,
-      date: getDate(),
-    };
-
-    postsCollection.add(post).then(() => {
-      timeline.querySelector("#postText").value = "";
-      loadPosts();
-    });
+    if(text) {
+      const getDate = () => {
+        const date = new Date();
+        return date.toLocaleString("pt-BR");
+      };
+  
+      const post = {
+        user: firebase.auth().currentUser.email,
+        text: text,
+        likes: 0,
+        date: getDate(),
+      };
+  
+      postsCollection.add(post).then(() => {
+        timeline.querySelector("#postText").value = "";
+        loadPosts();
+      });
+    }
+    else {
+      alert("Por favor, digite uma review antes de publicar.")
+    }
+    
   });
 
   // Adicionando posts
@@ -131,9 +135,7 @@ export default () => {
       <li class="posts-box">
         <div id="${post.id}"class="post-container">
           <div class="user-container">
-            <img src="${
-              user.photoURL || "../../assets/default-user-img.png"
-            }" class="user-photo">
+            <img src="${user.photoURL || "../../assets/default-user-img.png"}" class="user-photo">
             <div class="username-date-container">
               <p class="username"> ${user.displayName || "Usuário"} </p>
               <time class="date">${post.data().date}</time>
@@ -177,12 +179,12 @@ export default () => {
     postBox.innerHTML += postTemplate;
 
     // Deletar posts
-    const deleteButtons = timeline.querySelectorAll(".deletePost-btn");
+    const deleteButtons = postBox.querySelectorAll(".deletePost-btn");
     for (const button of deleteButtons) {
       button.addEventListener("click", (event) => {
         const deleteConfirmation = confirm("Tem certeza quer deseja deletar esse post?");
         if (deleteConfirmation) {
-          deletePost(event.target.parentNode.id);
+          deletePost(event.currentTarget.parentNode.id);
         } else {
           return false;
         }
@@ -199,11 +201,11 @@ export default () => {
     }
 
     // Curtir e descurtir posts
-    const likeButtons = timeline.querySelectorAll(".likePost-btn");
+    const likeButtons = postBox.querySelectorAll(".likePost-btn");
 
     for (const button of likeButtons) {
       button.addEventListener("click", (event) => {
-        likePost(event.target.parentNode.id);
+        likePost(event.currentTarget.parentNode.id);
       });
     }
 
@@ -237,7 +239,7 @@ export default () => {
     }
 
     // Abrir área de editar post
-    const editButtons = timeline.querySelectorAll(".editPost-btn");
+    const editButtons = postBox.querySelectorAll(".editPost-btn");
 
     for (const button of editButtons) {
       button.addEventListener("click", () => {
@@ -253,7 +255,7 @@ export default () => {
     }
 
     // Fechar área de editar post
-    const closeEditButtons = timeline.querySelectorAll(".close-edit-button");
+    const closeEditButtons = postBox.querySelectorAll(".close-edit-button");
 
     for (const button of closeEditButtons) {
       button.addEventListener("click", () => {
@@ -270,18 +272,18 @@ export default () => {
     }
 
     // Editar post
-    const saveEditPost = timeline.querySelectorAll(".save-edit-button");
-    const emptyText = timeline.querySelector(".empty-text");
+    const saveEditPost = postBox.querySelectorAll(".save-edit-button");
+    const emptyText = postBox.querySelector(".empty-text");
 
     for (const button of saveEditPost) {
       button.addEventListener("click", (event) => {
         event.preventDefault();
-        const editedPost = timeline.querySelector(".edited-post").value;
+        const editedPost = postBox.querySelector(".edited-post").value;
         if (editedPost) {
           editPost(editedPost, event.target.parentNode.id);
         } else {
           emptyText.style.color = "red";
-          emptyText.innerHTML = "Escreva uma nova review antes de salvar.";
+          emptyText.innerHTML = "Edite sua review antes de salvar.";
         }
       });
     }
@@ -298,14 +300,14 @@ export default () => {
     }
 
     // Visibilidade dos botões de editar e deletar
-    // const visibilityOfButtons = (document, user) => {
-    //   if (user !== firebase.auth().currentUser.email) {
-    //     document.querySelector('.deletePost-btn').classList.add('visibility-hidden');
-    //     document.querySelector('.editPost-btn').classList.add('visibility-hidden');
-    //   }
-    // };
+    const visibilityOfButtons = (document, user) => {
+      if (user !== firebase.auth().currentUser.email) {
+        document.querySelector('.deletePost-btn').classList.add('visibility-hidden');
+        document.querySelector('.editPost-btn').classList.add('visibility-hidden');
+      }
+    };
 
-    // visibilityOfButtons(document, user);
+    visibilityOfButtons(document, user);
   }
 
   // Adicionando foto do perfil (MOBILE)
