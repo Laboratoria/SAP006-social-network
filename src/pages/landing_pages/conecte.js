@@ -1,6 +1,6 @@
-import { navigation } from "../../navigation.js";
-export const Conecte = () => {
+import { navigation } from "../../routes.js";
 
+export const Conecte = () => {
   const template = `
 
   <section class="sidebar">
@@ -22,22 +22,22 @@ export const Conecte = () => {
     </div>
   </section>
 
-`
+  `;
 
-const rootElement = document.createElement('div')
-rootElement.setAttribute('class', 'container')
-rootElement.innerHTML = template;
+  const rootElement = document.createElement('div');
+  rootElement.setAttribute('class', 'container');
+  rootElement.innerHTML = template;
 
-const continueBtn = rootElement.querySelector('.btn-continue')
-continueBtn.addEventListener('click', (event) => {
-  event.preventDefault()
-  navigation('/comunique');
-});
+  const continueBtn = rootElement.querySelector('.btn-continue');
+  continueBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    navigation('/comunique');
+  });
 
-const skipBtn = rootElement.querySelector('.skip')
-skipBtn.addEventListener('click', () => {
-  navigation('/login');
-})
+  const skipBtn = rootElement.querySelector('.skip');
+  skipBtn.addEventListener('click', () => {
+    navigation('/login');
+  });
 
   return rootElement;
-} 
+};

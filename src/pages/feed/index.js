@@ -1,3 +1,6 @@
+// import { sendDelete, addPost } from '../../components/feed.js';
+import { addPosts, loadPosts } from '../../services/database.js';
+
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
@@ -39,37 +42,8 @@ export const Feed = () => {
       likes: 0,
       comments: [],
     };
-    const collectionOfPosts = firebase.firestore().collection('posts');
-
-    collectionOfPosts.add(post);
+    addPosts(post);
   });
-
-  function addPost(post) {
-    const postStructure = `
-    <section>
-      <p id='${post.id}'>${post.data().text} ❤️ ${post.data().likes}</p> 
-      <button id="btnDelete" value="${post.id}">Excluir</button>
-    </section>
-    `;
-
-    document.getElementById('postTemplate').innerHTML += postStructure;
-  }
-
-  function loadPosts() {
-    const collectionOfPosts = firebase.firestore().collection('posts');
-    collectionOfPosts.get().then(snap => {
-      snap.forEach(post => {
-        addPost(post);
-      });
-    });
-  }
-
-  // const posts = {
-  //   text: text,
-  //   user_id: firebase.auth().currentUser.uid,
-  //   likes: 0,
-  //   comments: [],
-  // };
 
   // const inputSearch = document.querySelector('.searchBar');
   // inputSearch.addEventListener('keyup', (e) => {
@@ -94,6 +68,15 @@ export const Feed = () => {
     // }
   }
   window.onscroll = stickyFilter();
+
+  
+  // function deletePost(postId) {
+  //   const collectionOfPosts = firebase.firestore().collection('posts');
+  //   collectionOfPosts.doc(postId).delete()
+  //   .then(doc => {
+  //     loadPosts()
+  // });
+  
   // const btnDelete = document.querySelector('#btnDelete').value;
   // function deletePost(postId) {
   //   const collectionOfPosts = firebase.firestore().collection('posts');
@@ -102,6 +85,7 @@ export const Feed = () => {
   //   });
   // } 
   // console.log(btnDelete);
+
   loadPosts();
   return rootElement;
 };
