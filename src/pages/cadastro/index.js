@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebaseAuth.js';
-import { route, handleError } from '../../services/utils.js';
+import { handleError } from '../../services/error.js';
+import { route } from '../../routes/navigator.js';
 
 export const cadastro = () => {
   const rootElement = document.createElement('div');
@@ -65,11 +66,11 @@ export const cadastro = () => {
           });
       })
       .catch((handleError()));
-
-    return rootElement;
+    return false;
   });
   pageLogin.addEventListener('click', (e) => {
     e.preventDefault();
     route('/login');
   });
+  return rootElement;
 };

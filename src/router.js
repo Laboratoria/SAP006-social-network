@@ -1,9 +1,9 @@
-import { login } from './pages/login/index.js';
 import { cadastro } from './pages/cadastro/index.js';
 import { home } from './pages/home/index.js';
 import { postar } from './pages/postar/index.js';
+import { login } from './pages/login/index.js';
 
-const routRender = () => {
+export const routeRender = () => {
   const elemento = document.getElementById('root');
   const routes = {
     '/': login,
@@ -16,13 +16,7 @@ const routRender = () => {
   elemento.appendChild(routes[window.location.pathname]());
 };
 
-window.addEventListener('popstate', routRender);
+window.addEventListener('popstate', routeRender);
 window.addEventListener('load', () => {
-  routRender();
+  routeRender();
 });
-
-export const route = (state) => {
-  window.history.pushState({}, '', state);
-  const popstateEvent = new PopStateEvent('popstate', { state: {} });
-  dispatchEvent(popstateEvent);
-};

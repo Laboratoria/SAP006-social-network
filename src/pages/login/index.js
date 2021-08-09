@@ -1,5 +1,6 @@
 import { googleLogin, SignIn } from '../../services/firebaseAuth.js';
-import { route, handleError } from '../../services/utils.js';
+import { handleError } from '../../services/error.js';
+import { route } from '../../routes/navigator.js';
 
 export const login = () => {
   const rootElement = document.createElement('div');
@@ -47,12 +48,7 @@ export const login = () => {
     e.preventDefault();
     SignIn(usuario.value, passwordLogin.value)
       .then(() => {
-        // Signed in
-        // const user = userCredential.user;
-        // console.log(user);
-        window.history.pushState({}, '', '/home');
-        const popstateEvent = new PopStateEvent('popstate', { state: {} });
-        dispatchEvent(popstateEvent);
+        route('/home');
       })
       .catch((handleError()));
   });
@@ -64,7 +60,7 @@ export const login = () => {
 
   botaoGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    googleLogin();
+    googleLogin().then(() => route('/home')).catch(handleError);
   });
   return rootElement;
 };
