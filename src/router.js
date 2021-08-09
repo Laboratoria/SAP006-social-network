@@ -11,14 +11,14 @@ const routeRender = () => {
     '/signup': SignUp,
     '/feed': Feed,
     '/profile': Profile,
-    '/reset': Reset
-  }
+    '/reset': Reset,
+  };
 
   elements.innerHTML = '';
   elements.appendChild(routes[window.location.pathname]());
-}
+};
 
 window.addEventListener('popstate', routeRender);
 window.addEventListener('load', () => {
   routeRender();
-})
+});
