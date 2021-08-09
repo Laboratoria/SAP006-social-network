@@ -1,4 +1,4 @@
-import { logOut } from "../../lib/auth.js";
+import { logOut, user } from "../../lib/auth.js";
 import { postImage } from "../../lib/auth.js";
 import { getTheRoad } from "../../router.js";
 //import {user} from "../../lib/auth/auth.js";
@@ -138,6 +138,7 @@ rootElement.querySelector('#postForm').addEventListener('submit', function(event
     const data = new Date();
     return data.toLocaleString("pt-BR");
   };
+
   const post = {
     text: text,
     user_id: firebase.auth().currentUser.email,
@@ -156,13 +157,12 @@ rootElement.querySelector('#postForm').addEventListener('submit', function(event
 
 // Printa todos os posts existentes na tela:
 function loadPosts() {
-
   postsCollection.orderBy('data', 'desc').get().then(snap => {
     snap.forEach(post => {
   const postElement = document.createElement("div");//aqui criou mais uma div e mandou para ela o que era a div-postados
   postElement.id = post.id;
   postElement.classList.add("div-postados")
-
+ 
       const postTemplate = `
       
         <p class="user-post">Postado por ${post.data().user_id} <br>${post.data().data} </p>
@@ -184,7 +184,7 @@ function loadPosts() {
           <input  data-comment-input-id="${post.id}" placeholder='O que você quer comentar?'></input>
         </section>
         <div class="data-post-id" data-postid="${post.id}">
-        <button data-deletePost="${post.id}" class="delete-button"> Deletar</button>
+        <button type="submit" data-deletePost="${post.id}" class="delete-button"> Deletar</button>
         <button  type="submit" class="btn-edit">Editar</button>
         <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
         <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
@@ -204,7 +204,18 @@ const editSaveButton = postElement.querySelector(".btn-edit-save")
 const editTextArea = postElement.querySelector(".edit-text-area")
 const editCancelBtn = postElement.querySelector(".btn-cancel-edit")
 const editBtn = postElement.querySelector(".btn-edit")
+const deleteBtn = postElement.querySelector(".delete-button")
  
+function canEdit() {
+  if(firebase.auth().currentUser.email == `${post.data().user_id}`){
+    editBtn.hidden = false;
+    deleteBtn.hidden = false;
+  }else{
+  editBtn.hidden = true;
+  deleteBtn.hidden = true;
+  }
+}
+canEdit()
 
  editBtn.addEventListener("click", () => {
   editSaveButton.hidden = false;
@@ -263,6 +274,15 @@ if (deleteButton) {
   else
     return false;
 };
+
+function canDelete(){
+  if(firebase.auth().currentUser.email == `${post.data().user_id}`){
+    deleteButton.hidden = false;
+  } else{
+    deleteButton.hidden = true;
+  }
+}
+canDelete();
 
 // Like Post:
 const likeButton = target.dataset.likepost;

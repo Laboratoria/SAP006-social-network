@@ -444,15 +444,15 @@ body {
 
 /*Profile*/
 .profile-edit{
-	width: 27%;
-	height: 70vh;
+	width: 33%;
+	height: 80vh;
 	margin: auto;
 	background-color: white;
 }
 
 .img-logo-profile{
 	width: 70%;
-	height: 12vh;
+	height: 13vh;
 	margin-top: 1%;
 }
 
@@ -488,7 +488,7 @@ body {
 	border: solid 1pt;
 }
 
-.profile-edit button, 
+.btn-profile-edit button, 
 .change-name input{
 	font-size: 110%;
 	font-weight: 500;
@@ -499,7 +499,7 @@ body {
 	margin-top: 3%;
 }
 
-.profile-edit button{
+.btn-profile-edit button{
 	font-family: "Roboto";
 	cursor: pointer;
 	border-radius: 25px;
@@ -508,7 +508,7 @@ body {
 	color: white ;
 	width: 30%;
 	padding: 2% 2%;
-	margin-bottom: 2.5%;
+	margin-bottom: 10%;
 	border: solid 0pt;
 }
 
@@ -518,18 +518,42 @@ body {
 }
 
 .div-profile{
-	background-image: url("./images/testeee.jpg");
+	/*background-image: url("./images/testeee.jpg");*/
+	background-color: #025159;
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100vh;
 	width: 100vw;
 	margin-top: 0;
-	position: fixed;
+	position: absolute;
+
   }
 
   .div-profile form{
 	  margin-top: 5%;
 	  border-radius: 25px;
-	  background-color:rgba(255, 255, 255, .5);
+	 /* background-color:rgba(255, 255, 255, .5);*/
+	 background-color: rgba(255, 255, 255, .9);
 	  
   }
+
+ .img-perfil{
+	 height: 120px;
+	 width: 120px;
+	 object-fit: cover;
+	 border-radius: 50%;
+	 border: 1px solid #025159;
+	;
+ }
+
+ profile-photo-change{
+	 width: 100px;
+	 height: 100px;
+	 border-radius: 50%;
+ }
+ .p-save-changes{
+	 width: 65%;
+	 margin: auto;
+	 font-size: 110%;
+	 font-weight: 500;
+ }
