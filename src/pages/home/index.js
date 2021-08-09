@@ -1,8 +1,22 @@
 import { outLogin } from '../../services/firebaseAuth.js';
-import { route } from '../../routes/navigator';
+import { route } from '../../routes/navigator.js';
+
+const db = firebase.firestore();
+const rootElement = document.createElement('div');
+
+const getPosts = () => {
+  const timeline = rootElement.querySelector('#timeline');
+  db.collection('posts').orderBy('data', 'desc').limit(1).get()
+    .then((collectionContent) => {
+      collectionContent.forEach((doc) => {
+        const span = document.createElement('span');
+        span.innerText = `Em: ${doc.data().data.toDate().toLocaleDateString()} '${doc.data().descricao}' por ${doc.data().nome}`;
+        timeline.insertBefore(span, timeline.childNodes[0]);
+      });
+    });
+};
 
 export const home = () => {
-  const rootElement = document.createElement('div');
   rootElement.innerHTML = ` 
   <div class="containerHome">
   <header>
@@ -36,7 +50,7 @@ export const home = () => {
 
   </header>
   <main>
-    <div class="publish">
+    <div class="publish" id='timeline'>
       <h2 class="nameUser" id="nameUser"></h2>
       <img class="imgPost" id="imgPost" src="">
       <textarea class="textPost" id="textPost" name="story" style="resize: none">
@@ -66,7 +80,7 @@ export const home = () => {
   });
   // postar
   btnAddPost.addEventListener('click', () => route('/posts'));
-
+  getPosts();
   return rootElement;
 };
 
