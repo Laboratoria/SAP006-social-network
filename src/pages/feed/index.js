@@ -1,4 +1,6 @@
 // import { signOut } from "../../services/index.js";
+import { createPost, getPost } from '../../services/index.js';
+import { Post } from '../../components/posts.js';
 
 export const Feed = () => {
   const root = document.createElement('div');
@@ -8,7 +10,7 @@ export const Feed = () => {
   <main class='feedContainer'>
     <header id='postHeader' class='postHeader'>Usuário</header> 
       <form class='formContainer'>
-        <input class='postText' placeholder='Sua Mensagem'>      
+        <input class='postInput' placeholder='Sua Mensagem'>      
         <section class='btnContainer'>
           <button type='button' class='publishBtn'>Publicar</button>
         </section>  
@@ -18,31 +20,45 @@ export const Feed = () => {
   `;
 
   const btnSignOut = root.querySelector('#buttonSignOut');
-  const textInput = root.querySelector('.postText')
+  const textInput = root.querySelector('.postText');
   const btnPublish = root.querySelector('.publishBtn');
 
   btnSignOut.addEventListener('click', () => {
     window.history.pushState({}, '', '/');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
-  })
-
-  btnPublish.addEventListener('click', () => {
-    getPostText(textInput.value);
-    textInput.value='';
-  })
-
-  const getPostText = (text) => {
-    const post = postObject(text);    
-    createPost(post);
-  }  
+  });
 
   const postObject = (text) => {
     const postObj = {
-      'texto': text
-    }
+      texto: text,
+    };
     return postObj;
+  };
+
+  const getPostText = (text) => {
+    const post = postObject(text);
+    createPost(post);
+  };
+
+  const printPost = (post) => {
+    const timeline = document.querySelector('.feedTimeline');
+    timeline.innerHTML += Post(post.data().texto);
+  };
+
+  btnPublish.addEventListener('click', () => {
+    getPostText(textInput.value);
+    textInput.value = '';
+  });
+
+  function loadPost() {
+    getPost().then((snapshot) => {
+      snapshot.forEach((post) => {
+        printPost(post);
+      });
+    });
   }
 
+  loadPost();
   return root;
-}
+};
