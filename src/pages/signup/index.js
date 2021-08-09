@@ -1,4 +1,4 @@
-import { createAccount } from "../../services/index.js";
+import { createAccount } from "../../services/authentication.js";
 import { navigation } from "../../routes.js";
 
 

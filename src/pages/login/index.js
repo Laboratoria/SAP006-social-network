@@ -1,4 +1,4 @@
-import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
+import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/authentication.js"; 
 import { navigation } from "../../routes.js";
 
 export const Login = () => {

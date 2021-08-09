@@ -1,3 +1,6 @@
+// import { sendDelete, addPost } from '../../components/feed.js';
+import { addPosts, loadPosts } from '../../services/database.js';
+
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
@@ -12,7 +15,7 @@ export const Feed = () => {
       </form>
     </section>
 
-    <section class="get-post">
+    <section class="get-post" id="postTemplate">
     </section>
   `;
 
@@ -21,37 +24,32 @@ export const Feed = () => {
   rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    // console.log(text);
     const post = {
       text: text,
       user_id: firebase.auth().currentUser.uid,
       likes: 0,
       comments: [],
     };
-    const collectionOfPosts = firebase.firestore().collection('posts');
-
-    collectionOfPosts.add(post);
+    addPosts(post);
   });
 
-  function deletePost(postId) {
-    const collectionOfPosts = firebase.firestore().collection('posts');
-    collectionOfPosts.doc(postId).delete()
-    .then(doc => {
-      loadPosts()
-  });
 
-  // Objetos com propriedades utilizadas nos posts:
-  // const user = firebase.auth().currentUser;
-  // if (user !== null) {
-  //   const email = user.email;
-  //   const uid = user.uid;
-  // }
-
-  // Criar a collection:
-
-  // .then(() => {
-  //   rootElement.querySelector('#text-post').value = '';
-  //   rootElement.querySelector('#post-ready').innerHTML = '';
+  // function deletePost(postId) {
+  //   const collectionOfPosts = firebase.firestore().collection('posts');
+  //   collectionOfPosts.doc(postId).delete()
+  //   .then(doc => {
+  //     loadPosts()
   // });
+  
+  // const btnDelete = document.querySelector('#btnDelete').value;
+  // function deletePost(postId) {
+  //   const collectionOfPosts = firebase.firestore().collection('posts');
+  //   collectionOfPosts.doc(postId).delete().then(doc => {
+  //     loadPosts();
+  //   });
+  // } 
+  // console.log(btnDelete);
+  
+  loadPosts();
   return rootElement;
 };
