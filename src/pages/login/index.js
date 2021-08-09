@@ -12,16 +12,17 @@ export const login = () => {
   <main>
       <div class="label-float">
         <input class="login" type="text" id="usuario" placeholder="E-mail">
-        <span class="focus-input100"></span>
       </div>
 
-      <div class="label-float">
+      <div id="inputPass">
         <input class="password" type="password" id="senha" placeholder="Senha">
-        <span class="focus-input100"></span>
+        <img id="eye" src="./img/eyesOpen.svg">
       </div>
       <div class="justify-enter">
         <button type="button" name="botao" id="entrar">ENTRAR</button>
       </div>
+
+      <button class="forgetPass" id="forgetPass"> Esqueci a senha! </button>
 
       <div class="justify-google">
         <button type="button" name="botao" id="google-login"> <img src="./img/google.png" class="google-logo" />Sign in
@@ -41,9 +42,21 @@ export const login = () => {
   const botaoCadastro = rootElement.querySelector('#cadastro');
   const botaoGoogle = rootElement.querySelector('#google-login');
   const usuario = rootElement.querySelector('#usuario');
+  const divPass = rootElement.querySelector('#inputPass');
   const passwordLogin = rootElement.querySelector('#senha');
+  const eye = rootElement.querySelector('#eye');
   const signInButton = rootElement.querySelector('#entrar');
 
+  eye.addEventListener('click', () => {
+    divPass.classList.toggle('visible');
+    if (divPass.classList.contains('visible')) {
+      eye.src = './img/eyesClose.svg';
+      passwordLogin.type = 'text';
+    } else {
+      eye.src = '.img/eyesOpen.svg';
+      passwordLogin.type = 'password';
+    }
+  });
   signInButton.addEventListener('click', (e) => {
     e.preventDefault();
     SignIn(usuario.value, passwordLogin.value)

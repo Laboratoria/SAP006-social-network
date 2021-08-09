@@ -1,5 +1,5 @@
 import { outLogin } from '../../services/firebaseAuth.js';
-import { route } from '../../routes/navigator';
+import { route } from '../../routes/navigator.js';
 
 export const home = () => {
   const rootElement = document.createElement('div');

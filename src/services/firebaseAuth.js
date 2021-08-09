@@ -42,4 +42,16 @@ export const outLogin = () => {
 //       // User is signed out
 //       // ...
 //     }
-//   });
+// //   });
+export const resetPass = () => {
+  firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+    // Password reset email sent!
+    // ..
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    // ..
+    });
+};

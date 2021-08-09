@@ -17,7 +17,7 @@
   margin: auto;
 }
 .justify-register,
-.justify-google {
+.justify-google, #inputPass{
   display: flex;
   justify-content: center;
 }
@@ -31,6 +31,12 @@
   border: 1px solid #ffffffde;
   color: rgb(0, 0, 0);
   box-shadow: 0px -3px 1px #a09f9f5e;
+}
+#eye {
+  position: absolute;
+  width: 3%;
+  cursor: pointer;
+  padding: 1.7% 0 0 45%;
 }
 #entrar {
   width: 30%;
@@ -90,5 +96,10 @@
     width: 60%;
     padding: 6px;
     font-size: 100%
+  }
+  #eye {
+    width: 5%;
+    cursor: pointer;
+    padding: 15% 0 5% 0%;
   }
 }
