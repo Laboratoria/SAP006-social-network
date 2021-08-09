@@ -1,9 +1,10 @@
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
-    <div class="esmaeceHeader logotipo-text">
-      <h2>FORT FEED</h2>
-    </div> 
+    <header class="inputSearch">
+      <input type="search" class="searchBar" name="searchPost" placeholder="Busque por um post">
+      <button><span class="iconify" data-inline="false" data-icon="clarity:notification-outline-badged" style="color: #FFD2BF;"></span></button>
+    </header> 
 
     <section class="post">
       <form action="" id="published-form">
@@ -14,6 +15,17 @@ export const Feed = () => {
 
     <section class="get-post" id="postTemplate">
     </section>
+
+    <nav class="navbar">
+      <ul>
+        <li><span class="iconify" data-inline="false" data-icon="akar-icons:home" style="color: #FFD2BF;"></span></li>
+        <li><span class="iconify" data-inline="false" data-icon="clarity:plus-circle-line" style="color: #FFD2BF;"></span></li>
+        <li><span class="iconify" data-inline="false" data-icon="akar-icons:comment" style="color: #FFD2BF;"></span></li>
+        <li><span class="iconify" data-inline="false" data-icon="akar-icons:person" style="color: #FFD2BF;"></span></li>
+      </ul>
+    </nav>
+
+    
   `;
 
   rootElement.innerHTML = container;
@@ -52,6 +64,36 @@ export const Feed = () => {
     });
   }
 
+  // const posts = {
+  //   text: text,
+  //   user_id: firebase.auth().currentUser.uid,
+  //   likes: 0,
+  //   comments: [],
+  // };
+
+  // const inputSearch = document.querySelector('.searchBar');
+  // inputSearch.addEventListener('keyup', (e) => {
+  //   const searchString = e.target.value;
+  //   const searchedPosts = posts.filter((post) => {
+  //     return ( 
+  //       post.text.toLowerCase().includes(searchString) ||
+  //       post.text.toUpperCase().includes(searchString)
+  //     );
+  //   });
+  //   loadPosts(searchedPosts);
+  // });
+
+  const navbarBottom = document.getElementsByClassName('navbar');
+  const sticky = navbarBottom.offsetBottom;
+  function stickyFilter() {
+    if (window.pageYOffset >= sticky) {
+      navbarBottom.classList.add('sticky');
+    }
+    // else {
+    //   navbarBottom.classList.remove('sticky');
+    // }
+  }
+  window.onscroll = stickyFilter();
   // const btnDelete = document.querySelector('#btnDelete').value;
   // function deletePost(postId) {
   //   const collectionOfPosts = firebase.firestore().collection('posts');
