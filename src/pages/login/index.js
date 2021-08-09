@@ -1,5 +1,5 @@
 import { googleLogin, SignIn } from '../../services/firebaseAuth.js';
-import { route, handleError } from '../../services/utils.js';
+import { route, errorPassword } from '../../services/utils.js';
 
 export const login = () => {
   const rootElement = document.createElement('div');
@@ -11,13 +11,12 @@ export const login = () => {
   <main>
       <div class="label-float">
         <input class="login" type="text" id="usuario" placeholder="E-mail">
-        <p id="textErrorEmail"></p>
         <span class="focus-input100"></span>
       </div>
 
       <div class="label-float">
         <input class="password" type="password" id="senha" placeholder="Senha">
-        <p id="textErrorPassword"></p>
+        <p id="textErrorEmailPassword"></p>
         <span class="focus-input100"></span>
       </div>
       <div class="justify-enter">
@@ -51,12 +50,7 @@ export const login = () => {
       .then(() => {
         route('/home');
       })
-      .catch((handleError()));
-
-    // const errorCode = error.code;
-    // const errorMessage = error.message;
-    // console.log(errorCode, errorMessage);
-    // alert('E-mail ou senha incorretos, por favor, verifique!');
+      .catch((errorPassword));
   });
 
   botaoCadastro.addEventListener('click', (e) => {

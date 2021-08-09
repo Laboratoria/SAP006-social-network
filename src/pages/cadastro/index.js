@@ -63,13 +63,14 @@ export const cadastro = () => {
             route('/home');
           });
       })
-      .catch(handleError());
+      .catch((handleError));
 
-    return rootElement;
+    // return false;
   });
 
   pageLogin.addEventListener('click', (e) => {
     e.preventDefault();
     route('/login');
   });
+  return rootElement;
 };
