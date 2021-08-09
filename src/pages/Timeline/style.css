@@ -1,5 +1,5 @@
 body {
-    background-color: #991e1e;
+    background-color: #15141f;
     height: 100%;
     overflow: scroll;
 }
@@ -368,8 +368,6 @@ input[type='file'] {
     margin-top: 2%;
 }
 
-
-
 .signout-button {
     position: absolute;
     left: -7%;
@@ -457,12 +455,13 @@ input[type='file'] {
     }
 
     .post-textarea {
-        width: 93%;
+        width: 91%;
+        margin: 25% 0 0 4%;
     }
 
     .post-container {
-        width: 93%;
-        padding: 2%;
+        width: 100%;
+        margin: 0;
     }
 
     .post-button {
@@ -470,6 +469,7 @@ input[type='file'] {
     }
 
     .desktop-signout-button {
+        display: block;
         position: fixed ;
         top: -4.5%;
         left: 82%;
@@ -480,7 +480,7 @@ input[type='file'] {
     }
 
     .desktop-profile-container {
-        /* background-image: url(../../assets/background-mobile.png); */
+        /* background-image: url(../../assets/background-mobile3.jpg); */
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -522,7 +522,7 @@ input[type='file'] {
     }
 
     .li-post-container {
-        /* background-image: url(../../assets/background-mobile.png); */
+        /* background-image: url(../../assets/background-mobile3.jpg); */
         width:40%;
         border-radius: 5px;
         margin-left: 50%;
@@ -533,9 +533,7 @@ input[type='file'] {
         /* background-image: url(../../assets/background-mobile.png); */
         width:40%;
         border-radius: 5px;
-        margin: 0 0 3% 50%;
-        padding: 2%;
- 
+        margin-left: 50%; 
     }
 }
 

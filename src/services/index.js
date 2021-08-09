@@ -14,7 +14,7 @@ export const googleLogin = (provider) => {
       const errorCode = error.code;
       if (errorCode === 'auth/account-exists-with-different-credential') {
         alert('Essa conta já existe com uma credencial diferente');
-      }
+      } 
     });
 };
 
@@ -39,6 +39,6 @@ export const loginWithEmail = (email, password, profileName) => {
           id: user.uid,
           photo: 'botão add url photo',
         });
-      console.log(user);
-    });
+      location.reload();
+    })
 };
