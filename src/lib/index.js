@@ -164,11 +164,10 @@ export const forgotPassword = (email) =>{
 }
 
 
-export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
-  //const dateReview = new Date()
+export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image) => { 
+  const dateReview = new Date()
   
-  firebase
-  .firestore()
+  database
   .collection("reviews").add({
     book: bookUser,
     author: authorUser,
@@ -177,14 +176,17 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
     userName: nameUser,
     userId: firebase.auth().currentUser.uid,
     userImg: firebase.auth().currentUser.photoURL,
-    datePost: date,
-    hourPost:hour,
+    datePost: dateReview.toLocaleDateString(),
+    hourPost:`${dateReview.getHours()}:${dateReview.getMinutes()}`,
     savingForLater: [], //likes? list?
     imageUrl:image
   })
   .then(() => {
     console.log("Document successfully written!");
   })
+  .catch((error) => {
+    console.log("Error writing documents: ", error);
+  });
 }
 
 // export const uploadImageBooks = (image, userid) => {
@@ -193,10 +195,8 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
 //    }
 
 export const getReviews = () => {
-  return firebase
-  .firestore()
-  .collection("reviews").get()
-
+  return database
+  .collection('reviews').orderBy('datePost', 'desc').orderBy('hourPost', 'desc').get()
 }
 
 
@@ -222,14 +222,32 @@ export const removeLike = (postUID, userUID) =>{
     likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
   })
 }
-export const deleteReview = (doc) => {
-  firebase
-  .firestore()
-  .collection("reviews").doc(doc).delete()
+
+export const deleteReview = (docId) => {
+  return database
+  .collection("reviews").doc(docId).delete()
   .then(() => {
     console.log("Document successfully deleted!");
   })
   .catch((error) => {
       console.error("Error removing document: ", error);
   });
+}
+
+export const updateRewiews = () => {
+  return database
+  .collection("reviews").onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(post => {
+      if(post.type == "added"){
+        console.log("added")
+        //getReviews(post.doc.data(), post.doc.id);
+      }
+      if(post.type == "modified"){
+        console.log("modified");
+      }
+      if(post.type == "removed"){
+        console.log("removed")
+      }
+    })
+  })
 }

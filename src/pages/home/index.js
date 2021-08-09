@@ -1,4 +1,4 @@
-import { currentUser, createReview, uploadImageBooks, updateImageBook, getReviews } from "../../lib/index.js"
+import { currentUser, createReview, uploadImageBooks, updateImageBook, getReviews, updateRewiews } from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
 
 export default () => {
@@ -308,11 +308,10 @@ export default () => {
 
           snap.forEach((doc) => {
 
-            //console.log(doc.id, " => ", doc.data())
             const name = doc.data().userName
             const userName = name.replace(/\s/g, '').toLowerCase();
-            const date= doc.data().datePost
-            const hour = doc.data().hourPost
+            // const date= doc.data().datePost
+            // const hour = doc.data().hourPost
             //console.log(date)
             const bookImageUrl = doc.data().imageUrl
             const userImageUrl = doc.data().userImg
@@ -331,7 +330,7 @@ export default () => {
             const reviewTemplate = 
                           
               `<div id="posts-reviews">
-                <div class="data-post">
+                <div class="data-post" id="${doc.id}">
                   <div class="main-information-post">
                     <div class="information-post-wrapper">
                       <div class="user-post">
@@ -342,8 +341,8 @@ export default () => {
                             <p class="username-post">@${userName}</p>  
                           </div>
                           <div class="date">
-                            <p class="date-post">${date}</p>
-                            <p class="date-post">${hour}</p>
+                            <p class="date-post">${doc.data().datePost}</p>
+                            <p class="date-post">${doc.data().hourPost}</p>
                           </div>
                           
                         </div>
