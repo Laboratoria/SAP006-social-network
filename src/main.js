@@ -4,7 +4,7 @@
 
 // myFunction();
 
-import homePage from './pages/home-page/index.js';
+import home from './pages/home/index.js';
 import register from './pages/register/index.js';
 import login from './pages/login/index.js';
 import feed from './pages/feed/index.js';
@@ -12,31 +12,27 @@ import feed from './pages/feed/index.js';
 const main = document.querySelector('#root');
 
 const init = () => {
-  window.addEventListener('hashchange', () => {
-    main.innerHTML = '';
-    switch (window.location.hash) {
-      case '#home-page':
-        main.appendChild(homePage());
-        break;
-      case '#register':
-        main.appendChild(register());
-        break;
-      case '#login':
-        main.appendChild(login());
-        break;
-      case '#feed':
-        main.appendChild(feed());
-        break;
-      default:
-        main.appendChild(homePage());
-    }
-  });
+  main.innerHTML = '';
+  switch (window.location.hash) {
+    case '#home':
+      main.appendChild(home());
+      break;
+    case '#register':
+      main.appendChild(register());
+      break;
+    case '#login':
+      main.appendChild(login());
+      break;
+    case '#feed':
+      main.appendChild(feed());
+      break;
+    default:
+      main.appendChild(home());
+  }
 };
 
-window.addEventListener('load', () => {
-  main.appendChild(homePage());
-  init();
-});
+window.addEventListener('hashchange', init);
+window.addEventListener('load', init);
 
 // window.addEventListener('click', () => {
 //   main.appendChild(register());
