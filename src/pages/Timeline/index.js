@@ -28,9 +28,7 @@ export default () => {
     <ul class="inside-menu">
       <div class="profile-container">
         <li class="upload-photo">
-          <img id="preview" src="${
-            user.photoURL || "../../assets/default-user-img.png"
-          }" class="user-photo-menu">
+          <img id="preview" src="${user.photoURL || "../../assets/default-user-img.png"}" class="user-photo-menu">
           <input type="checkbox" id="nope" />
           <div class="photo-buttons">
             <label class="labelfile"for="photo">Selecionar Imagem</label>
@@ -41,9 +39,7 @@ export default () => {
           <label class="arrow" for="nope"></label>
         </li>
         <li>
-          <p class="username-menu"> <b>${
-            user.displayName || "Usuário"
-          } </b> </p>
+          <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
         </li>
         <li>
           <p class="email-menu"> ${user.email || "Usuário"} </p>
@@ -65,8 +61,7 @@ export default () => {
     
     <div class="desktop-profile-container">
       <li class="upload-photo">
-        <img id="preview" src="${
-          user.photoURL || "../../assets/default-user-img.png"}" class="user-photo-menu desktop-preview">
+        <img id="preview" src="${user.photoURL || "../../assets/default-user-img.png"}" class="user-photo-menu desktop-preview">
         <input type="checkbox" id="desktop-nope" />
         <div class="desktop-photo-buttons">
           <label class="labelfile"for="photo">Selecionar Imagem</label>
@@ -77,15 +72,14 @@ export default () => {
         <label class="arrow" for="desktop-nope"></label>
       </li>
       <li>
-        <p class="username-menu"> <b>${
-          user.displayName || "Usuário"} </b> </p>
+        <p class="username-menu"> <b>${user.displayName || "Usuário"} </b> </p>
       </li>
       <li>
-        <p class="email-menu"> ${user.email || "Usuário"} </p>
+        <p class="email-menu"> ${user.email || "usuario@usuario@gmail.com"} </p>
       </li>
     </div>
 
-    <button id="signout-button" class="signout-button desktop-signout-button buttons">
+    <button id="desktop-signout-button" class="signout-button desktop-signout-button buttons">
       <img src="./assets/exit.png" alt="Ícone de Saída">
     </button>
 
@@ -147,11 +141,9 @@ export default () => {
           </div>
         
           <div id=${post.id}>
-            <textarea disabled class="post" rows="4" cols="50"> ${
-              post.data().text
-            } </textarea>
+            <textarea disabled class="post" rows="4" cols="50">${post.data().text}</textarea>
             <div id=${post.id} class="edit-container display-none">
-              <textarea class="post edited-post display-none" rows="4" cols="50" placeholder="Escreva seu novo post..."></textarea>
+              <textarea class="post edited-post display-none" rows="4" cols="50"> ${post.data().text}</textarea>
 
               <p class="empty-text"></p>
             
@@ -188,9 +180,7 @@ export default () => {
     const deleteButtons = timeline.querySelectorAll(".deletePost-btn");
     for (const button of deleteButtons) {
       button.addEventListener("click", (event) => {
-        const deleteConfirmation = confirm(
-          "Tem certeza quer deseja deletar esse post?"
-        );
+        const deleteConfirmation = confirm("Tem certeza quer deseja deletar esse post?");
         if (deleteConfirmation) {
           deletePost(event.target.parentNode.id);
         } else {
@@ -257,12 +247,8 @@ export default () => {
 
     function openEditPost(element) {
       element.querySelector(".edited-post").classList.remove("display-none");
-      element
-        .querySelector(".save-edit-button")
-        .classList.remove("display-none");
-      element
-        .querySelector(".close-edit-button")
-        .classList.remove("display-none");
+      element.querySelector(".save-edit-button").classList.remove("display-none");
+      element.querySelector(".close-edit-button").classList.remove("display-none");
       element.querySelector(".edit-container").classList.remove("display-none");
     }
 
@@ -376,11 +362,10 @@ export default () => {
 
   // Mostrando os posts na tela
   function loadPosts() {
-    timeline.querySelector("#posts").innerHTML =
-      '<span class="loading-post">Carregando posts...</span>';
+    timeline.querySelector('#posts').innerHTML = '<span class="loading-post">Carregando posts...</span>';
 
-    postsCollection.get().then((snap) => {
-      timeline.querySelector("#posts").innerHTML = "";
+    postsCollection.orderBy('date', 'desc').get().then((snap) => {
+      timeline.querySelector('#posts').innerHTML = '';
       snap.forEach((post) => {
         createTemplatePost(post);
       });

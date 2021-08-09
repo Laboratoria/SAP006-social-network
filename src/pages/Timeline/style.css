@@ -382,6 +382,10 @@ input[type='file'] {
     width: 32%;
 }
 
+.desktop-signout-button {
+    display: none;
+}
+
 .user-container {
     display: flex;
     align-items: center;
@@ -465,13 +469,13 @@ input[type='file'] {
         margin-left: 75%;
     }
 
-    .signout-button {
+    .desktop-signout-button {
         position: fixed ;
         top: -4.5%;
         left: 82%;
     }
     
-    .signout-button img {
+    .desktop-signout-button img {
         width: 10%;
     }
 
