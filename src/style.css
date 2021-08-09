@@ -880,6 +880,7 @@ header{
     display:flex;
     justify-content: flex-start;
     align-items:center;
+    padding-top:1rem;
 
 }
 .like{
@@ -887,10 +888,9 @@ header{
     text-decoration:none;
     font-size:2.5rem;
     transition:all 0.3s;
-    width:3rem;
-    height: 4rem;
-    margin-right:0.3rem;
-
+    margin-right:0.5rem;
+    border:black 1px;
+  
 
 }
 
@@ -912,8 +912,8 @@ header{
     animation: animateHeart 1s;
 }
 
-#num-likes{
+.num-likes{
     font-size: 1.8rem;
     color: grey;
-    margin:0;
+    
 }

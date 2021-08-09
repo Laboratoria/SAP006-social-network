@@ -46,13 +46,7 @@ export const updateUserImage = (urlImage) => {
   })
 }
 
-export const updateImageBook = (urlImageBook) => {
-  const reviewCollection = database.collection("posts")
 
-  user.updateProfile({
-    photoBook: urlImageBook,
-  })
-}
 
 // export const asyncGetProfileData = async () => {
 //   const logProfiles = await database.collection("profiles").get()
@@ -125,15 +119,6 @@ export const uploadImage = (id, userid) =>{
   }
 
   return ref.child("profilephotos").child(imageName).put(file, metadata)
-
-  //uploading
-  // .then(snapshot => snapshot.ref.getDownloadURL())
-  // .then (url => {
-  //   const urlImage = url
-  //   console.log(urlImage)
-  //   return urlImage
-  // })
-
 }
 
 export const uploadImageBooks = (id) =>{
@@ -146,14 +131,6 @@ export const uploadImageBooks = (id) =>{
 
   return ref.child("bookcover").child(imageName).put(file, metadata)
 
-  //uploading
-  // .then(snapshot => snapshot.ref.getDownloadURL())
-  // .then (url => {
-  //   const urlImage = url
-  //   console.log(urlImage)
-  //   return urlImage
-  // })
-
 }
 
 export const forgotPassword = (email) =>{
@@ -165,9 +142,7 @@ export const forgotPassword = (email) =>{
 
 
 export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
-  //const dateReview = new Date()
-  
-  firebase
+  return firebase
   .firestore()
   .collection("reviews").add({
     book: bookUser,
@@ -179,18 +154,12 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
     userImg: firebase.auth().currentUser.photoURL,
     datePost: date,
     hourPost:hour,
-    savingForLater: [], //likes? list?
+    likes: [], 
     imageUrl:image
   })
-  .then(() => {
-    console.log("Document successfully written!");
-  })
+  
 }
 
-// export const uploadImageBooks = (image, userid) => {
-//   const imageName = userid
-//   return storage.ref().child("bookcover").child(imageName).put(image)
-//    }
 
 export const getReviews = () => {
   return firebase
@@ -200,36 +169,40 @@ export const getReviews = () => {
 }
 
 
-//   // })
-//}
 
-export const like= (postUID, userUID) =>{
-  database.collection("reviews").doc(postUID)
-  .update({ 
-    likes: firebase.firestore.FieldValue.arrayUnion(userUID) 
-  })
-  .then(() => {
-    console.log("Document successfully written!");
-  })
-  .catch((error) => {
-      console.error("Error writing document: ", error);
-  })
+export const getPost= (postID) =>{
+  const review = database.collection("reviews").doc(postID)
+  return review.get()
 }
 
-export const removeLike = (postUID, userUID) =>{
-  database.collection("reviews").doc(postUID)
-  .update({ 
-    likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
-  })
-}
-export const deleteReview = (doc) => {
-  firebase
-  .firestore()
-  .collection("reviews").doc(doc).delete()
-  .then(() => {
-    console.log("Document successfully deleted!");
+
+
+export const like = (postID, userID) =>{
+  let numberOfLikes
+  const review = database.collection("reviews").doc(postID)
+  review.get()
+  .then((rev)=>{
+    const likesArray = rev.data().likes
+    console.log(likesArray)
+    if (likesArray.indexOf(userID) === -1){
+      review.update({
+        likes:firebase.firestore.FieldValue.arrayUnion(userID)
+      })
+      numberOfLikes = (likesArray.length)+1
+     
+    }else{
+      review.update({
+        likes:firebase.firestore.FieldValue.arrayRemove(userID)
+      })
+      numberOfLikes = (likesArray.length)-1
+      console.log(numberOfLikes)
+    }
+    console.log(numberOfLikes)
+    
   })
   .catch((error) => {
-      console.error("Error removing document: ", error);
-  });
-}
+    console.error("Error writing document: ", error);
+  })
+ 
+
+}    

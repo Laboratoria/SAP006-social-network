@@ -1,4 +1,5 @@
 import {currentUser, logout} from "../../lib/index.js"
+import { showReviewArea } from "../../lib/functions-home.js"
 
 
 export const sidebar = () => {
@@ -115,6 +116,13 @@ export const sidebar = () => {
     sidebar.style.display="none"
 
 
+  })
+
+  const buttonAddReviewSidebar = asideElement.querySelector(".sidebar-btn")
+  buttonAddReviewSidebar.addEventListener("click", (e) => {
+    e.preventDefault()
+    window.scrollTo(0,0)
+    showReviewArea()
   })
 
   // const showSideBar = asideElement.querySelector(".sidebar-container") 
