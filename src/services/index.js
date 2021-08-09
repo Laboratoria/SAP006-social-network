@@ -4,7 +4,7 @@ import { onNavigate } from '../navigate.js';
 //   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 // };
 
-export const getNewUserData = (userData, userName) => {
+const getNewUserData = (userData, userName) => {
   const usersCollection = firebase.firestore().collection('users');
   const user = {
     id: userData.user.uid,
@@ -77,6 +77,12 @@ export const createAccountWithEmailAndPassword = (
     errorField.innerHTML = 'As senhas não estão iguais, tente novamente.';
   } else {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+      .then(() => {
+        const user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: userName,
+        });
+      })
       .then((userData) => {
         getNewUserData(userData, userName);
         onNavigate('/');
@@ -111,4 +117,52 @@ export const createAccountWithEmailAndPassword = (
 export const logOut = () => {
   firebase.auth().signOut();
   onNavigate('/');
+};
+
+export const addPosts = (post) => {
+  const postTemplate = `
+   <section id="${post.data().userId}" class="post">
+    <div class= "user-perfil">
+      <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
+      <h4 class="user-name">@${post.data().userName}</h4>
+    </div>
+    <article class="post-field">
+      <p class="user-post">${post.data().text}</p>
+    </article>
+     
+   </section>
+   `;
+  document.querySelector('#postsList').innerHTML += postTemplate;
+};
+
+export const loadPosts = () => {
+  const postsCollection = firebase
+    .firestore()
+    .collection('posts');
+  postsCollection.get().then((snap) => {
+    document.querySelector('.loading-posts').innerHTML = '';
+    snap.forEach((post) => {
+      addPosts(post);
+    });
+  });
+};
+
+export const createPost = (textPost) => {
+  const user = firebase.auth().currentUser;
+  const post = {
+    text: textPost,
+    userId: user.uid,
+    userName: user.displayName,
+    userEmail: user.email,
+    likes: 0,
+    comments: [],
+  };
+
+  const postsCollection = firebase
+    .firestore()
+    .collection('posts');
+  postsCollection.add(post).then(() => {
+    document.querySelector('#postsList').value = '';
+    loadPosts();
+  });
 };

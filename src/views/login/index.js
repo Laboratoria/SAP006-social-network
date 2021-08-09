@@ -1,4 +1,4 @@
-import { loginWithEmailAndPassword, loginWithGoogleAccount } from '../../lib/authentication.js';
+import { loginWithEmailAndPassword, loginWithGoogleAccount } from '../../services/index.js';
 import { onNavigate } from '../../navigate.js';
 
 export const login = () => {
@@ -19,7 +19,7 @@ export const login = () => {
       <button class="button" id="login-btn" type="submit">Entrar</button>
       <span class="option">ou</span>
       <button class="button" id="google-btn" type="submit">
-        <img src="../img/icongoogle.png" alt="Google icon" width="20px"/>
+        <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
         <span class="button-google">Continuar com o Google</span>
       </button>
     </form>
@@ -48,17 +48,15 @@ export const login = () => {
       onNavigate('/cadastrar');
     });
 
-
   container.querySelector('#eye-login')
     .addEventListener('click', (event) => {
       event.preventDefault();
-      const inputPassword = document.querySelector('#user-password')
+      const inputPassword = document.querySelector('#user-password');
       if (inputPassword.getAttribute('type') === 'password') {
         inputPassword.setAttribute('type', 'text');
       } else {
         inputPassword.setAttribute('type', 'password');
       }
-
     });
 
   return container;
