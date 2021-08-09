@@ -1,4 +1,4 @@
-import { createAccountWithEmailAndPassword, loginWithGoogleAccount } from '../../lib/authentication.js';
+import { createAccountWithEmailAndPassword, loginWithGoogleAccount } from '../../services/index.js';
 import { onNavigate } from '../../navigate.js';
 
 export const signup = () => {
@@ -21,12 +21,15 @@ export const signup = () => {
        <i id="eye-show-register" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
       </div>
       <input type="password" placeholder="Confirmar Senha" class="input-field" id="confirm-password" autocomplete="off">
-      <button id="sign-up-btn">Cadastrar</button>
+      <button id="sign-up-btn" class="button">Cadastrar</button>
     </form>
-      <span class="option">ou</span>
-      <button class="google-btn" id="google-btn"><img class='icon-google' src='./img/google-icon.png'>Continuar com o Google</button>
-      <p class="login-text">Já tem uma conta?</p>
-      <button class="button" id="login-btn">Entrar</button
+    <span class="option">ou</span>
+    <button class="button" id="google-btn" type="submit">
+      <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
+      <span class="button-google">Continuar com o Google</span>
+    </button>
+    <p class="login-text">Já tem uma conta?</p>
+    <button class="button" id="login-btn">Entrar</button
   `;
   container.innerHTML = template;
   container.querySelector('#sign-up-btn')
@@ -54,29 +57,24 @@ export const signup = () => {
   container.querySelector('#eye-register')
     .addEventListener('click', (e) => {
       e.preventDefault();
-      const inputPassword = document.querySelector('#new-password')
+      const inputPassword = document.querySelector('#new-password');
       if (inputPassword.getAttribute('type') === 'password') {
         inputPassword.setAttribute('type', 'text');
       } else {
         inputPassword.setAttribute('type', 'password');
       }
-
     });
 
-    container.querySelector('#eye-show-register')
+  container.querySelector('#eye-show-register')
     .addEventListener('click', (e) => {
       e.preventDefault();
-      const inputConfirmPassword = document.querySelector('#confirm-password')
+      const inputConfirmPassword = document.querySelector('#confirm-password');
       if (inputConfirmPassword.getAttribute('type') === 'password') {
         inputConfirmPassword.setAttribute('type', 'text');
       } else {
         inputConfirmPassword.setAttribute('type', 'password');
       }
-
     });
-
-
 
   return container;
 };
-
