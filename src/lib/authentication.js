@@ -7,17 +7,21 @@ import { onNavigate } from '../navigate.js';
 export const getNewUserData = (userData, userName) => {
   const usersCollection = firebase.firestore().collection('users');
   const user = {
-    id: userData.user.uid,
+    id: userData.uid,
     name: userName,
-    email: userData.user.email,
+    email: userData.email,
   };
+  console.log(user)
   usersCollection.add(user);
 };
 
 export const loginWithGoogleAccount = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   await firebase.auth().signInWithPopup(provider)
-    .then(() => {
+    .then((result) => {
+      const userData = result.user;
+      const userName = userData.displayName;
+      getNewUserData(userData, userName)
       (onNavigate('/home'));
     }).catch((error) => {
       const errorField = document.getElementById('error-message');
@@ -32,7 +36,8 @@ export const loginWithGoogleAccount = async () => {
           break;
       }
     });
-};
+}
+
 
 export const loginWithEmailAndPassword = (userEmail, userPassword) => {
   firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
@@ -78,7 +83,7 @@ export const createAccountWithEmailAndPassword = (
   } else {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
       .then((userData) => {
-        getNewUserData(userData, userName);
+        getNewUserData(userData.user, userName);
         onNavigate('/');
       })
       .catch((error) => {
