@@ -1,12 +1,12 @@
 import { login } from './pages/login/index.js';
-// import { signup } from './pages/signup/index.js';
+import { signUp } from './pages/signup/index.js';
 // import { feed } from './pages/feed/index.js';
 
 export const routeRender = () => {
     const content = document.getElementById('root');
     const routes = {
         '/': login,
-        // '/signup': signup,
+        '/signUp': signUp,
         // '/feed': feed,
     };
     content.innerHTML = '';
