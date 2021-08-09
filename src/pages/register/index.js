@@ -14,7 +14,9 @@ export default () => {
       </form> 
       <div class="button">
         <input type="image"  src="img/google logo.png"><br>
-        <a href="/#register"><button class="register-button">Cadastrar</button></a>  
+        <a href="/#login">
+          <button class="register-button">Cadastrar</button>
+        </a>  
       </div>
       
   `;

@@ -3,6 +3,7 @@ export default () => {
 
   const template = `
   <img src="" alt="" class="logo">
+  
   <p>feed</p>
   `;
 
