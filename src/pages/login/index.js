@@ -11,8 +11,10 @@ export default () => {
         <input type="text" name="password" id="password-user">
       </form> 
       <div class="button">
-        <input type='image'  src='img/google logo.png'><br>
-        <button class="login-button">Login</button>  
+        <input type='image' src='img/google-logo.png'><br>
+        <a href="/#feed">
+          <button class="login-button">Login</button>  
+        </a>
       </div>
   `;
 

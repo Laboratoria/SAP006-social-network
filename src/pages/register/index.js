@@ -13,7 +13,6 @@ export default () => {
         <input type="text" name="password" id="password-user">
       </form> 
       <div class="button">
-        <input type="image"  src="img/google logo.png"><br>
         <a href="/#login">
           <button class="register-button">Cadastrar</button>
         </a>  
