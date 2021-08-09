@@ -14,8 +14,9 @@ export default () => {
       </form> 
       <div class="button">
         <input type="image"  src="img/google logo.png"><br>
-        <button class="register-button">Cadastrar</button>  
+        <a href="/#register"><button class="register-button">Cadastrar</button></a>  
       </div>
+      
   `;
 
   container.innerHTML = template;

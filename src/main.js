@@ -34,14 +34,13 @@ const init = () => {
 };
 
 window.addEventListener('load', () => {
-  main.innerHTML = '';
   main.appendChild(homePage());
   init();
 });
 
-window.addEventListener('click', () => {
-  main.appendChild(register());
-});
+// window.addEventListener('click', () => {
+//   main.appendChild(register());
+// });
 
 // window.addEventListener('click', () => {
 //   main.appendChild(login());
