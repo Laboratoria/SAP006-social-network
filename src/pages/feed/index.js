@@ -33,7 +33,6 @@ export const Feed = () => {
     addPosts(post);
   });
 
-
   // function deletePost(postId) {
   //   const collectionOfPosts = firebase.firestore().collection('posts');
   //   collectionOfPosts.doc(postId).delete()
@@ -49,7 +48,7 @@ export const Feed = () => {
   //   });
   // } 
   // console.log(btnDelete);
-  
+
   loadPosts();
   return rootElement;
 };
