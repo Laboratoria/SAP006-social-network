@@ -1,9 +1,17 @@
-import {currentUser, createReview, uploadImageBooks, getReviews, getPost, like} from "./index.js"
+import {
+  currentUser,
+  createReview,
+  uploadImageBooks,
+  getReviews,
+  getPost,
+  like,
+  deletePost
+} from "./index.js"
 
 
 
 export const showReviewArea = () => {
-  const formReview =document.querySelector(".review-area");
+  const formReview = document.querySelector(".review-area");
   formReview.style.display = "flex";
   document.querySelector(".welcome").style.display = "none"
   document.querySelector(".button-make-review").style.display = "none";
@@ -12,17 +20,17 @@ export const showReviewArea = () => {
 
 }
 
-export const profileImage = ()=>{ 
+export const profileImage = () => {
   const user = currentUser()
   const imageUrl = user.photoURL
   let profileImg
 
-    if (imageUrl != null) {
-      profileImg = user.photoURL
-    } else {
-      profileImg = "./img/default-img.png"
-    }
-      return profileImg
+  if (imageUrl != null) {
+    profileImg = user.photoURL
+  } else {
+    profileImg = "./img/default-img.png"
+  }
+  return profileImg
 }
 
 
@@ -40,10 +48,10 @@ export const loadPosts = () => {
 
         snap.forEach((doc) => {
 
-          const postId = doc.id          
+          const postId = doc.id
           const name = doc.data().userName
           const userName = name.replace(/\s/g, '').toLowerCase();
-          const date= doc.data().datePost
+          const date = doc.data().datePost
           const hour = doc.data().hourPost
           const bookImageUrl = doc.data().imageUrl
           const userImageUrl = doc.data().userImg
@@ -51,22 +59,22 @@ export const loadPosts = () => {
           const author = doc.data().author
           const rating = doc.data().rating
           const reviewContent = doc.data().review
-          const reviewLikes= doc.data().likes
-          
-          
-        
+          const reviewLikes = doc.data().likes
+
+
+
 
           let userImage
-          if (userImageUrl!=null){
+          if (userImageUrl != null) {
             userImage = userImageUrl
-          } else{
-            
+          } else {
+
             userImage = "./img/default-img.png"
           }
-        
-          const reviewTemplate = 
-                        
-            `<div id="posts-reviews">
+
+          let reviewTemplate =
+
+            `<div class="posts-reviews" id="${doc.id}" data-post>
               <div class="data-post">
                 <div class="main-information-post">
                   <div class="information-post-wrapper">
@@ -106,49 +114,87 @@ export const loadPosts = () => {
 
               <div class="likes-container">
                 <div class="like" id="like-${postId}">&#10084;</div>
-                <span class="num-likes">${reviewLikes.length}</span>
-              </div>
-              
-            </div>`
-                    
+                <span class="num-likes">${reviewLikes.length}</span> 
+                
+                <div class="optionsedition" data-edit-review">
+                <button class="edit-delete" id="edit-post">Editar</button>
+                  <button class="edit-delete" id="delete-post" data-item="delete">Excluir</button>
+                     <div class="confirm-delete">
+                      <div class="confirm-modal">
+                        <h1 class="h1-confirm-delete">Você tem certeza que quer excluir esse post?</h1>
+                          <button class="confirm-buttons" id="yes-delete">Confirmar</button>
+                            <button class="confirm-buttons" id="no-delete">Cancelar</button>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+              </div>`
+
           allReviews.innerHTML += reviewTemplate
 
-          if (bookImageUrl!=null){
-           document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
+          const postSelected = allReviews.querySelectorAll("[data-post]")
+          for (let post of postSelected) {
+            post.addEventListener("click", (e) => {
+              const postId = post.getAttribute("id")
+              const target = e.target
+              const targetDataset = target.dataset.item
+              if (targetDataset == "delete") {
+                document.querySelector(".confirm-delete").style.display = "block"
+                allReviews.querySelector("#yes-delete").addEventListener("click", () => {
+                  deletePost(postId)
+                    .then(() => {
+                      document.querySelector(".confirm-delete").style.display = "none"
+                      const deletePost = document.querySelector(`[data-post]`)
+                      deletePost.remove()
+                      console.log("post apagado")
+                    })
+                    .catch(e => {
+                      console.log("erro")
+                    })
+                })
+                document.querySelector("#no-delete").addEventListener("click", () => {
+                  document.querySelector(".confirm-delete").style.display = "none"
+                })
+              }
+            })
           }
-          
+
+          if (bookImageUrl != null) {
+            document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
+          }
+
           const heart = allReviews.querySelector(`#like-${doc.id}`)
-          if(reviewLikes.indexOf(userId) != -1){
+          if (reviewLikes.indexOf(userId) != -1) {
             heart.classList.add("active");
-          }  
+          }
         })
 
         const likeDivList = allReviews.querySelectorAll(".like");
-        
-        for(let div of likeDivList){
+
+        for (let div of likeDivList) {
           div.addEventListener("click", (e) => {
             e.preventDefault()
             //const liked = menu.classList.contains('.active');
             div.classList.toggle('active');
             //this.innerHTML = aberto ? 'abrir' : 'fechar';
-            
+
             const idLike = div.getAttribute("id")
             const idReviewLiked = idLike.slice(5)
-            const numLikesDiv=div.nextSibling.nextSibling
+            const numLikesDiv = div.nextSibling.nextSibling
             let updatedNumLikes
             getPost(idReviewLiked)
-            .then((review)=>{
-              const likesArray = review.data().likes
-              if (likesArray.indexOf(userId) === -1){
-                updatedNumLikes = likesArray.length+1
-              }else{
-                updatedNumLikes = likesArray.length-1
-              }
-              numLikesDiv.innerText = updatedNumLikes
-              like(idReviewLiked, userId)
+              .then((review) => {
+                const likesArray = review.data().likes
+                if (likesArray.indexOf(userId) === -1) {
+                  updatedNumLikes = likesArray.length + 1
+                } else {
+                  updatedNumLikes = likesArray.length - 1
+                }
+                numLikesDiv.innerText = updatedNumLikes
+                like(idReviewLiked, userId)
 
-            })
-            
+              })
+
           })
         }
 
@@ -158,22 +204,22 @@ export const loadPosts = () => {
       })
 
   }
-  
+
   reviewsData()
-      
+
 }
 
 
-export const publishReview = (e) =>{
+export const publishReview = (e) => {
   const user = currentUser()
   const userId = user.uid
   e.preventDefault()
   const date = new Date()
   const completeDate = date.toLocaleDateString()
   const hour = date.toLocaleTimeString("pt-BR", {
-    timeStyle: "short",       
-    hour12: false,          
-    numberingSystem: "latn"   
+    timeStyle: "short",
+    hour12: false,
+    numberingSystem: "latn"
   });
 
 
@@ -196,31 +242,31 @@ export const publishReview = (e) =>{
   const printReview = document.createElement("article")
   printReview.classList.add("new-review")
 
-  window.scrollTo(0,0)
+  window.scrollTo(0, 0)
 
-  if (image != undefined){
+  if (image != undefined) {
     uploadImageBooks("input-profile-img")
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then (url => {
-      const urlImage = url
-      return urlImage
-    })
-    .then((urlImage)=>{
-      createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase,urlImage, completeDate, hour)
-      
-    })
-    .then(()=>{
-      loadPosts()
-    })
-    
-  } else{
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then(url => {
+        const urlImage = url
+        return urlImage
+      })
+      .then((urlImage) => {
+        createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, urlImage, completeDate, hour)
+
+      })
+      .then(() => {
+        loadPosts()
+      })
+
+  } else {
     createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, null, completeDate, hour)
-    .then(()=>{
-      loadPosts()
-    })
+      .then(() => {
+        loadPosts()
+      })
   }
 
-    
-  
+
+
 
 }
