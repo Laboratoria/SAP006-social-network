@@ -1,13 +1,14 @@
 // import { signOut } from "../../services/index.js";
 import { createPost, getPost } from '../../services/index.js';
 import { Post } from '../../components/posts/posts.js';
+import { headerMenu } from '../../components/header/index.js';
 
 export const Feed = () => {
+  headerMenu()
+
   const root = document.createElement('div');
-  root.innerHTML = `
-  <p>Ola! Seja bem vindo.</p>
-  <button type='button' id='buttonSignOut' class='btn-login form-item'>Sair</button>
-  <main class='postContainer'>
+  root.innerHTML = `  
+    <main class='postContainer'>
     <header id='postHeader' class='postHeader'>Usuário</header> 
       <form class='formContainer'>
         <input class='postInput' placeholder='Sua Mensagem'>      
@@ -16,7 +17,7 @@ export const Feed = () => {
         </section>  
       </form>     
     <section class='feedTimeline'></section>
-  </main>  
+    </main>  
   `;
 
   const btnSignOut = root.querySelector('#buttonSignOut');

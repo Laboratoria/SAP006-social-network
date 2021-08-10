@@ -1,3 +1,10 @@
+@import url('../../components/header/style-header.css'); 
+
+.menu-header {
+  position: absolute;
+}
+
+
 .postContainer {
   width: 40vw;
   height: 22vh;
