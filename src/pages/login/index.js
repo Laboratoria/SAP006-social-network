@@ -12,7 +12,7 @@ export const login = () => {
     <figure class="logo">
     <img src="./img/ellas-dev-logo.png">
 
-    </figure>
+    </figure> 
         <h3 class="">Login</h3>
 
         <section class="box-input">
@@ -31,7 +31,7 @@ export const login = () => {
         </section>
 
         <p> Não tem uma conta?
-            <a href=""> Cadastre-se </a>
+            <a id="btn-signup" href=""> Cadastre-se </a>
         </p>
     </section>
 </section>
@@ -39,28 +39,23 @@ export const login = () => {
 `;
     roottemplate.innerHTML = container;
 
-   
 
 
-roottemplate.querySelector('#login-btn')
-    .addEventListener('click', (event) => {
-        event.preventDefault();
-        const inputEmail = document.querySelector('user-email');
-        const inputPassword = document.querySelector('user-password');
-        loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
-    });
+    roottemplate.querySelector('#login-btn')
+        .addEventListener('click', (event) => {
+            event.preventDefault();
+            const inputEmail = document.querySelector('user-email');
+            const inputPassword = document.querySelector('user-password');
+            loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
+        });
 
-// roottemplate.querySelector('#google-btn')
-//     .addEventListener('click', (event) => {
-//         event.preventDefault();
-//         loginWithGoogleAccount();
-//     });
+    // roottemplate.querySelector('#google-btn')
+    //     .addEventListener('click', (event) => {
+    //         event.preventDefault();
+    //         loginWithGoogleAccount();
+    //     });
 
-// roottemplate.querySelector('#btn-signup')
-//     .addEventListener('click', (event) => {
-//         event.preventDefault();
-//         onNavigate('/signup');
-//     });
-
-return roottemplate;
+    const signUp = roottemplate.querySelector('#btn-signup');
+    signUp.addEventListener('click', () => onNavigate('signUp'));
+    return roottemplate;
 };
