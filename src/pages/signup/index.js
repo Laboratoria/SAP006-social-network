@@ -1,4 +1,4 @@
-import { signUpWithGoogle, loginWithGmail } from '../../services/index.js'
+import { signUpWithGoogle, loginWithGmail } from '../../services/index.js';
 
 export const SignUp = () => {
   const root = document.createElement('div');
@@ -18,14 +18,14 @@ export const SignUp = () => {
         <form>
           <div class='form-fields'>
             <label for='email'>E-mail</label>
-            <input id='email' type='e-mail' class='input-email'>
+            <input id='email' type='e-mail' class='input-email form-item'>
             
             <label class='label-login' for='password'>Senha</label>
-            <input id='password' type='password' class='input-password'>
+            <input id='password' type='password' class='input-password form-item'>
           </div>
 
           <button type='button' id='signUpButton' class='btn-signup btn form-item'>Cadastrar</button>
-          <p class='separator form-item'>ou</p> 
+          <p class='separator'>ou</p> 
           <button type='button' id='btnGmail' class='btnGmail btn form-item'>
             <img src='./img/logo-google.png' class='google-icon'></img>
             <span>Entrar com o Google</span>
@@ -44,7 +44,7 @@ export const SignUp = () => {
     window.history.pushState({}, '', '/');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
-  })
+  });
 
   btnSignUp.addEventListener('click', () => {
     const email = document.getElementById('email').value;
@@ -57,4 +57,4 @@ export const SignUp = () => {
   });
 
   return root;
-}
+};

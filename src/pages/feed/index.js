@@ -5,11 +5,10 @@ import { headerMenu } from '../../components/header/index.js';
 
 export const Feed = () => {
   headerMenu()
-  
+
   const root = document.createElement('div');
   root.innerHTML = `  
-  <button type='button' id='buttonSignOut' class='btn-login form-item'>Sair</button>
-  <main class='feedContainer'>
+    <main class='postContainer'>
     <header id='postHeader' class='postHeader'>Usuário</header> 
       <form class='formContainer'>
         <input class='postInput' placeholder='Sua Mensagem'>      
@@ -18,11 +17,11 @@ export const Feed = () => {
         </section>  
       </form>     
     <section class='feedTimeline'></section>
-  </main>  
+    </main>  
   `;
 
   const btnSignOut = root.querySelector('#buttonSignOut');
-  const textInput = root.querySelector('.postInput').value;
+  const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
 
   btnSignOut.addEventListener('click', () => {
@@ -49,8 +48,8 @@ export const Feed = () => {
   };
 
   btnPublish.addEventListener('click', () => {
-    getPostText(textInput);
-    //textInput.value = '';
+    getPostText(textInput.value);
+    textInput.value = '';
   });
 
   function loadPost() {
