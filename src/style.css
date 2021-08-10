@@ -851,18 +851,19 @@ header {
 
     font-size: 2rem;
     color: black;
-    margin: 1.5rem 0 1rem 1rem;
+    margin: 0 0 1rem 1rem;
 }
 
 .username-post {
     font-size: 1.6rem;
     margin-bottom: 1rem;
     color: grey;
-    margin: 1.5rem 0 1rem 1rem;
+    margin: 0 0 1rem 1rem;
 }
 
 .date {
     display: flex;
+
 }
 
 .date-post {
@@ -1001,11 +1002,11 @@ header {
 .optionsedition {
     width: 92.5%;
     margin: 0rem 3rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.185);
+    border-top: 1px solid rgba(0, 0, 0, 0.075);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 1rem 0rem 0rem 0rem;
+    padding: 1rem 1rem 0rem 0rem;
 
 }
 

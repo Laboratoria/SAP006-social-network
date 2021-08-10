@@ -4,7 +4,8 @@ import {
   uploadImageBooks,
   getReviews,
   getPost,
-  like
+  like,
+  deletePost
 } from "./index.js"
 
 
@@ -71,9 +72,9 @@ export const loadPosts = () => {
             userImage = "./img/default-img.png"
           }
 
-          const reviewTemplate =
+          let reviewTemplate =
 
-            `<div id="posts-reviews">
+            `<div class="posts-reviews" id="${doc.id}" data-post>
               <div class="data-post">
                 <div class="main-information-post">
                   <div class="information-post-wrapper">
@@ -148,7 +149,6 @@ export const loadPosts = () => {
                     .then(() => {
                       document.querySelector(".confirm-delete").style.display = "none"
                       post.remove()
-                      console.log("post apagado")
                     })
                     .catch(e => {
                       console.log("erro")

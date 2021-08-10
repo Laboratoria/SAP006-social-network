@@ -184,17 +184,6 @@ export const getPost = (postID) => {
 //   })
 // }
 
-export const deleteReview = (docId) => {
-  return database
-    .collection("reviews").doc(docId).delete()
-    .then(() => {
-      console.log("Document successfully deleted!");
-    })
-    .catch((error) => {
-      console.error("Error removing document: ", error);
-    });
-}
-
 export const updateRewiews = () => {
   return database
     .collection("reviews").onSnapshot(snapshot => {
@@ -242,4 +231,7 @@ export const like = (postID, userID) => {
     })
 
 
+}
+export const deletePost = (postId) => {
+  return database.collection("reviews").doc(postId).delete()
 }
