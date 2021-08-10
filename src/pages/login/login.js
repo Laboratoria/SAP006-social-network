@@ -21,8 +21,9 @@ export const Login = () => {
           <input required type="email" id="input-email">
           <label class="login-input-label" id="label-input-email">Email</label>
         </div>
-        <div>
-          <input required type="password" id="input-password">
+        <div class = "password-div" id="password-div">
+          <input required type="password" class="input-password" id="input-password">
+          <img class="eye" id="eye" src="./images/eye-off.png"/>
           <label class="login-input-label">Senha</label>
         </div>
       </form>
@@ -70,13 +71,24 @@ export const Login = () => {
   });
 
   const btnResetPassword = rootElement.querySelector("#button-forgot-password");
-  console.log(btnResetPassword)
   btnResetPassword.addEventListener("click", () => {
      const email = rootElement.querySelector('#input-email').value;
     resetPassword(email);
   })
 
-
+  let container = rootElement.querySelector(".password-div")
+  let input = rootElement.querySelector(".input-password")
+  let icon = rootElement.querySelector(".eye")
+  icon.addEventListener("click", function() {
+    container.classList.toggle('visible');
+    if (container.classList.contains('visible')) {
+      icon.src = ".//images/eye.png" 
+      input.type = 'text';
+    } else {
+      icon.src = "./images/eye-off.png";
+      input.type = 'password';
+    }
+  })
 
   return rootElement;
 

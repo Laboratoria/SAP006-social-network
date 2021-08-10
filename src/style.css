@@ -41,7 +41,7 @@ body {
   
   .login-left-section header {
 	margin-bottom: 5%;
-	padding: 1.5% 2%;
+	padding: 3% 5%;
 	text-align: start;
 	font-size: 90%;
 	cursor: pointer;
@@ -76,7 +76,7 @@ body {
   }
   
   .login-btn-sig-log button {
-	width: 30%;
+	min-width: 30%;
 	padding: 2% 2%;
 	margin-bottom: 5%;
 	margin-right: 2.5%;
@@ -93,9 +93,7 @@ body {
 	box-shadow: 0 4px 30px rgba(10, 54, 37, 0.95);
   }
   
-  .register-btn-register {
-	margin-top: -2%;
-  }
+
   
   .login-left-section input {
 	width: 60%;
@@ -110,7 +108,7 @@ body {
   
   .login-input-label {
 	position: absolute;
-	left: 20%;
+	left: 22%;
 	margin-top: 1.8%;
   }
   
@@ -118,6 +116,7 @@ body {
   .login-left-section input:valid ~ .login-input-label,
   .login-input-label-up {
 	font-size: 65%;
+	margin-left:1%;
 	margin-top: 0.8%;
 	color: grey;
   }
@@ -142,7 +141,8 @@ body {
   }
   
   .login-error-div {
-	margin-top: -1.5%;
+	margin-top: 2%;
+	margin-bottom: 2%;
   }
   
   .login-error {
@@ -151,77 +151,116 @@ body {
   }
   
   .login-left-section footer {
-	margin-top: 3%;
+	position: relative;
+	bottom:-5.5%;
 	font-size: 80%;
   }
-  
+
   .button-submit button {
-	width: 30%;
+	width: 20%;
 	padding: 2% 0%;
 	background-color: #025159;
 	color: white;
 	border-radius: 25px;
   }
-  
-  .register-footer {
-	position: relative;
-	bottom: 0%;
-  }
-  
-  * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-  }
-  
-  aside {
-	display: flex;
-	position: fixed;
+
+/* Feed */ 
+.all-container {
+	flex-direction: column;
+	font-family: "Roboto";
+	color: #025159;
+}
+
+.feed-left-section {
 	width: 15%;
-	height: 2000px;
-	flex-direction: column;
+	height: 100vh;
+	padding: 5% 0%;
+	position: fixed;
 	background-color: rgb(182, 179, 179);
+}
+
+.feed-right-section {
+	width: 85%;
+	margin-left: 15%;
+}
+
+.feed-welcome-user {
+	color: #404040;
+	font-size:110%;
+}
+
+.feed-user-photo {
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+	border: none;
+	box-shadow: 0 4px 20px rgba(10, 54, 37, 0.4);
   }
-  
-  .icons {
+
+.name-user {
+	margin-top: -4%;
+}
+
+.feed-settings-container{
+	margin-top: 20%;
+}
+
+.feed-settings {
+	margin-top: 6%;
+	margin-left: 10%;
 	display: flex;
-	justify-content: space-between;
 	flex-direction: column;
-	align-items: center;
-	color: grey;
-	margin-top: 35%;/*Aqui subi*/
-	margin-left: -100px;
-  }
-  
-  .icons img {
+}
+
+.feed-settings img {
 	width: 25px;
 	height: 25px;
 	margin: 25px;
-  }
+}
 
-
-  
-  .text-icon {
-	display: flex;
-	position: relative;
-	margin-left: 140px;
-	margin-top: -40px;
-	border: none !important;
-	background-color: transparent !important;
-	color: grey;
+.feed-settings button {
+	margin-left: 4%;
+	margin-top: -24.5%;
+	color: #666666;
+	border: none;
+	background-color: transparent;
+	font-family: "Roboto";
+	font-size: 95%;
 	cursor: pointer;
-  }
+}
 
+.feed-settings button:hover {
+	color: #404040;
+}
+
+.feed-search-input{
+	width: 60%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	padding:1%;
+	font-size:115%;
+	border-radius: 30px;
+	font-family: "Roboto";
+	outline: none;
+	border:#025159 solid 1pt;
+	color: #025159;
+	opacity: 0;
+}
+
+.feed-search-input:focus {
+	border: solid 2pt;
+  }
+  
   .wrap {
+    margin: 0 auto;
 	margin: 0 auto;
-	margin-top: 15px;
-	margin-left: 25%;;
+	margin-top: -50px;
+	margin-left: 15%;;
 	height: 140px;
 	width: 50%;
-	position: absolute;
-	overflow: hidden;
-	align-items: center;
-	
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
   }
 
 
@@ -242,8 +281,6 @@ body {
 	background-clip: content-box, border-box;
   }
   
- 
-
 .slider {
 	padding-left: 40px;
 	margin: 0 auto;
@@ -254,15 +291,7 @@ body {
 	scroll-behavior: smooth;
 	z-index: 2;
   }
-  
-  .carousel-img {
-	width: 100%;
-	min-width: 100%;
-	max-width: 100%;
-	height: 50px;
-	object-fit: cover;
-  }
-  
+
   #previous,
   #next {
 	cursor: pointer;
@@ -277,64 +306,64 @@ body {
   
 	top: calc(45% - 25px);
 	left: -10px;
+
+  }
+  
+  .container-carousel {
+    height: 80px;
   }
 
-  
   #next {
 	left: unset;
 	right: 30px;
-  }
   
-  #ordemGeracao {
-	width: 150px;
-	height: 30px;
-	margin-bottom: 20px;
-	border-radius: 15px;
   }
-  
+.feed-container {
+	align-items: center;
+	justify-content: center;
+}
+
+.feed-text-area {
+	width: 90%;
+	height: 90%;
+	box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+	border-radius: 10px;
+	margin-top: 1%;
+	margin-left: 5%;
+} 
 
 
-  
-  .photo {
-	background-size: 100%;
-	margin: 0 auto;
-	width: 120px;
-	height: 120px;
-	border-radius: 50%;
-	outline: none;
-	cursor: pointer;
-	background-image: url("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60")
-  }
-  
-  #input-file-profileImg {
-	  opacity: 0;
-	
-  }
-  
-  .icon-principal img {
-	max-width: 300px;
-	max-height: 300px;
-	width: auto;
-	height: auto;
-	top: 0;
-  }
-  
-  
-  
-  
-  .button-submit button {
-	width: 30%;
-	padding: 2% 0%;
-	background-color: #025159;
-	color: white;
-	border-radius: 25px;
-  }
-  
-  /*Aqui teste do feed*/
-  
-  .feed-container {
-	text-align: center;
-  }
+.feed-text-area:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
+
+.posts-container {
+	width: 100%;
+	margin-top: 5%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.div-postados{
+	border-radius: 12px;
+	border: 2px solid #EBEEF0;
+	width: 40%;
+	height: 400px;
+	margin-top: 10px;
+	background-color: white;	
+}
+
+
+
+
   .div-postados img {
 	width: 20px;
 	height: 20px;
@@ -344,7 +373,7 @@ body {
 	  margin-top: 0;
 	  font-size: 13px;
 	  text-align: start;
-	  background-color: white;
+	  background-color: green;
   }
   .likes-comments-bar{
 	  /*margin-top: -10px;/*aqui era -10px*/
@@ -359,9 +388,12 @@ body {
   .icones{
 	  display: inline;
   }
+
+
   
 
   .postText {/*aqui text area publicar*/
+
 	  width: 500px;
 	  height: 100px;
 	  /* "Quebra" o padrão de textarea */
@@ -373,6 +405,19 @@ body {
 	  margin-left: 65px;
 	  overflow:auto;
   }
+
+
+  .publication-form {
+	  display: flex;
+	  flex-direction: column;
+	  margin-top: 80px;
+	  background-color:#025159;
+	  border-radius: 10px;
+	  width: 512px;
+	  height: 140px;
+	  margin: 0 auto;
+	  margin-top: 10%;
+  }
   .edit-text-area{
 	  background-color:aliceblue;
 	  width: 345px;
@@ -380,11 +425,7 @@ body {
 	  margin-top: -140px;
   }
 
-  textarea:focus {
-    box-shadow: 0 0 0 0;
-    border: 0 none;
-    outline: 0;
-} 
+
 .txt-post{
 	width: 100%;
 	height: 90px ;
@@ -398,7 +439,6 @@ body {
 	border: none;
 }
 
-
 #eye {
 	
 	width: 18px;
@@ -406,6 +446,7 @@ body {
 	margin-left: -30px;
 	margin-top: 10px;
 }
+
 .likes-comments-bar img{
 	height: 20px;
 	width: 20px;
@@ -414,23 +455,17 @@ body {
 .f-20{
 	font-size:12pt;
 }
-/*Ledi mexendo*/
-.div-postados{
-	border-radius: 12px;
-	border: 2px solid #EBEEF0;
-	width: 350px;
-	height: 250px;
-	margin-top: 10px;
-	background-color: white;	
-}
+.comment-f-20{
+	position:absolute;
+	background-color: red;
+	z-index: 0;
 
-.posts-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin-left: 18%;
-	width: 80%;
 }
+.input-required {
+	border: red, solid, 2pt;
+}
+/*Ledi mexendo*/
+
 
 .data-post-id{
 	text-align: initial;
@@ -448,33 +483,33 @@ body {
 	height: 80vh;
 	margin: auto;
 	background-color: white;
-}
-
-.img-logo-profile{
+ }
+  
+ .img-logo-profile{
 	width: 70%;
 	height: 13vh;
 	margin-top: 1%;
-}
-
-.photo-perfil{
+ }
+  
+ .photo-perfil{
 	margin-left: 20%;
 	margin-top: 2%;
-}
-
-.profile-input-label{
+ }
+  
+ .profile-input-label{
 	position: absolute;
-	left: 42%;
+	left: 40%;
 	margin-top: 1.5%;
-}
-
-.new-name:focus ~ .profile-input-label,
-.new-name:not(:placeholder-shown).new-name:not(:focus)~.profile-input-label{
+ }
+  
+ .new-name:focus ~ .profile-input-label,
+ .new-name:not(:placeholder-shown).new-name:not(:focus)~.profile-input-label{
 	margin-top: 0.8%;
 	font-size: 13px;
 	color: grey;
-}
-
-.change-name input{
+ }
+  
+ .change-name input{
 	font-family: "Roboto";
 	color: #025159;
 	outline:none;
@@ -482,24 +517,24 @@ body {
 	border-radius: 25px;
 	height: 35px;
 	width: 65%;
-	padding: 3% 3% 1% 3%;
+
 	margin-bottom: 1%;
 	margin-top: 3%;
 	border: solid 1pt;
-}
-
-.btn-profile-edit button, 
-.change-name input{
+ }
+  
+ .btn-profile-edit button,
+ .change-name input{
 	font-size: 110%;
 	font-weight: 500;
 	box-shadow: 0 4px 20px rgba(10, 54, 37, 0.4);
-}
-
-.btn-profile-edit{
+ }
+  
+ .btn-profile-edit{
 	margin-top: 3%;
-}
-
-.btn-profile-edit button{
+ }
+  
+ .btn-profile-edit button{
 	font-family: "Roboto";
 	cursor: pointer;
 	border-radius: 25px;
@@ -510,15 +545,14 @@ body {
 	padding: 2% 2%;
 	margin-bottom: 10%;
 	border: solid 0pt;
-}
-
-.profile-edit button:hover{
+ }
+  
+ .profile-edit button:hover{
 	transform: translateX(-2px);
 	box-shadow: 0 4px 30px rgba(10, 54, 37, 0.95);
-}
-
-.div-profile{
-	/*background-image: url("./images/testeee.jpg");*/
+ }
+  
+ .div-profile{
 	background-color: #025159;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -526,17 +560,17 @@ body {
 	width: 100vw;
 	margin-top: 0;
 	position: absolute;
-
+  
   }
-
+  
   .div-profile form{
 	  margin-top: 5%;
 	  border-radius: 25px;
-	 /* background-color:rgba(255, 255, 255, .5);*/
+  
 	 background-color: rgba(255, 255, 255, .9);
-	  
+	 
   }
-
+  
  .img-perfil{
 	 height: 120px;
 	 width: 120px;
@@ -545,7 +579,7 @@ body {
 	 border: 1px solid #025159;
 	;
  }
-
+  
  profile-photo-change{
 	 width: 100px;
 	 height: 100px;
@@ -557,3 +591,64 @@ body {
 	 font-size: 110%;
 	 font-weight: 500;
  }
+ 
+ /*ATÉ AQUI*/
+  #curtir {
+	cursor: pointer;
+	background-image: url( 'https://i.pinimg.com/originals/01/d4/c1/01d4c11077fd54ccad1a6f32b3df3adf.png');
+    background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: none;
+	
+}
+
+#curtir:focus
+{
+	
+	background-image: url('https://i.pinimg.com/originals/70/73/8e/70738e54de752d8e8ff690847b2dddfb.jpg');
+	
+
+}
+
+
+#comments{
+	cursor: pointer;
+	background-image: url('https://img.icons8.com/ios/452/comments.png');
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: none;
+}
+
+
+
+  @media screen and (max-width: 980px){
+	   
+	.login-container {
+	  background-image: url("./images/testeee.jpg");
+	  background-size: cover;
+	  background-repeat: no-repeat;
+	  height: 240px;
+	 
+	}
+	.login-left-section {
+	  width: 100%;
+	  height: 90vh;
+	  margin-top: 48%;
+	  margin: 0 auto;
+	  border-radius: 0px;
+  
+	  
+	}
+	
+	.login-img{
+		opacity: 0;
+	}
+	
+	  
+  }
+
+  

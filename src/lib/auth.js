@@ -90,3 +90,11 @@ export const postImage = (photo, callback) => {
   });
 };
 
+export const sendImageToDatabase = (file, showUrlOfImagesToPubish) => {
+  const ref = firebase.storage().ref('images/');
+  ref.child(file.name).put(file)
+    .then(() => {
+      ref.child(file.name).getDownloadURL()
+        .then(url => showUrlOfImagesToPubish(url));
+    });
+  }
