@@ -951,7 +951,7 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 1rem;
+    padding: 1rem;
 
 }
 
@@ -998,6 +998,17 @@ header {
 
 }
 
+.optionsedition {
+    width: 92.5%;
+    margin: 0rem 3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.185);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem 0rem 0rem 0rem;
+
+}
+
 #edit-post {
     display: inline-block;
     cursor: pointer;
@@ -1006,7 +1017,7 @@ header {
     color: var(--default-blue);
     font-size: 1.5rem;
     padding: 0rem;
-    margin: 0rem 1.5rem 0rem 57rem;
+    margin: 0rem 1.5rem 0rem 0rem;
 }
 
 #delete-post {

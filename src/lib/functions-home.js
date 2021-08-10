@@ -116,8 +116,13 @@ export const loadPosts = () => {
                 <div class="like" id="like-${postId}">&#10084;</div>
                 <span class="num-likes">${reviewLikes.length}</span> 
                 
-                <div class="optionsedition" data-edit-review">
-                <button class="edit-delete" id="edit-post">Editar</button>
+                </div>
+              </div>`
+
+          if (user != doc.id) {
+            reviewTemplate += `
+            <div class="optionsedition" data-option>
+            <button class="edit-delete" id="edit-post">Editar</button>
                   <button class="edit-delete" id="delete-post" data-item="delete">Excluir</button>
                      <div class="confirm-delete">
                       <div class="confirm-modal">
@@ -125,10 +130,10 @@ export const loadPosts = () => {
                           <button class="confirm-buttons" id="yes-delete">Confirmar</button>
                             <button class="confirm-buttons" id="no-delete">Cancelar</button>
                       </div>
-                    </div>
-                    </div>
+                  </div>
                 </div>
-              </div>`
+                    `
+          }
 
           allReviews.innerHTML += reviewTemplate
 
@@ -144,8 +149,7 @@ export const loadPosts = () => {
                   deletePost(postId)
                     .then(() => {
                       document.querySelector(".confirm-delete").style.display = "none"
-                      const deletePost = document.querySelector(`[data-post]`)
-                      deletePost.remove()
+                      post.remove()
                       console.log("post apagado")
                     })
                     .catch(e => {
