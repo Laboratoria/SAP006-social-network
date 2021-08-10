@@ -21,11 +21,6 @@ export const Feed = () => {
   </main>  
   `;
 
-  
-
- // root.insertAdjacentHTML('afterbegin', 'menu-header');
-
-
   const btnSignOut = root.querySelector('#buttonSignOut');
   const textInput = root.querySelector('.postInput').value;
   const btnPublish = root.querySelector('.publishBtn');
