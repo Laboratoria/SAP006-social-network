@@ -162,11 +162,14 @@ const postsCollection = firebase.firestore().collection("posts");
       comments: [],
       image: [],
     }; 
+    if(postText.value === ""){
+      return
+    }else{   
     postsCollection.add(post).then(() => {
       rootElement.querySelector("#postText").value= "";
       rootElement.querySelector("#postado").innerHTML = "";
       loadPosts();
-    });
+    })};
   });
 
   // Printa todos os posts existentes na tela:
@@ -193,9 +196,9 @@ const postsCollection = firebase.firestore().collection("posts");
               else
                 return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${0} </span> <span data-like-text-to-be-changed="${post.id}"> ❤️ Curtidas </span> </p>`
             }) (post.data().likes.length)}
-            <button type="submit" data-deletePost="${post.id}" class="delete-button"> Deletar</button>
+            <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> Deletar</button>
           </section>
-    
+          
           <div class="comments">
           <input required data-commentPostInput="${post.id}" placeholder='O que você quer comentar?'></input>
           <button data-commentPostButton="${post.id}"> Comentar </button> 
@@ -252,16 +255,15 @@ const postsCollection = firebase.firestore().collection("posts");
    })
     
    editSaveButton.addEventListener("click", () => {
-     if(editTextArea.value == ""){
-       return
-     } else {
+     if(editTextArea.value == "")return
      editSaveButton.hidden = true;
      editCancelBtn.hidden = true;
      editBtn.hidden = false;
      editTextArea.hidden = true;
      editTextArea.hidden = true;
      editUpdate(editTextArea.value, post.id);
-   }})
+   
+  })
     
    rootElement.querySelector("#postado").appendChild(postElement)
       });
