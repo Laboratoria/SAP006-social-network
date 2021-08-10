@@ -1,32 +1,32 @@
 const database = firebase.firestore()
 const storage = firebase.storage()
 
-export const loginPage = (email,password) => {
-  if (firebase.auth().currentUser){
-      firebase.auth().signOut()
+export const loginPage = (email, password) => {
+  if (firebase.auth().currentUser) {
+    firebase.auth().signOut()
   }
   return firebase
-  .auth()
-  .signInWithEmailAndPassword(email, password)
+    .auth()
+    .signInWithEmailAndPassword(email, password)
 }
 
-export const createUser = async(email, password) =>{
+export const createUser = async (email, password) => {
   await firebase
-  .auth()
-  .createUserWithEmailAndPassword(email, password)
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
 }
 
-export const setPersistence = () =>{
+export const setPersistence = () => {
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 }
 
-export const currentUser = () =>{
+export const currentUser = () => {
   return firebase.auth().currentUser
-  
+
 }
 
-  
-export const logout = () =>{
+
+export const logout = () => {
   firebase.auth().signOut()
 }
 
@@ -66,15 +66,13 @@ export const signInGoogleAccount = () => {
   return firebase
     .auth()
     .signInWithPopup(provider)
-    
+
 }
 /*
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
     .then((result) => {
     //@type {firebase.auth.OAuthCredential} 
     var credential = result.credential;
-
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = credential.accessToken;
     // The signed-in user info.
@@ -93,11 +91,11 @@ provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
     // ...
   });
 */
- 
+
 export const signOut = () => {
   firebase
-  .auth()
-  .signOut()
+    .auth()
+    .signOut()
   /*
   .then(() => {
     // Sign-out successful.
@@ -110,71 +108,71 @@ export const signOut = () => {
  */
 }
 
-export const uploadImage = (id, userid) =>{
+export const uploadImage = (id, userid) => {
   const ref = storage.ref()
   const file = document.getElementById(id).files[0]
   const imageName = userid
   const metadata = {
-    contentType:file.type,
+    contentType: file.type,
   }
 
   return ref.child("profilephotos").child(imageName).put(file, metadata)
 }
 
-export const uploadImageBooks = (id) =>{
+export const uploadImageBooks = (id) => {
   const ref = storage.ref()
   const imageName = ((new Date().getTime() / 1000) * Math.random()).toString()
   const file = document.getElementById(id).files[0]
   const metadata = {
-    contentType:file.type,
+    contentType: file.type,
   }
 
   return ref.child("bookcover").child(imageName).put(file, metadata)
 
 }
 
-export const forgotPassword = (email) =>{
-  if(email !== ''){
+export const forgotPassword = (email) => {
+  if (email !== '') {
     return firebase.auth()
-    .sendPasswordResetEmail(email)
+      .sendPasswordResetEmail(email)
   }
 }
 
 
-export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
+export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => {
   //const dateReview = new Date()
-  
+
   database
-  .collection("reviews").add({
-    book: bookUser,
-    author: authorUser,
-    review: reviewUser,
-    rating: ratingStars,
-    userName: nameUser,
-    userId: firebase.auth().currentUser.uid,
-    userImg: firebase.auth().currentUser.photoURL,
-    datePost: date,
-    hourPost: hour,
-    likes: [], 
-    imageUrl:image
-  })
-  .then(() => {
-    console.log("Document successfully written!");
-  })
-  .catch((error) => {
-    console.log("Error writing documents: ", error);
-  });
+    .collection("reviews").add({
+      book: bookUser,
+      author: authorUser,
+      review: reviewUser,
+      rating: ratingStars,
+      userName: nameUser,
+      userId: firebase.auth().currentUser.uid,
+      userImg: firebase.auth().currentUser.photoURL,
+      datePost: date,
+      hourPost: hour,
+      likes: [],
+      imageUrl: image
+    })
+    .then(() => {
+      console.log("Document successfully written!");
+    })
+    .catch((error) => {
+      console.log("Error writing documents: ", error);
+    });
 }
 
 
 export const getReviews = () => {
   return database
-  .collection('reviews').orderBy('datePost', 'desc').orderBy('hourPost', 'desc').get()
+    .collection('reviews').orderBy('datePost', 'desc').orderBy('hourPost', 'desc').get()
 }
 
 
 
-export const getPost= (postID) =>{
+export const getPost = (postID) => {
   const review = database.collection("reviews").doc(postID)
   return review.get()
 }
@@ -186,62 +184,54 @@ export const getPost= (postID) =>{
 //   })
 // }
 
-export const deleteReview = (docId) => {
-  return database
-  .collection("reviews").doc(docId).delete()
-  .then(() => {
-    console.log("Document successfully deleted!");
-  })
-  .catch((error) => {
-      console.error("Error removing document: ", error);
-  });
-}
-
 export const updateRewiews = () => {
   return database
-  .collection("reviews").onSnapshot(snapshot => {
-    snapshot.docChanges().forEach(post => {
-      if(post.type == "added"){
-        console.log("added")
-        //getReviews(post.doc.data(), post.doc.id);
-      }
-      if(post.type == "modified"){
-        console.log("modified");
-      }
-      if(post.type == "removed"){
-        console.log("removed")
-      }
+    .collection("reviews").onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(post => {
+        if (post.type == "added") {
+          console.log("added")
+          //getReviews(post.doc.data(), post.doc.id);
+        }
+        if (post.type == "modified") {
+          console.log("modified");
+        }
+        if (post.type == "removed") {
+          console.log("removed")
+        }
+      })
     })
-  })
 }
 
 
-export const like = (postID, userID) =>{
+export const like = (postID, userID) => {
   let numberOfLikes
   const review = database.collection("reviews").doc(postID)
   review.get()
-  .then((rev)=>{
-    const likesArray = rev.data().likes
-    console.log(likesArray)
-    if (likesArray.indexOf(userID) === -1){
-      review.update({
-        likes:firebase.firestore.FieldValue.arrayUnion(userID)
-      })
-      numberOfLikes = (likesArray.length)+1
-     
-    }else{
-      review.update({
-        likes:firebase.firestore.FieldValue.arrayRemove(userID)
-      })
-      numberOfLikes = (likesArray.length)-1
-      console.log(numberOfLikes)
-    }
-    console.log(numberOfLikes)
-    
-  })
-  .catch((error) => {
-    console.error("Error writing document: ", error);
-  })
- 
+    .then((rev) => {
+      const likesArray = rev.data().likes
+      console.log(likesArray)
+      if (likesArray.indexOf(userID) === -1) {
+        review.update({
+          likes: firebase.firestore.FieldValue.arrayUnion(userID)
+        })
+        numberOfLikes = (likesArray.length) + 1
 
-}    
+      } else {
+        review.update({
+          likes: firebase.firestore.FieldValue.arrayRemove(userID)
+        })
+        numberOfLikes = (likesArray.length) - 1
+        console.log(numberOfLikes)
+      }
+      console.log(numberOfLikes)
+
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    })
+
+
+}
+export const deletePost = (postId) => {
+  return database.collection("reviews").doc(postId).delete()
+}
