@@ -4,11 +4,12 @@ import { addPosts, loadPosts } from '../../services/database.js';
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
-    <header class="inputSearch">
-      <input type="search" class="searchBar" name="searchPost" placeholder="Busque por um post">
-      <button><span class="iconify" data-inline="false" data-icon="clarity:notification-outline-badged" style="color: #FFD2BF;"></span></button>
+    <header class="searchBell">
+      <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
+      <button><span id="bell" class="iconify" data-inline="false" data-icon="clarity:notification-outline-badged" style="color: #F78563;"></span></button>
     </header> 
-
+    <hr class="line"></hr>
+    <h4>POSTAGENS RECENTES</h4>
     <section class="post">
       <form action="" id="published-form">
       <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
@@ -19,16 +20,14 @@ export const Feed = () => {
     <section class="get-post" id="postTemplate">
     </section>
 
-    <nav class="navbar">
+    <nav class="navbar mobile-list">
       <ul>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:home" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" data-inline="false" data-icon="clarity:plus-circle-line" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:comment" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:person" style="color: #FFD2BF;"></span></li>
       </ul>
-    </nav>
-
-    
+    </nav>    
   `;
 
   rootElement.innerHTML = container;
@@ -69,7 +68,7 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
-  
+
   // function deletePost(postId) {
   //   const collectionOfPosts = firebase.firestore().collection('posts');
   //   collectionOfPosts.doc(postId).delete()

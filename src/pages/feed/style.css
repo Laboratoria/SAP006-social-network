@@ -1,37 +1,52 @@
-img#background {
-    position: absolute;
-    z-index: -1;
-    height: 100%;
-    width: 130%;
-    opacity: 0.4;
-} 
-    
-h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bolder;
-    font-size: 27px;
-    line-height: 31px;
-    letter-spacing: 0.35px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: var(--color-primary);
+body, section, #bell {
+    background-color: #F0EAE7;
 }
 
-/* .esmaeceHeader {
-    opacity: 100%;
-    background-color: #FFD2BF;
-} */
-
-/* section {
-    padding: 20% 0% 5% 5%;
-} */
-
-.logotipo-text {
-    height: 20%;
+header {
+    justify-content: flex-start;
     width: 100%;
-    z-index: -1;
+    padding-top: 10%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
 }
 
-h4, a {
+.searchBar {
+    width: 80%;
+    height: 0.6vh;
+    color: #706F6B;
+    background-color: var(--color-white);
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF;
+}
+
+input.searchBar {
+    box-shadow: none;
+}
+
+.line {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 5% 0;
+}
+
+h4 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.0168em;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #213D3E;
+}
+
+section.post {
+    margin-top: 30%;
+}
+
+a {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -90,7 +105,6 @@ nav {
     height: 72px;
     background-color: #F78563;
     border-radius: 30px 30px 0 0;
-    z-index: -1;
     position: absolute;
 }
 
@@ -110,9 +124,33 @@ ol, ul {
     width: 100%;
 }
 
+/* .navbar ul li {
+    display: inline-block;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+} */
+
+.mobile-list {
+    /* display: inline-block; */
+    bottom: 0;
+
+    position: fixed;
+    width: 100%;
+}
+
+/* svg:active {
+    display: none;
+    change to when active: <span class="iconify" data-inline="false" data-icon="bi:plus-circle-fill" style="color: #FFD2BF;"></span>;
+} */
+
 svg {
     height: 2.4em;
     width: 2.4em;
+    /* stroke-width="1.7"
+    width="2.5em"
+    height="2.5em" */
 }
 
 path, circle {
@@ -125,7 +163,3 @@ path, circle {
     width: 100%;
 }
 
-
-/* stroke-width="1.7"
-width="2.5em"
-height="2.5em" */
