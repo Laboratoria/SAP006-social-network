@@ -1,5 +1,5 @@
 import { back, user, perfilImage } from './data.js';
-import { postImage } from '../../lib/auth.js';
+
 
 export const profile = () => {
   const container = document.createElement('div');

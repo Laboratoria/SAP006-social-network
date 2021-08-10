@@ -365,8 +365,8 @@ body {
 
 
   .div-postados img {
-	width: 20px;
-	height: 20px;
+	width: 350px;
+	height: 350px;
   }
   
   .user-post{
@@ -651,4 +651,16 @@ body {
 	  
   }
 
-  
+  .img-po{
+		width: 1580px;
+		height: 1580px;
+	}
+
+	#image_uploads{
+		opacity: 0;
+	}
+
+	
+	#hide-img{
+		visibility: none;
+	}

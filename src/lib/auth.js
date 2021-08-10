@@ -78,17 +78,6 @@ export const user = (nome, url) => {
   });
 };
 
-export const postImage = (photo, callback) => {
-  const file = photo.files[0];
-  const storageRef = firebase.storage().ref('imagens/' + file.name);
-
-  storageRef.put(file).then(() => {
-    storageRef.getDownloadURL().then((url) => {
-      console.log(url);
-      callback(url);
-    });
-  });
-};
 
 export const sendImageToDatabase = (file, showUrlOfImagesToPubish) => {
   const ref = firebase.storage().ref('images/');
