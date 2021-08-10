@@ -1,4 +1,4 @@
-import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from "../../services/index.js";
+import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from '../../services/index.js';
 
 export const Login = () => {
   const root = document.createElement('div');
@@ -19,10 +19,10 @@ export const Login = () => {
         <form>
           <div class='form-fields'>
             <label for='email'>E-mail</label>
-            <input id='email' type='e-mail' class='input-email'>
+            <input id='email' type='e-mail' class='input-email form-item'>
               
             <label class='label-login' for='password'>Senha</label>
-            <input id='password' type='password' class='input-password'>
+            <input id='password' type='password' class='input-password form-item'>
           </div>
           <div class='rememberForgot' >
             <label><input type='checkbox' id='keep-me-logged'>Manter-me conectado</label>
@@ -30,7 +30,7 @@ export const Login = () => {
           </div>  
 
           <button type='button' id='buttonLogin' class='btn-login btn form-item'>Entrar</button>
-          <p class='separator form-item'>ou</p>                      
+          <p class='separator'>ou</p>                      
           <button type='button' id='btnGmail' class='btnGmail btn form-item'>
             <img src='./img/logo-google.png' class='google-icon'></img>
             <span>Entrar com o Google</span>
@@ -39,16 +39,16 @@ export const Login = () => {
       </section>
     </section>
   </main>
-  `; 
+  `;
 
   const keepLogged = root.querySelector('#keep-me-logged');
   const reset = root.querySelector('#reset');
   const btnSignUp = root.querySelector('.opt-signup');
   const btnLogin = root.querySelector('#buttonLogin');
   const btnGmail = root.querySelector('#btnGmail');
-  
+
   keepLogged.addEventListener('change', () => {
-    const local = firebase.auth.Auth.Persistence.LOCAL;  
+    const local = firebase.auth.Auth.Persistence.LOCAL;
     const none = firebase.auth.Auth.Persistence.NONE;
     if (keepLogged.checked === true && btnLogin) {
       keepMeLogged(local);
@@ -58,7 +58,7 @@ export const Login = () => {
     keepMeLogged(none);
   });
 
-  reset.addEventListener("click", (event) => {
+  reset.addEventListener('click', (event) => {
     event.preventDefault();
     window.location.replace('/reset');
   });
