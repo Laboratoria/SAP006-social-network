@@ -4,8 +4,7 @@ import {
   uploadImageBooks,
   getReviews,
   getPost,
-  like,
-  deletePost
+  like
 } from "./index.js"
 
 
@@ -72,9 +71,9 @@ export const loadPosts = () => {
             userImage = "./img/default-img.png"
           }
 
-          let reviewTemplate =
+          const reviewTemplate =
 
-            `<div class="posts-reviews" id="${doc.id}" data-post>
+            `<div id="posts-reviews">
               <div class="data-post">
                 <div class="main-information-post">
                   <div class="information-post-wrapper">
@@ -111,28 +110,27 @@ export const loadPosts = () => {
                   
                   <p class="content-review">${reviewContent}</p> </br>
               </div>
-
               <div class="likes-container">
                 <div class="like" id="like-${postId}">&#10084;</div>
-                <span class="num-likes">${reviewLikes.length}</span> 
-                
-                </div>
-              </div>`
+                <span class="num-likes">${reviewLikes.length}</span>
+              </div>
+              
+            </div>`
 
           if (user != doc.id) {
             reviewTemplate += `
-            <div class="optionsedition" data-option>
-            <button class="edit-delete" id="edit-post">Editar</button>
-                  <button class="edit-delete" id="delete-post" data-item="delete">Excluir</button>
-                     <div class="confirm-delete">
-                      <div class="confirm-modal">
-                        <h1 class="h1-confirm-delete">Você tem certeza que quer excluir esse post?</h1>
-                          <button class="confirm-buttons" id="yes-delete">Confirmar</button>
-                            <button class="confirm-buttons" id="no-delete">Cancelar</button>
-                      </div>
+              <div class="optionsedition" data-option>
+              <button class="edit-delete" id="edit-post">Editar</button>
+                    <button class="edit-delete" id="delete-post" data-item="delete">Excluir</button>
+                       <div class="confirm-delete">
+                        <div class="confirm-modal">
+                          <h1 class="h1-confirm-delete">Você tem certeza que quer excluir esse post?</h1>
+                            <button class="confirm-buttons" id="yes-delete">Confirmar</button>
+                              <button class="confirm-buttons" id="no-delete">Cancelar</button>
+                        </div>
+                    </div>
                   </div>
-                </div>
-                    `
+                      `
           }
 
           allReviews.innerHTML += reviewTemplate
@@ -265,9 +263,9 @@ export const publishReview = (e) => {
 
   } else {
     createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, null, completeDate, hour)
-      .then(() => {
-        loadPosts()
-      })
+    //.then(()=>{
+    loadPosts()
+    //})
   }
 
 

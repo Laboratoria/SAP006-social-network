@@ -169,12 +169,12 @@ export default () => {
   
 
    const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
-  const logoutBtn = sectionElement.querySelector("#logout-btn")
+  //const logoutBtn = sectionElement.querySelector("#logout-btn")
 
   createReviewBtn.addEventListener ("click", publishReview)
-
-
-  loadPosts()
+  
+  
+  loadPosts()  
 
 
   return sectionElement
