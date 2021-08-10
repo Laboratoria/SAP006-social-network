@@ -142,8 +142,9 @@ export const forgotPassword = (email) =>{
 
 
 export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
-  return firebase
-  .firestore()
+  //const dateReview = new Date()
+  
+  database
   .collection("reviews").add({
     book: bookUser,
     author: authorUser,
@@ -153,19 +154,22 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
     userId: firebase.auth().currentUser.uid,
     userImg: firebase.auth().currentUser.photoURL,
     datePost: date,
-    hourPost:hour,
+    hourPost: hour,
     likes: [], 
     imageUrl:image
   })
-  
+  .then(() => {
+    console.log("Document successfully written!");
+  })
+  .catch((error) => {
+    console.log("Error writing documents: ", error);
+  });
 }
 
 
 export const getReviews = () => {
-  return firebase
-  .firestore()
-  .collection("reviews").get()
-
+  return database
+  .collection('reviews').orderBy('datePost', 'desc').orderBy('hourPost', 'desc').get()
 }
 
 
@@ -175,6 +179,41 @@ export const getPost= (postID) =>{
   return review.get()
 }
 
+// export const removeLike = (postUID, userUID) =>{
+//   database.collection("reviews").doc(postUID)
+//   .update({ 
+//     likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
+//   })
+// }
+
+export const deleteReview = (docId) => {
+  return database
+  .collection("reviews").doc(docId).delete()
+  .then(() => {
+    console.log("Document successfully deleted!");
+  })
+  .catch((error) => {
+      console.error("Error removing document: ", error);
+  });
+}
+
+export const updateRewiews = () => {
+  return database
+  .collection("reviews").onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(post => {
+      if(post.type == "added"){
+        console.log("added")
+        //getReviews(post.doc.data(), post.doc.id);
+      }
+      if(post.type == "modified"){
+        console.log("modified");
+      }
+      if(post.type == "removed"){
+        console.log("removed")
+      }
+    })
+  })
+}
 
 
 export const like = (postID, userID) =>{

@@ -213,11 +213,11 @@ export const publishReview = (e) =>{
       loadPosts()
     })
     
-  } else{
+  } else {
     createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, null, completeDate, hour)
-    .then(()=>{
+    //.then(()=>{
       loadPosts()
-    })
+    //})
   }
 
     
