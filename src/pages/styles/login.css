@@ -24,7 +24,7 @@ section.title {
 }
 
 .content-opacity {
-    background-image: url(./img/paleta3.jpg);
+    background-image: url(../login/img/paleta3.jpg);
     filter: opacity(0.4);
     z-index: -1;
     padding: 10% 5% 5% 5%;
