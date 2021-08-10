@@ -10,7 +10,7 @@ export const signup = () => {
     </div>
     <form class="form-register">
       <p class="create-account">Crie sua conta</p>
-      <span id="error-sign-up-message"></span>
+      <p id="error-sign-up-message"></p>
       <input type="text" placeholder="Nome" class="input-field" id="user-name">
       <input type="text" placeholder="Email" class="input-field" id="user-email">
       <div class="show-password">
@@ -23,10 +23,10 @@ export const signup = () => {
       <input type="password" placeholder="Confirmar Senha" class="input-field" id="confirm-password" autocomplete="off">
       <button id="sign-up-btn" class="button">Cadastrar</button>
     </form>
-    <span class="option">ou</span>
+    <p class="option">ou</p>
     <button class="button" id="google-btn" type="submit">
       <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
-      <span class="button-google">Continuar com o Google</span>
+      <p class="button-google">Continuar com o Google</p>
     </button>
     <p class="login-text">Já tem uma conta?</p>
     <button class="button" id="login-btn">Entrar</button
@@ -39,7 +39,9 @@ export const signup = () => {
       const userEmail = document.getElementById('user-email').value;
       const userPassword = document.getElementById('new-password').value;
       const confirmPassword = document.getElementById('confirm-password').value;
+
       createAccountWithEmailAndPassword(userName, userEmail, userPassword, confirmPassword);
+      onNavigate('/');
     });
 
   container.querySelector('#google-btn')

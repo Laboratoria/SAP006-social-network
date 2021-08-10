@@ -1,8 +1,10 @@
 import {
   createPost,
+  currentUser,
   loadPosts,
   logOut,
 } from '../../services/index.js';
+import { addPost } from '../../components/post.js';
 
 export const home = () => {
   const container = document.createElement('div');
@@ -22,19 +24,41 @@ export const home = () => {
       <input type="textarea" id="postText" class="post-text" placeholder="O que está acontecendo?">
       <button type="submit" class="send-post ">Postar</button>
     </form>
-    <span class="loading-posts"></span>
+    <p class="loading-posts"></p>
     <ul id="postsList"></ul>
  `;
 
   container.innerHTML = template;
+
+  loadPosts().then((snap) => {
+    container.querySelector('.loading-posts').innerHTML = '';
+    snap.forEach((post) => {
+      const postElement = addPost(post);
+      container.querySelector('#postsList').appendChild(postElement);
+    });
+  });
+
   container.querySelector('#postForm')
     .addEventListener('submit', (event) => {
       event.preventDefault();
       const textPost = document.querySelector('#postText').value;
-      createPost(textPost);
+      createPost(textPost).then((result) => {
+        const date = new Date();
+        const createdPost = {
+          id: result.id,
+          data: () => ({
+            userName: currentUser().displayName,
+            text: textPost,
+            createdAt: date.toLocaleString(),
+          }),
+        };
+
+        const newPostElement = addPost(createdPost);
+        container.querySelector('#postsList').prepend(newPostElement);
+      });
     });
+
   container.querySelector('.loading-posts').innerHTML = 'Carregando...';
-  loadPosts();
   container.querySelector('#logout').addEventListener('click', (e) => {
     e.preventDefault();
     logOut();

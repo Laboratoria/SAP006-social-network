@@ -10,17 +10,17 @@ export const login = () => {
     </div>
     <p class="subtitle">Uma rede para tutores e amantes de animais.</p>
     <form class="form-login">
-      <span id="error-message"></span>
+      <p id="error-message"></p>
       <input type="email" placeholder="Email" class="input-field" id="user-email" autocomplete="off" />
       <div class="input-login ">
         <i id="eye-login" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
       </div>
       <input type="password" placeholder="Senha" class="input-field" id="user-password" autocomplete="off" />
       <button class="button" id="login-btn" type="submit">Entrar</button>
-      <span class="option">ou</span>
+      <p class="option">ou</p>
       <button class="button" id="google-btn" type="submit">
         <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
-        <span class="button-google">Continuar com o Google</span>
+        <p class="button-google">Continuar com o Google</p>
       </button>
     </form>
     <p class="sign-up-text">Ainda não é membro?</p>
