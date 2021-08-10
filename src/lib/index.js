@@ -141,8 +141,8 @@ export const forgotPassword = (email) =>{
 }
 
 
-export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image) => { 
-  const dateReview = new Date()
+export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
+  //const dateReview = new Date()
   
   database
   .collection("reviews").add({
@@ -153,8 +153,8 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
     userName: nameUser,
     userId: firebase.auth().currentUser.uid,
     userImg: firebase.auth().currentUser.photoURL,
-    datePost: dateReview.toLocaleDateString(),
-    hourPost:`${dateReview.getHours()}:${dateReview.getMinutes()}`,
+    datePost: date,
+    hourPost: hour,
     likes: [], 
     imageUrl:image
   })

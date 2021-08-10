@@ -1,6 +1,7 @@
 import { currentUser} from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
-import { showReviewArea, publishReview, profileImage , loadPosts} from "../../lib/functions-home.js"
+import { showReviewArea, publishReview, profileImage, loadPosts } from "../../lib/functions-home.js"
+
 
 export default () => {
 
@@ -168,12 +169,12 @@ export default () => {
   
 
    const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
-  const logoutBtn = sectionElement.querySelector("#logout-btn")
+  //const logoutBtn = sectionElement.querySelector("#logout-btn")
 
   createReviewBtn.addEventListener ("click", publishReview)
-
-
-  loadPosts()
+  
+  
+  loadPosts()  
 
 
   return sectionElement
