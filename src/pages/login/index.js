@@ -19,10 +19,10 @@ export const Login = () => {
         <form>
           <div class='form-fields'>
             <label for='email'>E-mail</label>
-            <input id='email' type='e-mail' class='input-email'>
+            <input id='email' type='e-mail' class='input-email form-item'>
               
             <label class='label-login' for='password'>Senha</label>
-            <input id='password' type='password' class='input-password'>
+            <input id='password' type='password' class='input-password form-item'>
           </div>
           <div class='rememberForgot' >
             <label><input type='checkbox' id='keep-me-logged'>Manter-me conectado</label>
@@ -30,7 +30,7 @@ export const Login = () => {
           </div>  
 
           <button type='button' id='buttonLogin' class='btn-login btn form-item'>Entrar</button>
-          <p class='separator form-item'>ou</p>                      
+          <p class='separator'>ou</p>                      
           <button type='button' id='btnGmail' class='btnGmail btn form-item'>
             <img src='./img/logo-google.png' class='google-icon'></img>
             <span>Entrar com o Google</span>

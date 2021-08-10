@@ -84,10 +84,11 @@ const resetPassword = (email) => {
     });
 };
 
-const createPost = (post) => {
-  firebase.firestore().collection('post').add(post);
-};
+const createPost = (post) => firebase.firestore().collection('post').add(post);
+
+const getPost = () => firebase.firestore().collection('post').get();
 
 export {
-  loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, resetPassword, signOut, createPost,
+  loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, resetPassword,
+  signOut, createPost, getPost,
 };
