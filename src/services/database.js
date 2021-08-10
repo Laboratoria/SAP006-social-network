@@ -1,11 +1,13 @@
 import { printPost } from '../components/feed.js'
 
 export const loadPosts = () => {
-  return firebase.firestore().collection('posts')
-  // .orderBy('time', 'desc')
+  return firebase
+  .firestore()
+  .collection('posts')
+  .orderBy('time', 'desc')
   .get()
   .then(snap => {
-    const posts = [];
+    // const posts = [];
     snap.forEach(post => {
       printPost(post);
     });
@@ -16,7 +18,10 @@ export const loadPosts = () => {
 }
 
 export const addPosts = (post) => {
-  firebase.firestore().collection('posts').add(post)
+  return firebase
+  .firestore()
+  .collection('posts')
+  .add(post)
   .then(() => loadPosts());
 }
 

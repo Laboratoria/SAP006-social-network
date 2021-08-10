@@ -18,7 +18,6 @@ export const Feed = () => {
     <section class="get-post" id="postTemplate">
     </section>
   `;
-
   rootElement.innerHTML = container;
 
   const submitButton = rootElement.querySelector('#published-form');
@@ -32,11 +31,7 @@ export const Feed = () => {
       comments: [],
     };
     addPosts(post);
-  });
-    
-  const deleteButton = document.querySelector('.delete-button')
-  console.dir(deleteButton)
-  
+  });  
   loadPosts();
 
   return rootElement;
