@@ -2,6 +2,7 @@ import { signOut } from "../../services/index.js";
 
 export default () => {
   const user = firebase.auth().currentUser;
+
   if (!user) {
     signOut();
   }
@@ -112,7 +113,6 @@ export default () => {
       };
   
       const post = {
-        user: firebase.auth().currentUser.email,
         text: text,
         likes: 0,
         date: getDate(),
@@ -132,7 +132,7 @@ export default () => {
   // Adicionando posts
   function createTemplatePost(post) {
     const postTemplate = `
-      <li class="posts-box">
+      <li data-templatepost class="posts-box">
         <div id="${post.id}"class="post-container">
           <div class="user-container">
             <img src="${user.photoURL || "../../assets/default-user-img.png"}" class="user-photo">
@@ -145,13 +145,13 @@ export default () => {
           <div id=${post.id}>
             <textarea disabled class="post" rows="4" cols="50">${post.data().text}</textarea>
             <div id=${post.id} class="edit-container display-none">
-              <textarea class="post edited-post display-none" rows="4" cols="50"> ${post.data().text}</textarea>
+              <textarea class="post edited-post display-none" rows="4" cols="50">${post.data().text}</textarea>
 
               <p class="empty-text"></p>
             
               <div id=${post.id} class="edit-buttons-container">
-                <button class='close-edit-button buttons display-none' type='button'> Cancelar </button>
-                <button class='save-edit-button buttons display-none' type='button'>Salvar</button>
+                <button data-close class='close-edit-button buttons display-none' type='button'> Cancelar </button>
+                <button data-save class='save-edit-button buttons display-none' type='button'>Salvar</button>
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@ export default () => {
 
             <div id=${post.id}>
               <button class="editPost-btn timeline-buttons">
-                <img src="./assets/pencil.png" alt="Ícone de Lápis">
+                <img data-edit src="./assets/pencil.png" alt="Ícone de Lápis">
               </button>
               <button class="deletePost-btn timeline-buttons">
                 <img src="./assets/trash.png" alt="Ícone de Lixeira">
@@ -238,31 +238,25 @@ export default () => {
       return promiseLikes.then();
     }
 
+    const postLi = timeline.querySelectorAll('[data-templatePost]');
     // Abrir área de editar post
-    const editButtons = postBox.querySelectorAll(".editPost-btn");
-
-    for (const button of editButtons) {
-      button.addEventListener("click", () => {
-        openEditPost(postBox);
-      });
-    }
-
     function openEditPost(element) {
       element.querySelector(".edited-post").classList.remove("display-none");
       element.querySelector(".save-edit-button").classList.remove("display-none");
       element.querySelector(".close-edit-button").classList.remove("display-none");
       element.querySelector(".edit-container").classList.remove("display-none");
     }
-
-    // Fechar área de editar post
-    const closeEditButtons = postBox.querySelectorAll(".close-edit-button");
-
-    for (const button of closeEditButtons) {
-      button.addEventListener("click", () => {
-        closeEditPost(postBox);
+    
+    for (const openEdit of postLi) {
+      openEdit.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.dataset.edit === '') {
+          openEditPost(openEdit);
+        }
       });
     }
 
+    // Fechar área de editar post
     function closeEditPost(element) {
       element.querySelector(".edited-post").classList.add("display-none");
       element.querySelector(".save-edit-button").classList.add("display-none");
@@ -271,23 +265,16 @@ export default () => {
       element.querySelector(".empty-text").innerHTML = "";
     }
 
-    // Editar post
-    const saveEditPost = postBox.querySelectorAll(".save-edit-button");
-    const emptyText = postBox.querySelector(".empty-text");
-
-    for (const button of saveEditPost) {
-      button.addEventListener("click", (event) => {
-        event.preventDefault();
-        const editedPost = postBox.querySelector(".edited-post").value;
-        if (editedPost) {
-          editPost(editedPost, event.target.parentNode.id);
-        } else {
-          emptyText.style.color = "red";
-          emptyText.innerHTML = "Edite sua review antes de salvar.";
+    for (const closeEdit of postLi) {
+      closeEdit.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.dataset.close === '') {
+          closeEditPost(closeEdit);
         }
       });
     }
 
+    // Editar post
     function editPost(newPost, id) {
       postsCollection
         .doc(id)
@@ -299,15 +286,32 @@ export default () => {
         });
     }
 
-    // Visibilidade dos botões de editar e deletar
-    const visibilityOfButtons = (document, user) => {
-      if (user !== firebase.auth().currentUser.email) {
-        document.querySelector('.deletePost-btn').classList.add('visibility-hidden');
-        document.querySelector('.editPost-btn').classList.add('visibility-hidden');
-      }
-    };
+    for (const buttonSave of postLi) {
+      buttonSave.addEventListener('click', (e) => {
+        const editedPost = buttonSave.querySelector('.edited-post').value;
+        const target = e.target;
+        if (target.dataset.save === '') {
+          e.preventDefault();
+          if (editedPost) {
+            editPost(editedPost, e.target.parentNode.id);
+          } else {
+            const emptyText = buttonSave.querySelector(".empty-text");
+            emptyText.style.color = 'red';
+            emptyText.innerHTML = 'Edite sua review antes de salvar.';
+          }
+        }
+      });
+    }
 
-    visibilityOfButtons(document, user);
+    // Visibilidade dos botões de editar e deletar
+    // const visibilityOfButtons = (timeline, user) => {
+    //   if (user !== firebase.auth().currentUser.email) {
+    //     timeline.querySelector('.deletePost-btn').classList.add('visibility-hidden');
+    //     timeline.querySelector('.editPost-btn').classList.add('visibility-hidden');
+    //   }
+    // };
+
+    // visibilityOfButtons(timeline, user);
   }
 
   // Adicionando foto do perfil (MOBILE)
