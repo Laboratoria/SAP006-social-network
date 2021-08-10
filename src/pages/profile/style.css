@@ -1,11 +1,13 @@
 .profile-container {
   display: inline-block;
+
 }
   
 .profile-image-container {
   align-self: baseline;
   width: 25%;
   height: auto;
+  text-align: center;
 }
   
 .profile-image-container input[type='file'] {
@@ -14,14 +16,14 @@
   
 .profile-figure {
   position: relative;
-  width: 100%;
-  height: auto;
+  width: 120px;
+  height: 120px;
 }
   
 .avatar-image {
   cursor: pointer;
-  width: 100%;
-  height: auto;
+  width: 120px;
+  height: 120px;
   box-sizing: border-box;
   border-radius: 100%;
   border: 2px, solid, transparent;
@@ -37,8 +39,8 @@
   cursor: pointer;
   position: absolute;
   top: 0px;
-  width: 100%;
-  height: auto;
+  width: inherit;
+  height: inherit;
   border-radius: 100%;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0);
@@ -52,8 +54,8 @@
   
 .avatar-figcaption > img {
   margin-top: 32.5px;
-  width: 100%;
-  height: auto;
+  width: 50px;
+  height: 50px;
 }
   
 /*informações do perfil*/
@@ -91,7 +93,7 @@
 [class*='col-'] {
   float: left;
   padding: 15px;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 .row::after {
@@ -100,59 +102,24 @@
   display: table;
 }
 
-.col-1 {
-  width: 8.33%;
-}
-
-.col-2 {
-  width: 16.66%;
-}
-
-.col-3 {
-  width: 25%;
-}
-
-.col-4 {
-  width: 33.33%;
-}
-
-.col-5 {
-  width: 41.66%;
-}
-
-.col-6 {
-  width: 50%;
-}
-
-.col-7 {
-  width: 58.33%;
-}
-
-.col-8 {
-  width: 66.66%;
-}
-
-.col-9 {
-  width: 75%;
-}
-
-.col-10 {
-  width: 83.33%;
-}
-
-.col-11 {
-  width: 91.66%;
-}
-
-.col-12 {
-  width: 100%;
-}
-
 @media only screen and (min-width: 768px) {
   [class*='col-'] {
   width: 100%;
   }
 }
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
 
 /* For mobile phones: 
 [class*="col-"] {
@@ -173,6 +140,12 @@
   .col-s-10 {width: 83.33%;}
   .col-s-11 {width: 91.66%;}
   .col-s-12 {width: 100%;}
+}
+
+@media only screen and (max-width:767px){
+  .fieldset-container{
+    flex-wrap: wrap;
+  }
 }
 
 @media only screen and (min-width: 768px) {

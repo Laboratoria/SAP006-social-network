@@ -1,4 +1,4 @@
-import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from "../../services/index.js";
+import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from '../../services/index.js';
 
 export const Login = () => {
   const root = document.createElement('div');
@@ -39,16 +39,16 @@ export const Login = () => {
       </section>
     </section>
   </main>
-  `; 
+  `;
 
   const keepLogged = root.querySelector('#keep-me-logged');
   const reset = root.querySelector('#reset');
   const btnSignUp = root.querySelector('.opt-signup');
   const btnLogin = root.querySelector('#buttonLogin');
   const btnGmail = root.querySelector('#btnGmail');
-  
+
   keepLogged.addEventListener('change', () => {
-    const local = firebase.auth.Auth.Persistence.LOCAL;  
+    const local = firebase.auth.Auth.Persistence.LOCAL;
     const none = firebase.auth.Auth.Persistence.NONE;
     if (keepLogged.checked === true && btnLogin) {
       keepMeLogged(local);
@@ -58,7 +58,7 @@ export const Login = () => {
     keepMeLogged(none);
   });
 
-  reset.addEventListener("click", (event) => {
+  reset.addEventListener('click', (event) => {
     event.preventDefault();
     window.location.replace('/reset');
   });

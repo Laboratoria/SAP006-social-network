@@ -1,4 +1,5 @@
-//import { signOut } from '../../services/index.js';
+/* eslint-disable no-tabs */
+// import { signOut } from '../../services/index.js';
 
 export const Profile = () => {
   const root = document.createElement('div');
@@ -22,7 +23,7 @@ export const Profile = () => {
             </figure>
           </section>
 
-					<div class='form-fields col-9'>
+					<div class='form-fields col-9 '>
 						<p>Apelido:
 							<input id='surname' type='name' class='input-profile'>
             </p>
@@ -52,12 +53,26 @@ export const Profile = () => {
     </section>
     
     <nav class='btn-profile-container'>
-      <button type='button' id='SaveBtn' class='btn-save' 'btn'>Salvar</button>
+      <button type='submit' id='SaveBtn' class='btn-save' 'btn'>Salvar</button>
     </nav
   </main>
   `;
 
-  const avatarPhoto = root.querySelector ('.avatar-image').value
+  /* const avatarPhoto = root.querySelector ('.avatar-image').value; */
+
+  const saveButton = root.querySelector('.btn-save');
+
+  saveButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const surname = root.querySelector('#surname').value;
+    const name = root.querySelector('#name').value;
+    const localization = root.querySelector('localization').value;
+    const boat = root.querySelector('boat').value;
+    const email = root.querySelector('email').value;
+    
+  });
+
+  console.log(surname);
 
   return root;
 };
