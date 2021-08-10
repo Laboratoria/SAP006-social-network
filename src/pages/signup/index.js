@@ -1,4 +1,4 @@
-import { createAccount } from "../../services/index.js";
+import { createAccount } from "../../services/authentication.js";
 import { navigation } from "../../routes.js";
 
 
@@ -7,34 +7,33 @@ export const signUp = () => {
 
   const container = `
     <div class="image-page">
-            <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
-  
+      <img id="background" src="./pages/login/img/paleta3.jpg" alt="">
 
-            <div class="banner">
-                <h2>FORT</h2>
-            </div>
+      <div class="banner">
+          <h2>FORT</h2>
+      </div>
 
-          <form class="form-register">
-               <div class="infos-user">
-              <input class="value-register" type="email" name="adress-email" id="useremail" placeholder="E-mail">
+      <form class="form-register">
+        <div class="infos-user">
+          <input class="value-register" type="email" name="adress-email" id="useremail" placeholder="E-mail">
 
-              <input class="value-register" type="password" name="user-password" id="userpassword" placeholder="Senha">
+          <input class="value-register" type="password" name="user-password" id="userpassword" placeholder="Senha">
 
-              <input class="value-register" type="password" name="confirm-user-password" id="user-confirm-password"
-                  placeholder="Confirme a senha">
-                </div>
-              <div class="btn-form">
-                  <button id="btn-signup" class="btn">Cadastrar</button>
-              </div>
+          <input class="value-register" type="password" name="confirm-user-password" id="user-confirm-password" placeholder="Confirme a senha">
+        </div>
 
-              <div >
-                  <p class="go-link>Já tem uma conta? <span><a href="/login" class="go-link>Faça seu login aqui</a></span></p>
-              </div>
+        <div class="btn-form">
+          <button id="btn-signup" class="btn">Cadastrar</button>
+        </div>
 
-          </form>
+        <div>
+          <p class="go-link>Já tem uma conta? <span><a href="/login" class="go-link>Faça seu login aqui</a></span></p>
+        </div>
 
-  </div>
-  `;
+      </form>
+
+    </div>
+  `
 
   rootElement.innerHTML = container;
 

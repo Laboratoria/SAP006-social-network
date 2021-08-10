@@ -1,3 +1,5 @@
+import { addPosts, loadPosts, deletePost } from '../../services/database.js';
+
 export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
@@ -12,16 +14,16 @@ export const Feed = () => {
       </form>
     </section>
 
-    <section id="get-post">
+    <section class="get-post" id="postTemplate">
     </section>
   `;
 
   rootElement.innerHTML = container;
 
-  rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
+  const submitButton = rootElement.querySelector('#published-form');
+  submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-
     const post = {
       text: text,
       user_id: firebase.auth().currentUser.uid,
@@ -48,7 +50,7 @@ export const Feed = () => {
     
       <section class='edit-text'>
     
-        <input class="area-edit" />
+        <input class="area-edit" placeholder="Edite o texto aqui" />
     
         <div class='save-btn-area'>
           <button class="save-button" value='${post.id}'>Salvar post</button>
@@ -113,28 +115,6 @@ export const Feed = () => {
           const elementPost = addPost(post);
           rootElement.querySelector('#get-post').appendChild(elementPost)
         })
-      })
-    }
-
-    const btnDelete = rootElement.querySelectorAll('.delete-button')
-    btnDelete.forEach(buttonExclused => {
-      buttonExclused.addEventListener('click', () => {
-        const valueBtn = buttonExclused.value;
-        console.log(valueBtn);
-        const confirmDelete = confirm("Você deseja excluir o post definitivamente?");
-        if (confirmDelete)
-          deletePost(valueBtn);
-        else
-          return false;
-      })
-    })
-
-
-    function deletePost(postId) {
-      const collectionOfPosts = firebase.firestore().collection('post')
-      collectionOfPosts.doc(postId).delete().then(() => {
-        rootElement.querySelector("#get-post").innerHTML = "";
-        loadPosts();
       })
     }
 
