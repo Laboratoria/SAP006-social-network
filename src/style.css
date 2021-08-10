@@ -11,7 +11,7 @@ body {
   display: flex;
   justify-content: center;  
   background: linear-gradient(180deg, rgba(68, 136, 182, 0.418) 16.67%, rgba(114, 183, 211, 0.25) 100%);
-  background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 .logo {
@@ -82,7 +82,7 @@ body {
   display: inline-block;
 }
 
-.form-fields input, button {
+.form-item {
   width: 100%;
   padding: 8px 13px;
   outline: none;
@@ -125,6 +125,7 @@ body {
 .separator {  
   text-align: center;
   color: rgb(85, 84, 84);  
+  margin: 10px;
 }
 
 .btnGmail {
