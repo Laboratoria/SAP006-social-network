@@ -1,4 +1,6 @@
+
 import { getTheRoad } from "../../router.js";
+import { getError } from "./errors.js";
 
 export const loginWithGoogle = () => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -6,22 +8,31 @@ export const loginWithGoogle = () => {
     .then(() => {
     getTheRoad("/feed");
     }).catch(error => {
-      console.error(error);
+      getError(error);
     });
 };
 
+
+const updateProfileName = (name) => {
+  firebase
+  .auth()
+  .currentUser.updateProfile({displayName: name,})    
+};
+
+
 export const criarFirebaseconta = (email, senha, name) => {
   firebase.auth().createUserWithEmailAndPassword(email, senha)
-  .then((userReturn) => {
+  .then(() => {
+    updateProfileName(name);
+  
     getTheRoad("/feed");
+  
 })
-        .catch((error) => {
-          const errorMessage = error.message;
-          const errorCode = error.code;
-          window.alert("Error : " + errorMessage);
+.catch((error) => {
+          getError(error);
         });
-
       };
+
 
  export const logOut = () => {
         firebase.auth().signOut()
@@ -33,41 +44,57 @@ export const criarFirebaseconta = (email, senha, name) => {
       };
       
 
-firebase.auth().languageCode = 'PT_br';     
-export const loginWithEmailAndPassword = (email, pass) => {
-  firebase.auth().signInWithEmailAndPassword(email, pass) 
-  .then(() => {
-    getTheRoad("/feed");
-  }).catch((error) => {
-  const errorMessage = error.message;
-  const errorCode = error.code;
-  window.alert("Error : " + errorMessage);
-  });
 
+firebase.auth().languageCode = 'PT_br';   
 
-};
  export const resetPassword = (email) => {
    firebase.auth().sendPasswordResetEmail(email)
    .then(()=>{
      window.alert('Link enviado para o email')
    })
    .catch((error)=> {
-     window.alert(error)
+     getError(error)
    })
  }
 
- export const changeProfileImage = (file, callbackToSetNewImage) => {
-  const ref = firebase.storage().ref("perfil-pic/img")
+ export const loginWithEmailAndPassword = (email, pass) => {
+  firebase.auth().signInWithEmailAndPassword(email, pass) 
+  .then(() => {
+    getTheRoad("/feed");
+  }).catch((error) => {
+ getError(error)
+  });
+}
+
+export const user = (nome, url) => {
+  const user = firebase.auth().currentUser;
+  user.updateProfile({
+    displayName: nome,
+    photoURL: url,
+  }).then(() => {
+    console.log('funfou')
+  }).catch((error) => {
+    console.log(error);
+  });
+};
+
+export const postImage = (photo, callback) => {
+  const file = photo.files[0];
+  const storageRef = firebase.storage().ref('imagens/' + file.name);
+
+  storageRef.put(file).then(() => {
+    storageRef.getDownloadURL().then((url) => {
+      console.log(url);
+      callback(url);
+    });
+  });
+};
+
+export const sendImageToDatabase = (file, showUrlOfImagesToPubish) => {
+  const ref = firebase.storage().ref('images/');
   ref.child(file.name).put(file)
     .then(() => {
       ref.child(file.name).getDownloadURL()
-        .then((url) => {
-          callbackToSetNewImage(url);
-          firebase.auth().currentUser
-            .updateProfile({
-              photoURL: url,
-            });
-        });
+        .then(url => showUrlOfImagesToPubish(url));
     });
-};
-
+  }

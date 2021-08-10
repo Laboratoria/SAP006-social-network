@@ -1,17 +1,20 @@
 import { Register } from "./pages/register/register.js";
 import { Login } from "./pages/login/login.js"
 import { Feed } from "./pages/feed/feed.js"
+import {profile} from "./pages/perfil/main.js"
 
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
     "/":Login,
     "/register":Register,
-    "/feed":Feed
+    "/feed":Feed,
+    "/profile": profile,
+
   }
   elemento.innerHTML = "";
   elemento.appendChild(routes[window.location.pathname]())
- /* elemento.appendChild(routes["abacaxi"]())*/
+ /* elemento.appendChild(routes["pathname"]())*/
   console.log(window.location.pathname)
 }
 
