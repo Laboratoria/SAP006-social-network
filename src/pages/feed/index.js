@@ -1,5 +1,5 @@
-// import { sendDelete, addPost } from '../../components/feed.js';
-import { addPosts, loadPosts } from '../../services/database.js';
+// import { deletePost } from '../../components/feed.js';
+import { addPosts, loadPosts, deletePost } from '../../services/database.js';
 
 export const Feed = () => {
   const rootElement = document.createElement('div');
@@ -21,7 +21,8 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
-  rootElement.querySelector('#published-form').addEventListener('submit', (event) => {
+  const submitButton = rootElement.querySelector('#published-form');
+  submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
     const post = {
@@ -32,23 +33,11 @@ export const Feed = () => {
     };
     addPosts(post);
   });
-
-  // function deletePost(postId) {
-  //   const collectionOfPosts = firebase.firestore().collection('posts');
-  //   collectionOfPosts.doc(postId).delete()
-  //   .then(doc => {
-  //     loadPosts()
-  // });
+    
+  const deleteButton = document.querySelector('.delete-button')
+  console.dir(deleteButton)
   
-  // const btnDelete = document.querySelector('#btnDelete').value;
-  // function deletePost(postId) {
-  //   const collectionOfPosts = firebase.firestore().collection('posts');
-  //   collectionOfPosts.doc(postId).delete().then(doc => {
-  //     loadPosts();
-  //   });
-  // } 
-  // console.log(btnDelete);
-
   loadPosts();
+
   return rootElement;
 };
