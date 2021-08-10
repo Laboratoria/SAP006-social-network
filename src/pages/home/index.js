@@ -12,7 +12,6 @@ export default () => {
   const user = currentUser()
   const userId = user.uid
   
-
   const profileImg = profileImage()
 
   let userName 
@@ -85,9 +84,6 @@ export default () => {
       <button class="menu-mobile-btn" ><img src="./img/profile-navbar.png" class="menu-img"></button> 
       <button class="menu-mobile-btn" id="open-sidebar"><img src="./img/menu-navbar.png" class="menu-img" ></button>  
     </navbar/>
-  
-
-    
     
   `
   sectionElement.innerHTML = createFeedTemplate
@@ -108,8 +104,7 @@ export default () => {
       photo.style.height = "190%"
       photo.style.width = "140%"
       if(file.files.legth <= 0){
-        
-    
+           
         return;
       }
        
@@ -124,8 +119,6 @@ export default () => {
     
   const buttonAddReview = sectionElement.querySelector("#add-review")
 
- 
-
   buttonAddReview.addEventListener("click", () => {
     showReviewArea()
   })
@@ -136,8 +129,6 @@ export default () => {
     window.scrollTo(0,0)
     showReviewArea()
   })
-
-
 
   const cancelReview = sectionElement.querySelector(".cancel-btn")
   cancelReview.addEventListener("click", () => {
@@ -165,17 +156,12 @@ export default () => {
    
   })
 
-
-  
-
-   const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
+  const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
   const logoutBtn = sectionElement.querySelector("#logout-btn")
-
   createReviewBtn.addEventListener ("click", publishReview)
 
 
   loadPosts()
-
 
   return sectionElement
 }

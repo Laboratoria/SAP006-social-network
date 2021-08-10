@@ -705,7 +705,7 @@ header{
 .h1-review{
     font-size: 2rem;
 }
-#posts-reviews{
+.post-review{
     margin: 1rem;
     padding: 1rem;
     border-top: 1px solid grey;
@@ -890,6 +890,7 @@ header{
     transition:all 0.3s;
     margin-right:0.5rem;
     border:black 1px;
+    background-color: white;
   
 
 }
@@ -915,5 +916,57 @@ header{
 .num-likes{
     font-size: 1.8rem;
     color: grey;
-    
+    margin-right: 3rem;
 }
+
+.comment-btn{
+    text-decoration:none;
+    transition:all 0.3s;
+    margin-right:0.5rem;
+    background-color: white;
+    margin-top:0.5rem;
+    border:none;
+
+
+}
+
+.comment{
+    height:2rem;
+}
+
+.comment:hover{
+    cursor: pointer;
+}
+
+.add-comment-container{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    border: solid 1px rgb(202, 196, 196);
+    margin: 2rem 0rem;
+    border-radius: 10px;
+    
+
+
+}
+
+.input-comment{
+    margin:1rem;
+    font-size: 1.5rem;
+    outline: none;
+    border:none;
+    width:90%;
+}
+
+.send-comment{
+    color:rgb(26, 26, 182);
+    background-color: none;
+    border:none;
+    font-size: 1.5rem;
+    margin:0;
+    padding:0 1rem 0 0;
+}
+
+
+

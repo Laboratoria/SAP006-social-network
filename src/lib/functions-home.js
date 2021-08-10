@@ -1,7 +1,6 @@
 import {currentUser, createReview, uploadImageBooks, getReviews, getPost, like} from "./index.js"
 
 
-
 export const showReviewArea = () => {
   const formReview =document.querySelector(".review-area");
   formReview.style.display = "flex";
@@ -53,9 +52,6 @@ export const loadPosts = () => {
           const reviewContent = doc.data().review
           const reviewLikes= doc.data().likes
           
-          
-        
-
           let userImage
           if (userImageUrl!=null){
             userImage = userImageUrl
@@ -66,7 +62,7 @@ export const loadPosts = () => {
         
           const reviewTemplate = 
                         
-            `<div id="posts-reviews">
+            `<div class="post-review" id="${postId}" data-post>
               <div class="data-post">
                 <div class="main-information-post">
                   <div class="information-post-wrapper">
@@ -105,8 +101,16 @@ export const loadPosts = () => {
               </div>
 
               <div class="likes-container">
-                <div class="like" id="like-${postId}">&#10084;</div>
+                <button class="like" id="like-${postId}" data-item="like">&#10084;</button>
                 <span class="num-likes">${reviewLikes.length}</span>
+                <button  class="comment-btn" ><img class="comment" src="./img/comment.png"  data-item="comment"/></button>
+              </div>
+
+              <div class="comments-container" >
+                <div class="add-comment-container" style="display:none">
+                  <input type="text" class="input-comment" rows="2"> 
+                  <button class="send-comment">Publicar</button>
+                </div>
               </div>
               
             </div>`
@@ -123,32 +127,22 @@ export const loadPosts = () => {
           }  
         })
 
-        const likeDivList = allReviews.querySelectorAll(".like");
+        const postDivList = allReviews.querySelectorAll("[data-post]")
         
-        for(let div of likeDivList){
-          div.addEventListener("click", (e) => {
-            e.preventDefault()
-            //const liked = menu.classList.contains('.active');
-            div.classList.toggle('active');
-            //this.innerHTML = aberto ? 'abrir' : 'fechar';
-            
-            const idLike = div.getAttribute("id")
-            const idReviewLiked = idLike.slice(5)
-            const numLikesDiv=div.nextSibling.nextSibling
-            let updatedNumLikes
-            getPost(idReviewLiked)
-            .then((review)=>{
-              const likesArray = review.data().likes
-              if (likesArray.indexOf(userId) === -1){
-                updatedNumLikes = likesArray.length+1
-              }else{
-                updatedNumLikes = likesArray.length-1
-              }
-              numLikesDiv.innerText = updatedNumLikes
-              like(idReviewLiked, userId)
+        for(let post of postDivList){
+          post.addEventListener("click",(e)=>{
+            const postId = post.getAttribute("id")
+            const target = e.target
+            const targetDataset = target.dataset.item
+            console.log(targetDataset)
+            if(targetDataset=="like"){
+              likePost(target, postId)
+            }
 
-            })
-            
+            if(targetDataset=="comment"){
+              const div = target.parentNode.nextSibling.style.display="none"
+              console.log(div)
+            }
           })
         }
 
@@ -162,6 +156,7 @@ export const loadPosts = () => {
   reviewsData()
       
 }
+
 
 
 export const publishReview = (e) =>{
@@ -219,8 +214,39 @@ export const publishReview = (e) =>{
       loadPosts()
     })
   }
+}
 
-    
-  
+export const likePost = (target, postId) => {
+  const user = currentUser()
+  const userId = user.uid
+
+
+  target.classList.toggle('active');
+           
+            const numLikesDiv=target.nextSibling.nextSibling
+            let updatedNumLikes
+            getPost(postId)
+            .then((review)=>{
+              const likesArray = review.data().likes
+              if (likesArray.indexOf(userId) === -1){
+                updatedNumLikes = likesArray.length+1
+              }else{
+                updatedNumLikes = likesArray.length-1
+              }
+              numLikesDiv.innerText = updatedNumLikes
+              like(postId, userId)
+
+            })
+            .catch(()=>{
+              alert("Falha ao curtir o post! Tente novamente.")
+
+            })
+
+}
+
+export const commentPost = (postId) => {
+  const user = currentUser()
+  const userId = user.uid
+
 
 }

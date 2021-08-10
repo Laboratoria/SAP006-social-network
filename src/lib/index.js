@@ -155,6 +155,7 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
     datePost: date,
     hourPost:hour,
     likes: [], 
+    comments: [],
     imageUrl:image
   })
   
