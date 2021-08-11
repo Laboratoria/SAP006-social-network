@@ -1,6 +1,8 @@
 /* eslint-disable arrow-body-style */
-firebase.auth().useDeviceLanguage();
+import { route } from '../routes/navigator';
+import { handleError } from './error.js';
 
+firebase.auth().useDeviceLanguage();
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
@@ -31,7 +33,10 @@ export const googleLogin = () => {
 
 //* SIGN OUT  */
 export const outLogin = () => {
-  firebase.auth().signOut();
+  firebase.auth().signOut().then(() => {
+    route('/login');
+  })
+    .catch((handleError()));
 };
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
@@ -54,3 +59,21 @@ export const resetPass = (email) => {
       const errorMessage = error.message;
     });
 };
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    route('/login');
+  }
+});
+
+// export const firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     var uid = user.uid;
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });

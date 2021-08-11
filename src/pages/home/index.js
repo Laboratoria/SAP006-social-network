@@ -18,6 +18,7 @@ export const home = () => {
     <div class="goPost">
     <img class="tomato" src="./img/tomato.svg">
     <a id="goPost" href="">postar</a>
+
     </div>
 
     <button class='btn' id='btnLogout'>Sair</button>
@@ -39,6 +40,7 @@ export const home = () => {
 </div>
 `;
   const btnLogout = rootElement.querySelector('#btnLogout');
+
   const btnGoPost = rootElement.querySelector('#goPost');
 
   // botão sair para fazer logout
@@ -61,6 +63,7 @@ export const home = () => {
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
           <p class="tipo"> ${doc.data().tipo} </p>
+
           <button class="like" id="like"><img class="likePrice" src="./img/coracao.svg"></button>
           <p class="numLikes">0</p>
           <button class="price" id="price"> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
@@ -86,6 +89,7 @@ export const home = () => {
 // <button class="like" id="like"><img src="./img/coracao.svg"</button>
 // <button class="price" id="price"><img
 // src="./img/dinAmarelo.svg"<img src="./img/dinCinza.svg"</button>
+
 // <div class="coments" id="coments">
 // <p>comentario</p>
 // <button class="more" id="more">ver mais</button>

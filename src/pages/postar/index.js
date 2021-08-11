@@ -101,6 +101,7 @@ export const postar = () => {
 
     addPost(post);
     route('/home');
+
     return false;
   });
   return rootElement;
