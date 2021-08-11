@@ -32,22 +32,70 @@ export const signup = () => {
     <button class="button" id="login-btn">Entrar</button
   `;
   container.innerHTML = template;
+
   container.querySelector('#sign-up-btn')
     .addEventListener('click', (e) => {
       e.preventDefault();
+      let errorField = document.getElementById('error-sign-up-message');
       const userName = document.getElementById('user-name').value;
       const userEmail = document.getElementById('user-email').value;
       const userPassword = document.getElementById('new-password').value;
       const confirmPassword = document.getElementById('confirm-password').value;
-
-      createAccountWithEmailAndPassword(userName, userEmail, userPassword, confirmPassword);
-      onNavigate('/');
+      if (!userName) {
+        errorField.innerHTML = 'Por favor, digite o seu nome.';
+      } else if (userPassword !== confirmPassword) {
+        errorField.innerHTML = 'As senhas não estão iguais, tente novamente.';
+      } else {
+        createAccountWithEmailAndPassword(
+          userName,
+          userEmail,
+          userPassword,
+          confirmPassword,
+        )
+          .catch((error) => {
+            errorField = document.getElementById('error-sign-up-message');
+            let errorMessage = error.message;
+            switch (errorMessage) {
+              case 'The email address is badly formatted.':
+                errorMessage = 'Por favor, insira um email válido.';
+                errorField.innerHTML = errorMessage;
+                break;
+              case 'The password must be 6 characters long or more.':
+                errorMessage = 'A senha deve ter 6 caracteres ou mais.';
+                errorField.innerHTML = errorMessage;
+                break;
+              case 'Password should be at least 6 characters':
+                errorMessage = 'A senha deve ter pelo menos 6 caracteres';
+                errorField.innerHTML = errorMessage;
+                break;
+              case 'The email address is already in use by another account.':
+                errorMessage = 'O email já está em uso por outra conta.';
+                errorField.innerHTML = errorMessage;
+                break;
+              default:
+                break;
+            }
+          });
+      }
     });
 
   container.querySelector('#google-btn')
-    .addEventListener('click', (e) => {
-      e.preventDefault();
-      loginWithGoogleAccount();
+    .addEventListener('click', (event) => {
+      event.preventDefault();
+      loginWithGoogleAccount()
+        .catch((error) => {
+          const errorField = document.getElementById('error-sign-up-message');
+          let errorMessage = error.message;
+          switch (errorMessage) {
+            case 'The popup has been closed by the user before finalizing the operation.':
+              errorMessage = 'Login com Google cancelado.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            default:
+              break;
+          }
+        });
     });
 
   container.querySelector('#login-btn')

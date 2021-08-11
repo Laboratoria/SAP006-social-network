@@ -33,13 +33,49 @@ export const login = () => {
       event.preventDefault();
       const inputEmail = document.getElementById('user-email');
       const inputPassword = document.getElementById('user-password');
-      loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
+      loginWithEmailAndPassword(inputEmail.value, inputPassword.value)
+        .catch((error) => {
+          const errorField = document.getElementById('error-message');
+          let errorMessage = error.message;
+          switch (errorMessage) {
+            case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+              errorMessage = 'Usuário não encontrado, por favor, verifique seus dados.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            case 'The email address is badly formatted.':
+              errorMessage = 'Por favor, insira um email válido.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            case 'The password is invalid or the user does not have a password.':
+              errorMessage = 'Senha inválida.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            default:
+              break;
+          }
+        });
     });
 
   container.querySelector('#google-btn')
     .addEventListener('click', (event) => {
       event.preventDefault();
-      loginWithGoogleAccount();
+      loginWithGoogleAccount()
+        .catch((error) => {
+          const errorField = document.getElementById('error-message');
+          let errorMessage = error.message;
+          switch (errorMessage) {
+            case 'The popup has been closed by the user before finalizing the operation.':
+              errorMessage = 'Login com Google cancelado.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            default:
+              break;
+          }
+        });
     });
 
   container.querySelector('#btn-signUp')
