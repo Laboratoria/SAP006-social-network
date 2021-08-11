@@ -20,7 +20,7 @@ export const postar = () => {
      <main>
      <input class="addImg" id="addImg" type="image" src="./img/add.svg" alt="Adicionar imagem"/>
      <div class="local">
-     <p id='tittlePost'>Local:</p>
+     <p id="tittlePost">Local:</p>
      <input type="text" id="addLocal" name="localização" placeholder="Av. Celso Garcia, 1400, São Paulo - BR"/>
      <p id="errorLocal"></p>
      </div>
@@ -30,7 +30,7 @@ export const postar = () => {
       <button class="rest" id="rest">Restaurantes</button>
      </div>
      <input type:"text" id="hashtags" class="hashtags" name="hashtags" placeholder="#pizza #sp #vegano"/>>
-     <p id='errorHashtags'></p>
+     <p id="errorHashtags"></p>
      <div class="addPrice">
       <input type="radio" name="valor" value="$"/>
       <input type="radio" name="valor" checked value="$$"/>
@@ -38,7 +38,7 @@ export const postar = () => {
      </div>
      <hr>
      <textarea class="addText" id="addText" placeholder="Conte sua experiência aos amigos!" style="resize:none"></textarea>
-     <p id='errorDesc'></p>
+     <p id="errorDesc"></p>
      <hr>
      <button class="sendPost" id="sendPost">Publicar</button>
      </main>
@@ -101,6 +101,8 @@ export const postar = () => {
 
     addPost(post);
     route('/home');
+
+    return false;
   });
   return rootElement;
 };
