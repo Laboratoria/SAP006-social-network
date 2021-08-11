@@ -10,7 +10,7 @@ export const signup = () => {
     </div>
     <form class="form-register">
       <p class="create-account">Crie sua conta</p>
-      <span id="error-sign-up-message"></span>
+      <p id="error-sign-up-message"></p>
       <input type="text" placeholder="Nome" class="input-field" id="user-name">
       <input type="text" placeholder="Email" class="input-field" id="user-email">
       <div class="show-password">
@@ -23,29 +23,79 @@ export const signup = () => {
       <input type="password" placeholder="Confirmar Senha" class="input-field" id="confirm-password" autocomplete="off">
       <button id="sign-up-btn" class="button">Cadastrar</button>
     </form>
-    <span class="option">ou</span>
+    <p class="option">ou</p>
     <button class="button" id="google-btn" type="submit">
       <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
-      <span class="button-google">Continuar com o Google</span>
+      <p class="button-google">Continuar com o Google</p>
     </button>
     <p class="login-text">Já tem uma conta?</p>
     <button class="button" id="login-btn">Entrar</button
   `;
   container.innerHTML = template;
+
   container.querySelector('#sign-up-btn')
     .addEventListener('click', (e) => {
       e.preventDefault();
+      let errorField = document.getElementById('error-sign-up-message');
       const userName = document.getElementById('user-name').value;
       const userEmail = document.getElementById('user-email').value;
       const userPassword = document.getElementById('new-password').value;
       const confirmPassword = document.getElementById('confirm-password').value;
-      createAccountWithEmailAndPassword(userName, userEmail, userPassword, confirmPassword);
+      if (!userName) {
+        errorField.innerHTML = 'Por favor, digite o seu nome.';
+      } else if (userPassword !== confirmPassword) {
+        errorField.innerHTML = 'As senhas não estão iguais, tente novamente.';
+      } else {
+        createAccountWithEmailAndPassword(
+          userName,
+          userEmail,
+          userPassword,
+          confirmPassword,
+        )
+          .catch((error) => {
+            errorField = document.getElementById('error-sign-up-message');
+            let errorMessage = error.message;
+            switch (errorMessage) {
+              case 'The email address is badly formatted.':
+                errorMessage = 'Por favor, insira um email válido.';
+                errorField.innerHTML = errorMessage;
+                break;
+              case 'The password must be 6 characters long or more.':
+                errorMessage = 'A senha deve ter 6 caracteres ou mais.';
+                errorField.innerHTML = errorMessage;
+                break;
+              case 'Password should be at least 6 characters':
+                errorMessage = 'A senha deve ter pelo menos 6 caracteres';
+                errorField.innerHTML = errorMessage;
+                break;
+              case 'The email address is already in use by another account.':
+                errorMessage = 'O email já está em uso por outra conta.';
+                errorField.innerHTML = errorMessage;
+                break;
+              default:
+                break;
+            }
+          });
+      }
     });
 
   container.querySelector('#google-btn')
-    .addEventListener('click', (e) => {
-      e.preventDefault();
-      loginWithGoogleAccount();
+    .addEventListener('click', (event) => {
+      event.preventDefault();
+      loginWithGoogleAccount()
+        .catch((error) => {
+          const errorField = document.getElementById('error-sign-up-message');
+          let errorMessage = error.message;
+          switch (errorMessage) {
+            case 'The popup has been closed by the user before finalizing the operation.':
+              errorMessage = 'Login com Google cancelado.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            default:
+              break;
+          }
+        });
     });
 
   container.querySelector('#login-btn')

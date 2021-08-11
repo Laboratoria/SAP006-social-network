@@ -10,17 +10,17 @@ export const login = () => {
     </div>
     <p class="subtitle">Uma rede para tutores e amantes de animais.</p>
     <form class="form-login">
-      <span id="error-message"></span>
+      <p id="error-message"></p>
       <input type="email" placeholder="Email" class="input-field" id="user-email" autocomplete="off" />
       <div class="input-login ">
         <i id="eye-login" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
       </div>
       <input type="password" placeholder="Senha" class="input-field" id="user-password" autocomplete="off" />
       <button class="button" id="login-btn" type="submit">Entrar</button>
-      <span class="option">ou</span>
+      <p class="option">ou</p>
       <button class="button" id="google-btn" type="submit">
         <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
-        <span class="button-google">Continuar com o Google</span>
+        <p class="button-google">Continuar com o Google</p>
       </button>
     </form>
     <p class="sign-up-text">Ainda não é membro?</p>
@@ -33,13 +33,49 @@ export const login = () => {
       event.preventDefault();
       const inputEmail = document.getElementById('user-email');
       const inputPassword = document.getElementById('user-password');
-      loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
+      loginWithEmailAndPassword(inputEmail.value, inputPassword.value)
+        .catch((error) => {
+          const errorField = document.getElementById('error-message');
+          let errorMessage = error.message;
+          switch (errorMessage) {
+            case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+              errorMessage = 'Usuário não encontrado, por favor, verifique seus dados.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            case 'The email address is badly formatted.':
+              errorMessage = 'Por favor, insira um email válido.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            case 'The password is invalid or the user does not have a password.':
+              errorMessage = 'Senha inválida.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            default:
+              break;
+          }
+        });
     });
 
   container.querySelector('#google-btn')
     .addEventListener('click', (event) => {
       event.preventDefault();
-      loginWithGoogleAccount();
+      loginWithGoogleAccount()
+        .catch((error) => {
+          const errorField = document.getElementById('error-message');
+          let errorMessage = error.message;
+          switch (errorMessage) {
+            case 'The popup has been closed by the user before finalizing the operation.':
+              errorMessage = 'Login com Google cancelado.';
+              errorField.innerHTML = errorMessage;
+              errorMessage = '';
+              break;
+            default:
+              break;
+          }
+        });
     });
 
   container.querySelector('#btn-signUp')
