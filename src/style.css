@@ -19,14 +19,14 @@ body {
   background-attachment: fixed;
 }
 
-#root {
+.screenContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  flex-wrap: wrap;
 }
 
-.container {
+.div-width85 {
   width: 85%;
 }
 
@@ -37,7 +37,7 @@ body {
 
 .logo {
   width: 160px;
-  margin: auto;
+  margin: 35px auto auto auto;
   display: block;
 }
 
@@ -366,6 +366,65 @@ button:hover {
   bottom: -10px;
 }
 
+
+/* =================================  Página de feed: =================================== */
+
+.div-recipe {
+  background-color: var(--russet-orange);
+  margin: 1rem auto;
+  color: black;
+  box-shadow: 3px 3px 3px black;
+  display: block;
+  border-radius: 5px;
+}
+
+.recipe-title {
+  background-color: var(--red-plum);
+  border-radius: 5px 5px 0 0;
+  color:var(--pantone-142c);
+  margin-top: 0px;
+  padding: 5px;
+  width: 100%;
+
+}
+
+.recipe-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.recipe-content p {
+  margin-left: 0.5rem;
+}
+
+.recipeBody {
+  margin: 0.5rem;
+  display: none;
+}
+
+/* .hide {
+  display: none;
+} */
+
+.show {
+  display: block;
+}
+
+.div-width100 {
+  width: 100%;
+  border-bottom: none;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+
+#recipe-footer {
+  border-radius: 0 0 5px 5px;
+}
 
 @media screen and (min-width: 481px) and (max-width: 768px){
 
