@@ -20,6 +20,12 @@ export const Feed = () => {
     <section class="get-post" id="postTemplate">
     </section>
 
+    <div class="sliding-post">
+      <div >
+      
+      </div>
+    </div>
+
     <nav class="navbar mobile-list">
       <ul>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:home" style="color: #FFD2BF;"></span></li>
@@ -68,6 +74,10 @@ export const Feed = () => {
     // }
   }
   window.onscroll = stickyFilter();
+
+  sign_up_btn.addEventListener("click", () => {
+    container.classList.add("sign-up-mode");
+  });
 
   // function deletePost(postId) {
   //   const collectionOfPosts = firebase.firestore().collection('posts');
