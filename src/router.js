@@ -13,7 +13,13 @@ export const routeRender = () => {
     '/posts': postar,
   };
   elemento.innerHTML = '';
-  elemento.appendChild(routes[window.location.pathname]());
+  let destiny = window.location.pathname;
+
+  if (firebase.auth().currentUser === null) {
+    // destiny = '/login';
+  }
+
+  elemento.appendChild(routes[destiny]());
 };
 
 window.addEventListener('popstate', routeRender);
