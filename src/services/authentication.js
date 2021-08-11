@@ -8,7 +8,7 @@ export const createAccount = (email, password, confirmPassword) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      firebase.auth().currentUser.sendEmailVerification()
+      firebase.auth().currentUser.sendEmailVerification();
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -25,21 +25,19 @@ export const createAccount = (email, password, confirmPassword) => {
 };
 
 const verifyUser = () => {
-  firebase.auth().onAuthStateChanged((currentUser) => {
-    if (currentUser) {
-      const uid = currentUser.uid;
-    }
-  });
+  firebase
+    .auth()
+    .onAuthStateChanged((user) => {
+      if (user) {
+        localStorage.setItem('uid', user.uid);
+      }
+    });
 };
 
 export const signInEmailPassword = (email, password) => {
-  verifyUser();
   const signIn = firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-    })
     .catch((error) => {
       const errorCode = error.code;
 
