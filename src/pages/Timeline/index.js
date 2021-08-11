@@ -111,33 +111,32 @@ export default () => {
         const date = new Date();
         return date.toLocaleString("pt-BR");
       };
-  
       const post = {
         text: text,
         likes: 0,
         date: getDate(),
+        id: user.uid,
+        email: user.email,
       };
-  
       postsCollection.add(post).then(() => {
         timeline.querySelector("#postText").value = "";
         loadPosts();
       });
     }
     else {
-      alert("Por favor, digite uma review antes de publicar.")
+      alert('Por favor, digite uma review antes de publicar.');
     }
-    
   });
 
   // Adicionando posts
-  function createTemplatePost(post) {
+  function createTemplatePost(post, postUser) {
     const postTemplate = `
       <li data-templatepost class="posts-box">
         <div id="${post.id}"class="post-container">
           <div class="user-container">
-            <img src="${user.photoURL || "../../assets/default-user-img.png"}" class="user-photo">
+            <img src="${postUser.data().photo || "../../assets/default-user-img.png"}" class="user-photo">
             <div class="username-date-container">
-              <p class="username"> ${user.displayName || "Usuário"} </p>
+              <p class="username"> ${postUser.data().name || "Usuário"} </p>
               <time class="date">${post.data().date}</time>
             </div>
           </div>
@@ -373,7 +372,10 @@ export default () => {
     postsCollection.orderBy('date', 'desc').get().then((snap) => {
       timeline.querySelector('#posts').innerHTML = '';
       snap.forEach((post) => {
-        createTemplatePost(post);
+        const users = firebase.firestore().collection('users').doc(post.data().email);
+        users.get().then((postUser) => {
+          createTemplatePost(post, postUser);
+        });
       });
     });
   }
