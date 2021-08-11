@@ -29,7 +29,6 @@ export const Feed = () => {
       </ul>
     </nav>    
   `;
-
   rootElement.innerHTML = container;
 
   const submitButton = rootElement.querySelector('#published-form');
@@ -86,6 +85,7 @@ export const Feed = () => {
   const deleteButton = document.querySelector('.delete-button');
   console.dir(deleteButton);
 
+  });  
   loadPosts();
 
   return rootElement;
