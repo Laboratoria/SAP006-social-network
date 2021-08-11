@@ -6,34 +6,45 @@ export const signUp = () => {
     const container = `
    
 <section class="container">
-    <form class="box">
-        <h1 class="">Cadastre-se</h1>
+  <form class="box">
+    <h1 class="">Cadastre-se</h1>
+    
+     <section class="box-input">
+      <input type="email" id="user-email" name="usuario" placeholder="e-mail">
+    </section>
 
-        <section class="box-input">
-            <input type="email" id="user-email" name="usuario" placeholder="e-mail">
-        </section>
-<section class="box-input">
-            <input type="email" id="user-email-confirma" name="confirmaUsuario" placeholder="confirme seu e-mail">
-        </section>
-        <section class="box-input">
-            <input type="password" id="user-password" placeholder="senha">
-        </section>
-        <section class="box-input">
-            <input type="password" id="user-password-confirma" placeholder="confirme sua senha">
-        </section>
-        <section class="justify-center">
+    <section class="box-input">
+      <input type="email" id="user-email" name="usuario" placeholder="e-mail">
+    </section>
+    <section class="box-input">
+      <input type="email" id="user-email-confirma" name="confirmaUsuario" placeholder="confirme seu e-mail">
+    </section>
+    <section class="box-input">
+      <input type="password" id="user-password" placeholder="senha">
+    </section>
+    <section class="box-input">
+      <input type="password" id="user-password-confirma" placeholder="confirme sua senha">
+    </section>
+    <section class="justify-center">
       <button id="btn-signup">Enviar</button>
-            <hr>
-        </section>
-        <p> Já tem uma conta?
-            <a id="login-btn" href="">  Login  </a>
-        </p>
-    </form>
+      <hr>
+    </section>
+    <p> Já tem uma conta?
+      <a id="login-btn" href="/#login"> Login </a>
+    </p>
+  </form>
 </section>
 
 `;
 
     roottemplate.innerHTML = container;
+
+  const getName = containerSignUp.querySelector('#username');
+  const newRegister = containerSignUp.querySelector('#button-register');
+  const inputEmail = containerSignUp.querySelector('#register-email');
+  const inputPassword = containerSignUp.querySelector('#register-password');
+  const inputError = containerSignUp.querySelector('#singup-error');
+
 
     roottemplate.querySelector('#btn-signup')
         .addEventListener('click', (event) => {

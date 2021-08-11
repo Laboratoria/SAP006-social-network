@@ -5,35 +5,34 @@ export const login = () => {
     const roottemplate = document.createElement('section');
 
     const container = `
-   
+
 <section class="container">
-    <section class="box">
-        
+  <section class="box">
+
     <figure class="logo">
-    <img src="./img/ellas-dev-logo.png">
+      <img src="./img/ellas-dev-logo.png">
+    </figure>
+    <h3 class="">Login</h3>
 
-    </figure> 
-        <h3 class="">Login</h3>
-
-        <section class="box-input">
-            <input type="email" id="user-email" name="usuario" placeholder="e-mail">
-        </section>
-
-        <section class="box-input">
-            <input type="password" id="user-password" placeholder="senha">
-        </section>
-        <!--     <a href=''>Esqueci minha senha</a> -->
-        <section class="justify-center">
-          <button id="login-btn">Entrar</button>
-          <p>OU</p>
-          <button id="google-btn">Entrar com Google</button>
-          <hr>
-        </section>
-
-        <p> Não tem uma conta?
-            <a id="btn-signup" href=""> Cadastre-se </a>
-        </p>
+    <section class="box-input">
+      <input type="email" id="user-email" name="usuario" placeholder="e-mail">
     </section>
+
+    <section class="box-input">
+      <input type="password" id="user-password" placeholder="senha">
+    </section>
+    <!--     <a href=''>Esqueci minha senha</a> -->
+    <section class="justify-center">
+      <button id="login-btn">Entrar</button>
+      <p>OU</p>
+      <button id="google-btn">Entrar com Google</button>
+      <hr>
+    </section>
+
+    <p> Não tem uma conta?
+      <a id="btn-signup" href="/#signup"> Cadastre-se </a>
+    </p>
+  </section>
 </section>
 
 `;
