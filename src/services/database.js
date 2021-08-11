@@ -8,8 +8,9 @@ export const loadPosts = () => {
     .get()
     .then((snap) => {
       snap.forEach((post) => {
-        // console.log(post.id);
-        printPost(post);
+
+        const postInfo = post.data();
+        printPost(postInfo);
       });
     });
   // .catch((error) => {

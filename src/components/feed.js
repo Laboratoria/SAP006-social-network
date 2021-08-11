@@ -1,5 +1,6 @@
 export const printPost = (post) => {
   const areaOfPost = document.createElement('div');
+  console.log(post);
 
   areaOfPost.innerHTML = `
     <section class="all-posts">
@@ -37,14 +38,10 @@ export const printPost = (post) => {
           </div>
 
           <section class="actions">
-            <button class="delete-button" value="${post.id}">
-              <span class="iconify" data-inline="false"
-                data-icon="bytesize:trash" style="color: #706f6b;"></span>
-            </button>
-            <button>
-              <span id="btn-reply" class="iconify" data-inline="false" data-flip="vertical"
-                data-icon="bi:reply"></span>
-            </button>
+            <button class="delete-button" value="${post.id}"><span class="iconify" data-inline="false"
+                data-icon="bytesize:trash" style="color: #706f6b;"></span></button>
+            <button><span id="btn-reply" class="iconify" data-inline="false" data-flip="vertical"
+                data-icon="bi:reply"></span></button>
             <button>❤️ ${post.likes}</button>
           </section>
 
