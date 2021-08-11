@@ -11,11 +11,11 @@ export const loadPosts = () => {
     snap.forEach(post => {
       printPost(post);
     });
-  })
-  .catch((error) => {
-    console.error('Erro ao excluir o post: ', error);
   });
-}
+  // .catch((error) => {
+  //   console.error('Erro ao excluir o post: ', error);
+  // });
+};
 
 export const addPosts = (post) => {
   return firebase
@@ -23,7 +23,7 @@ export const addPosts = (post) => {
   .collection('posts')
   .add(post)
   .then(() => loadPosts());
-}
+};
 
 export const deletePost = (postId) => {
   return firebase

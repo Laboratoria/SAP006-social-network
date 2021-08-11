@@ -8,7 +8,7 @@ export const createAccount = (email, password, confirmPassword) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      firebase.auth().currentUser.sendEmailVerification()
+      firebase.auth().currentUser.sendEmailVerification();
     })
     .catch((error) => {
       const errorCode = error.code;
