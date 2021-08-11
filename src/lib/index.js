@@ -157,7 +157,9 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
       saves: [],
       imageUrl: image
     })
-    .then(() => {})
+    .then(() => {
+      console.log("Document successfully written!");
+    })
     .catch((error) => {
       console.log("Error writing documents: ", error);
     });
@@ -169,10 +171,38 @@ export const getReviews = () => {
     .collection('reviews').orderBy('datePost', 'desc').orderBy('hourPost', 'desc').get()
 }
 
+
+
 export const getPost = (postID) => {
   const review = database.collection("reviews").doc(postID)
   return review.get()
 }
+
+// export const removeLike = (postUID, userUID) =>{
+//   database.collection("reviews").doc(postUID)
+//   .update({ 
+//     likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
+//   })
+// }
+
+export const updateRewiews = () => {
+  return database
+    .collection("reviews").onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(post => {
+        if (post.type == "added") {
+          console.log("added")
+          //getReviews(post.doc.data(), post.doc.id);
+        }
+        if (post.type == "modified") {
+          console.log("modified");
+        }
+        if (post.type == "removed") {
+          console.log("removed")
+        }
+      })
+    })
+}
+
 
 export const like = (postID, userID) => {
   let numberOfLikes
@@ -180,17 +210,21 @@ export const like = (postID, userID) => {
   review.get()
     .then((rev) => {
       const likesArray = rev.data().likes
+      console.log(likesArray)
       if (likesArray.indexOf(userID) === -1) {
         review.update({
           likes: firebase.firestore.FieldValue.arrayUnion(userID)
         })
         numberOfLikes = (likesArray.length) + 1
+
       } else {
         review.update({
           likes: firebase.firestore.FieldValue.arrayRemove(userID)
         })
         numberOfLikes = (likesArray.length) - 1
+        console.log(numberOfLikes)
       }
+      console.log(numberOfLikes)
 
     })
     .catch((error) => {
@@ -202,7 +236,6 @@ export const like = (postID, userID) => {
 export const deletePost = (postId) => {
   return database.collection("reviews").doc(postId).delete()
 }
-
 export const saveReview = (userId, postId) => {
   return database
     .collection("saveReviews").add({
@@ -238,7 +271,5 @@ export const save = (postID, userID) => {
         numberOfSaves = (savesArray.length) - 1
       }
     })
-    .catch((error) => {})
-
-
+    .catch((error) => { })
 }

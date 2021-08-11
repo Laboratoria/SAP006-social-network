@@ -181,17 +181,17 @@ export const loadPosts = () => {
             const numSavesDiv = div.nextSibling.nextSibling
             let updatedNumSaves
             getPost(idReviewSaved).then((review) => {
-                const saveArray = review.data().saves
-                if (saveArray.indexOf(userId) === -1) {
-                  updatedNumSaves = saveArray.length + 1
-                  saveReview(userId, idReviewSaved)
-                } else {
-                  updatedNumSaves = saveArray.length - 1
-                }
-                numSavesDiv.innerText = updatedNumSaves
-                save(idReviewSaved, userId)
+              const saveArray = review.data().saves
+              if (saveArray.indexOf(userId) === -1) {
+                updatedNumSaves = saveArray.length + 1
+                saveReview(userId, idReviewSaved)
+              } else {
+                updatedNumSaves = saveArray.length - 1
+              }
+              numSavesDiv.innerText = updatedNumSaves
+              save(idReviewSaved, userId)
 
-              })
+            })
               .catch((error) => {
                 console.log("Error getting documents: ", error)
               })
