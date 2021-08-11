@@ -154,6 +154,7 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
       datePost: date,
       hourPost: hour,
       likes: [],
+      saves: [],
       imageUrl: image
     })
     .then(() => {
@@ -234,4 +235,41 @@ export const like = (postID, userID) => {
 }
 export const deletePost = (postId) => {
   return database.collection("reviews").doc(postId).delete()
+}
+export const saveReview = (userId, postId) => {
+  return database
+    .collection("saveReviews").add({
+      userId: userId,
+      postId: postId
+    })
+}
+
+// export const deleteSaveReview = () => {
+//   database.
+//   collection("saveReviews").doc().delete().then(() => {
+//     console.log("Document successfully deleted!");
+//   }).catch((error) => {
+//     console.error("Error removing document: ", error);
+//   });
+// }
+
+export const save = (postID, userID) => {
+  let numberOfSaves
+  const saveReviews = database.collection("reviews").doc(postID)
+  saveReviews.get()
+    .then((review) => {
+      const savesArray = review.data().saves
+      if (savesArray.indexOf(userID) === -1) {
+        saveReviews.update({
+          saves: firebase.firestore.FieldValue.arrayUnion(userID)
+        })
+        numberOfSaves = (savesArray.length) + 1
+      } else {
+        saveReviews.update({
+          saves: firebase.firestore.FieldValue.arrayRemove(userID)
+        })
+        numberOfSaves = (savesArray.length) - 1
+      }
+    })
+    .catch((error) => { })
 }

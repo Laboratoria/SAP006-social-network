@@ -5,7 +5,9 @@ import {
   getReviews,
   getPost,
   like,
-  deletePost
+  deletePost,
+  saveReview,
+  save
 } from "./index.js"
 
 
@@ -60,7 +62,7 @@ export const loadPosts = () => {
           const rating = doc.data().rating
           const reviewContent = doc.data().review
           const reviewLikes = doc.data().likes
-
+          const reviewSaves = doc.data().saves
 
 
 
@@ -114,11 +116,13 @@ export const loadPosts = () => {
               <div class="likes-container">
                 <div class="like" id="like-${postId}">&#10084;</div>
                 <span class="num-likes">${reviewLikes.length}</span>
+                <div class="save" id="save-${postId}"><img class="icon-save"src="img/save-navbar.png"/></div>
+                <span class="num-saves">${reviewSaves.length}</span>
               </div>
               
             </div>`
 
-          if (user != doc.id) {
+          if (userId == doc.data().userId) {
             reviewTemplate += `
               <div class="optionsedition" data-option>
               <button class="edit-delete" id="edit-post">Editar</button>
@@ -136,40 +140,64 @@ export const loadPosts = () => {
 
           allReviews.innerHTML += reviewTemplate
 
-          const postSelected = allReviews.querySelectorAll("[data-post]")
-          for (let post of postSelected) {
-            post.addEventListener("click", (e) => {
-              const postId = post.getAttribute("id")
-              const target = e.target
-              const targetDataset = target.dataset.item
-              if (targetDataset == "delete") {
-                document.querySelector(".confirm-delete").style.display = "block"
-                allReviews.querySelector("#yes-delete").addEventListener("click", () => {
-                  deletePost(postId)
-                    .then(() => {
-                      document.querySelector(".confirm-delete").style.display = "none"
-                      post.remove()
-                    })
-                    .catch(e => {
-                      console.log("erro")
-                    })
-                })
-                document.querySelector("#no-delete").addEventListener("click", () => {
-                  document.querySelector(".confirm-delete").style.display = "none"
-                })
-              }
-            })
-          }
-
           if (bookImageUrl != null) {
-            document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
+            document.querySelector(`#photo-${postId}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
           }
 
-          const heart = allReviews.querySelector(`#like-${doc.id}`)
-          if (reviewLikes.indexOf(userId) != -1) {
-            heart.classList.add("active");
-          }
         })
+
+        const postSelected = allReviews.querySelectorAll("[data-post]")
+        for (let post of postSelected) {
+          post.addEventListener("click", (e) => {
+            const postId = post.getAttribute("id")
+            const target = e.target
+            const targetDataset = target.dataset.item
+            if (targetDataset == "delete") {
+              document.querySelector(".confirm-delete").style.display = "block"
+              allReviews.querySelector("#yes-delete").addEventListener("click", () => {
+                deletePost(postId)
+                  .then(() => {
+                    document.querySelector(".confirm-delete").style.display = "none"
+                    post.remove()
+                  })
+                  .catch(e => {
+                    console.log("erro")
+                  })
+              })
+              document.querySelector("#no-delete").addEventListener("click", () => {
+                document.querySelector(".confirm-delete").style.display = "none"
+              })
+            }
+          })
+        }
+
+        const saveDivList = allReviews.querySelectorAll(".save");
+
+        for (let div of saveDivList) {
+          div.addEventListener("click", () => {
+            div.classList.toggle('saved');
+            const idSave = div.getAttribute("id")
+            const idReviewSaved = idSave.slice(5)
+            const numSavesDiv = div.nextSibling.nextSibling
+            let updatedNumSaves
+            getPost(idReviewSaved).then((review) => {
+              const saveArray = review.data().saves
+              if (saveArray.indexOf(userId) === -1) {
+                updatedNumSaves = saveArray.length + 1
+                saveReview(userId, idReviewSaved)
+              } else {
+                updatedNumSaves = saveArray.length - 1
+              }
+              numSavesDiv.innerText = updatedNumSaves
+              save(idReviewSaved, userId)
+
+            })
+              .catch((error) => {
+                console.log("Error getting documents: ", error)
+              })
+
+          })
+        }
 
         const likeDivList = allReviews.querySelectorAll(".like");
 
@@ -196,13 +224,13 @@ export const loadPosts = () => {
                 like(idReviewLiked, userId)
 
               })
+              .catch((error) => {
+                console.log("Error getting documents: ", error)
+              })
 
           })
         }
 
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error)
       })
 
   }
