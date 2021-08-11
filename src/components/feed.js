@@ -6,19 +6,17 @@ export const printPost = (post) => {
 
       <section class='edit-text'>
         <input class="area-edit" placeholder="Edite o texto aqui" />
-
         <div class='save-btn-area'>
           <button class="save-button" value='${post.id}'>Salvar post</button>
         </div>
-      </section>
+      </section<section>
 
     <section class="actions-posts">
-
       <div class='edit-btn-area'>
         <button id="edit" class="edit-button" value='${post.id}'>Editar post</button>
       </div>
-
-      const postStructure =
+    <section>
+    
       <section data-container>
         <div class="box">
           <p class="username">username</p>
