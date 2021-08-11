@@ -154,11 +154,10 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
       datePost: date,
       hourPost: hour,
       likes: [],
+      saves: [],
       imageUrl: image
     })
-    .then(() => {
-      console.log("Document successfully written!");
-    })
+    .then(() => {})
     .catch((error) => {
       console.log("Error writing documents: ", error);
     });
@@ -170,38 +169,10 @@ export const getReviews = () => {
     .collection('reviews').orderBy('datePost', 'desc').orderBy('hourPost', 'desc').get()
 }
 
-
-
 export const getPost = (postID) => {
   const review = database.collection("reviews").doc(postID)
   return review.get()
 }
-
-// export const removeLike = (postUID, userUID) =>{
-//   database.collection("reviews").doc(postUID)
-//   .update({ 
-//     likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
-//   })
-// }
-
-export const updateRewiews = () => {
-  return database
-    .collection("reviews").onSnapshot(snapshot => {
-      snapshot.docChanges().forEach(post => {
-        if (post.type == "added") {
-          console.log("added")
-          //getReviews(post.doc.data(), post.doc.id);
-        }
-        if (post.type == "modified") {
-          console.log("modified");
-        }
-        if (post.type == "removed") {
-          console.log("removed")
-        }
-      })
-    })
-}
-
 
 export const like = (postID, userID) => {
   let numberOfLikes
@@ -209,21 +180,17 @@ export const like = (postID, userID) => {
   review.get()
     .then((rev) => {
       const likesArray = rev.data().likes
-      console.log(likesArray)
       if (likesArray.indexOf(userID) === -1) {
         review.update({
           likes: firebase.firestore.FieldValue.arrayUnion(userID)
         })
         numberOfLikes = (likesArray.length) + 1
-
       } else {
         review.update({
           likes: firebase.firestore.FieldValue.arrayRemove(userID)
         })
         numberOfLikes = (likesArray.length) - 1
-        console.log(numberOfLikes)
       }
-      console.log(numberOfLikes)
 
     })
     .catch((error) => {
@@ -234,4 +201,44 @@ export const like = (postID, userID) => {
 }
 export const deletePost = (postId) => {
   return database.collection("reviews").doc(postId).delete()
+}
+
+export const saveReview = (userId, postId) => {
+  return database
+    .collection("saveReviews").add({
+      userId: userId,
+      postId: postId
+    })
+}
+
+// export const deleteSaveReview = () => {
+//   database.
+//   collection("saveReviews").doc().delete().then(() => {
+//     console.log("Document successfully deleted!");
+//   }).catch((error) => {
+//     console.error("Error removing document: ", error);
+//   });
+// }
+
+export const save = (postID, userID) => {
+  let numberOfSaves
+  const saveReviews = database.collection("reviews").doc(postID)
+  saveReviews.get()
+    .then((review) => {
+      const savesArray = review.data().saves
+      if (savesArray.indexOf(userID) === -1) {
+        saveReviews.update({
+          saves: firebase.firestore.FieldValue.arrayUnion(userID)
+        })
+        numberOfSaves = (savesArray.length) + 1
+      } else {
+        saveReviews.update({
+          saves: firebase.firestore.FieldValue.arrayRemove(userID)
+        })
+        numberOfSaves = (savesArray.length) - 1
+      }
+    })
+    .catch((error) => {})
+
+
 }

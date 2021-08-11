@@ -957,7 +957,7 @@ header {
 }
 
 .like {
-    color: rgb(158, 149, 149);
+    color: #7c7979;
     text-decoration: none;
     font-size: 2.5rem;
     transition: all 0.3s;
@@ -993,7 +993,8 @@ header {
     animation: animateHeart 1s;
 }
 
-.num-likes {
+.num-likes,
+.num-saves {
     font-size: 1.8rem;
     color: grey;
 
@@ -1082,4 +1083,20 @@ header {
 .confirm-buttons:hover {
     filter: invert(77%) sepia(58%) saturate(1717%) hue-rotate(203deg) brightness(100%) contrast(88%);
     transition: 1s
+}
+
+.icon-save {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+}
+
+.save {
+    padding: 0.3rem 0.8rem 0rem 3rem;
+}
+
+.saved {
+    animation: animateHeart 1s;
+    filter: brightness(100%) contrast(0%);
 }

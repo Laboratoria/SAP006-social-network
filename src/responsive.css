@@ -434,18 +434,9 @@
     }
 
     .review-area {
-        height: 150vh;
+        height: 100vh;
     }
 
-    /* .photo-book-review-post{
-            margin: 6rem 0rem 0rem 67vw;
-            width: 5rem;
-            height: 7rem;
-        }
-        .stars-show{
-            margin: 11rem 67.2vw;
-            font-size: 1.1rem;
-        } */
     .estrelas {
         padding: 1rem 0rem 0rem 0rem;
         font-size: 2rem;

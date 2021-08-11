@@ -1,30 +1,35 @@
-import {currentUser, logout} from "../../lib/index.js"
-import { showReviewArea } from "../../lib/functions-home.js"
+import {
+  currentUser,
+  logout
+} from "../../lib/index.js"
+import {
+  showReviewArea
+} from "../../lib/functions-home.js"
 
 
 export const sidebar = () => {
 
   const asideElement = document.createElement("aside")
- 
+
   asideElement.classList.add('sidebar')
   asideElement.classList.add('sidebar-desktop')
   asideElement.classList.add('mobile-menu')
   asideElement.setAttribute("id", "sidebar")
- 
-  
-  const user= currentUser()
+
+
+  const user = currentUser()
   const userName = user.displayName
   const imageUrl = user.photoURL
   let profileImg
 
-  if (imageUrl!=null){
+  if (imageUrl != null) {
     profileImg = user.photoURL
-  } else{
+  } else {
     profileImg = "./img/default-img.png"
   }
 
   const userName2 = userName.replace(/\s/g, '').toLowerCase();
-  
+
 
 
   const sidebarTemplate = `
@@ -93,27 +98,31 @@ export const sidebar = () => {
   const logoutBtn = asideElement.querySelector("#logout-btn-sidebar")
   const editProfileLink = asideElement.querySelector("#edit-profile-link")
 
-  editProfileLink.addEventListener("click", (e) =>{
+  editProfileLink.addEventListener("click", (e) => {
     e.preventDefault()
     window.history.pushState(null, null, "/editar-perfil")
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
+    const popStateEvent = new PopStateEvent("popstate", {
+      state: {}
+    })
     dispatchEvent(popStateEvent)
 
   })
 
-  logoutBtn.addEventListener("click", (e)=>{
+  logoutBtn.addEventListener("click", (e) => {
     e.preventDefault()
     logout()
     window.history.pushState(null, null, "/login")
-    const popStateEvent = new PopStateEvent("popstate", {state:{}})
+    const popStateEvent = new PopStateEvent("popstate", {
+      state: {}
+    })
     dispatchEvent(popStateEvent)
   })
 
   const closeBtn = asideElement.querySelector("#close-mobile-sidebar")
-  closeBtn.addEventListener("click", (e)=>{
+  closeBtn.addEventListener("click", (e) => {
     e.preventDefault()
     const sidebar = document.querySelector(".mobile-menu")
-    sidebar.style.display="none"
+    sidebar.style.display = "none"
 
 
   })
@@ -121,7 +130,7 @@ export const sidebar = () => {
   const buttonAddReviewSidebar = asideElement.querySelector(".sidebar-btn")
   buttonAddReviewSidebar.addEventListener("click", (e) => {
     e.preventDefault()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     showReviewArea()
   })
 
@@ -136,6 +145,6 @@ export const sidebar = () => {
   //   document.querySelector(".sidebar-desktop").style.transition="1s"
   //   document.querySelector(".sidebar-desktop").style.margin="0rem 0rem 0rem 113vw"
   // })
-return asideElement
+  return asideElement
 
 }
