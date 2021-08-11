@@ -1,69 +1,88 @@
 export const printPost = (post) => {
-  const areaOfPost = document.createElement('div')
-  areaOfPost.innerHTML =
-  `
-  <section class="all-posts">
-    <div class='text-published'>${post.data().text} ❤️ ${post.data().likes}</div>
-  </section>
+  const areaOfPost = document.createElement('div');
 
-  <section class='edit-text'>
+  areaOfPost.innerHTML = `
+    <section class="all-posts">
 
-    <input class="area-edit" placeholder="Edite o texto aqui" />
+      <section class='edit-text'>
+        <input class="area-edit" placeholder="Edite o texto aqui" />
 
-    <div class='save-btn-area'>
-      <button class="save-button" value='${post.id}'>Salvar post</button>
-    </div>
+        <div class='save-btn-area'>
+          <button class="save-button" value='${post.id}'>Salvar post</button>
+        </div>
+      </section>
 
-  </section>
+    <section class="actions-posts">
 
-  <section class="actions-posts">
+      <div class='edit-btn-area'>
+        <button id="edit" class="edit-button" value='${post.id}'>Editar post</button>
+      </div>
 
-    <div class='delete-btn-area'>
-      <button id="delete" class="delete-button" value='${post.id}'>Excluir post</button>
-    </div>
+      const postStructure =
+      <section data-container>
+        <div class="box">
+          <p class="username">username</p>
+          <div class="content">
+            <button><span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle"
+                style="color: #706F6B;"></span></button>
+            <div class="textBox">
+              <p class="post-content text-post" id='${post.id}'>${post.data().text}</p>
+              <div class="btn-inside">
+                <button class="btn-actions"><span class="iconify" data-inline="false"
+                    data-icon='ri:image-add-fill'></span></button>
+                <button class="btn-actions"><span class="iconify" data-inline="false"
+                    data-icon="mdi:send-circle"></span></button>
+              </div>
+            </div>
+          </div>
 
-    <div class='edit-btn-area'>
-      <button id="edit" class="edit-button" value='${post.id}'>Editar post</button>
-    </div>
+          <section class="actions">
+            <button class="delete-button" value="${post.id}"><span class="iconify" data-inline="false"
+                data-icon="bytesize:trash" style="color: #706f6b;"></span></button>
+            <button><span id="btn-reply" class="iconify" data-inline="false" data-flip="vertical"
+                data-icon="bi:reply"></span></button>
+            <button>❤️ ${post.data().likes}</button>
+          </section>
 
-  </section>
+        </div>
+      </section>
+
+
 `;
-  
+
   areaOfPost.querySelector('.edit-button').addEventListener('click', () => {
-    const valueInput = areaOfPost.querySelector('.area-edit').value
+    const valueInput = areaOfPost.querySelector('.area-edit').value;
     updatePost(valueInput)
       .then(() => {
-        const containerEditText = areaOfPost.querySelector('.edit-text')
-        containerEditText.style.display = "block"
-        const areaForEdit = areaOfPost.querySelector('.area-edit')
-        const divTextPublished = areaOfPost.querySelector('.text-published')
-        const textReady = areaOfPost.querySelector('.text-published').innerHTML
+        const containerEditText = areaOfPost.querySelector('.edit-text');
+        containerEditText.style.display = 'block';
+        const areaForEdit = areaOfPost.querySelector('.area-edit');
+        const divTextPublished = areaOfPost.querySelector('.text-published');
+        const textReady = areaOfPost.querySelector('.text-published').innerHTML;
 
-        divTextPublished.style.display = 'none'
+        divTextPublished.style.display = 'none';
 
         areaForEdit.value = textReady;
       })
       .catch((error) => {
-        console.log('Não foi', error)
-      })
-
-  })
+        console.log('Não foi', error);
+      });
+  });
 
   areaOfPost.querySelector('.save-button').addEventListener('click', () => {
-    const valueInput = areaOfPost.querySelector('.area-edit').value
-    const divTextPublished = areaOfPost.querySelector('.text-published')
-    areaOfPost.querySelector('.text-published')
-    const containerEdit = areaOfPost.querySelector('.edit-text')
+    const valueInput = areaOfPost.querySelector('.area-edit').value;
+    const divTextPublished = areaOfPost.querySelector('.text-published');
+    areaOfPost.querySelector('.text-published');
+    const containerEdit = areaOfPost.querySelector('.edit-text');
 
-    containerEdit.style.display = 'none'
-    divTextPublished.style.display = 'block'
+    containerEdit.style.display = 'none';
+    divTextPublished.style.display = 'block';
 
-    divTextPublished.innerHTML = valueInput
-  })
+    divTextPublished.innerHTML = valueInput;
+  });
 
-  /*const elementPost = addPost(post);
-  rootElement.querySelector('#get-post').appendChild(elementPost)  
-   */ 
-  return areaOfPost
-}
-
+  /* const elementPost = addPost(post);
+  rootElement.querySelector('#get-post').appendChild(elementPost)
+   */
+  return areaOfPost;
+};
