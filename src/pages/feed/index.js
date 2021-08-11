@@ -6,7 +6,7 @@ export const Feed = () => {
     <header class="searchBell">
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
       <button><span id="bell" class="iconify" data-inline="false" data-icon="clarity:notification-outline-badged" style="color: #F78563;"></span></button>
-    </header> 
+    </header>
     <hr class="line"></hr>
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
@@ -26,8 +26,8 @@ export const Feed = () => {
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:comment" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:person" style="color: #FFD2BF;"></span></li>
       </ul>
-    </nav>    
-  `;
+    </nav>
+      `;
   rootElement.innerHTML = container;
 
   const submitButton = rootElement.querySelector('#published-form');

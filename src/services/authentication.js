@@ -38,6 +38,9 @@ export const signInEmailPassword = (email, password) => {
   const signIn = firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      verifyUser();
+    })
     .catch((error) => {
       const errorCode = error.code;
 
