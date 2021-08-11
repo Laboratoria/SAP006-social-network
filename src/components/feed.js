@@ -1,5 +1,6 @@
 export const printPost = (post) => {
   const areaOfPost = document.createElement('div');
+  console.log(post);
 
   areaOfPost.innerHTML = `
     <section class="all-posts">
@@ -18,7 +19,6 @@ export const printPost = (post) => {
         <button id="edit" class="edit-button" value='${post.id}'>Editar post</button>
       </div>
 
-      const postStructure =
       <section data-container>
         <div class="box">
           <p class="username">username</p>
@@ -26,7 +26,7 @@ export const printPost = (post) => {
             <button><span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle"
                 style="color: #706F6B;"></span></button>
             <div class="textBox">
-              <p class="post-content text-post" id='${post.id}'>${post.data().text}</p>
+              <p class="post-content text-post" id='${post.id}'>${post.text}</p>
               <div class="btn-inside">
                 <button class="btn-actions"><span class="iconify" data-inline="false"
                     data-icon='ri:image-add-fill'></span></button>
@@ -41,7 +41,7 @@ export const printPost = (post) => {
                 data-icon="bytesize:trash" style="color: #706f6b;"></span></button>
             <button><span id="btn-reply" class="iconify" data-inline="false" data-flip="vertical"
                 data-icon="bi:reply"></span></button>
-            <button>❤️ ${post.data().likes}</button>
+            <button>❤️ ${post.likes}</button>
           </section>
 
         </div>
