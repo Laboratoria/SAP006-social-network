@@ -1,4 +1,6 @@
 /* eslint-disable arrow-body-style */
+firebase.auth().useDeviceLanguage();
+
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
@@ -31,7 +33,6 @@ export const googleLogin = () => {
 export const outLogin = () => {
   firebase.auth().signOut();
 };
-
 //   firebase.auth().onAuthStateChanged((user) => {
 //     if (user) {
 //       // User is signed in, see docs for a list of available properties
@@ -43,15 +44,13 @@ export const outLogin = () => {
 //       // ...
 //     }
 // //   });
-export const resetPass = () => {
+export const resetPass = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
-    // Password reset email sent!
-    // ..
+      console.log('E-mail enviado com sucesso!');
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-    // ..
     });
 };
