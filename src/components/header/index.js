@@ -2,44 +2,35 @@ export default () => {
   const headerContainer = document.createElement('div');
 
   const headerContent = `
-  <header>
-    <nav>
-      <input id="nav-hurguer" type="checkbox"/>
-      <label class="label" for="nav-hurguer">
-        <div class="nav">
-         <span class="hamburguer"></span>
-        </div>
-      </label>
+  <header id="header">
+    <button id="btn-mobile">
+      <span id="hamburger"></span>
+    </button>
+    <h1>FoodLovers</h1>
+    <nav id="nav">
       <ul id="menu">
-        <li>Home<li>
-        <li>Favoritos<li>
-        <li>Minhas Receitas<li>
-        <li>Sair<li>
+        <li><a href="#feed">Home</a></li>
+        <li><a href="#">Perfil</a><li>  
+        <li><a href="#">Favoritos</a><li>
+        <li><a href="#postRecipe">Minhas Rrceitas</a><li>
       </ul>
     </nav>
+    <div class="icons-header">
+      <i class="fas fa-search"><input id="search"/></i>
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
   </header>
    `;
-  headerContainer.innerHTML = headerContent;
+  headerContainer.innerHTML += headerContent;
 
-  // const btnHamburger = headerContainer.querySelector('#nav');
-  // function toggleMenu(e) {
-  //   e.preventDefault();
-  //   if (e.type === 'touchstart');
-  //   const nav = headerContainer.querySelector('#btn-hamburguer');
-  //   nav.classList.toggle('active');
-  //   const active = nav.classList.contains('active');
-  //   e.currentTarget.setAttribute('aria-expanded', active);
-  //   if (active) {
-  //     e.currentTarget.setAttribute('aria-label', 'Fechar Menu');
-  //   } else {
-  //     e.currentTarget.setAttribute('aria-label', 'Abrir Menu');
-  //   }
-  // }
-  // btnHamburger.addEventListener('click', toggleMenu);
-  // btnHamburger.addEventListener('touchstart', toggleMenu);
+  const btnHamburger = headerContainer.querySelector('#btn-mobile');
+  const nav = headerContainer.querySelector('#nav');
+
+  function toggleMenu() {
+    nav.classList.toggle('active');
+  }
+
+  btnHamburger.addEventListener('click', toggleMenu);
 
   return headerContainer;
 };
-
-/* <i class="fas fa-search"></i>
-<i class="fas fa-user-circle"></i> */
