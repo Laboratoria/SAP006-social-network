@@ -42,13 +42,12 @@ export const Feed = () => {
       comments: [],
     };
 
-
-    addPosts(post)
-    console.log(addPosts)
+    addPosts(post);
+    // console.log(addPosts);
   });
 
-    /*const elementPost = addPost(post);
-    rootElement.querySelector('#get-post').appendChild(elementPost)  
+  /* const elementPost = addPost(post);
+    rootElement.querySelector('#get-post').appendChild(elementPost)
     */
 
   const navbarBottom = document.getElementsByClassName('navbar');
@@ -57,18 +56,13 @@ export const Feed = () => {
     if (window.pageYOffset >= sticky) {
       navbarBottom.classList.add('sticky');
     }
-
   }
   window.onscroll = stickyFilter();
 
-
-
-  const deleteButton = document.querySelector('.delete-button');
-  console.dir(deleteButton);
-
-
+  // const deleteButton = document.querySelector('.delete-button');
+  // console.dir(deleteButton);
 
   loadPosts();
 
   return rootElement;
-}
+};
