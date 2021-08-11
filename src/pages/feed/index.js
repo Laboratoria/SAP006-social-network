@@ -20,16 +20,10 @@ export const Feed = () => {
     <section class="get-post" id="postTemplate">
     </section>
 
-    <div class="sliding-post">
-      <div >
-      
-      </div>
-    </div>
-
     <nav class="navbar mobile-list">
       <ul>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:home" style="color: #FFD2BF;"></span></li>
-        <li><span class="iconify" data-inline="false" data-icon="clarity:plus-circle-line" style="color: #FFD2BF;"></span></li>
+        <li><span class="iconify" id="new-post-btn" data-inline="false" data-icon="clarity:plus-circle-line" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:comment" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:person" style="color: #FFD2BF;"></span></li>
       </ul>
@@ -75,9 +69,12 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
-  sign_up_btn.addEventListener("click", () => {
-    container.classList.add("sign-up-mode");
-  });
+  // slider post
+  // const newPostBtn = document.querySelector('#new-post-btn');
+  // newPostBtn.addEventListener('click', () => {
+  //   container.classList.add("sign-up-mode");
+  // });
+
 
   // function deletePost(postId) {
   //   const collectionOfPosts = firebase.firestore().collection('posts');
@@ -93,3 +90,29 @@ export const Feed = () => {
 
   return rootElement;
 };
+
+/* o original
+<h4>POSTAGENS RECENTES</h4>
+    <section class="post">
+      <form action="" id="published-form">
+      <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
+      <button class="btn" id="send-post">Enviar</button>
+      </form>
+    </section>
+*/
+
+// tentativa de slider
+// <div class="container">
+//   <section class="post">
+//     <h3>E aí, o que você quer fazer desta vez?</h3>
+//     <div class="">
+//       <form action="" id="published-form">
+//         <input type="text" id="text-post" placeholder="O que você está pensando, mana?">
+//          <div class="btn-inside">
+//           <button class="btn-actions"><span class="iconify" data-inline="false" data-icon='ri:image-add-fill'></span></button>
+//           <button class="btn-actions"><span class="iconify" data-inline="false" data-icon="mdi:send-circle"></span></button>
+//         </div>
+//       </form>
+//     </div>        
+//   </section>
+// </div> 

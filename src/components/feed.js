@@ -6,7 +6,7 @@ export const printPost = (post) => {
       <div class="content">
         <button><span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span></button>
         <div class="textBox">
-          <p class="post-content text-post     " id='${post.id}'>${post.data().text}</p> 
+          <p class="post-content text-post" id='${post.id}'>${post.data().text}</p> 
           <div class="btn-inside">
             <button class="btn-actions"><span class="iconify" data-inline="false" data-icon='ri:image-add-fill'></span></button>
             <button class="btn-actions"><span class="iconify" data-inline="false" data-icon="mdi:send-circle"></span></button>

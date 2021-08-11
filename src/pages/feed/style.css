@@ -187,7 +187,7 @@ button.btn-actions {
     color: #213d3e;
     background-color: #FFFFFF;
     font-size: 1.3vh;
- }
+}
 
 section.actions {
     display: flex;
@@ -204,13 +204,13 @@ section.actions {
     color: #706f6b;
     background-color: #F0EAE7;
     font-size: 1.3vh;
- }
+}
 
- .iconify[data-icon='bytesize:trash'] {
+.iconify[data-icon='bytesize:trash'] {
     color: #706f6b;
     background-color: #F0EAE7;
     font-size: 1.0vh;
- }
+}
 
 nav {
     width: 100%;
@@ -243,6 +243,26 @@ ol, ul {
     position: fixed;
     width: 100%;
 } */
+
+/* .container {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+section.post {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #FFD2BF;
+    border-radius: 0px 0px 30px 30px;
+    transform: rotate(-180deg);
+} */
+
 
 .mobile-list {
     /* display: inline-block; */
