@@ -75,12 +75,12 @@ export const Feed = () => {
   // });
 
 
-  // function deletePost(postId) {
-  //   const collectionOfPosts = firebase.firestore().collection('posts');
-  //   collectionOfPosts.doc(postId).delete()
-  //   .then(doc => {
-  //     loadPosts()
-  // });
+  function deletePost(postId) {
+    const collectionOfPosts = firebase.firestore().collection('posts');
+    collectionOfPosts.doc(postId).delete()
+    .then(doc => {
+      loadPosts()
+  });
 
   const deleteButton = document.querySelector('.delete-button');
   console.dir(deleteButton);
