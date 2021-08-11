@@ -350,30 +350,32 @@ body {
 	align-items: center;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
+	margin-bottom: 1%;
 }
 
 .div-postados{
 	border-radius: 12px;
 	border: 2px solid #EBEEF0;
 	width: 40%;
-	height: 400px;
+	height: 500px;
 	margin-top: 10px;
 	background-color: white;	
 }
 
 
-
-
   .div-postados img {
-	width: 20px;
-	height: 20px;
+	width: 320px;
+	height: 300px;
+	margin-top: 5px;
   }
   
   .user-post{
 	  margin-top: 0;
+	  margin-bottom: 0;
 	  font-size: 13px;
 	  text-align: start;
-	  background-color: green;
+	  background-color: rgb(127, 192, 127);
+	  
   }
   .likes-comments-bar{
 	  /*margin-top: -10px;/*aqui era -10px*/
@@ -382,7 +384,6 @@ body {
 	  text-align: start;
 	  background-color: transparent;
 	  border-top: solid #EBEEF0 1px;
-
   }
  
   .icones{
@@ -420,16 +421,10 @@ body {
   }
   .edit-text-area{
 	  background-color:aliceblue;
-	  width: 345px;
-	  height: 140px;
-	  margin-top: -140px;
+	  width: 100%;
+	  height: 60px;
+	  margin-top: -80px;
   }
-
-
-.txt-post{
-	width: 100%;
-	height: 90px ;
-}
 
 .delete-button {
 	background-color:#025159;
@@ -468,13 +463,17 @@ body {
 
 
 .data-post-id{
-	text-align: initial;
+	text-align: end;
+	margin-top: -28px;
+	margin-right: 1%;
 }
 
 .txt{
-	height: 130px;
-	background-color: lightblue;
+	height: 60px;
 	overflow: auto; /*scrollbar*/
+	margin-top: 10px;
+	margin-bottom: 0;
+	background-color: darkgray;
 }
 
 /*Profile*/
@@ -651,4 +650,17 @@ body {
 	  
   }
 
-  
+  .img-po{
+		width: 300px;
+		height: 300px;
+		margin-top: 0;
+	}
+
+	#image_uploads{
+		opacity: 0;
+	}
+
+	
+	#hide-img{
+		visibility: none;
+	}

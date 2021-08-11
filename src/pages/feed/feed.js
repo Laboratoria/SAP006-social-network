@@ -63,19 +63,15 @@ export const Feed = () => {
         <img class="pictures" src="./images/stories/9.png"></img>
         <img class="pictures" src="./images/stories/10.png"></img>
         <img class="pictures" src="./images/stories/11.png"></img>
-       
-        
-        
-        
         </div>
       </div>
   
     </div>
         <form action = "" id="postForm" class="publication-form">
           <textarea class="feed-text-area" id='postText' placeholder='O que você quer compartilhar?'></textarea>
-        
+          <input class="feed-hide-url" id="hide-url"> </input>
           <div class='share-area-buttons'>
-          <button id='publish-img-btn' class='circle violet'>IMG</button>
+          <button id='publish-img-btn' class='circle violet'>📷</button>
           <div class='publish-img-form-box transparency'>
             <form method="post">
               <input type="file" id="image_uploads" class='share-area-img-btn' accept=".jpg, .jpeg, .png">
@@ -90,33 +86,31 @@ export const Feed = () => {
   `;
 
 
-
-
   const showUrlOfImagesToPublish = (urlFile) => {
-    rootElement.querySelector('#postText').value = `${urlFile}`;
+    rootElement.querySelector('#hide-url').value = `${urlFile}`;
     rootElement.querySelector('#postText').placeholder = 'O que você quer compartilhar?';
   };
   
   const uploadImage = () => {
     rootElement.querySelector('.publish-img-form-box').style.opacity = 1;
     rootElement.querySelector('#image_uploads').onchange = (event) => {
-      sendImageToDatabase(event.target.files[0], showUrlOfImagesToPublish);
-      rootElement.querySelector('.publish-img-form-box').style.opacity = 0;
-      rootElement.querySelector('#postText').placeholder = 'Aguarde enquanto sua foto é carregada...';
+    sendImageToDatabase(event.target.files[0], showUrlOfImagesToPublish);
+    rootElement.querySelector('.publish-img-form-box').style.opacity = 0;
+    rootElement.querySelector('#postText').placeholder = 'Imagem carregada';
     };
   };
   
- 
+  const imageToUpload = rootElement.querySelector("#image_uploads");
 
   const getUpLoadImgClick = () => {
     rootElement.querySelector("#publish-img-btn").addEventListener('click', () => {
      uploadImage()
+     imageToUpload.style.opacity= 1;
+     
+    
     });    
   };
-getUpLoadImgClick()
-
-
-
+  getUpLoadImgClick()
 
   const perfil = rootElement.querySelector('.perfil-icon');
   perfil.addEventListener('click', (event) => {
@@ -136,13 +130,20 @@ getUpLoadImgClick()
     };
   });
 
-  const darkMode = () => {
-    rootElement.querySelector("#button-dark").addEventListener('click', () => {
-      const change = rootElement.querySelector("#all-container");
-      change.style.background = "black";
-    });    
-  };
-  darkMode();
+  const darkMode = () => { 
+    rootElement.querySelector("#button-dark").addEventListener('click', () => { 
+      const change = rootElement.querySelector("#all-container"); 
+      const changeAside = rootElement.querySelector("aside"); 
+      const changeFeed = rootElement.querySelector(".feed-left-section"); 
+      change.style.background = "rgb(30, 35, 41)"; 
+      changeAside.style.background = "rgb(19, 22, 26)" 
+      changeFeed.style.background ="rgb(19, 22, 26)" 
+    }); 
+  }; 
+  darkMode(); 
+
+
+
 
 const postsCollection = firebase.firestore().collection("posts");
 
@@ -150,17 +151,19 @@ const postsCollection = firebase.firestore().collection("posts");
   rootElement.querySelector('#postForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const text = rootElement.querySelector('#postText').value;
+    const url = rootElement.querySelector('#hide-url').value;
+    console.log(url)
     const postData = () => {
       const data = new Date();
       return data.toLocaleString("pt-BR");
     };
     const post = {
       text: text,
+      url:url,
       user_id: currentUserEmail,
       data: postData(),
       likes: [],
-      comments: [],
-      image: [],
+      comments: []
     }; 
     if(postText.value === ""){
       return
@@ -179,15 +182,34 @@ const postsCollection = firebase.firestore().collection("posts");
     const postElement = document.createElement("div");//aqui criou mais uma div e mandou para ela o que era a div-postados
     postElement.id = post.id;
     postElement.classList.add("div-postados")
-        const postTemplate = `
-       
-          <p class="user-post">Postado por ${post.data().user_id} <br>${post.data().data} </p>
-          <p class="txt"> ${post.data().text} </p>
-          <div class='text'>
-          <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
+    rootElement.querySelector('#hide-url').value = "";
+console.log(post.data().url)
+        const postTemplate = 
+     
+        `
+          <p class="user-post"> ${post.data().user_id} <br>${post.data().data} </p>
+          
+
+          <div class="data-post-id" data-postid="${post.id}">
+          <button  type="submit" class="btn-edit">Editar</button>
+          <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
+          <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
         </div>
+
+        <p class="txt"> ${post.data().text} </p>
+        <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
+
+          ${(url => { 
+            if (url !== "") 
+              return `<img class="img-po" src="${post.data().url}"> </img>`
+            else `<img id="hide-img" src="${post.data().url}"> </img>`
+              return 
+          }) (post.data().url)
+        }
+       
           <section class="likes-comments-bar">
-            <button data-likePost = "${post.id}"> Curtir</button>
+          <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> Deletar</button>
+            <button data-likePostButton = "${post.id}"> Curtir</button>
             ${(quantityOfLikes => {
               if(quantityOfLikes === 1)
                 return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}"> ❤️ Curtida </span> </p>`
@@ -196,7 +218,7 @@ const postsCollection = firebase.firestore().collection("posts");
               else
                 return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${0} </span> <span data-like-text-to-be-changed="${post.id}"> ❤️ Curtidas </span> </p>`
             }) (post.data().likes.length)}
-            <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> Deletar</button>
+           
           </section>
           
           <div class="comments">
@@ -206,18 +228,12 @@ const postsCollection = firebase.firestore().collection("posts");
           <ul data-commentPostUl="${post.id}"> </ul>
         </div>
     
-          <div class="data-post-id" data-postid="${post.id}">
-          <button  type="submit" class="btn-edit">Editar</button>
-          <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
-          <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
-         
-        </div>
     
           <div class="comments">
             <ul data-comment-post-id="${post.id}"> </ul>
           </div>
         </div>
-      `;
+      `
     
       postElement.innerHTML = postTemplate
     
@@ -227,6 +243,7 @@ const postsCollection = firebase.firestore().collection("posts");
    const editCancelBtn = postElement.querySelector(".btn-cancel-edit")
    const editBtn = postElement.querySelector(".btn-edit")
    const deleteBtn = postElement.querySelector(".delete-button")
+
    function canEdit() {
     if(firebase.auth().currentUser.email == `${post.data().user_id}`){
       editBtn.hidden = false;
@@ -274,7 +291,7 @@ const postsCollection = firebase.firestore().collection("posts");
     firebase.firestore().collection("posts").doc(postId).update({
       text: newText,
     })
-    rootElement.querySelector("#postado").innerHTML = "";
+    rootElement.querySelector("#postado").innerHTML = " ";
     loadPosts()
    }
    
@@ -432,8 +449,6 @@ const postsCollection = firebase.firestore().collection("posts");
       loadPosts();
     });
   };
-  
-
 
   function likePost(postID) {
     const likesPostId = postsCollection.doc(postID);
