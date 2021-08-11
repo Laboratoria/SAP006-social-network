@@ -1,5 +1,6 @@
 export const printPost = (post) => {
   const areaOfPost = document.createElement('div');
+  console.log(post);
 
   areaOfPost.innerHTML = `
     <section class="all-posts">
@@ -9,27 +10,29 @@ export const printPost = (post) => {
         <div class='save-btn-area'>
           <button class="save-button" value='${post.id}'>Salvar post</button>
         </div>
-      </section<section>
+        <div class='edit-btn-area'>
+          <button id="edit" class="edit-button" value='${post.id}'>Editar post</button>
+        </div>
+      </section>
 
-    <section class="actions-posts">
-      <div class='edit-btn-area'>
-        <button id="edit" class="edit-button" value='${post.id}'>Editar post</button>
-      </div>
-    <section>
-    
       <section data-container>
         <div class="box">
           <p class="username">username</p>
           <div class="content">
-            <button><span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle"
-                style="color: #706F6B;"></span></button>
+            <button>
+              <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle"
+                style="color: #706F6B;"></span>
+            </button>
+            
             <div class="textBox">
-              <p class="post-content text-post" id='${post.id}'>${post.data().text}</p>
+              <p class="post-content text-post" id='${post.id}'>${post.text}</p>
               <div class="btn-inside">
                 <button class="btn-actions"><span class="iconify" data-inline="false"
-                    data-icon='ri:image-add-fill'></span></button>
+                    data-icon='ri:image-add-fill'></span>
+                </button>
                 <button class="btn-actions"><span class="iconify" data-inline="false"
-                    data-icon="mdi:send-circle"></span></button>
+                    data-icon="mdi:send-circle"></span>
+                </button>
               </div>
             </div>
           </div>
@@ -39,13 +42,12 @@ export const printPost = (post) => {
                 data-icon="bytesize:trash" style="color: #706f6b;"></span></button>
             <button><span id="btn-reply" class="iconify" data-inline="false" data-flip="vertical"
                 data-icon="bi:reply"></span></button>
-            <button>❤️ ${post.data().likes}</button>
+            <button>❤️ ${post.likes}</button>
           </section>
 
         </div>
       </section>
-
-
+    </section>
 `;
 
   areaOfPost.querySelector('.edit-button').addEventListener('click', () => {
