@@ -26,8 +26,6 @@ export const getError = (error) => {
       
       const containerEmail = document.querySelector("#input-email");
       const containerPassword = document.querySelector("#input-password");
-  
-      console.log(errorResulted[0].code)
       
       switch (true) {
         case errorResulted[0].code.includes("email"):

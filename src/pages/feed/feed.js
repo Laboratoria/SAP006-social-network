@@ -187,9 +187,15 @@ console.log(post.data().url)
         const postTemplate = 
      
         `
-       
-          <p class="user-post">Postado por ${post.data().user_id} <br>${post.data().data} </p>
-          <p class="txt"> ${post.data().text} </p>
+          <p class="user-post"> ${post.data().user_id} <br>${post.data().data} </p>
+          
+          <div class="data-post-id" data-postid="${post.id}">
+          <button  type="submit" class="btn-edit">Editar</button>
+          <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
+          <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
+        </div>
+        <p class="txt"> ${post.data().text} </p>
+        <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
           ${(url => { 
             if (url !== "") 
               return `<img class="img-po" src="${post.data().url}"> </img>`
@@ -197,11 +203,9 @@ console.log(post.data().url)
               return 
           }) (post.data().url)
         }
-          <div class='text'>
-            <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
        
-          </div>
           <section class="likes-comments-bar">
+          <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> Deletar</button>
             <button data-likePostButton = "${post.id}"> Curtir</button>
             ${(quantityOfLikes => {
               if(quantityOfLikes === 1)
@@ -211,7 +215,7 @@ console.log(post.data().url)
               else
                 return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${0} </span> <span data-like-text-to-be-changed="${post.id}"> ❤️ Curtidas </span> </p>`
             }) (post.data().likes.length)}
-            <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> Deletar</button>
+           
           </section>
           
           <div class="comments">
@@ -221,12 +225,6 @@ console.log(post.data().url)
           <ul data-commentPostUl="${post.id}"> </ul>
         </div>
     
-          <div class="data-post-id" data-postid="${post.id}">
-          <button  type="submit" class="btn-edit">Editar</button>
-          <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
-          <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
-         
-        </div>
     
           <div class="comments">
             <ul data-comment-post-id="${post.id}"> </ul>
@@ -242,6 +240,7 @@ console.log(post.data().url)
    const editCancelBtn = postElement.querySelector(".btn-cancel-edit")
    const editBtn = postElement.querySelector(".btn-edit")
    const deleteBtn = postElement.querySelector(".delete-button")
+
    function canEdit() {
     if(firebase.auth().currentUser.email == `${post.data().user_id}`){
       editBtn.hidden = false;
@@ -289,7 +288,7 @@ console.log(post.data().url)
     firebase.firestore().collection("posts").doc(postId).update({
       text: newText,
     })
-    rootElement.querySelector("#postado").innerHTML = "";
+    rootElement.querySelector("#postado").innerHTML = " ";
     loadPosts()
    }
    
