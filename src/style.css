@@ -356,29 +356,45 @@ body {
 .div-postados{
 	border-radius: 12px;
 	border: 2px solid #EBEEF0;
-	width: 40%;
-	height: 500px;
+	width: 45%;
+	min-height: 120px;
 	margin-top: 10px;
 	background-color: white;	
+	border-radius: 10px;
+	border: 1px solid #9dd8df;
 }
-
-
-  .div-postados img {
-	width: 320px;
-	height: 300px;
-	margin-top: 5px;
-  }
-  
+  /*aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
+ 
   .user-post{
-	  margin-top: 0;
-	  margin-bottom: 0;
+	margin-top: 0px;
+	margin-bottom: 10px;
 	  font-size: 13px;
 	  text-align: start;
-	  background-color: rgb(127, 192, 127);
-	  
+	  color:rgb(199, 190, 190);
+	  padding: 1%;
+	
   }
+  
+  .user-post-edit{
+	  border-radius: 5px;
+	  background-color: #025159;
+  }
+  .user-data-post{
+	width: 60%;
+	
+  }
+  .data-post-id{
+	text-align: end;
+	margin-top: -35px;
+	margin-right: 1%;
+	margin-left:60%;
+	width: 40%;
+	height: 30px;
+}
   .likes-comments-bar{
 	  /*margin-top: -10px;/*aqui era -10px*/
+	  margin-top: 2%;
+	  margin-bottom: 2%;
 	  margin-left: 1%;
 	  font-size: 3px;
 	  text-align: start;
@@ -414,7 +430,7 @@ body {
 	  margin-top: 80px;
 	  background-color:#025159;
 	  border-radius: 10px;
-	  width: 512px;
+	  width: 45%;
 	  height: 140px;
 	  margin: 0 auto;
 	  margin-top: 10%;
@@ -427,12 +443,25 @@ body {
   }
 
 .delete-button {
-	background-color:#025159;
-	width: 54px;
-	height: 20px;
-	border-radius: 20px;
+	cursor: pointer;
+	background-image: url('https://cdn6.f-cdn.com/contestentries/1395847/19111368/5b76d8bb8b701_thumb900.jpg');
+	background-size: 25px 25px;
+	width: 25px;
+	height: 25px;
+	margin-right: 5px;
+	border-radius: 25px;
 	border: none;
 }
+.btn-edit{
+	cursor:pointer;
+	background-image: url('https://p.kindpng.com/picc/s/154-1541056_edit-edit-icon-svg-hd-png-download.png');
+	background-size: 25px 25px;
+	margin-right: 3%;
+	width: 25px;
+	height: 25px;
+	border: none;
+}
+
 
 #eye {
 	
@@ -449,31 +478,28 @@ body {
 
 .f-20{
 	font-size:12pt;
+	
+}
+.like-btn, .f-20{
+	display: inline;
+	margin-right: 10px;
 }
 .comment-f-20{
-	position:absolute;
 	background-color: red;
-	z-index: 0;
-
+	text-decoration:none;
 }
+
+
 .input-required {
 	border: red, solid, 2pt;
 }
-/*Ledi mexendo*/
 
-
-.data-post-id{
-	text-align: end;
-	margin-top: -28px;
-	margin-right: 1%;
-}
 
 .txt{
 	height: 60px;
 	overflow: auto; /*scrollbar*/
-	margin-top: 10px;
+	margin-top: 3px;
 	margin-bottom: 0;
-	background-color: darkgray;
 }
 
 /*Profile*/
@@ -622,7 +648,20 @@ body {
 	border: none;
 }
 
+.like-btn{
+	cursor: pointer;
+	background-image: url( 'https://i.pinimg.com/originals/01/d4/c1/01d4c11077fd54ccad1a6f32b3df3adf.png');
+    background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: none;
+}
+ 
 
+.like-btn:focus{
+	background-image: url('https://i.pinimg.com/originals/70/73/8e/70738e54de752d8e8ff690847b2dddfb.jpg');
+}
 
   @media screen and (max-width: 980px){
 	   
@@ -650,11 +689,7 @@ body {
 	  
   }
 
-  .img-po{
-		width: 300px;
-		height: 300px;
-		margin-top: 0;
-	}
+ 
 
 	#image_uploads{
 		opacity: 0;
@@ -663,4 +698,15 @@ body {
 	
 	#hide-img{
 		visibility: none;
+	}
+
+
+	.img-po{
+		width: 320px;
+		height: 300px;
+		margin-top: 5px;
+		}
+	
+	.comments ul{
+		list-style-type: none ;
 	}

@@ -1,9 +1,6 @@
-import { logOut } from "../../lib/auth.js";
-
-import { sendImageToDatabase } from "../../lib/auth.js";
-
-
+import { logOut, sendImageToDatabase } from "../../lib/auth.js";
 import { getTheRoad } from "../../router.js";
+
 
 export const Feed = () => {
   const rootElement = document.createElement("div");
@@ -186,37 +183,40 @@ const postsCollection = firebase.firestore().collection("posts");
 console.log(post.data().url)
         const postTemplate = 
      
-        `
+        `<section class="user-post-edit">
+          <div class="user-data-post">
           <p class="user-post"> ${post.data().user_id} <br>${post.data().data} </p>
-          
-
+          </div>
           <div class="data-post-id" data-postid="${post.id}">
-          <button  type="submit" class="btn-edit">Editar</button>
+          <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> </button>
+          <button  type="submit" class="btn-edit"></button>
           <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
           <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
         </div>
+        </section>
 
         <p class="txt"> ${post.data().text} </p>
         <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
 
-          ${(url => { 
+         <div class="photo-post"> ${(url => { 
             if (url !== "") 
               return `<img class="img-po" src="${post.data().url}"> </img>`
             else `<img id="hide-img" src="${post.data().url}"> </img>`
               return 
           }) (post.data().url)
         }
+        </div>
        
           <section class="likes-comments-bar">
-          <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> Deletar</button>
-            <button data-likePostButton = "${post.id}"> Curtir</button>
+         
+            <button class="like-btn" data-likePostButton = "${post.id}"> </button>
             ${(quantityOfLikes => {
               if(quantityOfLikes === 1)
-                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}"> ❤️ Curtida </span> </p>`
+                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}">  Curtida </span> </p>`
               else if (quantityOfLikes > 1)
-                return  `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}"> ❤️ Curtidas </span> </p>`
+                return  `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}">  Curtidas </span> </p>`
               else
-                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${0} </span> <span data-like-text-to-be-changed="${post.id}"> ❤️ Curtidas </span> </p>`
+                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${0} </span> <span data-like-text-to-be-changed="${post.id}">  Curtidas </span> </p>`
             }) (post.data().likes.length)}
            
           </section>
@@ -230,7 +230,7 @@ console.log(post.data().url)
     
     
           <div class="comments">
-            <ul data-comment-post-id="${post.id}"> </ul>
+            <ul  data-comment-post-id="${post.id}"> </ul>
           </div>
         </div>
       `
@@ -332,17 +332,17 @@ console.log(post.data().url)
           const newAmountOflikes = amountOfLikes + 1;
           valueToBeChanged.innerHTML = `${newAmountOflikes}`;
           if (newAmountOflikes === 1) {
-            textToBeChanged.innerHTML = `❤️ Curtida`;
+            textToBeChanged.innerHTML = ` Curtida`;
           } else {
-            textToBeChanged.innerHTML = `❤️ Curtidas`;
+            textToBeChanged.innerHTML = ` Curtidas`;
           };
         } else {
           const newAmountOflikes = amountOfLikes -1;
           valueToBeChanged.innerHTML = `${newAmountOflikes}`;
           if (newAmountOflikes === 1) {
-            textToBeChanged.innerHTML = `❤️ Curtida`;
+            textToBeChanged.innerHTML = ` Curtida`;
           } else {
-            textToBeChanged.innerHTML = `❤️ Curtidas`;
+            textToBeChanged.innerHTML = ` Curtidas`;
           };
         };
       };
@@ -355,8 +355,8 @@ console.log(post.data().url)
       commentsToPrint.forEach(comment => {
         const newItem = 
           `<li class="comment-f-20" id="${comment.id}">
-            <p> Comentários: <br> ${comment.owner} <br> ${comment.content}</p>;
-            <button data-likeCommentButton="${comment.id}"> Curtir </button> ;
+            <p>  ${comment.owner} <br> ${comment.content}</p>;
+            <button class="like-btn" data-likeCommentButton="${comment.id}"> Curtir </button> ;
             <button data-deleteCommentButton="${comment.id}"> Deletar </button>
             ${(quantityOfLikes => { 
               if(quantityOfLikes === 1) 

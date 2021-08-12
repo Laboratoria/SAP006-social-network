@@ -3,31 +3,44 @@ import { Login } from "./pages/login/login.js"
 import { Feed } from "./pages/feed/feed.js"
 import {profile} from "./pages/perfil/main.js"
 
+
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
     "/":Login,
     "/register":Register,
     "/feed":Feed,
-    "/profile": profile,
-
-  }
+    "/profile":profile
+  };
   elemento.innerHTML = "";
-  elemento.appendChild(routes[window.location.pathname]())
- /* elemento.appendChild(routes["pathname"]())*/
-  console.log(window.location.pathname)
-}
+
+  const createChild = (path) => {
+    elemento.appendChild(routes[path]())
+  }
+
+  switch (window.location.pathname) {
+    case "/":
+      createChild("/");
+      break;
+    case "/register":
+      createChild("/register");
+      break;
+    default:
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          createChild(window.location.pathname);
+        } else {
+          getTheRoad("/")
+        }});
+      break;
+    }
+};
 
 window.addEventListener("popstate", routRender);
-window.addEventListener("load", () => {
-  /*window.history.pushState({},"","/")*/
-  routRender();
-  console.log("caiuuuuu no load")
-
-});
+window.addEventListener("load", routRender);
 
 export const getTheRoad = (state) => {
   window.history.pushState({}, "", state);
   const popstateEvent = new PopStateEvent("popstate", {state:{}});
-  dispatchEvent(popstateEvent);
-}
+  dispatchEvent(popstateEvent)
+};
