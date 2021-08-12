@@ -1,5 +1,10 @@
-import {currentUser, logout} from "../../lib/index.js"
-import { showReviewArea } from "../../lib/functions-home.js"
+import {
+  currentUser,
+  logout
+} from "../../lib/index.js"
+import {
+  showReviewArea
+} from "../../lib/functions-home.js"
 
 
 export const sidebar = () => {
@@ -12,14 +17,14 @@ export const sidebar = () => {
   asideElement.setAttribute("id", "sidebar")
  
   
-  const user= currentUser()
+  const user = currentUser()
   const userName = user.displayName
   const imageUrl = user.photoURL
   let profileImg
 
-  if (imageUrl!=null){
+  if (imageUrl!= null){
     profileImg = user.photoURL
-  } else{
+  } else {
     profileImg = "./img/default-img.png"
   }
 
