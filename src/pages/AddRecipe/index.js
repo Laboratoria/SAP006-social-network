@@ -5,7 +5,7 @@ export default () => {
   addRecipeContainer.setAttribute('class', 'screenContainer');
 
   const addRecipe = `
-  <div class="div-width85">
+  <div class="div-width90">
     <h2 id="post-recipe-title" class="title">Postar Receita</h2>
 
     <form class="initialForm">
@@ -41,30 +41,30 @@ export default () => {
         <div class="filter-info-recipe">
           <label for="difficult">Dificuldade</label>
           <select name="difficult" id="difficult-select" class="recipe-select required">
-              <option value="facil"> Fácil </option>
-              <option value="media"> Média </option>
-              <option value="alta"> Alta </option>
+              <option value="Fácil"> Fácil </option>
+              <option value="Média"> Média </option>
+              <option value="Alta"> Alta </option>
             </select>
         </div>
         
         <div class="filter-info-recipe">
           <label for="food-type">Categoria</label>
           <select name="food-type" id="food-type-select" class="recipe-select required">
-            <option value="carnes"> Carnes </option>
-            <option value="bebidas"> Bebidas </option>
-            <option value="massas"> Massas </option>
-            <option value="doces"> Doces </option>
-            <option value="outros"> Outros </option>
+            <option value="Carnes"> Carnes </option>
+            <option value="Bebidas"> Bebidas </option>
+            <option value="Massas"> Massas </option>
+            <option value="Doces"> Doces </option>
+            <option value="Outros"> Outros </option>
           </select>
         </div>
       
         <div class="filter-info-recipe" id="filter-info-recipe-last">
           <label for="price">Faixa de Preço</label>
           <select name="price" id="price-select" class="recipe-select required">
-            <option value="baixo"> $ </option>
-            <option value="medio-baixo"> $$ </option>
-            <option value="medio-alto"> $$$ </option>
-            <option value="alto"> $$$$ </option>
+            <option value="$"> $ </option>
+            <option value="$$"> $$ </option>
+            <option value="$$$"> $$$ </option>
+            <option value="$$$$"> $$$$ </option>
           </select>   
         </div>
       

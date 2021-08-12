@@ -5,7 +5,7 @@ export default () => {
   signUpScreenContainer.setAttribute('class', 'screenContainer');
 
   const signUpForm = `
-  <div class="div-width85 verticalCenter">
+  <div class="div-width90 verticalCenter">
     <img class="logo" src="image/logotipo.png">
     
     <form id="signUp-form" class="initialForm">

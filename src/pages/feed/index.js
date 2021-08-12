@@ -12,48 +12,69 @@ export default () => {
 
   function addPost(post) {
     const postTemplate = `
-    <div id=${post.id} class="div-width85 div-recipe">
-
+    <div id=${post.id} class="div-width90 div-recipe">
+      <div class="toggle-section">
         <h3 class="title recipe-title"> ${post.data()['nome da receita']} </h3>
       
-        <div> IMAGEM </div>
+        <div> 
+          <img class="post-photo" src="image/nissin.jpg">
+        </div>
         
-        <div class="recipeBody hide"> 
-          
-          <h3 class="title center">Ingredientes</h3>
+        <div class="recipeBody"> 
+          <div class="recipe-info">
+
+            <div class="recipeInfo-box">
+              <span class="material-icons"> schedule </span>
+              <p>${post.data()['tempo de preparo']}</p>
+            </div>
+            
+            <div class="recipeInfo-box">
+              <p>${post.data().dificuldade}</p>
+            </div>
+            
+            <div class="recipeInfo-box">
+              <p>${post.data().preco}</p>
+              <p>preço</p>
+            </div>
+            
+            <div class="recipeInfo-box">
+              <p>${post.data().categoria}</p>
+            </div>
+
+          </div>
+
+          <h3 class="title center-title recipe-title">Ingredientes</h3>
           <div class="">
             ${post.data().ingredientes}
           </div>
           
-          <h3 class="title center">Modo de preparo</h3>
+          <h3 class="title center-title recipe-title">Modo de preparo</h3>
           <div>
             ${post.data()['modo de preparo']} 
           </div>
 
         </div>
+      </div>
 
-        <div id="recipe-footer" class="div-width100 recipe-title">
-          <span class="material-icons favoriteIcon">favorite</span> ${post.data().likes}
-          <span class="material-icons commentIcon">insert_comment</span></buton> ${post.data().comments.length}
+      <div id="recipe-footer" class="div-width100 recipe-title">
+        <div class="like">
+          <span class="material-icons favoriteIcon">favorite</span> ${post.data().likes} <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
         </div>
-   
+        <p> Por Bob Esponja </p>
+      </div>
+      
     </div>
     `;
 
     feedContainer.innerHTML += postTemplate;
 
-    const postContainer = feedContainer.querySelectorAll('.div-recipe');
-    console.log(postContainer);
+    const postContainer = feedContainer.querySelectorAll('.toggle-section');
 
-    // for (post of postContainer)
-    // postContainer
-
-    // postContainer.forEach((div) => {
-    //   // const id = div.querySelector('.recipeBody');
-    //   div.addEventListener('click', (div) => {
-    //     div.querySelector('.recipeBody').classList.toggle('show');
-    //   });
-    // });
+    postContainer.forEach((div) => {
+      div.addEventListener('click', () => {
+        div.querySelector('.recipeBody').classList.toggle('show');
+      });
+    });
   }
 
   loadRecipe(addPost);

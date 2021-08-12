@@ -5,7 +5,7 @@ export default () => {
   loginScreenContainer.setAttribute('class', 'screenContainer');
 
   const loginScreenButtons = `
-  <div class = "div-width85">
+  <div class = "div-width90">
     <img class="logo" src="image/logotipo.png">
     
     <form class="initialForm">
