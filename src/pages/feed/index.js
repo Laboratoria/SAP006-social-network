@@ -46,9 +46,8 @@ export const Feed = () => {
     // console.log(addPosts);
   });
 
-  /* const elementPost = addPost(post);
-    rootElement.querySelector('#get-post').appendChild(elementPost)
-    */
+  // const elementPost = addPosts();
+  // rootElement.querySelector('#get-post').appendChild(elementPost);
 
   const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
