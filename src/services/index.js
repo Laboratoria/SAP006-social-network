@@ -7,9 +7,10 @@ export const signUp = (email, password) => firebase.auth()
 export const signIn = (email, password) => firebase
   .auth().signInWithEmailAndPassword(email, password);
 
-const provider = new firebase.auth.GoogleAuthProvider();
-
-export const signInWithGoogle = () => firebase.auth().signInWithPopup(provider);
+export const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
+};
 
 export const signOut = () => {
   firebase.auth().signOut().then(() => {
@@ -27,7 +28,15 @@ export const userData = (name, email, uid) => db.collection('users').doc(uid).se
 
 export const postRecipe = (recipe) => db.collection('recipes').add({
   likes: 0,
-  comments: 0,
+  comments: [],
   user_id: firebase.auth().currentUser.uid,
   ...recipe,
 });
+
+export const loadRecipe = (addPost) => {
+  db.collection('recipes').get().then((querySnapshot) => {
+    querySnapshot.forEach((post) => {
+      addPost(post);
+    });
+  });
+};

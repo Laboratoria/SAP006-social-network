@@ -20,6 +20,6 @@ export default () => {
           </div>
         </section>
         `;
-  perfilContainer.innerHTML = perfilContent;
+  perfilContainer.innerHTML += perfilContent;
   return perfilContainer;
 };
