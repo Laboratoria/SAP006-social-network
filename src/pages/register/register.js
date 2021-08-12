@@ -25,6 +25,9 @@ export const Register = () => {
         <input required type="password" id="input-password">
         <label class="login-input-label">Senha</label>
       </div>
+      <label class="keep-logged-in"> Mantenha-me logadex
+        <input type="checkbox" id="keep-logged-in-checkbox">
+      </label>
     </form>
     <div id="print-error-here"> 
       <p class="transparent"> . </p>
@@ -49,10 +52,12 @@ getEmail.addEventListener("keyup", (event) => {
 const createAccount = rootElement.querySelector('#send');
 createAccount.addEventListener('click', () => {
 
+const checkboxKeepLoggedIn = rootElement.querySelector("#keep-logged-in-checkbox");
+
 const name = rootElement.querySelector('#input-name').value;
 const email = rootElement.querySelector('#input-email').value;
 const senha = rootElement.querySelector('#input-password').value;
-criarFirebaseconta(email, senha, name);
+criarFirebaseconta(email, senha, name, checkboxKeepLoggedIn);
 });
 
 
