@@ -18,5 +18,5 @@ firebase.auth().createUserWithEmailAndPassword(email, password)
     const errorCode = error.code;
     const errorMessage = error.message;
     // ..
-    console.log('deu ruim', erroCode, erroMessage);
+    console.log('deu ruim', errorCode, errorMessage);
   });
