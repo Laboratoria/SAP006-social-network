@@ -8,7 +8,6 @@ export const loadPosts = () => {
     .get()
     .then((snap) => {
       snap.forEach((post) => {
-
         const postInfo = post.data();
         printPost(postInfo);
       });
@@ -24,7 +23,7 @@ export const addPosts = (post) => firebase
   .add(post)
   .then(() => loadPosts());
 
-export const updatePost = (valueInput) => firebase
+export const updatePost = (valueInput, post) => firebase
   .firestore()
   .collection('posts')
   .doc(post.id)
