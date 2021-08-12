@@ -1,3 +1,4 @@
+import { navigation } from '../../router.js';
 import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from '../../services/index.js';
 
 export const Login = () => {
@@ -72,7 +73,14 @@ export const Login = () => {
   btnLogin.addEventListener('click', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    loginEmailAndPassword(email, password);
+    loginEmailAndPassword(email, password)
+      .then(() => {
+        navigation('/feed');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   });
 
   btnGmail.addEventListener('click', () => {

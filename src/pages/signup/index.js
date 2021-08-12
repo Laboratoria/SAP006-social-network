@@ -1,4 +1,5 @@
-import { signUpWithGoogle, loginWithGmail } from '../../services/index.js';
+import { signUpWithEmailAndPassword, loginWithGmail } from '../../services/index.js';
+import { navigation } from '../../router.js';
 
 export const SignUp = () => {
   const root = document.createElement('div');
@@ -41,15 +42,20 @@ export const SignUp = () => {
   const btnGoogle = root.querySelector('#btnGmail');
 
   btnLogin.addEventListener('click', () => {
-    window.history.pushState({}, '', '/');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
+    navigation('/');
   });
 
   btnSignUp.addEventListener('click', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    signUpWithGoogle(email, password);
+    signUpWithEmailAndPassword(email, password)
+      .then(() => {
+        navigation('/profile');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   });
 
   btnGoogle.addEventListener('click', () => {

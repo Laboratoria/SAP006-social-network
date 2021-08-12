@@ -12,9 +12,9 @@ export function headerMenu() {
                 <span class="hamburguer"></span>
             </button>
             <ul class="menu">
-                <li><a class="menu-a" id="perfil" href="/profile">Perfil</a></li>
-                <li><a class="menu-a"" id="idiomas" href="/">Idiomas</a></li>
-                <li><a class="menu-a" id="sair" href="/">Sair</a></li>
+                <li class="menu-a" id="perfil" >Perfil</li>
+                <li class="menu-a"" id="idiomas" >Idiomas</li>
+                <li class="menu-a" id="sair">Sair</li>
             </ul>
         </nav>
         `;
@@ -26,7 +26,7 @@ export function headerMenu() {
   const menu = document.querySelector('.menu')
   const btnMenu = document.querySelector('.hamburguer')
 
-  
+
   function toggleMenu() {
     menu.classList.toggle('active')
     btnMenu.classList.toggle('active')
@@ -35,30 +35,13 @@ export function headerMenu() {
   btnMobile.addEventListener('click', toggleMenu)
   btnMobile.addEventListener('touchstart', toggleMenu)
 
-  menu.addEventListener("click", (event) => {
-    const optionMenu = event.target.textContent
-    console.log(optionMenu)
-    optionMenuRoutes(optionMenu)
-  })
-
+  menu.addEventListener('click', (event) => {
+    const optionMenu = event.target.textContent;
+    console.log(optionMenu);
+    if (optionMenu === 'Perfil') {
+      window.history.pushState('nulo', 'nulo', '/profile');
+      const popStateEvent = new PopStateEvent('popstate', { });
+      dispatchEvent(popStateEvent);
+    }
+  });
 }
-
-//Pop-up idiomas  
-// const optionMenuRoutes = (string) => {  
-       
-// }
-
-
-
-
-
-
-  // header.querySelector('#sair')
-  //   .addEventListener('click', () => {
-  //     signOut();
-  //   });
-
-
-    
-
-

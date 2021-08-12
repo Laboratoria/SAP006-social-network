@@ -1,12 +1,10 @@
 /* eslint-disable no-tabs */
-// import { signOut } from '../../services/index.js';
+import { createUser, currentUser } from '../../services/index.js';
 
 export const Profile = () => {
+  const loggedUser = currentUser();
   const root = document.createElement('div');
   root.innerHTML = `
-	<header>
-		<h3> A Bordo Perfil </h3>
-	</header>
 	<main class='profile-container row'>
 		<section class='profile-form col-11'>
 			<form>
@@ -41,7 +39,7 @@ export const Profile = () => {
             </p>
 
             <p>Email:
-              <input id='email' type='name' class='input-profile'>
+              <input id='email' type='name' class='input-profile' value='${loggedUser.email}'>
             </p>
 
             <div class='redefinition'>
@@ -53,26 +51,32 @@ export const Profile = () => {
     </section>
     
     <nav class='btn-profile-container'>
-      <button type='submit' id='SaveBtn' class='btn-save' 'btn'>Salvar</button>
-    </nav
+      <button type='submit' id='SaveBtn' class='btn-save' 'btn'>Atualizar</button>
+    </nav>
   </main>
   `;
 
   /* const avatarPhoto = root.querySelector ('.avatar-image').value; */
 
   const saveButton = root.querySelector('.btn-save');
+  const surname = root.querySelector('#surname');
+  const name = root.querySelector('#name');
+  const localization = root.querySelector('#localization');
+  const boat = root.querySelector('#boat');
+  const email = root.querySelector('#email');
 
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
-    const surname = root.querySelector('#surname').value;
-    const name = root.querySelector('#name').value;
-    const localization = root.querySelector('localization').value;
-    const boat = root.querySelector('boat').value;
-    const email = root.querySelector('email').value;
-    
+    const infoUser = {
+      surname: surname.value,
+      name: name.value,
+      localization: localization.value,
+      boat: boat.value,
+      email: email.value,
+      userId: firebase.auth().currentUser.uid,
+    };
+    createUser(infoUser);
   });
-
-  console.log(surname);
 
   return root;
 };
