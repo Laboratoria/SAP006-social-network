@@ -1,16 +1,5 @@
-const loginEmailAndPassword = (email, password) => {
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      window.location.replace('/feed');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
-};
+const loginEmailAndPassword = (email, password) => firebase
+  .auth().signInWithEmailAndPassword(email, password);
 
 const loginWithGmail = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -31,19 +20,8 @@ const loginWithGmail = () => {
     });
 };
 
-const signUpWithGoogle = (email, password) => {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      window.location.replace('/profile');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
-};
+const signUpWithEmailAndPassword = (email, password) => firebase
+  .auth().createUserWithEmailAndPassword(email, password);
 
 const keepMeLogged = (persistence) => {
   firebase
@@ -75,6 +53,7 @@ const resetPassword = (email) => {
     .auth()
     .sendPasswordResetEmail(email)
     .then(() => {
+      // eslint-disable-next-line no-alert
       alert('E-mail enviado com sucesso! Confira sua caixa de entrada');
     })
     .catch((error) => {
@@ -83,11 +62,17 @@ const resetPassword = (email) => {
     });
 };
 
+const currentUser = () => firebase.auth().currentUser;
+
 const createPost = (post) => firebase.firestore().collection('post').add(post);
 
 const getPost = () => firebase.firestore().collection('post').get();
 
+const createUser = (user) => firebase.firestore().collection('user').add(user);
+
+const getUser = () => firebase.firestore().collection('user').get();
+
 export {
-  loginEmailAndPassword, loginWithGmail, signUpWithGoogle, keepMeLogged, resetPassword,
-  signOut, createPost, getPost,
+  loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
+  signOut, createPost, getPost, currentUser, createUser, getUser,
 };

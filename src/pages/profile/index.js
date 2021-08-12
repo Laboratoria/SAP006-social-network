@@ -1,28 +1,27 @@
-//import { signOut } from "../../services/index.js";
+/* eslint-disable no-tabs */
+import { createUser, currentUser } from '../../services/index.js';
 
 export const Profile = () => {
+  const loggedUser = currentUser();
   const root = document.createElement('div');
   root.innerHTML = `
-	<header>
-		<h3> A Bordo Perfil </h3>
-	</header>
-	<main class='profile-container'>
-		<section class='profile-image-container'>
-			<label class='label-image'>
-      <input type='file'>
-      <figure class='profile-figure'>
-        <img src='img/avatar.png' class='avatar-image' alt='avatar'>
-        <figcaption class='avatar-figcaption'>
-          <img src='img/camera-figcaption.png'    >
-        </figcaption>
-      </figure>
-		</section>
-
-		<section class='profile-form'>
+	<main class='profile-container row'>
+		<section class='profile-form col-11'>
 			<form>
-				<fieldset class='fieldset-container'>
-					<legend> Seu Perfil </legend>
-					<div class='form-fields'>
+        <fieldset class='fieldset-container'>
+					<legend class='legend'> Seu Perfil </legend>
+          <section class='profile-image-container col-4'>
+            <label class='label-image'>
+            <input type='file'>
+            <figure class='profile-figure'>
+              <img src='img/avatar.png' class='avatar-image' alt='avatar'>
+              <figcaption class='avatar-figcaption'>
+                <img src='img/camera-figcaption.png'    >
+              </figcaption>
+            </figure>
+          </section>
+
+					<div class='form-fields col-9 '>
 						<p>Apelido:
 							<input id='surname' type='name' class='input-profile'>
             </p>
@@ -40,30 +39,44 @@ export const Profile = () => {
             </p>
 
             <p>Email:
-              <input id='email' type='name' class='input-profile'>
+              <input id='email' type='name' class='input-profile' value='${loggedUser.email}'>
             </p>
+
+            <div class='redefinition'>
+              <a href='#' id='reset'>Redefinir senha</a>
+            </div>
 				  </div>
         </fieldset>
       </form>
     </section>
     
     <nav class='btn-profile-container'>
-      <button type='button' id='SaveBtn' class='btn-save'>Salvar</button>
-
-      <button type='button' id='buttonSignOut' class='btn-logout'>Sair</button>
-    </nav
+      <button type='submit' id='SaveBtn' class='btn-save' 'btn'>Atualizar</button>
+    </nav>
   </main>
-
-  
   `;
 
-  const avatarPhoto = root.querySelector ('.avatar-image').value
-  const btnSignOut = root.querySelector('#buttonSignOut');
+  /* const avatarPhoto = root.querySelector ('.avatar-image').value; */
 
-  btnSignOut.addEventListener('click', () => {
-    window.history.pushState({}, '', '/');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
+  const saveButton = root.querySelector('.btn-save');
+  const surname = root.querySelector('#surname');
+  const name = root.querySelector('#name');
+  const localization = root.querySelector('#localization');
+  const boat = root.querySelector('#boat');
+  const email = root.querySelector('#email');
+
+  saveButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const infoUser = {
+      surname: surname.value,
+      name: name.value,
+      localization: localization.value,
+      boat: boat.value,
+      email: email.value,
+      userId: firebase.auth().currentUser.uid,
+    };
+    createUser(infoUser);
   });
+
   return root;
 };
