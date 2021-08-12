@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-import { route } from '../routes/navigator';
+import { route } from '../routes/navigator.js';
 import { handleError } from './error.js';
 
 firebase.auth().useDeviceLanguage();
@@ -28,13 +28,19 @@ export const googleLogin = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase
     .auth()
-    .signInWithPopup(provider);
+    .signInWithPopup(provider).then((result) => {
+      route('/home');
+      localStorage.setItem('displayName', result.user.displayName);
+      localStorage.setItem('email', result.user.email);
+    })
+    .catch(handleError);
 };
 
 //* SIGN OUT  */
 export const outLogin = () => {
   firebase.auth().signOut().then(() => {
     route('/login');
+    localStorage.clear();
   })
     .catch((handleError()));
 };
