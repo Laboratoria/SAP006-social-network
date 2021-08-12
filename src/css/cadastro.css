@@ -75,3 +75,9 @@
   width: 30%
 }
 }
+#seePass{
+  
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-import { route } from '../routes/navigator';
+import { route } from '../routes/navigator.js';
 
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase

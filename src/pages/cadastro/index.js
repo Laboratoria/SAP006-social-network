@@ -14,8 +14,10 @@ export const cadastro = () => {
     <input type="email" id="emailUser" placeholder="seuemail@dominio.com">
     <p id="textErrorEmail"></p>
     <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
+    <i id ='seePass' class="fa fa-eye" aria-hidden="true"></i>
     <p id="textErrorPassword"></p>
     <input type="password" id="confPass" placeholder="Confirme sua senha">
+    <i id ='seeConfPass' class="fa fa-eye" aria-hidden="true"></i>
     <p id="textErrorConfPassword"></p>
     </form>
     
@@ -23,6 +25,29 @@ export const cadastro = () => {
   
     <a id="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
   </fieldset>`;
+  // olho para mostrar/ocultar senha
+  const btnEye = rootElement.querySelector('#seePass');
+  const btnConfirmEye = rootElement.querySelector('#seeConfPass');
+
+  btnEye.addEventListener('click', () => {
+    const inputSenha = rootElement.querySelector('#passwordRegister');
+
+    if (inputSenha.getAttribute('type') === 'password') {
+      inputSenha.setAttribute('type', 'text');
+    } else {
+      inputSenha.setAttribute('type', 'password');
+    }
+  });
+
+  btnConfirmEye.addEventListener('click', () => {
+    const inputConfirmSenha = rootElement.querySelector('#confPass');
+
+    if (inputConfirmSenha.getAttribute('type') === 'password') {
+      inputConfirmSenha.setAttribute('type', 'text');
+    } else {
+      inputConfirmSenha.setAttribute('type', 'password');
+    }
+  });
 
   const pageLogin = rootElement.querySelector('#buttonLogin');
   const enterButton = rootElement.querySelector('#enter');
