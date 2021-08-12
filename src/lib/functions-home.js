@@ -6,11 +6,13 @@ import {
   getPost,
   like,
   deletePost,
+  saveReview,
   sendComment,
-  
+  save
 } from "./index.js"
 
 import { comment } from "../components/comment/index.js";
+
 
 
 export const showReviewArea = () => {
@@ -62,9 +64,11 @@ export const loadPosts = () => {
           const author = doc.data().author
           const rating = doc.data().rating
           const reviewContent = doc.data().review
-          const reviewLikes= doc.data().likes
-          const reviewComments = doc.data().likes
-          
+          const reviewLikes = doc.data().likes
+          const reviewSaves = doc.data().saves
+
+
+
           let userImage
           if (userImageUrl != null) {
             userImage = userImageUrl
@@ -93,7 +97,7 @@ export const loadPosts = () => {
                         
                       </div>
                     </div>
-                    <div class="book-information" >
+                    <div class="book-information">
                       <div class="title-wrapper">
                         <h2 class="title-book"> ${bookTitle} </h2>
                         <span class="stars-show">${rating}</span>
@@ -110,13 +114,14 @@ export const loadPosts = () => {
               </div>
               <div class="data-book-post">
                   
-                  <p class="content-review" >${reviewContent} </p> </br>
+                  <p class="content-review">${reviewContent}</p> </br>
               </div>
-           
               <div class="likes-container">
-                <button class="like" id="like-${postId}" data-item="like">&#10084;</button>
-                <span class="num-likes">${reviewLikes.length}</span>
-                <button  class="comment-btn" ><img class="comment" src="./img/comment.png"  data-item="comment"/></button>
+              <button class="like" id="like-${postId}" data-item="like">&#10084;</button>
+              <span class="num-likes">${reviewLikes.length}</span>
+              <button  class="comment-btn" ><img class="comment" src="./img/comment-btn.png"  data-item="comment"/></button>
+                <div class="save" id="save-${postId}"><img class="icon-save"src="img/save-navbar.png"/></div>
+                <span class="num-saves">${reviewSaves.length}</span>
 
                 <div class="optionsedition" id="edition-${postId}" data-option style="display:none">
                 <div class="container-edit-btns">
@@ -130,10 +135,8 @@ export const loadPosts = () => {
                         <button class="confirm-buttons" id="no-delete">Cancelar</button>
                     </div>
                   </div>
+                </div>
               </div>
-              </div>
-              
-
               <div class="comments-container" id="comment-${postId}">
                 <div class="comment-post" add-comment-container" style="display:none" >
                   <div class="comment-image-div">
@@ -148,86 +151,97 @@ export const loadPosts = () => {
                     <button class="send-comment" data-item="send-comment">Publicar</button>
                     <div>
                 </div>
-              
-                
 
               </div>
-                        
               
             </div>`
-           
-          
 
-          
-          
-         
 
           allReviews.innerHTML += reviewTemplate
 
           if (userId == doc.data().userId) {
             const edition=document.querySelector(`#edition-${postId}`)
             edition.style.display="block"
-
-            // reviewTemplate += `
-            //   <div class="optionsedition" data-option>
-            //   <button class="edit-delete" id="edit-post">Editar</button>
-            //         <button class="edit-delete" id="delete-post" data-item="delete">Excluir</button>
-            //            <div class="confirm-delete">
-            //             <div class="confirm-modal">
-            //               <h1 class="h1-confirm-delete">Você tem certeza que quer excluir esse post?</h1>
-            //                 <button class="confirm-buttons" id="yes-delete">Confirmar</button>
-            //                   <button class="confirm-buttons" id="no-delete">Cancelar</button>
-            //             </div>
-            //         </div>
-            //       </div>
-            //           `
           }
 
-
+          
           const txtAreas = document.querySelectorAll('.input-comment');
           for(let i=0; i<txtAreas.length; i++){
              txtAreas[i].addEventListener('input', function(){
                   if(this.scrollHeight > this.offsetHeight) this.rows += 1;
              });
           }
-         
+      
+        
 
-          const postSelected = allReviews.querySelectorAll("[data-post]")
-          for (let post of postSelected) {
-            post.addEventListener("click", (e) => {
-              const postId = post.getAttribute("id")
-              const target = e.target
-              const targetDataset = target.dataset.item
-              if (targetDataset == "delete") {
-                document.querySelector(".confirm-delete").style.display = "block"
-                allReviews.querySelector("#yes-delete").addEventListener("click", () => {
-                  deletePost(postId)
-                    .then(() => {
-                      document.querySelector(".confirm-delete").style.display = "none"
-                      post.remove()
-                    })
-                    .catch(e => {
-                      console.log("erro")
-                    })
-                })
-                document.querySelector("#no-delete").addEventListener("click", () => {
-                  document.querySelector(".confirm-delete").style.display = "none"
-                })
+        const postSelected = allReviews.querySelectorAll("[data-post]")
+        for (let post of postSelected) {
+          post.addEventListener("click", (e) => {
+            const postId = post.getAttribute("id")
+            const target = e.target
+            const targetDataset = target.dataset.item
+            if (targetDataset == "delete") {
+              const divDelete = target.parentNode.parentNode.children[1]
+              const divYes= target.parentNode.parentNode.children[1].children[0].children[1]
+              const divNo= target.parentNode.parentNode.children[1].children[0].children[2]
+              divDelete.style.display = "block"
+              divYes.addEventListener("click", () => {
+                deletePost(postId)
+                  .then(() => {
+                    divDelete.style.display = "none"
+                    post.remove()
+                  })
+                  .catch(e => {
+                    console.log("erro")
+                  })
+              })
+              divNo.addEventListener("click", () => {
+                divDelete.style.display = "none"
+              })
+            }
+          })
+        }
+
+        if (bookImageUrl != null) {
+          document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
+        }
+
+        const heart = allReviews.querySelector(`#like-${doc.id}`)
+        if (reviewLikes.indexOf(userId) != -1) {
+          heart.classList.add("active");
+        }
+      
+
+        const saveDivList = allReviews.querySelectorAll(".save");
+
+        for (let div of saveDivList) {
+          div.addEventListener("click", () => {
+            div.classList.toggle('saved');
+            const idSave = div.getAttribute("id")
+            const idReviewSaved = idSave.slice(5)
+            const numSavesDiv = div.nextSibling.nextSibling
+            let updatedNumSaves
+            getPost(idReviewSaved).then((review) => {
+              const saveArray = review.data().saves
+              if (saveArray.indexOf(userId) === -1) {
+                updatedNumSaves = saveArray.length + 1
+                saveReview(userId, idReviewSaved)
+              } else {
+                updatedNumSaves = saveArray.length - 1
               }
+              numSavesDiv.innerText = updatedNumSaves
+              save(idReviewSaved, userId)
+
             })
-          }
+              .catch((error) => {
+                console.log("Error getting documents: ", error)
+              })
 
-          if (bookImageUrl != null) {
-            document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
-          }
+          })
+        }
+      })
 
-          const heart = allReviews.querySelector(`#like-${doc.id}`)
-          if (reviewLikes.indexOf(userId) != -1) {
-            heart.classList.add("active");
-          }
-        })
-
-        const postDivList = allReviews.querySelectorAll("[data-post]")
+      const postDivList = allReviews.querySelectorAll("[data-post]")
         const root = document.querySelector("#root")
         
         for(let post of postDivList){
@@ -263,7 +277,7 @@ export const loadPosts = () => {
               console.log(commentsDiv)   
               const commentValue = commentsDiv.children[0].children[1].children[1].value
               console.log(commentValue)
-             if(commentValue!=" "){
+             if(commentValue.replace(/\s/g,'')!=""){
               const userPhoto = currentUser().photoURL
               const userName = currentUser().displayName
               const date = new Date()
@@ -349,10 +363,10 @@ export const loadPosts = () => {
   reviewsData()
 
 }
+ 
 
 
-
-export const publishReview = (e) =>{
+export const publishReview = (e) => {
   const user = currentUser()
   const userId = user.uid
   e.preventDefault()
@@ -404,7 +418,7 @@ export const publishReview = (e) =>{
   } else {
     createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, null, completeDate, hour)
     .then(()=>{
-      loadPosts()
+    loadPosts()
     })
   }
 }
@@ -436,6 +450,3 @@ export const likePost = (target, postId) => {
             })
 
 }
-
-
-

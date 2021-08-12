@@ -68,8 +68,8 @@ export default () => {
       <input type="radio" id="star-5" data-stars-form name="stars" value="★★★★★"/>
     </div>
         <div class="buttons">
-        <button class="publish-btn" data-publish-btn id="button-review">Publicar</button>
-        <button class="cancel-btn" id="button-review">Cancelar</button>
+        <button class="publish-btn button-review" data-publish-btn >Publicar</button>
+        <button class="cancel-btn button-review">Cancelar</button>
         </div>
      </form>   
     </div>
@@ -90,7 +90,7 @@ export default () => {
 
   sectionElement.appendChild(sidebar())
   
-  let photo = sectionElement.querySelector(".file-img1")
+    let photo = sectionElement.querySelector(".file-img1")
     let file = sectionElement.querySelector(".file-input")
     let textearea = sectionElement.querySelector("#text")
   

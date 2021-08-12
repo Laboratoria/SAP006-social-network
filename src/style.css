@@ -418,7 +418,7 @@ a:hover {
     padding: 0 10rem;
 }
 
-#button-review {
+.button-review {
     background-color: #253a68;
     padding: 1rem 2rem;
     border-radius: 50px;
@@ -429,7 +429,7 @@ a:hover {
     color: white;
 }
 
-#button-review:hover {
+.button-review:hover {
     filter: invert(77%) sepia(58%) saturate(1717%) hue-rotate(203deg) brightness(100%) contrast(88%);
     transition: 1s
 }
@@ -840,10 +840,14 @@ header {
 .photo-post-review {
     width: 7rem;
     height: 7rem;
-    border-radius: 100%;
     object-fit: cover;
     align-self: center;
-    border: 2px solid rgb(89, 136, 189);
+    border: double 2.5px transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(white, white),
+        linear-gradient(360deg, #5755b9 0%, #3180a5 53.12%, #65a4b8 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 
 }
 
@@ -956,15 +960,15 @@ header {
 
 }
 
-.like{
-    color: rgb(158, 149, 149);
-    text-decoration:none;
-    font-size:2.5rem;
-    transition:all 0.3s;
-    margin-right:0.5rem;
-    border:black 1px;
-    background-color: white;
-  
+.like {
+    color: #7c7979;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 2.5rem;
+    transition: all 0.3s;
+    margin-right: 0.5rem;
+    border: black 1px;
+
 
 }
 
@@ -994,7 +998,8 @@ header {
     animation: animateHeart 1s;
 }
 
-.num-likes {
+.num-likes,
+.num-saves {
     font-size: 1.8rem;
     color: grey;
     margin-right: 3rem;
@@ -1004,10 +1009,11 @@ header {
 .comment-btn{
     text-decoration:none;
     transition:all 0.3s;
-    margin-right:0.5rem;
     background-color: white;
     margin-top:0.5rem;
     border:none;
+    color:#7c7979;
+    
 
 
 }
@@ -1081,11 +1087,15 @@ header {
 .comment-user-image{
     width: 5rem;
     height: 5rem;
-    border-radius: 100%;
-    object-fit: cover;
     align-self: center;
-    border: 2px solid rgb(89, 136, 189);
     margin-right: 0.5rem;
+    object-fit: cover;
+    border: double 2px transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(white, white),
+        linear-gradient(360deg, #5755b9 0%, #3180a5 53.12%, #65a4b8 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
     
 }
 
@@ -1222,4 +1232,20 @@ header {
 .confirm-buttons:hover {
     filter: invert(77%) sepia(58%) saturate(1717%) hue-rotate(203deg) brightness(100%) contrast(88%);
     transition: 1s
+}
+
+.icon-save {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+}
+
+.save {
+    margin: 0.3rem 0.8rem 0rem 3rem;
+}
+
+.saved {
+    animation: animateHeart 1s;
+    filter: brightness(100%) contrast(0%);
 }

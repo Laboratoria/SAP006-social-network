@@ -47,19 +47,6 @@ export const updateUserImage = (urlImage) => {
 }
 
 
-
-// export const asyncGetProfileData = async () => {
-//   const logProfiles = await database.collection("profiles").get()
-//   for ( data of logProfiles.docs){
-//     profile = {
-//       name: document.id,
-//       image: document.image
-//     }
-//     console.log(profile)
-//   }
-// }
-
-
 export const signInGoogleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -154,11 +141,11 @@ export const createReview = (bookUser, authorUser, reviewUser, ratingStars, name
     hourPost:hour,
     likes: [], 
     comments: [],
+    saves: [],
     imageUrl:image
   })
-  
 }
-
+  
 
 export const getReviews = () => {
   return database
@@ -166,13 +153,10 @@ export const getReviews = () => {
 }
 
 
-
 export const getPost = (postID) => {
   const review = database.collection("reviews").doc(postID)
   return review.get()
 }
-
-
 
 export const updateRewiews = () => {
   return database
@@ -191,7 +175,6 @@ export const updateRewiews = () => {
       })
     })
 }
-
 
 export const like = (postID, userID) => {
  
@@ -219,7 +202,6 @@ export const like = (postID, userID) => {
 }
 
 export const sendComment = (postID, value, date, hour) => {
- 
   return database.collection("reviews").doc(postID).update({
           comments: firebase.firestore.FieldValue.arrayUnion(
             {
@@ -231,15 +213,49 @@ export const sendComment = (postID, value, date, hour) => {
               hourOfComment:hour,
               likes:[],
               reply:[]
-
             }
           )
-    
       })
-  
 }
 
 
 export const deletePost = (postId) => {
   return database.collection("reviews").doc(postId).delete()
+}
+export const saveReview = (userId, postId) => {
+  return database
+    .collection("saveReviews").add({
+      userId: userId,
+      postId: postId
+    })
+}
+
+// export const deleteSaveReview = () => {
+//   database.
+//   collection("saveReviews").doc().delete().then(() => {
+//     console.log("Document successfully deleted!");
+//   }).catch((error) => {
+//     console.error("Error removing document: ", error);
+//   });
+// }
+
+export const save = (postID, userID) => {
+  let numberOfSaves
+  const saveReviews = database.collection("reviews").doc(postID)
+  saveReviews.get()
+    .then((review) => {
+      const savesArray = review.data().saves
+      if (savesArray.indexOf(userID) === -1) {
+        saveReviews.update({
+          saves: firebase.firestore.FieldValue.arrayUnion(userID)
+        })
+        numberOfSaves = (savesArray.length) + 1
+      } else {
+        saveReviews.update({
+          saves: firebase.firestore.FieldValue.arrayRemove(userID)
+        })
+        numberOfSaves = (savesArray.length) - 1
+      }
+    })
+    .catch((error) => { })
 }
