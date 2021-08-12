@@ -44,12 +44,10 @@ export const Feed = () => {
     };
 
     addPosts(post);
-    // console.log(addPosts);
   });
 
-  /* const elementPost = addPost(post);
-    rootElement.querySelector('#get-post').appendChild(elementPost)
-    */
+  // const elementPost = addPosts();
+  // rootElement.querySelector('#get-post').appendChild(elementPost);
 
   const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
@@ -60,8 +58,13 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
+  // slider post
+  // const newPostBtn = document.querySelector('#new-post-btn');
+  // newPostBtn.addEventListener('click', () => {
+  //   container.classList.add("sign-up-mode");
+  // });
+
   // const deleteButton = document.querySelector('.delete-button');
-  // console.dir(deleteButton);
 
   loadPosts();
 

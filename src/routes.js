@@ -1,8 +1,8 @@
 import { Comunique } from './pages/landing_pages/comunique.js';
 import { Conecte } from '/pages/landing_pages/conecte.js';
 import { Welcome } from './pages/landing_pages/welcome.js';
-import { Login } from './pages/login/index.js';
-import { signUp } from './pages/signup/index.js';
+import { Login } from './pages/login/login.js';
+import { signUp } from './pages/signup/signup.js';
 import { Reset } from './pages/signup/reset.js';
 import { Feed } from './pages/feed/index.js';
 

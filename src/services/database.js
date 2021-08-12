@@ -1,4 +1,4 @@
-import { printPost } from '../components/feed.js';
+import { printPost } from '../components/feed_component.js';
 
 export const loadPosts = () => {
   firebase
