@@ -1,9 +1,5 @@
 @import url('../../components/header/style-header.css'); 
 
-.menu-header {
-  position: absolute;
-}
-
 
 .postContainer {
   width: 40vw;
@@ -13,11 +9,15 @@
   border-radius: 10px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto; 
+  
+
+  
 }
 
 .postHeader {
-  color: white;
-  padding: 12px;
+  color: white;  
 }
 
 .formContainer {
@@ -54,6 +54,9 @@
   border-radius: 10px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto; 
+
 }
 
 .feed-postHeader {
@@ -75,6 +78,8 @@
     .feedContainer{
       width: 70vw;
       height: 30vh;
+      display: flex;
+      justify-content: center;
     }
 }
   

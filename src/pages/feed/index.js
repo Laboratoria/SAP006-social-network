@@ -4,8 +4,10 @@ import { Post } from '../../components/posts/posts.js';
 import { headerMenu } from '../../components/header/index.js';
 
 export const Feed = () => {
-  headerMenu()
+  // const rootMain = document.querySelector('.root');
+  // rootMain.innerHTML = '';
 
+  headerMenu();
   const root = document.createElement('div');
   root.innerHTML = `  
     <main class='postContainer'>
@@ -19,16 +21,17 @@ export const Feed = () => {
     <section class='feedTimeline'></section>
     </main>  
   `;
+  headerMenu();
 
-  const btnSignOut = root.querySelector('#buttonSignOut');
+  // const btnSignOut = root.querySelector('#buttonSignOut');
   const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
 
-  btnSignOut.addEventListener('click', () => {
-    window.history.pushState({}, '', '/');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
-  });
+  //  btnSignOut.addEventListener('click', () => {
+  //   window.history.pushState({}, '', '/');
+  //   const popStateEvent = new PopStateEvent('popstate', { state: {} });
+  //   dispatchEvent(popStateEvent);
+  // });
 
   const postObject = (text) => {
     const postObj = {

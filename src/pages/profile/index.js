@@ -1,6 +1,8 @@
 //import { signOut } from "../../services/index.js";
+import { headerMenu } from '../../components/header/index.js';
 
 export const Profile = () => {
+  headerMenu();
   const root = document.createElement('div');
   root.innerHTML = `
 	<header>
@@ -57,7 +59,7 @@ export const Profile = () => {
   
   `;
 
-  const avatarPhoto = root.querySelector ('.avatar-image').value
+  const avatarPhoto = root.querySelector('.avatar-image').value;
   const btnSignOut = root.querySelector('#buttonSignOut');
 
   btnSignOut.addEventListener('click', () => {
