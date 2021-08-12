@@ -1,14 +1,33 @@
-export const comment = () => {
+
+export const comment = (userImage, userName, text, completeDate, hour) => {
 
   const sectionElement = document.createElement("section")
+  sectionElement.classList.add('comment-post')
+
+  const image = userImage
+  let userPhoto
+  if (image != null) {
+    userPhoto= image
+  } else {
+    userPhoto = "../../img/default-img.png"
+  }
 
   const commentTemplate = 
-  `<div class="comment">
-    <p>Mussum Ipsum, cacilds vidis litro abertis. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis. Detraxit consequat et quo num tendi nada. Interagi no mé, cursus quis, vehicula ac nisi. Per aumento de cachacis, eu reclamis.</p>
-  </div>`
+  `
+    <div class="comment-image-div">
+      <img src="${userPhoto}"class="comment-user-image"/>
+    </div>
+    <div class = "comment-text">
+      <div class="comment-headline">
+        <p class="comment-username">${userName}</p>
+        <p class="comment-date">${completeDate}</p>
+        <p class="comment-date">${hour}</p>
+      </div>
+      <p class="comment-content">${text}</p>
+    </div>
+`
 
-
-
+  sectionElement.innerHTML = commentTemplate
 
   return sectionElement
 
