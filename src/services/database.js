@@ -39,5 +39,5 @@ export const deletePost = (postId) => firebase
   })
   .then(() => loadPosts())
   .catch((error) => {
-    // console.error('Erro ao excluir o post: ', error);
+    console.error('Erro ao excluir o post: ', error);
   });

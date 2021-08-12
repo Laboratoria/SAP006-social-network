@@ -1,10 +1,7 @@
 import { updatePost } from '../services/database.js';
 
 export const printPost = (post) => {
-  const areaOfPost = document.createElement('div');
-  // console.log(post);
-
-  areaOfPost.innerHTML = `
+  const areaOfPost = `
     <section class="all-posts">
 
       <section class='edit-text'>
