@@ -1,6 +1,6 @@
+import { updatePost } from '../services/database.js';
+
 export const printPost = (post) => {
-  // const areaOfPost = document.createElement('div');
-  // console.log(post);
   const areaOfPost = `
     <section class="all-posts">
 
@@ -49,40 +49,47 @@ export const printPost = (post) => {
     </section>
 `;
 
-  // areaOfPost.querySelector('.edit-button').addEventListener('click', () => {
-  //   const valueInput = areaOfPost.querySelector('.area-edit').value;
-  //   updatePost(valueInput)
-  //     .then(() => {
-  //       const containerEditText = areaOfPost.querySelector('.edit-text');
-  //       containerEditText.style.display = 'block';
-  //       const areaForEdit = areaOfPost.querySelector('.area-edit');
-  //       const divTextPublished = areaOfPost.querySelector('.text-published');
-  //       const textReady = areaOfPost.querySelector('.text-published').innerHTML;
-
-  //       divTextPublished.style.display = 'none';
-
-  //       areaForEdit.value = textReady;
-  //     })
-  //     .catch((error) => {
-  //       console.log('Não foi', error);
-  //     });
-  // });
-
-  // areaOfPost.querySelector('.save-button').addEventListener('click', () => {
-  //   const valueInput = areaOfPost.querySelector('.area-edit').value;
-  //   const divTextPublished = areaOfPost.querySelector('.text-published');
-  //   areaOfPost.querySelector('.text-published');
-  //   const containerEdit = areaOfPost.querySelector('.edit-text');
-
-  //   containerEdit.style.display = 'none';
-  //   divTextPublished.style.display = 'block';
-
-  //   divTextPublished.innerHTML = valueInput;
-  // });
-
   /* const elementPost = addPost(post);
   rootElement.querySelector('#get-post').appendChild(elementPost)
    */
   document.getElementById('postTemplate').innerHTML += areaOfPost;
-  // return areaOfPost;
 };
+
+const editPost = () => {
+  const valueInput = document.querySelector('.area-edit').value;
+  updatePost(valueInput, post)
+    .then(() => {
+      const containerEditText = document.querySelector('.edit-text');
+      containerEditText.style.display = 'block';
+      const areaForEdit = document.querySelector('.area-edit');
+      const divTextPublished = document.querySelector('.text-published');
+      const textReady = document.querySelector('.text-published').innerHTML;
+
+      divTextPublished.style.display = 'none';
+
+      areaForEdit.value = textReady;
+    })
+    .catch((error) => {
+      console.log('Não foi', error);
+    });
+};
+
+document.querySelector('.edit-button').addEventListener('click', () => {
+  editPost();
+});
+
+const saveUpdatedPost = () => {
+  const valueInput = document.querySelector('.area-edit').value;
+  const divTextPublished = document.querySelector('.text-published');
+  document.querySelector('.text-published');
+  const containerEdit = document.querySelector('.edit-text');
+
+  containerEdit.style.display = 'none';
+  divTextPublished.style.display = 'block';
+
+  divTextPublished.innerHTML = valueInput;
+};
+
+document.querySelector('.save-button').addEventListener('click', () => {
+  saveUpdatedPost();
+});

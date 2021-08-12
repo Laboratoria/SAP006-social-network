@@ -1,4 +1,4 @@
-import { printPost } from '../components/feed.js';
+import { printPost } from '../components/feed_component.js';
 
 export const loadPosts = () => {
   firebase
@@ -23,7 +23,7 @@ export const addPosts = (post) => firebase
   .add(post)
   .then(() => loadPosts());
 
-export const updatePost = (valueInput) => firebase
+export const updatePost = (valueInput, post) => firebase
   .firestore()
   .collection('posts')
   .doc(post.id)
