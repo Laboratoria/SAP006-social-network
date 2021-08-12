@@ -1,6 +1,8 @@
 /* eslint-disable arrow-body-style */
-import { route } from '../routes/navigator.js';
+import { route } from '../routes/navigator';
+import { handleError } from './error.js';
 
+firebase.auth().useDeviceLanguage();
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
@@ -35,6 +37,27 @@ export const outLogin = () => {
     route('/login');
   })
     .catch((handleError()));
+};
+//   firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       // User is signed in, see docs for a list of available properties
+//       // https://firebase.google.com/docs/reference/js/firebase.User
+//       var uid = user.uid;
+//       // ...
+//     } else {
+//       // User is signed out
+//       // ...
+//     }
+// //   });
+export const resetPass = (email) => {
+  firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      console.log('E-mail enviado com sucesso!');
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
 };
 
 firebase.auth().onAuthStateChanged((user) => {

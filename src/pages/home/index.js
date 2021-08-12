@@ -15,9 +15,10 @@ export const home = () => {
         </ul>
     </nav>
 
-    <div class="addPost">
+    <div class="goPost">
     <img class="tomato" src="./img/tomato.svg">
-    <a id="addPost" href="">postar</a>
+    <a id="goPost" href="">postar</a>
+
     </div>
 
     <button class='btn' id='btnLogout'>Sair</button>
@@ -39,7 +40,8 @@ export const home = () => {
 </div>
 `;
   const btnLogout = rootElement.querySelector('#btnLogout');
-  const btnAddPost = rootElement.querySelector('#addPost');
+
+  const btnGoPost = rootElement.querySelector('#goPost');
 
   // botão sair para fazer logout
   btnLogout.addEventListener('click', (event) => {
@@ -47,7 +49,7 @@ export const home = () => {
     outLogin();
   });
   // postar
-  btnAddPost.addEventListener('click', () => route('/posts'));
+  btnGoPost.addEventListener('click', () => route('/posts'));
   // carregar posts na tela
   getPosts().then((collectionContent) => {
     collectionContent.forEach((doc) => {
@@ -56,11 +58,12 @@ export const home = () => {
       div.innerHTML = `<div class="allPosts">
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
-          ${doc.data().data.toDate().toLocaleDateString()}
-          ${doc.data().nomeLocalReceita}
-          '${doc.data().descricao}' 
-          ${doc.data().hashTags}
-          <p class='tipo'> ${doc.data().tipo} </p>
+          <p class="data">${doc.data().data.toDate().toLocaleDateString()}</p>
+          <p class="tititulo">${doc.data().nomeLocalReceita}</p>
+          <p class="descr">${doc.data().descricao}</p> 
+          <p class="hashs">${doc.data().hashTags}</p>
+          <p class="tipo"> ${doc.data().tipo} </p>
+
           <button class="like" id="like"><img class="likePrice" src="./img/coracao.svg"></button>
           <p class="numLikes">0</p>
           <button class="price" id="price"> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
@@ -84,7 +87,9 @@ export const home = () => {
 // <a class="hashtag" id="hashtag"></a>
 // <p class="tag" id="tag"></p>
 // <button class="like" id="like"><img src="./img/coracao.svg"</button>
-// <button class="price" id="price"><img src="./img/dinAmarelo.svg"<img src="./img/dinCinza.svg"</button>
+// <button class="price" id="price"><img
+// src="./img/dinAmarelo.svg"<img src="./img/dinCinza.svg"</button>
+
 // <div class="coments" id="coments">
 // <p>comentario</p>
 // <button class="more" id="more">ver mais</button>
