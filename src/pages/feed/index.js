@@ -17,6 +17,7 @@ export const Feed = () => {
     </section>
 
     <section class="get-post" id="postTemplate">
+    
     </section>
 
     <nav class="navbar mobile-list">
@@ -36,7 +37,7 @@ export const Feed = () => {
     const text = rootElement.querySelector('#text-post').value;
 
     const post = {
-      text: text,
+      text,
       user_id: firebase.auth().currentUser.uid,
       likes: 0,
       comments: [],

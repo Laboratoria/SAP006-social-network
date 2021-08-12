@@ -1,6 +1,8 @@
+import { updatePost } from '../services/database.js';
+
 export const printPost = (post) => {
   const areaOfPost = document.createElement('div');
-  console.log(post);
+  // console.log(post);
 
   areaOfPost.innerHTML = `
     <section class="all-posts">
@@ -52,7 +54,7 @@ export const printPost = (post) => {
 
   areaOfPost.querySelector('.edit-button').addEventListener('click', () => {
     const valueInput = areaOfPost.querySelector('.area-edit').value;
-    updatePost(valueInput)
+    updatePost(valueInput, post)
       .then(() => {
         const containerEditText = areaOfPost.querySelector('.edit-text');
         containerEditText.style.display = 'block';
@@ -81,8 +83,7 @@ export const printPost = (post) => {
     divTextPublished.innerHTML = valueInput;
   });
 
-  /* const elementPost = addPost(post);
-  rootElement.querySelector('#get-post').appendChild(elementPost)
-   */
-  return areaOfPost;
+  console.log(areaOfPost);
+
+  document.getElementById('postTemplate').innerHTML += areaOfPost;
 };
