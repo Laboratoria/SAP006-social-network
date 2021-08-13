@@ -49,38 +49,38 @@ export const printPost = (post) => {
     </section>
 `;
 
-  areaOfPost.querySelector('.edit-button').addEventListener('click', () => {
-    const valueInput = areaOfPost.querySelector('.area-edit').value;
-    updatePost(valueInput, post)
-      .then(() => {
-        const containerEditText = areaOfPost.querySelector('.edit-text');
-        containerEditText.style.display = 'block';
-        const areaForEdit = areaOfPost.querySelector('.area-edit');
-        const divTextPublished = areaOfPost.querySelector('.text-published');
-        const textReady = areaOfPost.querySelector('.text-published').innerHTML;
+  // areaOfPost.querySelector('.edit-button').addEventListener('click', () => {
+  //   const valueInput = areaOfPost.querySelector('.area-edit').value;
+  //   updatePost(valueInput, post)
+  //     .then(() => {
+  //       const containerEditText = areaOfPost.querySelector('.edit-text');
+  //       containerEditText.style.display = 'block';
+  //       const areaForEdit = areaOfPost.querySelector('.area-edit');
+  //       const divTextPublished = areaOfPost.querySelector('.text-published');
+  //       const textReady = areaOfPost.querySelector('.text-published').innerHTML;
 
-        divTextPublished.style.display = 'none';
+  //       divTextPublished.style.display = 'none';
 
-        areaForEdit.value = textReady;
-      })
-      .catch((error) => {
-        console.log('Não foi', error);
-      });
-  });
+  //       areaForEdit.value = textReady;
+  //     })
+  //     .catch((error) => {
+  //       console.log('Não foi', error);
+  //     });
+  // });
 
-  areaOfPost.querySelector('.save-button').addEventListener('click', () => {
-    const valueInput = areaOfPost.querySelector('.area-edit').value;
-    const divTextPublished = areaOfPost.querySelector('.text-published');
-    areaOfPost.querySelector('.text-published');
-    const containerEdit = areaOfPost.querySelector('.edit-text');
+  // areaOfPost.querySelector('.save-button').addEventListener('click', () => {
+  //   const valueInput = areaOfPost.querySelector('.area-edit').value;
+  //   const divTextPublished = areaOfPost.querySelector('.text-published');
+  //   areaOfPost.querySelector('.text-published');
+  //   const containerEdit = areaOfPost.querySelector('.edit-text');
 
-    containerEdit.style.display = 'none';
-    divTextPublished.style.display = 'block';
+  //   containerEdit.style.display = 'none';
+  //   divTextPublished.style.display = 'block';
 
-    divTextPublished.innerHTML = valueInput;
-  });
+  //   divTextPublished.innerHTML = valueInput;
+  // });
 
-  console.log(areaOfPost);
+  // console.log(areaOfPost);
 
   document.getElementById('postTemplate').innerHTML += areaOfPost;
 };
