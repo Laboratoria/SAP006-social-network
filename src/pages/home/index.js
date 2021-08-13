@@ -7,7 +7,7 @@ export default () => {
 
   
   const sectionElement = document.createElement("section")
-  sectionElement.setAttribute("id", "home-content")
+  sectionElement.setAttribute("class", "home-content")
 
   const user = currentUser()
   const userId = user.uid

@@ -1,4 +1,4 @@
-import { currentUser, getReviews, getSavedReviews} from "../../lib/index.js"
+import { currentUser, getSavedReviews} from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
 import {profileImage, loadPosts } from "../../lib/functions-home.js"
 
@@ -6,26 +6,26 @@ import {profileImage, loadPosts } from "../../lib/functions-home.js"
 export default () => {
 
   const sectionElement = document.createElement("section")
-  sectionElement.setAttribute("id", "home-content")
+  sectionElement.setAttribute("class", "home-content")
 
-  const user = currentUser()
-  const userId = user.uid
+  // const user = currentUser()
+  // const userId = user.uid
   
-  const profileImg = profileImage()
+  // const profileImg = profileImage()
 
-  let userName 
-  let userName2
-  const userNameFirebase = user.displayName
-  console.log(userNameFirebase)
+  // let userName 
+  // let userName2
+  // const userNameFirebase = user.displayName
+  // console.log(userNameFirebase)
 
-  if (userNameFirebase != null && userNameFirebase != undefined) {
-    userName = userNameFirebase
-    userName2 = userName.replace(/\s/g, '').toLowerCase();
-    console.log("definido")
-  } else {
-    userName = "Usuário anônimo"
-    userName2 = ""
-  }
+  // if (userNameFirebase != null && userNameFirebase != undefined) {
+  //   userName = userNameFirebase
+  //   userName2 = userName.replace(/\s/g, '').toLowerCase();
+  //   console.log("definido")
+  // } else {
+  //   userName = "Usuário anônimo"
+  //   userName2 = ""
+  // }
   const savedTemplate = `
   <div class="home-container">
    

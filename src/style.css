@@ -665,7 +665,7 @@ a:hover {
 }
 
 
-#home-content {
+.home-content {
     background-color: #f0f0f0;
     background-repeat: repeat;
     display: flex;
