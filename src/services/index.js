@@ -35,7 +35,8 @@ export const createAccountWithEmailAndPassword = (
   userName,
   userEmail,
   userPassword,
-) => firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+) => firebase.auth()
+  .createUserWithEmailAndPassword(userEmail, userPassword)
   .then(() => onNavigate('/'))
   .then(() => {
     const user = firebase.auth().currentUser;

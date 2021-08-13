@@ -8,7 +8,18 @@ html,
 body {
   background-color: var(--background-color);
   height: 100vh;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif, Arial, Helvetica;
+}
+
+textarea {
+  resize: none;
+  height: auto; 
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  font-family: inherit;
 }
 
 :root {
@@ -18,6 +29,7 @@ body {
   --bege-color: #F2D479;
   --black-color: #040911;
   --rose-light: #F8E7B5;
+  --blue-light: #616A89;
 }
 
 .header {
@@ -25,11 +37,14 @@ body {
 }
 
 .header-homepage {
-  margin: 0 1.35rem;
+  margin: 0 1.35rem 1rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem;
+  height: 5rem;
+  padding: 0.25rem;
+  align-items: center;
+  border-bottom: 1px solid var(--white-color);
 }
 
 .container,
@@ -38,6 +53,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container-timeline {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-login, .form-register {
@@ -52,8 +73,9 @@ body {
 }
 
 .inicial-page{
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--white-color);
+  padding: 1rem;
 }
 
 .subtitle,
@@ -124,8 +146,8 @@ body {
 .post-text {
   display: flex;
   flex-direction: column;
-  width: 18rem;
-  height: 8rem;
+  min-width: 18rem;
+  max-width: 42rem;
   border-radius: 5px;
   align-items: flex-end;
   border: none;
@@ -133,9 +155,15 @@ body {
   outline: none;
 }
 
+.post-form {
+  margin: 1rem;
+  width: 100%;
+}
+
 .post-text {
   padding: 1rem;
   font-size: 1rem;
+  align-self: flex-start;
 }
 
 .text-user {
@@ -147,9 +175,10 @@ body {
 
 .post {
   display: flex;
-  margin-bottom: 1rem;
-  width: 18rem;
-  height: 9rem;
+  margin: 1rem;
+  min-width: 18rem;
+  max-width: 42rem;
+  max-height: fit-content;
   border-radius: 5px;
   flex-direction: column;
   background-color: var(--rose-light);
@@ -161,14 +190,24 @@ body {
   outline: none;
   border-radius: 0.25rem;
   border: none;
-  margin: 2px 10px 10px;
-  padding: 8px;
+  margin: 10px 10px;
+  padding: 5px;
+  text-align: center;
 }
 
-.user-photo {
+.user-photo, .user-perfil-header {
   width: 4.5rem;
   height: 3rem;
   border-radius: 50%;
+}
+
+.user-perfil-header {
+  width: 5rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .user-perfil {
@@ -179,21 +218,24 @@ body {
 .user-name {
   padding: 0.25rem;
   font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 
 .user-post {
   display: flex;
   margin: 1rem;
+  word-break: break-word;
 }
 
 .post-field {
   display: flex;
-  height: 3rem;
+  height: fit-content;
 }
 
 .button-google {
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.90rem;
   padding: 5px 12px;
 }
 
@@ -221,7 +263,7 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-  margin: 14px;
+  margin-right: 0.55rem;
 }
 
 .logout-img {
@@ -255,4 +297,88 @@ body {
 .fa-eye {
   min-width: 50px;
   cursor: pointer;
+}
+
+@media(max-width: 1200px ) and (min-width: 720px) {
+
+  ::-webkit-scrollbar {
+    width: 18px;
+}
+ 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px var(--blue-light); 
+  border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px var(--blue-light); 
+}
+
+  textarea {
+    width: 100%;
+    
+  }
+
+  .header-homepage {
+    display: grid;
+    width: 18rem;
+    grid-column: 1;
+    margin: auto;
+    height: 100vh;
+    background: var(--blue-light);
+    justify-content: center;
+    position: fixed;
+}
+  
+
+  .container-timeline {
+    align-items: inherit;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 18rem auto;
+    grid-template-rows: 10rem auto;
+  }
+  
+  .post-form, .post {
+    grid-column: 2;
+    justify-self: center;
+    margin: 1rem auto;
+  }
+
+  .inicial-page {
+    justify-self: center;
+  }
+
+  .user-perfil-header {
+    width: 100%;
+  }
+
+  .user-photo-header {
+    width: 10rem;
+  }
+
+  .logout {
+    margin: auto;
+  }
+
+  .loading-posts {
+    display: none;
+  }
+
+  #postsList {
+    grid-column: 2;
+  }
+}
+
+@media(min-width: 720px) {
+  .header-homepage {
+    width: 12rem;
+  }
+
+  #postsList, .post-form {
+    justify-self: flex-start;
+    width: 22rem;
+    margin: 1rem 0;
+  }
 }
