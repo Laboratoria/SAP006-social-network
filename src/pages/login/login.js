@@ -3,7 +3,7 @@ import {
   signInGoogle,
   keepLogged,
 } from '../../services/authentication.js';
-import { navigation } from '../../routes.js';
+import { navigation } from '../../navigation.js';
 
 export const Login = () => {
   const rootElement = document.createElement('div');
