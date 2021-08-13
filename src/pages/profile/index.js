@@ -1,7 +1,9 @@
 /* eslint-disable no-tabs */
 import { createUser, currentUser } from '../../services/index.js';
+import { headerMenu } from '../../components/header/index.js';
 
 export const Profile = () => {
+  headerMenu()
   const loggedUser = currentUser();
   const root = document.createElement('div');
   root.innerHTML = `

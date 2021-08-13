@@ -1,112 +1,180 @@
 body, .menu {
-    margin: 0px;
-    padding: 0px;  
-    font-family: 'Montserrat', sans-serif;
-        
-  }
-  @font-face { 
-    font-family: Montserrat;
-    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-  }
-
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .menu-header {
-    box-sizing: border-box;
-    height: 70px;
-    padding: 1rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #e7e7e7;
+  margin: 0px;
+  padding: 0px;  
+  font-family: 'Montserrat', sans-serif;
+  color:beige; 
 }
-  
+/*@font-face { 
+  font-family: Montserrat;
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+}*/
+
+.logo-header {
+  width: 20%;
+  cursor: pointer;
+}
+
+.menu-header { 
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1f1f4b;
+  color: #e7e7e7;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: .5rem;
+}
+
+.menu-a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: .5rem;
+  color: #e7e7e7;
+  cursor: pointer;
+}
+
+.menu-a:hover {
+  background: rgba(0, 0, 0, .05);
+  color: #ffd632;
+}
+
+.btn-mobile {
+  display: none;
+}
+
+@media (max-width: 600px) {
+
   .menu {
-    display: block;
-    list-style: none;
-    gap: .5rem;
+    display: block;    
     position: absolute;
     width: 50%;
-    top: 70px;
-    right: 0px;
-    background: #e7e7e7;
-    height: 0px;
+    /*top: 60px;*/
+    right: 0;
+    background: #1f1f4b;
+    height: 0;
     transition: .6s;
-    z-index: 1000; /*colocar o maior valor possível*/
-    overflow-y: auto;
+    z-index: 1000;
     visibility: hidden;
     overflow-y: hidden;
-       
-  }
-  
-  .menu.active {
-    height: calc(100vh - 70px);
-    visibility: visible;
-    overflow-y: auto;
     
   }
 
+  .menu-nav.active .menu {
+    height: calc(100vh - 60px);
+    visibility: visible;
+    height: 40%; /* devemos escolher se o menu precisa ocupar toda a tela*/
+    /*overflow-y: auto;*/
   
-  .menu a {
-    display: block;
+  }
+
+  .menu-a {
     padding: 1rem 0;
     margin: 0 1rem;
-    border-bottom: 2px solid rgba(0, 0,0, .05);
-    
+    border-bottom: 2px solid rgba(0, 0, 0, .05);
   }
-  
-  .menu-a {
-    color: black;
-    text-decoration: none;
-    text-transform:uppercase;
-    font-weight: bold;
-  }
-  
-  .menu-a:hover {
-    background: rgba (0, 0, 0, .05);
-  }
-  
+
   .btn-mobile {
-      display: flex;
-      padding: .5rem 1rem;
-      font-size: 1rem;
-      border: none;
-      background: none;
-      cursor: pointer;
-      gap: .5rem; /*devo estudar gap*/
+    display: flex;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    gap: .5rem;
+
   }
-    
+
   .hamburguer {
-    display: block;
-    border-top: 2px solid;
     width: 20px;
+    border-top: 2px solid;
+    display: block;    
+    color: #e7e7e7;
   }
-  .hamburguer::after, .hamburguer::before{
+
+  .hamburguer::after, .hamburguer::before {
     content: '';
     display: block;
-    width:20px;
+    width: 20px;
     height: 2px;
     background: currentColor;
     margin-top: 5px;
     transition: .3s;
     position: relative;
   }
-  
-  .hamburguer.active {
-    border-top-color: transparent;
+
+  .menu-nav.active .hamburguer {
+    border-top-color: transparent;      
   }
-  
-  .hamburguer.active::before {
+
+  .menu-nav.active .hamburguer::before {
     transform: rotate(135deg);
   }
-  
-  .hamburguer.active::after {
+
+  .menu-nav.active .hamburguer::after {
     transform: rotate(-135deg);
     top: -7px;
   }
-  
+}
+
+
+/*********** PARTE DO POP UP *************/
+.popup-wrapper {
+  background-color: rgba(68, 136, 182, 0.418)/* rgba(247, 241, 241, 0.5)*/;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  overflow: auto;
+  z-index: 3;
+}
+
+.popup {
+  text-align: center;
+  width: 60%;
+  min-width: 300px;
+  margin: 10% auto;
+  padding: 20px;
+  background: #1f1f4b;
+  position: relative;
+  color: black;
+  box-shadow: 0px 0px 20px rgb(21, 2, 71);
+  border-radius: 10px;
+  z-index: 3;
+}
+
+.popup-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+  padding: 15px;
+  background-color: #ffd632;
+  color: #1f1f4b;
+  font-weight: 900;
+  border-radius: 50%;
+  box-shadow: 0px 0px 30px #000;
+  z-index: 3;
+}
+
+.popup-content {
+  background-color: whitesmoke;
+  padding: 5px;
+  margin: 10px auto;
+  text-align: justify;
+  min-width: 300px;
+  z-index: 3;
+  color:black;
+  font-size: larger;
+}
+
+
+
