@@ -1,7 +1,6 @@
 import { signOut } from '../../services/index.js';
 
-
-export function headerMenu() {  
+export function headerMenu() {
   const rootMain = document.querySelector('.root');
   rootMain.innerHTML = '';
   const header = document.createElement('header');

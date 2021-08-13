@@ -1,0 +1,165 @@
+.profile-container {
+  display: inline-block;
+}
+  
+.profile-image-container {
+  align-self: baseline;
+  width: 25%;
+  height: auto;
+  text-align: center;
+}
+  
+.profile-image-container input[type='file'] {
+  display: none;
+}
+  
+.profile-figure {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+  
+.avatar-image {
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  box-sizing: border-box;
+  border-radius: 100%;
+  border: 2px, solid, transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: all ease-in-out .3s;
+}
+  
+.avatar-image:hover {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+}
+  
+.avatar-figcaption {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  width: inherit;
+  height: inherit;
+  border-radius: 100%;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all ease-in-out .3s;
+}
+  
+.avatar-figcaption:hover{
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+  
+.avatar-figcaption > img {
+  margin-top: 32.5px;
+  width: 50px;
+  height: 50px;
+}
+  
+/*informações do perfil*/
+.profile-form {
+  display: inline-flex;
+}
+  
+.fieldset-container {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  padding: revert;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.redefinition { 
+  display: flex; 
+  text-decoration: none; 
+  color: black;
+  /*font-size: 12px;*/
+  justify-content: flex-end;
+}
+  
+.btn-profile-container {
+  position: inherit;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+/*responsividade*/
+
+[class*='col-'] {
+  float: left;
+  padding: 15px;
+  /*border: 1px solid red;*/
+}
+
+.row::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+@media only screen and (min-width: 768px) {
+  [class*='col-'] {
+  width: 100%;
+  }
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+/* For mobile phones: 
+[class*="col-"] {
+  width: 100%;
+}*/
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+
+@media only screen and (max-width:767px){
+  .fieldset-container{
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+

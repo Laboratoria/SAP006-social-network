@@ -24,11 +24,11 @@ export const Feed = () => {
   const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
 
-  //  btnSignOut.addEventListener('click', () => {
-  //   window.history.pushState({}, '', '/');
-  //   const popStateEvent = new PopStateEvent('popstate', { state: {} });
-  //   dispatchEvent(popStateEvent);
-  // });
+  /*btnSignOut.addEventListener('click', () => {
+    window.history.pushState({}, '', '/');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    dispatchEvent(popStateEvent);
+  });*/
 
   const postObject = (text) => {
     const postObj = {
