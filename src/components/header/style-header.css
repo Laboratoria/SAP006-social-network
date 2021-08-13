@@ -145,7 +145,7 @@ body, .menu {
   padding: 20px;
   background: #1f1f4b;
   position: relative;
-  color: #fff;
+  color: black;
   box-shadow: 0px 0px 20px rgb(21, 2, 71);
   border-radius: 10px;
   z-index: 3;
@@ -172,40 +172,9 @@ body, .menu {
   text-align: justify;
   min-width: 300px;
   z-index: 3;
+  color:black;
+  font-size: larger;
 }
 
-.popup-content h2 {
-  font-size: 2em;
-  text-align: center;
-  font-weight: 900;
-  color: #ffc700;
-  text-shadow: 0px 0px 20px #ffc700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  z-index: 3;
-}
 
-.popup-content h3 {
-  font-size: 1.2em;
-  text-align: center;
-  font-weight: 500;
-  color: #fff;
-  text-shadow: 0px 0px 10px #fff;
-  text-transform: capitalize;
-  z-index: 3;
-}
 
-.popup-content h4 {
-  background-color: #ffc700;
-  color: #000;
-  text-align: center;
-  font-weight: bold;
-  padding: 2px;
-  margin: auto;
-  box-shadow: 2px 2px 20px #000;
-  width: 95%;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  
-}

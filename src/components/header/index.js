@@ -1,10 +1,8 @@
 import { signOut } from '../../services/index.js';
-//import { Feed } from '../../pages/feed/index.js';
+
 
 export function headerMenu() {
-  //const header = document.querySelector('.menu-header');
-
-  //const rootM = document.body;
+  
   const rootMain = document.querySelector('.root');
   rootMain.innerHTML = '';
   const header = document.createElement('header');
@@ -69,7 +67,6 @@ export function headerMenu() {
     nav.classList.remove('active');
   });
 
-  // const rootMain = document.querySelector('.root');
   const popupLang = document.createElement('div');
   popupLang.innerHTML = `  
     <div class='popup-wrapper'>
@@ -87,7 +84,7 @@ export function headerMenu() {
   function exibeModal() {
     popup.style.display = 'block';
 
-    popUpContent.innerHTML = '';
+    popUpContent.innerHTML = 'IDIOMAS';
   }
 
   popup.addEventListener('click', (event) => {
