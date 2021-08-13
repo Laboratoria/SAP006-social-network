@@ -1,0 +1,28 @@
+@import url('./views/homepage/style.css');
+@import url('./views/login/style.css');
+@import url('./views/signup/style.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--background-color);
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-position: 11rem 32rem;
+  background-size: 210px;
+  background-repeat: no-repeat;
+}
+
+:root {
+  --background-color: #131140;
+  --orange-color: #F28705;
+  --white-color: #FAFAFA;
+  --bege-color: #F2D479;
+  --black-color: #040911;
+  --rose-light: #F8E7B5;
+}
