@@ -1,4 +1,4 @@
-// import { fireBaseUser } from '../../services/index.js';
+// import { createeUser } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
