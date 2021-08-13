@@ -4,9 +4,6 @@ import { Post } from '../../components/posts/posts.js';
 import { headerMenu } from '../../components/header/index.js';
 
 export const Feed = () => {
-  // const rootMain = document.querySelector('.root');
-  // rootMain.innerHTML = '';
-
   headerMenu();
   const root = document.createElement('div');
   root.innerHTML = `  
