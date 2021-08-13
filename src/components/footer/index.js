@@ -1,6 +1,9 @@
 export default () => {
-  const components = document.createElement('div');
-  components.innerText = 'Esta funcionando';
+  const footerContainer = document.createElement('div');
 
-  return components;
+  const footerContent = `
+  <footer></footer>
+  `;
+  footerContainer.innerHTML += footerContent;
+  return footerContainer;
 };
