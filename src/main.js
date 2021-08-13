@@ -9,9 +9,8 @@ import register from './pages/register/index.js';
 import login from './pages/login/index.js';
 import feed from './pages/feed/index.js';
 
-const main = document.querySelector('#root');
-
-const init = () => {
+export const init = () => {
+  const main = document.querySelector('#root');
   main.innerHTML = '';
   switch (window.location.hash) {
     case '#home':
