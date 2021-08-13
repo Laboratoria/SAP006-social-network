@@ -5,6 +5,7 @@ import {
 import {
   showReviewArea
 } from "../../lib/functions-home.js"
+import saved from "../../pages/saved/index.js"
 
 
 export const sidebar = () => {
@@ -77,7 +78,7 @@ export const sidebar = () => {
       </section>
 
       <section class="sidebar-tools sidebar-saved">
-        <button href="" class="sidebar-btn sidebar-btn-mobile">
+        <button href="" id="saved-btn-sidebar" class="sidebar-btn sidebar-btn-mobile">
           <div class="sidebar-div-links">
             <img src="../../img/save.png" alt="" class="save-sidebar">
             <p class="sidebar-text id="sidebar-review" >Salvos</p>
@@ -119,6 +120,8 @@ export const sidebar = () => {
 
   const logoutBtn = asideElement.querySelector("#logout-btn-sidebar")
   const editProfileLink = asideElement.querySelector("#edit-profile-link")
+  const savedBtnSidebar = asideElement.querySelector("#saved-btn-sidebar")
+  
 
   editProfileLink.addEventListener("click", (e) => {
     e.preventDefault()
@@ -140,6 +143,18 @@ export const sidebar = () => {
     dispatchEvent(popStateEvent)
   })
 
+  savedBtnSidebar.addEventListener("click", (e) => {
+    e.preventDefault()
+    window.history.pushState(null, null, "/salvos")
+    const popStateEvent = new PopStateEvent("popstate", {
+      state: {}
+    })
+    dispatchEvent(popStateEvent)
+
+  })
+
+
+
   const closeBtn = asideElement.querySelector("#close-mobile-sidebar")
   closeBtn.addEventListener("click", (e) => {
     e.preventDefault()
@@ -148,6 +163,7 @@ export const sidebar = () => {
 
 
   })
+
 
   const buttonAddReviewSidebar = asideElement.querySelector(".sidebar-btn")
   buttonAddReviewSidebar.addEventListener("click", (e) => {

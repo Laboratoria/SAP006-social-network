@@ -39,12 +39,12 @@ export const profileImage = () => {
 }
 
 
-export const loadPosts = () => {
+export const loadPosts = (função) => {
   const user = currentUser()
   const userId = user.uid
 
   const reviewsData = () => {
-    getReviews()
+    função
 
       .then((snap) => {
         const allReviews = document.querySelector("[data-all-reviews]")
@@ -148,7 +148,7 @@ export const loadPosts = () => {
                 </div>
               </div>
               <div class="comments-container" id="comment-${postId}">
-                <div class="comment-post" add-comment-container" style="display:none" >
+                <div class="comment-post" data-set="add-comment-container" style="display:none" >
                   <div class="comment-image-div">
                     <img src="${profileImage()}"class="comment-user-image"/>
                   </div>
@@ -279,7 +279,6 @@ export const loadPosts = () => {
                 }
 
               }, true)
-              
             }
 
             if(targetDataset=="send-comment"){
@@ -422,13 +421,13 @@ export const publishReview = (e) => {
 
       })
       .then(() => {
-        loadPosts()
+        loadPosts(getReviews())
       })
 
   } else {
     createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, null, completeDate, hour)
     .then(()=>{
-    loadPosts()
+    loadPosts(getReviews())
     })
   }
 }

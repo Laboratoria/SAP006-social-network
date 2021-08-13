@@ -743,7 +743,7 @@ header {
     justify-content: center;
 }
 
-.p-make-review {
+.p-make-review, .title-saved{
     font-size: 2rem;
     color: white;
 }
@@ -1047,7 +1047,7 @@ header {
 .input-comment{
     font-size: 1.3rem;
     width:100%;
-    margin-top: 1rem;
+    padding-top: 1rem;
     outline: none;
     border:none;
     background-color: transparent;
@@ -1055,6 +1055,7 @@ header {
     overflow: hidden;
     resize: none;
     text-align: justify;
+    
    
     
 }
@@ -1064,9 +1065,13 @@ header {
     background-color:transparent;
     border:none;
     font-size: 1.3rem;
-    margin:1rem 0 0 0;
-    padding:0 1rem 0 0;
+    
+    padding:1rem 1rem 0 0;
     justify-self: flex-end;
+}
+
+.send-comment:hover{
+    cursor:pointer;
 }
 
 .comment-post{
@@ -1248,4 +1253,21 @@ header {
 .saved {
     animation: animateHeart 1s;
     filter: brightness(100%) contrast(0%);
+}
+
+.saved-items{
+    width:100%;
+    padding: 1.5rem;
+    background: linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color:white;
+}
+
+.img-title-saved{
+    width:2rem;
+    margin-right:1rem;
+
 }
