@@ -1,10 +1,10 @@
 import { Comunique } from './pages/landing_pages/comunique.js';
-import { Conecte } from '/pages/landing_pages/conecte.js';
+import { Conecte } from './pages/landing_pages/conecte.js';
 import { Welcome } from './pages/landing_pages/welcome.js';
 import { Login } from './pages/login/login.js';
 import { signUp } from './pages/signup/signup.js';
 import { Reset } from './pages/signup/reset.js';
-import { Feed } from './pages/feed/index.js';
+import { Feed } from './pages/feed/feed.js';
 
 export const routeRender = () => {
   const elementRoute = document.querySelector('#root');
@@ -25,21 +25,3 @@ export const routeRender = () => {
 
 window.addEventListener('load', routeRender);
 window.addEventListener('popstate', routeRender);
-
-export const navigation = (path) => {
-  window.history.pushState({}, null, path);
-
-  const popStateEvent = new PopStateEvent('popstate', { state: {} });
-  dispatchEvent(popStateEvent);
-};
-
-const validateIfUserIsLogged = () => {
-  const userId = localStorage.getItem('uid');
-  if (userId !== null) {
-    navigation('/feed');
-  } else {
-    navigation('/welcome');
-  }
-};
-
-validateIfUserIsLogged();

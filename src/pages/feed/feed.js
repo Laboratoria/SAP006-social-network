@@ -30,6 +30,7 @@ export const Feed = () => {
     </nav>
       `;
   rootElement.innerHTML = container;
+  console.log(container);
 
   const submitButton = rootElement.querySelector('#published-form');
   submitButton.addEventListener('submit', (event) => {
@@ -67,6 +68,7 @@ export const Feed = () => {
   // const deleteButton = document.querySelector('.delete-button');
 
   loadPosts();
+  console.log(loadPosts);
 
   return rootElement;
 };
