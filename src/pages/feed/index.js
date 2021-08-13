@@ -15,10 +15,10 @@ export const Feed = () => {
       <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
-
-    <section class="get-post" id="postTemplate">
-    
-    </section>
+   
+  <section class="get-post" id="postTemplate"> 
+  <!--Aqui vem todo o template do areaOfPost-->
+  </section>
 
     <nav class="navbar mobile-list">
       <ul>
@@ -44,12 +44,7 @@ export const Feed = () => {
     };
 
     addPosts(post);
-    // console.log(addPosts);
   });
-
-  /* const elementPost = addPost(post);
-    rootElement.querySelector('#get-post').appendChild(elementPost)
-    */
 
   const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
@@ -60,10 +55,9 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
-  // const deleteButton = document.querySelector('.delete-button');
-  // console.dir(deleteButton);
-
   loadPosts();
 
   return rootElement;
 };
+
+

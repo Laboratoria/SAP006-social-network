@@ -1,4 +1,4 @@
-import { printPost } from '../components/feed.js';
+import { printPost } from '../components/post/post.js';
 
 export const loadPosts = () => {
   firebase
@@ -8,13 +8,11 @@ export const loadPosts = () => {
     .get()
     .then((snap) => {
       snap.forEach((post) => {
-        const postInfo = post.data();
+        const postInfo = (post.data());
         printPost(postInfo);
       });
     });
-  // .catch((error) => {
-  //   console.error('Erro ao excluir o post: ', error);
-  // });
+
 };
 
 export const addPosts = (post) => firebase
@@ -35,9 +33,7 @@ export const deletePost = (postId) => firebase
   .doc(postId)
   .delete()
   .then(() => {
-    // console.log('Publicação deletada!');
   })
   .then(() => loadPosts())
   .catch((error) => {
-    // console.error('Erro ao excluir o post: ', error);
   });
