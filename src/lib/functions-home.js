@@ -39,13 +39,13 @@ export const profileImage = () => {
 }
 
 
-export const loadPosts = (função) => {
+export const loadPosts = (functionFirebase) => {
   const user = currentUser()
   const userId = user.uid
 
   const reviewsData = () => {
-    função
 
+    functionFirebase
       .then((snap) => {
         const allReviews = document.querySelector("[data-all-reviews]")
         allReviews.innerHTML = ""
@@ -154,7 +154,7 @@ export const loadPosts = (função) => {
                   </div>
                   <div class="comment-text comment-text-form">
                     <div class="comment-headline">
-                      <p class="comment-username">${userName}</p>
+                      <p class="comment-username">${currentUser().displayName}</p>
                     </div>
             
                     <textarea class="input-comment" rows="1" data-item="add-comment" placeholder="Adicione seu comentário." wrap="hard"></textarea>
