@@ -12,7 +12,7 @@ export const home = () => {
   const template = `
     <div class="header-homepage">
       <div class= "user-perfil-header">
-        <img src="./img/Perfil.png" alt="user-photo" class="user-photo-header">
+        <img src="./img/Perfil.png" alt="user-photo" class="user-photo-header" width="60px">
       </div>
       <h2 class="inicial-page">Página inicial</h2>
       <button class="logout" id="logout">
@@ -66,20 +66,4 @@ export const home = () => {
   });
 
   return container;
-};
-
-export const addPosts = (post) => {
-  const postTemplate = `
-   <section id="${post.data().userId}" class="post">
-    <div class= "user-perfil">
-      <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
-      <h4 class="user-name">@${post.data().userName}</h4>
-    </div>
-    <article class="post-field">
-      <p class="user-post">${post.data().text}</p>
-    </article>
-     
-   </section>
-   `;
-  document.querySelector('#postsList').innerHTML += postTemplate;
 };

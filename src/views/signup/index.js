@@ -5,36 +5,35 @@ export const signup = () => {
   const container = document.createElement('div');
   container.className = 'signUp-container';
   const template = `
-    <div class ="header-singnUp">
-    <div class= "img-triangle">
-     <img class="header-triangle" src="../img/triangulosUp.png" alt="triangle" width="100"/>
-    </div>
-     <h1 class="logo-signUp">Logo</h1>
+    <div class="header-singnUp">
+      <div class="img-triangle">
+        <img class="header-triangle" src="../img/triangulosUp.png" alt="triangle" width="100"/>
+      </div>
+      <h1 class="logo-signUp">Logo</h1>
     </div>
     <form class="form-register">
       <p class="create-account">Crie sua conta</p>
-      <p id="error-sign-up-message"></p>
+      <p id="error-sign-up-message" class="error-sign-up-message"></p>
       <input type="text" placeholder="Nome" class="input-field" id="user-name">
       <input type="text" placeholder="Email" class="input-field" id="user-email">
       <div class="show-password">
-       <i id="eye-register" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
+        <i id="eye-register" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
       </div>
-      <input type="password" placeholder="Senha" class="input-field" id="new-password" autocomplete="off">
+      <input type="password" placeholder="Senha" class="input-field" id="new-password"  autocomplete="off">
       <div class="show-password">
-       <i id="eye-show-register" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
+        <i id="eye-show-register" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
       </div>
-      <input type="password" placeholder="Confirmar Senha" class="input-field" id="confirm-password" autocomplete="off">
+      <input type="password" placeholder="Confirmar Senha" class="input-field"  id="confirm-password" autocomplete="off">
       <button id="sign-up-btn" class="button">Cadastrar</button>
     </form>
     <p class="option">ou</p>
     <button class="button" id="google-btn" type="submit">
-      <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
+      <img src="../img/icongoogle.png" alt="Google icon" width="27px" />
       <p class="button-google">Continuar com o Google</p>
     </button>
     <p class="login-text">Já tem uma conta?</p>
-    <button class="button" id="btn-login">Entrar</button
-    <div class= "footer-img">
-     <img class="dog-signUp" src="../img/dog.png" alt="dog" width="100px"/>
+    <button class="button" id="btn-login">Entrar</button <div class="footer-img">
+    <img class="dog-signUp" src="../img/dog.png" alt="dog" width="100px" />
     </div>
   `;
   container.innerHTML = template;
