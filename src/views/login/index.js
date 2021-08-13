@@ -5,8 +5,11 @@ export const login = () => {
   const container = document.createElement('div');
   container.className = 'container';
   const template = `
-    <div class="header">
-       <h1 class="logo">Pet</h1>
+    <div class="header-login">
+    <div class= "img-ball">
+      <img class="ball" src="../img/bolinhas.png" alt="balls" width="100"/>
+    </div>
+    <h1 class="logo">Pet</h1>
     </div>
     <p class="subtitle">Uma rede para tutores e amantes de animais.</p>
     <form class="form-login">
@@ -25,6 +28,10 @@ export const login = () => {
     </form>
     <p class="sign-up-text">Ainda não é membro?</p>
     <button class="button" id="btn-signUp">Cadastrar-se</button>
+    <div class= "footer-img">
+     <img class="dog-login" src="../img/dog.png" alt="dog" width="100px"/>
+     <img class="triangle" src="../img/Triangulos.png" alt="triangle" width="100"/>
+    </div>
 `;
   container.innerHTML = template;
 

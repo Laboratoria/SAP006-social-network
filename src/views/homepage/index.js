@@ -25,6 +25,7 @@ export const home = () => {
     </form>
     <p class="loading-posts"></p>
     <ul id="postsList"></ul>
+    <div class= "footer-img">
  `;
 
   container.innerHTML = template;
@@ -65,4 +66,20 @@ export const home = () => {
   });
 
   return container;
+};
+
+export const addPosts = (post) => {
+  const postTemplate = `
+   <section id="${post.data().userId}" class="post">
+    <div class= "user-perfil">
+      <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
+      <h4 class="user-name">@${post.data().userName}</h4>
+    </div>
+    <article class="post-field">
+      <p class="user-post">${post.data().text}</p>
+    </article>
+     
+   </section>
+   `;
+  document.querySelector('#postsList').innerHTML += postTemplate;
 };

@@ -8,6 +8,7 @@ export const renderPage = () => {
     '/': login,
     '/home': home,
     '/cadastrar': signup,
+
   };
   main.innerHTML = '';
   main.appendChild(routes[window.location.pathname]());

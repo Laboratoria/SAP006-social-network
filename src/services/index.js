@@ -7,9 +7,9 @@ import { onNavigate } from '../navigate.js';
 export const getNewUserData = (userData, userName) => {
   const usersCollection = firebase.firestore().collection('users');
   const user = {
-    id: userData.user.uid,
+    id: userData.uid,
     name: userName,
-    email: userData.user.email,
+    email: userData.email,
   };
   usersCollection.add(user);
 };
