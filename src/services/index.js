@@ -119,32 +119,11 @@ export const logOut = () => {
   onNavigate('/');
 };
 
-export const addPosts = (post) => {
-  const postTemplate = `
-   <section id="${post.data().userId}" class="post">
-    <div class= "user-perfil">
-      <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
-      <h4 class="user-name">@${post.data().userName}</h4>
-    </div>
-    <article class="post-field">
-      <p class="user-post">${post.data().text}</p>
-    </article>
-     
-   </section>
-   `;
-  document.querySelector('#postsList').innerHTML += postTemplate;
-};
-
 export const loadPosts = () => {
   const postsCollection = firebase
     .firestore()
     .collection('posts');
-  postsCollection.get().then((snap) => {
-    document.querySelector('.loading-posts').innerHTML = '';
-    snap.forEach((post) => {
-      addPosts(post);
-    });
-  });
+  return postsCollection.get()
 };
 
 export const createPost = (textPost) => {
@@ -161,8 +140,5 @@ export const createPost = (textPost) => {
   const postsCollection = firebase
     .firestore()
     .collection('posts');
-  postsCollection.add(post).then(() => {
-    document.querySelector('#postsList').value = '';
-    loadPosts();
-  });
+    return postsCollection.add(post);
 };

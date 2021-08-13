@@ -24,17 +24,31 @@ export const home = () => {
     </form>
     <span class="loading-posts"></span>
     <ul id="postsList"></ul>
+    <div class= "footer-img">
  `;
 
   container.innerHTML = template;
   container.querySelector('#postForm')
     .addEventListener('submit', (event) => {
       event.preventDefault();
-      const textPost = document.querySelector('#postText').value;
-      createPost(textPost);
+      const textPost = container.querySelector('#postText').value;
+      createPost(textPost).then(() => {
+        container.querySelector('#postsList').value = '';
+        loadPosts().then((snap) => {
+          document.querySelector('.loading-posts').innerHTML = '';
+          snap.forEach((post) => {
+            addPosts(post);
+          });
+        });
+      });
     });
   container.querySelector('.loading-posts').innerHTML = 'Carregando...';
-  loadPosts();
+  loadPosts().then((snap) => {
+    document.querySelector('.loading-posts').innerHTML = '';
+    snap.forEach((post) => {
+      addPosts(post);
+    });
+  });
   container.querySelector('#logout').addEventListener('click', (e) => {
     e.preventDefault();
     logOut();
@@ -42,3 +56,21 @@ export const home = () => {
 
   return container;
 };
+
+
+export const addPosts = (post) => {
+  const postTemplate = `
+   <section id="${post.data().userId}" class="post">
+    <div class= "user-perfil">
+      <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
+      <h4 class="user-name">@${post.data().userName}</h4>
+    </div>
+    <article class="post-field">
+      <p class="user-post">${post.data().text}</p>
+    </article>
+     
+   </section>
+   `;
+  document.querySelector('#postsList').innerHTML += postTemplate;
+};
+

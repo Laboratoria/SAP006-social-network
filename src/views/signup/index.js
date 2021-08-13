@@ -5,8 +5,11 @@ export const signup = () => {
   const container = document.createElement('div');
   container.className = 'signUp-container';
   const template = `
-    <div class ="header">
-     <h1 class="logo">Logo</h1>
+    <div class ="header-singnUp">
+    <div class= "img-triangle">
+     <img class="header-triangle" src="../img/triangulosUp.png" alt="triangle" width="100"/>
+    </div>
+     <h1 class="logo-signUp">Logo</h1>
     </div>
     <form class="form-register">
       <p class="create-account">Crie sua conta</p>
@@ -23,13 +26,16 @@ export const signup = () => {
       <input type="password" placeholder="Confirmar Senha" class="input-field" id="confirm-password" autocomplete="off">
       <button id="sign-up-btn" class="button">Cadastrar</button>
     </form>
-    <span class="option">ou</span>
+    <span class="option-register">ou</span>
     <button class="button" id="google-btn" type="submit">
-      <img src="../img/icongoogle.png" alt="Google icon" width="27px"/>
+      <img src="../img/icongoogle.png" class="google-icon" alt="Google icon" width="22px"/>
       <span class="button-google">Continuar com o Google</span>
     </button>
     <p class="login-text">Já tem uma conta?</p>
-    <button class="button" id="login-btn">Entrar</button
+    <button class="button" id="btn-login">Entrar</button
+    <div class= "footer-img">
+     <img class="dog-signUp" src="../img/dog.png" alt="dog" width="100px"/>
+    </div>
   `;
   container.innerHTML = template;
   container.querySelector('#sign-up-btn')
@@ -48,7 +54,7 @@ export const signup = () => {
       loginWithGoogleAccount();
     });
 
-  container.querySelector('#login-btn')
+  container.querySelector('#btn-login')
     .addEventListener('click', (e) => {
       e.preventDefault();
       onNavigate('/');
