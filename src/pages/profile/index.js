@@ -16,7 +16,7 @@ export const Profile = () => {
             <figure class='profile-figure'>
               <img src='img/avatar.png' class='avatar-image' alt='avatar'>
               <figcaption class='avatar-figcaption'>
-                <img src='img/camera-figcaption.png'    >
+                <img src='img/camera-figcaption.png'>
               </figcaption>
             </figure>
           </section>
@@ -39,7 +39,7 @@ export const Profile = () => {
             </p>
 
             <p>Email:
-              <input id='email' type='name' class='input-profile' value='${loggedUser.email}'>
+              <input id='email' type='name' class='input-profile' value='${loggedUser.email}' disabled>
             </p>
 
             <div class='redefinition'>

@@ -1,5 +1,7 @@
 import { signUpWithEmailAndPassword, loginWithGmail } from '../../services/index.js';
+// eslint-disable-next-line import/no-cycle
 import { navigation } from '../../router.js';
+import { getError } from '../../Errors/index.js';
 
 export const SignUp = () => {
   const root = document.createElement('div');
@@ -24,7 +26,7 @@ export const SignUp = () => {
             <label class='label-login' for='password'>Senha</label>
             <input id='password' type='password' class='input-password form-item'>
           </div>
-
+          <section class='errors'></section>
           <button type='button' id='signUpButton' class='btn-signup btn form-item'>Cadastrar</button>
           <p class='separator'>ou</p> 
           <button type='button' id='btnGmail' class='btnGmail btn form-item'>
@@ -53,8 +55,7 @@ export const SignUp = () => {
         navigation('/profile');
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        getError(error);
       });
   });
 
