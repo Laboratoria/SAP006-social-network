@@ -85,6 +85,7 @@ export default () => {
 
   addRecipeContainer.innerHTML = addRecipe;
 
+  const form = addRecipeContainer.querySelector('.initialForm');
   const btnAddPhoto = addRecipeContainer.querySelector('#add-photo');
   btnAddPhoto.addEventListener('click', () => {
     window.location.hash = '/';
@@ -124,15 +125,21 @@ export default () => {
         .then(() => {
           popup.classList.add('active');
           overlay.classList.add('active');
+          // criar uma função com as mudanças de estado da classe (usar toggle)
         })
         .catch((error) => {
           throw new Error(error);
+        // tratar o erro
         });
     }
 
     const addNewRecipe = addRecipeContainer.querySelector('#btn-yes');
     addNewRecipe.addEventListener('click', () => {
-      window.location.reload(true);
+      form.reset();
+      popup.classList.remove('active');
+      overlay.classList.remove('active');
+      window.scrollTo(0, 0);
+      // criar uma função com as mudanças de estado da classe (usar toggle)
     });
 
     const goToFeedPage = addRecipeContainer.querySelector('#btn-no');

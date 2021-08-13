@@ -19,13 +19,6 @@ body {
   background-attachment: fixed;
 }
 
-#root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
 .container {
   width: 85%;
 }
@@ -249,6 +242,8 @@ button:hover {
   background-color: rgb(102, 102, 93);
   padding: 6px;
   padding-bottom: 8px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .profileInfo{
@@ -259,19 +254,20 @@ button:hover {
 
 .profile-nav-bar{
   background-color: #e47127;
-  width: 155px;
-  height: 218px;
+  width: 244px;
+  height: 260px;
   border-radius: 20px;
   display: flex;
   flex-flow: column;
   align-items: center;
   padding: 5px;
   justify-items: center;
+  margin-top: 100px;
 }
 
 .profile-nav-bar-options{
   list-style-type: none;
-  width: 155px;
+  width: 244px;
   height: 40px;
   text-align: center;
   padding: 10px;
@@ -288,6 +284,7 @@ button:hover {
 
 .profileInfo section p{
   text-align: center;
+  margin-bottom: 7px;
 }
 
 .editProfileForm{
@@ -301,14 +298,31 @@ button:hover {
   display: flex;
   flex-direction: column;
   width: 294px;
-  height: 100px;
+  height: 177px;
   align-items: center;
   justify-content: space-between;
 }
 
-.editProfileForm form input{
+.editProfileForm form input, .editProfileForm form select{
   width: 280px;
   height: 28px;
+}
+
+.profile-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileChangesDiv{
+  display:flex;
+  justify-content: center;
+}
+
+.mainContent{
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 /*   Fim da página de perfil:  */
