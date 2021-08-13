@@ -1,6 +1,7 @@
-import { logOut, sendImageToDatabase } from "../../lib/auth.js";
-import { getTheRoad } from "../../router.js";
 
+import { logOut } from "../../lib/auth.js";
+import { sendImageToDatabase } from "../../lib/auth.js";
+import { getTheRoad } from "../../router.js";
 
 export const Feed = () => {
   const rootElement = document.createElement("div");
@@ -49,17 +50,17 @@ export const Feed = () => {
         <span id="previous"><i data-feather="chevron-left"> < </i></span>
         <span id="next"><i data-feather="chevron-right">  > </i></span>
         <div id="slider" class="slider">
-        <a href="https://blog.bonitour.com.br/confira-os-4-melhores-lugares-para-praticar-mergulho-no-brasil/"> <img class="pictures" src="./images/stories/1.png"></img></a>
-        <img class="pictures" src="./images/stories/2.png"></img>
+        <a href="https://blog.bonitour.com.br/confira-os-4-melhores-lugares-para-praticar-mergulho-no-brasil/" target="_blank"> <img class="pictures" src="./images/stories/1.png"></img></a>
+        <a href="https://soultrip.com.br/dicas-trilhasiniciantes/" target="_blank"><img class="pictures" src="./images/stories/2.png"></img></a>
         <img class="pictures" src="./images/stories/3.png"></img>
-        <img class="pictures" src="./images/stories/4.png"></img>
-        <img class="pictures" src="./images/stories/5.png"></img>
-        <img class="pictures" src="./images/stories/6.png"></img>
+        <a href="https://freesider.com.br/esportes-radicais/melhores-dicas-de-surf/" target="_blank"><img class="pictures" src="./images/stories/4.png"></img></a>
+        <a href="https://apuamarafting.com.br/tudo-sobre-rapel-e-dica-de-roteiro/" target="_blank"><img class="pictures" src="./images/stories/5.png"></img></a>
+        <a href="https://www.bluhome.com.br/blog/dicas/dicas-para-organizar-uma-viagem-de-motorhome" target="_blank"><img class="pictures" src="./images/stories/6.png"></img></a>
         <img class="pictures" src="./images/stories/7.png"></img>
-        <img class="pictures" src="./images/stories/8.png"></img>
-        <img class="pictures" src="./images/stories/9.png"></img>
-        <img class="pictures" src="./images/stories/10.png"></img>
-        <img class="pictures" src="./images/stories/11.png"></img>
+        <a href="https://blog.caffeinearmy.com.br/mente/yoga-para-iniciantes-o-que-e-beneficios-e-dicas-para-comecar-hoje/" target="_blank"><img class="pictures" src="./images/stories/8.png"></img></a>
+        <a href="https://medium.com/@itau/17-dicas-que-v%C3%A3o-facilitar-a-vida-de-qualquer-ciclista-iniciante-708428d4e079" target="_blank"><img class="pictures" src="./images/stories/9.png"></img></a>
+        <a href="https://www.thule.com/pt-br/articles/tips/kayaking-for-beginners" target="_blank"><img class="pictures" src="./images/stories/10.png"></img>
+        <a href="https://www.atletasdobem.com.br/melhores-dicas-paraquedistas-iniciantes/" target="_blank"><img class="pictures" src="./images/stories/11.png"></img></a>
         </div>
       </div>
   
@@ -183,40 +184,37 @@ const postsCollection = firebase.firestore().collection("posts");
 console.log(post.data().url)
         const postTemplate = 
      
-        `<section class="user-post-edit">
-          <div class="user-data-post">
+        `
           <p class="user-post"> ${post.data().user_id} <br>${post.data().data} </p>
-          </div>
+
           <div class="data-post-id" data-postid="${post.id}">
           <button type="submit" data-deletePostButton="${post.id}" class="delete-button"> </button>
           <button  type="submit" class="btn-edit"></button>
           <button type="submit" class="btn-cancel-edit" hidden> Cancelar</button>
           <button  type"submit" class="btn-edit-save" hidden> Salvar </button>
         </div>
-        </section>
-
         <p class="txt"> ${post.data().text} </p>
         <textarea disabled class='edit-text-area' hidden>${post.data().text}</textarea>
-
-         <div class="photo-post"> ${(url => { 
+          ${(url => { 
             if (url !== "") 
               return `<img class="img-po" src="${post.data().url}"> </img>`
             else `<img id="hide-img" src="${post.data().url}"> </img>`
               return 
           }) (post.data().url)
         }
-        </div>
        
           <section class="likes-comments-bar">
-         
-            <button class="like-btn" data-likePostButton = "${post.id}"> </button>
+          
+          <section class="anim-like"id="anim-like" >
+          </section> 
+          <button class="like-btn" id="like-btn" data-likePostButton = "${post.id}"></button> 
             ${(quantityOfLikes => {
               if(quantityOfLikes === 1)
-                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}">  Curtida </span> </p>`
+                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}"> Curtida </span> </p>`
               else if (quantityOfLikes > 1)
-                return  `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}">  Curtidas </span> </p>`
+                return  `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${quantityOfLikes} </span> <span data-like-text-to-be-changed="${post.id}"> Curtidas </span> </p>`
               else
-                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${0} </span> <span data-like-text-to-be-changed="${post.id}">  Curtidas </span> </p>`
+                return `<p class="f-20 like-value" data-likes-id="${post.id}"> <span data-like-value-to-be-changed="${post.id}"> ${0} </span> <span data-like-text-to-be-changed="${post.id}"> Curtidas </span> </p>`
             }) (post.data().likes.length)}
            
           </section>
@@ -230,12 +228,18 @@ console.log(post.data().url)
     
     
           <div class="comments">
-            <ul  data-comment-post-id="${post.id}"> </ul>
+            <ul data-comment-post-id="${post.id}"> </ul>
           </div>
         </div>
       `
-    
       postElement.innerHTML = postTemplate
+      const showheat = postElement.querySelector("#like-btn").addEventListener("click", () => { 
+        const element = postElement.querySelector(".anim-like"); element.style.opacity = 1;
+       }); 
+       
+       showheat; 
+    
+      
     
    //Pegando valores para edit
    const editSaveButton = postElement.querySelector(".btn-edit-save")
@@ -243,6 +247,7 @@ console.log(post.data().url)
    const editCancelBtn = postElement.querySelector(".btn-cancel-edit")
    const editBtn = postElement.querySelector(".btn-edit")
    const deleteBtn = postElement.querySelector(".delete-button")
+
 
    function canEdit() {
     if(firebase.auth().currentUser.email == `${post.data().user_id}`){
@@ -355,22 +360,29 @@ console.log(post.data().url)
       commentsToPrint.forEach(comment => {
         const newItem = 
           `<li class="comment-f-20" id="${comment.id}">
-            <p>  ${comment.owner} <br> ${comment.content}</p>;
-            <button class="like-btn" data-likeCommentButton="${comment.id}"> Curtir </button> ;
-            <button data-deleteCommentButton="${comment.id}"> Deletar </button>
+            <p class="comment-owner"> ${comment.owner} </p> 
+            <p class="comment-content">${comment.content}</p>
+          <button class="delete-comment-btn" data-deleteCommentButton="${comment.id}"> </button>
+            <button class="like-comment-btn" data-likeCommentButton="${comment.id}"> </button> 
+            
+            
             ${(quantityOfLikes => { 
               if(quantityOfLikes === 1) 
-                return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}"> ❤️ Curtida </span> </p>`
+                return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">  Curtida </span> </p>`
               else if (quantityOfLikes > 1)
-                return  `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}"> ❤️ Curtidas </span> </p>`
+                return  `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">  Curtidas </span> </p>`
               else
-                return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${0} </span> <span data-comment-likes-text-to-be-changed="${comment.id}"> ❤️ Curtidas </span> </p>` 
+                return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${0} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">  Curtidas </span> </p>` 
             }) (comment.commentLikes.length)}
          
             `;
+
+
         commentArea.innerHTML += newItem
       });
+
     };
+
 
      //Show Post Comments:
     const showCommentsButton = target.dataset.showcomments;
@@ -407,17 +419,17 @@ console.log(post.data().url)
           const newAmountOflikes = amountOfLikes + 1
           valueToBeChanged.innerHTML = `${newAmountOflikes}`;
           if (newAmountOflikes === 1) {
-            textToBeChanged.innerHTML = `❤️ Curtida`;
+            textToBeChanged.innerHTML = ` Curtida`;
           } else {
-            textToBeChanged.innerHTML = `❤️ Curtidas`;
+            textToBeChanged.innerHTML = ` Curtidas`;
           };
         } else {
           const newAmountOflikes = amountOfLikes - 1
           valueToBeChanged.innerHTML = `${newAmountOflikes}`;
           if (newAmountOflikes === 1) {
-            textToBeChanged.innerHTML = `❤️ Curtida`;
+            textToBeChanged.innerHTML = ` Curtida`;
           } else {
-            textToBeChanged.innerHTML = `❤️ Curtidas`;
+            textToBeChanged.innerHTML = ` Curtidas`;
           };
         };
       };

@@ -7,6 +7,8 @@ body {
 	background-color: #edeae5;
   }
   
+
+  /*Login*/
   .login-container,
   .register-container {
 	height: 100vh;
@@ -19,12 +21,6 @@ body {
 	background-repeat: no-repeat;
   }
   
-  .register-container {
-	background-image: url("./images/tesste.jpg");
-	background-size: cover;
-	background-repeat: no-repeat;
-  }
-  
   .login-left-section {
 	width: 35%;
 	height: 90vh;
@@ -33,7 +29,7 @@ body {
 	border-radius: 25px;
 	background-color: rgba(255, 255, 255, 0.5);
   }
-  
+
   .login-right-section {
 	margin: auto;
 	width: 50%;
@@ -51,7 +47,7 @@ body {
 	width: 75%;
 	margin-bottom: 8%;
   }
-  
+
   .login-right-section img {
 	margin-top: auto;
 	margin-left: -30%;
@@ -93,15 +89,13 @@ body {
 	box-shadow: 0 4px 30px rgba(10, 54, 37, 0.95);
   }
   
-
-  
   .login-left-section input {
 	width: 60%;
 	padding: 3% 3% 1% 3%;
 	margin-bottom: 1%;
 	border: solid 1pt;
   }
-  
+
   .login-left-section form {
 	position: relative;
   }
@@ -120,7 +114,7 @@ body {
 	margin-top: 0.8%;
 	color: grey;
   }
-  
+
   .login-left-section input:focus {
 	border: solid 2pt;
   }
@@ -163,6 +157,14 @@ body {
 	color: white;
 	border-radius: 25px;
   }
+
+  /*Register*/
+  .register-container {
+	background-image: url("./images/tesste.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+  }
+  
 
 /* Feed */ 
 .all-container {
@@ -361,9 +363,9 @@ body {
 	margin-top: 10px;
 	background-color: white;	
 	border-radius: 10px;
-	border: 1px solid #9dd8df;
+	border: 1px solid #7fb4b9;
+	box-shadow: 1px 1px #c0bebe;
 }
-  /*aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
  
   .user-post{
 	margin-top: 0px;
@@ -371,13 +373,10 @@ body {
 	  font-size: 13px;
 	  text-align: start;
 	  color:rgb(199, 190, 190);
-	  padding: 1%;
-	
-  }
-  
-  .user-post-edit{
-	  border-radius: 5px;
 	  background-color: #025159;
+	  padding: 1%;
+	  border-radius: 8px;
+	
   }
   .user-data-post{
 	width: 60%;
@@ -385,7 +384,7 @@ body {
   }
   .data-post-id{
 	text-align: end;
-	margin-top: -35px;
+	margin-top: -43px;
 	margin-right: 1%;
 	margin-left:60%;
 	width: 40%;
@@ -401,6 +400,50 @@ body {
 	  background-color: transparent;
 	  border-top: solid #EBEEF0 1px;
   }
+  #curtir {
+	cursor: pointer;
+	background-image: url( 'https://i.pinimg.com/originals/01/d4/c1/01d4c11077fd54ccad1a6f32b3df3adf.png');
+    background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: none;
+	
+}
+
+#curtir:focus
+{
+	
+	background-image: url('https://i.pinimg.com/originals/70/73/8e/70738e54de752d8e8ff690847b2dddfb.jpg');
+	
+
+}
+
+
+#comments{
+	cursor: pointer;
+	background-image: url('https://img.icons8.com/ios/452/comments.png');
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: none;
+}
+
+
+.like-btn{
+	cursor: pointer;
+	background-image: url( 'https://i.pinimg.com/originals/01/d4/c1/01d4c11077fd54ccad1a6f32b3df3adf.png');
+    background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: none;
+}
+ 
+.like-btn:focus{
+	background-image: url('https://i.pinimg.com/originals/70/73/8e/70738e54de752d8e8ff690847b2dddfb.jpg');
+}
  
   .icones{
 	  display: inline;
@@ -444,8 +487,8 @@ body {
 
 .delete-button {
 	cursor: pointer;
-	background-image: url('https://cdn6.f-cdn.com/contestentries/1395847/19111368/5b76d8bb8b701_thumb900.jpg');
-	background-size: 25px 25px;
+	background-image: url('https://image.shutterstock.com/image-vector/trash-can-icon-vector-delete-260nw-1722113617.jpg');
+	background-size: 26px 26px;
 	width: 25px;
 	height: 25px;
 	margin-right: 5px;
@@ -454,8 +497,9 @@ body {
 }
 .btn-edit{
 	cursor:pointer;
-	background-image: url('https://p.kindpng.com/picc/s/154-1541056_edit-edit-icon-svg-hd-png-download.png');
+	background: url('https://t3.ftcdn.net/jpg/02/23/28/22/240_F_223282251_uf3UuPeVIHd6kZmxFjytqhk9IsyljZQU.jpg');
 	background-size: 25px 25px;
+	border-radius: 25px;
 	margin-right: 3%;
 	width: 25px;
 	height: 25px;
@@ -470,7 +514,7 @@ body {
 	margin-left: -30px;
 	margin-top: 10px;
 }
-
+/*likes e comentários*/
 .likes-comments-bar img{
 	height: 20px;
 	width: 20px;
@@ -482,29 +526,67 @@ body {
 }
 .like-btn, .f-20{
 	display: inline;
-	margin-right: 10px;
+	margin-right: 5px;
 }
 .comment-f-20{
-	background-color: red;
 	text-decoration:none;
+	margin-right: 6%;
+	margin-top: 5px;
+	box-shadow: 1px 1px #666666;
+	border-radius: 5px;
+	border: 1px solid #609da5;	
+	word-break: break-all;
 }
 
+.comment-owner{
+	text-align: start;
+	color: grey;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.comment-content{
+	margin-top: 0;
+}
 
 .input-required {
 	border: red, solid, 2pt;
 }
+.delete-comment-btn {
+	cursor: pointer;
+	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSl62bFsz_S2GOE_r1I8i5jYxJ4jBuQ9ZhIaiqBe2Y7JiNKVtOBPYu4GqZmUj5EUvkCZ8&usqp=CAU');
+	background-size: 17px 17px;
+	width: 18px;
+	height: 18px;
+	margin-right: 5px;
+	border: none;
+}
 
 
+.like-comment-btn{
+cursor: pointer;
+	background-image: url( 'https://i.pinimg.com/originals/01/d4/c1/01d4c11077fd54ccad1a6f32b3df3adf.png');
+    background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: none;
+}
+ 
+.like-comment-btn:focus{
+	background-image: url('https://i.pinimg.com/originals/70/73/8e/70738e54de752d8e8ff690847b2dddfb.jpg');
+}
+ 
 .txt{
 	height: 60px;
 	overflow: auto; /*scrollbar*/
-	margin-top: 3px;
+	margin-top: 6px;
 	margin-bottom: 0;
 }
 
 /*Profile*/
 .profile-edit{
-	width: 33%;
+	width: 30%;
 	height: 80vh;
 	margin: auto;
 	background-color: white;
@@ -523,7 +605,7 @@ body {
   
  .profile-input-label{
 	position: absolute;
-	left: 40%;
+	left: 41%;
 	margin-top: 1.5%;
  }
   
@@ -578,7 +660,8 @@ body {
  }
   
  .div-profile{
-	background-color: #025159;
+	/*background-color: #025159;*/
+	background-image: linear-gradient(to right,rgba(2,81,89,1), rgba(255,0,0,0));
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100vh;
@@ -591,7 +674,6 @@ body {
   .div-profile form{
 	  margin-top: 5%;
 	  border-radius: 25px;
-  
 	 background-color: rgba(255, 255, 255, .9);
 	 
   }
@@ -617,51 +699,8 @@ body {
 	 font-weight: 500;
  }
  
- /*ATÉ AQUI*/
-  #curtir {
-	cursor: pointer;
-	background-image: url( 'https://i.pinimg.com/originals/01/d4/c1/01d4c11077fd54ccad1a6f32b3df3adf.png');
-    background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-	border-radius: 20px;
-	border: none;
-	
-}
-
-#curtir:focus
-{
-	
-	background-image: url('https://i.pinimg.com/originals/70/73/8e/70738e54de752d8e8ff690847b2dddfb.jpg');
-	
-
-}
-
-
-#comments{
-	cursor: pointer;
-	background-image: url('https://img.icons8.com/ios/452/comments.png');
-	background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-	border-radius: 20px;
-	border: none;
-}
-
-.like-btn{
-	cursor: pointer;
-	background-image: url( 'https://i.pinimg.com/originals/01/d4/c1/01d4c11077fd54ccad1a6f32b3df3adf.png');
-    background-size: 20px 20px;
-	width: 20px;
-	height: 20px;
-	border-radius: 20px;
-	border: none;
-}
  
-
-.like-btn:focus{
-	background-image: url('https://i.pinimg.com/originals/70/73/8e/70738e54de752d8e8ff690847b2dddfb.jpg');
-}
+  
 
   @media screen and (max-width: 980px){
 	   
@@ -685,11 +724,8 @@ body {
 	.login-img{
 		opacity: 0;
 	}
-	
 	  
   }
-
- 
 
 	#image_uploads{
 		opacity: 0;
