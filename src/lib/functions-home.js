@@ -74,7 +74,7 @@ export const loadPosts = () => {
             userName = name
             userName2 = userName.replace(/\s/g, '').toLowerCase();
           } else {
-            userName = "Usuário indefinido"
+            userName = "Usuário anônimo"
             userName2 = ""
           }
 

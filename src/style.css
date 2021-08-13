@@ -451,6 +451,7 @@ a:hover {
     color: white;
     display: flex;
     justify-content: center;
+    overflow: scroll;
 
 }
 
@@ -540,7 +541,7 @@ a:hover {
 
 .sidebar-profile {
     width: 100%;
-    padding: 3rem 0;
+    padding: 2rem 0;
     border-top: solid 1px white;
     display: flex;
     flex-direction: column;
@@ -597,7 +598,7 @@ a:hover {
 
 .sidebar-tools {
     width: 100%;
-    padding: 2.2rem 0;
+    padding: 2rem 0;
     border-top: solid 1px white;
     display: flex;
     align-self: center;

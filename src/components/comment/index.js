@@ -19,7 +19,7 @@ export const comment = (userImage, name, text, completeDate, hour) => {
     userName = name
    
   } else {
-    userName = "Usuário indefinido"
+    userName = "Usuário anônimo"
    
   }
 

@@ -23,7 +23,7 @@ export default () => {
     userName2 = userName.replace(/\s/g, '').toLowerCase();
     console.log("definido")
   } else {
-    userName = "Usuário indefinido"
+    userName = "Usuário anônimo"
     userName2 = ""
   }
   const savedTemplate = `

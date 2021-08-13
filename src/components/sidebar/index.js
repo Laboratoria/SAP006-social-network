@@ -35,9 +35,9 @@ export const sidebar = () => {
   if (userNameFirebase != null && userNameFirebase != undefined) {
     userName = userNameFirebase
     userName2 = userName.replace(/\s/g, '').toLowerCase();
-    console.log("definido")
+    
   } else {
-    userName = "Usuário indefinido"
+    userName = "Usuário anônimo"
     userName2 = ""
   }
 
