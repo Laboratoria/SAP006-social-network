@@ -1,3 +1,5 @@
+import { loginGoogle } from '../../services/index.js';
+
 export default () => {
   const container = document.createElement('div');
 
@@ -11,12 +13,19 @@ export default () => {
         <input type="text" name="password" id="password-user">
       </form> 
       <div class="button">
-        <input type='image'  src='img/google logo.png'><br>
-        <button class="login-button">Login</button>  
+        <button id="google-button" class="google-button" ><img src="img/google-logo.png" alt=""></button>
+        <a href="/#feed">
+          <button id="login-button" class="login-button">Login</button>  
+        </a>
       </div>
   `;
 
   container.innerHTML = template;
 
-  return container;
+  // <input type='image' id="login-google" src='img/google-logo.png'><br>
+
+  const googleButton = container.querySelector('#google-button');
+  // const emailUser = container.querySelector('#email-user');
+  // const passwordUser = container.querySelector('#password-user');
+  googleButton.addEventListener('click', loginGoogle());
 };
