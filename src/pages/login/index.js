@@ -2,22 +2,24 @@ import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
-  loginScreenContainer.setAttribute('class', 'container');
+  loginScreenContainer.setAttribute('class', 'screenContainer');
 
   const loginScreenButtons = `
-  <img class="logo" src="image/logotipo.png">
-  
-  <form class="initialForm">
-    <h1 class="title"> Entrar </h1>
-    <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
-    <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
-    <div id="notice"> </div>
-
-    <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
-    <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
-    <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
+  <div class = "div-width90">
+    <img class="logo" src="image/logotipo.png">
     
-  </form>
+    <form class="initialForm">
+      <h1 class="title"> Entrar </h1>
+      <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
+      <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
+      <div id="notice"> </div>
+
+      <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
+      <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
+      <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
+      
+    </form>
+  </div>
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
@@ -25,12 +27,13 @@ export default () => {
   const btnLogin = loginScreenContainer.querySelector('#enter-acc');
   const btnGoogle = loginScreenContainer.querySelector('#btn-google');
   const notice = loginScreenContainer.querySelector('#notice');
+  const btnSignUp = loginScreenContainer.querySelector('#sign-up');
 
-  btnLogin.addEventListener('click', () => {
+  function signInDom() {
     const inputEmail = loginScreenContainer.querySelector('#input-email').value;
     const inputPassword = loginScreenContainer.querySelector('#input-password').value;
     if (inputEmail === '' || inputPassword === '') {
-      notice.innerHTML = '<span> Preencha todos os campos </span>';
+      notice.innerHTML = '<p> Preencha todos os campos </p>';
     } else {
       signIn(inputEmail, inputPassword)
         .then((userCredential) => {
@@ -43,27 +46,31 @@ export default () => {
           const errorMessage = error.message;
           switch (errorCode) {
             case 'auth/invalid-email':
-              notice.innerHTML = '<span>Usuário ou email inválido</span>';
+              notice.innerHTML = '<p>Usuário ou email inválido</p>';
               break;
             case 'auth/user-disabled':
-              notice.innerHTML = '<span>Usuário desabilitado</span>';
+              notice.innerHTML = '<p>Usuário desabilitado</p>';
               break;
             case 'auth/user-not-found':
-              notice.innerHTML = '<span>Usuário não encontrado</span>';
+              notice.innerHTML = '<p>Usuário não encontrado</p>';
               break;
             case 'auth/wrong-password':
-              notice.innerHTML = '<span>Usuário ou email inválido</span>';
+              notice.innerHTML = '<p>Usuário ou email inválido</p>';
               break;
             default:
-              notice.innerHTML = `<span> ${errorMessage} </span>`;
+              notice.innerHTML = `<p> ${errorMessage} </p>`;
               break;
           }
           throw new Error(errorMessage);
         });
     }
+  }
+
+  btnLogin.addEventListener('click', () => {
+    signInDom();
   });
 
-  btnGoogle.addEventListener('click', () => {
+  function signInWithGoogleDom() {
     signInWithGoogle()
       .then((result) => {
         const credentials = {
@@ -79,15 +86,19 @@ export default () => {
         const errorMessage = error.message;
         switch (errorCode) {
           case 'auth/credential-already-in-use':
-            notice.innerHTML = '<span> Opa, está credencial já está em uso </span>';
+            notice.innerHTML = '<p> Opa, está credencial já está em uso </p>';
             break;
           default:
-            notice.innerHTML = `<span> ${errorMessage} </span>`;
+            notice.innerHTML = `<p> ${errorMessage} </p>`;
         }
         throw new Error(errorMessage);
       });
+  }
+
+  btnGoogle.addEventListener('click', () => {
+    signInWithGoogleDom();
   });
-  const btnSignUp = loginScreenContainer.querySelector('#sign-up');
+
   btnSignUp.addEventListener('click', () => {
     window.location.hash = '#signUp';
   });

@@ -1,35 +1,34 @@
-import { signUp, userData } from '../../services/index.js';
+import { signUp } from '../../services/index.js';
 
 export default () => {
   const signUpScreenContainer = document.createElement('div');
-  signUpScreenContainer.setAttribute('class', 'container');
+  signUpScreenContainer.setAttribute('class', 'screenContainer');
 
   const signUpForm = `
-  <img class="logo" src="image/logotipo.png">
-  
-  <form id="signUp-form" class="initialForm">
-    <h1 class="title">Criar conta</h1>
+  <div class="div-width90 verticalCenter">
+    <img class="logo" src="image/logotipo.png">
     
-    <input type="text" class="signUp-input" id="signUp-name" placeholder="Nome do usuário" data-required-message-error:"Escreva um nome de usuário" required>
+    <form id="signUp-form" class="initialForm">
+      <h1 class="title">Criar conta</h1>
+      
+      <input type="text" class="signUp-input" id="signUp-name" placeholder="Nome do usuário" data-required-message-error:"Escreva um nome de usuário" required>
+      
+      <input type="email" class="signUp-input" id="signUp-email" placeholder="E-mail" minlength="6" data-required-message-error:"Escreva um email válido" required>
     
-    <input type="email" class="signUp-input" id="signUp-email" placeholder="E-mail" minlength="6" data-required-message-error:"Escreva um email válido" required>
-   
-    <input type="password" class="signUp-input" id="signUp-password" placeholder="Senha (mín 6 caracteres)" required>
-   
-    <input type="password" class="signUp-input" id="repeat-password" placeholder="Repita sua senha" required>
-    <div id="notice" class="notice"> </div>
+      <input type="password" class="signUp-input" id="signUp-password" placeholder="Senha (mín 6 caracteres)" required>
+    
+      <input type="password" class="signUp-input" id="repeat-password" placeholder="Repita sua senha" required>
+      <div id="notice" class="notice"> </div>
 
-    <button type="button" id="btn-signUp" class="btn-login">Cadastrar</button>
-    
-  </form>
+      <button type="button" id="btn-signUp" class="btn-login">Cadastrar</button>
+      
+    </form>
+  </div>
   `;
 
   signUpScreenContainer.innerHTML = signUpForm;
 
-  const btnSignUp = signUpScreenContainer.querySelector('#btn-signUp');
-  btnSignUp.addEventListener('click', (e) => {
-    e.preventDefault();
-
+  function SignUpDom() {
     const signUpName = signUpScreenContainer.querySelector('#signUp-name').value;
     const signUpEmail = signUpScreenContainer.querySelector('#signUp-email').value;
     const signUpPassword = signUpScreenContainer.querySelector('#signUp-password').value;
@@ -47,11 +46,7 @@ export default () => {
     } else if (signUpPassword !== signUpRepeatPassword) {
       notice.innerHTML = '<span class="material-icons">error</span><p>As senhas não conferem</p>';
     } else {
-      signUp(signUpEmail, signUpPassword)
-        .then((data) => {
-          const uid = data.user.uid;
-          userData(signUpName, signUpEmail, uid);
-        })
+      signUp(signUpEmail, signUpPassword, signUpName)
         .then(window.location.hash = '#profile')
 
         .catch((error) => {
@@ -72,6 +67,12 @@ export default () => {
           errorNotice(errorCode);
         });
     }
+  }
+
+  const btnSignUp = signUpScreenContainer.querySelector('#btn-signUp');
+  btnSignUp.addEventListener('click', (e) => {
+    e.preventDefault();
+    SignUpDom();
   });
   return signUpScreenContainer;
 };

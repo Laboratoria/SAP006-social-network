@@ -1,33 +1,79 @@
 const db = firebase.firestore();
-// const user = firebase.auth().currentUser;
 
-export const signUp = (email, password) => firebase.auth()
-  .createUserWithEmailAndPassword(email, password);
+export const getUserData = () => {
+  const uid = localStorage.getItem('uid');
+  const displayName = localStorage.getItem('displayName');
+  return {
+    uid,
+    displayName,
+  };
+};
+
+export const setUserData = (uid, displayName) => {
+  localStorage.setItem('uid', uid);
+  localStorage.setItem('displayName', displayName);
+};
+
+export const updateUserDisplayName = (data) => firebase.auth().currentUser.updateProfile({
+  displayName: data,
+});
+
+export const updateUserAuthEmail = (data) => firebase.auth().currentUser.updateEmail(data);
+
+export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).set({
+  level: data,
+});
+
+export const signUp = (email, password, signUpName) => firebase.auth()
+  .createUserWithEmailAndPassword(email, password).then(() => {
+    updateUserDisplayName(signUpName);
+  })
+  .then(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUserData(user.uid, signUpName);
+      }
+    });
+  });
 
 export const signIn = (email, password) => firebase
   .auth().signInWithEmailAndPassword(email, password);
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    setUserData(user.uid, user.displayName);
+  }
+});
 
-const provider = new firebase.auth.GoogleAuthProvider();
-
-export const signInWithGoogle = () => firebase.auth().signInWithPopup(provider);
-
-export const signOut = () => {
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    console.log(error);
-    // An error happened.
-  });
+export const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
 };
+
+// export const signOut = () => {
+//   firebase.auth().signOut().then(() => {
+//     // Sign-out successful.
+//   }).catch((error) => {
+//     // An error happened.
+//   });
+// };
 
 export const userData = (name, email, uid) => db.collection('users').doc(uid).set({
   name,
   email,
+  level: '',
 });
 
 export const postRecipe = (recipe) => db.collection('recipes').add({
   likes: 0,
-  comments: 0,
+  comments: [],
   user_id: firebase.auth().currentUser.uid,
   ...recipe,
 });
+
+export const loadRecipe = (addPost) => {
+  db.collection('recipes').get().then((querySnapshot) => {
+    querySnapshot.forEach((post) => {
+      addPost(post);
+    });
+  });
+};
