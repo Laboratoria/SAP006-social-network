@@ -2,22 +2,24 @@ import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
-  loginScreenContainer.setAttribute('class', 'container');
+  loginScreenContainer.setAttribute('class', 'screenContainer');
 
   const loginScreenButtons = `
-  <img class="logo" src="image/logotipo.png">
-  
-  <form class="initialForm">
-    <h1 class="title"> Entrar </h1>
-    <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
-    <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
-    <div id="notice"> </div>
-
-    <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
-    <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
-    <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
+  <div class = "div-width90">
+    <img class="logo" src="image/logotipo.png">
     
-  </form>
+    <form class="initialForm">
+      <h1 class="title"> Entrar </h1>
+      <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
+      <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
+      <div id="notice"> </div>
+
+      <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
+      <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
+      <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
+      
+    </form>
+  </div>
   `;
 
   loginScreenContainer.innerHTML = loginScreenButtons;
