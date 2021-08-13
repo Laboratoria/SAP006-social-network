@@ -8,11 +8,11 @@ import { addPost } from '../../components/post.js';
 
 export const home = () => {
   const container = document.createElement('div');
-  container.className = 'container';
+  container.className = 'container-timeline';
   const template = `
     <div class="header-homepage">
-      <div class= "user-perfil">
-        <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
+      <div class= "user-perfil-header">
+        <img src="./img/Perfil.png" alt="user-photo" class="user-photo-header">
       </div>
       <h2 class="inicial-page">Página inicial</h2>
       <button class="logout" id="logout">
@@ -20,8 +20,7 @@ export const home = () => {
       </button>
     </div>
     <form id="postForm" class="post-form">
-      <label for="postText" class="text-user"></label>
-      <input type="textarea" id="postText" class="post-text" placeholder="O que está acontecendo?">
+      <textarea id="postText" class="post-text" rows="1" cols="2" autocomplete="off" maxlength="500" minlenght ="1" placeholder="O que está acontecendo?" required></textarea>
       <button type="submit" class="send-post ">Postar</button>
     </form>
     <p class="loading-posts"></p>
@@ -56,6 +55,7 @@ export const home = () => {
         const newPostElement = addPost(createdPost);
         container.querySelector('#postsList').prepend(newPostElement);
       });
+      document.querySelector('#postText').value = '';
     });
 
   container.querySelector('.loading-posts').innerHTML = 'Carregando...';
