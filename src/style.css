@@ -24,7 +24,6 @@ body {
   margin: 1.25rem;
 }
 
-<<<<<<< HEAD
 html,
 body {
   background-color: var(--background-color);
@@ -53,16 +52,10 @@ body {
   padding: 1rem;
 }
 
-=======
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
 .container,
 .signUp-container {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-=======
-  margin: 130px 0 0 210px;
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
   align-items: center;
   width: 396px;
   border-radius: 8px;
@@ -73,11 +66,7 @@ body {
   margin-top: 60px;
 }
 
-<<<<<<< HEAD
 .form-login, .form-register {
-=======
-.form-login {
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
   display: contents;
 }
 
@@ -85,7 +74,6 @@ body {
   margin-top: 2rem;
   font-size: 2rem;
   text-align: center ;
-<<<<<<< HEAD
   color: var(--white-color);
 }
 
@@ -106,27 +94,13 @@ body {
 .option,
 .sign-up-text,
 .login-text {
-=======
-  color: var(--title-color);
-}
-
-.subtitle, .option, .sign-up-text, .login-text, .create-account {
-  color: var(--title-color);
-  text-align: center;
-}
-
-.option, .sign-up-text, .login-text {
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
   font-size: 0.80rem;
 }
 
 .subtitle {
   margin-bottom: 2rem;
   font-size: 1rem;
-<<<<<<< HEAD
   width: 330px;
-=======
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
 }
 
 .input-field,
@@ -135,17 +109,10 @@ body {
 #user-email,
 #new-password,
 #confirm-password {
-<<<<<<< HEAD
   width: 16rem;
   height: 3rem;
   margin: 0.40rem;
   background: var(--bege-color);
-=======
-  width: 14rem;
-  height: 2.5rem;
-  margin: 0.50rem;
-  background: var(--text-box);
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
   text-decoration: none;
   border: none;
   border-radius: 0.25rem;
@@ -153,7 +120,6 @@ body {
   align-content: center;
   justify-content: center;
   padding: 10px;
-<<<<<<< HEAD
 
 }
 
@@ -167,30 +133,12 @@ body {
 .input-field {
   font-size: 1rem;
   text-align: center;
-=======
-  font-size: 12px;
-
-}
-
-.input-field {
-  font-size: 1rem;
-  margin: 0.50rem;
-  text-align: center;
-  width: 14rem;
-  padding: 0.70rem;
-  border-radius: 6px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
 }
 
 .text {
   margin-top: 1.5rem;
 }
 
-<<<<<<< HEAD
 #btn-signUp, #login-btn, #sign-up-btn {
   width: 14rem;
   padding: 0.75rem;
@@ -267,66 +215,10 @@ body {
 .post-field {
   display: flex;
   height: 3rem;
-=======
-#btn-signUp {
-  width: 14rem;
-  padding: 0.75rem;
-  font-size: 1.125rem;
-  padding: 10px;
-  font-size: 12px;
-}
-
-#btn-signUp, #login-btn {
-  background: var(--button-color);
-}
-
-.post-form, .post-text {
-  display: flex;
-  flex-direction: column;
-  width: 380px;
-  height: 100px;
-  align-items: flex-end;
-}
-
-.post-text, .post {
-  background-color: #F8E7B5;
-  text-align: center;
-}
-
-.post {
-  display: grid;
-  margin-top: 30px;
-  width: 380px;
-  height: 100px;
-}
-
-.send-post {
-  width: 100px;
-  background-color: #F28705;
-}
-
-.post-text, .post{
-  border-radius: 5px;
-}
-
-.user-photo{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.teste {
-  background-color:#F28705;
-}
-
-#login-btn {
-  font-size: 1.125rem;
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
 }
 
 .button-google {
   text-align: center;
-<<<<<<< HEAD
   font-size: 1rem;
   padding: 5px 12px;
 }
@@ -356,67 +248,10 @@ body {
   align-items: center;
   display: flex;
   margin: 14px;
-=======
-  font-size: 0.80rem;
-  padding: 3px 6px;
-}
-
-#google-btn {
-  background: var(--title-color);
-  margin-bottom: 3rem;
-  width: 14rem;
-  padding: 0.70rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon-google {
-  width: 20px;
-  margin-right: 8px;
-}
-
-#sign-up-btn{
-  width: 14rem;
-  padding: 0.70rem;
-  background-color: #F28705;
-  border-radius: 6px;
-}
-
-#login-btn {
-  width: 14rem;
-  padding: 0.70rem;
-  border-radius: 6px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.show-password{
-  width: 14rem;
-  padding: 0.70rem;
-
-}
-
-
-.logout{
-  cursor: pointer;
-  border: 5px;
-  border-radius: 300px;
-  width: 50px;
-  height: 50px;
-  margin-left: 300px;
-  background: var(--button-color);
-  text-align: center;
-  padding: 8px 10px;
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
 }
 
 .logout-img {
   border: 1px;
-<<<<<<< HEAD
   width: 2rem;
   height: 2rem;
   padding: 3px;
@@ -441,33 +276,6 @@ body {
   position: absolute;
   margin-left: 76px;
   padding: 23px;
-=======
-  width: 35px;
-  height: 35px;
-}
-
-#eye-register,
-#eye-show-register{
-  display: block;
-  cursor: pointer;
-  text-align: left;
-  width: 100%;
-  margin-bottom: 10px;
-  position: absolute;
-  margin-left: 140px;
-  padding: 25px;
-}
-
-#eye-login{
-  display: block;
-  cursor: pointer;
-  text-align: left;
-  width: 80%;
-  margin-bottom: 10px;
-  position: absolute;
-  margin-left: 50px;
-  padding: 15px;
->>>>>>> c8cfd99dd308ec61f18d76b8d500e8dd935e16d0
 }
 
 .fa-eye {
