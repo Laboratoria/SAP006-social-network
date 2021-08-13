@@ -47,19 +47,6 @@ export const updateUserImage = (urlImage) => {
 }
 
 
-
-// export const asyncGetProfileData = async () => {
-//   const logProfiles = await database.collection("profiles").get()
-//   for ( data of logProfiles.docs){
-//     profile = {
-//       name: document.id,
-//       image: document.image
-//     }
-//     console.log(profile)
-//   }
-// }
-
-
 export const signInGoogleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -139,32 +126,26 @@ export const forgotPassword = (email) => {
 }
 
 
-export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => {
-  //const dateReview = new Date()
-
-  database
-    .collection("reviews").add({
-      book: bookUser,
-      author: authorUser,
-      review: reviewUser,
-      rating: ratingStars,
-      userName: nameUser,
-      userId: firebase.auth().currentUser.uid,
-      userImg: firebase.auth().currentUser.photoURL,
-      datePost: date,
-      hourPost: hour,
-      likes: [],
-      saves: [],
-      imageUrl: image
-    })
-    .then(() => {
-      console.log("Document successfully written!");
-    })
-    .catch((error) => {
-      console.log("Error writing documents: ", error);
-    });
+export const createReview = (bookUser, authorUser, reviewUser, ratingStars, nameUser, image, date, hour) => { 
+  return firebase
+  .firestore()
+  .collection("reviews").add({
+    book: bookUser,
+    author: authorUser,
+    review: reviewUser,
+    rating: ratingStars,
+    userName: nameUser,
+    userId: firebase.auth().currentUser.uid,
+    userImg: firebase.auth().currentUser.photoURL,
+    datePost: date,
+    hourPost:hour,
+    likes: [], 
+    comments: [],
+    saves: [],
+    imageUrl:image
+  })
 }
-
+  
 
 export const getReviews = () => {
   return database
@@ -172,18 +153,10 @@ export const getReviews = () => {
 }
 
 
-
 export const getPost = (postID) => {
   const review = database.collection("reviews").doc(postID)
   return review.get()
 }
-
-// export const removeLike = (postUID, userUID) =>{
-//   database.collection("reviews").doc(postUID)
-//   .update({ 
-//     likes: firebase.firestore.FieldValue.arrayRemove(userUID) 
-//   })
-// }
 
 export const updateRewiews = () => {
   return database
@@ -203,9 +176,8 @@ export const updateRewiews = () => {
     })
 }
 
-
 export const like = (postID, userID) => {
-  let numberOfLikes
+ 
   const review = database.collection("reviews").doc(postID)
   review.get()
     .then((rev) => {
@@ -215,24 +187,38 @@ export const like = (postID, userID) => {
         review.update({
           likes: firebase.firestore.FieldValue.arrayUnion(userID)
         })
-        numberOfLikes = (likesArray.length) + 1
-
+        
       } else {
         review.update({
           likes: firebase.firestore.FieldValue.arrayRemove(userID)
         })
-        numberOfLikes = (likesArray.length) - 1
-        console.log(numberOfLikes)
+
       }
-      console.log(numberOfLikes)
 
     })
     .catch((error) => {
       console.error("Error writing document: ", error);
     })
-
-
 }
+
+export const sendComment = (postID, value, date, hour) => {
+  return database.collection("reviews").doc(postID).update({
+          comments: firebase.firestore.FieldValue.arrayUnion(
+            {
+              value:value,
+              userId: firebase.auth().currentUser.uid,
+              userImg: firebase.auth().currentUser.photoURL,
+              userName: firebase.auth().currentUser.displayName,
+              dateOfComment:date,
+              hourOfComment:hour,
+              likes:[],
+              reply:[]
+            }
+          )
+      })
+}
+
+
 export const deletePost = (postId) => {
   return database.collection("reviews").doc(postId).delete()
 }

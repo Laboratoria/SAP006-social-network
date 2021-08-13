@@ -12,7 +12,6 @@ export default () => {
   const user = currentUser()
   const userId = user.uid
   
-
   const profileImg = profileImage()
 
   let userName 
@@ -69,8 +68,8 @@ export default () => {
       <input type="radio" id="star-5" data-stars-form name="stars" value="★★★★★"/>
     </div>
         <div class="buttons">
-        <button class="publish-btn" data-publish-btn id="button-review">Publicar</button>
-        <button class="cancel-btn" id="button-review">Cancelar</button>
+        <button class="publish-btn button-review" data-publish-btn >Publicar</button>
+        <button class="cancel-btn button-review">Cancelar</button>
         </div>
      </form>   
     </div>
@@ -85,16 +84,13 @@ export default () => {
       <button class="menu-mobile-btn" ><img src="./img/profile-navbar.png" class="menu-img"></button> 
       <button class="menu-mobile-btn" id="open-sidebar"><img src="./img/menu-navbar.png" class="menu-img" ></button>  
     </navbar/>
-  
-
-    
     
   `
   sectionElement.innerHTML = createFeedTemplate
 
   sectionElement.appendChild(sidebar())
   
-  let photo = sectionElement.querySelector(".file-img1")
+    let photo = sectionElement.querySelector(".file-img1")
     let file = sectionElement.querySelector(".file-input")
     let textearea = sectionElement.querySelector("#text")
   
@@ -108,8 +104,7 @@ export default () => {
       photo.style.height = "190%"
       photo.style.width = "140%"
       if(file.files.legth <= 0){
-        
-    
+           
         return;
       }
        
@@ -124,8 +119,6 @@ export default () => {
     
   const buttonAddReview = sectionElement.querySelector("#add-review")
 
- 
-
   buttonAddReview.addEventListener("click", () => {
     showReviewArea()
   })
@@ -136,8 +129,6 @@ export default () => {
     window.scrollTo(0,0)
     showReviewArea()
   })
-
-
 
   const cancelReview = sectionElement.querySelector(".cancel-btn")
   cancelReview.addEventListener("click", () => {
@@ -175,7 +166,6 @@ export default () => {
   
   
   loadPosts()  
-
 
   return sectionElement
 }
