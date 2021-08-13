@@ -1,4 +1,4 @@
-import { postRecipe } from '../../services/index.js';
+import { postRecipe, uploadFoodPhoto } from '../../services/index.js';
 
 export default () => {
   const addRecipeContainer = document.createElement('div');
@@ -13,7 +13,9 @@ export default () => {
       <input type="text" id="recipe-title" class="signUp-input required" placeholder="Nome da receita">
       
       <div id="recipe-photo" class="recipe-photo"></div>
-      <button type="button" id="add-photo"  class="btn-login">Adicionar foto</button>
+      <progress id="uploader" value="0" max="100"> 0% </progress>
+      <input type="file" value="upload" id="fileButton" class="btn-login" />
+      <!-- <button type="button" id="add-photo"  >Adicionar foto</button> -->
 
       <div class="info-recipe-container-flex">
         <div class="width-90">
@@ -88,9 +90,26 @@ export default () => {
 
   addRecipeContainer.innerHTML = addRecipe;
 
-  const btnAddPhoto = addRecipeContainer.querySelector('#add-photo');
-  btnAddPhoto.addEventListener('click', () => {
-    window.location.hash = '/';
+  const uploader = addRecipeContainer.querySelector('#uploader');
+  const btnAddPhoto = addRecipeContainer.querySelector('#fileButton');
+  btnAddPhoto.addEventListener('change', (e) => {
+    // get file
+    const file = e.target.files[0];
+
+    // cria o documento e faz o upload no firebase,
+
+    // update progress bar
+    function updateProgressBar(snapshot) {
+      // const progress = (snapshot) => {
+      const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      uploader.value = percentage;
+      // }
+
+      function error(err) {
+
+      }
+    }
+    uploadFoodPhoto(file).on('state_changed', updateProgressBar);
   });
 
   const alert = addRecipeContainer.querySelector('#alert');

@@ -104,6 +104,9 @@ button:hover {
   cursor: pointer;
 }
 
+
+/* =================================  Página de postRecipe: =================================== */
+
 .textarea-recipe {
   width: 100%;
   border-radius: 5px;
@@ -237,6 +240,12 @@ button:hover {
 
 #btn-yes {
   background-color: var(--coral-haze);
+}
+
+#uploader {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
 }
 
 

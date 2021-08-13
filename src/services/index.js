@@ -40,3 +40,12 @@ export const loadRecipe = (addPost) => {
     });
   });
 };
+
+export const uploadFoodPhoto = (file) => {
+  // create storage ref
+  const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${file.name}`);
+
+  // upload file
+  const task = storeageRef.put(file);
+  return task;
+};

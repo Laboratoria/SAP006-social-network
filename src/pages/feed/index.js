@@ -4,12 +4,6 @@ export default () => {
   const feedContainer = document.createElement('div');
   feedContainer.setAttribute('class', 'screenContainer');
 
-  // const feedContent = `
-
-  //   `;
-
-  // feedContainer.innerHTML = feedContent;
-
   function addPost(post) {
     const postTemplate = `
     <div id=${post.id} class="div-width90 div-recipe">
