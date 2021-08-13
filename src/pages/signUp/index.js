@@ -1,4 +1,4 @@
-import { signUp, userData } from '../../services/index.js';
+import { signUp } from '../../services/index.js';
 
 export default () => {
   const signUpScreenContainer = document.createElement('div');
@@ -28,10 +28,7 @@ export default () => {
 
   signUpScreenContainer.innerHTML = signUpForm;
 
-  const btnSignUp = signUpScreenContainer.querySelector('#btn-signUp');
-  btnSignUp.addEventListener('click', (e) => {
-    e.preventDefault();
-
+  function SignUpDom() {
     const signUpName = signUpScreenContainer.querySelector('#signUp-name').value;
     const signUpEmail = signUpScreenContainer.querySelector('#signUp-email').value;
     const signUpPassword = signUpScreenContainer.querySelector('#signUp-password').value;
@@ -49,11 +46,7 @@ export default () => {
     } else if (signUpPassword !== signUpRepeatPassword) {
       notice.innerHTML = '<span class="material-icons">error</span><p>As senhas não conferem</p>';
     } else {
-      signUp(signUpEmail, signUpPassword)
-        .then((data) => {
-          const uid = data.user.uid;
-          userData(signUpName, signUpEmail, uid);
-        })
+      signUp(signUpEmail, signUpPassword, signUpName)
         .then(window.location.hash = '#profile')
 
         .catch((error) => {
@@ -74,6 +67,12 @@ export default () => {
           errorNotice(errorCode);
         });
     }
+  }
+
+  const btnSignUp = signUpScreenContainer.querySelector('#btn-signUp');
+  btnSignUp.addEventListener('click', (e) => {
+    e.preventDefault();
+    SignUpDom();
   });
   return signUpScreenContainer;
 };

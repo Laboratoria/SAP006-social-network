@@ -2,14 +2,16 @@ import header from '../../components/header/index.js';
 
 export default () => {
   const perfilContainer = document.createElement('div');
+  perfilContainer.setAttribute('class', 'profile-container');
   perfilContainer.append(header());
   const perfilContent = `
-        <section class="profile-nav-bar">
+        <section class="mainContent">
+        <div class="profile-nav-bar">
           <div class="profileInfo">
            <img class="profilePicture" src="../../image/chef.png">
             <section>
-              <p>Thais Fernandes</p>
-              <p>Nível: Queima-panela</p>
+              <p id="nameDisplayedOnScreen">${localStorage.getItem('displayName')}</p>
+              <p>nível</p>
             </section>
           </div>
           <div id="pofilePages">
@@ -18,6 +20,8 @@ export default () => {
                <a  class="editProfile" href="#profileInfo"> <li class="profile-nav-bar-options">Editar perfil</li> </a>
             </ul>
           </div>
+          <!--- <button data-teste-btn>Teste!</button> --->
+        </div>
         </section>
         `;
   perfilContainer.innerHTML += perfilContent;
