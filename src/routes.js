@@ -5,6 +5,7 @@ import home from './pages/home/index.js'
 import profile from './pages/profile/index.js'
 import forgotpassword from './pages/forgotpassword/index.js'
 import pagenotfound from './pages/pagenotfound/index.js'
+import saved from './pages/saved/index.js'
 
 
 export const router = () =>{
@@ -16,6 +17,7 @@ export const router = () =>{
     "/cadastro": signup,
     "/editar-perfil": createprofile,
     "/home": home,
+    "/salvos":saved,
     "/perfil": profile,
     "/recuperacao-senha": forgotpassword,
     "/pagina-nao-encontrada":pagenotfound

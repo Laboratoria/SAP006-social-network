@@ -1,5 +1,5 @@
 
-export const comment = (userImage, userName, text, completeDate, hour) => {
+export const comment = (userImage, name, text, completeDate, hour) => {
 
   const sectionElement = document.createElement("section")
   sectionElement.classList.add('comment-post')
@@ -10,6 +10,17 @@ export const comment = (userImage, userName, text, completeDate, hour) => {
     userPhoto= image
   } else {
     userPhoto = "../../img/default-img.png"
+  }
+
+  let userName 
+
+
+  if (name != null && name != undefined) {
+    userName = name
+   
+  } else {
+    userName = "Usuário indefinido"
+   
   }
 
   const commentTemplate = 

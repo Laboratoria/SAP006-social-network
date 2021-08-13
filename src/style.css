@@ -542,7 +542,6 @@ a:hover {
     width: 100%;
     padding: 3rem 0;
     border-top: solid 1px white;
-    border-bottom: solid 1px white;
     display: flex;
     flex-direction: column;
 
@@ -595,14 +594,11 @@ a:hover {
     color: var(--default-blue);
 }
 
-.review-line {
-    margin-bottom: 2rem;
-}
 
 .sidebar-tools {
     width: 100%;
-    padding: 2rem 0;
-    border-bottom: solid 1px white;
+    padding: 2.2rem 0;
+    border-top: solid 1px white;
     display: flex;
     align-self: center;
     justify-content: center;
@@ -628,11 +624,14 @@ a:hover {
     transition: 0.7s
 }
 
-
+.save-sidebar{
+    width:2.3rem;
+}
 
 #logout-btn-sidebar {
     background-color: transparent;
     border: none;
+    
 
 }
 
@@ -661,7 +660,7 @@ a:hover {
 }
 
 #sidebar-img-logout {
-    width: 4rem;
+    width: 3rem;
 }
 
 

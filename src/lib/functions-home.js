@@ -39,7 +39,6 @@ export const profileImage = () => {
 }
 
 
-
 export const loadPosts = () => {
   const user = currentUser()
   const userId = user.uid
@@ -55,7 +54,6 @@ export const loadPosts = () => {
 
           const postId = doc.id
           const name = doc.data().userName
-          const userName = name.replace(/\s/g, '').toLowerCase();
           const date = doc.data().datePost
           const hour = doc.data().hourPost
           const bookImageUrl = doc.data().imageUrl
@@ -67,6 +65,18 @@ export const loadPosts = () => {
           const reviewLikes = doc.data().likes
           const reviewSaves = doc.data().saves
 
+          let userName 
+          let userName2
+          const userNameFirebase = user.displayName
+          console.log(userNameFirebase)
+
+          if (name != null && name != undefined) {
+            userName = name
+            userName2 = userName.replace(/\s/g, '').toLowerCase();
+          } else {
+            userName = "Usuário indefinido"
+            userName2 = ""
+          }
 
 
           let userImage
@@ -87,8 +97,8 @@ export const loadPosts = () => {
                       <img class="photo-post-review" src=${userImage}>
                       <div class="user-wrapper">
                         <div class="user-information-post">
-                          <h1 class="name-profile-post">${name}</h1>
-                          <p class="username-post">@${userName}</p>  
+                          <h1 class="name-profile-post">${userName}</h1>
+                          <p class="username-post">${userName2}</p>  
                         </div>
                         <div class="date">
                           <p class="date-post">${date}</p>
@@ -144,7 +154,7 @@ export const loadPosts = () => {
                   </div>
                   <div class="comment-text comment-text-form">
                     <div class="comment-headline">
-                      <p class="comment-username">${user.displayName}</p>
+                      <p class="comment-username">${userName}</p>
                     </div>
             
                     <textarea class="input-comment" rows="1" data-item="add-comment" placeholder="Adicione seu comentário." wrap="hard"></textarea>

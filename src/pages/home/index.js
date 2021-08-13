@@ -15,13 +15,19 @@ export default () => {
   const profileImg = profileImage()
 
   let userName 
+  let userName2
   const userNameFirebase = user.displayName
+  console.log(userNameFirebase)
 
-  if (userNameFirebase != null) {
-    userName == userNameFirebase
+  if (userNameFirebase != null && userNameFirebase != undefined) {
+    userName = userNameFirebase
+    userName2 = userName.replace(/\s/g, '').toLowerCase();
+    console.log("definido")
   } else {
-    userName == "Username não definido"
+    userName = "Usuário indefinido"
+    userName2 = ""
   }
+
 
   const createFeedTemplate = `
   <div class="home-container">
@@ -33,7 +39,7 @@ export default () => {
     <div class="timeline">
     <div class="welcome">
     <img class="photo-profile-feed" src=${profileImg}>
-    <h1 class="h1-welcome">Olá, ${firebase.auth().currentUser.displayName} :)</h1> 
+    <h1 class="h1-welcome">Olá, ${userName} :)</h1> 
     </div>
     
     <div class="make-review">
