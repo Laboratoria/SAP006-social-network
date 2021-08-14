@@ -77,13 +77,3 @@ firebase.auth().onAuthStateChanged((user) => {
 //     // ...
 //   }
 // });
-
-// export const deletePost = (postID) => {
-//   const postsCollection = firebase.firestore().collection('posts');
-//   postsCollection.doc(postID).delete().then(() => {
-//     console.log('apagouuu!!');
-//     const rootElement = document.createElement('div');
-//     rootElement.innerHTML = '';
-//     // getPosts();
-//   });
-// }

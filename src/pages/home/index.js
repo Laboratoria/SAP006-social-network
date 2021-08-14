@@ -55,7 +55,6 @@ export const home = () => {
 
   const btnLogout = rootElement.querySelector('#btnLogout');
   const btnGoPost = rootElement.querySelector('#goPost');
-  // const deleteBtn = postElement.querySelector(".delete-button")
 
   // botão sair para fazer logout
   btnLogout.addEventListener('click', (event) => {
@@ -100,7 +99,7 @@ export const home = () => {
         if (deleteBtn) {
           const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
           if (deleteConfirmation) {
-            deletePost(postID).then(div.remove);
+            deletePost(postID).then(div.remove());
           }
         }
       });
