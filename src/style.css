@@ -11,10 +11,19 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+<<<<<<< HEAD
 
  /* input::placeholder {
     color: rgb(0, 0, 0); */
 }
+=======
+}
+ 
+input::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+>>>>>>> 87e2613687c0ccda35d42528d1ea73fe1dda73d5
 
 input::placeholder {
   color: rgb(0, 0, 0)

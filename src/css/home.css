@@ -67,9 +67,10 @@
   width: 25%;
   text-decoration: none;
   color: rgb(0, 0, 0);
+  cursor: pointer;
 }
 
-.addPost {
+.goPost {
   background: #97CF6E;
   box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
   border: none;
@@ -218,4 +219,15 @@
   justify-content: space-evenly;
   border: none;
   
+}
+
+.imgUser {
+  width: 50px;
+  height: 50px;
+}
+
+.user{
+  font-size: 18px;
+  color: #97CF6E;
+
 }

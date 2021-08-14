@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
-/* eslint-disable no-alert */
 import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebaseAuth.js';
-import { route, handleError } from '../../services/utils.js';
+import { handleError } from '../../services/error.js';
+import { route } from '../../routes/navigator.js';
 
 export const cadastro = () => {
   const rootElement = document.createElement('div');
@@ -28,6 +28,7 @@ export const cadastro = () => {
   const enterButton = rootElement.querySelector('#enter');
 
   // funções para receber dos dados de cadastro//
+
   enterButton.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -58,16 +59,15 @@ export const cadastro = () => {
 
     cadastrarComEmailSenha(emailUser, passwordRegister)
       .then(() => {
+        // const user = userCredential.user;
         atualizarUsuario(nameUser)
           .then(() => {
             route('/home');
           });
       })
-      .catch((handleError));
-
-    // return false;
+      .catch((handleError()));
+    return false;
   });
-
   pageLogin.addEventListener('click', (e) => {
     e.preventDefault();
     route('/login');

@@ -1,4 +1,4 @@
-#checkbox-menu{
+/* #checkbox-menu{
     position: absolute;
     opacity: 0;
   }
@@ -45,4 +45,4 @@
   #checkbox-menu:checked + label span:nth-child(3){
     transform: rotate(45deg);
     top:8px;
-  }
+  } */
