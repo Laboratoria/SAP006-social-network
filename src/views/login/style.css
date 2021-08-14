@@ -1,0 +1,179 @@
+.form-login {
+  display: contents;
+}
+
+.error-message {
+  background: var(--rose-light);
+  font-size: 0.80rem;
+  border-radius: 4px;
+  color: brown;
+}
+
+.logo {
+  margin-top: 4rem;
+  text-align:right;
+  color: var(--white-color);
+}
+
+.subtitle,
+.option,
+.sign-up-text {
+  color: var(--white-color);
+  text-align: center;
+}
+
+.option {
+  font-size: 0.80rem;
+}
+
+.sign-up-text{
+  font-size: 0.80rem;
+}
+
+.subtitle {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  font-size: 1rem;
+  width: 290px;
+}
+
+.input-field,
+.button,
+#user-email,
+#login-btn {
+  width: 15rem;
+  height: 2.813rem;
+  margin: 0.40rem;
+  background: var(--bege-color);
+  text-decoration: none;
+  border: none;
+  border-radius: 0.375rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.input-field {
+    font-size: 1rem;
+    text-align: center;
+}
+
+#login-btn {
+  width: 15rem;
+  height: 2.813rem;
+  font-size: 1rem;
+  background: var(--orange-color);
+  cursor: pointer;
+}
+
+#btn-signUp {
+  width: 10.313rem;
+  font-size: 1.125rem;
+  background: var(--orange-color);
+  padding: 10px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.google-icon {
+  margin-top: 6px;
+  height: 22px;
+}
+
+#google-btn {
+  background: var(--white-color);
+  margin-bottom: 3rem;
+  padding: 0.48rem;
+  align-items: center;
+}
+
+.button-google {
+  text-align: center;
+  font-size: 1rem;
+  padding: 7px 12px;
+}
+
+#eye-login {
+  display: block;
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 10px;
+  position: absolute;
+  margin-left: 65px;
+  padding: 21px;
+}
+
+.fa-eye {
+  min-width: 50px;
+  cursor: pointer;
+}
+
+.ball {
+  position: absolute;
+  right: 0px;
+  width: 65px;
+  padding: 0px;
+  float: right;
+}
+
+.dog-login {
+  position: absolute;
+  right: 0px;
+  width: 130px;
+  padding: 0px;
+  float: right;
+  bottom: 0px;
+}
+
+ .triangle{
+  display: none;
+}
+
+
+ @media screen and (min-width: 640px) {
+
+  .triangle{
+    position: absolute;
+    left: 0px;
+    width: 130px;
+    padding: 0px;
+    float: left;
+    bottom: 0px;
+    display: flex;
+  }
+
+}
+
+  
+  @media screen and (min-width: 768px) {
+  .subtitle {
+      width: 400px;
+  }
+
+  .ball {
+    width: 90px;
+  }
+
+  .dog-login {
+    width: 200px;
+  }  
+      
+  }
+  
+@media screen and (min-width: 1024px) {
+
+  .ball {
+    width: 120px;
+  }
+
+  .dog-login {
+    width: 250px;
+  }
+
+  .triangle{
+    width: 140px;
+  }
+  
+}
+  

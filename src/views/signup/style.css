@@ -1,0 +1,200 @@
+.form-register {
+  display: contents;
+
+}
+
+.error-sign-up-message {
+  background: var(--rose-light);
+  font-size: 0.80rem;
+  border-radius: 4px;
+  color: brown;
+}
+
+.signUp-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+  
+.form-register {
+  display: contents;
+
+}
+  
+.logo-signUp {
+  text-align:right;
+  color: var(--white-color);
+  margin-top: 1rem;
+}
+
+.option-register,
+.login-text {
+  text-align: center;
+  margin-top: 0rem;
+  color: var(--white-color);
+}
+
+.create-account {
+  color: var(--white-color);
+  text-align: center;
+  margin: 1rem;
+}
+  
+.option-register {
+  font-size: 0.80rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;  
+}
+
+.login-text {
+  font-size: 0.80rem;
+}
+  
+.input-field,
+.button,
+#user-name,
+#user-email,
+#new-password,
+#confirm-password {
+  width: 15rem;
+  height: 2.813rem;
+  font-family: inherit;
+  background: var(--bege-color);
+  margin: 0.40rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 0.25rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.input-field {
+  font-size: 1rem;
+  text-align: center;
+}
+
+#btn-login {
+  background: none;
+  color: var(--white-color);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#sign-up-btn {
+  width: 10.313rem;
+  left: 6.313rem;
+  top: 20rem;
+  font-size: 1.125rem;
+  background: var(--orange-color);
+  padding: 10px;
+  cursor: pointer;
+  align-items: center;
+}
+  
+.button-google {
+  text-align: center;
+  font-size: 0.90rem;
+  padding: 5px 5px;
+}
+  
+.google-icon {
+  margin-top: 6px;
+  height: 22px;
+}
+  
+#google-btn {
+  margin-bottom: 3rem;
+  cursor: pointer;
+  background: var(--white-color); 
+}
+
+.show-password {
+  width: 14rem;
+}
+  
+#eye-register,
+#eye-show-register {
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 7px;
+  position: absolute;
+  margin-left: 170px;
+  display: block;
+  padding: 20px;
+}
+
+.fa-eye {
+  cursor: pointer;
+  min-width: 50px;
+}
+  
+.dog-signUp {
+  right: 0px;
+  width: 130px;
+  padding: 0px;
+  float: right;
+  bottom: 0px;
+  position: absolute;
+}
+
+.header-triangle{
+  left: 0px;
+  width: 80px;
+  padding: 0px;
+  position: absolute;
+  float: left;
+}
+
+.input-field, .button, #user-name, #user-email, #new-password, #confirm-password {
+  height: 2.813rem;
+  margin: 0.40rem;
+  background: var(--bege-color);
+  text-decoration: none;
+  border: none;
+  border-radius: 0.25rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 5px;
+  width: 15rem;
+}
+
+
+@media screen and (min-width: 640px) {
+
+  .triangle{
+    left: 0px;
+    width: 150px;
+    padding: 0px;
+    float: left;
+    bottom: 0px;
+    display: flex;
+    position: absolute;
+  }
+}
+    
+@media screen and (min-width: 768px) {
+  .dog-signUp {
+    width: 200px;
+  }
+  
+  .header-triangle{
+    width: 150px;
+  }
+}
+    
+@media screen and (min-width: 1024px) {
+
+  .dog-signUp {
+    width: 250px;
+  }
+  
+  .header-triangle{
+    width: 140px;
+  }
+
+}
+    
