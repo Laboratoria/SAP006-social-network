@@ -1,19 +1,9 @@
-import { printPost } from '../components/post/post.js';
-
-export const loadPosts = () => {
-  firebase
+export const loadPosts = () => firebase
     .firestore()
     .collection('posts')
     .orderBy('text', 'desc')
-    .get()
-    .then((snap) => {
-      snap.forEach((post) => {
-        const postInfo = (post.data());
-        printPost(postInfo);
-      });
-    });
+    .get()// aqui vai gerar uma promisse
 
-};
 
 export const addPosts = (post) => firebase
   .firestore()
@@ -21,11 +11,19 @@ export const addPosts = (post) => firebase
   .add(post)
   .then(() => loadPosts());
 
-export const updatePost = (valueInput, post) => firebase
-  .firestore()
-  .collection('posts')
-  .doc(post.id)
-  .update({ text: valueInput });
+
+export const updatePosts = (postId, newText) => firebase
+    .firestore()
+    .collection('posts')
+    .doc(postId)
+    .update({ text: newText })
+    .then(() => {
+      console.log("Caiu no load");
+    })
+    .catch(() => {
+      console.log("Não foi dessa vez");
+    })
+
 
 export const deletePost = (postId) => firebase
   .firestore()
@@ -34,6 +32,4 @@ export const deletePost = (postId) => firebase
   .delete()
   .then(() => {
   })
-  .then(() => loadPosts())
-  .catch((error) => {
-  });
+  .then(() => loadPosts());

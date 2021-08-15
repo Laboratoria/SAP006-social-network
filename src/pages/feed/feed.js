@@ -1,4 +1,5 @@
 import { addPosts, loadPosts } from '../../services/database.js';
+import { printPost } from "../../components/feedcomponent.js";
 
 export const Feed = () => {
   const rootElement = document.createElement('div');
@@ -55,8 +56,21 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
-  loadPosts();
+  // slider post
+  // const newPostBtn = document.querySelector('#new-post-btn');
+  // newPostBtn.addEventListener('click', () => {
+  //   container.classList.add("sign-up-mode");
+  // });
 
+  // const deleteButton = document.querySelector('.delete-button');
+
+  loadPosts().then((snap) => { //pega o resultado da promisse
+      snap.forEach((post) => { // com o resultado itera no post
+        console.log(post)
+        printPost(post); //chama printPOst com o que foi retornado, no caso é posts
+      });
+  });
+ 
   return rootElement;
 };
 
