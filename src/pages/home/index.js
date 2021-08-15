@@ -1,11 +1,11 @@
-import { outLogin } from '../../services/firebaseAuth.js';
+import { outLogin, deletePost } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import { getPosts } from '../../services/firebaseData.js';
 
-const deletePost = (postID) => {
-  const postsCollection = firebase.firestore().collection('posts');
-  return postsCollection.doc(postID).delete().then();
-};
+// const deletePost = (postID) => {
+//   const postsCollection = firebase.firestore().collection('posts');
+//   return postsCollection.doc(postID).delete().then();
+// };
 
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
@@ -90,9 +90,17 @@ export const home = () => {
           <hr> `;
 
       const deleteBtn = div.querySelector('.delete-button');
-      // if (postdapessoa)
-      // let postUser = firebase.auth().currentUser.uid
-      // if (postUser === firebase.auth().currentUser.uid) {
+      function disableBtn() {
+        if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
+          // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
+          deleteBtn.hidden = false;
+        } else {
+          // editBtn.hidden = true;
+          deleteBtn.hidden = true;
+        }
+      }
+      disableBtn();
+
       deleteBtn.addEventListener('click', (e) => {
         const { target } = e;
         const postID = target.parentNode.parentNode.id;
@@ -109,10 +117,3 @@ export const home = () => {
   });
   return rootElement;
 };
-
-// const deletePost = (postID) => {
-//   const postsCollection = firebase.firestore().collection('posts');
-//   return postsCollection.doc(postID).delete().then(() => {
-//     console.log('apagou!!');
-//   });
-// };
