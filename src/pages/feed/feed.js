@@ -1,4 +1,5 @@
 import { addPosts, loadPosts } from '../../services/database.js';
+import { printPost } from '../../components/feedcomponent.js';
 
 export const Feed = () => {
   const rootElement = document.createElement('div');
@@ -15,10 +16,10 @@ export const Feed = () => {
       <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
-
-    <section class="get-post" id="postTemplate">
-    
-    </section>
+   
+  <section class="get-post" id="postTemplate"> 
+  <!--Aqui vem todo o template do areaOfPost-->
+  </section>
 
     <nav class="navbar mobile-list">
       <ul>
@@ -44,12 +45,7 @@ export const Feed = () => {
     };
 
     addPosts(post);
-    // console.log(addPosts);
   });
-
-  /* const elementPost = addPost(post);
-    rootElement.querySelector('#get-post').appendChild(elementPost)
-    */
 
   const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
@@ -60,10 +56,20 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
-  // const deleteButton = document.querySelector('.delete-button');
-  // console.dir(deleteButton);
+  // slider post
+  // const newPostBtn = document.querySelector('#new-post-btn');
+  // newPostBtn.addEventListener('click', () => {
+  //   container.classList.add("sign-up-mode");
+  // });
 
-  loadPosts();
+  // const deleteButton = document.querySelector('.delete-button');
+
+  loadPosts().then((snap) => { // pega o resultado da promisse
+    snap.forEach((post) => { // com o resultado itera no post
+      console.log(post);
+      printPost(post); // chama printPOst com o que foi retornado, no caso é posts
+    });
+  });
 
   return rootElement;
 };
