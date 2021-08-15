@@ -1,4 +1,4 @@
-import { googleLogin, SignIn, resetPass } from '../../services/firebaseAuth.js';
+import { googleLogin, SignIn, resetPass, stayLogged } from '../../services/firebaseAuth.js';
 import { handleError } from '../../services/error.js';
 import { route } from '../../routes/navigator.js';
 
@@ -84,7 +84,7 @@ export const login = () => {
 
   botaoGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    googleLogin().then(() => route('/home')).catch(handleError);
+    googleLogin();
   });
   return rootElement;
 };
