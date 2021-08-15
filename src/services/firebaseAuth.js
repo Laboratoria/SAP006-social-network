@@ -1,16 +1,17 @@
 /* eslint-disable arrow-body-style */
-import { route } from '../routes/navigator';
+import { route } from '../routes/navigator.js';
 import { handleError } from './error.js';
 
 firebase.auth().useDeviceLanguage();
+// cadastro
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
     .createUserWithEmailAndPassword(emailUser, passwordRegister);
 };
-
-export const atualizarUsuario = (nome) => firebase.auth().currentUser.updateProfile({
+export const atualizarUsuario = (nome, photoProfile) => firebase.auth().currentUser.updateProfile({
   displayName: nome,
+  photoURL: photoProfile,
   return: atualizarUsuario,
 });
 
