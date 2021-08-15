@@ -1,11 +1,32 @@
-// import { updatePost } from '../services/database.js';
+import { updatePosts } from '../services/database.js';
 
 export const printPost = (post) => {
   const areaOfPost = `
-    <section class="all-posts">
+  <section class="all-posts">
+
+  <section data-container>
+    <div class="box">
+      <p class="username">username</p>
+      <div class="content">
+        <button>
+          <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle"
+            style="color: #706F6B;"></span>
+        </button>
+        
+        <div class="textBox">
+          <textarea name="post-text" class="post-content text-post" id="${post.data().id}">${post.data().text}</textarea>
+          <div class="btn-inside">
+            <button class="btn-actions"><span class="iconify" data-inline="false"
+                data-icon='ri:image-add-fill'></span>
+            </button>
+            <button class="btn-actions"><span class="iconify" data-inline="false"
+                data-icon="mdi:send-circle"></span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <section class='edit-text'>
-        <input class="area-edit" placeholder="Edite o texto aqui" />
         <div class='save-btn-area'>
           <button class="save-button" value='${post.data().id}'>Salvar post</button>
         </div>
@@ -14,44 +35,37 @@ export const printPost = (post) => {
         </div>
       </section>
 
-      <section data-container>
-        <div class="box">
-          <p class="username">username</p>
-          <div class="content">
-            <button>
-              <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle"
-                style="color: #706F6B;"></span>
-            </button>
-            
-            <div class="textBox">
-              <p class="post-content text-post" id='${post.data().id}'>${post.data().text}</p>
-              <div class="btn-inside">
-                <button class="btn-actions"><span class="iconify" data-inline="false"
-                    data-icon='ri:image-add-fill'></span>
-                </button>
-                <button class="btn-actions"><span class="iconify" data-inline="false"
-                    data-icon="mdi:send-circle"></span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <section class="actions">
-            <button class="delete-button" value=""><span class="iconify" data-inline="false"
-                data-icon="bytesize:trash" style="color: #706f6b;"></span></button>
-            <button><span id="btn-reply" class="iconify" data-inline="false" data-flip="vertical"
-                data-icon="bi:reply"></span></button>
-            <button>❤️ ${post.likes}</button>
-          </section>
-
-        </div>
+      <section class="actions">
+        <button class="delete-button" value=""><span class="iconify" data-inline="false"
+            data-icon="bytesize:trash" style="color: #706f6b;"></span></button>
+        <button><span id="btn-reply" class="iconify" data-inline="false" data-flip="vertical"
+            data-icon="bi:reply"></span></button>
+        <button>❤️ ${post.likes}</button>
       </section>
-    </section>
-`;
-  const postTemplate = document.querySelector('#postTemplate');
-  postTemplate.innerHTML += areaOfPost;
 
-  /* const elementPost = addPost(post);
+    </div>
+  </section>
+</section>
+`;
+
+const postTemplate = document.querySelector('#postTemplate');
+postTemplate.innerHTML += areaOfPost;
+
+
+updatePosts("4pVdpwtzW4OFz5Lk4xUe", "banana");
+
+const editButton = postTemplate.querySelector('.edit-button');
+debugger
+editButton.addEventListener('click', () => {
+const valueText = areaOfPost.querySelector('.post-content text-post').value;
+console.log(valueText);
+})
+
+  /*
+
+ 
+
+  const elementPost = addPost(post);
   rootElement.querySelector('#get-post').appendChild(elementPost)
    */
 
@@ -75,9 +89,7 @@ export const printPost = (post) => {
   //     });
   // };
 
-  // document.querySelector('.edit-button').addEventListener('click', () => {
-  //   editPost();
-  // });
+  // ;
 
   // const saveUpdatedPost = () => {
   //   const valueInput = document.querySelector('.area-edit').value;

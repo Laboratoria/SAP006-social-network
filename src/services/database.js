@@ -1,20 +1,8 @@
-import { printPost } from '../components/feed_component.js';
-
-export function loadPosts() {
-  firebase
-    .firestore()
-    .collection('posts')
-    .orderBy('text', 'desc')
-    .get()
-    .then((snap) => {
-      snap.forEach((post) => {
-        printPost(post);
-      });
-    });
-  // .catch((error) => {
-  //   console.error('Erro ao excluir o post: ', error);
-  // });
-}
+export const loadPosts = () => firebase
+  .firestore()
+  .collection('posts')
+  .orderBy('text', 'desc')
+  .get();// aqui vai gerar uma promisse
 
 export const addPosts = (post) => firebase
   .firestore()
@@ -22,11 +10,17 @@ export const addPosts = (post) => firebase
   .add(post)
   .then(() => loadPosts());
 
-export const updatePost = (valueInput, post) => firebase
+export const updatePosts = (postId, newText) => firebase
   .firestore()
   .collection('posts')
-  .doc(post.id)
-  .update({ text: valueInput });
+  .doc(postId)
+  .update({ text: newText })
+  .then(() => {
+    console.log('Caiu no load');
+  })
+  .catch(() => {
+    console.log('Não foi dessa vez');
+  });
 
 export const deletePost = (postId) => firebase
   .firestore()
@@ -34,9 +28,5 @@ export const deletePost = (postId) => firebase
   .doc(postId)
   .delete()
   .then(() => {
-    // console.log('Publicação deletada!');
   })
   .then(() => loadPosts());
-  // .catch((error) => {
-  //   console.error('Erro ao excluir o post: ', error);
-  // });
