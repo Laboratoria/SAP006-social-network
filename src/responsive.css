@@ -35,7 +35,7 @@
         width: 25vw;
     }
 
-    #home-content {
+    .home-content {
 
         width: 75vw;
     }
@@ -135,7 +135,7 @@
         padding: 0 2rem;
     }
 
-    #home-content {
+    .home-content {
 
         width: 100vw;
     }
@@ -247,7 +247,7 @@
     }
 
 
-    #home-content {
+    .home-content {
 
         width: 100vw;
     }

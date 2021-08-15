@@ -259,3 +259,9 @@ export const save = (postID, userID) => {
     })
     .catch((error) => { })
 }
+
+export const getSavedReviews = () => {
+  
+  return database
+    .collection('reviews').where("saves", "array-contains", firebase.auth().currentUser.uid).get()
+}

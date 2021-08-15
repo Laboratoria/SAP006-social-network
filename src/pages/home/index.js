@@ -1,4 +1,4 @@
-import { currentUser} from "../../lib/index.js"
+import { currentUser, getReviews} from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
 import { showReviewArea, publishReview, profileImage, loadPosts } from "../../lib/functions-home.js"
 
@@ -7,7 +7,7 @@ export default () => {
 
   
   const sectionElement = document.createElement("section")
-  sectionElement.setAttribute("id", "home-content")
+  sectionElement.setAttribute("class", "home-content")
 
   const user = currentUser()
   const userId = user.uid
@@ -15,13 +15,19 @@ export default () => {
   const profileImg = profileImage()
 
   let userName 
+  let userName2
   const userNameFirebase = user.displayName
+  console.log(userNameFirebase)
 
-  if (userNameFirebase != null) {
-    userName == userNameFirebase
+  if (userNameFirebase != null && userNameFirebase != undefined) {
+    userName = userNameFirebase
+    userName2 = userName.replace(/\s/g, '').toLowerCase();
+  
   } else {
-    userName == "Username não definido"
+    userName = "Usuário anônimo"
+    userName2 = ""
   }
+
 
   const createFeedTemplate = `
   <div class="home-container">
@@ -33,7 +39,7 @@ export default () => {
     <div class="timeline">
     <div class="welcome">
     <img class="photo-profile-feed" src=${profileImg}>
-    <h1 class="h1-welcome">Olá, ${firebase.auth().currentUser.displayName} :)</h1> 
+    <h1 class="h1-welcome">Olá, ${userName} :)</h1> 
     </div>
     
     <div class="make-review">
@@ -165,7 +171,7 @@ export default () => {
   createReviewBtn.addEventListener ("click", publishReview)
   
   
-  loadPosts()  
+  loadPosts(getReviews())  
 
   return sectionElement
 }
