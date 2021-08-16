@@ -8,6 +8,7 @@ export const Feed = () => {
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
       <button><span id="bell" class="iconify" data-inline="false" data-icon="clarity:notification-outline-badged" style="color: #F78563;"></span></button>
     </header>
+    <button>Logout</button>
     <hr class="line"></hr>
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
@@ -25,11 +26,11 @@ export const Feed = () => {
       <ul>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:home" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" id="new-post-btn" data-inline="false" data-icon="clarity:plus-circle-line" style="color: #FFD2BF;"></span></li>
-        <li><span class="iconify" data-inline="false" data-icon="akar-icons:comment" style="color: #FFD2BF;"></span></li>
         <li><span class="iconify" data-inline="false" data-icon="akar-icons:person" style="color: #FFD2BF;"></span></li>
       </ul>
     </nav>
-      `;
+    `;
+
   rootElement.innerHTML = container;
 
   const submitButton = rootElement.querySelector("#published-form");
