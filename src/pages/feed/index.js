@@ -1,4 +1,4 @@
-import { loadRecipe } from '../../services/index.js';
+import { loadRecipe, likesPost } from '../../services/index.js';
 
 export default () => {
   const feedContainer = document.createElement('div');
@@ -59,6 +59,7 @@ export default () => {
       <div id="recipe-footer" class="div-width100 recipe-title">
         <div class="like">
           <span class="material-icons favoriteIcon">favorite</span> ${post.data().likes} <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
+          <button class="recipeLikes" data-like= ${post.id} >Curtir</button>
         </div>
         <p> Por Bob Esponja </p>
       </div>
@@ -75,7 +76,37 @@ export default () => {
         div.querySelector('.recipeBody').classList.toggle('show');
       });
     });
+
+    const btnLike = feedContainer.querySelectorAll('.recipeLikes');
+
+    btnLike.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const { target } = e;
+        const dataLike = target.dataset.like;
+        likesPost(dataLike, post.data().likes);
+      });
+    });
+    // const section = feedContainer.querySelector('[data-section]');
+    // const userUid = getUserData().uid;
+
+    // const likesRecipe = feedContainer.querySelector('[data-like]');
+    // feedContainer.addEventListener('click', (e) => {
+    //   const { target } = e;
+    //   const dataLike = target.dataset.like;
+    //   console.log(target.getAttribute('data-like'));
+    //   if (dataLike) {
+    //     likesPost(e.currentTarget.parentNode.id);
+    //   likesPost(e.currentTarget.id, e.currentTarget.likes)}
+    // });
   }
+
+  // const idLikes = feedContainer.querySelectorAll('.recipeLikes');
+  // console.log(idLikes);
+  // for (const btnLike of idLikes) {
+  //   btnLike.addEventListener('click', (e) => {
+  //     likesPost(e.currentTarget.parentNode.id);
+  //   })
+  // };
 
   loadRecipe(addPost);
 
