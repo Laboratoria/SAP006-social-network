@@ -1,6 +1,6 @@
 import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
-import { getPosts } from '../../services/firebaseData.js';
+import { getPosts, liked } from '../../services/firebaseData.js';
 
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
@@ -33,16 +33,14 @@ export const home = () => {
     
   </header>
   <main>
-    <div class="publish" id='timeline'>
+    <div class="publish" id="timeline" data-post>
     </div>
       <hr> 
   </main>
 </div>
 `;
   const btnLogout = rootElement.querySelector('#btnLogout');
-
   const btnGoPost = rootElement.querySelector('#goPost');
-
   // botão sair para fazer logout
   btnLogout.addEventListener('click', (event) => {
     event.preventDefault();
@@ -55,7 +53,7 @@ export const home = () => {
     collectionContent.forEach((doc) => {
       const div = document.createElement('div');
       const timeline = rootElement.querySelector('#timeline');
-      div.innerHTML = `<div class="allPosts">
+      div.innerHTML = `<div class="allPosts" data-id=${doc.id}>
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
           <p class="data">${doc.data().data.toDate().toLocaleDateString()}</p>
@@ -63,10 +61,8 @@ export const home = () => {
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
           <p class="tipo"> ${doc.data().tipo} </p>
-
-          <button class="like" id="like"><img class="likePrice" src="./img/coracao.svg"></button>
-          <p class="numLikes">0</p>
-          <button class="price" id="price"> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
+          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${doc.data().curtidas.length}</button>
+          <button type="button" class="price" id="price" data-preco> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
           <div class="coments" id="coments">
             <input class="addComent" id="addComent" placeholder="Comentários"></input> 
           <button class="more" id="more">ver mais</button>
@@ -76,24 +72,15 @@ export const home = () => {
       timeline.insertBefore(div, timeline.childNodes[0]);
     });
   });
+  // like no post
+  const dataPost = rootElement.querySelector('[data-post]');
+  dataPost.addEventListener('click', (e) => {
+    const { target } = e;
+    const like = target.dataset.like;
+    if (like) {
+      liked(like);
+    }
+  });
 
   return rootElement;
 };
-
-// <h2 class="nameUser" id="nameUser"></h2>
-// <img class="imgPost" id="imgPost" src="">
-// <textarea class="textPost" id="textPost" name="story" style="resize: none">
-// </textarea>
-// <a class="hashtag" id="hashtag"></a>
-// <p class="tag" id="tag"></p>
-// <button class="like" id="like"><img src="./img/coracao.svg"</button>
-// <button class="price" id="price"><img
-// src="./img/dinAmarelo.svg"<img src="./img/dinCinza.svg"</button>
-
-// <div class="coments" id="coments">
-// <p>comentario</p>
-// <button class="more" id="more">ver mais</button>
-// </div>
-// <button class="addComent" id="addComent"><img src=".img/addCom.svg">
-// adicionar comentário
-// </button>

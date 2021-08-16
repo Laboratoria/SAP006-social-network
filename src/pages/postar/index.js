@@ -19,10 +19,10 @@ export const postar = () => {
     </header>
      <main>
      <input class="addImg" id="addImg" type="image" src="./img/add.svg" alt="Adicionar imagem"/>
-     <div class="local">
-     <p id="tittlePost">Local:</p>
-     <input type="text" id="addLocal" name="localização" placeholder="Av. Celso Garcia, 1400, São Paulo - BR"/>
-     <p id="errorLocal"></p>
+     <div class="titleLocal">
+     <p id="type">Mercado/Receita/Restaurante</p>
+     <input type="text" id="titlePost" name="titlePost" placeholder="Título da Publicação"/>
+     <p id="errorTitle"></p>
      </div>
      <div class="addfilter">
       <button class="market" id="market">Mercados</button>
@@ -47,15 +47,15 @@ export const postar = () => {
 
   let postType = 'resturante';
   const restBtn = () => {
-    rootElement.querySelector('#tittlePost').innerHTML = 'Restaurante';
+    rootElement.querySelector('#type').innerHTML = 'Restaurante';
     postType = 'restaurante';
   };
   const marketBtn = () => {
-    rootElement.querySelector('#tittlePost').innerHTML = 'Mercado';
+    rootElement.querySelector('#type').innerHTML = 'Mercado';
     postType = 'mercado';
   };
   const recipeBtn = () => {
-    rootElement.querySelector('#tittlePost').innerHTML = 'Receita';
+    rootElement.querySelector('#type').innerHTML = 'Receita';
     postType = 'receita';
   };
   rootElement.querySelector('#rest').addEventListener('click', restBtn);
@@ -64,9 +64,9 @@ export const postar = () => {
 
   rootElement.querySelector('#sendPost').addEventListener('click', () => {
     // pegando e validando as infos //
-    const localPost = rootElement.querySelector('#addLocal').value;
+    const localPost = rootElement.querySelector('#titlePost').value;
     if (localPost === '' || localPost.length < 3) {
-      const errorTittleField = document.getElementById('tittlePost');
+      const errorTittleField = document.getElementById('errorTitle');
       errorTittleField.innerHTML = 'Preencha com o nome do Restaurante, Mercado ou Receita';
       localPost.focus();
       return false;
@@ -89,6 +89,7 @@ export const postar = () => {
       return false;
     }
     const post = {
+      user_id: firebase.auth().currentUser.uid,
       data: new Date(),
       nome: firebase.auth().currentUser.displayName,
       image: './img/tomato.svg',
@@ -97,11 +98,11 @@ export const postar = () => {
       hashTags: hashtagsPost, // se é restaurante, mercado ou receita //
       preco: pricePost, // hashtags //
       descricao: descPost, // descricao do lugar ou receita //
+      curtidas: [],
+      comentarios: [],
     };
-
     addPost(post);
     route('/home');
-
     return false;
   });
   return rootElement;

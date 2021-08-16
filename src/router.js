@@ -27,9 +27,6 @@ window.addEventListener('load', () => {
 const verUser = () => {
   if (localStorage.getItem('displayName') === null) {
     route('/login');
-  } else {
-    route('/home');
   }
 };
-
 verUser();

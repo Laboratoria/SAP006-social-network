@@ -70,7 +70,7 @@
   cursor: pointer;
 }
 
-.addPost {
+.goPost {
   background: #97CF6E;
   box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
   border: none;
@@ -126,8 +126,8 @@
 }
 
 .receitas {
+  width: 35%;
   font-family: "Russo One", sans-serif;
-  width: 100%;
   font-size: 18px;
   background: #FF7171;
   box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
@@ -136,7 +136,7 @@
   margin: 3% auto;
   padding: 2% 2%;
   text-align: center;
-  width: 35%;
+
   text-decoration: none;
   color: rgb(255, 255, 255);
   margin: 15px 10px;
@@ -187,37 +187,85 @@
 }
 
 
+.botoes{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: 100%;
+}
 
-.like, .price {
-  /* display: flex;
-  flex-flow: row nowrap; */
-  width: 30px;
-  height: 30px;
-  margin: 0 90px;
-  /* margin-left: 50px; */
-  justify-content: space-between; /*Cria um espaçamento igual entre os elementos. Mantendo o primeiro grudado no início e o último no final. */
+
+.like {
+ /* width: 30px;
+  height: 30px; */
   border: none;
+  margin: 0% -22% 0% 0%;
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  box-shadow: none;
+}
+
+.price{
+  border: none;
+  background: none;
+}
+
+.numLikes {
+  border: none;
+  
+  /* margin: 4% ​0% 0% -30%; */
 }
 
 .likePrice{
   width: 25px;
   height: 25px;
-  /* margin: 0 -50px; */
+  
+  /* padding: 1px ​0px 0px -19px; */
+
 }
 
+
+.coments{
+  display: flex;
+  flex-direction: column;
+  /* flex-direction: row; */
+}
+
+.addComent {
+  width: 70%;
+  height: 50%;
+  align-items: right;
+  margin: 5px;
+
+}
+
+.more{
+  border: none;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: none;
+  background: none;
+  color:#939393;
+
+  cursor:pointer;
+  display:inline-block;
+
+}
 .addCom{
   width: 25px;
   height: 25px;
-  padding: 1px 5px 0px 0px;
 }
 
-.addComent{
-  width: 200px;
-  height: 30px;
-  margin: 5px;
-  /* margin-left: 50px; */
+.goComent{
+  /* width: 200px;
+  height: 30px; */
+  font-size: 15px;
   justify-content: space-evenly;
   border: none;
+  color:#939393;
+  background: none;
+  cursor: pointer;
   
 }
 
@@ -227,7 +275,51 @@
 }
 
 .user{
-  font-size: 18px;
+  font-size: 20px;
   color: #97CF6E;
 
+}
+
+.local{
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #828796;
+  margin: -3% 0 3% 0;
+}
+
+.data{
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #828796;
+  margin: -6% 0 5% 55%;
+}
+
+
+.delete-button{
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #6f727a;
+  background-color: #96979431;
+  box-shadow: 0px 3px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  border-radius: 5px;
+  margin: 3% auto;
+  /* padding: 2% 2%; */
+  text-align: center;
+  width: 13%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin: -3% 0 -2% 80%;
+}
+
+
+.tipo{
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #aaf19c;
+  text-align: center;
+  width: 25%;
+  right: 10%;
+  cursor: pointer;
 }
