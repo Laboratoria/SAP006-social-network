@@ -10,23 +10,23 @@ import login from './pages/login/index.js';
 import feed from './pages/feed/index.js';
 
 export const init = () => {
-  const main = document.querySelector('#root');
-  main.innerHTML = '';
+  const page = document.querySelector('#root');
+  page.innerHTML = '';
   switch (window.location.hash) {
     case '#home':
-      main.appendChild(home());
+      page.appendChild(home());
       break;
     case '#register':
-      main.appendChild(register());
+      page.appendChild(register());
       break;
     case '#login':
-      main.appendChild(login());
+      page.appendChild(login());
       break;
     case '#feed':
-      main.appendChild(feed());
+      page.appendChild(feed());
       break;
     default:
-      main.appendChild(home());
+      page.appendChild(home());
   }
 };
 
