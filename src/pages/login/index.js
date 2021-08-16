@@ -1,5 +1,5 @@
-import loginUser from '../../services/index.js';
-
+import { loginUser } from '../../services/index.js';
+// import { init } from '../../main.js';
 export default () => {
   const container = document.createElement('div');
 
