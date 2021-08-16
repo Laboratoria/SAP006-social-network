@@ -25,7 +25,8 @@ export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).s
 });
 
 export const signUp = (email, password, signUpName) => firebase.auth()
-  .createUserWithEmailAndPassword(email, password).then(() => {
+  .createUserWithEmailAndPassword(email, password)
+  .then(() => {
     updateUserDisplayName(signUpName);
   })
   .then(() => {

@@ -22,7 +22,7 @@ export default () => {
                 <option value="Master/Nível vovó">Master/Nível vovó</option>
                 </select>
                 <div id="notice"></div>
-                <button id="saveChanges">Salvar alterações</button>
+                <button id="saveChanges" class="btn-logging">Salvar alterações</button>
               </form>
             </div>
           <aside>
