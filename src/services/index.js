@@ -28,6 +28,7 @@ const keepMeLogged = (persistence) => {
     .auth()
     .setPersistence(persistence)
     .then(() => {
+      // eslint-disable-next-line new-cap
       const provider = new firebase.auth();
       return firebase.auth().signInWithRedirect(provider);
     })
@@ -68,11 +69,31 @@ const createPost = (post) => firebase.firestore().collection('post').add(post);
 
 const getPost = () => firebase.firestore().collection('post').get();
 
-const createUser = (user) => firebase.firestore().collection('user').add(user);
+const createHome = (user) => firebase.firestore().collection('home').add(user);
 
-const getUser = () => firebase.firestore().collection('user').get();
+const attHome = () => firebase.firestore().collection('home').doc('').set();
+
+const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      console.log(doc.data());
+    });
+  });
+
+
+const storageRef = firebase.storage().ref();
+// Create a reference to 'mountains.jpg'
+const mountainsRef = storageRef.child('mountains.jpg');
+
+// Create a reference to 'images/mountains.jpg'
+var mountainImagesRef = storageRef.child('images/mountains.jpg');
+
+// While the file names are the same, the references point to different files
+mountainsRef.name === mountainImagesRef.name            // true
+mountainsRef.fullPath === mountainImagesRef.fullPath    // false
+
 
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
-  signOut, createPost, getPost, currentUser, createUser, getUser,
+  signOut, createPost, getPost, currentUser, createHome, getHome,
 };

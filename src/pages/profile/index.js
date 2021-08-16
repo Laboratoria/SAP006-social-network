@@ -1,11 +1,13 @@
 /* eslint-disable no-tabs */
-import { createUser, currentUser } from '../../services/index.js';
+import { createHome, currentUser, getHome } from '../../services/index.js';
 import { headerMenu } from '../../components/header/index.js';
 
 export const Profile = () => {
-  headerMenu()
+  headerMenu();
   const loggedUser = currentUser();
+  const infomationsUser = getHome(loggedUser.uid).then (console.log);
   const root = document.createElement('div');
+  root.classList.add('root-profile');
   root.innerHTML = `
 	<main class='profile-container row'>
 		<section class='profile-form col-11'>
@@ -24,60 +26,57 @@ export const Profile = () => {
           </section>
 
 					<div class='form-fields col-9 '>
-						<p>Apelido:
-							<input id='surname' type='name' class='input-profile'>
-            </p>
-
             <p>Nome Completo:
-              <input id='name' type='name' class='input-profile'>
+              <input id='name' type='name' class='input-item' value='${loggedUser.displayName}'>
             </p>
 
             <p>Localização:
-              <input id='localization' type='localization' class='input-profile'>
+              <input id='localization' type='localization' class='input-item' value='${infomationsUser.localization}'>
             </p>
 
             <p>Nome e Modelo do Barco:
-              <input id='boat' type='name' class='input-profile'>
+              <input id='boat' type='name' class='input-item' value='${infomationsUser.boat}'>
             </p>
 
             <p>Email:
-              <input id='email' type='name' class='input-profile' value='${loggedUser.email}' disabled>
+              <input id='email' type='name' class='input-item' value='${loggedUser.email}' disabled>
             </p>
 
             <div class='redefinition'>
               <a href='#' id='reset'>Redefinir senha</a>
             </div>
+
+            <nav class='btn-profile-container'>
+              <button type='submit' id='saveBtn' class='saveBtn'>Atualizar</button>
+            </nav>
 				  </div>
         </fieldset>
       </form>
     </section>
-    
-    <nav class='btn-profile-container'>
-      <button type='submit' id='SaveBtn' class='btn-save' 'btn'>Atualizar</button>
-    </nav>
   </main>
   `;
 
   /* const avatarPhoto = root.querySelector ('.avatar-image').value; */
 
-  const saveButton = root.querySelector('.btn-save');
-  const surname = root.querySelector('#surname');
+  const saveButton = root.querySelector('#saveBtn');
   const name = root.querySelector('#name');
   const localization = root.querySelector('#localization');
   const boat = root.querySelector('#boat');
-  const email = root.querySelector('#email');
+  //const email = root.querySelector('#email');
 
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
     const infoUser = {
-      surname: surname.value,
-      name: name.value,
       localization: localization.value,
       boat: boat.value,
-      email: email.value,
-      userId: firebase.auth().currentUser.uid,
+      userId: loggedUser.uid,
     };
-    createUser(infoUser);
+
+    loggedUser.updateProfile({
+      displayName: name.value,
+    });
+    console.log(infoUser);
+    createHome(infoUser);
   });
 
   return root;
