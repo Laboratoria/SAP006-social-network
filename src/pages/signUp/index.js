@@ -19,7 +19,7 @@ export default () => {
     
       <input type="password" class="signUp-input" id="repeat-password" placeholder="Repita sua senha" required>
       <div id="notice" class="notice"> </div>
-
+      
       <button type="button" id="btn-signUp" class="btn-login">Cadastrar</button>
       
     </form>
@@ -47,8 +47,9 @@ export default () => {
       notice.innerHTML = '<span class="material-icons">error</span><p>As senhas não conferem</p>';
     } else {
       signUp(signUpEmail, signUpPassword, signUpName)
-        .then(window.location.hash = '#profile')
-
+        .then(() => {
+          window.location.hash = '#profile';
+        })
         .catch((error) => {
           const errorCode = error.code;
           function errorNotice(errorMessage) {
