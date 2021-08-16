@@ -9,14 +9,30 @@ export const getUserData = () => {
   };
 };
 
-export const setUserData = (uid, displayName) => {
-  localStorage.setItem('uid', uid);
-  localStorage.setItem('displayName', displayName);
+export const setUserData = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      localStorage.setItem('uid', user.uid);
+      localStorage.setItem('displayName', user.displayName);
+    }
+  });
+};
+
+export const updateRecipeAuthorName = (name) => {
+  db.collection('recipes').get().then((querySnapshot) => {
+    querySnapshot.forEach((recipe) => {
+      if (recipe.data().user_id === firebase.auth().currentUser.uid) {
+        db.collection('recipes').doc(recipe.id).update({
+          autor: name,
+        });
+      }
+    });
+  });
 };
 
 export const updateUserDisplayName = (data) => firebase.auth().currentUser.updateProfile({
   displayName: data,
-});
+}).then(() => updateRecipeAuthorName(data));
 
 export const updateUserAuthEmail = (data) => firebase.auth().currentUser.updateEmail(data);
 
@@ -25,24 +41,13 @@ export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).s
 });
 
 export const signUp = (email, password, signUpName) => firebase.auth()
-  .createUserWithEmailAndPassword(email, password).then(() => {
-    updateUserDisplayName(signUpName);
-  })
-  .then(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUserData(user.uid, signUpName);
-      }
-    });
-  });
+  .createUserWithEmailAndPassword(email, password)
+  .then(() => updateUserDisplayName(signUpName))
+  .then(() => setUserData());
 
-export const signIn = (email, password) => firebase
-  .auth().signInWithEmailAndPassword(email, password);
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    setUserData(user.uid, user.displayName);
-  }
-});
+export const signIn = (email, password) => firebase.auth()
+  .signInWithEmailAndPassword(email, password)
+  .then(() => setUserData());
 
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -66,7 +71,6 @@ export const userData = (name, email, uid) => db.collection('users').doc(uid).se
 export const postRecipe = (recipe) => db.collection('recipes').add({
   likes: 0,
   comments: [],
-  user_id: firebase.auth().currentUser.uid,
   ...recipe,
 });
 
@@ -77,6 +81,8 @@ export const loadRecipe = (addPost) => {
     });
   });
 };
+
+export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
 
 export const uploadFoodPhoto = (file) => {
   // create storage ref

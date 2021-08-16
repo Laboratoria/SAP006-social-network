@@ -1,11 +1,17 @@
 import { postRecipe } from '../../services/index.js';
+import header from '../../components/header/index.js';
+import footer from '../../components/footer/index.js';
 
 export default () => {
   const addRecipeContainer = document.createElement('div');
   addRecipeContainer.setAttribute('class', 'screenContainer');
 
-  const addRecipe = `
-  <div class="div-width90">
+  addRecipeContainer.append(header());
+
+  const addRecipeSection = document.createElement('section');
+  addRecipeSection.classList.add('div-width90');
+
+  const addRecipeTemplate = `
     <h2 id="post-recipe-title" class="title">Postar Receita</h2>
 
     <form class="initialForm">
@@ -13,9 +19,9 @@ export default () => {
       <input type="text" id="recipe-title" class="signUp-input required" placeholder="Nome da receita">
       
       <div id="recipe-photo" class="recipe-photo"></div>
+
       <progress id="file" value="0" max="100"> 0% </progress>
       <input type="file" value="upload" id="fileButton" class="btn-login" />
-      <!-- <button type="button" id="add-photo"  >Adicionar foto</button> -->
 
       <div class="info-recipe-container-flex">
         <div class="width-90">
@@ -30,7 +36,7 @@ export default () => {
           <textarea id="howToDo-recipe" class="textarea-recipe required" spellcheck="false" placeholder="Exemplo:&#10;Misture os ovos e a farinha" rows="10"></textarea>
         </div>
       </div>
-
+      
       <div class="info-recipe-container">
         <div class="filter-info-recipe">
           <label for="time">Tempo de Preparo</label>
@@ -68,41 +74,39 @@ export default () => {
             <option value="$$$"> $$$ </option>
             <option value="$$$$"> $$$$ </option>
           </select>   
-        </div>
-      
+        </div>    
       </div>
-
+      
       <div id="alert" class="notice"></div>
       <button type="button" id="post-recipe" class="btn-login">Postar</button>
 
-      <div class="popup" id="popup">
-        Deseja adicionar outra receita?
-        
-        <div class="div-btns-popup">
-          <button type="button" id="btn-yes" class="btn-popup">Sim</button>
-          <button type="button" id="btn-no" class="btn-popup">Não</button>
-        </div>
-      </div>
     </form>
-    <div id="overlay" class=""></div>
-  </div>
+
+    <div class="popup" id="popup">
+      Deseja adicionar outra receita?
+        
+      <div class="div-btns-popup">
+        <button type="button" id="btn-yes" class="btn-popup">Sim</button>
+        <button type="button" id="btn-no" class="btn-popup">Não</button>
+      </div>
+    </div>
+    <div id="overlay"></div>
   `;
 
-  addRecipeContainer.innerHTML = addRecipe;
+  addRecipeSection.innerHTML = addRecipeTemplate;
+  addRecipeContainer.append(addRecipeSection);
 
-  const btnAddPhoto = addRecipeContainer.querySelector('#fileButton');
-  btnAddPhoto.addEventListener('change', () => {
-    window.location.hash = '/';
-  });
-
+  const form = addRecipeContainer.querySelector('.initialForm');
   const alert = addRecipeContainer.querySelector('#alert');
   const btnPostRecipe = addRecipeContainer.querySelector('#post-recipe');
   const popup = addRecipeContainer.querySelector('#popup');
-  const overlay = addRecipeContainer.querySelector('#overlay');
+  const toggle = addRecipeContainer.querySelectorAll('#overlay, #popup');
 
-  btnPostRecipe.addEventListener('click', (e) => {
-    e.preventDefault();
+  function toggleClass() {
+    toggle.forEach((elem) => elem.classList.toggle('active'));
+  }
 
+  function addRecipeDom() {
     const recipe = {
       'nome da receita': addRecipeContainer.querySelector('#recipe-title').value.toUpperCase(),
       ingredientes: addRecipeContainer.querySelector('#ingredients-recipe').value.replace(/\n/g, '<br />'),
@@ -111,6 +115,8 @@ export default () => {
       dificuldade: addRecipeContainer.querySelector('#difficult-select').value,
       categoria: addRecipeContainer.querySelector('#food-type-select').value,
       preco: addRecipeContainer.querySelector('#price-select').value,
+      autor: localStorage.getItem('displayName'),
+      user_id: localStorage.getItem('uid'),
     };
 
     const inputs = addRecipeContainer.querySelectorAll('.required');
@@ -127,23 +133,43 @@ export default () => {
     } else {
       postRecipe(recipe)
         .then(() => {
-          popup.classList.add('active');
-          overlay.classList.add('active');
+          toggleClass();
+          // popup.classList.add('active');
+          // overlay.classList.add('active');
         })
         .catch((error) => {
+          popup.innerHTML = `
+          <p> Ooooops! Alguma coisa deu errado! </p>
+          <p> Tente de novo mais tarde! </p> 
+          <button type="button" class="btn-login" data-close-button>OK</button>
+          `;
+          toggleClass();
+          const closePopup = addRecipeContainer.querySelector('[data-close-button]');
+          closePopup.addEventListener('click', toggleClass);
           throw new Error(error);
         });
     }
+  }
 
-    const addNewRecipe = addRecipeContainer.querySelector('#btn-yes');
-    addNewRecipe.addEventListener('click', () => {
-      window.location.reload(true);
-    });
-
-    const goToFeedPage = addRecipeContainer.querySelector('#btn-no');
-    goToFeedPage.addEventListener('click', () => {
-      window.location.hash = '#feed';
-    });
+  btnPostRecipe.addEventListener('click', (e) => {
+    e.preventDefault();
+    addRecipeDom();
   });
+
+  const addNewRecipe = addRecipeContainer.querySelector('#btn-yes');
+  addNewRecipe.addEventListener('click', () => {
+    form.reset();
+    toggleClass();
+    // popup.classList.remove('active');
+    // overlay.classList.remove('active');
+    window.scrollTo(0, 0);
+  });
+
+  const goToFeedPage = addRecipeContainer.querySelector('#btn-no');
+  goToFeedPage.addEventListener('click', () => {
+    window.location.hash = '#feed';
+  });
+
+  addRecipeContainer.append(footer());
   return addRecipeContainer;
 };
