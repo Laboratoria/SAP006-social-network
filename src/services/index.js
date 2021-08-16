@@ -64,7 +64,17 @@ const resetPassword = (email) => {
 
 const currentUser = () => firebase.auth().currentUser;
 
-const createPost = (post) => firebase.firestore().collection('post').add(post);
+const createPost = ((postText) => {
+  const user = currentUser();
+  const data = new Date();
+  console.log(data);
+  const post = {
+    text: postText,
+    userId: user.uid,
+    date: data,
+  };
+  firebase.firestore().collection('post').add(post);
+});
 
 const getPost = () => firebase.firestore().collection('post').get();
 
