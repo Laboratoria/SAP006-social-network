@@ -61,16 +61,18 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
-  updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
+  // updatePosts('aHl48htSqWWaow4VMZSS', 'teste do reload na updatePosts');
 
   const editButton = postTemplate.querySelector('.edit-button');
-  // eslint-disable-next-line no-debugger
-  debugger;
+
   editButton.addEventListener('click', () => {
     const valueText = areaOfPost.querySelector('.post-content text-post').value;
     console.log(valueText);
   });
 
+  // const deleteButton = postTemplate.querySelector('.delete-button');
+
+  // deleteButton.addEventListener()
   /*
   const elementPost = addPost(post);
   rootElement.querySelector('#get-post').appendChild(elementPost)

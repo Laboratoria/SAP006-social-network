@@ -24,23 +24,10 @@ export const createAccount = (email, password, confirmPassword) => {
     });
 };
 
-const verifyUser = () => {
-  firebase
-    .auth()
-    .onAuthStateChanged((user) => {
-      if (user) {
-        localStorage.setItem('uid', user.uid);
-      }
-    });
-};
-
 export const signInEmailPassword = (email, password) => {
   const signIn = firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then(() => {
-      verifyUser();
-    })
     .catch((error) => {
       const errorCode = error.code;
 
@@ -85,19 +72,11 @@ export const signInGoogle = () => {
     });
 };
 
-export const keepLogged = (persistence) => {
-  firebase
-    .auth()
-    .setPersistence(persistence)
-    .then(() => {
-      const provider = new firebase.auth();
-      return firebase.auth().signInWithRedirect(provider);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
-};
+export const keepLogged = () => {
+    firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    } 
 
 export const resetPassword = (email) => {
   firebase

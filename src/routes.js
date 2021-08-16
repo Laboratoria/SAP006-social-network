@@ -8,6 +8,8 @@ import { Feed } from './pages/feed/feed.js';
 
 export const routeRender = () => {
   const elementRoute = document.querySelector('#root');
+  const auth = firebase.auth();
+
   const routes = {
     '/': Welcome,
     '/welcome': Welcome,
@@ -19,8 +21,22 @@ export const routeRender = () => {
     '/feed': Feed,
   };
 
+  auth.onAuthStateChanged((user) => {
+    let path = window.location.pathname;
+
+    if (!user && path !== '/signup' || path !== '/login') {
+      window.history.replaceState(null, null, path);
+    } else if (user && (path === '/' || path === '/signup')) {
+      path = '/feed';
+      window.history.replaceState(null, null, path);
+    } else if (!user && path === '/feed') {
+      path = '/login';
+      window.history.replaceState(null, null, path);
+    }
+
   elementRoute.innerHTML = '';
-  elementRoute.appendChild(routes[window.location.pathname]());
+  elementRoute.appendChild(routes[path]());
+  });
 };
 
 window.addEventListener('load', routeRender);
