@@ -11,9 +11,9 @@ export const Feed = () => {
   const name = user.displayName;
   const photo = user.photoURL;
   const date = new Date();
-  console.log(user);
-
+  
   const root = document.createElement('div');
+  root.classList.add('feed-container');
   root.innerHTML = `  
     <main class='postContainer'>
       <header id='postHeader' class='feed-postHeader'>

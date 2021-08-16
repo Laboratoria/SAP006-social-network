@@ -1,3 +1,5 @@
+import { getError } from '../../Errors/index.js';
+// eslint-disable-next-line import/no-cycle
 import { navigation } from '../../router.js';
 import { loginEmailAndPassword, loginWithGmail, keepMeLogged } from '../../services/index.js';
 
@@ -25,6 +27,7 @@ export const Login = () => {
             <label class='label-login' for='password'>Senha</label>
             <input id='password' type='password' class='input-password form-item'>
           </div>
+          <section class='errors'></section>
           <div class='rememberForgot' >
             <label><input type='checkbox' id='keep-me-logged'>Manter-me conectado</label>
             <a href='#' id='reset'>Esqueci a senha</a>
@@ -78,8 +81,7 @@ export const Login = () => {
         navigation('/feed');
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        getError(error);
       });
   });
 

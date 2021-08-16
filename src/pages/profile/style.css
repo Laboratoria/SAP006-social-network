@@ -1,3 +1,10 @@
+.root-profile {
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+
+
 .profile-container {
   display: inline-block;
 }
@@ -73,18 +80,44 @@
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+.input-item {
+  width: 100%;
+  padding: 8px 13px;
+  outline: none;
+  border: 1px solid lightgray;
+  /*letter-spacing: 1px;*/
+  border-radius: 10px; 
+}
+
+p {
+  padding-top: 5%;
+}
+
 .redefinition { 
   display: flex; 
-  text-decoration: none; 
-  color: black;
-  /*font-size: 12px;*/
   justify-content: flex-end;
 }
+
+.redefinition a {
+  color: black;
+  text-decoration: none;
+  font-size: 12px;
+}
   
-.btn-profile-container {
-  position: inherit;
-  justify-content: space-evenly;
-  width: 50%;
+.saveBtn {
+  width: 100%;
+  padding: 8px 13px;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10%;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  color: white;
+  background-color: #FEB15E;
 }
 
 /*responsividade*/
@@ -144,6 +177,15 @@
 @media only screen and (max-width:767px){
   .fieldset-container{
     flex-wrap: wrap;
+  }
+
+  .form-fields {
+    display: contents;
+  }
+
+  .saveBtn {
+    margin-top: 50%;
+    
   }
 }
 

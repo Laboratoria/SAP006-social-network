@@ -47,7 +47,6 @@ body {
 .login-container {
   border-radius: 0 20px 20px 0;
   width: 50%;
-  /*background: linear-gradient(135deg, #ffbf49, #63eef3, #2ea0ec);*/
   background-color: white;
 }
 
@@ -110,13 +109,19 @@ body {
   display: flex;
   justify-content: space-between;    
   color: black;
-  font-size: 12px;
-   
+  font-size: 12px;   
 }
 
 .rememberForgot a {
   text-decoration: none;
   color: black;   
+}
+
+.errors {
+  font-size: 12px;
+  color: rgb(241, 82, 82);
+  padding: 5px;
+
 }
 
 .btn:hover{

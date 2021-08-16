@@ -1,11 +1,12 @@
 /* eslint-disable no-tabs */
-import { currentUser, createUser } from '../../services/index.js';
+import { createHome, currentUser, getHome } from '../../services/index.js';
 import { headerMenu } from '../../components/header/index.js';
 
 export const Profile = () => {
   headerMenu();
   const loggedUser = currentUser();
   const root = document.createElement('div');
+  root.classList.add('root-profile');
   root.innerHTML = `
 	<main class='profile-container row'>
 		<section class='profile-form col-11'>
@@ -18,67 +19,73 @@ export const Profile = () => {
             <figure class='profile-figure'>
               <img src='img/avatar.png' class='avatar-image' alt='avatar'>
               <figcaption class='avatar-figcaption'>
-                <img src='img/camera-figcaption.png'    >
+                <img src='img/camera-figcaption.png'>
               </figcaption>
             </figure>
           </section>
 
 					<div class='form-fields col-9 '>
-						<p>Apelido:
-							<input id='surname' type='name' class='input-profile'>
-            </p>
-
             <p>Nome Completo:
-              <input id='name' type='name' class='input-profile'>
+              <input id='name' type='name' class='input-item' value='${loggedUser.displayName}'>
             </p>
 
             <p>Localização:
-              <input id='localization' type='localization' class='input-profile'>
+              <input id='localization' type='localization' class='input-item' value='${null}'>
             </p>
 
             <p>Nome e Modelo do Barco:
-              <input id='boat' type='name' class='input-profile'>
+              <input id='boat' type='name' class='input-item' value='${null}'>
             </p>
 
             <p>Email:
-              <input id='email' type='name' class='input-profile' value='${loggedUser.email}'>
+              <input id='email' type='name' class='input-item' value='${loggedUser.email}' disabled>
             </p>
 
             <div class='redefinition'>
               <a href='#' id='reset'>Redefinir senha</a>
             </div>
+
+            <nav class='btn-profile-container'>
+              <button type='submit' id='saveBtn' class='saveBtn'>Atualizar</button>
+            </nav>
 				  </div>
         </fieldset>
       </form>
     </section>
-    
-    <nav class='btn-profile-container'>
-      <button type='submit' id='SaveBtn' class='btn-save' 'btn'>Atualizar</button>
-    </nav>
   </main>
   `;
 
   /* const avatarPhoto = root.querySelector ('.avatar-image').value; */
 
-  const saveButton = root.querySelector('.btn-save');
-  const surname = root.querySelector('#surname');
+  const saveButton = root.querySelector('#saveBtn');
   const name = root.querySelector('#name');
   const localization = root.querySelector('#localization');
   const boat = root.querySelector('#boat');
-  const email = root.querySelector('#email');
 
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
     const infoUser = {
-      surname: surname.value,
-      name: name.value,
       localization: localization.value,
       boat: boat.value,
-      email: email.value,
-      userId: firebase.auth().currentUser.uid, //seria possível trocar por 'loggedUser.uid'
+      userId: loggedUser.uid,
     };
-    createUser(infoUser);
+
+    loggedUser.updateProfile({
+      displayName: name.value,
+    });
+    createHome(infoUser);
   });
 
+  function getInfo() {
+    getHome(loggedUser.uid).then((infoUser) => {
+      infoUser.docs.forEach((doc) => {
+        const boatInfo = root.querySelector('#boat');
+        const localizationInfo = root.querySelector('#localization');
+        boatInfo.value = `${doc.data().boat}`;
+        localizationInfo.value = `${doc.data().localization}`;
+      });
+    });
+  }
+  getInfo();
   return root;
 };
