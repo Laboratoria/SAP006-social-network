@@ -28,21 +28,20 @@ export const sidebar = () => {
     profileImg = "./img/default-img.png"
   }
 
-  let userName 
+  let userName
   let userName2
   const userNameFirebase = user.displayName
-  console.log(userNameFirebase)
 
   if (userNameFirebase != null && userNameFirebase != undefined) {
     userName = userNameFirebase
     userName2 = userName.replace(/\s/g, '').toLowerCase();
-    
+
   } else {
     userName = "Usuário anônimo"
     userName2 = ""
   }
 
- 
+
 
 
 
@@ -107,13 +106,13 @@ export const sidebar = () => {
   //   </a>
   // </section>
 
-  
-//   <div class="sidebar-line">
-//   <p class="sidebar-text">Número de curtidas</p>
-//   <div class="num"><p class="num-text">9</p></div>
-// </div>
 
-// </section>
+  //   <div class="sidebar-line">
+  //   <p class="sidebar-text">Número de curtidas</p>
+  //   <div class="num"><p class="num-text">9</p></div>
+  // </div>
+
+  // </section>
 
 
   asideElement.innerHTML = sidebarTemplate
@@ -121,7 +120,7 @@ export const sidebar = () => {
   const logoutBtn = asideElement.querySelector("#logout-btn-sidebar")
   const editProfileLink = asideElement.querySelector("#edit-profile-link")
   const savedBtnSidebar = asideElement.querySelector("#saved-btn-sidebar")
-  
+
 
   editProfileLink.addEventListener("click", (e) => {
     e.preventDefault()

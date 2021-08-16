@@ -1,28 +1,27 @@
-import { currentUser, getReviews} from "../../lib/index.js"
+import { currentUser, getReviews } from "../../lib/index.js"
 import { sidebar } from "../../components/sidebar/index.js"
 import { showReviewArea, publishReview, profileImage, loadPosts } from "../../lib/functions-home.js"
 
 
 export default () => {
 
-  
+
   const sectionElement = document.createElement("section")
   sectionElement.setAttribute("class", "home-content")
 
   const user = currentUser()
   const userId = user.uid
-  
+
   const profileImg = profileImage()
 
-  let userName 
+  let userName
   let userName2
   const userNameFirebase = user.displayName
-  console.log(userNameFirebase)
 
   if (userNameFirebase != null && userNameFirebase != undefined) {
     userName = userNameFirebase
     userName2 = userName.replace(/\s/g, '').toLowerCase();
-  
+
   } else {
     userName = "Usuário anônimo"
     userName2 = ""
@@ -95,34 +94,34 @@ export default () => {
   sectionElement.innerHTML = createFeedTemplate
 
   sectionElement.appendChild(sidebar())
-  
-    let photo = sectionElement.querySelector(".file-img1")
-    let file = sectionElement.querySelector(".file-input")
-    let textearea = sectionElement.querySelector("#text")
-  
-    photo.addEventListener("click", () =>{
-      file.click()
-    })
-  
-    file.addEventListener("change", (e) => {
-      textearea.style.margin = "8.5rem 0rem 0rem" 
-      photo.style.margin = "2rem 0rem"
-      photo.style.height = "190%"
-      photo.style.width = "140%"
-      if(file.files.legth <= 0){
-           
-        return;
-      }
-       
-      let reader =  new FileReader()
-      reader.onload = () => {
-        photo.src = reader.result
-        
-      }
-      reader.readAsDataURL(file.files[0])
-    })
-  
-    
+
+  let photo = sectionElement.querySelector(".file-img1")
+  let file = sectionElement.querySelector(".file-input")
+  let textearea = sectionElement.querySelector("#text")
+
+  photo.addEventListener("click", () => {
+    file.click()
+  })
+
+  file.addEventListener("change", (e) => {
+    textearea.style.margin = "8.5rem 0rem 0rem"
+    photo.style.margin = "2rem 0rem"
+    photo.style.height = "190%"
+    photo.style.width = "140%"
+    if (file.files.legth <= 0) {
+
+      return;
+    }
+
+    let reader = new FileReader()
+    reader.onload = () => {
+      photo.src = reader.result
+
+    }
+    reader.readAsDataURL(file.files[0])
+  })
+
+
   const buttonAddReview = sectionElement.querySelector("#add-review")
 
   buttonAddReview.addEventListener("click", () => {
@@ -132,7 +131,7 @@ export default () => {
   const buttonAddReviewNavbar = sectionElement.querySelector("#add-review-navbar")
   buttonAddReviewNavbar.addEventListener("click", (e) => {
     e.preventDefault()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     showReviewArea()
   })
 
@@ -143,7 +142,7 @@ export default () => {
     sectionElement.querySelector(".button-make-review").style.display = "block";
     sectionElement.querySelector(".make-review").style.background = "linear-gradient(600.92deg, #5E97AF 6.15%, #6D9ACE 52.44%, #5694DC 77.96%, #4C64A4 95.61%)";
     sectionElement.querySelector(".p-make-review").style.display = "block"
-  
+
   })
 
   const openSidebar = sectionElement.querySelector("#open-sidebar")
@@ -152,26 +151,26 @@ export default () => {
     const sidebar = sectionElement.querySelector("#sidebar")
     sidebar.style.display = "block"
     sidebar.classList.remove("sidebar-desktop")
-    
+
   })
 
   const buttonHomeNavbar = sectionElement.querySelector("#home-navbar")
   buttonHomeNavbar.addEventListener("click", (e) => {
     e.preventDefault()
-    window.scrollTo(0,0)
-   
+    window.scrollTo(0, 0)
+
   })
 
 
-  
 
-   const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
+
+  const createReviewBtn = sectionElement.querySelector("[data-publish-btn]")
   //const logoutBtn = sectionElement.querySelector("#logout-btn")
 
-  createReviewBtn.addEventListener ("click", publishReview)
-  
-  
-  loadPosts(getReviews())  
+  createReviewBtn.addEventListener("click", publishReview)
+
+
+  loadPosts(getReviews())
 
   return sectionElement
 }

@@ -7,24 +7,24 @@ export const comment = (userImage, name, text, completeDate, hour) => {
   const image = userImage
   let userPhoto
   if (image != null) {
-    userPhoto= image
+    userPhoto = image
   } else {
     userPhoto = "../../img/default-img.png"
   }
 
-  let userName 
+  let userName
 
 
   if (name != null && name != undefined) {
     userName = name
-   
+
   } else {
     userName = "Usuário anônimo"
-   
+
   }
 
-  const commentTemplate = 
-  `
+  const commentTemplate =
+    `
     <div class="comment-image-div">
       <img src="${userPhoto}"class="comment-user-image"/>
     </div>
@@ -35,6 +35,16 @@ export const comment = (userImage, name, text, completeDate, hour) => {
         <p class="comment-date">${hour}</p>
       </div>
       <p class="comment-content">${text}</p>
+    <div class="options-edition-comment">
+      <button class="edit-delete-comment" id="delete-post-comment" data-item="delete-comment">Excluir</button>
+      <div class="confirm-delete-comment">
+        <div class="confirm-modal-comment">
+          <h1 class="h1-confirm-delete-comment">Você tem certeza que quer excluir esse comentário?</h1>
+            <button class="confirm-buttons-comment" id="yes-delete-comment">Confirmar</button>
+            <button class="confirm-buttons-comment" id="no-delete-comment">Cancelar</button>
+        </div>
+      </div>
+    </div>
     </div>
 `
 

@@ -8,6 +8,7 @@ import {
   deletePost,
   saveReview,
   sendComment,
+  deleteComment,
   save
 } from "./index.js"
 
@@ -65,10 +66,9 @@ export const loadPosts = (functionFirebase) => {
           const reviewLikes = doc.data().likes
           const reviewSaves = doc.data().saves
 
-          let userName 
+          let userName
           let userName2
           const userNameFirebase = user.displayName
-          console.log(userNameFirebase)
 
           if (name != null && name != undefined) {
             userName = name
@@ -170,123 +170,122 @@ export const loadPosts = (functionFirebase) => {
           allReviews.innerHTML += reviewTemplate
 
           if (userId == doc.data().userId) {
-            const edition=document.querySelector(`#edition-${postId}`)
-            edition.style.display="block"
+            const edition = document.querySelector(`#edition-${postId}`)
+            edition.style.display = "block"
           }
 
-          
+
           const txtAreas = document.querySelectorAll('.input-comment');
-          for(let i=0; i<txtAreas.length; i++){
-             txtAreas[i].addEventListener('input', function(){
-                  if(this.scrollHeight > this.offsetHeight) this.rows += 1;
-             });
+          for (let i = 0; i < txtAreas.length; i++) {
+            txtAreas[i].addEventListener('input', function () {
+              if (this.scrollHeight > this.offsetHeight) this.rows += 1;
+            });
           }
-      
-        
 
-        const postSelected = allReviews.querySelectorAll("[data-post]")
-        for (let post of postSelected) {
+
+
+          const postSelected = allReviews.querySelectorAll("[data-post]")
+          for (let post of postSelected) {
+            post.addEventListener("click", (e) => {
+              const postId = post.getAttribute("id")
+              const target = e.target
+              const targetDataset = target.dataset.item
+              if (targetDataset == "delete") {
+                const divDelete = target.parentNode.parentNode.children[1]
+                const divYes = target.parentNode.parentNode.children[1].children[0].children[1]
+                const divNo = target.parentNode.parentNode.children[1].children[0].children[2]
+                divDelete.style.display = "block"
+                divYes.addEventListener("click", () => {
+                  deletePost(postId)
+                    .then(() => {
+                      divDelete.style.display = "none"
+                      post.remove()
+                    })
+                    .catch(e => {
+                      console.log("erro")
+                    })
+                })
+                divNo.addEventListener("click", () => {
+                  divDelete.style.display = "none"
+                })
+              }
+            })
+          }
+
+          if (bookImageUrl != null) {
+            document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
+          }
+
+          const heart = allReviews.querySelector(`#like-${doc.id}`)
+          if (reviewLikes.indexOf(userId) != -1) {
+            heart.classList.add("active");
+          }
+
+
+          const saveDivList = allReviews.querySelectorAll(".save");
+
+          for (let div of saveDivList) {
+            div.addEventListener("click", () => {
+              div.classList.toggle('saved');
+              const idSave = div.getAttribute("id")
+              const idReviewSaved = idSave.slice(5)
+              const numSavesDiv = div.nextSibling.nextSibling
+              let updatedNumSaves
+              getPost(idReviewSaved).then((review) => {
+                const saveArray = review.data().saves
+                if (saveArray.indexOf(userId) === -1) {
+                  updatedNumSaves = saveArray.length + 1
+                  saveReview(userId, idReviewSaved)
+                } else {
+                  updatedNumSaves = saveArray.length - 1
+                }
+                numSavesDiv.innerText = updatedNumSaves
+                save(idReviewSaved, userId)
+
+              })
+                .catch((error) => {
+                  console.log("Error getting documents: ", error)
+                })
+
+            })
+          }
+        })
+
+        const postDivList = allReviews.querySelectorAll("[data-post]")
+        const root = document.querySelector("#root")
+
+        for (let post of postDivList) {
           post.addEventListener("click", (e) => {
             const postId = post.getAttribute("id")
             const target = e.target
             const targetDataset = target.dataset.item
-            if (targetDataset == "delete") {
-              const divDelete = target.parentNode.parentNode.children[1]
-              const divYes= target.parentNode.parentNode.children[1].children[0].children[1]
-              const divNo= target.parentNode.parentNode.children[1].children[0].children[2]
-              divDelete.style.display = "block"
-              divYes.addEventListener("click", () => {
-                deletePost(postId)
-                  .then(() => {
-                    divDelete.style.display = "none"
-                    post.remove()
-                  })
-                  .catch(e => {
-                    console.log("erro")
-                  })
-              })
-              divNo.addEventListener("click", () => {
-                divDelete.style.display = "none"
-              })
-            }
-          })
-        }
-
-        if (bookImageUrl != null) {
-          document.querySelector(`#photo-${doc.id}`).innerHTML = `<img class="photo-book-review-post" src=${bookImageUrl}></img>`
-        }
-
-        const heart = allReviews.querySelector(`#like-${doc.id}`)
-        if (reviewLikes.indexOf(userId) != -1) {
-          heart.classList.add("active");
-        }
-      
-
-        const saveDivList = allReviews.querySelectorAll(".save");
-
-        for (let div of saveDivList) {
-          div.addEventListener("click", () => {
-            div.classList.toggle('saved');
-            const idSave = div.getAttribute("id")
-            const idReviewSaved = idSave.slice(5)
-            const numSavesDiv = div.nextSibling.nextSibling
-            let updatedNumSaves
-            getPost(idReviewSaved).then((review) => {
-              const saveArray = review.data().saves
-              if (saveArray.indexOf(userId) === -1) {
-                updatedNumSaves = saveArray.length + 1
-                saveReview(userId, idReviewSaved)
-              } else {
-                updatedNumSaves = saveArray.length - 1
-              }
-              numSavesDiv.innerText = updatedNumSaves
-              save(idReviewSaved, userId)
-
-            })
-              .catch((error) => {
-                console.log("Error getting documents: ", error)
-              })
-
-          })
-        }
-      })
-
-      const postDivList = allReviews.querySelectorAll("[data-post]")
-        const root = document.querySelector("#root")
-        
-        for(let post of postDivList){
-          post.addEventListener("click",(e)=>{
-            const postId = post.getAttribute("id")
-            const target = e.target
-            const targetDataset = target.dataset.item
-            console.log(targetDataset)
-            if(targetDataset=="like"){
+            if (targetDataset == "like") {
               likePost(target, postId)
             }
 
-            if(targetDataset=="comment"){
+            if (targetDataset == "comment") {
               const parentDiv = target.parentNode.parentNode.parentNode
               const commentDiv = parentDiv.children[3].children[0]
-              commentDiv.children[1].children[1].value=""
-              commentDiv.children[1].children[1].placeholder="Adicione um comentário."
-              
-              commentDiv.style.display="flex"
-              root.addEventListener("click", (e)=>{
+              commentDiv.children[1].children[1].value = ""
+              commentDiv.children[1].children[1].placeholder = "Adicione um comentário."
+
+              commentDiv.style.display = "flex"
+              root.addEventListener("click", (e) => {
                 const target = e.target
                 const targetDataset = target.dataset.item
-                if(targetDataset!="add-comment"){
-                  commentDiv.style.display="none"
+                if (targetDataset != "add-comment") {
+                  commentDiv.style.display = "none"
                 }
 
               }, true)
             }
 
-            if(targetDataset=="send-comment"){
-              const commentsDiv = target.parentNode.parentNode.parentNode 
-              console.log(commentsDiv)   
-              const commentValue = commentsDiv.children[0].children[1].children[1].value
-              console.log(commentValue)
-             if(commentValue.replace(/\s/g,'')!=""){
+            if (targetDataset == "delete-comment") {
+              const commentsDiv = target.parentNode.parentNode.parentNode
+              const commentValue = commentsDiv.children[1].children[1].innerText
+              const divDelete = target.parentNode.children[1]
+              const divYes = target.parentNode.children[1].children[0].children[1]
+              const divNo = target.parentNode.children[1].children[0].children[2]
               const userPhoto = currentUser().photoURL
               const userName = currentUser().displayName
               const date = new Date()
@@ -296,70 +295,99 @@ export const loadPosts = (functionFirebase) => {
                 hour12: false,
                 numberingSystem: "latn"
               });
-              sendComment(postId, commentValue, completeDate, hour)
-              .then(()=>{
-                const divAppend = commentsDiv.children[1]
-                commentsDiv.insertBefore(comment(userPhoto, userName, commentValue, completeDate, hour), divAppend)
+              divDelete.style.display = "block"
+              divYes.addEventListener("click", () => {
+                deleteComment(postId, commentValue, userId, userPhoto, userName, completeDate, hour)
+                  .then(() => {
+                    divDelete.style.display = "none"
+                    commentsDiv.remove()
+                  })
+                  .catch(e => {
+                    console.log("erro")
+                  })
               })
-          
-              .catch((error) => {
-                console.error("Error writing document: ", error);
+              divNo.addEventListener("click", () => {
+                divDelete.style.display = "none"
               })
 
-             }
-             
-              
-              
-              
+            }
+            if (targetDataset == "send-comment") {
+              const commentsDiv = target.parentNode.parentNode.parentNode
+              const commentValue = commentsDiv.children[0].children[1].children[1].value
+              if (commentValue.replace(/\s/g, '') != "") {
+                const userPhoto = currentUser().photoURL
+                const userName = currentUser().displayName
+                const date = new Date()
+                const completeDate = date.toLocaleDateString()
+                const hour = date.toLocaleTimeString("pt-BR", {
+                  timeStyle: "short",
+                  hour12: false,
+                  numberingSystem: "latn"
+                });
+                sendComment(postId, commentValue, completeDate, hour)
+                  .then(() => {
+                    const divAppend = commentsDiv.children[1]
+                    commentsDiv.insertBefore(comment(userPhoto, userName, commentValue, completeDate, hour), divAppend)
+                  })
+
+                  .catch((error) => {
+                    console.error("Error writing document: ", error);
+                  })
+
+              }
+
+
+
+
             }
           })
         }
 
-        for(let post of postDivList){
+        for (let post of postDivList) {
           const postId = post.getAttribute("id")
           const divComments = post.children[0].children[3]
           getPost(postId)
-          .then((review)=>{
-            if (userId == review.data().userId) {
-              const edition=document.querySelector(`#edition-${postId}`)
-              edition.style.display="block"
-            }
-            
+            .then((review) => {
+              if (userId == review.data().userId) {
+                const edition = document.querySelector(`#edition-${postId}`)
+                edition.style.display = "block"
+              }
+
               //divComments.append(comment(userImage, userName,text, date, hour))
-            
-          })
-          .catch(()=>{
-            console.log("Error getting documents: ", error)
 
-          })
+            })
+            .catch(() => {
+              console.log("Error getting documents: ", error)
+
+            })
         }
 
-        for(let post of postDivList){
+        for (let post of postDivList) {
           const postId = post.getAttribute("id")
           const divComments = post.children[0].children[3]
           getPost(postId)
-          .then((review)=>{
-            const commentsArray = review.data().comments
-            const orderedComments = commentsArray.reverse()
-            for(let com of orderedComments){
-              const userImage = com.userImg
-              const userName = com.userName
-              const text = com.value
-              const date = com.dateOfComment
-              const hour = com.hourOfComment
-            
-              divComments.append(comment(userImage, userName,text, date, hour))
-            }
-          })
-          .catch(()=>{
-            console.log("Error getting documents: ", error)
+            .then((review) => {
+              const commentsArray = review.data().comments
+              const orderedComments = commentsArray.reverse()
+              for (let com of orderedComments) {
+                const userImage = com.userImg
+                const userName = com.userName
+                const text = com.value
+                const date = com.dateOfComment
+                const hour = com.hourOfComment
 
-          })
+                divComments.append(comment(userImage, userName, text, date, hour))
+              }
+            })
+            .catch(() => {
+              console.log("Error getting documents: ", error)
+
+            })
         }
 
-       
 
-       
+
+
 
 
       })
@@ -372,7 +400,7 @@ export const loadPosts = (functionFirebase) => {
   reviewsData()
 
 }
- 
+
 
 
 export const publishReview = (e) => {
@@ -426,9 +454,9 @@ export const publishReview = (e) => {
 
   } else {
     createReview(bookName, authorName, valueReview, starsEvaluation, userNameFirebase, null, completeDate, hour)
-    .then(()=>{
-    loadPosts(getReviews())
-    })
+      .then(() => {
+        loadPosts(getReviews())
+      })
   }
 }
 
@@ -438,24 +466,24 @@ export const likePost = (target, postId) => {
 
 
   target.classList.toggle('active');
-           
-            const numLikesDiv=target.nextSibling.nextSibling
-            let updatedNumLikes
-            getPost(postId)
-            .then((review)=>{
-              const likesArray = review.data().likes
-              if (likesArray.indexOf(userId) === -1){
-                updatedNumLikes = likesArray.length+1
-              }else{
-                updatedNumLikes = likesArray.length-1
-              }
-              numLikesDiv.innerText = updatedNumLikes
-              like(postId, userId)
 
-            })
-            .catch(()=>{
-              alert("Falha ao curtir o post! Tente novamente.")
+  const numLikesDiv = target.nextSibling.nextSibling
+  let updatedNumLikes
+  getPost(postId)
+    .then((review) => {
+      const likesArray = review.data().likes
+      if (likesArray.indexOf(userId) === -1) {
+        updatedNumLikes = likesArray.length + 1
+      } else {
+        updatedNumLikes = likesArray.length - 1
+      }
+      numLikesDiv.innerText = updatedNumLikes
+      like(postId, userId)
 
-            })
+    })
+    .catch(() => {
+      alert("Falha ao curtir o post! Tente novamente.")
+
+    })
 
 }
