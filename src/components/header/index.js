@@ -95,4 +95,5 @@ export function headerMenu() {
       popup.style.display = 'none';
     }
   });
+  return header;
 }

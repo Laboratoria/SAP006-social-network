@@ -140,7 +140,6 @@ body, .menu {
 .popup {
   text-align: center;
   width: 60%;
-  min-width: 300px;
   margin: 10% auto;
   padding: 20px;
   background: #1f1f4b;
@@ -170,10 +169,11 @@ body, .menu {
   padding: 5px;
   margin: 10px auto;
   text-align: justify;
-  min-width: 300px;
+  width: 50%;
   z-index: 3;
   color:black;
   font-size: larger;
+  position: absolute;
 }
 
 
