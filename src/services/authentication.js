@@ -59,6 +59,14 @@ export const signInEmailPassword = (email, password) => {
   return signIn;
 };
 
+export const signOut = () => {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+};
+
 export const signInGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 

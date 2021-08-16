@@ -16,7 +16,7 @@ export const updatePosts = (postId, newText) => firebase
   .doc(postId)
   .update({ text: newText })
   .then(() => {
-    console.log('Caiu no load');
+    // console.log('Caiu no load');
   })
   .catch(() => {
     console.log('Não foi dessa vez');
