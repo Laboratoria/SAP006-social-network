@@ -69,16 +69,10 @@ const createPost = (post) => firebase.firestore().collection('post').add(post);
 
 const getPost = () => firebase.firestore().collection('post').get();
 
-const createHome = (user) => firebase.firestore().collection('home').add(user);
-
-const attHome = () => firebase.firestore().collection('home').doc('').set();
+const createHome = (user) => firebase.firestore().collection('home').doc(user.userId).set(user);
 
 const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.data());
-    });
-  });
+  .then((snapshot) => snapshot);
 
 
 //const storageRef = firebase.storage().ref();

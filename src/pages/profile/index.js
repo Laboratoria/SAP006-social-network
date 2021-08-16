@@ -5,7 +5,6 @@ import { headerMenu } from '../../components/header/index.js';
 export const Profile = () => {
   headerMenu();
   const loggedUser = currentUser();
-  const infomationsUser = getHome(loggedUser.uid).then (console.log);
   const root = document.createElement('div');
   root.classList.add('root-profile');
   root.innerHTML = `
@@ -31,11 +30,11 @@ export const Profile = () => {
             </p>
 
             <p>Localização:
-              <input id='localization' type='localization' class='input-item' value='${infomationsUser.localization}'>
+              <input id='localization' type='localization' class='input-item' value='${null}'>
             </p>
 
             <p>Nome e Modelo do Barco:
-              <input id='boat' type='name' class='input-item' value='${infomationsUser.boat}'>
+              <input id='boat' type='name' class='input-item' value='${null}'>
             </p>
 
             <p>Email:
@@ -62,7 +61,6 @@ export const Profile = () => {
   const name = root.querySelector('#name');
   const localization = root.querySelector('#localization');
   const boat = root.querySelector('#boat');
-  //const email = root.querySelector('#email');
 
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -75,9 +73,19 @@ export const Profile = () => {
     loggedUser.updateProfile({
       displayName: name.value,
     });
-    console.log(infoUser);
     createHome(infoUser);
   });
 
+  function getInfo() {
+    getHome(loggedUser.uid).then((infoUser) => {
+      infoUser.docs.forEach((doc) => {
+        const boatInfo = root.querySelector('#boat');
+        const localizationInfo = root.querySelector('#localization');
+        boatInfo.value = `${doc.data().boat}`;
+        localizationInfo.value = `${doc.data().localization}`;
+      });
+    });
+  }
+  getInfo();
   return root;
 };
