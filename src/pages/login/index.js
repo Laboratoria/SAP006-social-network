@@ -1,5 +1,5 @@
-import { loginGoogle } from '../../services/index.js';
-
+import { loginUser } from '../../services/index.js';
+// import { init } from '../../main.js';
 export default () => {
   const container = document.createElement('div');
 
@@ -24,8 +24,21 @@ export default () => {
 
   // <input type='image' id="login-google" src='img/google-logo.png'><br>
 
-  const googleButton = container.querySelector('#google-button');
-  // const emailUser = container.querySelector('#email-user');
-  // const passwordUser = container.querySelector('#password-user');
-  googleButton.addEventListener('click', loginGoogle());
+  // Login
+
+  const btnLogin = container.querySelector('#login-button');
+  const email = container.querySelector('#email-user');
+  const password = container.querySelector('#password-user');
+
+  btnLogin.addEventListener('click', (event) => {
+    event.preventDefault();
+    loginUser(email.value, password.value);
+  });
+
+  // Login Google
+
+  // const googleButton = container.querySelector('#google-button');
+  // googleButton.addEventListener('click', loginGoogle());
+
+  return container;
 };
