@@ -52,10 +52,9 @@ const postTemplate = document.querySelector('#postTemplate');
 postTemplate.innerHTML += areaOfPost;
 
 
-updatePosts("4pVdpwtzW4OFz5Lk4xUe", "banana");
+//updatePosts(postId, newText);
 
 const editButton = postTemplate.querySelector('.edit-button');
-debugger
 editButton.addEventListener('click', () => {
 const valueText = areaOfPost.querySelector('.post-content text-post').value;
 console.log(valueText);
