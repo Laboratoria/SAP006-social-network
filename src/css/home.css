@@ -1,8 +1,21 @@
+.page {
+  margin: 0;
+  padding: 0;
+}
 .menu {
     overflow: hidden;
     background-color: #333;
     position: relative;
-  }
+}
+
+.containerHome {
+  background: #fffdfd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin: 3% auto;
+}
   
   /* Hide the links inside the navigation menu (except for logo/home) */
   .topnav #myLinks {
@@ -38,3 +51,275 @@
     background-color: #04AA6D;
     color: white;
   }
+
+.links,
+.btn {
+  font-family: "Russo One", sans-serif;
+  width: 100%;
+  font-size: 18px;
+  background: #EEFFE2;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 3% auto;
+  padding: 2% 2%;
+  text-align: center;
+  width: 25%;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.goPost {
+  background: #97CF6E;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 3% auto;
+  padding: 2% 2%;
+  text-align: center;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.postar{
+  font-family: "Russo One", sans-serif;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  margin: 5% auto;
+  cursor: pointer;
+  text-align: center;
+}
+
+.tomato {
+  width: 25px;
+  height: 25px;
+  padding: 0px 3px 0px 0px;
+}
+
+.lines {
+  margin: 1% auto;
+  width: 100%;
+ }
+
+.filters {
+  display: flex;
+ 
+  /* flex-flow: row nowrap; */
+  /* justify-content: center; */
+  padding-left: 0.9px;
+  /* padding: 0px 0.5px 0px; */
+ 
+}
+
+@media (max-width: 500px){
+  .filters {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  justify-content: center;
+  padding: 15px 20px;
+}
+}
+
+.receitas {
+  width: 35%;
+  font-family: "Russo One", sans-serif;
+  font-size: 18px;
+  background: #FF7171;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 3% auto;
+  padding: 2% 2%;
+  text-align: center;
+
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  margin: 15px 10px;
+}
+      
+.mercados {
+  font-family: "Russo One", sans-serif;
+  width: 100%;
+  font-size: 18px;
+  background: #2AC2F3;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 3% auto;
+  padding: 2% 2%;
+  text-align: center;
+  width: 35%;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  margin: 15px 10px;
+  }
+    
+.restaurantes {
+  font-family: "Russo One", sans-serif;
+  width: 100%;
+  font-size: 18px;
+  background: #F3B949;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 3% auto;
+  padding: 2% 2%;
+  width: 35%;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin: 15px 10px;
+}
+
+@media (max-width: 500px){
+  .receitas, 
+  .mercado, 
+  .restaurante {
+    width: 100px;
+    justify-content: center;
+    font-size:50%;
+  }
+}
+
+
+.botoes{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: 100%;
+}
+
+
+.like {
+ /* width: 30px;
+  height: 30px; */
+  border: none;
+  margin: 0% -22% 0% 0%;
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  box-shadow: none;
+}
+
+.price{
+  border: none;
+  background: none;
+}
+
+.numLikes {
+  border: none;
+  
+  /* margin: 4% ​0% 0% -30%; */
+}
+
+.likePrice{
+  width: 25px;
+  height: 25px;
+  
+  /* padding: 1px ​0px 0px -19px; */
+
+}
+
+
+.coments{
+  display: flex;
+  flex-direction: column;
+  /* flex-direction: row; */
+}
+
+.addComent {
+  width: 70%;
+  height: 50%;
+  align-items: right;
+  margin: 5px;
+
+}
+
+.more{
+  border: none;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: none;
+  background: none;
+  color:#939393;
+
+  cursor:pointer;
+  display:inline-block;
+
+}
+.addCom{
+  width: 25px;
+  height: 25px;
+}
+
+.goComent{
+  /* width: 200px;
+  height: 30px; */
+  font-size: 15px;
+  justify-content: space-evenly;
+  border: none;
+  color:#939393;
+  background: none;
+  cursor: pointer;
+  
+}
+
+.imgUser {
+  width: 50px;
+  height: 50px;
+}
+
+.user{
+  font-size: 20px;
+  color: #97CF6E;
+
+}
+
+.local{
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #828796;
+  margin: -3% 0 3% 0;
+}
+
+.data{
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #828796;
+  margin: -6% 0 5% 55%;
+}
+
+
+.delete-button{
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #6f727a;
+  background-color: #96979431;
+  box-shadow: 0px 3px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  border-radius: 5px;
+  margin: 3% auto;
+  /* padding: 2% 2%; */
+  text-align: center;
+  width: 13%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin: -3% 0 -2% 80%;
+}
+
+
+.tipo{
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #aaf19c;
+  text-align: center;
+  width: 25%;
+  right: 10%;
+  cursor: pointer;
+}
