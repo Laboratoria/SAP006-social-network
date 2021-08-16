@@ -2,11 +2,6 @@ import { outLogin, deletePost } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import { getPosts } from '../../services/firebaseData.js';
 
-// const deletePost = (postID) => {
-//   const postsCollection = firebase.firestore().collection('posts');
-//   return postsCollection.doc(postID).delete().then();
-// };
-
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
   const rootElement = document.createElement('div');
@@ -72,24 +67,28 @@ export const home = () => {
       div.innerHTML = `<div class="allPosts">
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
-          <p class="data">${doc.data().data.toDate().toLocaleDateString()}</p>
-          <p class="tititulo">${doc.data().nomeLocalReceita}</p>
-          <p class="descr">${doc.data().descricao}</p> 
+          <p class="local">${doc.data().nomeLocalReceita}</p> 
+          <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
           <button type="submit" data-deletePostButton="${doc.id}" class="delete-button"> Deletar</button>
+          <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
+        <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
 
           <button class="like" id="like"><img class="likePrice" src="./img/coracao.svg" /></button>
           <p class="numLikes">0</p>
           <button class="price" id="price"> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg" /> <img class="likePrice" src="./img/dinCinza.svg"></button>
-          <div class="coments" id="coments">
-            <input class="addComent" placeholder="Comentários" /> 
+        </div>
+
+            <input class="addComent" placeholder="Comentários"/>
+            <div class="coments" id="coments">
           <button class="more" id="more">ver mais</button>
-          <button class="addComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
+          <button class="goComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
           </div>
           <hr> `;
 
       const deleteBtn = div.querySelector('.delete-button');
+
       function disableBtn() {
         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
           // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
@@ -97,6 +96,7 @@ export const home = () => {
         } else {
           // editBtn.hidden = true;
           deleteBtn.hidden = true;
+          div.querySelector('.delete-button').style.display = 'none';
         }
       }
       disableBtn();

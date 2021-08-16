@@ -45,7 +45,7 @@ export const postar = () => {
     </div>
   `;
 
-  let postType = 'resturante';
+  let postType = 'restaurante';
   const restBtn = () => {
     rootElement.querySelector('#tittlePost').innerHTML = 'Restaurante';
     postType = 'restaurante';
@@ -90,7 +90,7 @@ export const postar = () => {
     }
     const post = {
       data: new Date(),
-      // nome: firebase.auth().currentUser.displayName,
+      nome: firebase.auth().currentUser.displayName,
       user_id: firebase.auth().currentUser.uid,
       image: './img/tomato.svg',
       nomeLocalReceita: localPost, // inputs do post, como nome do lugar //
