@@ -1,23 +1,21 @@
 @import url('../../components/header/style-header.css'); 
 
-
-.postContainer {
-  width: 40vw;
-  height: 22vh;
-  margin-top: 60px;
-  background-color: #1f1f4b;
-  border-radius: 10px;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto; 
-  
-
-  
+.feed-container{
+  display: flex;
+  justify-content: center;  
 }
 
-.postHeader {
-  color: white;  
+.postContainer {
+  width: 80vw;
+  height: 26vh; 
+  margin-top: 60px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);      
+}
+
+.mainPost {
+  background-color:#1f1f4b ;
 }
 
 .formContainer {
@@ -25,27 +23,39 @@
   height: 100%;
 }
 
-.postInput {
+.postContent {
   width: 100%;
-  height: 50%;
+  height: 55%;
+  color: black;
+  margin: 0;
+  padding: 10px 10px 0;
 }
 
-.btnContainer {
+.post-header {
+  color: white;
+  padding: 10px;
+  background-color: #1f1f4b;
+  border-radius: 10px 10px 0 0 ;
+  box-shadow:0 5px 5px rgba(0, 0, 0, 0.2);    
+}
+
+.postBtnContainer {
   display: flex;
-  justify-content: flex-end;  
-  font-size: 12px;
-  padding: 7px;
+  justify-content: flex-end;   
+  padding: 10px 10px 0 0;   
+  margin-top: -3px; 
 }
 
 .publishBtn {
   border: none;
   border-radius: 5px;
-  padding: 5px;
+  padding: 3px;
   background-color: #ffd632;
   color: #1f1f4b;
   width: 60px;
+  
 }
-
+/*
 .feed-postContainer {
   width: 40vw;
   height: 25vh;
@@ -58,28 +68,13 @@
   margin-right: auto; 
 
 }
+*/
 
-.feed-postHeader {
-  color: white;
-  padding: 10px;
-  background-color: #1f1f4b;
-  border-radius: 10px 10px 0 0 ;
+
+
+@media screen and (min-width: 1024px) {
+  .postContainer{
+    width: 50vw;        
+  }  
 }
 
-.postText {  
-  color: black;
-  width: 100%;
-  height: 60%;
-  margin: 0;
-  padding: 10px 10px 0;
-}
-
-@media screen and (max-width: 768px) {
-    .feedContainer{
-      width: 70vw;
-      height: 30vh;
-      display: flex;
-      justify-content: center;
-    }
-}
-  
