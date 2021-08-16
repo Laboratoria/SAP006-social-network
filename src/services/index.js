@@ -80,18 +80,18 @@ const getHome = (uid) => firebase.firestore().collection('home').where('userId',
     });
   });
 
-/*
-const storageRef = firebase.storage().ref();
+
+//const storageRef = firebase.storage().ref();
 // Create a reference to 'mountains.jpg'
-const mountainsRef = storageRef.child('mountains.jpg');
+//const mountainsRef = storageRef.child('mountains.jpg');
 
 // Create a reference to 'images/mountains.jpg'
-var mountainImagesRef = storageRef.child('images/mountains.jpg');
+//var mountainImagesRef = storageRef.child('images/mountains.jpg');
 
 // While the file names are the same, the references point to different files
-mountainsRef.name === mountainImagesRef.name            // true
-mountainsRef.fullPath === mountainImagesRef.fullPath    // false
-*/
+//mountainsRef.name === mountainImagesRef.name            // true
+//mountainsRef.fullPath === mountainImagesRef.fullPath    // false
+
 
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
