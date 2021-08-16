@@ -10,15 +10,17 @@ export default () => {
     <nav id="nav">
       <ul id="menu">
         <li><a href="#feed">Home</a></li>
-        <li><a href="#">Perfil</a><li>  
-        <li><a href="#">Favoritos</a><li>
-        <li><a href="#postRecipe">Minhas Rrceitas</a><li>
+        <li><a href="#profile">Perfil</a><li>  
+        <li><a href="#postRecipe">Adicionar receita</a><li>
+        <li><a href="#">Sair</a><li>
       </ul>
     </nav>
-    <div class="icons-header">
-      <i class="fas fa-search"><input id="search"/></i>
-      <i class="fas fa-sign-out-alt"></i>
-    </div>
+    <!----
+      <div class="icons-header">
+        <i class="fas fa-search"><input id="search"/></i>
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
+    --->
   </header>
    `;
   headerContainer.innerHTML += headerContent;
