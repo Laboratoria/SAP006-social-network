@@ -1,9 +1,9 @@
 /* eslint-disable no-tabs */
-import { createUser, currentUser } from '../../services/index.js';
+import { currentUser, createUser } from '../../services/index.js';
 import { headerMenu } from '../../components/header/index.js';
 
 export const Profile = () => {
-  headerMenu()
+  headerMenu();
   const loggedUser = currentUser();
   const root = document.createElement('div');
   root.innerHTML = `
@@ -75,7 +75,7 @@ export const Profile = () => {
       localization: localization.value,
       boat: boat.value,
       email: email.value,
-      userId: firebase.auth().currentUser.uid,
+      userId: firebase.auth().currentUser.uid, //seria possível trocar por 'loggedUser.uid'
     };
     createUser(infoUser);
   });

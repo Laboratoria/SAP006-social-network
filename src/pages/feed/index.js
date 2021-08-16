@@ -1,16 +1,29 @@
 // import { signOut } from "../../services/index.js";
-import { createPost, getPost } from '../../services/index.js';
+import { createPost, getPost, currentUser } from '../../services/index.js';
 import { Post } from '../../components/posts/posts.js';
 import { headerMenu } from '../../components/header/index.js';
 
 export const Feed = () => {
   headerMenu();
+
+  const user = currentUser();
+  const idUser = user.uid;
+  const name = user.displayName;
+  const photo = user.photoURL;
+  const date = new Date();
+  console.log(user);
+
   const root = document.createElement('div');
   root.innerHTML = `  
     <main class='postContainer'>
-    <header id='postHeader' class='postHeader'>Usuário</header> 
+      <header id='postHeader' class='feed-postHeader'>
+      ${name}
+        <figure>
+          <img src='./img' alt='Foto Perfil' class='foto-postHeader'/>
+        </figure>
+      </header> 
       <form class='formContainer'>
-        <input class='postInput' placeholder='Sua Mensagem'>      
+        <textarea class='postInput' type='text' placeholder='Sua Mensagem'></textarea>      
         <section class='btnContainer'>
           <button type='button' class='publishBtn'>Publicar</button>
         </section>  
@@ -18,39 +31,32 @@ export const Feed = () => {
     <section class='feedTimeline'></section>
     </main>  
   `;
-  headerMenu();
 
-  // const btnSignOut = root.querySelector('#buttonSignOut');
   const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
 
-  /*btnSignOut.addEventListener('click', () => {
-    window.history.pushState({}, '', '/');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
-  });*/
-
-  const postObject = (text) => {
-    const postObj = {
-      texto: text,
-    };
-    return postObj;
-  };
-
-  const getPostText = (text) => {
-    const post = postObject(text);
-    createPost(post);
-  };
-
-  const printPost = (post) => {
-    const timeline = document.querySelector('.feedTimeline');
-    timeline.innerHTML += Post(post.data().texto);
-  };
-
   btnPublish.addEventListener('click', () => {
-    getPostText(textInput.value);
-    textInput.value = '';
+    const postObj = {
+      idUser,
+      idPost: '',
+      name,
+      photo,
+      text: textInput.value,
+      date: date.toLocaleString('pt-BR'),
+      likes: 0,
+      comments: [],
+    };
+    createPost(postObj);
+    loadPost();
   });
+
+  function printPost(post) {
+    const text = post.data().text;
+    const idPost = post.id;
+    const timeline = document.querySelector('.feedTimeline');
+    timeline.innerHTML += '';
+    timeline.innerHTML += Post(name, text, idUser, idPost, date);
+  }
 
   function loadPost() {
     getPost().then((snapshot) => {

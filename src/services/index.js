@@ -66,7 +66,7 @@ const currentUser = () => firebase.auth().currentUser;
 
 const createPost = (post) => firebase.firestore().collection('post').add(post);
 
-const getPost = () => firebase.firestore().collection('post').get();
+const getPost = () => firebase.firestore().collection('post').orderBy('date', 'desc').get();
 
 const createUser = (user) => firebase.firestore().collection('user').add(user);
 
