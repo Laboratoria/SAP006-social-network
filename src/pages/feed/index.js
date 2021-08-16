@@ -1,19 +1,21 @@
 import { loadRecipe } from '../../services/index.js';
+import header from '../../components/header/index.js';
+import footer from '../../components/footer/index.js';
 
 export default () => {
   const feedContainer = document.createElement('div');
   feedContainer.setAttribute('class', 'screenContainer');
 
-  // const feedContent = `
+  feedContainer.append(header());
 
-  //   `;
-
-  // feedContainer.innerHTML = feedContent;
+  const feedSection = document.createElement('section');
 
   function addPost(post) {
     const postTemplate = `
     <div id=${post.id} class="div-width90 div-recipe">
+      <div id="close-button" data-close-button></div>
       <div class="toggle-section">
+
         <h3 class="title recipe-title"> ${post.data()['nome da receita']} </h3>
       
         <div> 
@@ -60,24 +62,27 @@ export default () => {
         <div class="like">
           <span class="material-icons favoriteIcon">favorite</span> ${post.data().likes} <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
         </div>
-        <p> Por Bob Esponja </p>
+        <p> Por ${post.data().autor} </p>
       </div>
       
     </div>
     `;
 
-    feedContainer.innerHTML += postTemplate;
+    feedSection.innerHTML += postTemplate;
 
     const postContainer = feedContainer.querySelectorAll('.toggle-section');
 
     postContainer.forEach((div) => {
       div.addEventListener('click', () => {
-        div.querySelector('.recipeBody').classList.toggle('show');
+        div.querySelector('.recipeBody').classList.toggle('showBlock');
       });
     });
   }
 
   loadRecipe(addPost);
 
+  feedContainer.append(feedSection);
+
+  feedContainer.append(footer());
   return feedContainer;
 };

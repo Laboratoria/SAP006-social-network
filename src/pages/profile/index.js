@@ -1,17 +1,21 @@
 import header from '../../components/header/index.js';
+import footer from '../../components/footer/index.js';
 
 export default () => {
   const perfilContainer = document.createElement('div');
-  perfilContainer.setAttribute('class', 'profile-container');
+  // perfilContainer.setAttribute('class', 'profile-container');
   perfilContainer.append(header());
+
+  const perfilSection = document.createElement('section');
+  perfilSection.classList.add('mainContent');
+
   const perfilContent = `
-        <section class="mainContent">
         <div class="profile-nav-bar">
           <div class="profileInfo">
            <img class="profilePicture" src="../../image/chef.png">
             <section>
               <p id="nameDisplayedOnScreen">${localStorage.getItem('displayName')}</p>
-              <p>nível</p>
+              <p id="levelDisplayedOnScreen">${localStorage.getItem('level')}</p>
             </section>
           </div>
           <div id="pofilePages">
@@ -22,8 +26,10 @@ export default () => {
           </div>
           <!--- <button data-teste-btn>Teste!</button> --->
         </div>
-        </section>
         `;
-  perfilContainer.innerHTML += perfilContent;
+  // perfilContainer.innerHTML = perfilContent;
+  perfilSection.innerHTML = perfilContent;
+  perfilContainer.append(perfilSection);
+  perfilContainer.append(footer());
   return perfilContainer;
 };

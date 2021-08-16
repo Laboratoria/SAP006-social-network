@@ -1,4 +1,4 @@
-import { signIn, signInWithGoogle } from '../../services/index.js';
+import { signIn, signInWithGoogle, setUserData } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -36,9 +36,7 @@ export default () => {
       notice.innerHTML = '<p> Preencha todos os campos </p>';
     } else {
       signIn(inputEmail, inputPassword)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
+        .then(() => {
           window.location.hash = '#feed';
         })
         .catch((error) => {
@@ -72,14 +70,9 @@ export default () => {
 
   function signInWithGoogleDom() {
     signInWithGoogle()
-      .then((result) => {
-        const credentials = {
-          credecial: result.credential,
-          token: result.credential.accessToken,
-          user: result.user,
-        };
+      .then(() => {
+        setUserData();
         window.location.hash = '#feed';
-        return credentials;
       })
       .catch((error) => {
         const errorCode = error.code;
