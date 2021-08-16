@@ -15,10 +15,12 @@ export default () => {
         <li><a href="#">Sair</a><li>
       </ul>
     </nav>
-    <div class="icons-header">
-      <i class="fas fa-search"><input id="search"/></i>
-      <i class="fas fa-sign-out-alt"></i>
-    </div>
+    <!----
+      <div class="icons-header">
+        <i class="fas fa-search"><input id="search"/></i>
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
+    --->
   </header>
    `;
   headerContainer.innerHTML += headerContent;
