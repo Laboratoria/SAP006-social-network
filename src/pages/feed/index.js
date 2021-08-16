@@ -6,12 +6,13 @@ import { headerMenu } from '../../components/header/index.js';
 export const Feed = () => {
   headerMenu();
   const root = document.createElement('div');
+  root.classList.add('feed-container');
   root.innerHTML = `  
-    <main class='postContainer'>
-    <header id='postHeader' class='postHeader'>Usuário</header> 
+    <main class='mainPost postContainer'>
+    <header id='postHeader' class='post-header'>Usuário</header> 
       <form class='formContainer'>
-        <input class='postInput' placeholder='Sua Mensagem'>      
-        <section class='btnContainer'>
+        <input class='postInput postContent' placeholder='Sua Mensagem'>      
+        <section class='postBtnContainer'>
           <button type='button' class='publishBtn'>Publicar</button>
         </section>  
       </form>     
@@ -20,15 +21,8 @@ export const Feed = () => {
   `;
   headerMenu();
 
-  // const btnSignOut = root.querySelector('#buttonSignOut');
   const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
-
-  /*btnSignOut.addEventListener('click', () => {
-    window.history.pushState({}, '', '/');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
-  });*/
 
   const postObject = (text) => {
     const postObj = {
