@@ -9,7 +9,7 @@ import register from './pages/register/index.js';
 import login from './pages/login/index.js';
 import feed from './pages/feed/index.js';
 
-export const init = () => {
+const init = () => {
   const page = document.querySelector('#root');
   page.innerHTML = '';
   switch (window.location.hash) {
