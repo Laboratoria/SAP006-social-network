@@ -69,7 +69,7 @@ export const userData = (name, email, uid) => db.collection('users').doc(uid).se
 });
 
 export const postRecipe = (recipe) => db.collection('recipes').add({
-  likes: 0,
+  likes: [],
   comments: [],
   ...recipe,
 });
@@ -82,6 +82,10 @@ export const loadRecipe = (addPost) => {
   });
 };
 
+export const likesPost = (id, numberLikes) => db.collection('recipes')
+  .doc(id)
+  .update({ likes: numberLikes + 1 })
+  .then(() => {});
 export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
 
 export const uploadFoodPhoto = (file) => {
