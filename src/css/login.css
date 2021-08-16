@@ -17,7 +17,7 @@
   margin: auto;
 }
 .justify-register,
-.justify-google {
+.justify-google, #inputPass {
   display: flex;
   justify-content: center;
 }
@@ -32,6 +32,13 @@
   color: rgb(0, 0, 0);
   box-shadow: 0px -3px 1px #a09f9f5e;
 }
+#inputPass{
+  padding-inline: 5%;
+}
+#eye {
+  padding-inline: 1%;
+  width: 7%;
+}
 #entrar {
   width: 30%;
   padding: 9px;
@@ -43,7 +50,15 @@
   border-radius: 7px;
   cursor: pointer;
 }
-
+.forgetPass {
+  background: transparent;
+  border: none; 
+  padding: 5%;
+  font-family: "Russo One", sans-serif;
+}
+.forgetPass:hover {
+  color:rgb(119, 117, 117);
+}
 #google-login {
   width: 60%;
   padding: 7px;
