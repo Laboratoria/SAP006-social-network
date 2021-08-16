@@ -221,6 +221,10 @@ export const loadPosts = (functionFirebase) => {
             heart.classList.add("active");
           }
 
+          const saved = allReviews.querySelector(`#save-${doc.id}`)
+          if (reviewSaves.indexOf(userId) != -1) {
+            saved.classList.add("saved");
+          }
 
           const saveDivList = allReviews.querySelectorAll(".save");
 
