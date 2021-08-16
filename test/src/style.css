@@ -32,7 +32,7 @@ h3 {
     text-align: center;
     margin-bottom: 20px;
     color: #272262;
-    font-size: larger;
+    font-size:larger;
     ;
 }
 
@@ -56,9 +56,7 @@ h3 {
     margin-bottom: 5%;
 }
 
-
-.box-input input:focus {
-    /* editar */
+.box-input input:focus { /* editar */
     border-bottom: 2px solid #4038a0;
 }
 
@@ -99,14 +97,6 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     padding-top: 0.2rem;
-}
-
-.fa-eye {
-    position: absolute;
-    top: 19px;
-    right: 10px;
-    cursor: pointer;
-    color: #272262;
 }
 
 hr {
@@ -238,9 +228,9 @@ button:hover {
 hr {
     /* margin-top: 10%;
     margin-bottom: 10%; */
-    margin-top: 7%;
-    margin-bottom: 0%;
-    width: 100%;
+        margin-top: 7%;
+        margin-bottom: 0%;
+        width: 100%;
 }
 
 p {
