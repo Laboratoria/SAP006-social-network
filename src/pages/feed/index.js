@@ -24,15 +24,27 @@ export const Feed = () => {
   const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
 
-  btnPublish.addEventListener('click', () => {
-    createPost(textInput.value);
-    textInput.value = '';
-  });
+  const postObject = (text) => {
+    const postObj = {
+      texto: text,
+    };
+    return postObj;
+  };
+
+  const getPostText = (text) => {
+    const post = postObject(text);
+    createPost(post);
+  };
 
   const printPost = (post) => {
     const timeline = document.querySelector('.feedTimeline');
-    timeline.innerHTML += Post(post.data().text);
+    timeline.innerHTML += Post(post.data().texto);
   };
+
+  btnPublish.addEventListener('click', () => {
+    getPostText(textInput.value);
+    textInput.value = '';
+  });
 
   function loadPost() {
     getPost().then((snapshot) => {
