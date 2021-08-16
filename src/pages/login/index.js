@@ -1,5 +1,5 @@
 import { loginUser } from '../../services/index.js';
-// import { init } from '../../main.js';
+
 export default () => {
   const container = document.createElement('div');
 
@@ -14,9 +14,8 @@ export default () => {
       </form> 
       <div class="button">
         <button id="google-button" class="google-button" ><img src="img/google-logo.png" alt=""></button>
-        <a href="/#feed">
-          <button id="login-button" class="login-button">Login</button>  
-        </a>
+        <button id="login-button" class="login-button">Login</button>  
+        
       </div>
   `;
 
@@ -33,6 +32,7 @@ export default () => {
   btnLogin.addEventListener('click', (event) => {
     event.preventDefault();
     loginUser(email.value, password.value);
+    window.location.hash = '#feed';
   });
 
   // Login Google
