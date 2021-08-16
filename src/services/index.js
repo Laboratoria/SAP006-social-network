@@ -64,7 +64,7 @@ export const userData = (name, email, uid) => db.collection('users').doc(uid).se
 });
 
 export const postRecipe = (recipe) => db.collection('recipes').add({
-  likes: 0,
+  likes: [],
   comments: [],
   user_id: firebase.auth().currentUser.uid,
   ...recipe,
@@ -77,3 +77,8 @@ export const loadRecipe = (addPost) => {
     });
   });
 };
+
+export const likesPost = (id, numberLikes) => db.collection('recipes')
+  .doc(id)
+  .update({ likes: numberLikes + 1 })
+  .then(() => {});
