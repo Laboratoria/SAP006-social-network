@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body {
   width: 100%;
   margin: 0%;
   text-align: center;
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
   color: #025159;
   background-color: #edeae5;
 }
@@ -23,6 +24,7 @@ body {
   background-image: url("./images/tesste.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  height: 32vh;
 }
 
 .login-left-section {
@@ -61,7 +63,7 @@ body {
 
 .login-left-section button,
 .login-left-section input {
-  font-family: "Roboto";
+  font-family: 'Roboto', sans-serif;
   color: #025159;
   outline: none;
   cursor: pointer;
@@ -85,9 +87,31 @@ body {
   background-color: #025159;
 }
 
+
+.login-additionals button {
+  font-size: 90%;
+  border: 0pt;
+  background-color: transparent;
+}
+
+.btn-profile-edit button {
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  border-radius: 25px;
+  height: 32px;
+  background-color: #025159;
+  color: white;
+  width: 30%;
+  padding: 2% 2%;
+  margin-bottom: 10%;
+  border: solid 0pt;
+}
+
 .login-left-section button:hover {
   transform: translateX(-2px);
 }
+
+
 
 .login-btn-sig-log button:hover {
   box-shadow: 0 4px 30px rgba(10, 54, 37, 0.95);
@@ -132,12 +156,6 @@ form input[type="checkbox"] {
   left: 40%;
   bottom: -2%;
   box-shadow: 0 0 0 0;
-}
-
-.login-additionals button {
-  font-size: 90%;
-  border: 0pt;
-  background-color: transparent;
 }
 
 .transparent {
@@ -238,30 +256,22 @@ form input[type="checkbox"] {
   cursor: pointer;
 }
 
+.modal-delete button {
+  background-color: rgba(245, 245, 245, 0.815);
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #025159;
+  padding: 3px;
+  margin: 7px;
+}
+
+
 .feed-settings button:hover {
   color: #404040;
 }
 
-.feed-search-input {
-  width: 60%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  padding: 1%;
-  font-size: 115%;
-  border-radius: 30px;
-  font-family: "Roboto";
-  outline: none;
-  border: #025159 solid 1pt;
-  color: #025159;
-  opacity: 0;
-}
-
-.feed-search-input:focus {
-  border: solid 2pt;
-}
 
 .wrap {
-  margin: 0 auto;
   margin: 0 auto;
   margin-top: -50px;
   margin-left: 15%;
@@ -275,9 +285,7 @@ form input[type="checkbox"] {
 .pictures {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
   background-color: transparent;
-  border-radius: 24px;
   border-style: solid;
   border-width: 2px;
   border-radius: 50%;
@@ -359,7 +367,6 @@ form input[type="checkbox"] {
 
 .div-postados {
   border-radius: 12px;
-  border: 2px solid #ebeef0;
   width: 45%;
   min-height: 120px;
   margin-top: 10px;
@@ -367,8 +374,6 @@ form input[type="checkbox"] {
   border-radius: 10px;
   border: 1px solid #9dd8df;
 }
-/*aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
-
 .user-post {
   margin-top: 0px;
   margin-bottom: 10px;
@@ -428,13 +433,12 @@ form input[type="checkbox"] {
 .publication-form {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   margin-top: 80px;
   background-color: #025159;
   border-radius: 10px;
   width: 45%;
   height: 140px;
-  margin: 0 auto;
-  margin-top: 10%;
 }
 .edit-text-area {
   background-color: aliceblue;
@@ -563,14 +567,12 @@ form input[type="checkbox"] {
 }
 
 .change-name input {
-  font-family: "Roboto";
   color: #025159;
   outline: none;
   cursor: pointer;
   border-radius: 25px;
   height: 35px;
   width: 65%;
-
   margin-bottom: 1%;
   margin-top: 3%;
   border: solid 1pt;
@@ -587,24 +589,11 @@ form input[type="checkbox"] {
   margin-top: 3%;
 }
 
-.btn-profile-edit button {
-  font-family: "Roboto";
-  cursor: pointer;
-  border-radius: 25px;
-  height: 32px;
-  background-color: #025159;
-  color: white;
-  width: 30%;
-  padding: 2% 2%;
-  margin-bottom: 10%;
-  border: solid 0pt;
-}
 
 .profile-edit button:hover {
   transform: translateX(-2px);
   box-shadow: 0 4px 30px rgba(10, 54, 37, 0.95);
 }
-
 .div-profile {
   background-color: #025159;
   background-size: cover;
@@ -694,14 +683,7 @@ form input[type="checkbox"] {
   margin-left: -125px;
 }
 
-.modal-delete button {
-  background-color: rgba(245, 245, 245, 0.815);
-  cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid #025159;
-  padding: 3px;
-  margin: 7px;
-}
+
 .modal-delete button:hover {
   background-color: whitesmoke;
 }
@@ -722,22 +704,11 @@ form input[type="checkbox"] {
   }
   
   
-  .register-container {
-	  height: 32vh;
-	}
 
 /*FIM*/
 
 @media screen and (max-width: 980px) {
 
-	  .login-left-section {
-		width: 100%;
-		height: 90vh;
-		margin-top: 48%;
-		margin: 0 auto;
-		border-radius: 0px;
-	  }
-	
 	  .login-img {
 		opacity: 0;
 	  }
@@ -838,10 +809,11 @@ form input[type="checkbox"] {
   .login-left-section {
     width: 100%;
     height: 30vh;
-    margin-top: 48%;
     margin: 0 auto;
+    margin-top: 48%;
     border-radius: 0px;
   }
+	
 
   .feed-left-section {
     height: 150px;
@@ -873,7 +845,6 @@ form input[type="checkbox"] {
     color: #666666;
     border: none;
     background-color: transparent;
-    font-family: "Roboto";
     font-size: 95%;
     cursor: pointer;
   }
@@ -884,33 +855,11 @@ form input[type="checkbox"] {
     margin: 10px;
     margin-top: 20px;
   }
-
-  .feed-settings button:hover {
-    color: #404040;
-  }
-
-  .login-img {
-    opacity: 0;
-  }
-
   .login-btn-sig-log button,
   .login-left-section input {
     font-size: 110%;
     font-weight: 500;
     box-shadow: 0 4px 20px rgba(10, 54, 37, 0.4);
-  }
-
-
-  .login-btn-sig-log {
-    margin-top: 30%;
-    margin-left: 38%;
-  }
-  #button-login {
-    display: flex;
-    margin-bottom: -120px;
-    width: 100%;
-    border-radius: 0px;
-	text-align: center;
   }
 
   .login-btn-sig-log button {
@@ -924,6 +873,25 @@ form input[type="checkbox"] {
     color: white !important;
     background-color: #025159;
   }
+
+  
+  .feed-settings button:hover {
+    color: #404040;
+  }
+
+  .login-btn-sig-log {
+    margin-top: 30%;
+    margin-left: 38%;
+  }
+  #button-login {
+    display: flex;
+    margin-bottom: -120px;
+    width: 100%;
+    border-radius: 0px;
+	text-align: center;
+  }
+
+
 
   .login-additionals {
     display: flex;
@@ -952,18 +920,16 @@ form input[type="checkbox"] {
   .publication-form {
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
     background-color: #025159;
     border-radius: 10px;
     width: 312px;
     height: 140px;
     margin: 0 auto;
-    margin-top: 10%;
-    margin-left: -12%;
+    margin-top: ;
+    margin-left: -6%;
   }
 
   .wrap {
-    margin: 0 auto;
     margin: 0 auto;
     margin-top: -50px;
     margin-left: -15%;

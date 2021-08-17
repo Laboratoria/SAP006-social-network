@@ -1,8 +1,11 @@
-// importamos a função que vamos testar
-import { myFunction } from '../src/lib/index';
+import { registerAccount } from '../src/lib/auth.js';
 
-describe('myFunction', () => {
+describe('Register', () => {
   it('should be a function', () => {
-    expect(typeof myFunction).toBe('function');
+    expect(typeof registerAccount).toBe('function');
+  });
+  it('shold call firebase', () => {
+    registerAccount();
+    expect(firebase.auth().createUserWithEmailAndPassword()).toBeCalled();
   });
 });

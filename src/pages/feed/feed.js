@@ -90,10 +90,8 @@ export const Feed = () => {
     </div>
   </main>
   `;
-
   const showUrlOfImagesToPublish = (urlFile) => {
     rootElement.querySelector('#hide-url').value = `${urlFile}`;
-    rootElement.querySelector('#postText').placeholder = 'O que você quer compartilhar?';
   };
 
   const uploadImage = () => {
@@ -147,46 +145,15 @@ export const Feed = () => {
 
   const postsCollection = firebase.firestore().collection('posts');
   const currentUserEmail = firebase.auth().currentUser.email;
-  //  Função para adicionar os posts no firebase e printar na tela:
-  rootElement.querySelector('#postForm').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const postText = rootElement.querySelector('#postText');
-    const text = rootElement.querySelector('#postText').value;
-    const url = rootElement.querySelector('#hide-url').value;
-    const postData = () => {
-      const data = new Date();
-      return data.toLocaleString('pt-BR');
-    };
-
-    const post = {
-      text: text,
-      url:url,
-      user_id: currentUserEmail,
-      data: postData(),
-      likes: [],
-      comments: [],
-    };
-
-    if (postText.value === '') {
-      return;
-    }
-    postsCollection.add(post).then(() => {
-      rootElement.querySelector('#postText').value = '';
-      rootElement.querySelector('#postado').innerHTML = '';
-      loadPosts();
-    });
-  });
-
-  // Printa todos os posts existentes na tela:
   function createPostTemplate(post) {
     const postTemplate = `
           <p class="user-post"> ${post.data().user_id} <br>${post.data().data} </p>
           <div class="data-post-id" data-postid="${post.id}" data-postOwner="${post.data().user_id}">
           ${((user) => {
-            if (user === currentUserEmail) {
-              return `<button type="submit" data-deletePostButton="${post.id}"  data-item ="deletepost" class="delete-button"> </button>`;
-            } return `<button type="submit" data-deletePostButton="${post.id}" class="delete-button" hidden> </button>`;
-          })(post.data().user_id)}
+    if (user === currentUserEmail) {
+      return `<button type="submit" data-deletePostButton="${post.id}"  data-item ="deletepost" class="delete-button"> </button>`;
+    } return `<button type="submit" data-deletePostButton="${post.id}" class="delete-button" hidden> </button>`;
+  })(post.data().user_id)}
           ${((user) => {
     if (user === currentUserEmail) {
       return `<button type="submit" data-editPostButton="${post.id}" class="btn-edit"></button>`;
@@ -265,7 +232,35 @@ export const Feed = () => {
     getPosts(createAndPrintAllPosts);
   }
 
-  // Adição dos eventos dos botões:
+  rootElement.querySelector('#postForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const postText = rootElement.querySelector('#postText');
+    const text = rootElement.querySelector('#postText').value;
+    const url = rootElement.querySelector('#hide-url').value;
+    const postData = () => {
+      const data = new Date();
+      return data.toLocaleString('pt-BR');
+    };
+
+    const post = {
+      text,
+      url,
+      user_id: currentUserEmail,
+      data: postData(),
+      likes: [],
+      comments: [],
+    };
+
+    if (postText.value === '') {
+      return;
+    }
+    postsCollection.add(post).then(() => {
+      rootElement.querySelector('#postText').value = '';
+      rootElement.querySelector('#postado').innerHTML = '';
+      loadPosts();
+    });
+  });
+
   const postsContainer = rootElement.querySelector('.posts-container');
   // eslint-disable-next-line consistent-return
   postsContainer.addEventListener('click', (e) => {
@@ -281,26 +276,24 @@ export const Feed = () => {
               <p class="comment-owner"> ${comment.owner} </p>
               <p class="comment-content"> ${comment.content}</p>
               ${((user) => {
-                if (user === currentUserEmail) {
-                  return `<button class="delete-comment-btn" data-deleteCommentButton="${comment.id}"> </button>`
-                } return `<button class="delete-comment-btn" data-deleteCommentButton="${comment.id}" hidden> </button>`
-              })(comment.owner)}
+    if (user === currentUserEmail) {
+      return `<button class="delete-comment-btn" data-deleteCommentButton="${comment.id}"> </button>`;
+    } return `<button class="delete-comment-btn" data-deleteCommentButton="${comment.id}" hidden> </button>`;
+  })(comment.owner)}
               <button class="like-comment-btn" data-likeCommentButton="${comment.id}"> </button> 
             
             ${((quantityOfLikes) => {
     if (quantityOfLikes === 1) {
-      return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">Curtida </span> </p>`
+      return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">Curtida </span> </p>`;
     } if (quantityOfLikes > 1) {
-      return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">Curtidas </span> </p>`
+      return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${quantityOfLikes} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">Curtidas </span> </p>`;
     }
-    return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${0} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">Curtidas </span> </p>` 
+    return `<p class="f-20 like-value" data-comment-likes-id="${comment.id}"> <span data-comment-likes-value-to-be-changed="${comment.id}"> ${0} </span> <span data-comment-likes-text-to-be-changed="${comment.id}">Curtidas </span> </p>`;
   })(comment.commentLikes.length)}
             `;
         commentArea.innerHTML += newItem;
       });
     };
-
-    //  Edit Post:
     const editButton = target.dataset.editpostbutton;
     if (editButton) {
       rootElement.querySelector(`[data-editPostButton="${postID}"]`).hidden = true;
@@ -324,25 +317,22 @@ export const Feed = () => {
       rootElement.querySelector('#postado').innerHTML = '';
       loadPosts();
     }
-  
-//delete com modal 
-    if(target.dataset.item == "deletepost"){
-      const divConfirmDelete = target.parentNode.parentNode.children[7]
-      const divConfirmDeleteModal = target.parentNode.parentNode.children[7].children[0].children[1]
-      const divCancelDeleteModal = target.parentNode.parentNode.children[7].children[0].children[2]
- 
-      divConfirmDelete.style.display ="block";
-      divConfirmDeleteModal.addEventListener("click", () => {
-        rootElement.querySelector('#postado').innerHTML = '';
-        deletePost(postID, loadPosts)
-        //  .then(()=>{
-        divConfirmDelete.style.display="none";
-        // })
-    })
 
-      divCancelDeleteModal.addEventListener("click", () => {
-        divConfirmDelete.style.display="none"
-      })
+    if (target.dataset.item === 'deletepost') {
+      const divConfirmDelete = target.parentNode.parentNode.children[7];
+      const divConfirmDeleteModal = target.parentNode.parentNode.children[7]
+        .children[0].children[1];
+      const divCancelDeleteModal = target.parentNode.parentNode.children[7].children[0].children[2];
+      divConfirmDelete.style.display = 'block';
+      divConfirmDeleteModal.addEventListener('click', () => {
+        rootElement.querySelector('#postado').innerHTML = '';
+        deletePost(postID, loadPosts);
+        divConfirmDelete.style.display = 'none';
+      });
+
+      divCancelDeleteModal.addEventListener('click', () => {
+        divConfirmDelete.style.display = 'none';
+      });
     }
 
     // Like Post:
@@ -418,4 +408,3 @@ export const Feed = () => {
   loadPosts();
   return rootElement;
 };
-
