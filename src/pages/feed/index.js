@@ -5,7 +5,7 @@ import { headerMenu } from '../../components/header/index.js';
 
 export const Feed = () => {
   headerMenu();
-
+  
   const user = currentUser();
   const idUser = user.uid;
   const name = user.displayName;
@@ -46,16 +46,31 @@ export const Feed = () => {
       likes: 0,
       comments: [],
     };
-    createPost(postObj);
-    loadPost();
+    console.log(postObj);
+    createPost(postObj); 
+    const timeline1 = document.querySelector('.feedTimeline');   
+    timeline1.innerHTML = '';
+    textInput.value = '';
+    loadPost(); 
   });
 
+  
+
   function printPost(post) {
-    const text = post.data().text;
     const idPost = post.id;
-    const timeline = document.querySelector('.feedTimeline');
-    timeline.innerHTML += '';
-    timeline.innerHTML += Post(name, text, idUser, idPost, date);
+    const text = post.data().text;
+    const idUserPost = post.data().idUser;
+    const nameUserPost = post.data().name;
+    const photoPost = post.data().photo;
+    const datePost = post.data().date;
+
+    firebase.firestore().collection('post').doc(post.id).update({
+      idPost: post.id,
+    });
+
+    const timeline2 = document.querySelector('.feedTimeline');
+    timeline2.innerHTML += '';
+    timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idPost, datePost, photoPost);
   }
 
   function loadPost() {
