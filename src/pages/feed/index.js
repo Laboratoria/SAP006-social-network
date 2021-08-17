@@ -11,20 +11,19 @@ export const Feed = () => {
   const name = user.displayName;
   const photo = user.photoURL;
   const date = new Date();
-  
   const root = document.createElement('div');
   root.classList.add('feed-container');
   root.innerHTML = `  
     <main class='postContainer'>
-      <header id='postHeader' class='feed-postHeader'>
-      ${name}
-        <figure>
-          <img src='./img' alt='Foto Perfil' class='foto-postHeader'/>
-        </figure>
+      <header id='postHeader' class='post-header'>
+      <section class='userInfo'>
+        <img src='../../img/profileImg.png' height="40px" width="40px">
+        <p class='username'>${name}</p> 
+      </section>      
       </header> 
       <form class='formContainer'>
-        <textarea class='postInput' type='text' placeholder='Sua Mensagem'></textarea>      
-        <section class='btnContainer'>
+        <textarea class='postContent' type='text' placeholder='Sua Mensagem'></textarea>      
+        <section class='postBtnContainer'>
           <button type='button' class='publishBtn'>Publicar</button>
         </section>  
       </form>     
@@ -42,7 +41,7 @@ export const Feed = () => {
       name,
       photo,
       text: textInput.value,
-      date: date.toLocaleString('pt-BR'),
+      date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
       likes: 0,
       comments: [],
     };
@@ -53,9 +52,10 @@ export const Feed = () => {
   function printPost(post) {
     const text = post.data().text;
     const idPost = post.id;
+    const postDate = post.data().date;
     const timeline = document.querySelector('.feedTimeline');
     timeline.innerHTML += '';
-    timeline.innerHTML += Post(name, text, idUser, idPost, date);
+    timeline.innerHTML += Post(name, text, idUser, idPost, postDate);
   }
 
   function loadPost() {
