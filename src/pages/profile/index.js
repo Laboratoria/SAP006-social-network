@@ -61,6 +61,7 @@ export const Profile = () => {
   const name = root.querySelector('#name');
   const localization = root.querySelector('#localization');
   const boat = root.querySelector('#boat');
+  const reset = root.querySelector('#reset');
 
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -86,6 +87,12 @@ export const Profile = () => {
       });
     });
   }
+
+  reset.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.replace('/reset');
+  });
+
   getInfo();
   return root;
 };
