@@ -1,6 +1,8 @@
+import { headerMenu } from '../../components/header/index.js';
 import { resetPassword } from '../../services/index.js';
 
 export const Reset = () => {
+  headerMenu();
   const root = document.createElement('div');
   root.innerHTML = `
   <header class='logo'>
