@@ -29,5 +29,5 @@ Trata-se de uma aplicação de página única (Single Page Application - SPA), u
 sistema de autenticação fornecido pelo Firebase. A lógica do projeto é 
 implementada em JavaScript (ES6+), HTML e CSS.
 
-Baseado em resultados de uma pesquisa realizada através de form, concluímos que 
+Baseado em resultados de uma pesquisa realizada através de form, concluímos que ...
 
