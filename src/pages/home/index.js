@@ -1,6 +1,6 @@
 import { outLogin, deletePost } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
-import { getPosts } from '../../services/firebaseData.js';
+import { getPosts, liked } from '../../services/firebaseData.js';
 
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
@@ -9,9 +9,12 @@ export const home = () => {
   <div class="containerHome">
   <header>
     <nav class="menu">
-     <ul class="nav" id="nav">
-      <a class="links" href="">Buscar</a>
-      </ul>
+
+       <ul class="nav" id="nav">
+        <li class="links" ><a href=""></a>Buscar</li>
+        <li class="links" ><a href=""></a>Perfil</li>
+        </ul>
+
     </nav>
   <div class="goPost">
   <img class="tomato" src="./img/tomato.svg">
@@ -35,7 +38,7 @@ export const home = () => {
   
   </header>
   <main>
-    <div class="publish" id='timeline'>
+    <div class="publish" id="timeline" data-post>
     </div>
       <hr> 
   </main>
@@ -44,7 +47,6 @@ export const home = () => {
 
   const btnLogout = rootElement.querySelector('#btnLogout');
   const btnGoPost = rootElement.querySelector('#goPost');
-
   // botão sair para fazer logout
   btnLogout.addEventListener('click', (event) => {
     event.preventDefault();
@@ -58,7 +60,7 @@ export const home = () => {
       const div = document.createElement('div');
       div.id = doc.id;
       const timeline = rootElement.querySelector('#timeline');
-      div.innerHTML = `<div class="allPosts">
+      div.innerHTML = `<div class="allPosts" data-id=${doc.id}>
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
           <p class="local">${doc.data().nomeLocalReceita}</p> 
@@ -68,12 +70,12 @@ export const home = () => {
           <p class="hashs">${doc.data().hashTags}</p>
         <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
-          <button class="like" id="like"><img class="likePrice" src="./img/coracao.svg" /></button>
-          <p class="numLikes">0</p>
-          <button class="price" id="price"> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg" /> <img class="likePrice" src="./img/dinCinza.svg"></button>
-        </div>
-            <input class="addComent" placeholder="Comentários"/>
-            <div class="coments" id="coments">
+
+          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${doc.data().curtidas.length}</button>
+          <button type="button" class="price" id="price" data-preco> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
+          <div class="coments" id="coments">
+            <input class="addComent" id="addComent" placeholder="Comentários"></input> 
+
           <button class="more" id="more">ver mais</button>
           <button class="goComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
           </div>
@@ -107,5 +109,17 @@ export const home = () => {
       timeline.insertBefore(div, timeline.childNodes[0]);
     });
   });
+
+  // like no post
+  const dataPost = rootElement.querySelector('[data-post]');
+  dataPost.addEventListener('click', (e) => {
+    const { target } = e;
+    const like = target.dataset.like;
+    if (like) {
+      liked(like);
+    }
+  });
+
+
   return rootElement;
 };

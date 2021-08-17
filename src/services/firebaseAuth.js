@@ -3,7 +3,9 @@ import { route } from '../routes/navigator.js';
 import { handleError } from './error.js';
 
 firebase.auth().useDeviceLanguage();
-// cadastro
+
+
+
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
@@ -17,12 +19,17 @@ export const atualizarUsuario = (nome, photoProfile) => firebase.auth().currentU
 
 // ** SIGN IN E-MAIL AND PASSOWORD //
 export const SignIn = (usuario, passwordLogin) => {
-  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin);
+  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin).then((result) => {
+    route('/home');
+    localStorage.setItem('displayName', result.user.displayName);
+    localStorage.setItem('email', result.user.email);
+  })
+    .catch(handleError);
 };
 
-export const stayLogged = () => {
-  return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-};
+// export const stayLogged = () => {
+//   return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+// };
 
 // ** SIGN IN GOOGLE //
 export const googleLogin = () => {
@@ -45,26 +52,14 @@ export const outLogin = () => {
   })
     .catch((handleError()));
 };
-//   firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       // User is signed in, see docs for a list of available properties
-//       // https://firebase.google.com/docs/reference/js/firebase.User
-//       var uid = user.uid;
-//       // ...
-//     } else {
-//       // User is signed out
-//       // ...
-//     }
-// //   });
+
 export const resetPass = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {
-      console.log('E-mail enviado com sucesso!');
+    .then((result) => {
+      localStorage.setItem('displayName', result.user.displayName);
+      localStorage.setItem('email', result.user.email);
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+    .catch(handleError);
 };
 
 // firebase.auth().onAuthStateChanged((user) => {
@@ -77,3 +72,4 @@ export const deletePost = (postID) => {
   const postsCollection = firebase.firestore().collection('posts');
   return postsCollection.doc(postID).delete().then();
 };
+

@@ -1,5 +1,4 @@
-import { googleLogin, SignIn, resetPass, stayLogged } from '../../services/firebaseAuth.js';
-import { handleError } from '../../services/error.js';
+import { googleLogin, SignIn, resetPass } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 
 export const login = () => {
@@ -56,11 +55,7 @@ export const login = () => {
 
   signInButton.addEventListener('click', (e) => {
     e.preventDefault();
-    SignIn(usuario.value, passwordLogin.value)
-      .then(() => {
-        route('/home');
-      })
-      .catch((handleError()));
+    SignIn(usuario.value, passwordLogin.value);
   });
 
   forgetPass.addEventListener('click', () => {

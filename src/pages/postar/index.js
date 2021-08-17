@@ -11,51 +11,53 @@ export const postar = () => {
     <header>
      <nav class="menu">
      <ul class="nav" id="nav">
-       <li><a class="links" href="">Busca</a></li>
-       <li><a class="links" href="">Perfil</a></li>
-      <li><a class="links" href="">Página Inicial</a></li>
+       <li class="links"><a href=""><img src="./img/lupa.svg">Busca</a></li>
+       <li class="links"><a href=""><img src="./img/perfil.svg">Perfil</a></li>
+      <li class="links"><a href=""><img src="./img/home.svg">Página Inicial</a></li>
      </ul>
      </nav>
     </header>
-     <main>
+     <main class="boxInputs">
+     <div class="boxImg">
      <input class="addImg" id="addImg" type="image" src="./img/add.svg" alt="Adicionar imagem"/>
-     <div class="local">
-     <p id="tittlePost">Local:</p>
-     <input type="text" id="addLocal" name="localização" placeholder="Av. Celso Garcia, 1400, São Paulo - BR"/>
-     <p id="errorLocal"></p>
      </div>
      <div class="addfilter">
-      <button class="market" id="market">Mercados</button>
-      <button class="recipes" id="recipe">Receitas</button>
-      <button class="rest" id="rest">Restaurantes</button>
+      <button class="tag" id="market">Mercados</button>
+      <button class="tag" id="recipe">Receitas</button>
+      <button class="tag" id="rest">Restaurantes</button>
      </div>
-     <input type:"text" id="hashtags" class="hashtags" name="hashtags" placeholder="#pizza #sp #vegano"/>>
+     <div class="titleType">
+     <p id="type">selecione uma tag acima</p>
+     <input type="text" id="typePost" name="typePost" placeholder="Título da Publicação"/>
+     <p id="errorType"></p>
+     </div>
+     <input type:"text" id="hashtags" class="hashtags" name="hashtags" placeholder="#pizza #sp #vegano"/>
      <p id="errorHashtags"></p>
      <div class="addPrice">
-      <input type="radio" name="valor" value="$"/>
-      <input type="radio" name="valor" checked value="$$"/>
-      <input type="radio" name="valor" value="$$$"/>
-     </div>
-     <hr>
+      <label class="low"><input  id="low" type="radio" name="valor" value="$"/> $ </label>
+      <label class="med"><input  id="med" type="radio" name="valor" value="$$"/> $ </label>
+      <label class="high"><input  id="high" type="radio" name="valor" value="$$$"/> $ </label>
+      </div>
      <textarea class="addText" id="addText" placeholder="Conte sua experiência aos amigos!" style="resize:none"></textarea>
      <p id="errorDesc"></p>
-     <hr>
      <button class="sendPost" id="sendPost">Publicar</button>
      </main>
     </div>
   `;
 
-  let postType = 'restaurante';
+
+  let postType = '';
+
   const restBtn = () => {
-    rootElement.querySelector('#tittlePost').innerHTML = 'Restaurante';
+    rootElement.querySelector('#type').innerHTML = 'Restaurante';
     postType = 'restaurante';
   };
   const marketBtn = () => {
-    rootElement.querySelector('#tittlePost').innerHTML = 'Mercado';
+    rootElement.querySelector('#type').innerHTML = 'Mercado';
     postType = 'mercado';
   };
   const recipeBtn = () => {
-    rootElement.querySelector('#tittlePost').innerHTML = 'Receita';
+    rootElement.querySelector('#type').innerHTML = 'Receita';
     postType = 'receita';
   };
   rootElement.querySelector('#rest').addEventListener('click', restBtn);
@@ -64,9 +66,9 @@ export const postar = () => {
 
   rootElement.querySelector('#sendPost').addEventListener('click', () => {
     // pegando e validando as infos //
-    const localPost = rootElement.querySelector('#addLocal').value;
+    const localPost = rootElement.querySelector('#typePost').value;
     if (localPost === '' || localPost.length < 3) {
-      const errorTittleField = document.getElementById('tittlePost');
+      const errorTittleField = document.getElementById('errorType');
       errorTittleField.innerHTML = 'Preencha com o nome do Restaurante, Mercado ou Receita';
       localPost.focus();
       return false;
@@ -89,6 +91,7 @@ export const postar = () => {
       return false;
     }
     const post = {
+      user_id: firebase.auth().currentUser.uid,
       data: new Date(),
       nome: firebase.auth().currentUser.displayName,
       user_id: firebase.auth().currentUser.uid,
@@ -98,10 +101,14 @@ export const postar = () => {
       hashTags: hashtagsPost, // se é restaurante, mercado ou receita //
       preco: pricePost, // hashtags //
       descricao: descPost, // descricao do lugar ou receita //
+      curtidas: [],
+      comentarios: [],
     };
-
     addPost(post);
     route('/home');
+
+    return false;
+
   });
   return rootElement;
 };
