@@ -4,14 +4,16 @@ import { handleError } from './error.js';
 
 firebase.auth().useDeviceLanguage();
 
+
+
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
     .createUserWithEmailAndPassword(emailUser, passwordRegister);
 };
-
-export const atualizarUsuario = (nome) => firebase.auth().currentUser.updateProfile({
+export const atualizarUsuario = (nome, photoProfile) => firebase.auth().currentUser.updateProfile({
   displayName: nome,
+  photoURL: photoProfile,
   return: atualizarUsuario,
 });
 
@@ -59,3 +61,15 @@ export const resetPass = (email) => {
     })
     .catch(handleError);
 };
+
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (!user) {
+//     route('/login');
+//   }
+// });
+
+export const deletePost = (postID) => {
+  const postsCollection = firebase.firestore().collection('posts');
+  return postsCollection.doc(postID).delete().then();
+};
+

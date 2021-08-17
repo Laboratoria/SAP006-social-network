@@ -11,11 +11,15 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+
+ /* input::placeholder {
+    color: rgb(0, 0, 0); */
 }
 
 input::placeholder {
   color: rgb(0, 0, 0);
 }
+
 
 .menu {
   position: fixed;
@@ -58,3 +62,7 @@ input::placeholder {
 /* @media 
 .links a img{
 width: 20%;} */
+
+input::placeholder {
+  color: rgb(0, 0, 0)
+}
