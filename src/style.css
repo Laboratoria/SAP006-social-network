@@ -135,8 +135,12 @@ body {
 
 .separator {  
   text-align: center;
-  color: rgb(85, 84, 84);  
-  margin: 10px;
+  color: rgb(34, 33, 33);  
+  margin: 5px;
+}
+
+.separator p {
+  padding: -10px;
 }
 
 .btnGmail {
@@ -178,103 +182,3 @@ body {
   }
 }
 
-#buttonSignOut {
-  width: 50px;
-}
-
-.feedContainer {
-  width: 40vw;
-  height: 20vh;  
-  display: inline-block;  
-  background-color: #1F1F4B;  
-}
-.postHeader {
-  margin:10px;
-  color:white;
-
-}
-.formContainer {  
-  height: 80%;
-  width: 100%;
-}
-.postText {
-  width: 100%;
-  height: 50%;
-}
-
-.btnContainer {
-  display:flex;
-  justify-content: flex-end;  
-  font-size: 12px;
-  margin: 8px;
-}
-
-.publishBtn {
-  border:none; 
-  border-radius:5px;
-  padding:5px;
-  background-color: #FFD632;
-  color: #1F1F4B;
-  width: 60px;
-}
-
-/*
-.label-login {
-    margin-top: 5px;
-    font-size: 15px;    
-}
-
-.form-item{
-    background-color: #E5E5E5;
-    border-radius: 5px;
-    border:none;
-    height: 25px;    
-}
-
-.btn-login, .btn-signup{    
-    margin-top: 40px;     
-}
-
-.btn-login:hover{
-    background: linear-gradient(135deg, #181863c4, #DA4532, #fdb35fb9);
-}
-
-.btn-login, .btn-signup :active{    
-    position: relative;
-    background: linear-gradient(135deg, #181863c4, #DA4532, #fdb35fb9);
-    top: 2px;     
-}
-
-.signUpHere {
-    text-align: center;
-    line-height: 5px;
-    font-size: 12px;
-    margin-top: 100px;
-}
-
-.keep-me-logged {
-    display: inline-flexbox;
-    line-height: 5px;
-    font-size: 12px;
-}
-.or {
-    text-align: center;
-    line-height: 5px;
-    font-size: 12px
-}
-
-.btnGoogle {
-  text-align: center;
-}
-
-.btnGmail {
-    background-image: url(img/btn-google-web.png);
-    background-size: cover;
-    width: 50%;
-    height: 30px;
-    border-radius: 5px;
-    image-rendering: pixelated;
-    border: none;
-}
-
-*/

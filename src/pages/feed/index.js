@@ -11,20 +11,23 @@ export const Feed = () => {
   const name = user.displayName;
   const photo = user.photoURL;
   const date = new Date();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4a1800b5311ec17c26be1692681fe353684c53da
   const root = document.createElement('div');
   root.classList.add('feed-container');
   root.innerHTML = `  
     <main class='postContainer'>
-      <header id='postHeader' class='feed-postHeader'>
-      ${name}
-        <figure>
-          <img src='./img' alt='Foto Perfil' class='foto-postHeader'/>
-        </figure>
+      <header id='postHeader' class='post-header'>
+      <section class='userInfo'>
+        <img src='../../img/profileImg.png' height="40px" width="40px">
+        <p class='username'>${name}</p> 
+      </section>      
       </header> 
       <form class='formContainer'>
         <textarea class='postInput' type='text' placeholder='Sua Mensagem'></textarea>      
-        <section class='btnContainer'>
+        <section class='postBtnContainer'>
           <button type='button' class='publishBtn'>Publicar</button>
         </section>  
       </form>     
@@ -43,18 +46,17 @@ export const Feed = () => {
       photo,
       text: textInput.value,
       date: date.toLocaleString('pt-BR'),
+      dateP: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
       likes: 0,
       comments: [],
     };
-
+    console.log(postObj);
     createPost(postObj);
     const timeline1 = document.querySelector('.feedTimeline');
     timeline1.innerHTML = '';
     textInput.value = '';
     loadPost();
   });
-
-
 
   function printPost(post) {
     const idPost = post.id;
@@ -63,6 +65,8 @@ export const Feed = () => {
     const nameUserPost = post.data().name;
     const photoPost = post.data().photo;
     const datePost = post.data().date;
+    const dateP = post.data().dateP;
+    console.log(dateP);
 
 
     firebase.firestore().collection('post').doc(post.id).update({
@@ -71,7 +75,7 @@ export const Feed = () => {
 
     const timeline2 = document.querySelector('.feedTimeline');
     timeline2.innerHTML += '';
-    timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idPost, datePost, photoPost);
+    timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idPost, photoPost, dateP);
   }
 
   function loadPost() {

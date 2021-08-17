@@ -1,17 +1,16 @@
-export const Post = (nameUserPost, text, idUserPost, idPost, datePost, photoPost) => {
+export const Post = (nameUserPost, text, idUserPost, idPost, photoPost, dateP) => {
   const template = `
-  <main class='feed-postContainer' id=${idUserPost}>
-    <header class='feed-postHeader'
-      id=${idPost}>
-      ${nameUserPost}
-      <figure>
-        <img src='./img' alt='Foto Perfil' class='foto-postHeader' id='${photoPost}'/>
-      </figure>
+  <main class='postContainer' id=${idUserPost}>
+    <header class='post-header' id=${idPost}>      
+      <section class='userInfo'>
+        <img id='${photoPost}' src='../../img/profileImg.png' height="40px" width="40px">
+        <p class='username'>${nameUserPost}</p> 
+      </section>
+      <p id='postDate' class='postDate'>${dateP}</p> 
     </header> 
     <form class='formContainer'>
-      <p class='postText' placeholder='Sua Mensagem'>${text}</p>      
-        <section class='btnContainer'>
-        <p class='dataText'>${datePost}</p> 
+      <p class='postInput' placeholder='Sua Mensagem'>${text}</p>      
+        <section class='postBtnContainer'>       
           <button type='button' class='publishBtn'>Like</button>
         </section>  
       </form>    
