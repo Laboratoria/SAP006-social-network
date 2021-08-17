@@ -22,7 +22,7 @@ export const Feed = () => {
       </section>      
       </header> 
       <form class='formContainer'>
-        <textarea class='postContent' type='text' placeholder='Sua Mensagem'></textarea>      
+        <textarea class='postInput' type='text' placeholder='Sua Mensagem'></textarea>      
         <section class='postBtnContainer'>
           <button type='button' class='publishBtn'>Publicar</button>
         </section>  
@@ -41,21 +41,36 @@ export const Feed = () => {
       name,
       photo,
       text: textInput.value,
-      date: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+      date: date.toLocaleString('pt-BR'),
+      dateP: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
       likes: 0,
       comments: [],
     };
+    console.log(postObj);
     createPost(postObj);
+    const timeline1 = document.querySelector('.feedTimeline');
+    timeline1.innerHTML = '';
+    textInput.value = '';
     loadPost();
   });
 
   function printPost(post) {
-    const text = post.data().text;
     const idPost = post.id;
-    const postDate = post.data().date;
-    const timeline = document.querySelector('.feedTimeline');
-    timeline.innerHTML += '';
-    timeline.innerHTML += Post(name, text, idUser, idPost, postDate);
+    const text = post.data().text;
+    const idUserPost = post.data().idUser;
+    const nameUserPost = post.data().name;
+    const photoPost = post.data().photo;
+    const datePost = post.data().date;
+    const dateP = post.data().dateP;
+    console.log(dateP);
+
+    firebase.firestore().collection('post').doc(post.id).update({
+      idPost: post.id,
+    });
+
+    const timeline2 = document.querySelector('.feedTimeline');
+    timeline2.innerHTML += '';
+    timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idPost, photoPost, dateP);
   }
 
   function loadPost() {
