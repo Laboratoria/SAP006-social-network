@@ -59,12 +59,18 @@ export const signInEmailPassword = (email, password) => {
   return signIn;
 };
 
-export const signOut = () => {
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
+export const logout = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.history.pushState({}, null, '/login');
+      const popStateEvent = new PopStateEvent('popstate', {});
+      dispatchEvent(popStateEvent);
+    });
+  // .catch((error) => {
+  // // An error happened.
+  // });
 };
 
 export const signInGoogle = () => {
@@ -98,7 +104,7 @@ export const keepLogged = (persistence) => {
     .auth()
     .setPersistence(persistence)
     .then(() => {
-      const provider = new firebase.auth();
+      const provider = new firebase.Auth();
       return firebase.auth().signInWithRedirect(provider);
     })
     .catch((error) => {
