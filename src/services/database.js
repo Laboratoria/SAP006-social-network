@@ -27,6 +27,4 @@ export const deletePost = (postId) => firebase
   .collection('posts')
   .doc(postId)
   .delete()
-  .then(() => {
-  })
-  .then(() => loadPosts());
+
