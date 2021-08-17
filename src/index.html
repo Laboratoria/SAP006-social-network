@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Social NetWork - Ellas - Início</title>
-  </head>
-  
-  <body>
-   
 
-    <div id="root"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Social NetWork - Ellas</title>
+  <h1>Ellas</h1>
+  <p>Aqui você encontra uma filmografia repleta de mulheres incríveis para te inspirar!</p>
+</head>
 
-    
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="/#">Home</a>
+        </li>
+        <li>
+          <a href="/#login">Login</a>
+        </li>
+        <li>
+          <a href="/#cadastre-se">Cadastre-se</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main id="root"></main>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/8.9.1/firebase-app.js"></script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/8.9.1/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+  <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="/__/firebase/8.9.1/firebase-auth.js"></script>
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+<footer>
 
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
-    <script type="module" src="main.js"></script>
-  </body>
+</footer>
+<script src="index.js" type="module"></script>
+
 </html>
