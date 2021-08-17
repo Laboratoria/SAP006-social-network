@@ -9,6 +9,7 @@ import { Feed } from './pages/feed/feed.js';
 export const routeRender = () => {
   const elementRoute = document.querySelector('#root');
   const auth = firebase.auth();
+  let path = window.location.pathname;
 
   const routes = {
     '/': Welcome,
@@ -22,17 +23,19 @@ export const routeRender = () => {
   };
 
   auth.onAuthStateChanged((user) => {
-    let path = window.location.pathname;
 
-    if (!user && path !== '/signup' || path !== '/login') {
+    if (!user && (path !== '/signup' || path !== '/login')) {
       window.history.replaceState(null, null, path);
-    } else if (user && (path === '/' || path === '/signup')) {
+    };
+    if (user && (path === '/' || path === '/login' || path === '/signup')) {
       path = '/feed';
       window.history.replaceState(null, null, path);
-    } else if (!user && path === '/feed') {
+    };
+    if (!user && (path === '/feed')) {
       path = '/login';
       window.history.replaceState(null, null, path);
-    }
+      // window.location.reload();
+    };
 
   elementRoute.innerHTML = '';
   elementRoute.appendChild(routes[path]());
