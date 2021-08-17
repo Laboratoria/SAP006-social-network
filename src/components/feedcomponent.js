@@ -6,27 +6,32 @@ export const printPost = (post) => {
 
     <section data-container>
       <div class="box">
-        <p class="username">username</p>
-        <menu class="dropdown" style="float:right;">
-          <button id="btn-drop" onclick="myFunction()" class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
-          <div id="myDropdown" class="dropdown-content">
-            <a class="btn-more edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify" data-icon="bytesize:edit"></span>  Editar</a>
-            <a class="btn-more" href="#"><span class="iconify" data-inline="false"
-            data-icon="bytesize:trash"></span>  Deletar</a>
-          </div>
-        </menu>
+        <div class="header-post">
+          <p class="username">username</p>
+          <menu class="dropdown" style="float:right;">
+            <button id="btn-drop" onclick="dropdownFunction()" class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
+            <div id="myDropdown" class="dropdown-content">
+              <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</a>
+              <a href="#"><span class="iconify btn-more" data-inline="false"
+              data-icon="bytesize:trash"></span>  Deletar</a>
+              <a href="#"><span class="iconify btn-more" data-icon="carbon:save"></span></span>  Salvar</a>
+            </div>
+          </menu>
+        </div>
+        
         <div class="content">
           <button>
-            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle"
-              style="color: #706F6B;"></span>
+            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
           </button>
           
-        <div class="textBox"></div>
-          <textarea name="post-text" class="post-content text-post" id="${post.data().id}">${post.data().text}</textarea>
-          <section class="actions">
-            <button>❤️ ${post.likes}</button>
-          </section>
+          <div>
+            <textarea maxlength="200" name="post-text" class="post-content text-post" id="${post.data().id}">${post.data().text}</textarea>
+          </div>
+          
         </div>
+        <section class="actions">
+          <button>13 ❤️</button>
+        </section>
 
         <!---
         <section class='edit-text'>
@@ -70,37 +75,15 @@ export const printPost = (post) => {
   // postTemplate.innerHTML += textBox;
 
   //     <div class="btn-inside">
-//   <button class="btn-actions"><span class="iconify" data-inline="false"
-//   data-icon='ri:image-add-fill'></span>
-// </button>
-// <button class="btn-actions"><span class="iconify" data-inline="false"
-//   data-icon="mdi:send-circle"></span>
-// </button>
-// </div>
+  //   <button class="btn-actions"><span class="iconify" data-inline="false"
+  //   data-icon='ri:image-add-fill'></span>
+  // </button>
+  // <button class="btn-actions"><span class="iconify" data-inline="false"
+  //   data-icon="mdi:send-circle"></span>
+  // </button>
+  // </div>
 
-  
- // const dropdown = document.querySelector('#btn-drop');
-  // dropdown.addEventListener('click', () => {
-  //     function myFunction() {
-  //   document.getElementById("myDropdown").classList.toggle("show");
-  //   }
-  // })
-  // // Close the dropdown if the user clicks outside of it
-  // window.onclick = function(event) {
-  //   if (!event.target.matches('.dropbtn')) {
-  //     const dropdowns = document.getElementsByClassName("dropdown-content");
-  //     const i
-  //     for (i = 0; i < dropdowns.length; i++) {
-  //       const openDropdown = dropdowns[i];
-  //       if (openDropdown.classList.contains('show')) {
-  //         openDropdown.classList.remove('show');
-  //       }
-  //     }
-  //   }
-  // }
-  
   /*
-
   const elementPost = addPost(post);
   rootElement.querySelector('#get-post').appendChild(elementPost)
    */
