@@ -88,22 +88,22 @@ export const home = () => {
           </div>
           <hr> `;
 
-      const modals = rootElement.querySelector('#modal');
-      modals.forEach((trigger) => {
-        trigger.addEventListener('click', (event) => {
-          event.preventDefault();
-          const modal = document.getElementById(trigger.dataset.modal);
-          modal.classList.add('open');
-          const exits = modal.querySelectorAll('.modal-exit');
-          exits.forEach((exit) => {
-            exit.addEventListener('click', () => {
-              event.preventDefault();
-              modal.classList.remove('open');
-            });
-          });
-        });
-        return modals;
-      });
+      // const modals = rootElement.querySelector('#modal');
+      // modals.forEach((trigger) => {
+      //   trigger.addEventListener('click', (event) => {
+      //     event.preventDefault();
+      //     const modal = document.getElementById(trigger.dataset.modal);
+      //     modal.classList.add('open');
+      //     const exits = modal.querySelectorAll('.modal-exit');
+      //     exits.forEach((exit) => {
+      //       exit.addEventListener('click', () => {
+      //         event.preventDefault();
+      //         modal.classList.remove('open');
+      //       });
+      //     });
+      //   });
+      //   return modals;
+      // });
       const deleteBtn = div.querySelector('.delete-button');
 
       function disableBtn() {
@@ -122,7 +122,7 @@ export const home = () => {
         const { target } = e;
         const postID = target.parentNode.parentNode.id;
         if (deleteBtn) {
-          const deleteConfirmation = modals; // ('Essa postagem será excluída, deseja continuar?');
+          const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
           if (deleteConfirmation) {
             deletePost(postID).then(div.remove());
           }
@@ -144,11 +144,11 @@ export const home = () => {
       editBtn.addEventListener('click', (e) => {
         const { target } = e;
         const postID = target.parentNode.parentNode.id;
-        //   if (editBtn) {
-        //     const deleteConfirmation = // confirm('Essa postagem será excluída, deseja continuar?');
-        //     // if (deleteConfirmation) {
-        //       // deletePost(postID).then(div.remove());
-        // };
+          if (editBtn) {
+            const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
+            if (deleteConfirmation) {
+              deletePost(postID).then(div.remove());
+        };
 
         timeline.insertBefore(div, timeline.childNodes[0]);
       });
