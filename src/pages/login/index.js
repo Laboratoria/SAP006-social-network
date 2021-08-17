@@ -1,25 +1,22 @@
-// import { loginWithEmailAndPassword, loginWithGoogleAccount } from '../../lib/authentication.js';
+import { loginWithEmailAndPassword } from '../../lib/authentication.js';
 import { onNavigate } from '../../navigate.js';
 
-export const login = () => {
-    const roottemplate = document.createElement('section');
+export default () => {
+  const login = document.createElement('div');
+  const container = `
 
-    const container = `
-
-<section class="container">
+<section id="container-login" class="container">
   <section class="box">
-
     <figure class="logo">
-      <img src="./img/ellas-dev-logo.png">
+      <img src="./assets/ellas-dev-logo.png">
     </figure>
     <h3 class="">Login</h3>
-
     <section class="box-input">
-      <input type="email" id="user-email" name="usuario" placeholder="e-mail">
+      <input type="email" id="user-email" name="usuario" placeholder="Email">
     </section>
-
     <section class="box-input">
-      <input type="password" id="user-password" placeholder="senha">
+      <input type="password" id="user-password" placeholder="Senha">
+      <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i>
     </section>
     <!--     <a href=''>Esqueci minha senha</a> -->
     <section class="justify-center">
@@ -28,33 +25,47 @@ export const login = () => {
       <button id="google-btn">Entrar com Google</button>
       <hr>
     </section>
-
     <p> Não tem uma conta?
-      <a id="btn-signup" href="/#signup"> Cadastre-se </a>
+      <a id="btn-signup" href="/#signUp"> Cadastre-se </a>
     </p>
+
   </section>
 </section>
 
 `;
-    roottemplate.innerHTML = container;
+  login.innerHTML = container;
 
 
 
-    roottemplate.querySelector('#login-btn')
-        .addEventListener('click', (event) => {
-            event.preventDefault();
-            const inputEmail = document.querySelector('user-email');
-            const inputPassword = document.querySelector('user-password');
-            loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
-        });
+  // const btn = document.querySelector('.fa-eye')
+  // btn.addEventListener('click', () => {
+  //   const inputPassword = document.querySelector('#user-password')
 
-    // roottemplate.querySelector('#google-btn')
-    //     .addEventListener('click', (event) => {
-    //         event.preventDefault();
-    //         loginWithGoogleAccount();
-    //     });
+  //   if (inputPassword.getAttribute('type') == 'password') {
+  //     inputPassword.setAttribute('type', 'text')
+  //   } else {
+  //     inputPassword.setAttribute('type', 'password')
+  //   }
+  // })
 
-    const signUp = roottemplate.querySelector('#btn-signup');
-    signUp.addEventListener('click', () => onNavigate('signUp'));
-    return roottemplate;
+  const loginButton = login.querySelector('#login-btn')
+  loginButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const inputEmail = login.querySelector('#user-email');
+    const inputPassword = login.querySelector('#user-password');
+    loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
+  });
+
+  // rootTemplate.querySelector('#google-btn')
+  //     .addEventListener('click', (event) => {
+  //         event.preventDefault();
+  //         loginWithGoogleAccount();
+  //     });
+
+  const signUp = login.querySelector('#btn-signup');
+  signUp.addEventListener('click', () => onNavigate('#signUp'));
+
+
+  return login;
+
 };
