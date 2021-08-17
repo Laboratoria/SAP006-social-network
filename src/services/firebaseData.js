@@ -19,3 +19,4 @@ export const unliked = (postID) => {
     curtidas: firebase.firestore.FieldValue.arrayRemove(userId),
   });
 };
+// (firebase.auth().currentUser.uid === `${doc.data().user_id}`)

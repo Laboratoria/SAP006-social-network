@@ -10,8 +10,8 @@ export const home = () => {
   <header>
     <nav class="menu">
        <ul class="nav" id="nav">
-        <li><a class="links" href=""></a>Buscar</li>
-        <li><a class="links" href=""></a>Perfil</li>
+        <li class="links" ><a href=""></a>Buscar</li>
+        <li class="links" ><a href=""></a>Perfil</li>
         </ul>
     </nav>
 
