@@ -566,6 +566,12 @@ footer {
   margin: 0px;
 }
 
+.delete-button {
+  /* position: absolute; */
+  float: right;
+  background-color: #D3D95F;
+  /* z-index: 2; */
+}
 
 @media screen and (min-width: 481px) and (max-width: 768px){
 

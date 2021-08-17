@@ -36,9 +36,7 @@ export default () => {
       notice.innerHTML = '<p> Preencha todos os campos </p>';
     } else {
       signIn(inputEmail, inputPassword)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
+        .then(() => {
           window.location.hash = '#feed';
         })
         .catch((error) => {

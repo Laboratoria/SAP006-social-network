@@ -82,7 +82,12 @@ export const loadRecipe = (addPost) => {
   });
 };
 
-export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
+export const deletePost = (postId) => db.collection('recipes').doc(postId).delete().then(() => {
+  console.log('Document successfully deleted!');
+})
+  .catch((error) => {
+    console.error('Error removing document: ', error);
+  });
 
 export const uploadFoodPhoto = (file) => {
   // create storage ref
@@ -91,4 +96,14 @@ export const uploadFoodPhoto = (file) => {
   // upload file
   const task = storeageRef.put(file);
   return task;
+};
+
+export const loadMyRecipes = (addPost, userUid) => {
+  db.collection('recipes').get().then((querySnapshot) => {
+    querySnapshot.forEach((post) => {
+      if (post.data().user_id === userUid) {
+        addPost(post);
+      }
+    });
+  });
 };
