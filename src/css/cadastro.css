@@ -34,13 +34,13 @@
   padding: initial;
   border: initial;
   cursor: unset;
+  position: relative;
 }
-#loadImg {
-  width: 10%;
-  height: 40%;
+/* #loadImg {
+  width: 25%;
+  height: 25%;
   border: 1px solid #51fa02;
-  box-shadow: 0px 4px 4px 0px rgba(73, 73, 73, 0.25) inset;
-}
+} */
 .register {
   font-family: "Russo One", sans-serif;
   font-size: 20px;

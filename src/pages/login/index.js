@@ -58,6 +58,7 @@ export const login = () => {
     e.preventDefault();
     SignIn(usuario.value, passwordLogin.value)
       .then(() => {
+        stayLogged();
         route('/home');
       })
       .catch((handleError()));
