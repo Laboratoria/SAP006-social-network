@@ -8,12 +8,12 @@ export const home = () => {
   rootElement.innerHTML = ` 
   <div class="containerHome">
   <header>
-    <nav class="menu">
-       <ul class="nav" id="nav">
-        <li class="links" ><a href=""></a>Buscar</li>
-        <li class="links" ><a href=""></a>Perfil</li>
-        </ul>
-    </nav>
+  <nav class="menu">
+     <ul class="nav" id="nav">
+     <li class="links" ><a href=""></a>Buscar</li>
+     <li class="links" ><a href=""></a>Perfil</li>
+     </ul>
+     </nav>
 
     <div class="goPost">
     <img class="tomato" src="./img/tomato.svg">
@@ -61,7 +61,7 @@ export const home = () => {
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
           <p class="tipo"> ${doc.data().tipo} </p>
-          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${doc.data().curtidas.length}</button>
+          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${(doc.data().curtidas) ? doc.data().curtidas.length : '0'}</button>
           <button type="button" class="price" id="price" data-preco> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
           <div class="coments" id="coments">
             <input class="addComent" id="addComent" placeholder="Comentários"></input> 

@@ -2,7 +2,7 @@ const db = firebase.firestore();
 
 export const addPost = (postar) => db.collection('posts').add(postar);
 
-export const getPosts = () => db.collection('posts').orderBy('data').limit(5).get();
+export const getPosts = () => db.collection('posts').orderBy('data').limit(15).get();
 
 export const liked = (postID) => {
   const likes = firebase.firestore().collection('posts').doc(postID);
