@@ -24,12 +24,10 @@ window.addEventListener('load', () => {
   routeRender();
 });
 
-const verUser = () => {
-  if (localStorage.getItem('displayName') === null) {
-    route('/login');
-  } else {
-    route('/home');
-  }
-};
+// const verUser = () => {
+//   if (firebase.auth().currentUser.uid !== data().user_id) {
+//     route('/login');
+//   }
+// };
 
-verUser();
+// verUser();

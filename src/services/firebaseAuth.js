@@ -67,11 +67,11 @@ export const resetPass = (email) => {
     });
 };
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (!user) {
-    route('/login');
-  }
-});
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (!user) {
+//     route('/login');
+//   }
+// });
 
 export const deletePost = (postID) => {
   const postsCollection = firebase.firestore().collection('posts');

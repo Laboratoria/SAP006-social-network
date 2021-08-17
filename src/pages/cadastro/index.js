@@ -121,7 +121,7 @@ export const cadastro = () => {
     cadastrarComEmailSenha(emailUser, passwordRegister)
       .then(() => {
         // const user = userCredential.user;
-        atualizarUsuario(nameUser)
+        atualizarUsuario(nameUser, urlImage)
           .then(() => {
             route('/home');
           });
