@@ -92,7 +92,7 @@ export const postar = () => {
       data: new Date(),
       nome: firebase.auth().currentUser.displayName,
       user_id: firebase.auth().currentUser.uid,
-      image: './img/tomato.svg',
+      image: firebase.auth().currentUser.photoURL,
       nomeLocalReceita: localPost, // inputs do post, como nome do lugar //
       tipo: postType,
       hashTags: hashtagsPost, // se é restaurante, mercado ou receita //
