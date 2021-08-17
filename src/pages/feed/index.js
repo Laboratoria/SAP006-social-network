@@ -5,13 +5,13 @@ import { headerMenu } from '../../components/header/index.js';
 
 export const Feed = () => {
   headerMenu();
-  
+
   const user = currentUser();
   const idUser = user.uid;
   const name = user.displayName;
   const photo = user.photoURL;
   const date = new Date();
-  
+
   const root = document.createElement('div');
   root.classList.add('feed-container');
   root.innerHTML = `  
@@ -46,15 +46,15 @@ export const Feed = () => {
       likes: 0,
       comments: [],
     };
-    console.log(postObj);
-    createPost(postObj); 
-    const timeline1 = document.querySelector('.feedTimeline');   
+
+    createPost(postObj);
+    const timeline1 = document.querySelector('.feedTimeline');
     timeline1.innerHTML = '';
     textInput.value = '';
-    loadPost(); 
+    loadPost();
   });
 
-  
+
 
   function printPost(post) {
     const idPost = post.id;
@@ -63,6 +63,7 @@ export const Feed = () => {
     const nameUserPost = post.data().name;
     const photoPost = post.data().photo;
     const datePost = post.data().date;
+
 
     firebase.firestore().collection('post').doc(post.id).update({
       idPost: post.id,
