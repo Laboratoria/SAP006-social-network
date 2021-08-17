@@ -1,9 +1,93 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Nunito', sans-serif;
 }
 
-/* .background {
+body{
+    /* background-image: url(./img/background-feed.png);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background: #B78CB9;
+}
+
+main{
+    display: block;
+    background: #B78CB9;
+    margin-top: 6em;
+    margin-right: 2em;
+    margin-left: 2em;
+    padding: 10%;
+    border-radius: 10px;
+}
+
+h1{
+    padding: 5%;
+}
+
+.google-button {
+    border-radius: 10%;
+    margin: 1%;
+}
+
+footer{
+    /* background-image: url(./img/bg-purple-foot.png);
+    background-repeat: no-repeat; 
+    position: absolute;*/
+    width: 100%;
+    height: 150px;
+    bottom: 0;
+    z-index: -10;
+    text-align: center;
+}
+
+.git-link{
+    bottom: 0%;
+    float: inline-end;
+
+}
+
+.name-footer{ 
+    color: rgb(214, 214, 214);
+    font-weight: bold;
+    font-size: 8px;
+}
+
+#wave {
+    position: relative;
+    height: 6em;
+    width: 100%;
+    background-color: #701A73;
+    /* border-radius: 7%; */
+    z-index: -9;
+}
+
+#wave:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 85% 50%;
+    width: 64%;
+    height: 100%;
+    background-color: #B78CB9;
+    right: -28%;
+    top: 40%;
+}
+
+#wave:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 90% 60%;
+    width: 75%;
+    height: 100%;
+    background-color: #701A73;
+    left: -9%;
+    top: 40%;
+    z-index: -8;
+}
+
+ /*.background {
     position: absolute;
     width: 768.62px;
     height: 1129.93px;
@@ -28,8 +112,3 @@
 
 }  */
 
-.google-button {
-    background-color: white;
-    border-color: white;
-
-}
