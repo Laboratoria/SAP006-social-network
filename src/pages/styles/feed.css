@@ -26,6 +26,18 @@ input.searchBar {
     box-shadow: none;
 }
 
+.btn-logout {
+    background-color: var(--color-primary);
+    border-radius: 50px;
+    width: min-content;
+    padding: 0.2rem 0.5rem;
+    color: var(--color-background);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 .line {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 5% 0;
@@ -107,6 +119,15 @@ section#postTemplate {
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
+    width: 100%;
+}
+
+.header-post {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 p.username {
@@ -120,53 +141,8 @@ p.username {
     margin-bottom: 3%;
 }
 
-div.content {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 41vh;
-}
-
-.box {
-    width: 42vh;
-    height: 15vh;
-    background: #FFFFFF;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
-    margin: 9% 0;
-    padding: 2% 0 2% 2%;
-    /* text-align: -webkit-center; */
-}
-
-.textBox {
-    width: 42vh;
-    height: 10.7vh;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 9px;
-    line-height: 11px;
-    letter-spacing: 0.0168em;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #000000;
-    margin-right: 0px;
-    margin-bottom: 10px;
-    margin-top: 0px;
-    margin-left: 14px;
-    padding-left: 2vh;
-}
-
-p.text-post {
-    font-family: Arial;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.8vh;
-    line-height: 11px;
-    letter-spacing: 0.0168em;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #000000;
-    /* arrumar max-width do .content p */
+button#btn-drop {
+    background-color: #FFFFFF;
 }
 
 .dropdown {
@@ -204,6 +180,63 @@ p.text-post {
     display: block;
 }
 
+div.content {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    width: 40vh;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+textarea {
+    margin-left: 5%;
+    height: 7vh;
+    width: 95%;
+    overflow: scroll;
+}
+
+.box {
+    width: 42vh;
+    height: 15vh;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    margin: 4% 0;
+    padding: 2% 0 2% 2%;
+    /* text-align: -webkit-center; */
+}
+
+.textBox {
+    width: 42vh;
+    height: 10.7vh;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 9px;
+    line-height: 11px;
+    letter-spacing: 0.0168em;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000000;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-left: 14px;
+    padding-left: 2vh;
+}
+
+p.text-post {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8vh;
+    line-height: 11px;
+    letter-spacing: 0.0168em;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000000;
+    /* arrumar max-width do .content p */
+}
+
 .btn-inside {
     display: flex;
     flex-direction: column;
@@ -224,27 +257,28 @@ button.btn-actions {
     font-size: 1.3vh;
 }
 
-section.actions {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-items: center;
-    height: 5vh;
-    margin-top: 0.5vh;
-    place-items: start;
+.iconify [data-icon='bi:person-circle'] {
+    color: #706F6B;
+    background-color: #FFFFFF;
 }
 
-.iconify [data-icon='bytesize:trash'], [data-icon='bytesize:edit'], [data-icon='carbon:save'], [data-icon='ph:dots-three-duotone'] {
+.iconify [data-icon="akar-icons:home"], [data-icon="clarity:plus-circle-line"], [data-icon="akar-icons:person"] {
+    color: #FFD2BF;
+}
+
+.iconify [data-icon="clarity:notification-outline-badged"] {
+    color: #F78563;
+}
+
+section.actions {
+    margin-top: 3vh;
+    float: right;
+}
+
+.btn-more {
     color: #706f6b;
     background-color: #FFFFFF;
     font-size: 1.3vh;
-}
-
-.iconify[data-icon='bytesize:trash'] {
-    color: #706f6b;
-    background-color: #F0EAE7;
-    font-size: 1.0vh;
 }
 
 nav {
@@ -315,9 +349,6 @@ section.post {
 svg {
     height: 2.4em;
     width: 2.4em;
-    /* stroke-width="1.7"
-    width="2.5em"
-    height="2.5em" */
 }
 
 path, circle {
