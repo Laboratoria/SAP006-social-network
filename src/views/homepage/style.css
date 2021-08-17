@@ -80,7 +80,8 @@ textarea {
   padding: 1rem;
 }
 
-.post {
+.post, 
+#edit-area {
   display: flex;
   margin: 1rem;
   min-width: 18rem;
@@ -102,7 +103,8 @@ textarea {
   text-align: center;
 }
 
-.send-post {
+.send-post,
+ #confirm-edit {
   width: 60px;
   background-color: var(--orange-color);
   outline: none;
@@ -116,6 +118,23 @@ textarea {
   width: 4rem;
   height: 3.8rem;
   border-radius: 50%;
+}
+
+.icon {
+  align-self: flex-end;
+  width: 2rem;
+}
+
+#edit-area {
+  border: none;
+  margin: 1rem;
+  word-break: break-word;
+}
+
+#confirm-edit {
+  width: 76px;
+  height: 40px;
+  align-self: flex-end; 
 }
 
 .user-perfil-header {
