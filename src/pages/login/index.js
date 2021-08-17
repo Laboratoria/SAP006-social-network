@@ -1,6 +1,6 @@
-import { googleLogin, SignIn, resetPass, stayLogged } from '../../services/firebaseAuth.js';
-import { handleError } from '../../services/error.js';
+import { googleLogin, SignIn, resetPass } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
+import { errorPassword } from '../../services/error.js';
 
 export const login = () => {
   const rootElement = document.createElement('div');
@@ -17,6 +17,7 @@ export const login = () => {
         <input class="password" type="password" id="senha" placeholder="Senha">
         <img id="eye" src="./img/eyesOpen.svg">
       </div>
+      <p id="textErrorEmailPassword"></p>
       <div class="justify-enter">
         <button type="button" name="botao" id="entrar">ENTRAR</button>
       </div>
@@ -58,10 +59,9 @@ export const login = () => {
     e.preventDefault();
     SignIn(usuario.value, passwordLogin.value)
       .then(() => {
-        stayLogged();
         route('/home');
       })
-      .catch((handleError()));
+      .catch((errorPassword));
   });
 
   forgetPass.addEventListener('click', () => {
