@@ -1,7 +1,9 @@
-
 import home from "./pages/home/index.js";
-import login from "./pages/login/index.js"; 
+import login from "./pages/login/index.js";
 import cadastro from "./pages/cadastro/index.js";
+import feed from "./pages/feed/index.js";
+import perfil from "./pages/perfil/index.js";
+import addPost from "./pages/addPost/index.js";
 
 const main = document.querySelector("#root");
 
@@ -12,22 +14,29 @@ const init = () => {
       case "":
         main.appendChild(home());
         break;
-        case "#login":
-          main.appendChild(login());
-      break;
+      case "#login":
+        main.appendChild(login());
+        break;
       case "#cadastro":
         main.appendChild(cadastro());
         break;
-        default:
+      case "#feed":
+        main.appendChild(feed());
+        break;
+      case "#perfil":
+        main.appendChild(perfil());
+        break;
+      case "#addPost":
+        main.appendChild(addPost())
+        break;
+      default:
         main.appendChild(home());
 
     }
 
   })
 }
-  window.addEventListener("load", () => {
-    main.appendChild(home());
-    init();
-
-    
-  });
+window.addEventListener("load", () => {
+  main.appendChild(home());
+  init();
+});
