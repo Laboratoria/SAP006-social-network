@@ -18,7 +18,7 @@ export const updatePosts = (postId, newText) => firebase
   .doc(postId)
   .update({ text: newText })
   .then(() => {
-    window.location.reload();
+    // window.location.reload();
   })
   .catch(() => {
     console.log('Não foi dessa vez');
@@ -29,4 +29,5 @@ export const deletePost = (postId) => firebase
   .collection('posts')
   .doc(postId)
   .delete()
+  // then deverá ser aplicado no addEventListener do feed.js
   // .then(() => window.location.reload());

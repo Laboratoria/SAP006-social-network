@@ -58,6 +58,7 @@ export const Feed = () => {
       navbarBottom.classList.add("sticky");
     }
   }
+
   window.onscroll = stickyFilter();
 
   // slider post
@@ -66,7 +67,7 @@ export const Feed = () => {
   //   container.classList.add("sign-up-mode");
   // });
 
-  // deletePost('xrwbEVyC91aYsXpxJPsH');
+  // deletePost('4pVdpwtzW4OFz5Lk4xUe');
 
   loadPosts()
     .then((snap) => {
