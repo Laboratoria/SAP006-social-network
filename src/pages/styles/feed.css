@@ -389,6 +389,12 @@ path, circle {
     flex-direction: row;
     justify-content: space-between;
 }
+
+.editable-content {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #fb1d30;
+}
   
 .dropdown-content a:hover {background-color: #f1f1f1;}
   
