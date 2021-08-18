@@ -1,5 +1,5 @@
 @import url('../../components/header/style-header.css'); 
-
+@import url('../../components/posts/style.css'); 
 
 .postContainer {
   width: 80vw;
@@ -54,6 +54,7 @@
 
 .postDate {
   font-size: 10px;
+  margin-right: 2%;
 }
 
 .postBtnContainer {
@@ -67,10 +68,47 @@
   border: none;
   border-radius: 5px;
   padding: 5px;
+  margin-right: 2%;
   background-color: #ffd632;
   color: #1f1f4b;
   width: 60px;  
 }
+
+/*.likeBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #ffd632;
+  color: #1f1f4b;
+  width: 60px;  
+}
+
+.likeBtn.inactive {
+  display: none;
+}
+
+.editBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #ffd632;
+  color: #1f1f4b;
+  width: 60px; 
+  display: none; 
+}
+
+.deleteBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #ffd632;
+  color: #1f1f4b;
+  width: 60px;  
+  display: none;
+}
+*/
+
+
 
 /*
 .feed-postContainer {
@@ -83,7 +121,6 @@
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto; 
-
 }
 */
 
@@ -107,3 +144,4 @@
     }
 }
   
+

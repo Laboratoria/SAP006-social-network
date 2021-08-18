@@ -1,0 +1,39 @@
+@import url('../../components/popup/style.css'); 
+
+/*** Botões dos posts ***/
+
+.likeBtn {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 1%;
+    background-color: #ffd632;
+    color: #1f1f4b;
+    width: 60px;  
+    display: block;
+  }
+  
+  
+  .editBtn {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 1%;
+    background-color: #ffd632;
+    color: #1f1f4b;
+    width: 60px; 
+    display: none; 
+}
+  
+  .deleteBtn {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 1%;
+    background-color: #ffd632;
+    color: #1f1f4b;
+    width: 60px;  
+    display: none;
+
+}
+
