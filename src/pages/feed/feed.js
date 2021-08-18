@@ -19,9 +19,9 @@ export const Feed = () => {
       </form>
     </section>
    
-  <section class="get-post" id="postTemplate"> 
-  <!--Aqui vem todo o template do areaOfPost-->
-  </section>
+    <section class="get-post" id="postTemplate" data-section> 
+    <!--Aqui vem todo o template do areaOfPost-->
+    </section>
 
     <nav class="navbar mobile-list">
       <ul>
@@ -71,7 +71,7 @@ export const Feed = () => {
 
   // const deleteButton = document.querySelector('.delete-button');
 
-  loadPosts().then((snap) => { // pega o resultado da promisse
+  loadPosts().then((snap) => { // pega o resultado da promise
     snap.forEach((post) => { // com o resultado itera no post
       printPost(post); // chama printPOst com o que foi retornado, no caso é posts
     });

@@ -2,9 +2,9 @@ import { updatePosts } from '../services/database.js';
 
 export const printPost = (post) => {
   const areaOfPost = `
-  <section class="all-posts">
 
-    <section data-container>
+    <section data-container data-item>
+
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
@@ -27,23 +27,14 @@ export const printPost = (post) => {
           <div>
             <textarea maxlength="200" name="post-text" class="post-content text-post" id="${post.data().id}">${post.data().text}</textarea>
           </div>
-          
         </div>
+
         <section class="actions">
-          <button>13 ❤️</button>
+          <button class="btn-like" data-like>${post.likes} ❤️</button>
         </section>
 
-        <!---
-        <section class='edit-text'>
-          <div class='edit-btn-area'>
-            <button id="edit" class="edit-button" value='${post.data().id}'>Editar post</button>
-          </div>
-        </section>
-        -->
-
-      </div>
     </section>
-  </section>
+
   `;
 
   const postTemplate = document.querySelector('#postTemplate');
@@ -56,6 +47,23 @@ export const printPost = (post) => {
     const valueText = areaOfPost.querySelector('.post-content text-post').value;
     console.log(valueText);
   });
+
+  postTemplate.addEventListener('click', (e) => {
+    console.log(e);
+    // const { target } = e;
+
+  });
+
+  // console.log(likeButton);
+  // likeButton.addEventListener('click', (e) => {
+  //  // user_id.currentUser --> insere no array de likes;
+  //  // precisa de condicional para like e dislike (se no
+  //  // clique do botaõ, existe o uid do current, coloca e vice versa)--> ternário?
+  // precisa de toggle, precisa de postId
+  //  // metodo union e remove do firebase
+  //  // remover firebase.firestore.FieldValue.arrayRemove 
+  //  // firebase.firestore.FieldValue.arrayUnion 
+  // });
 
   // const eachPost = `
   //   <textarea name="post-text" class="post-content text-post"
