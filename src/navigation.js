@@ -5,13 +5,13 @@ export const navigation = (path) => {
   dispatchEvent(popStateEvent);
 };
 
-const validateIfUserIsLogged = () => {
-  const userId = localStorage.getItem('uid');
-  if (userId !== null) {
-    navigation('/feed');
-  } else {
-    navigation('/welcome');
-  }
-};
+// const validateIfUserIsLogged = () => {
+//   const userId = localStorage.getItem('uid');
+//   if (userId !== null) {
+//     navigation('/feed');
+//   } else {
+//     navigation('/welcome');
+//   }
+// };
 
-validateIfUserIsLogged();
+// validateIfUserIsLogged();
