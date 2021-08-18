@@ -78,12 +78,9 @@ export const Feed = () => {
 
   loadPosts()
     .then((snap) => {
-    // pega o resultado da promisse
       snap
         .forEach((post) => {
-        // com o resultado itera no post
-        // console.log(post);
-          printPost(post); // chama printPOst com o que foi retornado, no caso é posts
+          printPost(post); 
         });
     });
   return rootElement;
