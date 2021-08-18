@@ -1,10 +1,26 @@
 // import { signOut } from "../../services/index.js";
 import { createPost, getPost, currentUser } from '../../services/index.js';
-import { Post } from '../../components/posts/posts.js';
+import { printPost } from '../../components/posts/posts.js';
 import { headerMenu } from '../../components/header/index.js';
+
+// function loadPost() {
+//   getPost().then((snapshot) => {
+//     snapshot.forEach((post) => {
+//       printPost(post);
+//     });
+//   });
+// }
 
 export const Feed = () => {
   headerMenu();
+
+  function loadPost() {
+    getPost().then((snapshot) => {
+      snapshot.forEach((post) => {
+        printPost(post);
+      });
+    });
+  }
 
   const user = currentUser();
   const idUser = user.uid;
@@ -31,6 +47,7 @@ export const Feed = () => {
     </main>  
   `;
 
+  const timeline = document.querySelector('.feedTimeline');
   const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
 
@@ -48,38 +65,12 @@ export const Feed = () => {
     };
     console.log(postObj);
     createPost(postObj);
-    const timeline1 = document.querySelector('.feedTimeline');
-    timeline1.innerHTML = '';
+
     textInput.value = '';
+    timeline.innerHTML = '';
+
     loadPost();
   });
-
-  function printPost(post) {
-    const idPost = post.id;
-    const text = post.data().text;
-    const idUserPost = post.data().idUser;
-    const nameUserPost = post.data().name;
-    const photoPost = post.data().photo;
-    const datePost = post.data().date;
-    const dateP = post.data().dateP;
-    console.log(dateP);
-
-    firebase.firestore().collection('post').doc(post.id).update({
-      idPost: post.id,
-    });
-
-    const timeline2 = document.querySelector('.feedTimeline');
-    timeline2.innerHTML += '';
-    timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idPost, photoPost, dateP);
-  }
-
-  function loadPost() {
-    getPost().then((snapshot) => {
-      snapshot.forEach((post) => {
-        printPost(post);
-      });
-    });
-  }
 
   loadPost();
   return root;

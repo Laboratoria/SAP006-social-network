@@ -69,10 +69,16 @@ const createPost = (post) => firebase.firestore().collection('post').add(post);
 
 const getPost = () => firebase.firestore().collection('post').orderBy('date', 'desc').get();
 
+const updatePost = (idPost, post) => firebase.firestore().collection('post').doc(idPost).update(post);
+
+const deletePostFeed = (idPost) => firebase.firestore().collection('post').doc(idPost).delete();
+
 const createHome = (user) => firebase.firestore().collection('home').doc(user.userId).set(user);
 
 const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
   .then((snapshot) => snapshot);
+
+
 
 
 //const storageRef = firebase.storage().ref();
@@ -86,8 +92,11 @@ const getHome = (uid) => firebase.firestore().collection('home').where('userId',
 //mountainsRef.name === mountainImagesRef.name            // true
 //mountainsRef.fullPath === mountainImagesRef.fullPath    // false
 
+//export { deletePostFeed };
 
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
-  signOut, createPost, getPost, currentUser, createHome, getHome,
+  signOut, createPost, getPost, updatePost, deletePostFeed, currentUser, createHome, getHome,
 };
+
+
