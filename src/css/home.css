@@ -152,6 +152,7 @@
 }
 
 
+
 .like {
  /* width: 30px;
   height: 30px; */
@@ -170,6 +171,7 @@
 
 .numLikes {
   border: none;
+
   
   /* margin: 4% ​0% 0% -30%; */
 }
@@ -280,3 +282,4 @@
   right: 10%;
   cursor: pointer;
 }
+

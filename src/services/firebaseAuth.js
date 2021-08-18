@@ -9,9 +9,9 @@ export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
     .auth()
     .createUserWithEmailAndPassword(emailUser, passwordRegister);
 };
-
-export const atualizarUsuario = (nome) => firebase.auth().currentUser.updateProfile({
+export const atualizarUsuario = (nome, photoProfile) => firebase.auth().currentUser.updateProfile({
   displayName: nome,
+  photoURL: photoProfile,
   return: atualizarUsuario,
 });
 
@@ -59,3 +59,9 @@ export const resetPass = (email) => {
     })
     .catch(handleError);
 };
+
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (!user) {
+//     route('/login');
+//   }
+// });

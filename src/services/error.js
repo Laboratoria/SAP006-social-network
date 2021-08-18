@@ -15,3 +15,27 @@ export const handleError = () => {
   //     }
   //   }
 };
+
+export const errorPassword = (error) => {
+  const errorEmailPasswordField = document.getElementById('textErrorEmailPassword');
+  let errorMessage = error.message;
+  switch (errorMessage) {
+    case 'There is no user record corresponding to this identifier. The user may have been deleted.':
+      errorMessage = 'Usuário não encontrado. Verifique seus dados.';
+      errorEmailPasswordField.innerHTML = errorMessage;
+      errorMessage = '';
+      break;
+    case 'The email address is badly formatted.':
+      errorMessage = 'Insira um email válido.';
+      errorEmailPasswordField.innerHTML = errorMessage;
+      errorMessage = '';
+      break;
+    case 'The password is invalid or the user does not have a password.':
+      errorMessage = 'Senha inválida.';
+      errorEmailPasswordField.innerHTML = errorMessage;
+      errorMessage = '';
+      break;
+    default:
+      break;
+  }
+};

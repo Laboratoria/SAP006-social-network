@@ -46,6 +46,7 @@ export const postar = () => {
   `;
 
   let postType = '';
+
   const restBtn = () => {
     rootElement.querySelector('#type').innerHTML = 'Restaurante';
     postType = 'restaurante';
@@ -92,7 +93,7 @@ export const postar = () => {
       user_id: firebase.auth().currentUser.uid,
       data: new Date(),
       nome: firebase.auth().currentUser.displayName,
-      image: './img/tomato.svg',
+      image: firebase.auth().currentUser.photoURL,
       nomeLocalReceita: localPost, // inputs do post, como nome do lugar //
       tipo: postType,
       hashTags: hashtagsPost, // se é restaurante, mercado ou receita //
@@ -103,6 +104,7 @@ export const postar = () => {
     };
     addPost(post);
     route('/home');
+
     return false;
   });
   return rootElement;

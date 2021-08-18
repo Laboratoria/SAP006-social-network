@@ -2,33 +2,88 @@
 import { cadastrarComEmailSenha, atualizarUsuario } from '../../services/firebaseAuth.js';
 import { handleError } from '../../services/error.js';
 import { route } from '../../routes/navigator.js';
+import { uploadImage } from '../../services/firebaseData.js';
 
 export const cadastro = () => {
+  let urlImage = null;
   const rootElement = document.createElement('div');
   rootElement.innerHTML = `<fieldset class="box">
     <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro"></legend>
     <form class="forms">
       
-    <input type="text" id="nameUser" placeholder="Nome">
-    <p id="textErrorName"></p>
-    <input type="email" id="emailUser" placeholder="seuemail@dominio.com">
-    <p id="textErrorEmail"></p>
-    <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
-    <p id="textErrorPassword"></p>
-    <input type="password" id="confPass" placeholder="Confirme sua senha">
-    <p id="textErrorConfPassword"></p>
+        <input type="text" id="nameUser" placeholder="Nome">
+        <p id="textErrorName"></p>
+        <input type="email" id="emailUser" placeholder="seuemail@dominio.com">
+        <p id="textErrorEmail"></p>
+      <section class="inputPhoto">
+        <input class="addImg" id="addImg" type="file" alt="Adicionar imagem de perfil"/>
+        <button class="upload" type="button" name="upload" id="upload">Salvar</button>
+        <p id="textErrorImg"></p>
+        <div id="loadedImg">
+        </div>
+      </section>
+        <div class="inputPass">
+        <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
+        <img src="./img/eyesOpen.svg" id ='seePass'  aria-hidden="true">
+        <p id="textErrorPassword"></p>
+      </section>
+      <section class="inputConf">
+        <input type="password" id="confPass" placeholder="Confirme sua senha">
+        <img src="./img/eyesOpen.svg" id ='seeConfPass' aria-hidden="true">
+        <p id="textErrorConfPassword"></p>
+      </section>
+    
     </form>
     
     <button class="register" type="button" name="botao" id="enter">ENTRAR</button> 
   
     <a id="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
   </fieldset>`;
+  // olho para mostrar/ocultar senha
+  const btnEye = rootElement.querySelector('#seePass');
+  const btnConfirmEye = rootElement.querySelector('#seeConfPass');
+  btnEye.addEventListener('click', () => {
+    const inputSenha = rootElement.querySelector('#passwordRegister');
+    inputSenha.classList.toggle('visible');
+    if (inputSenha.classList.contains('visible')) {
+      btnEye.src = './img/eyesClose.svg';
+      inputSenha.type = 'text';
+    } else {
+      btnEye.src = './img/eyesOpen.svg';
+      inputSenha.type = 'password';
+    }
+  });
+  btnConfirmEye.addEventListener('click', () => {
+    const inputConfirmSenha = rootElement.querySelector('#confPass');
+    inputConfirmSenha.classList.toggle('visible');
+    if (inputConfirmSenha.classList.contains('visible')) {
+      btnEye.src = './img/eyesClose.svg';
+      inputConfirmSenha.type = 'text';
+    } else {
+      btnEye.src = './img/eyesOpen.svg';
+      inputConfirmSenha.type = 'password';
+    }
+  });
 
+  // função para carregar a foto do perfil//
+  const btnUploadImg = rootElement.querySelector('#upload');
+  btnUploadImg.addEventListener('click', () => {
+    const file = rootElement.querySelector('#addImg').files[0];
+    uploadImage('profileImg', file).then((userPhoto) => {
+      userPhoto.ref.getDownloadURL().then((url) => {
+        urlImage = url;
+        const loadedImg = rootElement.querySelector('#loadedImg');
+        const img = document.createElement('img');
+        img.src = urlImage;
+        loadedImg.appendChild(img);
+        return urlImage;
+      });
+    });
+  });
+
+  // funções para receber os dados de cadastro//
   const pageLogin = rootElement.querySelector('#buttonLogin');
   const enterButton = rootElement.querySelector('#enter');
-
-  // funções para receber dos dados de cadastro//
-
   enterButton.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -47,6 +102,12 @@ export const cadastro = () => {
       emailUser.focus();
       return false;
     }
+
+    if (urlImage === null) {
+      const errorImgField = document.getElementById('textErrorImg');
+      errorImgField.innerHTML = 'Precisamos da sua foto.';
+    }
+
     const passwordRegister = rootElement.querySelector('#passwordRegister').value;
     const passwordConfirm = rootElement.querySelector('#confPass').value;
     if (passwordRegister.length < 6 || passwordRegister.match(/[0-9]/g) == null) {
@@ -60,7 +121,7 @@ export const cadastro = () => {
     cadastrarComEmailSenha(emailUser, passwordRegister)
       .then(() => {
         // const user = userCredential.user;
-        atualizarUsuario(nameUser)
+        atualizarUsuario(nameUser, urlImage)
           .then(() => {
             route('/home');
           });
