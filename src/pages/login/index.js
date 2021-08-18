@@ -28,6 +28,8 @@ export default () => {
   const btnLogin = container.querySelector('#login-button');
   const email = container.querySelector('#email-user');
   const password = container.querySelector('#password-user');
+  const googleButton = container.querySelector('#google-button');
+  const auth = firebase.auth();
 
   btnLogin.addEventListener('click', (event) => {
     event.preventDefault();
@@ -37,8 +39,19 @@ export default () => {
 
   // Login Google
 
-  // const googleButton = container.querySelector('#google-button');
-  // googleButton.addEventListener('click', loginGoogle());
+  const signInWithGloogle = () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(googleProvider)
+      .then(() => {
+        window.location.hash = '#feed';
+      })
+      // eslint-disable-next-line arrow-parens
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  googleButton.addEventListener('click', signInWithGloogle);
 
   return container;
 };
