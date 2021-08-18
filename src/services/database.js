@@ -8,7 +8,9 @@ export const addPosts = (post) => firebase
   .firestore()
   .collection('posts')
   .add(post)
-  .then(() => loadPosts());
+  .then(() => {
+    window.location.reload();
+  });
 
 export const updatePosts = (postId, newText) => firebase
   .firestore()
@@ -16,7 +18,7 @@ export const updatePosts = (postId, newText) => firebase
   .doc(postId)
   .update({ text: newText })
   .then(() => {
-    // console.log('Caiu no load');
+    // window.location.reload();
   })
   .catch(() => {
     console.log('Não foi dessa vez');
@@ -27,4 +29,5 @@ export const deletePost = (postId) => firebase
   .collection('posts')
   .doc(postId)
   .delete()
-
+  // then deverá ser aplicado no addEventListener do feed.js
+  // .then(() => window.location.reload());
