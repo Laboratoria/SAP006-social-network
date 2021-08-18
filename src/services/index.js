@@ -74,20 +74,41 @@ const createHome = (user) => firebase.firestore().collection('home').doc(user.us
 const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
   .then((snapshot) => snapshot);
 
+const updateUserProfile = (name, url) => {
+  const user = firebase.auth().currentUser;
+  user.updateProfile({
+    displayName: name,
+    photoURL: url,
+  }).then(() => {
+    console.log('Perfil atualizado');
+  }).catch((error) => {
+  });
+};
 
-//const storageRef = firebase.storage().ref();
-// Create a reference to 'mountains.jpg'
-//const mountainsRef = storageRef.child('mountains.jpg');
+const uploadImage = (photo, callback) => {
+  const file = photo.files[0];
+  const storageRef = firebase.storage().ref(`'images/' + ${file.name}`);
+  storageRef.put(file).then(() => {
+    storageRef.getDownloadURL().then((url) => {
+      callback(url);
+    });
+  });
+};
 
-// Create a reference to 'images/mountains.jpg'
-//var mountainImagesRef = storageRef.child('images/mountains.jpg');
-
-// While the file names are the same, the references point to different files
-//mountainsRef.name === mountainImagesRef.name            // true
-//mountainsRef.fullPath === mountainImagesRef.fullPath    // false
-
+const showUserPhoto = (currentProfilePhoto) => {
+  firebase
+    .auth()
+    .onAuthStateChanged((user) => {
+      if (user != null) {
+        currentProfilePhoto.src = user.photoURL;
+      } else {
+        currentProfilePhoto.src = '../../img/avatar.png';
+      }
+    });
+};
 
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
-  signOut, createPost, getPost, currentUser, createHome, getHome,
+  signOut, createPost, getPost, currentUser, createHome, getHome, uploadImage,
+  showUserPhoto, updateUserProfile,
 };
