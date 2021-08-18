@@ -1,6 +1,6 @@
-import { navigation } from "../../routes.js";
-export const Welcome = () => {
+import { navigation } from '../../navigation.js';
 
+export const Welcome = () => {
   const template = `
 
     <section class="logotipo">
@@ -26,7 +26,7 @@ export const Welcome = () => {
       </div>   
     </section>
 
-`
+`;
   const rootElement = document.createElement('div')
   rootElement.setAttribute('class', 'container')
   rootElement.innerHTML = template;

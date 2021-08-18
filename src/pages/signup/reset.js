@@ -1,4 +1,4 @@
-import { resetPassword } from "../../services/index.js";
+import { resetPassword } from "../../services/authentication.js";
 
 export const Reset = () => {
   const rootElement = document.createElement("div");

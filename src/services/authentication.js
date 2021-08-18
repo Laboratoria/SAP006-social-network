@@ -1,5 +1,4 @@
 export const createAccount = (email, password, confirmPassword) => {
-
   if (password !== confirmPassword) {
     alert('Algo errado não está certo, verifique a senha digitada!');
     return false;
@@ -8,10 +7,8 @@ export const createAccount = (email, password, confirmPassword) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .then((user) => {
-    })
     .then(() => {
-      firebase.auth().currentUser.sendEmailVerification()
+      firebase.auth().currentUser.sendEmailVerification();
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -28,20 +25,21 @@ export const createAccount = (email, password, confirmPassword) => {
 };
 
 const verifyUser = () => {
-  firebase.auth().onAuthStateChanged((currentUser) => {
-    if (currentUser) {
-      const uid = currentUser.uid;
-    }
-  });
+  firebase
+    .auth()
+    .onAuthStateChanged((user) => {
+      if (user) {
+        localStorage.setItem('uid', user.uid);
+      }
+    });
 };
 
 export const signInEmailPassword = (email, password) => {
-  verifyUser();
   const signIn = firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+    .then(() => {
+      verifyUser();
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -59,6 +57,20 @@ export const signInEmailPassword = (email, password) => {
       }
     });
   return signIn;
+};
+
+export const logout = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.history.pushState({}, null, '/login');
+      const popStateEvent = new PopStateEvent('popstate', {});
+      dispatchEvent(popStateEvent);
+    });
+  // .catch((error) => {
+  // // An error happened.
+  // });
 };
 
 export const signInGoogle = () => {
@@ -92,14 +104,14 @@ export const keepLogged = (persistence) => {
     .auth()
     .setPersistence(persistence)
     .then(() => {
-      const provider = new firebase.auth();
+      const provider = new firebase.Auth();
       return firebase.auth().signInWithRedirect(provider);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
-}
+};
 
 export const resetPassword = (email) => {
   firebase

@@ -1,11 +1,11 @@
-   h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bolder;
-    font-size: 27px;
-    line-height: 31px;
-    letter-spacing: 0.35px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: var(--color-primary);
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bolder;
+  font-size: 27px;
+  line-height: 31px;
+  letter-spacing: 0.35px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: var(--color-primary);
 }
 
 .esmaeceHeader {
@@ -24,7 +24,7 @@ section.title {
 }
 
 .content-opacity {
-    background-image: url(./img/paleta3.jpg);
+    background-image: url(../login/img/paleta3.jpg);
     filter: opacity(0.4);
     z-index: -1;
     padding: 10% 5% 5% 5%;

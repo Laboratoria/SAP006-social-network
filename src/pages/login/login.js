@@ -1,5 +1,9 @@
-import { signInEmailPassword, signInGoogle, keepLogged } from "../../services/index.js"; 
-import { navigation } from "../../routes.js";
+import {
+  signInEmailPassword,
+  signInGoogle,
+  keepLogged,
+} from '../../services/authentication.js';
+import { navigation } from '../../navigation.js';
 
 export const Login = () => {
   const rootElement = document.createElement('div');
@@ -51,10 +55,9 @@ export const Login = () => {
     navigation('/feed');
   });
 
-  checkbox.addEventListener("change", () => {
-    navigation('/feed')
-    const none = firebase.auth.Auth.Persistence.NONE
-    const local = firebase.auth.Auth.Persistence.LOCAL
+  checkbox.addEventListener('change', () => {
+    const none = firebase.auth.Auth.Persistence.NONE;
+    const local = firebase.auth.Auth.Persistence.LOCAL;
 
     if (checkbox.checked === true && loginWithGoogle) {
       keepLogged(local);
