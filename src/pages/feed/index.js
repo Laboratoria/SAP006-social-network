@@ -38,8 +38,9 @@ export const Feed = () => {
     collectionOfPosts.doc(postId).delete()
     .then(doc => {
       loadPosts()
-  });
-
+    });
+  }
+  
   // Objetos com propriedades utilizadas nos posts:
   // const user = firebase.auth().currentUser;
   // if (user !== null) {
