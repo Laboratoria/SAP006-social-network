@@ -2,6 +2,7 @@ import profile from './index.js';
 
 export default () => {
   const myRecipesContainer = document.createElement('div');
+  const myRecipesSection = document.createElement('section');
   myRecipesContainer.append(profile());
   const myRecipesContent = `
             <aside>
@@ -13,6 +14,7 @@ export default () => {
             <aside>
     
             `;
-  myRecipesContainer.innerHTML += myRecipesContent;
+  myRecipesSection.innerHTML = myRecipesContent;
+  myRecipesContainer.append(myRecipesSection);
   return myRecipesContainer;
 };

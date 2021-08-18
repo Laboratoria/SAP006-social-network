@@ -16,7 +16,6 @@ export const setUserData = () => {
     if (user) {
       localStorage.setItem('uid', user.uid);
       localStorage.setItem('displayName', user.displayName);
-      localStorage.setItem('level', 'Nível Não Selecionado');
     }
   });
 };
@@ -43,13 +42,19 @@ export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).s
   level: data,
 });
 
+const getUserLevel = (uid) => db.collection('levels').doc(uid).get();
+
 export const signUp = (email, password, signUpName) => firebase.auth()
   .createUserWithEmailAndPassword(email, password)
   .then(() => updateUserDisplayName(signUpName))
-  .then(() => setUserData());
+  .then(() => setUserData())
+  .then(() => localStorage.setItem('level', 'Nível não selecionado'));
 
 export const signIn = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password)
+  .then((credential) => getUserLevel(credential.user.uid))
+  .then((level) => level.data().level)
+  .then((level) => localStorage.setItem('level', level))
   .then(() => setUserData());
 
 export const signInWithGoogle = () => {
@@ -88,7 +93,7 @@ export const loadRecipe = (addPost) => {
 export const likesPost = (id, numberLikes) => db.collection('recipes')
   .doc(id)
   .update({ likes: numberLikes + 1 })
-  .then(() => {});
+  .then(() => { });
 export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
 
 export const uploadFoodPhoto = (file) => {

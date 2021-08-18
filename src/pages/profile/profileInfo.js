@@ -7,6 +7,7 @@ import profile from './index.js';
 export default () => {
   const profileInfoContainer = document.createElement('div');
   profileInfoContainer.append(profile());
+  const profileSection = document.createElement('section');
   const profileInfoContent = `
           <aside class="editProfileForm">
             <div class="profileChangesDiv">
@@ -28,7 +29,8 @@ export default () => {
           <aside>
   
           `;
-  profileInfoContainer.innerHTML += profileInfoContent;
+  profileSection.innerHTML = profileInfoContent;
+  profileInfoContainer.append(profileSection);
 
   const inputName = profileInfoContainer.querySelector('#name');
   const inputEmail = profileInfoContainer.querySelector('#email');
