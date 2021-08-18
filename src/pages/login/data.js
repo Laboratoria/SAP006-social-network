@@ -15,7 +15,7 @@
 //     .then((result) => {
 //       window.location.hash = '#feed';
 //       return result;
-//     }).catch(error => error);
+    // }).catch(error => error);
 
 
 

@@ -17,3 +17,6 @@ export const loginWithEmailAndPassword = (email, password) =>
             const errorMessage = error.message;
             console.log('não logou');
         });
+
+
+

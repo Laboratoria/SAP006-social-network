@@ -34,3 +34,9 @@ export default () => {
 
 };
 
+
+//pendente:
+//Imprimir o container feed do template string
+//Rotas do feed 
+//função de logout
+//rotas do post
