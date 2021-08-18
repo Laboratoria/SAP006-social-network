@@ -82,18 +82,26 @@ export const postRecipe = (recipe) => db.collection('recipes').add({
   ...recipe,
 });
 
-export const loadRecipe = (addPost) => {
-  db.collection('recipes').get().then((querySnapshot) => {
-    querySnapshot.forEach((post) => {
-      addPost(post);
+export const loadRecipe = () => db.collection('recipes').get();
+
+export const likesPost = (postId) => {
+  db.collection('recipes').doc(postId).get()
+
+    .then((docPost) => {
+      const likeUsers = docPost.data().likes;
+
+      if (likeUsers.includes(getUserData().uid)) {
+        db.collection('recipes').doc(postId).update({
+          likes: firebase.firestore.FieldValue.arrayRemove(getUserData().uid),
+        });
+      } else {
+        db.collection('recipes').doc(postId).update({
+          likes: firebase.firestore.FieldValue.arrayUnion(getUserData().uid),
+        });
+      }
     });
-  });
 };
 
-export const likesPost = (id, numberLikes) => db.collection('recipes')
-  .doc(id)
-  .update({ likes: numberLikes + 1 })
-  .then(() => { });
 export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
 
 export const uploadFoodPhoto = (file) => {
