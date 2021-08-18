@@ -49,7 +49,7 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
-  updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
+  updatePosts('mkMwk3swH4UqsTApHpWy', 'post editado');
 
   const editButton = postTemplate.querySelector('.edit-button');
   editButton.addEventListener('click', () => {

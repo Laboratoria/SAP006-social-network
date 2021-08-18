@@ -3,7 +3,7 @@ import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
 
 export const Feed = () => {
-  const rootElement = document.createElement('div');
+  const rootElement = document.createElement("div");
   const container = `
     <header class="searchBell">
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
@@ -42,25 +42,30 @@ export const Feed = () => {
   const submitButton = rootElement.querySelector('#published-form');
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
-    const text = rootElement.querySelector('#text-post').value;
+    const text = rootElement.querySelector("#text-post").value;
+    const useruid = firebase.auth().currentUser.uid;
 
+    const date = new Date();
     const post = {
       text,
-      user_id: firebase.auth().currentUser.uid,
+      user_id: useruid,
+      date: date.toLocaleString(),
       // date: firebase.firestore.FieldValue.serverTimestamp(),
       likes: [],
+      comments: [],
     };
 
     addPosts(post);
   });
 
-  const navbarBottom = document.getElementsByClassName('navbar');
+  const navbarBottom = document.getElementsByClassName("navbar");
   const sticky = navbarBottom.offsetBottom;
   function stickyFilter() {
     if (window.pageYOffset >= sticky) {
-      navbarBottom.classList.add('sticky');
+      navbarBottom.classList.add("sticky");
     }
   }
+
   window.onscroll = stickyFilter();
 
   // slider post
@@ -69,13 +74,17 @@ export const Feed = () => {
   //   container.classList.add("sign-up-mode");
   // });
 
-  // const deleteButton = document.querySelector('.delete-button');
+  // deletePost('4pVdpwtzW4OFz5Lk4xUe');
 
-  loadPosts().then((snap) => { // pega o resultado da promisse
-    snap.forEach((post) => { // com o resultado itera no post
-      printPost(post); // chama printPOst com o que foi retornado, no caso é posts
+  loadPosts()
+    .then((snap) => {
+    // pega o resultado da promisse
+      snap
+        .forEach((post) => {
+        // com o resultado itera no post
+        // console.log(post);
+          printPost(post); // chama printPOst com o que foi retornado, no caso é posts
+        });
     });
-  });
-
   return rootElement;
 };
