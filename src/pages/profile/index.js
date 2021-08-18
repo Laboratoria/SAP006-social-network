@@ -15,7 +15,7 @@ export default () => {
            <img class="profilePicture" src="../../image/chef.png">
             <section>
               <p id="nameDisplayedOnScreen">${localStorage.getItem('displayName')}</p>
-              <p>nível</p>
+              <p id="levelDisplayedOnScreen">${localStorage.getItem('level')}</p>
             </section>
           </div>
           <div id="pofilePages">

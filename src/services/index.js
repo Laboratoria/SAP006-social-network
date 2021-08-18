@@ -3,9 +3,11 @@ const db = firebase.firestore();
 export const getUserData = () => {
   const uid = localStorage.getItem('uid');
   const displayName = localStorage.getItem('displayName');
+  const level = localStorage.getItem('level');
   return {
     uid,
     displayName,
+    level,
   };
 };
 
@@ -40,13 +42,19 @@ export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).s
   level: data,
 });
 
+const getUserLevel = (uid) => db.collection('levels').doc(uid).get();
+
 export const signUp = (email, password, signUpName) => firebase.auth()
   .createUserWithEmailAndPassword(email, password)
   .then(() => updateUserDisplayName(signUpName))
-  .then(() => setUserData());
+  .then(() => setUserData())
+  .then(() => localStorage.setItem('level', 'Nível não selecionado'));
 
 export const signIn = (email, password) => firebase.auth()
   .signInWithEmailAndPassword(email, password)
+  .then((credential) => getUserLevel(credential.user.uid))
+  .then((level) => level.data().level)
+  .then((level) => localStorage.setItem('level', level))
   .then(() => setUserData());
 
 export const signInWithGoogle = () => {
