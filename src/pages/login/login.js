@@ -25,9 +25,6 @@ export const Login = () => {
           <button id="btn-login" class="login btn">LOGIN</button>
           <img id="icon-google" src="./pages/login/img/icon-google-white.png">
         </div>
-        <form>
-          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
-        </form>
       </div>
     </section>
   `;
@@ -37,7 +34,6 @@ export const Login = () => {
   const btnGoogle = rootElement.querySelector('#icon-google');
   const email = rootElement.querySelector('#email');
   const password = rootElement.querySelector('#password');
-  const checkbox = rootElement.querySelector('.checkbox');
   const signUpBtn = rootElement.querySelector('#signup');
 
   signUpBtn.addEventListener('click', (event) => {
@@ -45,26 +41,16 @@ export const Login = () => {
     navigation('/signup');
   });
 
-  const loginWithEmail = btnLogin.addEventListener('click', () => {
+  btnLogin.addEventListener('click', () => {
     signInEmailPassword(email.value, password.value);
     navigation('/feed');
+    keepLogged();
   });
 
-  const loginWithGoogle = btnGoogle.addEventListener('click', () => {
+  btnGoogle.addEventListener('click', () => {
     signInGoogle();
     navigation('/feed');
-  });
-
-  checkbox.addEventListener('change', () => {
-    const none = firebase.auth.Auth.Persistence.NONE;
-    const local = firebase.auth.Auth.Persistence.LOCAL;
-
-    if (checkbox.checked === true && loginWithGoogle) {
-      keepLogged(local);
-    } else if (checkbox.checked === true && loginWithEmail) {
-      keepLogged(local);
-    }
-    keepLogged(none);
+    keepLogged();
   });
 
   const resetLink = rootElement.querySelector('#reset');

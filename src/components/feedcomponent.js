@@ -1,4 +1,4 @@
-import { updatePosts } from '../services/database.js';
+import { deletePost, updatePosts } from '../services/database.js';
 
 export const printPost = (post) => {
   const areaOfPost = `
@@ -8,13 +8,13 @@ export const printPost = (post) => {
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu class="dropdown" style="float:right;">
-            <button id="btn-drop" onclick="dropdownFunction()" class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
-            <div id="myDropdown" class="dropdown-content">
+          <menu class="dropdown"style="float:right;">
+            <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
+            <div id="myDropdown"class="dropdown-content">
               <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</a>
               <a href="#"><span class="iconify btn-more" data-inline="false"
-              data-icon="bytesize:trash"></span>  Deletar</a>
-              <a href="#"><span class="iconify btn-more" data-icon="carbon:save"></span></span>  Salvar</a>
+              data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
+              <a href="#"><span class="iconify btn-more" data-icon="carbon:save" id="save"></span></span>  Salvar</a>
             </div>
           </menu>
         </div>
@@ -25,7 +25,7 @@ export const printPost = (post) => {
           </button>
           
           <div>
-            <textarea maxlength="200" name="post-text" class="post-content text-post" id="${post.data().id}">${post.data().text}</textarea>
+            <textarea id="text-post" class="post-content text-post" id="${post.data().id}" disabled>${post.data().text}</textarea>
           </div>
         </div>
 
@@ -33,6 +33,7 @@ export const printPost = (post) => {
           <button class="btn-like" data-like>${post.likes} ❤️</button>
         </section>
 
+      </div>
     </section>
 
   `;
@@ -51,7 +52,6 @@ export const printPost = (post) => {
   postTemplate.addEventListener('click', (e) => {
     console.log(e);
     // const { target } = e;
-
   });
 
   // console.log(likeButton);
@@ -61,8 +61,8 @@ export const printPost = (post) => {
   //  // clique do botaõ, existe o uid do current, coloca e vice versa)--> ternário?
   // precisa de toggle, precisa de postId
   //  // metodo union e remove do firebase
-  //  // remover firebase.firestore.FieldValue.arrayRemove 
-  //  // firebase.firestore.FieldValue.arrayUnion 
+  //  // remover firebase.firestore.FieldValue.arrayRemove
+  //  // firebase.firestore.FieldValue.arrayUnion
   // });
 
   // const eachPost = `
@@ -82,55 +82,25 @@ export const printPost = (post) => {
 
   // postTemplate.innerHTML += textBox;
 
-  //     <div class="btn-inside">
-  //   <button class="btn-actions"><span class="iconify" data-inline="false"
-  //   data-icon='ri:image-add-fill'></span>
-  // </button>
-  // <button class="btn-actions"><span class="iconify" data-inline="false"
-  //   data-icon="mdi:send-circle"></span>
-  // </button>
-  // </div>
+  const btnEdit = postTemplate.querySelector('#edit');
+  const btnDelete = postTemplate.querySelector('#delete');
+  const btnSave = postTemplate.querySelector('#save');
+  const postText = postTemplate.querySelector('#text-post');
 
-  /*
-  const elementPost = addPost(post);
-  rootElement.querySelector('#get-post').appendChild(elementPost)
-   */
+  btnEdit.addEventListener('click', (e) => {
+    e.preventDefault();
+    postText.removeAttribute('disabled');
+    postText.focus();
+  });
 
-  // const editPost = () => {
-  //   const valueInput = document.querySelector('.area-edit').value;
-  //   const posts = document.querySelector('all-posts');
-  //   updatePost(valueInput, posts)
-  //     .then(() => {
-  //       const containerEditText = document.querySelector('.edit-text');
-  //       containerEditText.style.display = 'block';
-  //       const areaForEdit = document.querySelector('.area-edit');
-  //       const divTextPublished = document.querySelector('.text-published');
-  //       const textReady = document.querySelector('.text-published').innerHTML;
+  btnForSave = btnSave.addEventListener('click', (e) => {
+    e.preventDefault();
+    postText.setAttribute('disabled', '');
+    updatePosts(postId, postText.value);
+  });
 
-  //       divTextPublished.style.display = 'none';
-
-  //       areaForEdit.value = textReady;
-  //     })
-  //     .catch((error) => {
-  //       console.log('Não foi', error);
-  //     });
-  // };
-
-  // ;
-
-  // const saveUpdatedPost = () => {
-  //   const valueInput = document.querySelector('.area-edit').value;
-  //   const divTextPublished = document.querySelector('.text-published');
-  //   document.querySelector('.text-published');
-  //   const containerEdit = document.querySelector('.edit-text');
-
-  //   containerEdit.style.display = 'none';
-  //   divTextPublished.style.display = 'block';
-
-  //   divTextPublished.innerHTML = valueInput;
-  // };
-
-  // document.querySelector('.save-button').addEventListener('click', () => {
-  //   saveUpdatedPost();
-  // });
+  btnDelete.addEventListener('click', (e) => {
+    e.preventDefault();
+    deletePost(postId);
+  });
 };

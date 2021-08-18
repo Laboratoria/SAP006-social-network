@@ -361,3 +361,50 @@ path, circle {
     width: 100%;
 }
 
+ .dropdown {
+    position: relative;
+    display: inline-end;
+    float: right;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 12px 0px rgba(0,0,0,0.15);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color:#706f6b;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.7vh;
+    text-decoration: none;
+    padding: 1vh 1.5vh;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.editable-content {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #fb1d30;
+}
+  
+.dropdown-content a:hover {background-color: #f1f1f1;}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.iconify [data-icon='bytesize:trash'], [data-icon='bytesize:edit'], [data-icon='carbon:save'], [data-icon='ph:dots-three-duotone'] {
+    color: #706f6b;
+    background-color: #FFFFFF;
+    font-size: 1.3vh;
+}
+
