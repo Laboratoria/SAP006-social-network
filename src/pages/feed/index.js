@@ -11,13 +11,6 @@ export default () => {
 
   const feedSection = document.createElement('section');
 
-  // const idLikes = feedContainer.querySelectorAll('.recipeLikes');
-  // for (const btnLike of idLikes) {
-  //   btnLike.addEventListener('click', (e) => {
-  //     likesPost(e.currentTarget.parentNode.id);
-  //   })
-  // };
-
   loadRecipe()
     .then((querySnapshot) => {
       querySnapshot.forEach((post) => {
