@@ -69,25 +69,31 @@ export const userData = (name, email, uid) => db.collection('users').doc(uid).se
 });
 
 export const postRecipe = (recipe) => db.collection('recipes').add({
-  likes: 0,
+  likes: [],
   comments: [],
   ...recipe,
 });
 
-export const loadRecipe = (addPost) => {
+export const loadRecipe = (feed) => {
   db.collection('recipes').get().then((querySnapshot) => {
     querySnapshot.forEach((post) => {
-      addPost(post);
+      feed(post);
     });
   });
 };
 
-export const deletePost = (postId) => db.collection('recipes').doc(postId).delete().then(() => {
-  console.log('Document successfully deleted!');
-})
-  .catch((error) => {
-    console.error('Error removing document: ', error);
-  });
+export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
+// .then(() => {
+//   console.log('Document successfully deleted!');
+// })
+// .catch((error) => {
+//   console.error('Error removing document: ', error);
+// });
+
+export const likesPost = (id, numberLikes) => db.collection('recipes')
+  .doc(id)
+  .update({ likes: numberLikes + 1 })
+  .then(() => { });
 
 export const uploadFoodPhoto = (file) => {
   // create storage ref
@@ -98,11 +104,11 @@ export const uploadFoodPhoto = (file) => {
   return task;
 };
 
-export const loadMyRecipes = (addPost, userUid) => {
+export const loadMyRecipes = (myFeed, userUid) => {
   db.collection('recipes').get().then((querySnapshot) => {
     querySnapshot.forEach((post) => {
       if (post.data().user_id === userUid) {
-        addPost(post);
+        myFeed(post);
       }
     });
   });

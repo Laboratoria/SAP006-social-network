@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
 
 * {
   margin: 0;
@@ -40,6 +43,25 @@ body {
   width: 160px;
   margin: 35px auto auto auto;
   display: block;
+}
+
+.logoBox {
+  position: relative;
+}
+
+.foodlovers {
+  /* font-family: 'Gochi Hand', cursive; */
+  /* font-family: 'Knewave', cursive; */
+  font-family: 'Cookie', cursive;
+  text-align: center;
+  font-size: 1.2rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-49%, 130%);
+  color: var(--fressia);
+  /* -webkit-text-stroke-width: 1px; 
+  -webkit-text-stroke-color: #000; */
 }
 
 .signIn-input, .signUp-input {
