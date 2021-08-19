@@ -7,6 +7,7 @@ import profile from './index.js';
 export default () => {
   const profileInfoContainer = document.createElement('div');
   profileInfoContainer.append(profile());
+  const profileSection = document.createElement('section');
   const profileInfoContent = `
           <aside class="editProfileForm">
             <div class="profileChangesDiv">
@@ -22,13 +23,14 @@ export default () => {
                 <option value="Master/Nível vovó">Master/Nível vovó</option>
                 </select>
                 <div id="notice"></div>
-                <button id="saveChanges">Salvar alterações</button>
+                <button id="saveChanges" class="btn-logging">Salvar alterações</button>
               </form>
             </div>
           <aside>
   
           `;
-  profileInfoContainer.innerHTML += profileInfoContent;
+  profileSection.innerHTML = profileInfoContent;
+  profileInfoContainer.append(profileSection);
 
   const inputName = profileInfoContainer.querySelector('#name');
   const inputEmail = profileInfoContainer.querySelector('#email');
@@ -38,6 +40,7 @@ export default () => {
   const userUid = getUserData().uid;
   const form = profileInfoContainer.querySelector('#profileChanges');
   const nameDisplayedOnScreen = profileInfoContainer.querySelector('#nameDisplayedOnScreen');
+  const levelDisplayedOnScreen = profileInfoContainer.querySelector('#levelDisplayedOnScreen');
   const mailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   function EditProfileDom() {
@@ -54,17 +57,20 @@ export default () => {
       if (mailFormat.test(inputEmail.value) === false) {
         notice.innerHTML = '<p>Digite um email válido</p>';
       } else {
-        updateUserAuthEmail(inputEmail.value).catch(() => {
-          notice.innerHTML = '<p>Não foi possível atualizar o email, por favor, entre novamente</p>';
-        });
+        updateUserAuthEmail(inputEmail.value)
+          .catch(() => {
+            notice.innerHTML = '<p>Não foi possível atualizar o email, por favor, entre novamente</p>';
+          });
       }
     }
 
     if (userLevel.value) {
-      updateUserLevel(userLevel.value, userUid).catch((error) => {
-        console.log(error);
-        notice.innerHTML = '<p>Não foi possível atualizar o nível de cozinha</p>';
-      });
+      updateUserLevel(userLevel.value, userUid)
+        .then(localStorage.setItem('level', userLevel.value))
+        .then(levelDisplayedOnScreen.innerHTML = `${getUserData().level}`)
+        .catch(() => {
+          notice.innerHTML = '<p>Não foi possível atualizar o nível de cozinha</p>';
+        });
     }
     form.reset();
   }

@@ -305,7 +305,7 @@ button:hover {
   align-items: center;
   padding: 5px;
   justify-items: center;
-  margin-top: 100px;
+  margin-top: 71px;
 }
 
 .profile-nav-bar-options{
@@ -392,14 +392,17 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(184, 177, 177);
+  background-color: #7C2946;
+  color: #F6C324;
   flex-wrap: wrap;
 }
+
 
 #menu {
   display: flex;
   list-style: none;
-  gap: .5rem
+  gap: .5rem;
+  color: #F6C324;
 }
 
 #menu a {
@@ -445,11 +448,13 @@ a {
     /* font-size: 1rem; */
     gap: 0.5rem;
     padding: .5rem 1rem;
+   
   }
 
   #hamburger {
     border-top: 2px solid;
     width: 20px;
+
   }
 
   #hamburger::after, #hamburger::before {
@@ -460,6 +465,7 @@ a {
     width: 20px;
     height: 2px;
     margin-top: 5px;
+    color: #F6C324;
     transition: 0.3s;
   }
 

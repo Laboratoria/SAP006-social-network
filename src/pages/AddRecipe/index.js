@@ -86,11 +86,11 @@ export default () => {
       Deseja adicionar outra receita?
         
       <div class="div-btns-popup">
-        <button type="button" id="btn-yes" class="btn-popup">Sim</button>
-        <button type="button" id="btn-no" class="btn-popup">Não</button>
+        <button type="button" id="btn-yes" class="btn-popup btn-yes">Sim</button>
+        <button type="button" id="btn-no" class="btn-popup btn-no">Não</button>
       </div>
     </div>
-    <div id="overlay"></div>
+    <div class="overlay"></div>
   `;
 
   addRecipeSection.innerHTML = addRecipeTemplate;
@@ -100,7 +100,7 @@ export default () => {
   const alert = addRecipeContainer.querySelector('#alert');
   const btnPostRecipe = addRecipeContainer.querySelector('#post-recipe');
   const popup = addRecipeContainer.querySelector('#popup');
-  const toggle = addRecipeContainer.querySelectorAll('#overlay, #popup');
+  const toggle = addRecipeContainer.querySelectorAll('.overlay, #popup');
 
   function toggleClass() {
     toggle.forEach((elem) => elem.classList.toggle('active'));
@@ -117,6 +117,8 @@ export default () => {
       preco: addRecipeContainer.querySelector('#price-select').value,
       autor: localStorage.getItem('displayName'),
       user_id: localStorage.getItem('uid'),
+      likes: [],
+      comments: [],
     };
 
     const inputs = addRecipeContainer.querySelectorAll('.required');
