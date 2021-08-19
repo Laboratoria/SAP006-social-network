@@ -1,4 +1,4 @@
-import { deletePost, updatePosts } from '../services/database.js';
+import { deletePost, updatePosts } from "../services/database.js";
 
 export const printPost = (post) => {
   const areaOfPost = `
@@ -11,7 +11,9 @@ export const printPost = (post) => {
           <menu class="dropdown"style="float:right;">
             <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
             <div id="myDropdown"class="dropdown-content">
-              <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</a>
+              <a class="edit-button" id="edit" value='${
+                post.data().id
+              }' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</a>
               <a href="#"><span class="iconify btn-more" data-inline="false"
               data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
               <a href="#"><span class="iconify btn-more" data-icon="carbon:save" id="save"></span></span>  Salvar</a>
@@ -25,7 +27,9 @@ export const printPost = (post) => {
           </button>
           
           <div>
-            <textarea id="text-post" class="post-content text-post" id="${post.data().id}" disabled>${post.data().text}</textarea>
+            <textarea id="text-post" class="post-content text-post" id="${
+              post.data().id
+            }" disabled>${post.data().text}</textarea>
           </div>
         </div>
 
@@ -38,22 +42,22 @@ export const printPost = (post) => {
   
   `;
 
-  const postTemplate = document.querySelector('#postTemplate');
+  const postTemplate = document.querySelector("#postTemplate");
   postTemplate.innerHTML += areaOfPost;
 
-  updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
+  updatePosts("4pVdpwtzW4OFz5Lk4xUe", "banana");
 
-  const editButton = postTemplate.querySelector('.edit-button');
-  editButton.addEventListener('click', () => {
-    const valueText = areaOfPost.querySelector('.post-content text-post').value;
+  const editButton = postTemplate.querySelector(".edit-button");
+  editButton.addEventListener("click", () => {
+    const valueText = areaOfPost.querySelector(".post-content text-post").value;
     console.log(valueText);
   });
 
-  postTemplate.addEventListener('click', (e) => {
+  postTemplate.addEventListener("click", (e) => {
     const target = e.target;
     console.log(target.dataset.like);
-    if (target.dataset.like === '') {
-      console.log('cliquei no botão de like');
+    if (target.dataset.like === "") {
+      console.log("cliquei no botão de like");
     }
   });
 
@@ -83,26 +87,26 @@ export const printPost = (post) => {
   //   printPost(posts); // chama printPost com o que foi retornado, no caso é posts
   // });
 
-  // postTemplate.innerHTML += textBox;
+  postTemplate.innerHTML += textBox;
 
-  //   const btnEdit = postTemplate.querySelector('#edit');
-    const btnDelete = postTemplate.querySelector('#delete');
-  //   const btnSave = postTemplate.querySelector('#save');
-  //   const postText = postTemplate.querySelector('#text-post');
+  const btnEdit = postTemplate.querySelector("#edit");
+  const btnDelete = postTemplate.querySelector("#delete");
+  const btnSave = postTemplate.querySelector("#save");
+  const postText = postTemplate.querySelector("#text-post");
 
-  //   btnEdit.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     postText.removeAttribute('disabled');
-  //     postText.focus();
-  //   });
+  btnEdit.addEventListener("click", (e) => {
+    e.preventDefault();
+    postText.removeAttribute("disabled");
+    postText.focus();
+  });
 
-  //   btnForSave = btnSave.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     postText.setAttribute('disabled', '');
-  //     updatePosts(postId, postText.value);
-  //   });
+  btnForSave = btnSave.addEventListener("click", (e) => {
+    e.preventDefault();
+    postText.setAttribute("disabled", "");
+    updatePosts(postId, postText.value);
+  });
 
-  btnDelete.addEventListener('click', (e) => {
+  btnDelete.addEventListener("click", (e) => {
     e.preventDefault();
     deletePost(postId);
   });
