@@ -11,10 +11,10 @@ export const printPost = (post) => {
           <menu class="dropdown"style="float:right;">
             <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
             <div id="myDropdown"class="dropdown-content">
-              <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</a>
-              <a href="#"><span class="iconify btn-more" data-inline="false"
+              <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</button>
+              <button><span class="iconify btn-more" data-inline="false"
               data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
-              <a href="#"><span class="iconify btn-more" data-icon="carbon:save" id="save"></span></span>  Salvar</a>
+              <button id="save"><span class="iconify btn-more" data-icon="carbon:save"></span>  Salvar</button>
             </div>
           </menu>
         </div>
@@ -54,10 +54,10 @@ export const printPost = (post) => {
     postText.focus();
   });
 
-  btnForSave = btnSave.addEventListener('click', (e) => {
+  btnSave.addEventListener('click', (e) => {
     e.preventDefault()
-    postText.setAttribute('disabled', '');
     updatePosts(postId, postText.value);
+    postText.setAttribute('disabled', '');
   });
   
   btnDelete.addEventListener('click', (e) => {
