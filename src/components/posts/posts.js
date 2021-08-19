@@ -1,9 +1,12 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable no-console */
+/* eslint-disable spaced-comment */
 /* eslint-disable no-restricted-syntax */
 import { /* updatePost, */deletePostFeed, currentUser } from '../../services/index.js';
 import { Feed } from '../../pages/feed/index.js';
-import { deletePost } from './postfunctions.js';
+import { deletePost, sendLike } from './postfunctions.js';
 
-const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP) => {
+const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost) => {
   const template = `
   <main class='postContainer' data-post id=${idUserPost}>
     <header class='post-header' id=${idPost}>      
@@ -15,10 +18,11 @@ const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP) 
     </header> 
     <form class='formContainer'>
       <p id='p' class='postInput' placeholder='Sua Mensagem'>${text}</p>      
-        <section id='section' class='postBtnContainer'>       
-          <button type='button' id='like-${idPost}' class='likeBtn'>Like</button>
+        <section id='section' class='postBtnContainer'>   
+          <a data-num='num' id='numLike-${idPost}' class='numLikes'>${likesPost.length}</a>
+          <button type='button' data-like='like' id='like-${idPost}' class='likeBtn'>Like</button>
           <button type='button' id='edit-${idPost}' class='editBtn'>Edit</button>
-          <button type='button' id='delete-${idPost}' class='deleteBtn'>Delete</button>
+          <button type='button' data-delete='delete' id='delete-${idPost}' class='deleteBtn'>Delete</button>
         </section>  
       </form>    
   </main>
@@ -37,6 +41,7 @@ function printPost(post) {
   const photoPost = post.data().photo;
   // const datePost = post.data().date;
   const dateP = post.data().dateP;
+  const likesPost = post.data().likes;
 
   // const updateId = {
   //   idPost: post.id,
@@ -50,7 +55,8 @@ function printPost(post) {
 
   const timeline2 = document.querySelector('.feedTimeline');
   timeline2.innerHTML += '';
-  timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP);
+  // eslint-disable-next-line max-len
+  timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost);
 
   const postSelected = document.querySelectorAll('[data-post]');
   const btnLike = document.querySelector(`#like-${idPost}`);
@@ -65,14 +71,20 @@ function printPost(post) {
 
   for (const partOfPost of postSelected) {
     partOfPost.addEventListener('click', (event) => {
+      const e = event.target;
       const mainPost = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode;
 
       const idCreatorPost = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.getAttribute('id');
       const idPostClicked = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.children[0].getAttribute('id');
-      const deleteBtn = (event.target.id).includes('delete');
+      //const deleteBtn = (event.target.id).includes('delete');
+      const numLikes = document.querySelector(`#${event.target.id}`).previousElementSibling;
 
-      if (deleteBtn && idCreatorPost === idUser) {
+      if (e.dataset.delete && idCreatorPost === idUser) {
         deletePost(idPostClicked, mainPost);
+      }
+
+      if (e.dataset.like) {
+        sendLike(idUser, idPostClicked, numLikes);
       }
     });
   }
