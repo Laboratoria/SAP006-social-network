@@ -1,30 +1,45 @@
 // import { signOut } from "../../services/index.js";
 import { createPost, getPost, currentUser } from '../../services/index.js';
-import { Post } from '../../components/posts/posts.js';
+import { printPost } from '../../components/posts/posts.js';
 import { headerMenu } from '../../components/header/index.js';
+
+// function loadPost() {
+//   getPost().then((snapshot) => {
+//     snapshot.forEach((post) => {
+//       printPost(post);
+//     });
+//   });
+// }
 
 export const Feed = () => {
   headerMenu();
-  
+
+  function loadPost() {
+    getPost().then((snapshot) => {
+      snapshot.forEach((post) => {
+        printPost(post);
+      });
+    });
+  }
+
   const user = currentUser();
   const idUser = user.uid;
   const name = user.displayName;
   const photo = user.photoURL;
   const date = new Date();
-  
   const root = document.createElement('div');
   root.classList.add('feed-container');
   root.innerHTML = `  
     <main class='postContainer'>
-      <header id='postHeader' class='feed-postHeader'>
-      ${name}
-        <figure>
-          <img src='./img' alt='Foto Perfil' class='foto-postHeader'/>
-        </figure>
+      <header id='postHeader' class='post-header'>
+      <section class='userInfo'>
+        <img src='../../img/profileImg.png' height="40px" width="40px">
+        <p class='username'>${name}</p> 
+      </section>      
       </header> 
       <form class='formContainer'>
         <textarea class='postInput' type='text' placeholder='Sua Mensagem'></textarea>      
-        <section class='btnContainer'>
+        <section class='postBtnContainer'>
           <button type='button' class='publishBtn'>Publicar</button>
         </section>  
       </form>     
@@ -32,6 +47,7 @@ export const Feed = () => {
     </main>  
   `;
 
+  const timeline = document.querySelector('.feedTimeline');
   const textInput = root.querySelector('.postInput');
   const btnPublish = root.querySelector('.publishBtn');
 
@@ -43,43 +59,18 @@ export const Feed = () => {
       photo,
       text: textInput.value,
       date: date.toLocaleString('pt-BR'),
+      dateP: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
       likes: 0,
       comments: [],
     };
     console.log(postObj);
-    createPost(postObj); 
-    const timeline1 = document.querySelector('.feedTimeline');   
-    timeline1.innerHTML = '';
+    createPost(postObj);
+
     textInput.value = '';
-    loadPost(); 
+    timeline.innerHTML = '';
+
+    loadPost();
   });
-
-  
-
-  function printPost(post) {
-    const idPost = post.id;
-    const text = post.data().text;
-    const idUserPost = post.data().idUser;
-    const nameUserPost = post.data().name;
-    const photoPost = post.data().photo;
-    const datePost = post.data().date;
-
-    firebase.firestore().collection('post').doc(post.id).update({
-      idPost: post.id,
-    });
-
-    const timeline2 = document.querySelector('.feedTimeline');
-    timeline2.innerHTML += '';
-    timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idPost, datePost, photoPost);
-  }
-
-  function loadPost() {
-    getPost().then((snapshot) => {
-      snapshot.forEach((post) => {
-        printPost(post);
-      });
-    });
-  }
 
   loadPost();
   return root;

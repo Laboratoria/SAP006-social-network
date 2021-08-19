@@ -69,46 +69,19 @@ const createPost = (post) => firebase.firestore().collection('post').add(post);
 
 const getPost = () => firebase.firestore().collection('post').orderBy('date', 'desc').get();
 
+const updatePost = (idPost, post) => firebase.firestore().collection('post').doc(idPost).update(post);
+
+const deletePostFeed = (idPost) => firebase.firestore().collection('post').doc(idPost).delete();
+
 const createHome = (user) => firebase.firestore().collection('home').doc(user.userId).set(user);
 
 const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
   .then((snapshot) => snapshot);
 
-const updateUserProfile = (name, url) => {
-  const user = firebase.auth().currentUser;
-  user.updateProfile({
-    displayName: name,
-    photoURL: url,
-  }).then(() => {
-    console.log('Perfil atualizado');
-  }).catch((error) => {
-  });
-};
-
-const uploadImage = (photo, callback) => {
-  const file = photo.files[0];
-  const storageRef = firebase.storage().ref(`'images/' + ${file.name}`);
-  storageRef.put(file).then(() => {
-    storageRef.getDownloadURL().then((url) => {
-      callback(url);
-    });
-  });
-};
-
-const showUserPhoto = (currentProfilePhoto) => {
-  firebase
-    .auth()
-    .onAuthStateChanged((user) => {
-      if (user != null) {
-        currentProfilePhoto.src = user.photoURL;
-      } else {
-        currentProfilePhoto.src = '../../img/avatar.png';
-      }
-    });
-};
-
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
-  signOut, createPost, getPost, currentUser, createHome, getHome, uploadImage,
-  showUserPhoto, updateUserProfile,
+  signOut, createPost, getPost, currentUser, createHome, getHome,
 };
+
+
+  

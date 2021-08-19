@@ -1,4 +1,6 @@
 import { signOut } from '../../services/index.js';
+import { popUpNotice } from '../../components/popup/index.js'
+// import { popUpNotice } from '../../components'
 
 export function headerMenu() {
   const rootMain = document.querySelector('.root');
@@ -47,7 +49,10 @@ export function headerMenu() {
         break;
 
       case 'languages':
-        exibeModal();
+        const templateDeleteConfirmation = `
+        <div>IDIOMAS</div>
+        `;      
+        popUpNotice(templateDeleteConfirmation);
         break;
 
       case 'logout':
@@ -65,35 +70,8 @@ export function headerMenu() {
     nav.classList.remove('active');
   });
 
-  const popupLang = document.createElement('div');
-  popupLang.innerHTML = `  
-    <div class='popup-wrapper'>
-        <div class='popup'>
-          <div class='popup-close'> x </div>
-          <div class='popup-content'></div>      
-        </div>
-      </div>
-  `;
-  rootMain.appendChild(popupLang);
 
-  const popup = popupLang.querySelector('.popup-wrapper');
-  const popUpContent = popupLang.querySelector('.popup-content');
 
-  function exibeModal() {
-    popup.style.display = 'block';
 
-    popUpContent.innerHTML = 'IDIOMAS';
-  }
-
-  popup.addEventListener('click', (event) => {
-    const classNameOfClickedElement = event.target.classList[0];
-    const classNames = ['popup-close', 'popup-wrapper'];
-    const shoudlClosePopUp = classNames.some(
-      (classNames) => classNames === classNameOfClickedElement,
-    );
-    if (shoudlClosePopUp) {
-      popup.style.display = 'none';
-    }
-  });
-  return header;
+  
 }
