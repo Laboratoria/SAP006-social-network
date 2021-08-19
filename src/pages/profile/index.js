@@ -1,10 +1,15 @@
 /* eslint-disable no-tabs */
-import { createHome, currentUser, getHome } from '../../services/index.js';
+import {
+  createHome, currentUser, getHome, uploadPicture, downloadPicture,
+} from '../../services/index.js';
 import { headerMenu } from '../../components/header/index.js';
 
 export const Profile = () => {
   headerMenu();
   const loggedUser = currentUser();
+  const loggeduserId = loggedUser.uid;
+  const storage = firebase.storage();
+  // console.log(loggeduserId);
   const root = document.createElement('div');
   root.classList.add('root-profile');
   root.innerHTML = `
@@ -15,7 +20,8 @@ export const Profile = () => {
 					<legend class='legend'> Seu Perfil </legend>
           <section class='profile-image-container col-4'>
             <label class='label-image'>
-            <input type='file'>
+            <input type='file' name='arquivo'>
+
             <figure class='profile-figure'>
               <img src='img/avatar.png' class='avatar-image' alt='avatar'>
               <figcaption class='avatar-figcaption'>
@@ -55,7 +61,36 @@ export const Profile = () => {
   </main>
   `;
 
-  /* const avatarPhoto = root.querySelector ('.avatar-image').value; */
+  // documentação - https://firebase.google.com/docs/storage/web/create-reference?hl=pt-br
+  // storage.ref() -- criar uma referência
+  // upload da imagem:  storage.ref(`images/${loggeduserId}`).put(file);
+  // video sobre o upload https://www.youtube.com/watch?v=dEG6IqpBfN4&ab_channel=DankiCode
+  // video sobre o download url também https://www.youtube.com/watch?v=ZH-PnY-JGBU&ab_channel=TACV-TheAmazingCode-Verse
+
+  const inputPhoto = root.querySelector('input[type=file]');
+  const imageProfile = root.querySelector('.avatar-image');
+
+  function showPhoto() {
+    const photoUser = loggedUser.photoURL;
+    imageProfile.src = photoUser;
+  };
+
+  showPhoto();
+
+  inputPhoto.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+
+    uploadPicture(loggeduserId, file).then(() => {
+      downloadPicture(loggeduserId).then((url) => {
+        const imgUrl = url;
+
+        loggedUser.updateProfile({
+          photoURL: imgUrl,
+        });
+        showPhoto();
+      });
+    });
+  });
 
   const saveButton = root.querySelector('#saveBtn');
   const name = root.querySelector('#name');

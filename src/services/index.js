@@ -1,3 +1,5 @@
+const storage = firebase.storage();
+
 const loginEmailAndPassword = (email, password) => firebase
   .auth().signInWithEmailAndPassword(email, password);
 
@@ -78,25 +80,14 @@ const createHome = (user) => firebase.firestore().collection('home').doc(user.us
 const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
   .then((snapshot) => snapshot);
 
+const uploadPicture = (log, folder) => storage.ref(`images/${log}`).put(folder);
 
-
-
-//const storageRef = firebase.storage().ref();
-// Create a reference to 'mountains.jpg'
-//const mountainsRef = storageRef.child('mountains.jpg');
-
-// Create a reference to 'images/mountains.jpg'
-//var mountainImagesRef = storageRef.child('images/mountains.jpg');
-
-// While the file names are the same, the references point to different files
-//mountainsRef.name === mountainImagesRef.name            // true
-//mountainsRef.fullPath === mountainImagesRef.fullPath    // false
-
-//export { deletePostFeed };
+const downloadPicture = (log) => storage.ref().child(`images/${log}`).getDownloadURL();
 
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
   signOut, createPost, getPost, updatePost, deletePostFeed, currentUser, createHome, getHome,
+  uploadPicture, downloadPicture,
 };
 
 
