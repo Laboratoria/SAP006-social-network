@@ -11,7 +11,7 @@ const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, 
   <main class='postContainer' data-post id=${idUserPost}>
     <header class='post-header' id=${idPost}>      
       <section class='userInfo'>
-        <img id='${photoPost}' src='../../img/profileImg.png' height="40px" width="40px">
+        <img id='photoPost' src='../../img/profileImg.png' height="40px" width="40px">
         <p class='username'>${nameUserPost}</p> 
       </section>
       <p id='postDate' class='postDate'>${dateP}</p> 
@@ -57,6 +57,9 @@ function printPost(post) {
   timeline2.innerHTML += '';
   // eslint-disable-next-line max-len
   timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost);
+
+  const picturePost = document.querySelector('.picturePost');
+  picturePost.src = photoPost;
 
   const postSelected = document.querySelectorAll('[data-post]');
   const btnLike = document.querySelector(`#like-${idPost}`);

@@ -52,6 +52,7 @@ export const Feed = () => {
   const btnPublish = root.querySelector('.publishBtn');
   const picturePost = root.querySelector('.picturePost');
   picturePost.src = photo;
+  console.log(photo)
 
 
   btnPublish.addEventListener('click', () => {
