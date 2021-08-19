@@ -1,3 +1,5 @@
+const storage = firebase.storage();
+
 const loginEmailAndPassword = (email, password) => firebase
   .auth().signInWithEmailAndPassword(email, password);
 
@@ -77,6 +79,9 @@ const getLikes = (idPost) => firebase.firestore().collection('post').doc(idPost)
 
 const likePost = (idUser, idPost) => firebase.firestore().collection('post').doc(idPost).update({ likes: firebase.firestore.FieldValue.arrayUnion(idUser) });
 
+const uploadPicture = (log, folder) => storage.ref(`images/${log}`).put(folder);
+
+const downloadPicture = (log) => storage.ref().child(`images/${log}`).getDownloadURL();
 const dislikePost = (idUser, idPost) => firebase.firestore().collection('post').doc(idPost).update({ likes: firebase.firestore.FieldValue.arrayRemove(idUser) });
 
 const createHome = (user) => firebase.firestore().collection('home').doc(user.userId).set(user);
@@ -84,21 +89,8 @@ const createHome = (user) => firebase.firestore().collection('home').doc(user.us
 const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
   .then((snapshot) => snapshot);
 
-//const storageRef = firebase.storage().ref();
-// Create a reference to 'mountains.jpg'
-//const mountainsRef = storageRef.child('mountains.jpg');
-
-// Create a reference to 'images/mountains.jpg'
-//var mountainImagesRef = storageRef.child('images/mountains.jpg');
-
-// While the file names are the same, the references point to different files
-//mountainsRef.name === mountainImagesRef.name            // true
-//mountainsRef.fullPath === mountainImagesRef.fullPath    // false
-
-//export { deletePostFeed };
-
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
   signOut, createPost, getPost, updatePost, deletePostFeed, currentUser, createHome, getHome,
-  likePost, getLikes, dislikePost,
+  uploadPicture, downloadPicture, likePost, getLikes, dislikePost,
 };
