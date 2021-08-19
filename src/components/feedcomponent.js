@@ -30,12 +30,12 @@ export const printPost = (post) => {
         </div>
 
         <section class="actions">
-          <button class="btn-like" data-like>${post.likes} ❤️</button>
+          <button class="btn-like" data-like>5 ❤️</button>
         </section>
 
       </div>
     </section>
-
+  
   `;
 
   const postTemplate = document.querySelector('#postTemplate');
@@ -50,8 +50,11 @@ export const printPost = (post) => {
   });
 
   postTemplate.addEventListener('click', (e) => {
-    console.log(e);
-    // const { target } = e;
+    const target = e.target;
+    console.log(target.dataset.like);
+    if (target.dataset.like === '') {
+      console.log('cliquei no botão de like');
+    }
   });
 
   // console.log(likeButton);
@@ -82,22 +85,22 @@ export const printPost = (post) => {
 
   // postTemplate.innerHTML += textBox;
 
-  const btnEdit = postTemplate.querySelector('#edit');
-  const btnDelete = postTemplate.querySelector('#delete');
-  const btnSave = postTemplate.querySelector('#save');
-  const postText = postTemplate.querySelector('#text-post');
+  //   const btnEdit = postTemplate.querySelector('#edit');
+    const btnDelete = postTemplate.querySelector('#delete');
+  //   const btnSave = postTemplate.querySelector('#save');
+  //   const postText = postTemplate.querySelector('#text-post');
 
-  btnEdit.addEventListener('click', (e) => {
-    e.preventDefault();
-    postText.removeAttribute('disabled');
-    postText.focus();
-  });
+  //   btnEdit.addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     postText.removeAttribute('disabled');
+  //     postText.focus();
+  //   });
 
-  btnForSave = btnSave.addEventListener('click', (e) => {
-    e.preventDefault();
-    postText.setAttribute('disabled', '');
-    updatePosts(postId, postText.value);
-  });
+  //   btnForSave = btnSave.addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     postText.setAttribute('disabled', '');
+  //     updatePosts(postId, postText.value);
+  //   });
 
   btnDelete.addEventListener('click', (e) => {
     e.preventDefault();
