@@ -27,29 +27,53 @@ export const loginUser = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log('apareceu user', user);
-      window.location.hash('./feed');
-      // ...
+      window.location.hash = '#feed';
+      return user;
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('Erro', errorCode, errorMessage);
+      // let errorMessage = error.message;
+      const errorMsg = document.querySelector('#error-message');
+      if (errorCode === 'invalid-email') {
+        // errorMessage = 'Seu email ou  está incorreto. Tente novamente';
+        errorMsg.innerHTML = 'Seu email ou  está incorreto. Tente novamente';
+      } else if (errorCode === 'invalid-password') {
+        // errorMessage = 'Seu  ou senha está incorreto. Tente novamente';
+        errorMsg.innerHTML = 'Seu  ou senha está incorreto. Tente novamente';
+      } else {
+        // errorMessage = 'Usuário não cadastrado';
+        errorMsg.innerHTML = 'Usuário não cadastrado';
+      }
+      return error;
     });
 };
 
 // Login com google
 
-export const loginGoogle = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const result = firebase.auth().singInWhithPopUp(provider)
+// export const loginGoogle = () => {
+//   const provider = new firebase.auth.GoogleAuthProvider();
+//   const result = firebase.auth().singInWhithPopUp(provider)
+//     .then(() => {
+//       window.location.hash('./feed');
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+//   return result;
+// };
+
+export const signInWithGloogle = () => {
+  const auth = firebase.auth();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(googleProvider)
     .then(() => {
-      window.location.hash('./feed');
+      window.location.hash = '#feed';
+      return googleProvider;
     })
-    .catch((error) => {
+    // eslint-disable-next-line arrow-parens
+    .catch(error => {
       console.error(error);
     });
-  return result;
 };
 
 // Logout
