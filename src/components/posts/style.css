@@ -2,6 +2,10 @@
 
 /*** Botões dos posts ***/
 
+.numLikes {
+  color: black;
+  }
+  
 .likeBtn {
     border: none;
     border-radius: 5px;
