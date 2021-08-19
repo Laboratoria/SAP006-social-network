@@ -73,13 +73,16 @@ const updatePost = (idPost, post) => firebase.firestore().collection('post').doc
 
 const deletePostFeed = (idPost) => firebase.firestore().collection('post').doc(idPost).delete();
 
+const getLikes = (idPost) => firebase.firestore().collection('post').doc(idPost).get();
+
+const likePost = (idUser, idPost) => firebase.firestore().collection('post').doc(idPost).update({ likes: firebase.firestore.FieldValue.arrayUnion(idUser) });
+
+const dislikePost = (idUser, idPost) => firebase.firestore().collection('post').doc(idPost).update({ likes: firebase.firestore.FieldValue.arrayRemove(idUser) });
+
 const createHome = (user) => firebase.firestore().collection('home').doc(user.userId).set(user);
 
 const getHome = (uid) => firebase.firestore().collection('home').where('userId', '==', uid).get()
   .then((snapshot) => snapshot);
-
-
-
 
 //const storageRef = firebase.storage().ref();
 // Create a reference to 'mountains.jpg'
@@ -97,6 +100,5 @@ const getHome = (uid) => firebase.firestore().collection('home').where('userId',
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
   signOut, createPost, getPost, updatePost, deletePostFeed, currentUser, createHome, getHome,
+  likePost, getLikes, dislikePost,
 };
-
-

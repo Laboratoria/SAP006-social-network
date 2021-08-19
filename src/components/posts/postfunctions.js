@@ -1,5 +1,6 @@
+/* eslint-disable spaced-comment */
 import { popUpNotice } from '../popup/index.js'
-import { /*updatePost,*/ deletePostFeed } from '../../services/index.js';
+import { /*updatePost,*/ deletePostFeed, likePost, getLikes, dislikePost} from '../../services/index.js';
 
 const deletePost = (idPost, post) => {
   const root = document.querySelector('.root');
@@ -26,6 +27,7 @@ const deletePost = (idPost, post) => {
 
   popUpContent.addEventListener('click', (event) => {
     const answerUser = event.target.id;
+
     if (answerUser === 'yes') {
       deletePostFeed(idPost);
       post.remove();
@@ -34,8 +36,32 @@ const deletePost = (idPost, post) => {
       popup.style.display = 'none';
     }
   });
-
   return root;
 };
 
-export { deletePost };
+function addLike(num) {
+  const numberLikes = num;
+  const newNum = Number(numberLikes.innerText) + 1;
+  numberLikes.innerHTML = newNum;
+}
+
+function removeLike(num) {
+  const numberLikes = num;
+  const newNum = Number(numberLikes.innerText) - 1;
+  numberLikes.innerHTML = newNum;
+}
+
+const sendLike = (idUser, idPostClicked, numLikes) => {
+  getLikes(idPostClicked).then((post) => {
+    if (!post.data().likes.includes(idUser)) {
+      likePost(idUser, idPostClicked).then(() => {
+        addLike(numLikes);
+      }).catch('error');
+    } else {
+      dislikePost(idUser, idPostClicked).then(() => {
+        removeLike(numLikes);
+      }).catch('error');
+    }
+  }).catch('error');
+};
+export { deletePost, sendLike };

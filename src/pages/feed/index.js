@@ -60,7 +60,7 @@ export const Feed = () => {
       text: textInput.value,
       date: date.toLocaleString('pt-BR'),
       dateP: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
-      likes: 0,
+      likes: [],
       comments: [],
     };
     console.log(postObj);
