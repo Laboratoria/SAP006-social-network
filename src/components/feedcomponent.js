@@ -1,6 +1,7 @@
 import { deletePost, updatePosts } from '../services/database.js';
 
 export const printPost = (post) => {
+  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id
   const areaOfPost = `
 
     <section data-container data-item>
@@ -8,13 +9,13 @@ export const printPost = (post) => {
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu class="dropdown"style="float:right;">
+          <menu class="dropdown"style="float:right;display:${isMyPost ? 'inline-end':'none'}">
             <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
             <div id="myDropdown"class="dropdown-content">
-              <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</a>
+              <button class="edit-button" id="edit" value='${post.id}' href="#" disabled><span class="iconify btn-more" data-icon="bytesize:edit"></span>Editar</button>
               <a href="#"><span class="iconify btn-more" data-inline="false"
               data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
-              <a href="#"><span class="iconify btn-more" data-icon="carbon:save" id="save"></span></span>  Salvar</a>
+              <button id="save" data-post-id = "${post.id}"><span class="iconify btn-more" data-icon="carbon:save"></span></span>Salvar</button>
             </div>
           </menu>
         </div>
@@ -25,7 +26,7 @@ export const printPost = (post) => {
           </button>
           
           <div>
-            <textarea id="text-post" class="post-content text-post" id="${post.data().id}" disabled>${post.data().text}</textarea>
+            <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
           </div>
         </div>
 
@@ -43,11 +44,6 @@ export const printPost = (post) => {
 
   updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
 
-  const editButton = postTemplate.querySelector('.edit-button');
-  editButton.addEventListener('click', () => {
-    const valueText = areaOfPost.querySelector('.post-content text-post').value;
-    console.log(valueText);
-  });
 
   postTemplate.addEventListener('click', (e) => {
     const target = e.target;
@@ -56,6 +52,32 @@ export const printPost = (post) => {
       console.log('cliquei no botão de like');
     }
   });
+
+  const btnEdit = postTemplate.querySelector("#edit")
+  const btnDelete = postTemplate.querySelector("#delete")
+  const btnSave = postTemplate.querySelector("#save")
+  const postText = postTemplate.querySelector("#text-post")
+
+
+  btnEdit.addEventListener('click', (e) => {
+    e.preventDefault()
+    console.log(postText)
+    postText.removeAttribute('disabled', '');
+    postText.focus();
+  });
+
+  btnSave.addEventListener('click', (e) => {
+    e.preventDefault()
+    const { postId } = e.target.dataset
+    updatePosts(postId, postText.value);
+    postText.setAttribute('disabled', '');
+  });
+
+  btnDelete.addEventListener('click', (e) => {
+    e.preventDefault()
+    deletePost(postId)
+  })
+
 
   // console.log(likeButton);
   // likeButton.addEventListener('click', (e) => {
