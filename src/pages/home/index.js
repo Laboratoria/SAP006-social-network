@@ -1,6 +1,7 @@
-import { outLogin, deletePost } from '../../services/firebaseAuth.js';
+import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
-import { getPosts, liked } from '../../services/firebaseData.js';
+import { getPosts, liked, deletePost } from '../../services/firebaseData.js';
+import { modal } from './modal.js';
 
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
@@ -66,12 +67,13 @@ export const home = () => {
           <p class="local">${doc.data().nomeLocalReceita}</p> 
           <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
           <button type="submit" data-deletePostButton="${doc.id}" class="delete-button"> Deletar</button>
+          <button type="submit" data-editPostButton="${doc.id}" class="edit-button"> Editar</button>
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
         <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
 
-          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${doc.data().curtidas.length}</button>
+          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${(doc.data().curtidas) ? doc.data().curtidas.length : '0'}</button>
           <button type="button" class="price" id="price" data-preco> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
           <div class="coments" id="coments">
             <input class="addComent" id="addComent" placeholder="Comentários"></input> 
@@ -85,10 +87,8 @@ export const home = () => {
 
       function disableBtn() {
         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-          // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
           deleteBtn.hidden = false;
         } else {
-          // editBtn.hidden = true;
           deleteBtn.hidden = true;
           div.querySelector('.delete-button').style.display = 'none';
         }
@@ -99,27 +99,46 @@ export const home = () => {
         const { target } = e;
         const postID = target.parentNode.parentNode.id;
         if (deleteBtn) {
+          modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
+            deletePost(postID).then(div.remove());
+          });
+        }
+      });
+
+      const editBtn = div.querySelector('.edit-button');
+      function disableEditBtn() {
+        if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
+          // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
+          disableEditBtn.hidden = false;
+        } else {
+          // editBtn.hidden = true;
+          disableEditBtn.hidden = true;
+          div.querySelector('.edit-button').style.display = 'none';
+        }
+      }
+      disableEditBtn();
+      editBtn.addEventListener('click', (e) => {
+        const { target } = e;
+        const postID = target.parentNode.parentNode.id;
+        if (editBtn) {
           const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
           if (deleteConfirmation) {
             deletePost(postID).then(div.remove());
           }
         }
       });
-
       timeline.insertBefore(div, timeline.childNodes[0]);
     });
+
+    // like no post
+    const dataPost = rootElement.querySelector('[data-post]');
+    dataPost.addEventListener('click', (e) => {
+      const { target } = e;
+      const like = target.dataset.like;
+      if (like) {
+        liked(like);
+      }
+    });
   });
-
-  // like no post
-  const dataPost = rootElement.querySelector('[data-post]');
-  dataPost.addEventListener('click', (e) => {
-    const { target } = e;
-    const like = target.dataset.like;
-    if (like) {
-      liked(like);
-    }
-  });
-
-
   return rootElement;
 };
