@@ -71,6 +71,7 @@ textarea {
   padding: 1rem;
   font-size: 1rem;
   align-self: flex-start;
+  width: 100%;
 }
 
 .text-user {
@@ -171,6 +172,21 @@ textarea {
   padding: 3px;
 }
 
+.delete-post {
+  display: flex;
+  margin: 10px;
+  align-self: flex-end;
+  width: 30px;
+}
+
+.delete-btn {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: transparent;
+}
+
 @media(min-width: 1200px) {
 
   textarea {
@@ -202,15 +218,17 @@ textarea {
     grid-column: 2;
     justify-self: center;
     margin: 1rem auto;
+    width: 100%;
   }
 
   .inicial-page {
     justify-self: center;
   }
 
-  .send-post {
-    margin: 1.875rem 10px 10px;
-  }
+  /* .send-post {
+    margin: 5.3rem 1rem;
+    position: fixed;
+  } */
 
   .user-perfil-header {
     width: 100%;
@@ -228,7 +246,7 @@ textarea {
     display: none;
   }
 
-  #postsList, .post-form {
+  #postsList {
     justify-self: center;
     grid-column: 2;
   }

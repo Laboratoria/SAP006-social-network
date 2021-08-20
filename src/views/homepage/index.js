@@ -3,6 +3,8 @@ import {
   currentUser,
   loadPosts,
   logOut,
+  deletePost,
+
 } from '../../services/index.js';
 import { addPost } from '../../components/post.js';
 
@@ -20,12 +22,11 @@ export const home = () => {
       </button>
     </div>
     <form id="postForm" class="post-form">
-      <textarea id="postText" class="post-text" rows="1" cols="2" autocomplete="off" maxlength="500" minlenght ="1" placeholder="O que está acontecendo?" required></textarea>
+      <textarea id="postText" class="post-text" autocomplete="off" maxlength="1000" minlenght ="1" placeholder="O que está acontecendo?" required></textarea>
       <button type="submit" class="send-post ">Postar</button>
     </form>
     <p class="loading-posts"></p>
-    <ul id="postsList"></ul>
-    <div class= "footer-img">
+    <ul id="postsList" data-postsList></ul>
  `;
 
   container.innerHTML = template;
@@ -41,18 +42,19 @@ export const home = () => {
   container.querySelector('#postForm')
     .addEventListener('submit', (event) => {
       event.preventDefault();
+      const user = currentUser();
       const textPost = document.querySelector('#postText').value;
       createPost(textPost).then((result) => {
         const date = new Date();
         const createdPost = {
           id: result.id,
           data: () => ({
-            userName: currentUser().displayName,
+            userName: user.displayName,
+            userId: user.uid,
             text: textPost,
             createdAt: date.toLocaleString(),
           }),
         };
-
         const newPostElement = addPost(createdPost);
         container.querySelector('#postsList').prepend(newPostElement);
       });
@@ -63,6 +65,18 @@ export const home = () => {
   container.querySelector('#logout').addEventListener('click', (e) => {
     e.preventDefault();
     logOut();
+  });
+
+  const postsList = container.querySelector('[data-postsList]');
+  postsList.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = e.target;
+    if (target.dataset.delete === '') {
+      const getPost = target.parentNode.parentNode.parentNode.parentNode;
+      const id = getPost.getAttribute('data-id');
+      deletePost(id)
+        .then(getPost.remove());
+    }
   });
 
   return container;

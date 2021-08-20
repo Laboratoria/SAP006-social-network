@@ -14,6 +14,14 @@ export const getNewUserData = (userData, userName) => {
   usersCollection.add(user);
 };
 
+const saveUserIdOnLocalStorage = (uid) => {
+  localStorage.uid = uid;
+};
+
+export const getUserIdOnLocalStorage = () => localStorage.uid;
+
+const clearLocalStorage = () => localStorage.clear();
+
 export const loginWithGoogleAccount = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   await firebase.auth().signInWithPopup(provider)
@@ -25,6 +33,7 @@ export const loginWithGoogleAccount = async () => {
           if (firestoreUser.docs.length === 0) {
             getNewUserData(user.user, userName);
           }
+          saveUserIdOnLocalStorage(user.user.uid);
           onNavigate('/home');
         });
     });
@@ -35,7 +44,8 @@ export const loginWithEmailAndPassword = (
   userPassword,
 ) => firebase.auth()
   .signInWithEmailAndPassword(userEmail, userPassword)
-  .then(() => {
+  .then((doc) => {
+    saveUserIdOnLocalStorage(doc.user.uid);
     onNavigate('/home');
   });
 
@@ -53,11 +63,13 @@ export const createAccountWithEmailAndPassword = (
     user.updateProfile({
       displayName: userName,
     });
+    saveUserIdOnLocalStorage(user.uid);
   });
 
 export const logOut = () => {
-  firebase.auth().signOut();
-  onNavigate('/');
+  firebase.auth().signOut()
+    .then(clearLocalStorage())
+    .then(onNavigate('/'));
 };
 
 export const loadPosts = () => {
@@ -76,7 +88,7 @@ export const createPost = (textPost) => {
     userName: user.displayName,
     userEmail: user.email,
     createdAt: date.toLocaleString('pt-BR'),
-    likes: 0,
+    likes: [],
     comments: [],
   };
 
@@ -87,3 +99,7 @@ export const createPost = (textPost) => {
 };
 
 export const currentUser = () => firebase.auth().currentUser;
+
+export const deletePost = (id) => firebase
+  .firestore()
+  .collection('posts').doc(id).delete();
