@@ -2,16 +2,16 @@
 /* eslint-disable no-console */
 /* eslint-disable spaced-comment */
 /* eslint-disable no-restricted-syntax */
-import { /* updatePost, */deletePostFeed, currentUser } from '../../services/index.js';
-import { Feed } from '../../pages/feed/index.js';
+import { updatePost, currentUser } from '../../services/index.js';
+//import { Feed } from '../../pages/feed/index.js';
 import { deletePost, sendLike } from './postfunctions.js';
 
-const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost) => {
+const Post = (photoPost, nameUserPost, text, idUserPost, idPost, dateP, likesPost) => {
   const template = `
   <main class='postContainer' data-post id=${idUserPost}>
     <header class='post-header' id=${idPost}>      
       <section class='userInfo'>
-        <img id='${photoPost}' src='../../img/profileImg.png' height="40px" width="40px">
+        <img id='photoPost-${idPost}' class='imageCirclePostUser' src='${photoPost}' height="40px" width="40px">
         <p class='username'>${nameUserPost}</p> 
       </section>
       <p id='postDate' class='postDate'>${dateP}</p> 
@@ -47,7 +47,7 @@ function printPost(post) {
   //   idPost: post.id,
   // };
   // updatePost(updateId, post.id);
-  // console.log (updateId);
+  // console.log(updateId);
 
   firebase.firestore().collection('post').doc(post.id).update({
     idPost: post.id,
@@ -56,7 +56,10 @@ function printPost(post) {
   const timeline2 = document.querySelector('.feedTimeline');
   timeline2.innerHTML += '';
   // eslint-disable-next-line max-len
-  timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost);
+  timeline2.innerHTML += Post(photoPost, nameUserPost, text, idUserPost, idPost, dateP, likesPost);
+
+  // const picturePost = document.querySelector(`#photoPost-${idPost}`);
+  // picturePost.src = photoPost;
 
   const postSelected = document.querySelectorAll('[data-post]');
   const btnLike = document.querySelector(`#like-${idPost}`);
