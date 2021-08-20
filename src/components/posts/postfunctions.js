@@ -1,6 +1,7 @@
 /* eslint-disable spaced-comment */
-import { popUpNotice } from '../popup/index.js'
-import { /*updatePost,*/ deletePostFeed, likePost, getLikes, dislikePost} from '../../services/index.js';
+import {
+  deletePostFeed, likePost, getLikes, dislikePost,
+} from '../../services/index.js';
 
 const deletePost = (idPost, post) => {
   const root = document.querySelector('.root');
@@ -51,15 +52,19 @@ function removeLike(num) {
   numberLikes.innerHTML = newNum;
 }
 
-const sendLike = (idUser, idPostClicked, numLikes) => {
+const sendLike = (idUser, idPostClicked, numLikes, likeIcon) => {
   getLikes(idPostClicked).then((post) => {
     if (!post.data().likes.includes(idUser)) {
       likePost(idUser, idPostClicked).then(() => {
         addLike(numLikes);
+        likeIcon.classList.remove('far');
+        likeIcon.classList.add('fas');
       }).catch('error');
     } else {
       dislikePost(idUser, idPostClicked).then(() => {
         removeLike(numLikes);
+        likeIcon.classList.add('far');
+        likeIcon.classList.remove('fas');
       }).catch('error');
     }
   }).catch('error');

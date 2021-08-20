@@ -2,8 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable spaced-comment */
 /* eslint-disable no-restricted-syntax */
-import { /* updatePost, */deletePostFeed, currentUser } from '../../services/index.js';
-import { Feed } from '../../pages/feed/index.js';
+import { /* updatePost, */currentUser } from '../../services/index.js';
 import { deletePost, sendLike } from './postfunctions.js';
 
 const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost) => {
@@ -18,10 +17,10 @@ const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, 
     </header> 
     <form class='formContainer'>
       <p id='p' class='postInput' placeholder='Sua Mensagem'>${text}</p>      
-        <section id='section' class='postBtnContainer'>   
-          <a data-num='num' id='numLike-${idPost}' class='numLikes'>${likesPost.length}</a>
-          <button type='button' data-like='like' id='like-${idPost}' class='likeBtn'>Like</button>
-          <button type='button' id='edit-${idPost}' class='editBtn'>Edit</button>
+        <section id='section' class='postBtnContainer'> 
+            <i data-like='like' id='like-${idPost}' class='far fa-heart'></i>
+            <a data-num='num' id='numLike-${idPost}' class='numLikes'>${likesPost.length}</a>
+          <button type='button' id='edit-${idPost}' class='editBtn'>Edit</button> 
           <button type='button' data-delete='delete' id='delete-${idPost}' class='deleteBtn'>Delete</button>
         </section>  
       </form>    
@@ -77,14 +76,15 @@ function printPost(post) {
       const idCreatorPost = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.getAttribute('id');
       const idPostClicked = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.children[0].getAttribute('id');
       //const deleteBtn = (event.target.id).includes('delete');
-      const numLikes = document.querySelector(`#${event.target.id}`).previousElementSibling;
+      const likeIcon = document.querySelector(`#${event.target.id}`);
+      const numLikes = document.querySelector(`#${event.target.id}`).nextElementSibling;
 
       if (e.dataset.delete && idCreatorPost === idUser) {
         deletePost(idPostClicked, mainPost);
       }
 
       if (e.dataset.like) {
-        sendLike(idUser, idPostClicked, numLikes);
+        sendLike(idUser, idPostClicked, numLikes, likeIcon);
       }
     });
   }

@@ -26,7 +26,7 @@ export const Feed = () => {
   const idUser = user.uid;
   const name = user.displayName;
   const photo = user.photoURL;
-  console.log(photo)
+  console.log(photo);
   const date = new Date();
   const root = document.createElement('div');
   root.classList.add('feed-container');
@@ -53,7 +53,6 @@ export const Feed = () => {
   const picturePost = root.querySelector('.picturePost');
   picturePost.src = photo;
 
-
   btnPublish.addEventListener('click', () => {
     const postObj = {
       idUser,
@@ -71,8 +70,7 @@ export const Feed = () => {
 
     const timeline = document.querySelector('.feedTimeline');
     timeline.innerHTML = '';
-    textInput.value = '';    
-
+    textInput.value = '';
     loadPost();
   });
 
