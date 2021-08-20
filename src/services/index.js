@@ -27,29 +27,41 @@ export const loginUser = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log('apareceu user', user);
-      window.location.hash('./feed');
-      // ...
+      window.location.hash = '#feed';
+      return user;
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('Erro', errorCode, errorMessage);
+      let errorMessage = error.message;
+      const errorMsg = document.querySelector('#error-message');
+      if (errorCode === 'auth/user-not-found') {
+        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
+        errorMsg.innerHTML = errorMessage;
+      } else if (errorCode === 'auth/wrong-password') {
+        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
+        errorMsg.innerHTML = errorMessage;
+      } else {
+        errorMessage = 'Usuário não cadastrado';
+        errorMsg.innerHTML = errorMessage;
+      }
+      return error;
     });
 };
 
 // Login com google
 
-export const loginGoogle = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const result = firebase.auth().singInWhithPopUp(provider)
+export const signInWithGloogle = () => {
+  const auth = firebase.auth();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(googleProvider)
     .then(() => {
-      window.location.hash('./feed');
+      window.location.hash = '#feed';
+      return googleProvider;
     })
-    .catch((error) => {
+    // eslint-disable-next-line arrow-parens
+    .catch(error => {
       console.error(error);
     });
-  return result;
 };
 
 // Logout
