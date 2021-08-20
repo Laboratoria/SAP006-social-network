@@ -45,7 +45,6 @@ export const postar = () => {
     </div>
   `;
 
-
   let postType = '';
 
   const restBtn = () => {
@@ -91,7 +90,6 @@ export const postar = () => {
       return false;
     }
     const post = {
-      user_id: firebase.auth().currentUser.uid,
       data: new Date(),
       nome: firebase.auth().currentUser.displayName,
       user_id: firebase.auth().currentUser.uid,
@@ -108,7 +106,6 @@ export const postar = () => {
     route('/home');
 
     return false;
-
   });
   return rootElement;
 };

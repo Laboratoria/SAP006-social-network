@@ -1,6 +1,7 @@
-import { outLogin, } from '../../services/firebaseAuth.js';
+import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import { getPosts, liked, deletePost } from '../../services/firebaseData.js';
+import { modal } from './modal.js';
 
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
@@ -80,42 +81,14 @@ export const home = () => {
           <button class="more" id="more">ver mais</button>
           <button class="goComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
           </div>
-          <div class="containerModal">
-              
-              <div class="modal" id="modal-one">
-                <div class="modal-bg modal-exit"></div>
-                <div class="modal-container">
-                  <h1></h1>
-                  <button class="modal-close modal-exit">X</button>
-                </div>
-              </div>
-          </div>
           <hr> `;
 
-      // const modals = rootElement.querySelector('#modal');
-      // modals.forEach((trigger) => {
-      //   trigger.addEventListener('click', (event) => {
-      //     event.preventDefault();
-      //     const modal = document.getElementById(trigger.dataset.modal);
-      //     modal.classList.add('open');
-      //     const exits = modal.querySelectorAll('.modal-exit');
-      //     exits.forEach((exit) => {
-      //       exit.addEventListener('click', () => {
-      //         event.preventDefault();
-      //         modal.classList.remove('open');
-      //       });
-      //     });
-      //   });
-      //   return modals;
-      // });
       const deleteBtn = div.querySelector('.delete-button');
 
       function disableBtn() {
         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-          // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
           deleteBtn.hidden = false;
         } else {
-          // editBtn.hidden = true;
           deleteBtn.hidden = true;
           div.querySelector('.delete-button').style.display = 'none';
         }
@@ -126,10 +99,9 @@ export const home = () => {
         const { target } = e;
         const postID = target.parentNode.parentNode.id;
         if (deleteBtn) {
-          const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
-          if (deleteConfirmation) {
+          modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
             deletePost(postID).then(div.remove());
-          }
+          });
         }
       });
 
@@ -148,28 +120,25 @@ export const home = () => {
       editBtn.addEventListener('click', (e) => {
         const { target } = e;
         const postID = target.parentNode.parentNode.id;
-          if (editBtn) {
-            const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
-            if (deleteConfirmation) {
-              deletePost(postID).then(div.remove());
-        };
-
-        timeline.insertBefore(div, timeline.childNodes[0]);
+        if (editBtn) {
+          const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
+          if (deleteConfirmation) {
+            deletePost(postID).then(div.remove());
+          }
+        }
       });
+      timeline.insertBefore(div, timeline.childNodes[0]);
     });
-    return rootElement;
+
+    // like no post
+    const dataPost = rootElement.querySelector('[data-post]');
+    dataPost.addEventListener('click', (e) => {
+      const { target } = e;
+      const like = target.dataset.like;
+      if (like) {
+        liked(like);
+      }
+    });
   });
-
-  // like no post
-  const dataPost = rootElement.querySelector('[data-post]');
-  dataPost.addEventListener('click', (e) => {
-    const { target } = e;
-    const like = target.dataset.like;
-    if (like) {
-      liked(like);
-    }
-  });
-
-
   return rootElement;
 };
