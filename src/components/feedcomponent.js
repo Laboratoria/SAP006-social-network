@@ -3,7 +3,9 @@ import { deletePost, updatePosts } from '../services/database.js';
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id
   const areaOfPost = `
+
     <section data-container>
+
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
@@ -43,7 +45,7 @@ export const printPost = (post) => {
         </div>
 
         <section class="actions">
-          <button>13 ❤️</button>
+          <button class="btn-like" data-like>5 ❤️</button>
         </section>
 
       </div>
@@ -62,6 +64,16 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
+  updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
+
+
+  postTemplate.addEventListener('click', (e) => {
+    const target = e.target;
+    console.log(target.dataset.like);
+    if (target.dataset.like === '') {
+      console.log('cliquei no botão de like');
+    }
+  });
 
   const btnEdit = postTemplate.querySelector('[data-edit]')
   const btnDelete = postTemplate.querySelector('[data-delete]')
@@ -118,5 +130,6 @@ const deletePopUp = () => {
     .then(() => {
       postTemplate.innerHTML = '';
     });
+
   });
 };
