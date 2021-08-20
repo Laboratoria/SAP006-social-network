@@ -12,7 +12,7 @@ export const printPost = (post) => {
           <menu class="dropdown"style="float:right;display:${isMyPost ? 'inline-end':'none'}">
             <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
             <div id="myDropdown"class="dropdown-content">
-              <button class="edit-button" id="edit" value='${post.id}' href="#" disabled><span class="iconify btn-more" data-icon="bytesize:edit"></span>Editar</button>
+              <button class="edit-button" id="edit" value='${post.id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>Editar</button>
               <a href="#"><span class="iconify btn-more" data-inline="false"
               data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
               <button id="save" data-post-id = "${post.id}"><span class="iconify btn-more" data-icon="carbon:save"></span></span>Salvar</button>
