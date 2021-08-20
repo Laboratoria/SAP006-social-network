@@ -1,6 +1,8 @@
 import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
-import { getPosts, liked } from '../../services/firebaseData.js';
+import {
+  getPosts, liked, deletePost,
+} from '../../services/firebaseData.js';
 
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
@@ -60,24 +62,24 @@ export const home = () => {
     collectionContent.forEach((doc) => {
       const div = document.createElement('div');
       const timeline = rootElement.querySelector('#timeline');
-      div.innerHTML = `<div class="allPosts" data-id=${doc.id}>
+      div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
           <p class="local">${doc.data().nomeLocalReceita}</p> 
           <p class="data"> ${doc.data().data.toDate().toLocaleDateString()}</p>
-          <button type="button" class="delete-button" data-deletePostButton=${doc.id}> Deletar</button>
+          <button type="button" class="delete-button" data-delete="${doc.id}"> Deletar</button>
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
         <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
-          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${(doc.data().curtidas) ? doc.data().curtidas.length : '0'}</button>
-          <button type="button" class="price" id="price" data-preco> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
+          <button type="button" id="like" data-like="${doc.id}"><img src="./img/coracao.svg"></button>
+          <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
+          <button type="button" class="price" id="price" data-preco>${doc.data().preco}<img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
           <div class="coments" id="coments">
-            <input class="addComent" id="addComent" placeholder="Comentários"></input> 
-
+          <p class="addComent" id="addComent" placeholder="Comentários">${doc.data().comentarios}</p>
           <button class="more" id="more">ver mais</button>
           <button class="goComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
-          </div>
+          </div> </div>
           <hr> `;
 
       const deleteBtn = div.querySelector('.delete-button');
@@ -94,29 +96,36 @@ export const home = () => {
       disableBtn();
 
       timeline.insertBefore(div, timeline.childNodes[0]);
-    });
-    const dataPost = rootElement.querySelector('[data-post]');
-    dataPost.addEventListener('click', (e) => {
-      const { target } = e;
-      console.log(target);
-      const like = target.dataset.like;
-      const deletePost = target.dataset.deletePostButton;
-      if (like) {
-        console.log('clicou no like');
-        liked(like);
-      }
-      if (deletePost) {
-        console.log('clicou no deletar');
-      }
+
+      const dataPost = rootElement.querySelector('[data-post]');
+      dataPost.addEventListener('click', (e) => {
+        const { target } = e;
+        const likeId = target.dataset.like;
+        const deleteId = target.dataset.delete;
+        if (likeId) {
+          const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
+          const beforLike = numberLikes.classList.contains('beforLike');
+          const number = Number(numberLikes.textContent);
+          if (beforLike === true) {
+            numberLikes.classList.replace('beforLike', 'afterLike');
+            numberLikes.innerHTML = number + 1;
+            liked(likeId);
+          } else {
+            numberLikes.classList.replace('afterLike', 'beforLike');
+            numberLikes.innerHTML = number - 1;
+            liked(likeId);
+          }
+        }
+        if (deleteId) {
+          const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
+          if (deleteConfirmation) {
+            const postDiv = rootElement.querySelector(`[data-id="${deleteId}"]`);
+            deletePost(deleteId).then(() => postDiv.remove());
+          }
+        }
+      });
     });
   });
 
   return rootElement;
 };
-  // if (target.dataset.item === 'deletePostButton') {
-//   console.log('clicou no delete');
-//   const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
-//   if (deleteConfirmation) {
-//     deletePost(div).then(div.remove());
-//   }
-// }
