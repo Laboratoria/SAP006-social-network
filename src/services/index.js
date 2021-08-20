@@ -35,10 +35,10 @@ export const loginUser = (email, password) => {
       let errorMessage = error.message;
       const errorMsg = document.querySelector('#error-message');
       if (errorCode === 'auth/user-not-found') {
-        errorMessage = 'Seu email ou  está incorreto. Tente novamente';
+        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
         errorMsg.innerHTML = errorMessage;
       } else if (errorCode === 'auth/wrong-password') {
-        errorMessage = 'Seu  ou senha está incorreto. Tente novamente';
+        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
         errorMsg.innerHTML = errorMessage;
       } else {
         errorMessage = 'Usuário não cadastrado';
@@ -49,18 +49,6 @@ export const loginUser = (email, password) => {
 };
 
 // Login com google
-
-// export const loginGoogle = () => {
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   const result = firebase.auth().singInWhithPopUp(provider)
-//     .then(() => {
-//       window.location.hash('./feed');
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-//   return result;
-// };
 
 export const signInWithGloogle = () => {
   const auth = firebase.auth();
