@@ -9,13 +9,13 @@ export const signup = () => {
       <div class="img-triangle">
         <img class="header-triangle" src="../img/triangulosUp.png" alt="triangle" width="100"/>
       </div>
-      <h1 class="logo-signUp">Logo</h1>
+      <h1 class="logo-signUp">Plush</h1>
     </div>
     <form class="form-register">
       <p class="create-account">Crie sua conta</p>
       <p id="error-sign-up-message" class="error-sign-up-message"></p>
-      <input type="text" placeholder="Nome" class="input-field" id="user-name">
-      <input type="text" placeholder="Email" class="input-field" id="user-email">
+      <input type="text" placeholder="Nome" class="input-field" id="user-name" autocomplete="off">
+      <input type="text" placeholder="Email" class="input-field" id="user-email" autocomplete="off">
       <div class="show-password">
         <i id="eye-register" class="fa fa-eye" aria-hidden="true" class="hidden"></i>
       </div>
