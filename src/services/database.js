@@ -28,7 +28,8 @@ export const deletePost = (postId) => firebase
   .firestore()
   .collection('posts')
   .doc(postId)
-  .delete();
+  .delete()
+  // .then(() => console.log(postId))
   // then deverá ser aplicado no addEventListener do feed.js
   // .then(() => window.location.reload());
 
