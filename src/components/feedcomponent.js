@@ -3,17 +3,33 @@ import { deletePost, updatePosts } from '../services/database.js';
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id
   const areaOfPost = `
-    <section data-container data-item>
+
+    <section data-container>
+
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu class="dropdown"style="float:right;display:${isMyPost ? 'inline-end' : 'none'}">
-            <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
-            <div id="myDropdown"class="dropdown-content">
-              <button class="edit-button" id="edit" value='${post.id}' href="#" disabled><span class="iconify btn-more" data-icon="bytesize:edit"></span>Editar</button>
-              <a href="#"><span class="iconify btn-more" data-inline="false"
-              data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
-              <button id="save" data-post-id = "${post.id}"><span class="iconify btn-more" data-icon="carbon:save"></span></span>Salvar</button>
+          <menu
+            class="dropdown" 
+            style="float:right; display:${isMyPost ? 'inline-end':'none'}">
+
+            <button id="btn-drop"  class="dropbtn">
+              <span class="iconify" data-icon="ph:dots-three-duotone"></span>
+            </button>
+
+            <div id="myDropdown" class="dropdown-content">
+              <button data-edit="${post.id}" class="edit-button">
+                <span class="iconify btn-more" data-icon="bytesize:edit"></span>
+                Editar
+              </button>
+              <button data-delete="${post.id}" class="delete-button">
+                <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
+                Deletar
+              </button>
+              <button data-save="${post.id}" class="save-button">
+                <span class="iconify btn-more" data-icon="carbon:save"></span>
+                Salvar
+              </button>
             </div>
           </menu>
         </div>
@@ -31,8 +47,16 @@ export const printPost = (post) => {
           <button class="btn-like" data-like>5 ❤️</button>
         </section>
       </div>
+
+      <div class="popup-wrapper">
+        <div class="popup">
+          <div class="popup-close" style="display:none">X</div>
+            <div class="popup-content">
+            </div>
+        </div>
+      </div>
+
     </section>
-  
   `;
 
   const postTemplate = document.querySelector('#postTemplate');
@@ -48,75 +72,62 @@ export const printPost = (post) => {
     }
   });
 
-  const btnEdit = postTemplate.querySelector("#edit")
-  const btnSave = postTemplate.querySelector("#save")
+  const btnEdit = postTemplate.querySelector('[data-edit]')
+  const btnDelete = postTemplate.querySelector('[data-delete]')
+  const btnSave = postTemplate.querySelector('[data-save]')
   const postText = postTemplate.querySelector("#text-post")
   const btnDelete = postTemplate.querySelector('#delete');
 
 
   btnEdit.addEventListener('click', (e) => {
-    e.preventDefault()
-    console.log(postText)
-    postText.removeAttribute('disabled', '');
+    e.preventDefault();
+    console.log(postText);
+    postText.removeAttribute('disabled');
     postText.focus();
   });
 
   btnSave.addEventListener('click', (e) => {
-    e.preventDefault()
-    const { postId } = e.target.dataset
+    e.preventDefault();
+    const { postId } = e.target.dataset;
     updatePosts(postId, postText.value);
     postText.setAttribute('disabled', '');
   });
 
   btnDelete.addEventListener('click', (e) => {
-    e.preventDefault()
-    deletePost(postId)
-  })
+    // e.preventDefault();
+    const { delete: deleteId } = e.target.dataset;
+    // deletePost(postId)
+    // .then(() => {
+      deletePopUp();
+    // });
+  });
+};
 
 
-  // console.log(likeButton);
-  // likeButton.addEventListener('click', (e) => {
-  //  // user_id.currentUser --> insere no array de likes;
-  //  // precisa de condicional para like e dislike (se no
-  //  // clique do botaõ, existe o uid do current, coloca e vice versa)--> ternário?
-  // precisa de toggle, precisa de postId
-  //  // metodo union e remove do firebase
-  //  // remover firebase.firestore.FieldValue.arrayRemove
-  //  // firebase.firestore.FieldValue.arrayUnion
-  // });
+const deletePopUp = () => {
+  const popup = postTemplate.querySelector('.popup-wrapper');
+  popup.style.display = 'block';
 
-  // const eachPost = `
-  //   <textarea name="post-text" class="post-content text-post"
-  // id="${post.data().id}">${post.data().text}</textarea>
-  //   <section class="actions">
-  //     <button>❤️ ${post.likes}</button>
-  //   </section>
-  // `;
+  const closePopUp = postTemplate.querySelector('.popup-close');
+  closePopUp.style.display = 'block';
 
-  // const textBox = document.querySelector('.textBox');
-  // const showEachPost = textBox.appendChild(eachPost);
-  // showEachPost.forEach((posts) => { // com o resultado itera no post
-  //   console.log(post);
-  //   printPost(posts); // chama printPost com o que foi retornado, no caso é posts
-  // });
+  const contentPopUp = postTemplate.querySelector('.popup-content');
+  contentPopUp.innerHTML = `
+    <h2>Tem certeza que deseja deletar esse post?</h2> 
+    <button class="delete-class">Deletar</button>
+  `
 
-  // postTemplate.innerHTML += textBox;
+  closePopUp.addEventListener("click", () => {
+    popup.style.display = 'none';
+  });
 
-  //   const btnEdit = postTemplate.querySelector('#edit');
-       
-  //   const btnSave = postTemplate.querySelector('#save');
-  //   const postText = postTemplate.querySelector('#text-post');
+  const popUpDeleteButton = postTemplate.querySelector('.delete-class');
 
-  //   btnEdit.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     postText.removeAttribute('disabled');
-  //     postText.focus();
-  //   });
+  popUpDeleteButton.addEventListener('click', () => {
+    deletePost()
+    .then(() => {
+      postTemplate.innerHTML = '';
+    });
 
-  //   btnForSave = btnSave.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     postText.setAttribute('disabled', '');
-  //     updatePosts(postId, postText.value);
-  //   });
-
-}
+  });
+};
