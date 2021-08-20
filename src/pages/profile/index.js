@@ -8,8 +8,7 @@ export const Profile = () => {
   headerMenu();
   const loggedUser = currentUser();
   const loggeduserId = loggedUser.uid;
-  const storage = firebase.storage();
-  // console.log(loggeduserId);
+ 
   const root = document.createElement('div');
   root.classList.add('root-profile');
   root.innerHTML = `
@@ -23,8 +22,8 @@ export const Profile = () => {
             <input type='file' name='arquivo'>
 
             <figure class='profile-figure'>
-              <img src='img/avatar.png' class='avatar-image' alt='avatar'>
-              <figcaption class='avatar-figcaption'>
+              <img src='img/avatar.png' class='avatar-image'>
+            <figcaption class='avatar-figcaption'>
                 <img src='img/camera-figcaption.png'>
               </figcaption>
             </figure>
@@ -72,9 +71,12 @@ export const Profile = () => {
 
   function showPhoto() {
     const photoUser = loggedUser.photoURL;
-    imageProfile.src = photoUser;
+    //console.log('passou por aqui', loggedUser)
+    if (photoUser) {
+      imageProfile.src = photoUser;
+    };
   };
-
+  
   showPhoto();
 
   inputPhoto.addEventListener('change', (e) => {
