@@ -7,27 +7,47 @@ export const Feed = () => {
   const container = `
     <header class="searchBell">
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
-      <button><span id="bell" class="iconify" data-inline="false" data-icon="clarity:notification-outline-badged" style="color: #F78563;"></span></button>
+      <button>
+        <span id="bell"
+              class="iconify"
+              data-inline="false"
+              data-icon="clarity:notification-outline-badged"
+              style="color: #F78563;">
+        </span>
+      </button>
     </header>
+
     <button class="btn-logout">Logout</button>
-    <hr class="line"></hr>
+
+    <hr class="line">
+
     <h4>POSTAGENS RECENTES</h4>
+
     <section class="post">
       <form action="" id="published-form">
-      <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
-      <button class="btn" id="send-post">Enviar</button>
+        <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
+        <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
    
-  <section class="get-post" id="postTemplate"> 
-  <!--Aqui vem todo o template do areaOfPost-->
-  </section>
+    <section class="get-post" id="postTemplate"> 
+      <!--Aqui vem todo o template do areaOfPost-->
+    </section>
 
     <nav class="navbar mobile-list">
       <ul>
-        <li><span class="iconify" data-inline="false" data-icon="akar-icons:home" style="color: #FFD2BF;"></span></li>
-        <li><span class="iconify" id="new-post-btn" data-inline="false" data-icon="clarity:plus-circle-line"></span></li>
-        <li><span class="iconify" data-inline="false" data-icon="akar-icons:person" style="color: #FFD2BF;"></span></li>
+        <li>
+          <span class="iconify" data-inline="false" data-icon="akar-icons:home" style="color: #FFD2BF;">
+          </span>
+        </li>
+        <li>
+          <span class="iconify" id="new-post-btn" data-inline="false" data-icon="clarity:plus-circle-line">
+          </span>
+        </li>
+        <li>
+          <span class="iconify" data-inline="false" data-icon="akar-icons:person" style="color: #FFD2BF;">
+          </span>
+        </li>
       </ul>
     </nav>
     `;
@@ -74,16 +94,14 @@ export const Feed = () => {
   //   container.classList.add("sign-up-mode");
   // });
 
-  // deletePost('4pVdpwtzW4OFz5Lk4xUe');
+  
+
 
   loadPosts()
     .then((snap) => {
-    // pega o resultado da promisse
       snap
         .forEach((post) => {
-        // com o resultado itera no post
-        // console.log(post);
-          printPost(post); // chama printPOst com o que foi retornado, no caso é posts
+          printPost(post); 
         });
     });
   return rootElement;

@@ -1,20 +1,33 @@
 import { deletePost, updatePosts } from '../services/database.js';
 
 export const printPost = (post) => {
+  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id
   const areaOfPost = `
-  <section class="all-posts">
-
     <section data-container>
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu class="dropdown"style="float:right;">
-            <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
-            <div id="myDropdown"class="dropdown-content">
-              <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</button>
-              <button><span class="iconify btn-more" data-inline="false"
-              data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
-              <button id="save"><span class="iconify btn-more" data-icon="carbon:save"></span>  Salvar</button>
+          <menu
+            class="dropdown" 
+            style="float:right; display:${isMyPost ? 'inline-end':'none'}">
+
+            <button id="btn-drop"  class="dropbtn">
+              <span class="iconify" data-icon="ph:dots-three-duotone"></span>
+            </button>
+
+            <div id="myDropdown" class="dropdown-content">
+              <button data-edit="${post.id}" class="edit-button">
+                <span class="iconify btn-more" data-icon="bytesize:edit"></span>
+                Editar
+              </button>
+              <button data-delete="${post.id}" class="delete-button">
+                <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
+                Deletar
+              </button>
+              <button data-save="${post.id}" class="save-button">
+                <span class="iconify btn-more" data-icon="carbon:save"></span>
+                Salvar
+              </button>
             </div>
           </menu>
         </div>
@@ -25,44 +38,85 @@ export const printPost = (post) => {
           </button>
           
           <div>
-            <textarea id="text-post" class="post-content text-post" id="${post.data().id}" disabled>${post.data().text}</textarea>
+            <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
           </div>
-          
         </div>
+
         <section class="actions">
           <button>13 ❤️</button>
         </section>
 
       </div>
+
+      <div class="popup-wrapper">
+        <div class="popup">
+          <div class="popup-close" style="display:none">X</div>
+            <div class="popup-content">
+            </div>
+        </div>
+      </div>
+
     </section>
-  </section>
   `;
 
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
 
-  const btnEdit = postTemplate.querySelector("#edit")
-  const btnDelete = postTemplate.querySelector("#delete")
-  const btnSave = postTemplate.querySelector("#save")
+  const btnEdit = postTemplate.querySelector('[data-edit]')
+  const btnDelete = postTemplate.querySelector('[data-delete]')
+  const btnSave = postTemplate.querySelector('[data-save]')
   const postText = postTemplate.querySelector("#text-post")
 
 
   btnEdit.addEventListener('click', (e) => {
-    e.preventDefault()
-    postText.removeAttribute('disabled');;
+    e.preventDefault();
+    console.log(postText);
+    postText.removeAttribute('disabled');
     postText.focus();
   });
 
   btnSave.addEventListener('click', (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    const { postId } = e.target.dataset;
     updatePosts(postId, postText.value);
     postText.setAttribute('disabled', '');
   });
-  
-  btnDelete.addEventListener('click', (e) => {
-    e.preventDefault()
-    deletePost(postId)
-  })
 
+  btnDelete.addEventListener('click', (e) => {
+    // e.preventDefault();
+    const { delete: deleteId } = e.target.dataset;
+    // deletePost(postId)
+    // .then(() => {
+      deletePopUp();
+    // });
+  });
+};
+
+
+const deletePopUp = () => {
+  const popup = postTemplate.querySelector('.popup-wrapper');
+  popup.style.display = 'block';
+
+  const closePopUp = postTemplate.querySelector('.popup-close');
+  closePopUp.style.display = 'block';
+
+  const contentPopUp = postTemplate.querySelector('.popup-content');
+  contentPopUp.innerHTML = `
+    <h2>Tem certeza que deseja deletar esse post?</h2> 
+    <button class="delete-class">Deletar</button>
+  `
+
+  closePopUp.addEventListener("click", () => {
+    popup.style.display = 'none';
+  });
+
+  const popUpDeleteButton = postTemplate.querySelector('.delete-class');
+
+  popUpDeleteButton.addEventListener('click', () => {
+    deletePost()
+    .then(() => {
+      postTemplate.innerHTML = '';
+    });
+  });
 };
