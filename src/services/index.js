@@ -32,17 +32,17 @@ export const loginUser = (email, password) => {
     })
     .catch((error) => {
       const errorCode = error.code;
-      // let errorMessage = error.message;
+      let errorMessage = error.message;
       const errorMsg = document.querySelector('#error-message');
-      if (errorCode === 'invalid-email') {
-        // errorMessage = 'Seu email ou  está incorreto. Tente novamente';
-        errorMsg.innerHTML = 'Seu email ou  está incorreto. Tente novamente';
-      } else if (errorCode === 'invalid-password') {
-        // errorMessage = 'Seu  ou senha está incorreto. Tente novamente';
-        errorMsg.innerHTML = 'Seu  ou senha está incorreto. Tente novamente';
+      if (errorCode === 'auth/user-not-found') {
+        errorMessage = 'Seu email ou  está incorreto. Tente novamente';
+        errorMsg.innerHTML = errorMessage;
+      } else if (errorCode === 'auth/wrong-password') {
+        errorMessage = 'Seu  ou senha está incorreto. Tente novamente';
+        errorMsg.innerHTML = errorMessage;
       } else {
-        // errorMessage = 'Usuário não cadastrado';
-        errorMsg.innerHTML = 'Usuário não cadastrado';
+        errorMessage = 'Usuário não cadastrado';
+        errorMsg.innerHTML = errorMessage;
       }
       return error;
     });
