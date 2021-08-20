@@ -3,16 +3,14 @@ import { deletePost, updatePosts } from '../services/database.js';
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id
   const areaOfPost = `
-
     <section data-container data-item>
-
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu class="dropdown"style="float:right;display:${isMyPost ? 'inline-end':'none'}">
+          <menu class="dropdown"style="float:right;display:${isMyPost ? 'inline-end' : 'none'}">
             <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
             <div id="myDropdown"class="dropdown-content">
-              <button class="edit-button" id="edit" value='${post.id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>Editar</button>
+              <button class="edit-button" id="edit" value='${post.id}' href="#" disabled><span class="iconify btn-more" data-icon="bytesize:edit"></span>Editar</button>
               <a href="#"><span class="iconify btn-more" data-inline="false"
               data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
               <button id="save" data-post-id = "${post.id}"><span class="iconify btn-more" data-icon="carbon:save"></span></span>Salvar</button>
@@ -29,11 +27,9 @@ export const printPost = (post) => {
             <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
           </div>
         </div>
-
         <section class="actions">
           <button class="btn-like" data-like>5 ❤️</button>
         </section>
-
       </div>
     </section>
   
@@ -44,7 +40,6 @@ export const printPost = (post) => {
 
   updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
 
-
   postTemplate.addEventListener('click', (e) => {
     const target = e.target;
     console.log(target.dataset.like);
@@ -54,9 +49,9 @@ export const printPost = (post) => {
   });
 
   const btnEdit = postTemplate.querySelector("#edit")
-  const btnDelete = postTemplate.querySelector("#delete")
   const btnSave = postTemplate.querySelector("#save")
   const postText = postTemplate.querySelector("#text-post")
+  const btnDelete = postTemplate.querySelector('#delete');
 
 
   btnEdit.addEventListener('click', (e) => {
@@ -108,7 +103,7 @@ export const printPost = (post) => {
   // postTemplate.innerHTML += textBox;
 
   //   const btnEdit = postTemplate.querySelector('#edit');
-    const btnDelete = postTemplate.querySelector('#delete');
+       
   //   const btnSave = postTemplate.querySelector('#save');
   //   const postText = postTemplate.querySelector('#text-post');
 
@@ -124,8 +119,4 @@ export const printPost = (post) => {
   //     updatePosts(postId, postText.value);
   //   });
 
-  btnDelete.addEventListener('click', (e) => {
-    e.preventDefault();
-    deletePost(postId);
-  });
-};
+}

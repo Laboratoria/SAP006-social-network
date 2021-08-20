@@ -87,7 +87,7 @@ input {
     font-size: medium;
     color: var(--color-gray);
     padding: 5%;
-    margin: 1% 4%;
+    margin: 1% 4% 8%;
     display: inline-flex;
 }
 
@@ -99,8 +99,8 @@ form {
 }
 
 .btn {
-    height: 53px;
-    width: 245px;
+    height: 5vh;
+    width: 17vh;
     border-radius: 50px;
     background: var(--color-primary);
     font-family: 'Roboto', sans-serif;
