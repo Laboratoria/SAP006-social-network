@@ -19,12 +19,12 @@ const routeRender = () => {
 };
 
 window.addEventListener('popstate', routeRender);
-window.addEventListener('load', () => { //pq aqui ele é um arrow function??
+window.addEventListener('load', () => {
   routeRender();
 });
 
 export function navigation(path) {
   window.history.pushState({}, '', path);
-  const popStateEvent = new PopStateEvent('popstate', { state: {} }); // isso é uma promessa??
+  const popStateEvent = new PopStateEvent('popstate', { state: {} });
   dispatchEvent(popStateEvent);
 }

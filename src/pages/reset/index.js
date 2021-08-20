@@ -23,6 +23,8 @@ export const Reset = () => {
             <input id='email' type='e-mail' class='input-email'>
               
             <button type='button' id='buttonReset' class='btn-login btn form-item'>Enviar</button>
+
+            <button type='button' id='buttonReturn' class='btn-login btn form-item'>Voltar</button>
           </div>  
         </form>
       </section>

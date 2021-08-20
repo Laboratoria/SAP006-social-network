@@ -1,12 +1,13 @@
 /* eslint-disable no-tabs */
-import { createHome, currentUser, getHome } from '../../services/index.js';
+import {
+  createHome, currentUser, getHome, uploadPicture, downloadPicture,
+} from '../../services/index.js';
 import { headerMenu } from '../../components/header/index.js';
-import { profilePic } from '../../components/profile-pic/index.js';
 
 export const Profile = () => {
   headerMenu();
   const loggedUser = currentUser();
-  const photo = profilePic();
+  const loggeduserId = loggedUser.uid;
   const root = document.createElement('div');
   root.classList.add('root-profile');
   root.innerHTML = `
@@ -14,9 +15,20 @@ export const Profile = () => {
     <section class='profile-form col-11'>
       <form>
         <fieldset class='fieldset-container'>
-          <legend class='legend'> Seu Perfil </legend>
-					'${photo}'
-          <div class='form-fields col-9 '>
+					<legend class='legend'> Seu Perfil </legend>
+          <section class='profile-image-container col-4'>
+            <label class='label-image'>
+            <input type='file' name='arquivo'>
+
+            <figure class='profile-figure'>
+              <img src='img/avatar.png' class='avatar-image' alt='avatar'>
+              <figcaption class='avatar-figcaption'>
+                <img src='img/camera-figcaption.png'>
+              </figcaption>
+            </figure>
+          </section>
+
+					<div class='form-fields col-9 '>
             <p>Nome Completo:
               <input id='name' type='name' class='input-item' value='${loggedUser.displayName}'>
             </p>
@@ -47,11 +59,40 @@ export const Profile = () => {
   </main>
   `;
 
+  // upload da imagem:  storage.ref(`images/${loggeduserId}`).put(file);
+  // video sobre o upload https://www.youtube.com/watch?v=dEG6IqpBfN4&ab_channel=DankiCode
+  // video sobre o download url também https://www.youtube.com/watch?v=ZH-PnY-JGBU&ab_channel=TACV-TheAmazingCode-Verse
+
+  const inputPhoto = root.querySelector('input[type=file]');
+  const imageProfile = root.querySelector('.avatar-image');
+
+  function showPhoto() {
+    const photoUser = loggedUser.photoURL;
+    imageProfile.src = photoUser;
+  }
+
+  showPhoto();
+
+  inputPhoto.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+
+    uploadPicture(loggeduserId, file).then(() => {
+      downloadPicture(loggeduserId).then((url) => {
+        const imgUrl = url;
+
+        loggedUser.updateProfile({
+          photoURL: imgUrl,
+        });
+        showPhoto();
+      });
+    });
+  });
+
   const saveButton = root.querySelector('#saveBtn');
   const name = root.querySelector('#name');
-  const localization = root.querySelector('#localization');
   const boat = root.querySelector('#boat');
   const reset = root.querySelector('#reset');
+  const localization = root.querySelector('#localization');
 
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
