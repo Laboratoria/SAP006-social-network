@@ -1,4 +1,4 @@
-import { auth } from '../../lib/authentication.js';
+// import { auth } from '../../lib/authentication.js';
 import { onNavigate } from '../../navigate.js';
 
 export default () => {
@@ -22,13 +22,11 @@ export default () => {
 
     feed.innerHTML = container;
 
-    //     const logout = document.querySelector('#logout');
-    //     logout.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     auth.signOut().then(() => {
-    //         console.log('user saiu da pagina')
-    //     })
-    // })
+  const logout = feed.querySelector('#logout');
+  logout.addEventListener('click', () => onNavigate('#login'));
+  
+  const home = feed.querySelector('#logou');
+  home.addEventListener('click', () => onNavigate('#feed'));
 
     return feed;
 

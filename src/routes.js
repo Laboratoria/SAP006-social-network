@@ -2,33 +2,33 @@ import login from './pages/login/index.js';
 import signUp from './pages/signup/index.js';
 import feed from './pages/feed/index.js';
 
-const main = document.querySelector('#root');
+const page = document.querySelector('#root');
 
 const render = () => {
-  main.innerHTML = '';
+  page.innerHTML = '';
 
   switch (window.location.hash) {
     case '#login':
-      main.appendChild(login());
+      page.appendChild(login());
       break;
     case '#signUp':
-      main.appendChild(signUp());
+      page.appendChild(signUp());
       break;
     case '#feed':
-      main.appendChild(feed());
+      page.appendChild(feed());
       break;
-    // case '#logout':
-    //   main.appendChild(login());
-    //   break;
+    case '#logout':
+      page.appendChild(login());
+      break;
     default:
-      main.appendChild(login());
+      page.appendChild(login());
       break;
   }
 };
 
 window.addEventListener('load', render);
 window.addEventListener('hashchange', render);
-
+// window.addEventListener('click', render);
 
 
 
