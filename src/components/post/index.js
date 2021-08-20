@@ -1,4 +1,4 @@
-import { likesPost } from '../../services/index.js';
+import { likesPost, numLikes } from '../../services/index.js';
 
 export function addPost(post) {
   const postContainer = document.createElement('div');
@@ -53,7 +53,9 @@ export function addPost(post) {
 
     <div id="recipe-footer" class="div-width100 recipe-title">
       <div class="like">
-        <span class="material-icons favoriteIcon">favorite</span> ${post.data().likes.length} <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
+        <span class="material-icons heart favoriteIcon">favorite</span> 
+            <p class="numLikes"> ${post.data().likes.length || 0} </p>
+        <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
         <button class="recipeLikes" data-like= ${post.id} >Curtir</button>
       </div>
       <p> Por ${post.data().autor} </p>
@@ -70,9 +72,19 @@ export function addPost(post) {
 
   const button = postContainer.querySelector('.recipeLikes');
 
-  button.addEventListener('click', () => likesPost(post.id));
-  // .then(())
-  // tratar erros ;
+  const likes = postContainer.querySelector('.heart');
+  const numberLikes = postContainer.querySelector('.numLikes');
+
+  function likesNum() {
+    likesPost(post.id)
+      .then(() => likes.classList.toggle('test'))
+      .then(() => numLikes(post.id)
+        .then((massa) => {
+          numberLikes.innerHTML = massa.data().likes.length;
+        }));
+  }
+
+  button.addEventListener('click', likesNum);
 
   return postContainer;
 }
