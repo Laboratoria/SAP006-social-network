@@ -4,8 +4,6 @@ import { handleError } from './error.js';
 
 firebase.auth().useDeviceLanguage();
 
-
-
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()

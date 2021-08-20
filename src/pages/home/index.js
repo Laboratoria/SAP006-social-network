@@ -9,21 +9,24 @@ export const home = () => {
   rootElement.innerHTML = ` 
   <div class="containerHome">
   <header>
-    <nav class="menu">
+  <nav class="menu">
+     <ul class="nav" id="nav">
+     <li class="links" ><a href=""></a>Buscar</li>
+     <li class="links" ><a href=""></a>Perfil</li>
+     </ul>
+     </nav>
 
-       <ul class="nav" id="nav">
-        <li class="links" ><a href=""></a>Buscar</li>
-        <li class="links" ><a href=""></a>Perfil</li>
-        </ul>
+    <div class="goPost">
+    <img class="tomato" src="./img/tomato.svg">
+    <a id="goPost" href="">postar</a>
+
+    </div>
+
+    <button class='btn' id='btnLogout'>Sair</button>
+
+    <img src="./img/govegGreen.png" />
 
     </nav>
-  <div class="goPost">
-  <img class="tomato" src="./img/tomato.svg">
-  <a id="goPost" class="postar" href="">postar</a>
- 
-  </div>
-  <button class='btn' id='btnLogout'>Sair</button>
-  <img src="./img/govegGreen.png" />
   <div class="lines">
   <hr>
   </div>
@@ -39,9 +42,7 @@ export const home = () => {
   
   </header>
   <main>
-    <div class="publish" id="timeline" data-post>
-    </div>
-      <hr> 
+    <div class="publish" id="timeline" data-post> </div>
   </main>
 </div>
 `;
@@ -59,32 +60,31 @@ export const home = () => {
   getPosts().then((collectionContent) => {
     collectionContent.forEach((doc) => {
       const div = document.createElement('div');
-      div.id = doc.id;
       const timeline = rootElement.querySelector('#timeline');
-      div.innerHTML = `<div class="allPosts" data-id=${doc.id}>
+      div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
           <p class="local">${doc.data().nomeLocalReceita}</p> 
+
           <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
-          <button type="submit" data-deletePostButton="${doc.id}" class="delete-button"> Deletar</button>
+          <button type="button" class="delete-button" data-delete="${doc.id}"> Deletar</button>
           <button type="submit" data-editPostButton="${doc.id}" class="edit-button"> Editar</button>
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
         <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
+          <button type="button" id="like" data-like="${doc.id}"><img src="./img/coracao.svg"></button>
+          <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
+          <button type="button" class="price" id="price" data-preco>${doc.data().preco}<img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
 
-          <button type="button" id="like" data-like=${doc.id}><img src="./img/coracao.svg">${(doc.data().curtidas) ? doc.data().curtidas.length : '0'}</button>
-          <button type="button" class="price" id="price" data-preco> ${doc.data().preco} <img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
           <div class="coments" id="coments">
-            <input class="addComent" id="addComent" placeholder="Comentários"></input> 
-
+          <p class="addComent" id="addComent" placeholder="Comentários">${doc.data().comentarios}</p>
           <button class="more" id="more">ver mais</button>
           <button class="goComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
-          </div>
+          </div> </div>
           <hr> `;
 
       const deleteBtn = div.querySelector('.delete-button');
-
       function disableBtn() {
         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
           deleteBtn.hidden = false;
@@ -95,50 +95,55 @@ export const home = () => {
       }
       disableBtn();
 
-      deleteBtn.addEventListener('click', (e) => {
+//       timeline.insertBefore(div, timeline.childNodes[0]);
+
+      const dataPost = rootElement.querySelector('[data-post]');
+      dataPost.addEventListener('click', (e) => {
         const { target } = e;
-        const postID = target.parentNode.parentNode.id;
-        if (deleteBtn) {
+        const likeId = target.dataset.like;
+        const deleteId = target.dataset.delete;
+        if (likeId) {
+          const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
+          const beforLike = numberLikes.classList.contains('beforLike');
+          const number = Number(numberLikes.textContent);
+          if (beforLike === true) {
+            numberLikes.classList.replace('beforLike', 'afterLike');
+            numberLikes.innerHTML = number + 1;
+            liked(likeId);
+          } else {
+            numberLikes.classList.replace('afterLike', 'beforLike');
+            numberLikes.innerHTML = number - 1;
+            liked(likeId);
+          }
+        }
+        if (deleteId) {
           modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
-            deletePost(postID).then(div.remove());
+            deletePost(deleteId).then(div.remove());
           });
         }
       });
 
-      const editBtn = div.querySelector('.edit-button');
-      function disableEditBtn() {
-        if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-          // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
-          disableEditBtn.hidden = false;
-        } else {
-          // editBtn.hidden = true;
-          disableEditBtn.hidden = true;
-          div.querySelector('.edit-button').style.display = 'none';
-        }
-      }
-      disableEditBtn();
-      editBtn.addEventListener('click', (e) => {
-        const { target } = e;
-        const postID = target.parentNode.parentNode.id;
-        if (editBtn) {
-          const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
-          if (deleteConfirmation) {
-            deletePost(postID).then(div.remove());
-          }
-        }
+//       const editBtn = div.querySelector('.edit-button');
+//       function disableEditBtn() {
+//         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
+//           // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
+//           disableEditBtn.hidden = false;
+//         } else {
+//           // editBtn.hidden = true;
+//           disableEditBtn.hidden = true;
+//           div.querySelector('.edit-button').style.display = 'none';
+//         }
+//       }
+//       disableEditBtn();
+//       editBtn.addEventListener('click', (e) => {
+//         const { target } = e;
+//         const postID = target.parentNode.parentNode.id;
+//         if (editBtn) {
+   
+//         }
       });
+
       timeline.insertBefore(div, timeline.childNodes[0]);
+
     });
 
-    // like no post
-    const dataPost = rootElement.querySelector('[data-post]');
-    dataPost.addEventListener('click', (e) => {
-      const { target } = e;
-      const like = target.dataset.like;
-      if (like) {
-        liked(like);
-      }
-    });
-  });
-  return rootElement;
-};
