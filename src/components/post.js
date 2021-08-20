@@ -1,10 +1,10 @@
-import { currentUser } from "../services/index.js";
+import { currentUser, editPost } from "../services/index.js";
 
 export const addPost = (post) => {
   const postDiv = document.createElement('div');
-  postDiv.setAttribute('id', post.id);
+  postDiv.setAttribute('data-id', post.id);
   const postTemplate = `
-    <div id="${post.data().createdAt}" class="post">
+    <div id="${post.data().createdAt}" data-div class="post">
       <div class="user-perfil">
         <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
         <h4 class="user-name">@${post.data().userName}</h4>
@@ -12,65 +12,59 @@ export const addPost = (post) => {
       <article class="post-field">
         <p class="user-post">${post.data().text}</p>
       </article>
+      <div class="edit-post" style="display:none">
+        <button id="confirm-edit" class="confirm-edit" style="display:none">Confirmar</button>
+        <button data-edit class="edit-btn" id="edit-btn">
+          <img src="./img/pencil-icon.png" data-edit alt="edit-icon" class="edit-icon">
+        </button>
+      </div>
+      <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Falha ao editar post</p>
+        </div>
+      </div>
     </div>
   `;
   postDiv.innerHTML = postTemplate;
-  const postId = post.id
   const userId = currentUser().uid
 
-  const getUserPosts = () => {
-    firebase.firestore().collection('posts')
-      .where("userId", "==", userId).get()
-      .then((firestorePost) => {
-        firestorePost.forEach((doc) => {
-          addButtons(doc.id)
+  document.querySelector("[data-postsList]")
+    .addEventListener("click", (e) => {
+      const target = e.target;
+      if (target.dataset.edit === "") {
+        const confirmEdit = document.querySelector('#confirm-edit');
+        confirmEdit.style.display = 'inline';
+        const editArea = document.querySelector('.user-post');
+        const postField = document.querySelector('.post-field');
+        postField.setAttribute('id', 'edit-area');
+        editArea.setAttribute('contentEditable', 'true');
+
+        confirmEdit.addEventListener('click', () => {
+          editArea.removeAttribute('contentEditable');
+          postField.removeAttribute('id');
+          const newText = editArea.textContent;
+          const getPost = target.parentNode.parentNode.parentNode.parentNode;
+          const postId = getPost.getAttribute('data-id');
+          editPost(newText, postId)
+            .then(() => {
+              confirmEdit.style.display = 'none'
+            }).catch(() => {
+              const modal = document.querySelector('.modal')
+              const close = document.querySelector('.close')
+              modal.style.display = "block";
+              close.onclick = () => {
+                modal.style.display = "none";
+              }
+              //window.onclick = (e) => {
+              //  if(e.target === modal){
+              //    modal.style.display = "none";
+              //  }
+              //}
+            })
         })
-      })
-  }
-
-  const addButtons = (firestorePostId) => {
-    if (postId === firestorePostId) {
-      postDiv.querySelector('.user-perfil').innerHTML +=
-        `<img src="./img/pencil-icon.png" alt="edit-icon" id="editButton" class="icon">`
-      const editButton = postDiv.querySelector('#editButton')
-      editPost(editButton)
-    }
-  }
-  getUserPosts()
-
-  const getPostText = (newText) => {
-    firebase.firestore().collection('posts').doc(postId)
-      .update({
-        text: newText
-      })
-    console.log("ok")
-  }
-
-  const editPost = (editButton) => {
-    editButton.addEventListener('click', () => {
-      const post = postDiv.querySelector('.user-post')
-      const postField = postDiv.querySelector('.post-field')
-      const postText = post.textContent
-      const editArea = document.createElement('textarea')
-      const confirmEdit = document.createElement('button')
-      editArea.setAttribute('id', 'edit-area')
-      editArea.textContent = postText
-      confirmEdit.setAttribute('id', 'confirm-edit')
-      confirmEdit.textContent = 'Confirmar'
-
-      postField.appendChild(editArea)
-      postField.replaceChild(editArea, post)
-      postField.appendChild(confirmEdit)
-
-      postField.querySelector('#confirm-edit')
-        .addEventListener('click', () => {
-          const newText = editArea.value
-          console.log(newText)
-          getPostText(newText)
-        })
+      }
     })
-  }
-
 
   return postDiv;
 };

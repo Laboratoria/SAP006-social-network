@@ -24,7 +24,7 @@ export const home = () => {
       <button type="submit" class="send-post ">Postar</button>
     </form>
     <p class="loading-posts"></p>
-    <ul id="postsList"></ul>
+    <ul id="postsList" data-postsList></ul>
     <div class= "footer-img">
  `;
 

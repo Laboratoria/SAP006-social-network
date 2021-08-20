@@ -83,3 +83,15 @@ export const createPost = (textPost) => {
 };
 
 export const currentUser = () => firebase.auth().currentUser;
+
+export const editPost = (newText, postId) =>
+  firebase.firestore().collection('posts').doc(postId)
+    .update({
+      text: newText
+    })
+
+firebase.auth().onAuthStateChanged(() => {
+  if(!firebase.auth().currentUser){
+    onNavigate('/')
+  }
+})
