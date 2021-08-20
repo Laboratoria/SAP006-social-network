@@ -73,7 +73,7 @@ export const home = () => {
           <p class="hashs">${doc.data().hashTags}</p>
         <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
-          <button type="button" id="like" data-like="${doc.id}"><img src="./img/coracao.svg"></button>
+          <button type="button"> <img id="like" data-like="${doc.id}"  src="./img/coracao.svg"></button>
           <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
           <button type="button" class="price" id="price" data-preco>${doc.data().preco}<img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
 
@@ -95,55 +95,55 @@ export const home = () => {
       }
       disableBtn();
 
-//       timeline.insertBefore(div, timeline.childNodes[0]);
-
-      const dataPost = rootElement.querySelector('[data-post]');
-      dataPost.addEventListener('click', (e) => {
-        const { target } = e;
-        const likeId = target.dataset.like;
-        const deleteId = target.dataset.delete;
-        if (likeId) {
-          const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
-          const beforLike = numberLikes.classList.contains('beforLike');
-          const number = Number(numberLikes.textContent);
-          if (beforLike === true) {
-            numberLikes.classList.replace('beforLike', 'afterLike');
-            numberLikes.innerHTML = number + 1;
-            liked(likeId);
-          } else {
-            numberLikes.classList.replace('afterLike', 'beforLike');
-            numberLikes.innerHTML = number - 1;
-            liked(likeId);
-          }
-        }
-        if (deleteId) {
-          modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
-            deletePost(deleteId).then(div.remove());
-          });
-        }
-      });
-
-//       const editBtn = div.querySelector('.edit-button');
-//       function disableEditBtn() {
-//         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-//           // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
-//           disableEditBtn.hidden = false;
-//         } else {
-//           // editBtn.hidden = true;
-//           disableEditBtn.hidden = true;
-//           div.querySelector('.edit-button').style.display = 'none';
-//         }
-//       }
-//       disableEditBtn();
-//       editBtn.addEventListener('click', (e) => {
-//         const { target } = e;
-//         const postID = target.parentNode.parentNode.id;
-//         if (editBtn) {
-   
-//         }
-      });
-
       timeline.insertBefore(div, timeline.childNodes[0]);
-
     });
 
+    const dataPost = rootElement.querySelector('[data-post]');
+    dataPost.addEventListener('click', (e) => {
+      const { target } = e;
+      const likeId = target.dataset.like;
+      const deleteId = target.dataset.delete;
+      if (likeId) {
+        const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
+        const beforLike = numberLikes.classList.contains('beforLike');
+        const number = Number(numberLikes.textContent);
+        if (beforLike === true) {
+          numberLikes.classList.replace('beforLike', 'afterLike');
+          numberLikes.innerHTML = number + 1;
+          liked(likeId);
+        } else {
+          numberLikes.classList.replace('afterLike', 'beforLike');
+          numberLikes.innerHTML = number - 1;
+          liked(likeId);
+        }
+      }
+      if (deleteId) {
+        modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
+          const postDiv = rootElement.querySelector(`[data-id="${deleteId}"]`);
+          deletePost(deleteId).then(postDiv.remove());
+        });
+      }
+
+      // timeline.insertBefore(div, timeline.childNodes[0]);
+      //       const editBtn = div.querySelector('.edit-button');
+      //       function disableEditBtn() {
+      //         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
+      //           // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
+      //           disableEditBtn.hidden = false;
+      //         } else {
+      //           // editBtn.hidden = true;
+      //           disableEditBtn.hidden = true;
+      //           div.querySelector('.edit-button').style.display = 'none';
+      //         }
+      //       }
+      //       disableEditBtn();
+      //       editBtn.addEventListener('click', (e) => {
+      //         const { target } = e;
+      //         const postID = target.parentNode.parentNode.id;
+      //         if (editBtn) {
+
+      //
+    });
+  });
+  return rootElement;
+};
