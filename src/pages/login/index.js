@@ -1,4 +1,4 @@
-// import { loginWithEmailAndPassword } from '../../lib/authentication.js';
+import { loginWithEmailAndPassword, signInWithGloogle } from '../../lib/authentication.js';
 import { onNavigate } from '../../navigate.js';
 
 export default () => {
@@ -11,6 +11,7 @@ export default () => {
       <img src="./img/ellas-dev-logo.png">
     </figure>
     <h3 class="">Login</h3>
+    <p id="errormsg"></p>
     <section class="box-input">
       <input type="email" id="user-email" name="usuario" placeholder="Email">
     </section>
@@ -35,26 +36,57 @@ export default () => {
 `;
   login.innerHTML = container;
 
+
+  
+
   const loginButton = login.querySelector('#login-btn')
   loginButton.addEventListener('click', (event) => {
     event.preventDefault();
     const inputEmail = login.querySelector('#user-email');
     const inputPassword = login.querySelector('#user-password');
-    loginWithEmailAndPassword(inputEmail.value, inputPassword.value);
-    //falta ligar com a rota de feed onNavigate
+    loginWithEmailAndPassword(inputEmail.value, inputPassword.value)
+
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log('logou!');
+        window.location.hash = "#feed"
+        return user
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+
+        // console.log('não logou');
+        let errorMessage = error.message;
+        const errorMsg = document.querySelector('#errormsg');
+        if (errorCode === 'auth/user-not-found') {
+
+          errorMessage = 'Email incorreto. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/wrong-password') {
+          errorMessage = 'Senha incorreta. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        }
+        return error;
+      });
+      
   });
 
-  // rootTemplate.querySelector('#google-btn')
-  //     .addEventListener('click', (event) => {
-  //         event.preventDefault();
-  //         loginWithGoogleAccount();
-  //     });
+  const googleButton = login.querySelector('#google-btn');
+  googleButton.addEventListener('click',(event) => {
+    event.preventDefault();
+    signInWithGloogle()
+
+      .then(() => {
+        window.location.hash = '#feed';
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
 
   const signUp = login.querySelector('#btn-signup');
-  signUp.addEventListener('click', () => onNavigate('#signUp'));
-
-
-  
+  // signUp.addEventListener('click', () => onNavigate('#signUp'));
 
   login.querySelector('.fa-eye')
     .addEventListener('click', (event) => {

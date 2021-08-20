@@ -1,22 +1,18 @@
 // import { onNavigate } from '../navigate.js';
 
-export const auth = firebase.auth();
+ const auth = firebase.auth();
 
 // funções de login para criar conta chamar onnavigate
-export const loginWithEmailAndPassword = (email, password) =>
-    firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log('logou!');
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log('não logou');
-        });
+export const loginWithEmailAndPassword = (email, password) => auth
+    .signInWithEmailAndPassword(email, password)
+    
 
+// FUNÇÃO DE LOGIN COM GOOGLE
+export const signInWithGloogle = () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+   return auth.signInWithPopup(googleProvider) 
+    
+};
 
-
+export const cadastrarsenha = (email, password) => auth.createUserWithEmailAndPassword(email, password)
+ 
