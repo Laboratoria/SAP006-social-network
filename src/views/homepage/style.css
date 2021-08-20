@@ -187,6 +187,10 @@ textarea {
   background: transparent;
 }
 
+.liked {
+  background-color: rgb(201, 43, 43);
+}
+
 @media(min-width: 1200px) {
 
   textarea {

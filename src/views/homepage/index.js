@@ -4,6 +4,7 @@ import {
   loadPosts,
   logOut,
   deletePost,
+  likesPost,
 
 } from '../../services/index.js';
 import { addPost } from '../../components/post.js';
@@ -53,6 +54,7 @@ export const home = () => {
             userId: user.uid,
             text: textPost,
             createdAt: date.toLocaleString(),
+            likes: [],
           }),
         };
         const newPostElement = addPost(createdPost);
@@ -71,12 +73,26 @@ export const home = () => {
   postsList.addEventListener('click', (e) => {
     e.preventDefault();
     const target = e.target;
+    const buttonLike = document.querySelector("#likeBtn")
     if (target.dataset.delete === '') {
       const getPost = target.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
       deletePost(id)
         .then(getPost.remove());
     }
+    if (target.dataset.like == '') {
+      const getPost = target.parentNode.parentNode.parentNode;
+      const id = getPost.getAttribute('data-id');
+      likesPost(id)
+      const buttonLike = document.querySelector("#likeBtn")
+      buttonLike.classList.add('liked');
+
+    } if (buttonLike.className === "liked") {
+      const buttonLike = document.querySelector("#likeBtn")
+      console.log(buttonLike)
+      buttonLike.removeAttribute('class');
+    }
+
   });
 
   return container;

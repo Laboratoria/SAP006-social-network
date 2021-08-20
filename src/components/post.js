@@ -22,6 +22,12 @@ export const addPost = (post) => {
         </div>
         ${isAuthor ? deleteButton : ''}
     </article>
+    <div class="like-post" data-like>
+    <button class="btn-like" data-like="${post.id}" id="btn-like" >
+      <img src="./img/heart.png" alt="like-icon" data-like id="likeBtn" class="" width="15px">
+      <span id="likes" data-like>${post.data().likes.length}</span>
+    </button>
+    </div>
   `;
   postDiv.innerHTML = postTemplate;
   return postDiv;
