@@ -3,7 +3,7 @@ import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
 
 export const Feed = () => {
-  const rootElement = document.createElement("div");
+  const rootElement = document.createElement('div');
   const container = `
     <header class="searchBell">
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
@@ -62,7 +62,7 @@ export const Feed = () => {
   const submitButton = rootElement.querySelector('#published-form');
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
-    const text = rootElement.querySelector("#text-post").value;
+    const text = rootElement.querySelector('#text-post').value;
     const useruid = firebase.auth().currentUser.uid;
 
     const date = new Date();
@@ -78,11 +78,11 @@ export const Feed = () => {
     addPosts(post);
   });
 
-  const navbarBottom = document.getElementsByClassName("navbar");
+  const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
   function stickyFilter() {
     if (window.pageYOffset >= sticky) {
-      navbarBottom.classList.add("sticky");
+      navbarBottom.classList.add('sticky');
     }
   }
 
@@ -94,14 +94,11 @@ export const Feed = () => {
   //   container.classList.add("sign-up-mode");
   // });
 
-  
-
-
   loadPosts()
     .then((snap) => {
       snap
         .forEach((post) => {
-          printPost(post); 
+          printPost(post);
         });
     });
   return rootElement;
