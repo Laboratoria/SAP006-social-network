@@ -57,13 +57,7 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector("#postTemplate");
   postTemplate.innerHTML += areaOfPost;
 
-<<<<<<< HEAD
-  updatePosts("4pVdpwtzW4OFz5Lk4xUe", "banana");
-
-  postTemplate.addEventListener("click", (e) => {
-=======
   postTemplate.addEventListener('click', (e) => {
->>>>>>> 72e667da86a5cbe41505aecb150cd22b8fd646bc
     const target = e.target;
     console.log(target.dataset.like);
     if (target.dataset.like === "") {
@@ -131,7 +125,7 @@ export const printPost = (post) => {
     deletePopUp();
   });
 
-   // console.log(likeButton);
+  // console.log(likeButton);
   // likeButton.addEventListener('click', (e) => {
   //  // user_id.currentUser --> insere no array de likes;
   //  // precisa de condicional para like e dislike (se no
