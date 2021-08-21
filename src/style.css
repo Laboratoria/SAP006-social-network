@@ -346,6 +346,18 @@ button:hover {
   align-content: center;
 }
 
+/* icons */ 
+.heart {
+  color: black;
+}
+
+.test {
+  color: red;
+}
+
+.empty-heart{
+  color: red;
+}
 /*   Fim da página de perfil:  */
 
 /* =====================================  HEADER ===================================== */
@@ -428,6 +440,7 @@ a {
     padding: .5rem 1rem;
    
   }
+
 
   #hamburger {
     border-top: 2px solid;
