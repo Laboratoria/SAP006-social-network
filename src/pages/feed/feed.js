@@ -94,14 +94,11 @@ export const Feed = () => {
   //   container.classList.add("sign-up-mode");
   // });
 
-  
-
-
   loadPosts()
     .then((snap) => {
       snap
         .forEach((post) => {
-          printPost(post); 
+          printPost(post);
         });
     });
   return rootElement;
