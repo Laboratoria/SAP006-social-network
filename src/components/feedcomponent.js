@@ -4,7 +4,13 @@ export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
 
   const areaOfPost = `
+<<<<<<< HEAD
     <section data-container="${post.id}" id="${post.id}>
+=======
+
+    <section data-container>
+
+>>>>>>> f294452219ec613a889b6086f46e8739fddd0def
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
@@ -47,7 +53,7 @@ export const printPost = (post) => {
         </div>
 
         <section class="actions">
-          <button>13 ❤️</button>
+          <button class="btn-like" data-like>5 ❤️</button>
         </section>
 
       </div>
@@ -57,10 +63,19 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
-  const btnEdit = postTemplate.querySelector('[data-edit]');
-  const btnDelete = postTemplate.querySelector('[data-delete]');
-  const btnSave = postTemplate.querySelector('[data-save]');
-  const postText = postTemplate.querySelector('#text-post');
+  postTemplate.addEventListener('click', (e) => {
+    const target = e.target;
+    console.log(target.dataset.like);
+    if (target.dataset.like === '') {
+      console.log('cliquei no botão de like');
+    }
+  });
+
+  const btnEdit = postTemplate.querySelector('[data-edit]')
+  const btnDelete = postTemplate.querySelector('[data-delete]')
+  const btnSave = postTemplate.querySelector('[data-save]')
+  const postText = postTemplate.querySelector("#text-post")
+
 
   btnEdit.addEventListener('click', (e) => {
     e.preventDefault();
