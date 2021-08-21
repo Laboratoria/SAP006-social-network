@@ -1,21 +1,34 @@
 import { deletePost, updatePosts } from "../services/database.js";
 
 export const printPost = (post) => {
-  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id
+  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
+
   const areaOfPost = `
-
-    <section data-container data-item>
-
+    <section data-container="${post.id}" id="${post.id}>
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu class="dropdown"style="float:right;display:${isMyPost ? 'inline-end':'none'}">
-            <button id="btn-drop"  class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
-            <div id="myDropdown"class="dropdown-content">
-              <button class="edit-button" id="edit" value='${post.id}' href="#" disabled><span class="iconify btn-more" data-icon="bytesize:edit"></span>Editar</button>
-              <a href="#"><span class="iconify btn-more" data-inline="false"
-              data-icon="bytesize:trash" id="delete"></span>  Deletar</a>
-              <button id="save" data-post-id = "${post.id}"><span class="iconify btn-more" data-icon="carbon:save"></span></span>Salvar</button>
+          <menu
+            class="dropdown" 
+            style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
+
+            <button id="btn-drop"  class="dropbtn">
+              <span class="iconify" data-icon="ph:dots-three-duotone"></span>
+            </button>
+
+            <div id="myDropdown" class="dropdown-content">
+              <button data-edit="${post.id}" class="edit-button">
+                <span class="iconify btn-more" data-icon="bytesize:edit"></span>
+                Editar
+              </button>
+              <button data-delete="${post.id}" class="delete-button">
+                <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
+                Deletar
+              </button>
+              <button data-save="${post.id}" class="save-button">
+                <span class="iconify btn-more" data-icon="carbon:save"></span>
+                Salvar
+              </button>
             </div>
           </menu>
         </div>
@@ -26,7 +39,10 @@ export const printPost = (post) => {
           </button>
           
           <div>
-            <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
+            <textarea id="text-post"
+              class="post-content text-post"
+              id="${post.id}" disabled>${post.data().text}
+            </textarea>
           </div>
         </div>
 
@@ -36,15 +52,18 @@ export const printPost = (post) => {
 
       </div>
     </section>
-  
   `;
 
   const postTemplate = document.querySelector("#postTemplate");
   postTemplate.innerHTML += areaOfPost;
 
+<<<<<<< HEAD
   updatePosts("4pVdpwtzW4OFz5Lk4xUe", "banana");
 
   postTemplate.addEventListener("click", (e) => {
+=======
+  postTemplate.addEventListener('click', (e) => {
+>>>>>>> 72e667da86a5cbe41505aecb150cd22b8fd646bc
     const target = e.target;
     console.log(target.dataset.like);
     if (target.dataset.like === "") {
@@ -52,33 +71,67 @@ export const printPost = (post) => {
     }
   });
 
-  const btnEdit = postTemplate.querySelector("#edit")
-  const btnDelete = postTemplate.querySelector("#delete")
-  const btnSave = postTemplate.querySelector("#save")
+  const btnEdit = postTemplate.querySelector('[data-edit]')
+  const btnDelete = postTemplate.querySelector('[data-delete]')
+  const btnSave = postTemplate.querySelector('[data-save]')
   const postText = postTemplate.querySelector("#text-post")
 
-
   btnEdit.addEventListener('click', (e) => {
-    e.preventDefault()
-    console.log(postText)
-    postText.removeAttribute('disabled', '');
+    e.preventDefault();
+    postText.removeAttribute('disabled');
     postText.focus();
   });
 
   btnSave.addEventListener('click', (e) => {
-    e.preventDefault()
-    const { postId } = e.target.dataset
+    e.preventDefault();
+    const postId = e.target.dataset.save;
+    console.log(postId);
     updatePosts(postId, postText.value);
     postText.setAttribute('disabled', '');
   });
 
-  btnDelete.addEventListener('click', (e) => {
-    e.preventDefault()
-    deletePost(postId)
-  })
+  // UM EVENTLISTENER PRA CADA BOTÃO //
 
+  // eslint-disable-next-line no-shadow
+  const deletePopUp = () => {
+    const popUpContainer = document.createElement('div');
 
-  // console.log(likeButton);
+    popUpContainer.innerHTML = ` 
+      <div class='popup-wrapper' data-popup>
+          <div class='popup'>
+            <div class='popup-content'>
+              <h3>Tem certeza que deseja apagar esse post?</h3>
+                <button id='yes' data-delete class='yes answer'>DELETAR</button>
+                <button id='no' data-cancel class='no answer'>CANCELAR</button>
+            </div>                
+          </div>
+        </div>
+    `;
+    postTemplate.appendChild(popUpContainer);
+
+    const popUpWrapper = postTemplate.querySelector('.popup-wrapper');
+    popUpWrapper.style.display = 'block';
+
+    const confirmButton = document.querySelector('[data-delete]');
+    confirmButton.addEventListener('click', (e) => {
+      const idDelete = e.target.dataset.delete;
+      console.log(idDelete);
+      // deletePost(postId);
+    });
+
+    const cancelButton = document.querySelector('[data-cancel]');
+    cancelButton.addEventListener('click', () => {
+      popUpWrapper.style.display = 'none';
+    });
+
+    return postTemplate;
+  };
+
+  btnDelete.addEventListener('click', () => {
+    deletePopUp();
+  });
+
+   // console.log(likeButton);
   // likeButton.addEventListener('click', (e) => {
   //  // user_id.currentUser --> insere no array de likes;
   //  // precisa de condicional para like e dislike (se no
@@ -88,43 +141,48 @@ export const printPost = (post) => {
   //  // remover firebase.firestore.FieldValue.arrayRemove
   //  // firebase.firestore.FieldValue.arrayUnion
   // });
-
-  // const eachPost = `
-  //   <textarea name="post-text" class="post-content text-post"
-  // id="${post.data().id}">${post.data().text}</textarea>
-  //   <section class="actions">
-  //     <button>❤️ ${post.likes}</button>
-  //   </section>
-  // `;
-
-  // const textBox = document.querySelector('.textBox');
-  // const showEachPost = textBox.appendChild(eachPost);
-  // showEachPost.forEach((posts) => { // com o resultado itera no post
-  //   console.log(post);
-  //   printPost(posts); // chama printPost com o que foi retornado, no caso é posts
-  // });
-
-  postTemplate.innerHTML += textBox;
-
-  const btnEdit = postTemplate.querySelector("#edit");
-  const btnDelete = postTemplate.querySelector("#delete");
-  const btnSave = postTemplate.querySelector("#save");
-  const postText = postTemplate.querySelector("#text-post");
-
-  btnEdit.addEventListener("click", (e) => {
-    e.preventDefault();
-    postText.removeAttribute("disabled");
-    postText.focus();
-  });
-
-  btnForSave = btnSave.addEventListener("click", (e) => {
-    e.preventDefault();
-    postText.setAttribute("disabled", "");
-    updatePosts(postId, postText.value);
-  });
-
-  btnDelete.addEventListener("click", (e) => {
-    e.preventDefault();
-    deletePost(postId);
-  });
 };
+
+// NÃO TÁ PEGANDO O POST-ID //
+
+// const deletePopUp = () => {
+//   const root = document.querySelector('#root');
+//   const popUpContainer = document.createElement('div');
+
+//   popUpContainer.innerHTML = `
+//     <div class='popup-wrapper' data-popup>
+//         <div class='popup'>
+//           <div class='popup-content'>
+//             <h3>Tem certeza que deseja apagar esse post?</h3>
+//               <button id='yes' data-answer="yes" class='yes answer'>DELETAR</button>
+//               <button id='no' data-answer="no" class='no answer'>CANCELAR</button>
+//           </div>
+//         </div>
+//       </div>
+//   `;
+//   root.appendChild(popUpContainer);
+
+//   const popUpWrapper = root.querySelector('.popup-wrapper');
+//   popUpWrapper.style.display = 'block';
+
+//   const deleteButton = document.querySelector('[data-answer]');
+
+//   deleteButton.addEventListener('click', (e) => {
+//     const userAnswer = e.target.dataset.answer;
+//     console.log(userAnswer);
+
+//     if (userAnswer === 'yes') {
+//       deletePost();
+//       // document.querySelector('[data-container]').remove();
+//       popUpWrapper.style.display = 'none';
+//     } else {
+//       popUpWrapper.style.display = 'none';
+//     }
+//   });
+//   return root;
+// };
+
+// btnDelete.addEventListener('click', () => {
+//   deletePopUp();
+// });
+// };

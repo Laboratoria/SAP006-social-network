@@ -28,15 +28,11 @@ export const deletePost = (postId) => firebase
   .firestore()
   .collection('posts')
   .doc(postId)
-  .delete();
+  .delete()
+  .then(() => console.log(postId));
   // then deverá ser aplicado no addEventListener do feed.js
   // .then(() => window.location.reload());
 
-// const likesCollection = firebase.firestore().collection('likes');
-// export const likePost = () => {
-//   likesCollection.add({
-//     liked: true,
-//   });
-//   .then(() => true)
-//   .catch((error) => error);
-// };
+export const likePost = (postId) => {
+  
+};
