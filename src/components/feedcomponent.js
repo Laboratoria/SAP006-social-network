@@ -1,17 +1,16 @@
 import { deletePost, updatePosts } from '../services/database.js';
 
 export const printPost = (post) => {
-  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id
+  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
+
   const areaOfPost = `
-
-    <section data-container>
-
+    <section data-container="${post.id}" id="${post.id}>
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
           <menu
             class="dropdown" 
-            style="float:right; display:${isMyPost ? 'inline-end':'none'}">
+            style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
 
             <button id="btn-drop"  class="dropbtn">
               <span class="iconify" data-icon="ph:dots-three-duotone"></span>
@@ -40,84 +39,131 @@ export const printPost = (post) => {
           </button>
           
           <div>
-            <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
+            <textarea id="text-post"
+              class="post-content text-post"
+              id="${post.id}" disabled>${post.data().text}
+            </textarea>
           </div>
         </div>
         <section class="actions">
           <button class="btn-like" data-like>5 ❤️</button>
         </section>
       </div>
-
-      <div class="popup-wrapper">
-        <div class="popup">
-          <div class="popup-close" style="display:none">X</div>
-            <div class="popup-content">
-            </div>
-        </div>
-      </div>
-
     </section>
   `;
 
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
- 
+  postTemplate.addEventListener('click', (e) => {
+    const target = e.target;
+    console.log(target.dataset.like);
+    if (target.dataset.like === '') {
+      console.log('cliquei no botão de like');
+    }
+  });
+
   const btnEdit = postTemplate.querySelector('[data-edit]')
   const btnDelete = postTemplate.querySelector('[data-delete]')
   const btnSave = postTemplate.querySelector('[data-save]')
   const postText = postTemplate.querySelector("#text-post")
 
-
   btnEdit.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log(postText);
     postText.removeAttribute('disabled');
     postText.focus();
   });
 
   btnSave.addEventListener('click', (e) => {
     e.preventDefault();
-    const { postId } = e.target.dataset;
+    const postId = e.target.dataset.save;
+    console.log(postId);
     updatePosts(postId, postText.value);
     postText.setAttribute('disabled', '');
   });
 
-  btnDelete.addEventListener('click', (e) => {
-    // e.preventDefault();
-    const { delete: deleteId } = e.target.dataset;
-    // deletePost(postId)
-    // .then(() => {
-      deletePopUp();
-    // });
-  });
-};
+  // UM EVENTLISTENER PRA CADA BOTÃO //
 
+  // eslint-disable-next-line no-shadow
+  const deletePopUp = () => {
+    const popUpContainer = document.createElement('div');
 
-const deletePopUp = () => {
-  const popup = postTemplate.querySelector('.popup-wrapper');
-  popup.style.display = 'block';
+    popUpContainer.innerHTML = ` 
+      <div class='popup-wrapper' data-popup>
+          <div class='popup'>
+            <div class='popup-content'>
+              <h3>Tem certeza que deseja apagar esse post?</h3>
+                <button id='yes' data-delete class='yes answer'>DELETAR</button>
+                <button id='no' data-cancel class='no answer'>CANCELAR</button>
+            </div>                
+          </div>
+        </div>
+    `;
+    postTemplate.appendChild(popUpContainer);
 
-  const closePopUp = postTemplate.querySelector('.popup-close');
-  closePopUp.style.display = 'block';
+    const popUpWrapper = postTemplate.querySelector('.popup-wrapper');
+    popUpWrapper.style.display = 'block';
 
-  const contentPopUp = postTemplate.querySelector('.popup-content');
-  contentPopUp.innerHTML = `
-    <h2>Tem certeza que deseja deletar esse post?</h2> 
-    <button class="delete-class">Deletar</button>
-  `
-
-  closePopUp.addEventListener("click", () => {
-    popup.style.display = 'none';
-  });
-
-  const popUpDeleteButton = postTemplate.querySelector('.delete-class');
-
-  popUpDeleteButton.addEventListener('click', () => {
-    deletePost()
-    .then(() => {
-      postTemplate.innerHTML = '';
+    const confirmButton = document.querySelector('[data-delete]');
+    confirmButton.addEventListener('click', (e) => {
+      const idDelete = e.target.dataset.delete;
+      console.log(idDelete);
+      // deletePost(postId);
     });
 
+    const cancelButton = document.querySelector('[data-cancel]');
+    cancelButton.addEventListener('click', () => {
+      popUpWrapper.style.display = 'none';
+    });
+
+    return postTemplate;
+  };
+
+  btnDelete.addEventListener('click', () => {
+    deletePopUp();
   });
 };
+
+// NÃO TÁ PEGANDO O POST-ID //
+
+// const deletePopUp = () => {
+//   const root = document.querySelector('#root');
+//   const popUpContainer = document.createElement('div');
+
+//   popUpContainer.innerHTML = `
+//     <div class='popup-wrapper' data-popup>
+//         <div class='popup'>
+//           <div class='popup-content'>
+//             <h3>Tem certeza que deseja apagar esse post?</h3>
+//               <button id='yes' data-answer="yes" class='yes answer'>DELETAR</button>
+//               <button id='no' data-answer="no" class='no answer'>CANCELAR</button>
+//           </div>
+//         </div>
+//       </div>
+//   `;
+//   root.appendChild(popUpContainer);
+
+//   const popUpWrapper = root.querySelector('.popup-wrapper');
+//   popUpWrapper.style.display = 'block';
+
+//   const deleteButton = document.querySelector('[data-answer]');
+
+//   deleteButton.addEventListener('click', (e) => {
+//     const userAnswer = e.target.dataset.answer;
+//     console.log(userAnswer);
+
+//     if (userAnswer === 'yes') {
+//       deletePost();
+//       // document.querySelector('[data-container]').remove();
+//       popUpWrapper.style.display = 'none';
+//     } else {
+//       popUpWrapper.style.display = 'none';
+//     }
+//   });
+//   return root;
+// };
+
+// btnDelete.addEventListener('click', () => {
+//   deletePopUp();
+// });
+// };

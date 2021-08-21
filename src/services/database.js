@@ -26,10 +26,10 @@ export const deletePost = (postId) => firebase
   .collection('posts')
   .doc(postId)
   .delete()
-  // .then(() => console.log(postId))
+  .then(() => console.log(postId));
   // then deverá ser aplicado no addEventListener do feed.js
   // .then(() => window.location.reload());
 
 export const likePost = (postId) => {
   
-} 
+}

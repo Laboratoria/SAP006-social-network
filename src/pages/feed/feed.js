@@ -91,11 +91,17 @@ export const Feed = () => {
 
   window.onscroll = stickyFilter();
 
+  // slider post
+  // const newPostBtn = document.querySelector('#new-post-btn');
+  // newPostBtn.addEventListener('click', () => {
+  //   container.classList.add("sign-up-mode");
+  // });
+
   loadPosts()
     .then((snap) => {
       snap
         .forEach((post) => {
-          printPost(post); 
+          printPost(post);
         });
     });
   return rootElement;
