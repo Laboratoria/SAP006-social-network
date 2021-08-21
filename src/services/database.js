@@ -35,4 +35,4 @@ export const deletePost = (postId) => firebase
 
 export const likePost = (postId) => {
   
-} 
+}

@@ -4,13 +4,7 @@ export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
 
   const areaOfPost = `
-<<<<<<< HEAD
     <section data-container="${post.id}" id="${post.id}>
-=======
-
-    <section data-container>
-
->>>>>>> f294452219ec613a889b6086f46e8739fddd0def
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
@@ -75,7 +69,6 @@ export const printPost = (post) => {
   const btnDelete = postTemplate.querySelector('[data-delete]')
   const btnSave = postTemplate.querySelector('[data-save]')
   const postText = postTemplate.querySelector("#text-post")
-
 
   btnEdit.addEventListener('click', (e) => {
     e.preventDefault();
