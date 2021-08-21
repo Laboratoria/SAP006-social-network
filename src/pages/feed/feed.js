@@ -63,6 +63,7 @@ export const Feed = () => {
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
+    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
 
     const date = new Date();
@@ -70,11 +71,13 @@ export const Feed = () => {
       text,
       user_id: useruid,
       date: date.toLocaleString(),
-      // date: firebase.firestore.FieldValue.serverTimestamp(),
       likes: [],
       comments: [],
     };
 
+    if (text.value === ''){
+      return;
+    }
     addPosts(post);
   });
 
@@ -87,15 +90,6 @@ export const Feed = () => {
   }
 
   window.onscroll = stickyFilter();
-
-  // slider post
-  // const newPostBtn = document.querySelector('#new-post-btn');
-  // newPostBtn.addEventListener('click', () => {
-  //   container.classList.add("sign-up-mode");
-  // });
-
-  
-
 
   loadPosts()
     .then((snap) => {

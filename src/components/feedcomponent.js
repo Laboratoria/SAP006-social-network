@@ -62,21 +62,11 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
-  updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
-
-  postTemplate.addEventListener('click', (e) => {
-    const target = e.target;
-    console.log(target.dataset.like);
-    if (target.dataset.like === '') {
-      console.log('cliquei no botão de like');
-    }
-  });
-
+ 
   const btnEdit = postTemplate.querySelector('[data-edit]')
   const btnDelete = postTemplate.querySelector('[data-delete]')
   const btnSave = postTemplate.querySelector('[data-save]')
   const postText = postTemplate.querySelector("#text-post")
-  const btnDelete = postTemplate.querySelector('#delete');
 
 
   btnEdit.addEventListener('click', (e) => {

@@ -14,11 +14,11 @@ export const signUp = () => {
 
       <form class="form-register">
         <div class="infos-user">
-          <input class="value-register" type="email" name="adress-email" id="useremail" placeholder="E-mail">
+          <input class="value-register" type="email" name="adress-email" id="useremail" class="style-input" placeholder="E-mail">
 
-          <input class="value-register" type="password" name="user-password" id="userpassword" placeholder="Senha">
+          <input class="value-register" type="password" name="user-password" id="userpassword" class="style-input" placeholder="Senha">
 
-          <input class="value-register" type="password" name="confirm-user-password" id="user-confirm-password" placeholder="Confirme a senha">
+          <input class="value-register" type="password" name="confirm-user-password" id="user-confirm-password" class="style-input" placeholder="Confirme a senha">
         </div>
 
         <div class="btn-form">
