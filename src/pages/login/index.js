@@ -30,14 +30,43 @@ export default () => {
 
   btnLogin.addEventListener('click', (event) => {
     event.preventDefault();
-    loginUser(email.value, password.value);
+    loginUser(email.value, password.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        window.location.hash = '#feed';
+        return user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        let errorMessage = error.message;
+        const errorMsg = document.querySelector('#error-message');
+        if (errorCode === 'auth/invalid-email') {
+          errorMessage = 'Email inavlido. Tente novamente, ou cadastre-se';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/wrong-password') {
+          errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        } else {
+          errorMessage = 'Usuário não cadastrado';
+          errorMsg.innerHTML = errorMessage;
+        }
+        return error;
+      });
   });
 
   // Login Google
 
   googleButton.addEventListener('click', (event) => {
     event.preventDefault();
-    signInWithGloogle();
+    signInWithGloogle()
+      .then(() => {
+        window.location.hash = '#feed';
+      })
+      // eslint-disable-next-line arrow-parens
+      .catch(error => {
+        console.error(error);
+      });
   });
 
   return container;
