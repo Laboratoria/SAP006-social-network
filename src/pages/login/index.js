@@ -7,13 +7,13 @@ export default () => {
       <h2>Fazer login :</h2>
       <div class="label-float"></div>
       <input type="text" id="usuário" placeholder="">
-      <label for="usuário"></label>
+      <label for="usuário">Usuário</label>
     </div>
     <div class="label-float"></div>
     <input type="password" id="senha" placeholder="">
-    <label for="senha"></label>
-  </div>
-  <div class="justufy-center">
+    <label for="senha">Senha</label>
+    </div>
+  <div class="justify-center">
     <button>Entrar</button>
   </div>
   `;
