@@ -1,7 +1,8 @@
 import {
-  signIn, signInWithGoogle, setUserData, getUserData,
-  getUserLevel,
-  updateUserLevel,
+  signIn,
+  // signInWithGoogle, setUserData, getUserData,
+  // getUserLevel,
+  // updateUserLevel,
 } from '../../services/index.js';
 
 export default () => {
@@ -29,7 +30,7 @@ export default () => {
   loginScreenContainer.innerHTML = loginScreenButtons;
 
   const btnLogin = loginScreenContainer.querySelector('#enter-acc');
-  const btnGoogle = loginScreenContainer.querySelector('#btn-google');
+  // const btnGoogle = loginScreenContainer.querySelector('#btn-google');
   const notice = loginScreenContainer.querySelector('#notice');
   const btnSignUp = loginScreenContainer.querySelector('#sign-up');
 
@@ -106,9 +107,9 @@ export default () => {
   //     });
   // }
 
-  btnGoogle.addEventListener('click', () => {
-    signInWithGoogleDom();
-  });
+  // btnGoogle.addEventListener('click', () => {
+  //   signInWithGoogleDom();
+  // });
 
   btnSignUp.addEventListener('click', () => {
     window.location.hash = '#signUp';

@@ -87,23 +87,25 @@ export const postRecipe = (recipe) => db.collection('recipes').add({
 
 export const loadRecipe = () => db.collection('recipes').get();
 
-export const likesPost = (postId) => {
-  db.collection('recipes').doc(postId).get()
+export const likesPost = (postId) => db.collection('recipes').doc(postId).get()
 
-    .then((docPost) => {
-      const likeUsers = docPost.data().likes;
+  .then((docPost) => {
+    const likeUsers = docPost.data().likes;
+    let test;
 
-      if (likeUsers.includes(getUserData().uid)) {
-        db.collection('recipes').doc(postId).update({
-          likes: firebase.firestore.FieldValue.arrayRemove(getUserData().uid),
-        });
-      } else {
-        db.collection('recipes').doc(postId).update({
-          likes: firebase.firestore.FieldValue.arrayUnion(getUserData().uid),
-        });
-      }
-    });
-};
+    if (likeUsers.includes(getUserData().uid)) {
+      test = db.collection('recipes').doc(postId).update({
+        likes: firebase.firestore.FieldValue.arrayRemove(getUserData().uid),
+      });
+    } else {
+      test = db.collection('recipes').doc(postId).update({
+        likes: firebase.firestore.FieldValue.arrayUnion(getUserData().uid),
+      });
+    }
+    return test;
+  });
+
+export const numLikes = (postId) => db.collection('recipes').doc(postId).get();
 
 export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
 
