@@ -2,27 +2,41 @@
     const container = document.createElement("div");
 
     const template = `
+    <body>
     <div class="container">
     <div class="card">
-      <h2>Cadastrar-se :</h2>
-      <div class="label-float"></div>
-      <input type="text" id="nome completo" placeholder="">
-      <label for="Nome completo"></label>
+      <h1>Cadastrar :</h1>
+      <div class="label-float">
+      <input type="text" id="nome" placeholder="">
+      <label for="nome">Nome Completo</label>
     </div>
-    <div class="label-float"></div>
+    <div class="label-float">
     <input type="text" id="email" placeholder="">
-    <label for="E-mail"></label>
+    <label for="email">E-mail</label>
   </div>
   <div class="label-float"></div>
   <input type="password" id="senha" placeholder="">
-  <label for="Senha"></label>
+  <label for="senha">Senha</label>
+  <div class="justify-center">
+    <button onclick = "cadastrar()">Cadastrar</button>
   </div>
-  <div class="justufy-center">
-    <button>Cadastrar</button>
-  </div>
+  </body>
   `;
 
     container.innerHTML = template;
 
     return container;
 }
+// Js cadastro
+
+// let btn = document.querySelector(".fa-eye")
+
+// btn.addEventListener("click" , () => {
+//   let inputSenha = documen.querySelector("#senha")
+//   if(inputSenha.getAttribute("type") == "password"){
+//     inputSenha.setAttribute("type","text")
+//   }else{
+//     inputSenha.getAttribute("type" , "password")
+//   }
+// })
+
