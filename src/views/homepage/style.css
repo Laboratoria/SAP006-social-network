@@ -133,7 +133,7 @@ textarea {
   margin: 10px;
 }
 
-.user-name {
+.user-name, .date-post  {
   padding: 0.25rem;
   font-size: 14px;
   display: flex;
@@ -165,6 +165,11 @@ textarea {
   margin-right: 0.55rem;
 }
 
+.logout:hover {
+  background: var(--orange-light-color);
+  transition: 0.2s;
+}
+
 .logout-img {
   border: 1px;
   width: 2rem;
@@ -189,6 +194,79 @@ textarea {
 
 .liked {
   background-color: rgb(201, 43, 43);
+}
+
+.btn-like {
+  background: none;
+  border: none;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* The Close Button */
+
+.delete-confirm:hover,
+.close-button:hover {
+  cursor: pointer;
+}
+
+.delete-confirm:hover {
+  background: var(--orange-light-color);
+  transition: 0.5s;
+}
+
+.close-button:hover {
+  background: var(--orange-light-color);
+  transition: 0.5s;
+}
+
+.delete-confirm, .close-button {
+  background: var(--orange-color);
+  width: auto;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.delete-container {
+  justify-content: center;
+  width: 100%;
+} 
+
+.close-button {
+  background: var(--white-color);
+  border: 1px solid var(--orange-color);
+}
+
+.date-post {
+  font-size: 15px;
+  color: rgb(110, 118, 125);
 }
 
 @media(min-width: 1200px) {
@@ -229,11 +307,6 @@ textarea {
     justify-self: center;
   }
 
-  /* .send-post {
-    margin: 5.3rem 1rem;
-    position: fixed;
-  } */
-
   .user-perfil-header {
     width: 100%;
   }
@@ -244,6 +317,8 @@ textarea {
 
   .logout {
     margin: auto;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .loading-posts {
@@ -253,5 +328,14 @@ textarea {
   #postsList {
     justify-self: center;
     grid-column: 2;
+  }
+
+  .modal-content {
+    width: 30%;
+  }
+  
+  .delete-text {
+    width: 100%;
+    font-size: 1rem;
   }
 }
