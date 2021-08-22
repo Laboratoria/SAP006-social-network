@@ -1,9 +1,4 @@
-import {
-  signIn,
-  // signInWithGoogle, setUserData, getUserData,
-  // getUserLevel,
-  // updateUserLevel,
-} from '../../services/index.js';
+import { signIn, signInWithGoogle, setUserData } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -18,7 +13,6 @@ export default () => {
       <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
       <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
       <div id="notice"> </div>
-
       <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
       <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
       <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
@@ -30,7 +24,7 @@ export default () => {
   loginScreenContainer.innerHTML = loginScreenButtons;
 
   const btnLogin = loginScreenContainer.querySelector('#enter-acc');
-  // const btnGoogle = loginScreenContainer.querySelector('#btn-google');
+  const btnGoogle = loginScreenContainer.querySelector('#btn-google');
   const notice = loginScreenContainer.querySelector('#notice');
   const btnSignUp = loginScreenContainer.querySelector('#sign-up');
 
@@ -73,43 +67,29 @@ export default () => {
     signInDom();
   });
 
-  // function signInWithGoogleDom() {
-  //   signInWithGoogle()
-  //     .then((user) => user.user.uid)
-  //     .then((uid) => getUserLevel(uid))
-  //     .then((userCollectionlevel) => {
-  //       // console.log(userCollectionlevel.data().level);
-  //       if (!userCollectionlevel.data().level) {
-  //         console.log('Entrou aqui no if');
-  //         updateUserLevel('nível não selecionado', user.user.uid)
-  //           .then(() => localStorage.setItem('level', 'nível não selecionado'))
-  //           .then(setUserData())
-  //           .then(window.location.hash = '#feed');
-  //       }
-  //     })
+  function signInWithGoogleDom() {
+    signInWithGoogle()
+      .then(() => {
+        setUserData();
+        window.location.hash = '#feed';
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        switch (errorCode) {
+          case 'auth/credential-already-in-use':
+            notice.innerHTML = '<p> Opa, está credencial já está em uso </p>';
+            break;
+          default:
+            notice.innerHTML = `<p> ${errorMessage} </p>`;
+        }
+        throw new Error(errorMessage);
+      });
+  }
 
-  // setUserData()
-  //   .then(updateUserLevel('Nível não selecionado', 'yWiSAd9a5wa9deCCzAWmojG7xGp2'));
-  //   // console.log('level');
-  //   localStorage.setItem('level', level);
-  // })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       switch (errorCode) {
-  //         case 'auth/credential-already-in-use':
-  //           notice.innerHTML = '<p> Opa, está credencial já está em uso </p>';
-  //           break;
-  //         default:
-  //           notice.innerHTML = `<p> ${errorMessage} </p>`;
-  //       }
-  //       throw new Error(errorMessage);
-  //     });
-  // }
-
-  // btnGoogle.addEventListener('click', () => {
-  //   signInWithGoogleDom();
-  // });
+  btnGoogle.addEventListener('click', () => {
+    signInWithGoogleDom();
+  });
 
   btnSignUp.addEventListener('click', () => {
     window.location.hash = '#signUp';
