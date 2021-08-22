@@ -1,4 +1,5 @@
 export default () => {
+
     const container = document.createElement("div");
   
     const template = `
@@ -9,9 +10,10 @@ export default () => {
     <img src="imagens/wonder.jpg"
     widht="450px">
     </center>
+
     `;
-  
-    container.innerHTML = template;
-  
-    return container;
-  }
+
+  container.innerHTML = template;
+
+  return container;
+};
