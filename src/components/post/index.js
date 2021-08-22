@@ -53,10 +53,9 @@ export function addPost(post) {
 
     <div id="recipe-footer" class="div-width100 recipe-title">
       <div class="like">
-        <span class="material-icons heart favoriteIcon">favorite</span> 
-            <p class="numLikes"> ${post.data().likes.length || 0} </p>
+        <button id="recipeLikes" class="material-icons heart favoriteIcon" data-like= ${post.id}><i class="fas fa-heart"></i></button>
+          <p class="numLikes"> ${post.data().likes.length} </p>
         <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
-        <button class="recipeLikes" data-like= ${post.id} >Curtir</button>
       </div>
       <p> Por ${post.data().autor} </p>
     </div>
@@ -70,7 +69,7 @@ export function addPost(post) {
     div.querySelector('.recipeBody').classList.toggle('showBlock');
   });
 
-  const button = postContainer.querySelector('.recipeLikes');
+  const button = postContainer.querySelector('#recipeLikes');
 
   const likes = postContainer.querySelector('.heart');
   const numberLikes = postContainer.querySelector('.numLikes');
