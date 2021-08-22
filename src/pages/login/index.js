@@ -1,4 +1,8 @@
-import { signIn, signInWithGoogle, setUserData } from '../../services/index.js';
+import {
+  signIn, signInWithGoogle, setUserData, getUserData,
+  getUserLevel,
+  updateUserLevel,
+} from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -68,25 +72,39 @@ export default () => {
     signInDom();
   });
 
-  function signInWithGoogleDom() {
-    signInWithGoogle()
-      .then(() => {
-        setUserData();
-        window.location.hash = '#feed';
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        switch (errorCode) {
-          case 'auth/credential-already-in-use':
-            notice.innerHTML = '<p> Opa, está credencial já está em uso </p>';
-            break;
-          default:
-            notice.innerHTML = `<p> ${errorMessage} </p>`;
-        }
-        throw new Error(errorMessage);
-      });
-  }
+  // function signInWithGoogleDom() {
+  //   signInWithGoogle()
+  //     .then((user) => user.user.uid)
+  //     .then((uid) => getUserLevel(uid))
+  //     .then((userCollectionlevel) => {
+  //       // console.log(userCollectionlevel.data().level);
+  //       if (!userCollectionlevel.data().level) {
+  //         console.log('Entrou aqui no if');
+  //         updateUserLevel('nível não selecionado', user.user.uid)
+  //           .then(() => localStorage.setItem('level', 'nível não selecionado'))
+  //           .then(setUserData())
+  //           .then(window.location.hash = '#feed');
+  //       }
+  //     })
+
+  // setUserData()
+  //   .then(updateUserLevel('Nível não selecionado', 'yWiSAd9a5wa9deCCzAWmojG7xGp2'));
+  //   // console.log('level');
+  //   localStorage.setItem('level', level);
+  // })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       switch (errorCode) {
+  //         case 'auth/credential-already-in-use':
+  //           notice.innerHTML = '<p> Opa, está credencial já está em uso </p>';
+  //           break;
+  //         default:
+  //           notice.innerHTML = `<p> ${errorMessage} </p>`;
+  //       }
+  //       throw new Error(errorMessage);
+  //     });
+  // }
 
   btnGoogle.addEventListener('click', () => {
     signInWithGoogleDom();

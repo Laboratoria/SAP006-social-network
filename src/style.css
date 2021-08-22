@@ -370,14 +370,17 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(184, 177, 177);
+  background-color: #7C2946;
+  color: #F6C324;
   flex-wrap: wrap;
 }
+
 
 #menu {
   display: flex;
   list-style: none;
-  gap: .5rem
+  gap: .5rem;
+  color: #F6C324;
 }
 
 #menu a {
@@ -387,6 +390,17 @@ a {
 
 #btn-mobile {
   display: none;
+}
+
+.btnOk {
+width: 4rem;
+height: 2rem;
+border-radius: 5px;
+background-color: var(--coral-haze);
+}
+
+.notice-header-p {
+  color: var(--red-plum);
 }
 
 @media (max-width: 600px) {
@@ -423,11 +437,13 @@ a {
     /* font-size: 1rem; */
     gap: 0.5rem;
     padding: .5rem 1rem;
+   
   }
 
   #hamburger {
     border-top: 2px solid;
     width: 20px;
+
   }
 
   #hamburger::after, #hamburger::before {
@@ -438,6 +454,7 @@ a {
     width: 20px;
     height: 2px;
     margin-top: 5px;
+    color: #F6C324;
     transition: 0.3s;
   }
 

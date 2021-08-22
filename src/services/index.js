@@ -20,6 +20,14 @@ export const setUserData = () => {
   });
 };
 
+export const removeUserData = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      localStorage.clear();
+    }
+  });
+};
+
 export const updateRecipeAuthorName = (name) => {
   db.collection('recipes').get().then((querySnapshot) => {
     querySnapshot.forEach((recipe) => {
@@ -42,12 +50,13 @@ export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).s
   level: data,
 });
 
-const getUserLevel = (uid) => db.collection('levels').doc(uid).get();
+export const getUserLevel = (uid) => db.collection('levels').doc(uid).get();
 
 export const signUp = (email, password, signUpName) => firebase.auth()
   .createUserWithEmailAndPassword(email, password)
   .then(() => updateUserDisplayName(signUpName))
   .then(() => setUserData())
+  .then(() => updateUserLevel('Nível não selecionado', getUserData().uid))
   .then(() => localStorage.setItem('level', 'Nível não selecionado'));
 
 export const signIn = (email, password) => firebase.auth()
@@ -62,13 +71,7 @@ export const signInWithGoogle = () => {
   return firebase.auth().signInWithPopup(provider);
 };
 
-// export const signOut = () => {
-//   firebase.auth().signOut().then(() => {
-//     // Sign-out successful.
-//   }).catch((error) => {
-//     // An error happened.
-//   });
-// };
+export const signOut = () => firebase.auth().signOut();
 
 export const userData = (name, email, uid) => db.collection('users').doc(uid).set({
   name,
@@ -82,18 +85,26 @@ export const postRecipe = (recipe) => db.collection('recipes').add({
   ...recipe,
 });
 
-export const loadRecipe = (addPost) => {
-  db.collection('recipes').get().then((querySnapshot) => {
-    querySnapshot.forEach((post) => {
-      addPost(post);
+export const loadRecipe = () => db.collection('recipes').get();
+
+export const likesPost = (postId) => {
+  db.collection('recipes').doc(postId).get()
+
+    .then((docPost) => {
+      const likeUsers = docPost.data().likes;
+
+      if (likeUsers.includes(getUserData().uid)) {
+        db.collection('recipes').doc(postId).update({
+          likes: firebase.firestore.FieldValue.arrayRemove(getUserData().uid),
+        });
+      } else {
+        db.collection('recipes').doc(postId).update({
+          likes: firebase.firestore.FieldValue.arrayUnion(getUserData().uid),
+        });
+      }
     });
-  });
 };
 
-export const likesPost = (id, numberLikes) => db.collection('recipes')
-  .doc(id)
-  .update({ likes: numberLikes + 1 })
-  .then(() => { });
 export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
 
 export const uploadFoodPhoto = (file) => {
