@@ -5,14 +5,16 @@ export default () => {
   loginScreenContainer.setAttribute('class', 'screenContainer');
 
   const loginScreenButtons = `
-  <div class = "div-width90">
-    <img class="logo" src="image/logotipo.png">
+  <div class = "div-width90 flexRowReverse">
+      <img class="logo" src="image/logotipo.png">
     
     <form class="initialForm">
       <h1 class="title"> Entrar </h1>
-      <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
-      <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
-      <div id="notice"> </div>
+      <input type="email" id="input-email" class="signIn-input" placeholder="E-mail">
+      <input type="password" id="input-password" class="signIn-input" placeholder="Senha">
+      <p id=passwordReset> Esqueceu sua senha? <a href="#recuperarSenha" class="ancor"> Clique aqui </a></p>
+      <div id="notice" class="notice"> </div>
+
       <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
       <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
       <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
