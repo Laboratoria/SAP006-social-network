@@ -74,7 +74,7 @@ export default () => {
             <option value="$$"> $$ </option>
             <option value="$$$"> $$$ </option>
             <option value="$$$$"> $$$$ </option>
-          </select>   
+          </select>
         </div>    
       </div>
       

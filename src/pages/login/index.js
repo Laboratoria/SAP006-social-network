@@ -72,7 +72,7 @@ export default () => {
   function signInWithGoogleDom() {
     signInWithGoogle()
       .then(() => {
-        // setUserData();
+        setUserData();
         window.location.hash = '#feed';
       })
       .catch((error) => {

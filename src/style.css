@@ -254,7 +254,6 @@ button:hover {
   margin-top: 1.5rem;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
   color: red;
   justify-content: space-evenly;
 }
@@ -376,6 +375,18 @@ button:hover {
   align-content: center;
 }
 
+/* icons */ 
+.heart {
+  color: black;
+}
+
+.test {
+  color: red;
+}
+
+.empty-heart{
+  color: red;
+}
 /*   Fim da página de perfil:  */
 
 /* =====================================  HEADER ===================================== */
@@ -419,6 +430,17 @@ a {
 
 #btn-mobile {
   display: none;
+}
+
+.btnOk {
+width: 4rem;
+height: 2rem;
+border-radius: 5px;
+background-color: var(--coral-haze);
+}
+
+.notice-header-p {
+  color: var(--red-plum);
 }
 
 @media (max-width: 600px) {
