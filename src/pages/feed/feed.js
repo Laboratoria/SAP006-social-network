@@ -1,4 +1,4 @@
-import { addPosts, loadPosts } from '../../services/database.js';
+import { addPosts, likePost, loadPosts } from '../../services/database.js';
 import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
 
@@ -51,10 +51,40 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
+  // likes:
   const datasection = rootElement.querySelector('[data-section]');
-  console.log(datasection);
   datasection.addEventListener('click', (e) => {
-    console.log(e);
+    const target = e.target;
+    const likeId = target.dataset.like;
+    if (likeId) {
+      const numberLikes = rootElement.querySelector(`[data-numLike='${likeId}']`);
+      const beforLike = numberLikes.classList.contains('beforLike');
+      const number = Number(numberLikes.textContent);
+      if (beforLike === true) {
+        numberLikes.classList.replace('beforLike', 'afterLike');
+        numberLikes.innerHTML = number + 1;
+        likePost(likeId);
+      } else {
+        numberLikes.classList.replace('afterLike', 'beforeLike');
+        numberLikes.innerHTML = number - 1;
+        likePost(likeId);
+      }
+    }
+    // // console.log(target.dataset.like);
+    // if (target.dataset.like === '') {
+    //   // console.log('cliquei no like');
+    //   likePost()
+    //     .then((returnLiked) => {
+    //       console.log(returnLiked);
+    //       const likesCount = `
+    //         <p>${document.data().likes}</p>
+    //       `;
+    //       rootElement.innerHTML = likesCount;
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // }
   });
 
   const logoutButton = rootElement.querySelector('.btn-logout');

@@ -1,31 +1,28 @@
-import { deletePost, updatePosts } from "../services/database.js";
+import { deletePost, updatePosts } from '../services/database.js';
 
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
 
   const areaOfPost = `
-    <section data-container="${post.id}" id="${post.id}>
+    <section class="container-areaPost" data-container="${post.id}" id="${post.id}>
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu
-            class="dropdown" 
-            style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
-
+          
+          <menu class="dropdown" style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
             <button id="btn-drop"  class="dropbtn">
               <span class="iconify" data-icon="ph:dots-three-duotone"></span>
             </button>
-
             <div id="myDropdown" class="dropdown-content">
-              <button data-edit="${post.id}" class="edit-button">
+              <button data-edit="${post.id}" class="edit-button dropbtn">
                 <span class="iconify btn-more" data-icon="bytesize:edit"></span>
                 Editar
               </button>
-              <button data-delete="${post.id}" class="delete-button">
+              <button data-delete="${post.id}" class="delete-button dropbtn">
                 <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
                 Deletar
               </button>
-              <button data-save="${post.id}" class="save-button">
+              <button data-save="${post.id}" class="save-button dropbtn">
                 <span class="iconify btn-more" data-icon="carbon:save"></span>
                 Salvar
               </button>
@@ -33,42 +30,30 @@ export const printPost = (post) => {
           </menu>
         </div>
         
-        <div class="content">
-          <button>
-            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
-          </button>
-          
-          <div>
-            <textarea id="text-post"
-              class="post-content text-post"
-              id="${post.id}" disabled>${post.data().text}
-            </textarea>
+        <div class="align-post-like">
+          <div class="content">
+              <textarea id="text-post"
+                class="post-content text-post"
+                id="${post.id}" disabled>${post.data().text}
+              </textarea>
           </div>
+          <section class="actions">
+          <p data-numLike="${post.id}">${post.data().likes.length || 0}</p>
+            <button class="btn-like"><span data-like="${post.id}" class="iconify heart" data-icon="icon-park-outline:like" style="color: red;"></span></button>
+          </section>
         </div>
-
-        <section class="actions">
-          <button class="btn-like" data-like>5 ❤️</button>
-        </section>
-
+        
       </div>
     </section>
   `;
 
-  const postTemplate = document.querySelector("#postTemplate");
+  const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
-  postTemplate.addEventListener('click', (e) => {
-    const target = e.target;
-    console.log(target.dataset.like);
-    if (target.dataset.like === "") {
-      console.log("cliquei no botão de like");
-    }
-  });
-
-  const btnEdit = postTemplate.querySelector('[data-edit]')
-  const btnDelete = postTemplate.querySelector('[data-delete]')
-  const btnSave = postTemplate.querySelector('[data-save]')
-  const postText = postTemplate.querySelector("#text-post")
+  const btnEdit = postTemplate.querySelector('[data-edit]');
+  const btnDelete = postTemplate.querySelector('[data-delete]');
+  const btnSave = postTemplate.querySelector('[data-save]');
+  const postText = postTemplate.querySelector('#text-post');
 
   btnEdit.addEventListener('click', (e) => {
     e.preventDefault();
@@ -110,7 +95,7 @@ export const printPost = (post) => {
     confirmButton.addEventListener('click', (e) => {
       const idDelete = e.target.dataset.delete;
       console.log(idDelete);
-      // deletePost(postId);
+      deletePost(idDelete);
     });
 
     const cancelButton = document.querySelector('[data-cancel]');
@@ -124,20 +109,7 @@ export const printPost = (post) => {
   btnDelete.addEventListener('click', () => {
     deletePopUp();
   });
-
-  // console.log(likeButton);
-  // likeButton.addEventListener('click', (e) => {
-  //  // user_id.currentUser --> insere no array de likes;
-  //  // precisa de condicional para like e dislike (se no
-  //  // clique do botaõ, existe o uid do current, coloca e vice versa)--> ternário?
-  // precisa de toggle, precisa de postId
-  //  // metodo union e remove do firebase
-  //  // remover firebase.firestore.FieldValue.arrayRemove
-  //  // firebase.firestore.FieldValue.arrayUnion
-  // });
 };
-
-// NÃO TÁ PEGANDO O POST-ID //
 
 // const deletePopUp = () => {
 //   const root = document.querySelector('#root');
@@ -174,9 +146,4 @@ export const printPost = (post) => {
 //     }
 //   });
 //   return root;
-// };
-
-// btnDelete.addEventListener('click', () => {
-//   deletePopUp();
-// });
 // };
