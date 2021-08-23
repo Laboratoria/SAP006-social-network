@@ -36,7 +36,17 @@ export const updateUserDisplayName = (data) => firebase.auth().currentUser.updat
   displayName: data,
 }).then(() => updateRecipeAuthorName(data));
 
-export const updateUserAuthEmail = (data) => firebase.auth().currentUser.updateEmail(data);
+export const updateUserAuthEmail = (data) => firebase.auth().currentUser.updateEmail(data)
+  .then(() => {
+    const user = firebase.auth().currentUser;
+
+    // TODO(you): prompt the user to re-provide their sign-in credentials
+    const credential = promptForCredentials();
+
+    user.reauthenticateWithCredential(credential).then(() => {
+      // User re-authenticated.
+    });
+  });
 
 export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).set({
   level: data,
@@ -46,6 +56,7 @@ const getUserLevel = (uid) => db.collection('levels').doc(uid).get();
 
 export const signUp = (email, password, signUpName) => firebase.auth()
   .createUserWithEmailAndPassword(email, password)
+  .then((credential) => updateUserLevel('Nível não selecionado', credential.user.uid))
   .then(() => updateUserDisplayName(signUpName))
   .then(() => setUserData())
   .then(() => localStorage.setItem('level', 'Nível não selecionado'));
@@ -59,7 +70,8 @@ export const signIn = (email, password) => firebase.auth()
 
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  return firebase.auth().signInWithPopup(provider);
+  return firebase.auth().signInWithPopup(provider)
+    .then(() => setUserData());
 };
 
 // export const signOut = () => {
@@ -69,12 +81,6 @@ export const signInWithGoogle = () => {
 //     // An error happened.
 //   });
 // };
-
-export const userData = (name, email, uid) => db.collection('users').doc(uid).set({
-  name,
-  email,
-  level: '',
-});
 
 export const postRecipe = (recipe) => db.collection('recipes').add(recipe);
 
@@ -108,3 +114,5 @@ export const uploadFoodPhoto = (file) => {
   const task = storeageRef.put(file);
   return task;
 };
+
+export const resetPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
