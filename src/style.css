@@ -404,6 +404,17 @@ a {
   display: none;
 }
 
+.btnOk {
+width: 4rem;
+height: 2rem;
+border-radius: 5px;
+background-color: var(--coral-haze);
+}
+
+.notice-header-p {
+  color: var(--red-plum);
+}
+
 @media (max-width: 600px) {
 
   #menu {
