@@ -13,7 +13,6 @@ export default () => {
       <input type="email" id="input-email" class="signUp-input" placeholder="E-mail">
       <input type="password" id="input-password" class="signUp-input" placeholder="Senha">
       <div id="notice"> </div>
-
       <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
       <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
       <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
