@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap'); */
 
 * {
   margin: 0;
@@ -13,6 +13,7 @@
   --limeade: #D3D95F;
   --pantone-142c: #F1BE48;
   --fressia: #F6C324;
+  --beeswax: 240, 219, 170;
 }
 
 body {
@@ -22,10 +23,6 @@ body {
 }
 
 .screenContainer {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; */
   display: block;
 }
 
@@ -34,34 +31,15 @@ body {
   margin: auto;
 }
 
-.initialForm {
+.initialForm, .postRecipeForm {
   width: 100%;
   margin: auto;
 }
 
 .logo {
   width: 160px;
-  margin: 35px auto auto auto;
+  margin: 25px auto auto auto;
   display: block;
-}
-
-.logoBox {
-  position: relative;
-}
-
-.foodlovers {
-  /* font-family: 'Gochi Hand', cursive; */
-  /* font-family: 'Knewave', cursive; */
-  font-family: 'Cookie', cursive;
-  text-align: center;
-  font-size: 1.2rem;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-49%, 130%);
-  color: var(--fressia);
-  /* -webkit-text-stroke-width: 1px; 
-  -webkit-text-stroke-color: #000; */
 }
 
 .signIn-input, .signUp-input {
@@ -69,7 +47,7 @@ body {
   width: 100%;
   height: 40px;
   display: block;
-  margin: 15px auto;
+  margin: 15px auto 0 auto;
   border: 1px solid var(--russet-orange);
   border-radius: 5px;
   padding: 15px;
@@ -113,9 +91,10 @@ body {
 .notice {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
 .material-icons {
@@ -127,6 +106,30 @@ button:hover {
   cursor: pointer;
 }
 
+#passwordReset, #loginAcc {
+  margin-top: 5px;
+  margin-bottom: 0.5rem; 
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.ancor {
+  text-decoration: underline;
+  color: rgb(51, 51, 211);
+}
+
+/* =================================  Página de Reset Password: ================================ */
+
+#resetPassword-email {
+  margin: 0px auto 25px auto;
+}
+
+#forgotPassword-form label {
+  margin-left: 15px;
+  color:rgb(48, 48, 51);
+  letter-spacing: 2px;
+  position: relative;
+}
 
 /* =================================  Página de postRecipe: =================================== */
 
@@ -137,7 +140,7 @@ button:hover {
   overflow: scroll;
   border: none;
   display: block;
-  background-color:#f0dbaa;
+  background-color: rgba(var(--beeswax));
   margin: 1rem auto ;
 }
 
@@ -195,13 +198,17 @@ button:hover {
   border-radius: 5px;
 }
 
-#recipe-title {
-  background-color: #f0dbaa;
+#addRecipe-title {
+  background-color: rgba(var(--beeswax));
 }
 
-#post-recipe-title {
+#post-recipe-title, #recipes-title, .resetPassword-title {
   border-bottom: 2px solid var(--red-plum);
   font-weight: bolder;
+}
+
+#recipes-title {
+  width: 90%;
 }
 
 .popup {
@@ -212,7 +219,7 @@ button:hover {
   border: 1px solid var(--russet-orange);
   border-radius: 10px;
   z-index: 100;
-  background-color:  #f0dbaa;
+  background-color: rgba(var(--beeswax));
   width: 250px;
   padding: 20px;
   transition: 200ms ease-in-out;
@@ -221,11 +228,11 @@ button:hover {
   box-shadow: 3px 3px 3px #000;
 }
 
-.popup.active {
+.popup.active, .popup.error {
   transform: translate(-50%, -80%) scale(1);
 }
 
-#overlay {
+.overlay {
   position: fixed;
   opacity: 0;
   left: 0px;
@@ -235,9 +242,10 @@ button:hover {
   background-color: rgb(0, 0, 0, 0.5);
   transition: 200ms ease-in-out;
   pointer-events: none; /*o valor none instrui o evento do mouse a "passar" o elemento e tudo que está "abaixo" deste elemento.*/
+  z-index: 99;
 }
 
-#overlay.active {
+.overlay.active {
   pointer-events: all;
   opacity: 1;
 }
@@ -261,11 +269,11 @@ button:hover {
   border-radius: 5px;
 }
 
-#btn-yes {
+.btn-yes {
   background-color: var(--coral-haze);
 }
 
-#uploader {
+.uploader {
   -webkit-appearance: none;
   appearance: none;
   width: 40px;
@@ -397,7 +405,6 @@ a {
   flex-wrap: wrap;
 }
 
-
 #menu {
   display: flex;
   list-style: none;
@@ -420,7 +427,6 @@ a {
     display: block;
     position: absolute;
     width: 43%;
-    /* height: 0; */
     z-index: 1000;
     background-color: var(--coral-haze);
     /* transition: .2s; */
@@ -499,11 +505,12 @@ footer {
 .div-recipe {
   /* background-color: var(--russet-orange); */
   background-color: rgb(219, 219, 219);
-  margin: 1rem auto;
+  margin: 2rem auto;
   /* color: black; */
   box-shadow: 3px 3px 3px black;
   display: block;
   border-radius: 5px;
+  position: relative;
 }
 
 .recipe-title {
@@ -552,7 +559,7 @@ footer {
   margin-bottom: 0.75rem;
 }
 
-#recipe-footer {
+.recipe-footer {
   border-radius: 0 0 5px 5px;
   display: flex;
 }
@@ -594,18 +601,109 @@ footer {
   margin: 0px;
 }
 
-.delete-button {
-  /* position: absolute; */
+.menu-recipeButton {
   float: right;
-  background-color: #D3D95F;
-  /* z-index: 2; */
+  /* background-color: #D3D95F; */
+  display: none;
+  border: none;
+  background-color: transparent;
+  color: var(--pantone-142c);
+  height: 100%;
+  position: relative;
+}
+
+.menu-button span {
+  font-size: 1.7rem;
+}
+
+.recipeMenu {
+  display: block;
+  position: absolute;
+  width: 45%;
+  background-color: var(--coral-haze);
+  top: 31px;
+  visibility: hidden;
+  right: 0;
+  pointer-events: all;
+}
+
+.recipeMenu li {
+  border-bottom: 2px solid rgba(0, 0, 0, .05);
+  list-style-type: none;
+  /* margin: 1rem 1rem; */
+}
+
+.recipeMenu li:hover {
+  cursor: pointer;
+}
+
+.recipeMenu li p {
+  margin: 0.5rem 1rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.recipeMenu li span {
+  margin-right: 10px;
+  width: calc(100%-10px);
+}
+
+.recipeMenu.showMenu {
+  visibility: visible;
+}
+
+.loading {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px){
+  body {
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/food.png");
+    /* Background pattern from Toptal Subtle Patterns */
+  }
+
+  .initialForm {
+    width: 80%;
+  }
 
 }
 
 @media screen and (min-width: 769px){
+  body {
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/food.png");
+    /* Background pattern from Toptal Subtle Patterns */
+  }
 
+  .flexRowReverse {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .initialForm {
+    width: 40vw;
+    margin: 0px;
+    background-color: rgba(var(--beeswax), 0.6);
+    padding: 5%;
+    border-radius: 5px;
+  }
+
+  .logo {
+    width: 35vw;
+    margin: 0px;
+    padding: 5%;
+  }
+
+  
 }
 
