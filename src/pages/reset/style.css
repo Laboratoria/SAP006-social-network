@@ -27,3 +27,8 @@
     text-decoration: none;
     font-size: 12px;
   }
+
+  .reset-text {
+      color: black;
+      text-align: center;
+  }
