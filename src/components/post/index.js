@@ -7,7 +7,7 @@ export function addPost(post) {
   postContainer.setAttribute('id', post.id);
 
   const postTemplate = `
-    <button class="menu-button">
+    <button class="menu-recipeButton">
       <span class="material-icons">more_horiz</span>
     </button>
     <ul class="recipeMenu">
@@ -128,7 +128,7 @@ export function addPost(post) {
   const deleteButton = postContainer.querySelector('.delete-button');
   deleteButton.addEventListener('click', () => toggleClass());
 
-  const menuButton = postContainer.querySelector('.menu-button');
+  const menuButton = postContainer.querySelector('.menu-recipeButton');
   menuButton.addEventListener('click', () => {
     postContainer.querySelector('.recipeMenu').classList.toggle('showMenu');
   });
