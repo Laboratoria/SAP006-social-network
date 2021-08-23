@@ -12,7 +12,8 @@ export default () => {
         <label for="get-email" class="label-register">Email</label><br>
         <input type="text" name="email" id="email-user" class="input-register"><br>
         <label for="get-password" class="label-register">Senha</label><br>
-        <input type="text" name="password" id="password-user">
+        <input type="password" name="password" id="password-user">
+        <i class="fa fa-eye" aria-hidden="true"></i>
       </form> 
       <div class="button">
         <a href="/#login">
