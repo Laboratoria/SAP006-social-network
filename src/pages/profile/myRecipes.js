@@ -16,6 +16,13 @@ export default () => {
           myRecipesSection.append(addPost(post));
         }
       });
+      if (myRecipesSection.childElementCount === 0) {
+        myRecipesSection.innerHTML = `
+          <div id="notice" class="notice">
+            <p> Você ainda não publicou nenhuma receita </p>
+          </div>
+        `;
+      }
     });
 
   myRecipesContainer.append(myRecipesSection);
