@@ -1,4 +1,5 @@
 import { likesPost, deletePost, getUserData } from '../../services/index.js';
+import errorModal from '../error/index.js';
 
 export function addPost(post) {
   const postContainer = document.createElement('div');
@@ -6,10 +7,19 @@ export function addPost(post) {
   postContainer.setAttribute('id', post.id);
 
   const postTemplate = `
-    <button class="delete-button" data-delete>
-      <span class="material-icons">delete</span>
+    <button class="menu-button">
+      <span class="material-icons">more_horiz</span>
     </button>
-    
+    <ul class="recipeMenu">
+      <li class="edit-button">
+        <p> Editar 
+          <span class="material-icons"> edit </span> </p>
+      </li>
+      <li class="delete-button"> <p> Excluir 
+        <span class="material-icons"> deletep </span> </p> 
+      </li>
+    </ul>
+
     <div class="toggle-section">
       
       <h3 class="title recipe-title"> ${post.data()['nome da receita']} </h3>
@@ -63,10 +73,11 @@ export function addPost(post) {
     </div>
 
     <div class="popup" data-toggle="popup">
-      Você está prestes a excluir permanentemente esta receita. Você tem certeza?
+      <h2> Deletar Receita </h2>
+      <p> Você tem certeza ?
       <div class="div-btns-popup">
-        <button type="button" class="btn-popup btn-yes">Sim</button>
-        <button type="button" class="btn-popup btn-no">Não</button>
+        <button type="button" class="btn-popup btn-yes">Deletar</button>
+        <button type="button" class="btn-popup btn-no">Cancelar</button>
       </div>
     </div>
 
@@ -74,11 +85,12 @@ export function addPost(post) {
   `;
 
   postContainer.innerHTML = postTemplate;
+  const popup = postContainer.querySelector('.popup');
+  const overlay = postContainer.querySelector('.overlay');
+  const toggleDiv = postContainer.querySelector('.toggle-section');
 
-  const div = postContainer.querySelector('.toggle-section');
-
-  div.addEventListener('click', () => {
-    div.querySelector('.recipeBody').classList.toggle('showBlock');
+  toggleDiv.addEventListener('click', () => {
+    toggleDiv.querySelector('.recipeBody').classList.toggle('showBlock');
   });
 
   const button = postContainer.querySelector('.recipeLikes');
@@ -88,7 +100,7 @@ export function addPost(post) {
   // tratar erros ;
 
   function toggleClass() {
-    const toggleClassElements = postContainer.querySelectorAll('[data-toggle]');
+    const toggleClassElements = postContainer.querySelectorAll('.overlay, .popup');
     toggleClassElements.forEach((elem) => elem.classList.toggle('active'));
   }
 
@@ -97,17 +109,14 @@ export function addPost(post) {
     deletePost(post.id)
       .then(() => {
         toggleClass();
-
         const recipe = document.getElementById(post.id);
-        recipe.parentNode.removeChild(recipe);
+        recipe.remove();
       })
       .catch((error) => {
-        const popup = postContainer.querySelector('.popup');
-        popup.innerHTML = ` Ops! Algo deu errado. Tente de novo mais tarde.
-        <button type="button" class="btn-popup okay">Ok</button>`;
-        const buttonOk = postContainer.querySelector('.okay');
-        buttonOk.addEventListener('click', toggleClass);
-        console.error("Error removing document: ", error);
+        popup.classList.remove('active');
+        overlay.classList.add('active');
+        postContainer.append(errorModal());
+        throw Error(error);
       });
   });
 
@@ -116,12 +125,22 @@ export function addPost(post) {
     toggleClass();
   });
 
-  const deleteButton = postContainer.querySelector('[data-delete]');
+  const deleteButton = postContainer.querySelector('.delete-button');
   deleteButton.addEventListener('click', () => toggleClass());
+
+  const menuButton = postContainer.querySelector('.menu-button');
+  menuButton.addEventListener('click', () => {
+    postContainer.querySelector('.recipeMenu').classList.toggle('showMenu');
+  });
+
+  const editButton = postContainer.querySelector('.edit-button');
+  editButton.addEventListener('click', () => {
+    console.log('hora de editar');
+  });
 
   const userUid = getUserData().uid;
   if (userUid === post.data().user_id) {
-    deleteButton.style.display = 'block';
+    menuButton.style.display = 'block';
   }
 
   return postContainer;

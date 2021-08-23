@@ -1,6 +1,7 @@
 import { postRecipe } from '../../services/index.js';
 import header from '../../components/header/index.js';
 import footer from '../../components/footer/index.js';
+import errorModal from '../../components/error/index.js';
 
 export default () => {
   const addRecipeContainer = document.createElement('div');
@@ -14,9 +15,9 @@ export default () => {
   const addRecipeTemplate = `
     <h2 id="post-recipe-title" class="title">Postar Receita</h2>
 
-    <form class="initialForm">
+    <form class="postRecipeForm">
       
-      <input type="text" id="recipe-title" class="signUp-input required" placeholder="Nome da receita">
+      <input type="text" id="addRecipe-title" class="signUp-input required" placeholder="Nome da receita">
       
       <div id="recipe-photo" class="recipe-photo"></div>
 
@@ -99,7 +100,7 @@ export default () => {
   const form = addRecipeContainer.querySelector('.initialForm');
   const alert = addRecipeContainer.querySelector('#alert');
   const btnPostRecipe = addRecipeContainer.querySelector('#post-recipe');
-  const popup = addRecipeContainer.querySelector('#popup');
+  const overlay = addRecipeContainer.querySelector('.overlay');
   const toggle = addRecipeContainer.querySelectorAll('.overlay, #popup');
 
   function toggleClass() {
@@ -136,19 +137,11 @@ export default () => {
       postRecipe(recipe)
         .then(() => {
           toggleClass();
-          // popup.classList.add('active');
-          // overlay.classList.add('active');
         })
         .catch((error) => {
-          popup.innerHTML = `
-          <p> Ooooops! Alguma coisa deu errado! </p>
-          <p> Tente de novo mais tarde! </p> 
-          <button type="button" class="btn-login" data-close-button>OK</button>
-          `;
-          toggleClass();
-          const closePopup = addRecipeContainer.querySelector('[data-close-button]');
-          closePopup.addEventListener('click', toggleClass);
-          throw new Error(error);
+          overlay.classList.add('active');
+          addRecipeContainer.append(errorModal());
+          throw Error(error);
         });
     }
   }
@@ -162,8 +155,6 @@ export default () => {
   addNewRecipe.addEventListener('click', () => {
     form.reset();
     toggleClass();
-    // popup.classList.remove('active');
-    // overlay.classList.remove('active');
     window.scrollTo(0, 0);
   });
 
