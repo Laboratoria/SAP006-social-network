@@ -42,7 +42,7 @@ export function addPost(post) {
           
           <div class="recipeInfo-box">
             <p>${post.data().preco}</p>
-            <p>preço</p>
+            <p>custo</p>
           </div>
           
           <div class="recipeInfo-box">

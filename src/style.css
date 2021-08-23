@@ -619,7 +619,7 @@ footer {
 .recipeMenu {
   display: block;
   position: absolute;
-  width: 45%;
+  width: 130px;
   background-color: var(--coral-haze);
   top: 31px;
   visibility: hidden;

@@ -68,7 +68,7 @@ export default () => {
         </div>
       
         <div class="filter-info-recipe" id="filter-info-recipe-last">
-          <label for="price">Faixa de Preço</label>
+          <label for="price">Faixa de Custo</label>
           <select name="price" id="price-select" class="recipe-select required">
             <option value="$"> $ </option>
             <option value="$$"> $$ </option>

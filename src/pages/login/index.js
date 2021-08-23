@@ -6,7 +6,7 @@ export default () => {
 
   const loginScreenButtons = `
   <div class = "div-width90 flexRowReverse">
-      <img class="logo" src="image/ComidaLogotipo.png">
+      <img class="logo" src="image/logotipo.png">
     
     <form class="initialForm">
       <h1 class="title"> Entrar </h1>
