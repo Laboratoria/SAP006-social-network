@@ -82,7 +82,8 @@ const likePost = (idUser, idPost) => firebase.firestore().collection('post').doc
 const uploadPicture = (log, folder) => storage.ref(`images/${log}`).put(folder);
 
 const downloadPicture = (log) => storage.ref().child(`images/${log}`).getDownloadURL();
-const dislikePost = (idUser, idPost) => firebase.firestore().collection('post').doc(idPost).update({ likes: firebase.firestore.FieldValue.arrayRemove(idUser) });
+
+const unlikePost = (idUser, idPost) => firebase.firestore().collection('post').doc(idPost).update({ likes: firebase.firestore.FieldValue.arrayRemove(idUser) });
 
 const createHome = (user) => firebase.firestore().collection('home').doc(user.userId).set(user);
 
@@ -92,5 +93,5 @@ const getHome = (uid) => firebase.firestore().collection('home').where('userId',
 export {
   loginEmailAndPassword, loginWithGmail, signUpWithEmailAndPassword, keepMeLogged, resetPassword,
   signOut, createPost, getPost, updatePost, deletePostFeed, currentUser, createHome, getHome,
-  uploadPicture, downloadPicture, likePost, getLikes, dislikePost,
+  uploadPicture, downloadPicture, likePost, getLikes, unlikePost,
 };

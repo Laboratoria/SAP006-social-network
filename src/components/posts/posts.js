@@ -24,7 +24,7 @@ const Post = (photoPost, nameUserPost, text, idUserPost, idPost, dateP, likesPos
           <button data-cancel='cancel' type='button' id='cancel-${idPost}' class='cancelEditBtn'>Cancel</button>
         </div>
         <a data-num='num' id='numLike-${idPost}' class='numLikes'>${likesPost.length}</a>
-        <button type='button' data-like='like' id='like-${idPost}' class='likeBtn'>Like</button>
+        <i data-like='like' id='like-${idPost}' class='far fa-heart'></i>
         <button data-edit='edit' type='button' id='edit-${idPost}' class='editBtn'>Edit</button>
         <button type='button' data-delete='delete' id='delete-${idPost}' class='deleteBtn'>Delete</button>
       </section>  
@@ -83,6 +83,12 @@ function printPost(post) {
     btnCancelEdit.style.display = 'none';
   }
 
+  if (likesPost.includes(idUser)) {
+    btnLike.classList.add('fas');
+  } else {
+    btnLike.classList.add('far');
+  }
+
   for (const partOfPost of postSelected) {
     partOfPost.addEventListener('click', (event) => {
       const e = event.target;
@@ -91,15 +97,15 @@ function printPost(post) {
       const idCreatorPost = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.getAttribute('id');
       const idPostClicked = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.children[0].getAttribute('id');
       //const deleteBtn = (event.target.id).includes('delete');
+      const likeIcon = document.querySelector(`#${event.target.id}`);
       const numLikes = document.querySelector(`#${event.target.id}`).previousElementSibling;
-      //const saveEditPost = document.querySelector(`#${event.target.id}`);
 
       if (e.dataset.delete && idCreatorPost === idUser) {
         deletePost(idPostClicked, mainPost);
       }
 
       if (e.dataset.like) {
-        sendLike(idUser, idPostClicked, numLikes);
+        sendLike(idUser, idPostClicked, numLikes, likeIcon);
       }
 
       if (e.dataset.edit && idCreatorPost === idUser) {
@@ -113,12 +119,9 @@ function printPost(post) {
       if (e.dataset.save) {
         const saveTextarea = document.querySelector(`#${event.target.id}`).parentNode.parentNode.previousElementSibling.value;
         const editionBtns = document.querySelector(`#${event.target.id}`).parentNode;
+        const postId = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.parentNode.children[0].getAttribute('id');
         editionBtns.style.display = 'none';
-        updatePost(idPostClicked, saveTextarea).then(() => {
-          console.log('está indo');
-        }).catch('error');
-        console.log(saveTextarea);
-        console.log(idPostClicked);
+        updatePost(postId, saveTextarea);
       }
 
       if (e.dataset.cancel) {
@@ -126,7 +129,7 @@ function printPost(post) {
         editTextarea.setAttribute('disabled', '');
         const editionBtns = document.querySelector(`#${event.target.id}`).parentNode;
         editionBtns.style.display = 'none';
-        console.log(editTextarea, 'cancela mesmo <3');
+        //console.log(editTextarea, 'cancela mesmo <3');
       }
     });
   }

@@ -1,5 +1,6 @@
+/* eslint-disable spaced-comment */
 import {
-  deletePostFeed, likePost, getLikes, dislikePost,
+  deletePostFeed, likePost, getLikes, unlikePost,
 } from '../../services/index.js';
 
 const deletePost = (idPost, post) => {
@@ -39,27 +40,19 @@ const deletePost = (idPost, post) => {
   return root;
 };
 
-function addLike(num) {
-  const numberLikes = num;
-  const newNum = Number(numberLikes.innerText) + 1;
-  numberLikes.innerHTML = newNum;
-}
-
-function removeLike(num) {
-  const numberLikes = num;
-  const newNum = Number(numberLikes.innerText) - 1;
-  numberLikes.innerHTML = newNum;
-}
-
-const sendLike = (idUser, idPostClicked, numLikes) => {
+const sendLike = (idUser, idPostClicked, numLikes, likeIcon) => {
+  const likesNumber = Number(numLikes.innerText);
+  const likesElement = numLikes;
   getLikes(idPostClicked).then((post) => {
     if (!post.data().likes.includes(idUser)) {
       likePost(idUser, idPostClicked).then(() => {
-        addLike(numLikes);
+        likesElement.innerHTML = likesNumber + 1;
+        likeIcon.classList.replace('far', 'fas');
       }).catch('error');
     } else {
-      dislikePost(idUser, idPostClicked).then(() => {
-        removeLike(numLikes);
+      unlikePost(idUser, idPostClicked).then(() => {
+        likesElement.innerHTML = likesNumber - 1;
+        likeIcon.classList.replace('fas', 'far');
       }).catch('error');
     }
   }).catch('error');

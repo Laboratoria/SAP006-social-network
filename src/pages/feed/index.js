@@ -49,7 +49,7 @@ export const Feed = () => {
   // insere a foto 
   if (photo) {
     picturePost.src = photo;
-  };
+  }
   // confere o nome
   if (!name) {
     root.querySelector('.username').innerText = 'User';
@@ -74,7 +74,6 @@ export const Feed = () => {
     const timeline = document.querySelector('.feedTimeline');
     timeline.innerHTML = '';
     textInput.value = '';
-
     loadPost();
   });
 

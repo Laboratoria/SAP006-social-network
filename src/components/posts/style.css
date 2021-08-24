@@ -1,6 +1,18 @@
-@import url('../../components/popup/style.css'); 
+@import url("../../components/popup/style.css");
 
 /*** Botões dos posts ***/
+
+.iconContainer {
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 80px;
+  background-color: #fafafa;
+}
+
+.fa-heart::before {
+  font-size: 25px;
+  color: #ffd632;
+}
 
 .numLikes {
   color: black;
@@ -11,37 +23,34 @@
 }
   
 .likeBtn {
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 1%;
-    background-color: #ffd632;
-    color: #1f1f4b;
-    width: 60px;  
-    display: block;
-  }
-  
-  
-  .editBtn {
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 1%;
-    background-color: #ffd632;
-    color: #1f1f4b;
-    width: 60px; 
-    display: none; 
-}
-  
-  .deleteBtn {
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 1%;
-    background-color: #ffd632;
-    color: #1f1f4b;
-    width: 60px;  
-    display: none;
-
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 1%;
+  background-color: #ffd632;
+  color: #1f1f4b;
+  width: 60px;
+  display: block;
 }
 
+.editBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 1%;
+  background-color: #ffd632;
+  color: #1f1f4b;
+  width: 60px;
+  display: none;
+}
+
+.deleteBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 1%;
+  background-color: #ffd632;
+  color: #1f1f4b;
+  width: 60px;
+  display: none;
+}
