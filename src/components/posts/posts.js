@@ -68,6 +68,12 @@ function printPost(post) {
     btnDelete.style.display = 'block';
   }
 
+  if (likesPost.includes(idUser)) {
+    btnLike.classList.add('fas');
+  } else {
+    btnLike.classList.add('far');
+  }
+
   for (const partOfPost of postSelected) {
     partOfPost.addEventListener('click', (event) => {
       const e = event.target;
@@ -78,13 +84,14 @@ function printPost(post) {
       //const deleteBtn = (event.target.id).includes('delete');
       const likeIcon = document.querySelector(`#${event.target.id}`);
       const numLikes = document.querySelector(`#${event.target.id}`).nextElementSibling;
-
       if (e.dataset.delete && idCreatorPost === idUser) {
         deletePost(idPostClicked, mainPost);
       }
 
       if (e.dataset.like) {
         sendLike(idUser, idPostClicked, numLikes, likeIcon);
+        console.log(document.querySelector(`#${event.target.id}`));
+        console.log(idPostClicked);
       }
     });
   }
