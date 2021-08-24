@@ -16,11 +16,12 @@
 
 .numLikes {
   color: black;
-  padding: 5px;
-  align-self: center;
-  color: #37377c;
 }
 
+.edition-btns {
+  display: none;
+}
+  
 .likeBtn {
   border: none;
   border-radius: 5px;

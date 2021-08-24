@@ -2,28 +2,33 @@
 /* eslint-disable no-console */
 /* eslint-disable spaced-comment */
 /* eslint-disable no-restricted-syntax */
-import { /* updatePost, */currentUser } from '../../services/index.js';
+import { updatePost, currentUser } from '../../services/index.js';
+//import { Feed } from '../../pages/feed/index.js';
 import { deletePost, sendLike } from './postfunctions.js';
 
-const Post = (nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost) => {
+const Post = (photoPost, nameUserPost, text, idUserPost, idPost, dateP, likesPost) => {
   const template = `
   <main class='postContainer' data-post id=${idUserPost}>
     <header class='post-header' id=${idPost}>      
       <section class='userInfo'>
-        <img id='${photoPost}' src='../../img/profileImg.png' height="40px" width="40px">
+        <img id='photoPost-${idPost}' class='imageCirclePostUser' src='${photoPost}' height="40px" width="40px">
         <p class='username'>${nameUserPost}</p> 
       </section>
       <p id='postDate' class='postDate'>${dateP}</p> 
     </header> 
     <form class='formContainer'>
-      <p id='p' class='postInput' placeholder='Sua Mensagem'>${text}</p>      
-        <section id='section' class='postBtnContainer'> 
-            <i data-like='like' id='like-${idPost}' class='far fa-heart'></i>
-            <a data-num='num' id='numLike-${idPost}' class='numLikes'>${likesPost.length}</a>
-          <button type='button' id='edit-${idPost}' class='editBtn'>Edit</button> 
-          <button type='button' data-delete='delete' id='delete-${idPost}' class='deleteBtn'>Delete</button>
-        </section>  
-      </form>    
+      <textarea id='textarea-${idPost}' class='postInput' placeholder='Sua Mensagem' disabled>${text}</textarea>      
+      <section id='section' class='postBtnContainer'>
+        <div id='edition-btns' class='edition-btns'>
+          <button data-save='save' type='button' id='save-${idPost}' class='saveEditBtn'>Save</button> 
+          <button data-cancel='cancel' type='button' id='cancel-${idPost}' class='cancelEditBtn'>Cancel</button>
+        </div>
+        <a data-num='num' id='numLike-${idPost}' class='numLikes'>${likesPost.length}</a>
+        <i data-like='like' id='like-${idPost}' class='far fa-heart'></i>
+        <button data-edit='edit' type='button' id='edit-${idPost}' class='editBtn'>Edit</button>
+        <button type='button' data-delete='delete' id='delete-${idPost}' class='deleteBtn'>Delete</button>
+      </section>  
+    </form>    
   </main>
   `;
   return template;
@@ -46,7 +51,7 @@ function printPost(post) {
   //   idPost: post.id,
   // };
   // updatePost(updateId, post.id);
-  // console.log (updateId);
+  // console.log(updateId);
 
   firebase.firestore().collection('post').doc(post.id).update({
     idPost: post.id,
@@ -55,17 +60,27 @@ function printPost(post) {
   const timeline2 = document.querySelector('.feedTimeline');
   timeline2.innerHTML += '';
   // eslint-disable-next-line max-len
-  timeline2.innerHTML += Post(nameUserPost, text, idUserPost, idUser, idPost, photoPost, dateP, likesPost);
+  timeline2.innerHTML += Post(photoPost, nameUserPost, text, idUserPost, idPost, dateP, likesPost);
+
+  // const picturePost = document.querySelector(`#photoPost-${idPost}`);
+  // picturePost.src = photoPost;
 
   const postSelected = document.querySelectorAll('[data-post]');
   const btnLike = document.querySelector(`#like-${idPost}`);
+  const numberOfLikes = document.querySelector(`#numLike-${idPost}`);
   const btnEdit = document.querySelector(`#edit-${idPost}`);
+  const btnSaveEdit = document.querySelector(`#save-${idPost}`);
+  const btnCancelEdit = document.querySelector(`#cancel-${idPost}`);
   const btnDelete = document.querySelector(`#delete-${idPost}`);
 
   if (idUser === idUserPost) {
     btnLike.style.display = 'none';
+    numberOfLikes.style.display = 'none';
     btnEdit.style.display = 'block';
     btnDelete.style.display = 'block';
+  } else {
+    btnSaveEdit.style.display = 'none';
+    btnCancelEdit.style.display = 'none';
   }
 
   if (likesPost.includes(idUser)) {
@@ -83,15 +98,38 @@ function printPost(post) {
       const idPostClicked = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.children[0].getAttribute('id');
       //const deleteBtn = (event.target.id).includes('delete');
       const likeIcon = document.querySelector(`#${event.target.id}`);
-      const numLikes = document.querySelector(`#${event.target.id}`).nextElementSibling;
+      const numLikes = document.querySelector(`#${event.target.id}`).previousElementSibling;
+
       if (e.dataset.delete && idCreatorPost === idUser) {
         deletePost(idPostClicked, mainPost);
       }
 
       if (e.dataset.like) {
         sendLike(idUser, idPostClicked, numLikes, likeIcon);
-        console.log(document.querySelector(`#${event.target.id}`));
-        console.log(idPostClicked);
+      }
+
+      if (e.dataset.edit && idCreatorPost === idUser) {
+        const editTextarea = (document.querySelector(`#${event.target.id}`)).parentNode.previousElementSibling;
+        const editionBtns = document.querySelector(`#${event.target.id}`).previousElementSibling.previousElementSibling.previousElementSibling;
+        editionBtns.style.display = 'block';
+        editTextarea.removeAttribute('disabled');
+        editTextarea.focus();
+      }
+
+      if (e.dataset.save) {
+        const saveTextarea = document.querySelector(`#${event.target.id}`).parentNode.parentNode.previousElementSibling.value;
+        const editionBtns = document.querySelector(`#${event.target.id}`).parentNode;
+        const postId = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.parentNode.parentNode.children[0].getAttribute('id');
+        editionBtns.style.display = 'none';
+        updatePost(postId, saveTextarea);
+      }
+
+      if (e.dataset.cancel) {
+        const editTextarea = (document.querySelector(`#${event.target.id}`)).parentNode.parentNode.previousSibling.previousSibling;
+        editTextarea.setAttribute('disabled', '');
+        const editionBtns = document.querySelector(`#${event.target.id}`).parentNode;
+        editionBtns.style.display = 'none';
+        //console.log(editTextarea, 'cancela mesmo <3');
       }
     });
   }

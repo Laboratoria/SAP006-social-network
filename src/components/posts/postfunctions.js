@@ -8,13 +8,13 @@ const deletePost = (idPost, post) => {
   const popupContainer = document.createElement('div');
   popupContainer.innerHTML = ` 
       <div class='popup-wrapper'>
-          <div class='popup'>
-            <div class='popup-content'>
-                <div id='yes' class='yes'>SIM</div>
-                <div id='no' class='não'>NAO</div>
-            </div>                
-          </div>
+        <div class='popup'>
+          <div class='popup-content'>
+            <div id='yes' class='yes'>SIM</div>
+            <div id='no' class='não'>NAO</div>
+          </div>                
         </div>
+      </div>
     `;
   root.appendChild(popupContainer);
 
@@ -57,4 +57,5 @@ const sendLike = (idUser, idPostClicked, numLikes, likeIcon) => {
     }
   }).catch('error');
 };
+
 export { deletePost, sendLike };
