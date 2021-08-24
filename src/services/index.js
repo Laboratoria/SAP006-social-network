@@ -71,7 +71,7 @@ const createPost = (post) => firebase.firestore().collection('post').add(post);
 
 const getPost = () => firebase.firestore().collection('post').orderBy('date', 'desc').get();
 
-const updatePost = (idPost, post) => firebase.firestore().collection('post').doc(idPost).update(post);
+const updatePost = (idPost, post) => firebase.firestore().collection('post').doc(idPost).update({ text: post });
 
 const deletePostFeed = (idPost) => firebase.firestore().collection('post').doc(idPost).delete();
 

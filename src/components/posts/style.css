@@ -4,8 +4,11 @@
 
 .numLikes {
   color: black;
-  }
+}
 
+.edition-btns {
+  display: none;
+}
   
 .likeBtn {
     border: none;

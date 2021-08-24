@@ -1,19 +1,19 @@
-/* eslint-disable spaced-comment */
-import { popUpNotice } from '../popup/index.js'
-import { /*updatePost,*/ deletePostFeed, likePost, getLikes, dislikePost} from '../../services/index.js';
+import {
+  deletePostFeed, likePost, getLikes, dislikePost,
+} from '../../services/index.js';
 
 const deletePost = (idPost, post) => {
   const root = document.querySelector('.root');
   const popupContainer = document.createElement('div');
   popupContainer.innerHTML = ` 
       <div class='popup-wrapper'>
-          <div class='popup'>
-            <div class='popup-content'>
-                <div id='yes' class='yes'>SIM</div>
-                <div id='no' class='não'>NAO</div>
-            </div>                
-          </div>
+        <div class='popup'>
+          <div class='popup-content'>
+            <div id='yes' class='yes'>SIM</div>
+            <div id='no' class='não'>NAO</div>
+          </div>                
         </div>
+      </div>
     `;
   root.appendChild(popupContainer);
 
@@ -64,4 +64,5 @@ const sendLike = (idUser, idPostClicked, numLikes) => {
     }
   }).catch('error');
 };
+
 export { deletePost, sendLike };

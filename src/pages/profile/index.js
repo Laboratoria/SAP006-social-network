@@ -8,13 +8,13 @@ export const Profile = () => {
   headerMenu();
   const loggedUser = currentUser();
   const loggeduserId = loggedUser.uid;
- 
+
   const root = document.createElement('div');
   root.classList.add('root-profile');
   root.innerHTML = `
 	<main class='profile-container row'>
-		<section class='profile-form col-11'>
-			<form>
+    <section class='profile-form col-11'>
+      <form>
         <fieldset class='fieldset-container'>
 					<legend class='legend'> Seu Perfil </legend>
           <section class='profile-image-container col-4'>
@@ -60,8 +60,6 @@ export const Profile = () => {
   </main>
   `;
 
-  // documentação - https://firebase.google.com/docs/storage/web/create-reference?hl=pt-br
-  // storage.ref() -- criar uma referência
   // upload da imagem:  storage.ref(`images/${loggeduserId}`).put(file);
   // video sobre o upload https://www.youtube.com/watch?v=dEG6IqpBfN4&ab_channel=DankiCode
   // video sobre o download url também https://www.youtube.com/watch?v=ZH-PnY-JGBU&ab_channel=TACV-TheAmazingCode-Verse
@@ -96,9 +94,9 @@ export const Profile = () => {
 
   const saveButton = root.querySelector('#saveBtn');
   const name = root.querySelector('#name');
-  const localization = root.querySelector('#localization');
   const boat = root.querySelector('#boat');
   const reset = root.querySelector('#reset');
+  const localization = root.querySelector('#localization');
 
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
