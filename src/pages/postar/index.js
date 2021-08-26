@@ -13,7 +13,7 @@ export const postar = () => {
      <ul class="nav" id="nav">
        <li class="links"><a href=""><img src="./img/lupa.svg">Busca</a></li>
        <li class="links"><a href=""><img src="./img/perfil.svg">Perfil</a></li>
-      <li class="links"><a href=""><img src="./img/home.svg">Página Inicial</a></li>
+       <li class="links"><a href=""><img src="./img/home.svg">Página Inicial</a></li>
      </ul>
      </nav>
     </header>
@@ -79,7 +79,7 @@ export const postar = () => {
       errorHashtagsField.focus();
       return false;
     }
-    // aqui não sei como validar o radio, acho que nem precisa //
+
     const pricePost = rootElement.querySelector('input[name=valor]:checked').value;
 
     const descPost = rootElement.querySelector('#addText').value;

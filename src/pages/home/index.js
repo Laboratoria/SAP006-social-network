@@ -1,9 +1,9 @@
 import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import {
-  getPosts, liked, deletePost,
+  getPosts, liked, deletePost, editPosts,
 } from '../../services/firebaseData.js';
-
+import { modal } from './modal.js';
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
   const rootElement = document.createElement('div');
@@ -65,16 +65,17 @@ export const home = () => {
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
-          <p class="local">${doc.data().nomeLocalReceita}</p> 
+          <p class="local" contentEditable="false" >${doc.data().nomeLocalReceita}</p> 
           <p class="data"> ${doc.data().data.toDate().toLocaleDateString()}</p>
           <button type="button" class="delete-button" data-delete="${doc.id}"> Deletar</button>
-          <p class="descr">${doc.data().descricao}</p> 
-          <p class="hashs">${doc.data().hashTags}</p>
+          <button type="submit" data-edit="${doc.id}" class="edit-button"> Editar</button>
+          <p class="descr" contentEditable="false" >${doc.data().descricao}</p> 
+          <p class="hashs" contentEditable="false" >${doc.data().hashTags}</p>
         <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
-          <button type="button" id="like" data-like="${doc.id}"><img src="./img/coracao.svg"></button>
+          <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"> </button>
           <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
-          <button type="button" class="price" id="price" data-preco>${doc.data().preco}<img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
+          <button type="button" class="price" id="price" contentEditable="false" data-preco>${doc.data().preco}<img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
           <div class="coments" id="coments">
           <p class="addComent" id="addComent" placeholder="Comentários">${doc.data().comentarios}</p>
           <button class="more" id="more">ver mais</button>
@@ -83,47 +84,57 @@ export const home = () => {
           <hr> `;
 
       const deleteBtn = div.querySelector('.delete-button');
+      const editBtn = div.querySelector('.edit-button');
       function disableBtn() {
         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-          // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
+          editBtn.hidden = false;
           deleteBtn.hidden = false;
         } else {
-          // editBtn.hidden = true;
+          editBtn.hidden = true;
           deleteBtn.hidden = true;
           div.querySelector('.delete-button').style.display = 'none';
+          div.querySelector('.edit-button').style.display = 'none';
         }
       }
       disableBtn();
 
       timeline.insertBefore(div, timeline.childNodes[0]);
-
-      const dataPost = rootElement.querySelector('[data-post]');
-      dataPost.addEventListener('click', (e) => {
-        const { target } = e;
-        const likeId = target.dataset.like;
-        const deleteId = target.dataset.delete;
-        if (likeId) {
-          const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
-          const beforLike = numberLikes.classList.contains('beforLike');
-          const number = Number(numberLikes.textContent);
-          if (beforLike === true) {
-            numberLikes.classList.replace('beforLike', 'afterLike');
-            numberLikes.innerHTML = number + 1;
-            liked(likeId);
-          } else {
-            numberLikes.classList.replace('afterLike', 'beforLike');
-            numberLikes.innerHTML = number - 1;
-            liked(likeId);
-          }
+    });
+    const dataPost = rootElement.querySelector('[data-post]');
+    dataPost.addEventListener('click', (e) => {
+      const { target } = e;
+      const likeId = target.dataset.like;
+      const deleteId = target.dataset.delete;
+      const editId = target.dataset.edit;
+      if (likeId) {
+        const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
+        const beforLike = numberLikes.classList.contains('beforLike');
+        const number = Number(numberLikes.textContent);
+        const heart = rootElement.querySelector(`[data-like="${likeId}"]`);
+        if (beforLike === true) {
+          numberLikes.classList.replace('beforLike', 'afterLike');
+          numberLikes.innerHTML = number + 1;
+          heart.src = './img/coracaoFull.svg';
+          liked(likeId);
+        } else {
+          numberLikes.classList.replace('afterLike', 'beforLike');
+          numberLikes.innerHTML = number - 1;
+          heart.src = './img/coracao.svg';
+          liked(likeId);
         }
-        if (deleteId) {
-          const deleteConfirmation = confirm('Essa postagem será excluída, deseja continuar?');
-          if (deleteConfirmation) {
-            const postDiv = rootElement.querySelector(`[data-id="${deleteId}"]`);
-            deletePost(deleteId).then(() => postDiv.remove());
-          }
-        }
-      });
+      }
+      if (deleteId) {
+        modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
+          const postDiv = rootElement.querySelector(`[data-id="${deleteId}"]`);
+          deletePost(deleteId).then(postDiv.remove());
+        });
+      }
+      if (editId) {
+        modal.confirm('Deseja editar sua postagem?', () => {
+          const editElements = rootElement.querySelectorAll('[contenteditable=false]');
+          for (let i = 0; i < editElements.length; i++) editElements[i].setAttribute('contenteditable', true);
+        });
+      }
     });
   });
 

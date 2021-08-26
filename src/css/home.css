@@ -254,7 +254,7 @@
 }
 
 
-.delete-button{
+.delete-button, .edit-button{
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #6f727a;
@@ -262,14 +262,11 @@
   box-shadow: 0px 3px 4px rgba(73, 73, 73, 0.25);
   border: none;
   border-radius: 5px;
-  margin: 3% auto;
-  /* padding: 2% 2%; */
   text-align: center;
   width: 13%;
   display: flex;
   justify-content: center;
   cursor: pointer;
-  margin: -3% 0 -2% 80%;
 }
 
 

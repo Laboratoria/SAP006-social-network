@@ -18,11 +18,12 @@ export const liked = (postID) => {
       post.update({
         curtidas: firebase.firestore.FieldValue.arrayRemove(userId),
       });
-    } else {
-      post.update({
-        curtidas: firebase.firestore.FieldValue.arrayUnion(userId),
-      });
+      return false;
     }
+    post.update({
+      curtidas: firebase.firestore.FieldValue.arrayUnion(userId),
+    });
+    return true;
   });
 };
 
@@ -34,6 +35,31 @@ export const uploadImage = (folder, file) => {
   };
   return ref.child(folder).child(imageName).put(file, metadata);
 };
+
+export const editPosts = (tagEdited, localEdited, hashtagsEdited, priceEdited,
+  addTextEdited, reviewId) => {
+  db
+    .collection('posts')
+    .doc(reviewId)
+    .update({
+      tag: tagEdited,
+      local: localEdited,
+      review: hashtagsEdited,
+      price: priceEdited,
+      addText: addTextEdited,
+    }).then(() => {
+
+    })
+    .catch((error) => {
+      console.log('Error updating documents:', error);
+    });
+};
+
+export const saveEdit = (userId, postId) => db
+  .collection('posts').add({
+    userId,
+    postId,
+  });
 // "${(doc.data().curtidas) ? doc.data().curtidas.length : '0'};"
 // '../../services/firebaseData.js';}
 // const userFilter = curtidas.filter(userId);

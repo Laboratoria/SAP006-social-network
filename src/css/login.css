@@ -12,12 +12,13 @@
   width: 50%;
   margin: 3% auto;
 }
-.logo{
+.logo {
   width: 50%;
   margin: auto;
 }
 .justify-register,
-.justify-google, #inputPass {
+.justify-google,
+.inputPass {
   display: flex;
   justify-content: center;
 }
@@ -32,14 +33,14 @@
   color: rgb(0, 0, 0);
   box-shadow: 0px -3px 1px #a09f9f5e;
 }
-#inputPass{
-  padding-inline: 5%;
+.eye{
+  position: absolute;
+  right: 30%;
 }
-#eye {
-  padding-inline: 1%;
-  width: 7%;
+.eye img {
+  width: 40%;
 }
-#entrar {
+.entrar {
   width: 30%;
   padding: 9px;
   font-size: 80%;
@@ -52,14 +53,12 @@
 }
 .forgetPass {
   background: transparent;
-  border: none; 
+  border: none;
   padding: 5%;
   font-family: "Russo One", sans-serif;
 }
-.forgetPass:hover {
-  color:rgb(119, 117, 117);
-}
-#google-login {
+
+.google-login {
   width: 60%;
   padding: 7px;
   font-size: 100%;
@@ -83,27 +82,32 @@
   width: 90%;
 }
 
-#cadastro {
+.cadastro {
   width: 100%;
   font-size: 25px;
   padding-top: 5%;
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
+.cadastro:hover,
+.forgetPass:hover {
+  cursor: pointer;
+  color: rgb(119, 117, 117);
+}
 
-@media (max-width: 500px){
-  #cadastro{
+@media (max-width: 500px) {
+  .cadastro {
     font-size: 100%;
   }
 
- #google-login{
-  width: 100%;
-  margin: 8% auto;
+  .google-login {
+    width: 100%;
+    margin: 8% auto;
   }
 
-  #entrar{
+  .entrar {
     width: 60%;
     padding: 6px;
-    font-size: 100%
+    font-size: 100%;
   }
 }
