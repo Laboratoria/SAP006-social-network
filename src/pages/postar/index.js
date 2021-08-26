@@ -90,7 +90,6 @@ export const postar = () => {
       return false;
     }
     const post = {
-      user_id: firebase.auth().currentUser.uid,
       data: new Date(),
       nome: firebase.auth().currentUser.displayName,
       image: firebase.auth().currentUser.photoURL,

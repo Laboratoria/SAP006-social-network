@@ -1,5 +1,4 @@
 const modalElement = document.createElement('div');
-
 export const modal = {
   confirm: (message, callback) => {
     const template = `<div id="modal-confirm" class="modal-background">

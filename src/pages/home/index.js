@@ -1,7 +1,7 @@
 import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import {
-  getPosts, liked, deletePost, editPosts,
+  getPosts, liked, deletePost,
 } from '../../services/firebaseData.js';
 import { modal } from './modal.js';
 // <img src=${doc.data().image class='imgPost'>
@@ -137,6 +137,4 @@ export const home = () => {
       }
     });
   });
-
-  return rootElement;
 };

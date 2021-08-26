@@ -7,7 +7,6 @@ export const getPosts = () => db.collection('posts').orderBy('data').limit(15).g
 export const deletePost = (postID) => {
   const postsCollection = firebase.firestore().collection('posts');
   return postsCollection.doc(postID).delete();
-};
 
 export const liked = (postID) => {
   const post = firebase.firestore().collection('posts').doc(postID);
