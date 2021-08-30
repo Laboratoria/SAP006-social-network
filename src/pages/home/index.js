@@ -5,7 +5,7 @@ export default () => {
   <div class="background-purple">
     <a href="/#home">
       <img src="" alt="" class="logo">
-      <h1>So.Mu.S</h1>
+      <h1>SO.MU.S</h1>
       <p>texto teste</p>
       <a href="/#login">
         <button class="login-button">Login</button>
