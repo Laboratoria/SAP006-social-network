@@ -17,12 +17,7 @@ export const atualizarUsuario = (nome, photoProfile) => firebase.auth().currentU
 
 // ** SIGN IN E-MAIL AND PASSOWORD //
 export const SignIn = (usuario, passwordLogin) => {
-  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin).then((result) => {
-    route('/home');
-    localStorage.setItem('displayName', result.user.displayName);
-    localStorage.setItem('email', result.user.email);
-  })
-    .catch(handleError);
+  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin);
 };
 
 // export const stayLogged = () => {

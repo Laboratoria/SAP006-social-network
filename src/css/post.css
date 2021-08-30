@@ -1,3 +1,20 @@
+/* .addPrice label.valor:before {
+ 
+  color: #FC0;
+} */
+
+
+/* .low input:checked + label {
+  background-color: #ffd600;
+  color: #ffd600;
+} */
+
+
+/* #low:checked + .low {
+  background-color: #ffd600;
+  color: #ffd600;
+} */
+
 .boxInputs {
   display: flex;
   flex-flow: column nowrap;

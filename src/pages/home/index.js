@@ -7,26 +7,18 @@ import { modal } from './modal.js';
 export const home = () => {
   const rootElement = document.createElement('div');
   rootElement.innerHTML = ` 
+  <nav class="menu1">
+  <a class="buscar" href="">Buscar</a>
+ 
+  <div class="goPost">
+ 
+  <a id="goPost" class="postar" href="" <img class="tomato" src="./img/tomato.svg"> postar</a>
+  </div>
+  <button class='btn' id='btnLogout'>Sair</button>
+</nav>
   <div class="containerHome">
   <header>
-  <nav class="menu">
-     <ul class="nav" id="nav">
-     <li class="links" ><a href=""></a>Buscar</li>
-     <li class="links" ><a href=""></a>Perfil</li>
-     </ul>
-     </nav>
-
-    <div class="goPost">
-    <img class="tomato" src="./img/tomato.svg">
-    <a id="goPost" href="">postar</a>
-
-    </div>
-
-    <button class='btn' id='btnLogout'>Sair</button>
-
-    <img src="./img/govegGreen.png" />
-
-    </nav>
+  <img class='logoHome' src="./img/govegGreen.png"/>
   <div class="lines">
   <hr>
   </div>
@@ -42,10 +34,15 @@ export const home = () => {
   
   </header>
   <main>
-    <div class="publish" id="timeline" data-post> </div>
+    <div class="publish" id='timeline' data-post>
+    </div>
+ 
   </main>
 </div>
 `;
+  // <div class='data-locations'>
+
+  // </div>
 
   const btnLogout = rootElement.querySelector('#btnLogout');
   const btnGoPost = rootElement.querySelector('#goPost');
@@ -60,37 +57,54 @@ export const home = () => {
   getPosts().then((collectionContent) => {
     collectionContent.forEach((doc) => {
       const div = document.createElement('div');
+      div.id = doc.id;
       const timeline = rootElement.querySelector('#timeline');
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
+          
+      <div class='fotoPerfil'>
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
-          <p class="local">${doc.data().nomeLocalReceita}</p> 
-
-          <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
-          <button type="button" class="delete-button" data-delete="${doc.id}"> Deletar</button>
-          <button type="submit" data-editPostButton="${doc.id}" class="edit-button"> Editar</button>
+          <p class="data-locations">${doc.data().nomeLocalReceita}</p> 
+          <p class="data-locations"> • ${doc.data().data.toDate().toLocaleDateString()}</p>
+          </div>
+          
+     
+          
+          <div class="delete-edit">
+          <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
+          <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
+          </div>
+          
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
-        <div class='botoes'> 
+        
+          <div class='botoes'> 
           <p class="tipo"> ${doc.data().tipo} </p>
-          <button type="button"> <img id="like" data-like="${doc.id}"  src="./img/coracao.svg"></button>
+          <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"></button>
           <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
-          <button type="button" class="price" id="price" data-preco>${doc.data().preco}<img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
+          <span class="price" id="price" data-preco>${doc.data().preco}</span>
+         
+          </div>
 
           <div class="coments" id="coments">
-          <p class="addComent" id="addComent" placeholder="Comentários">${doc.data().comentarios}</p>
-          <button class="more" id="more">ver mais</button>
-          <button class="goComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
-          </div> </div>
-          <hr> `;
+            <textarea class='addComent' data-item='add-comment' placeholder='Escreva um comentário!'></textarea>
+            <button class="more" id="more">ver mais</button>
+            <button class ='goComent' id='goComent' img class='addCom' src='./img/addCom.svg' data-item='comment'/>enviar comentário</button>
+          </div>
+            <hr> `;
 
       const deleteBtn = div.querySelector('.delete-button');
+      const editBtn = div.querySelector('.edit-button');
       function disableBtn() {
         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
+          // btnLike.style.display = 'none';
           deleteBtn.hidden = false;
+          editBtn.hidden = false;
         } else {
           deleteBtn.hidden = true;
+          editBtn.hidden = true;
           div.querySelector('.delete-button').style.display = 'none';
+          div.querySelector('.edit-button').style.display = 'none';
         }
       }
       disableBtn();
@@ -107,16 +121,35 @@ export const home = () => {
         const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
         const beforLike = numberLikes.classList.contains('beforLike');
         const number = Number(numberLikes.textContent);
+        const heart = rootElement.querySelector(`[data-like="${likeId}"]`);
         if (beforLike === true) {
           numberLikes.classList.replace('beforLike', 'afterLike');
           numberLikes.innerHTML = number + 1;
+          heart.src = './img/coracaoFull.svg';
           liked(likeId);
         } else {
           numberLikes.classList.replace('afterLike', 'beforLike');
           numberLikes.innerHTML = number - 1;
+          heart.src = './img/coracao.svg';
           liked(likeId);
         }
       }
+
+      // if (likeId) {
+      //   const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
+      //   const beforLike = numberLikes.classList.contains('beforLike');
+      //   eye.src = './img/eyesClose.svg';
+      //   const number = Number(numberLikes.textContent);
+      //   if (beforLike === true) {
+      //     numberLikes.classList.replace('beforLike', 'afterLike');
+      //     numberLikes.innerHTML = number + 1;
+      //     liked(likeId);
+      //   } else {
+      //     numberLikes.classList.replace('afterLike', 'beforLike');
+      //     numberLikes.innerHTML = number - 1;
+      //     liked(likeId);
+      //   }
+      // }
       if (deleteId) {
         modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
           const postDiv = rootElement.querySelector(`[data-id="${deleteId}"]`);
@@ -147,3 +180,15 @@ export const home = () => {
   });
   return rootElement;
 };
+
+// function changeColorRed(td) {
+//   td.style.backgroundColor = "#c516168a";
+// };
+
+// if (prompt1 == 1) {
+//   document.getElementById('resul1').innerHTML = 'Certa';
+//   changeColorGreen(resul1)
+// } else {
+//   document.getElementById('resul1').innerHTML = 'Errada';
+//   changeColorRed(resul1)
+// }

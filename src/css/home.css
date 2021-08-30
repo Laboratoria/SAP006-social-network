@@ -3,59 +3,59 @@
   padding: 0;
 }
 
+.logoHome{
+  margin-bottom: 8%;
+  width: 35%;
+  color: #fff;
+}
+.menu1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 12%;
+  margin: 6% 0% 0% 0%;
+  /* padding: 2% 2%; */
+
+}
+
 .containerHome {
   background: #fffdfd;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 50%;
-  margin: 3% auto;
-}
-.btn {
-  font-family: "Russo One", sans-serif;
-  width: 100%;
-  font-size: 18px;
-  background: #EEFFE2;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  width: 25%;
-  text-decoration: none;
-  color: rgb(0, 0, 0);
-  cursor: pointer;
+  margin: -16% auto;
 }
 
-.goPost {
-  background: #97CF6E;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  width: 20%;
-  display: flex;
-  align-items: center;
+.buscar, .btn, .postar {
+  margin: 2% 5% 16% -1.5%;
+  padding: 10%;
+  border-radius: 15px;
+  margin-left: 0;
+  text-decoration: none;
+  color: black;
+  font-size: 89%;
   justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  font-family: "Russo One", sans-serif;
+  cursor: pointer;
 }
 
-.postar{
-  font-family: "Russo One", sans-serif;
-  font-size: 18px;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-  margin: 5% auto;
-  cursor: pointer;
-  text-align: center;
+.buscar, .btn {
+  background: #EEFFE2;
+}
+
+.postar {
+  background-color: var(--green-color);
 }
 
 .tomato {
   width: 25px;
   height: 25px;
-  padding: 0px 3px 0px 0px;
+  padding: 0px 13px 0px 0px;
 }
 
 .lines {
@@ -65,7 +65,7 @@
 
 .filters {
   display: flex;
- 
+ justify-content: space-evenly;
   /* flex-flow: row nowrap; */
   /* justify-content: center; */
   padding-left: 0.9px;
@@ -75,74 +75,53 @@
 
 @media (max-width: 500px){
   .filters {
-  display: flex;
+   display: flex;
   flex-flow: column nowrap;
-  width: 100%;
   justify-content: center;
-  padding: 15px 20px;
+  padding: 2% 14%;
 }
-}
-
-.receitas {
-  width: 35%;
-  font-family: "Russo One", sans-serif;
-  font-size: 18px;
-  background: #FF7171;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  margin: 15px 10px;
-}
-      
-.mercados {
-  font-family: "Russo One", sans-serif;
-  width: 100%;
-  font-size: 18px;
-  background: #2AC2F3;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  width: 35%;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  margin: 15px 10px;
-  }
-    
-.restaurantes {
-  font-family: "Russo One", sans-serif;
-  width: 100%;
-  font-size: 18px;
-  background: #F3B949;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  width: 35%;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  text-align: center;
-  margin: 15px 10px;
 }
 
 @media (max-width: 500px){
   .receitas, 
   .mercado, 
   .restaurante {
-    width: 100px;
     justify-content: center;
     font-size:50%;
   }
 }
 
+
+#mercados,
+#receitas,
+#restaurantes {
+  border-radius: 10px;
+  font-size: 100%;
+  font-family: "Russo One", sans-serif;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  margin: 2%;
+  padding: 2%;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(156, 155, 155);
+}
+#mercados {
+  background: #2ac2f3;
+}
+#receitas {
+  background: #FF7171;
+}
+#restaurantes {
+  background: #f3b949;
+}
+
+#restaurantes:hover,
+#receitas:hover,
+#mercados:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
 
 .botoes{
    display: flex;
@@ -150,7 +129,6 @@
    justify-content: space-between;
    width: 100%;
 }
-
 
 
 .like {
@@ -164,26 +142,22 @@
   box-shadow: none;
 }
 
+.addPrice{
+  display: flex;
+  flex-direction: row;
+}
 .price{
-  border: none;
-  background: none;
+  /* border: none;
+  background: none; */
+  color: #FC0;
+  font-size: 1.5rem;
+  margin: 2% 0% 0% 0%
 }
 
-.numLikes {
-  border: none;
-
-  
-  /* margin: 4% ​0% 0% -30%; */
-}
-
-.likePrice{
+.likePrice, .likeImg{
   width: 25px;
   height: 25px;
-  
-  /* padding: 1px ​0px 0px -19px; */
-
 }
-
 
 .coments{
   display: flex;
@@ -229,50 +203,59 @@
 }
 
 .imgUser {
-  width: 50px;
-  height: 50px;
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+
 }
 
 .user{
   font-size: 20px;
-  color: #97CF6E;
-
+  color: var(--green-color);
+  margin: 2% ​0 0% 0;
+  padding: 0% 0% 0% 4%;
 }
 
-.local{
+.data-locations{
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #828796;
+  justify-content: center;  
+  padding-right: 3%;
+  /* padding: -2px -13px 3px 13px; */
+}
+
+.fotoPerfil{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;  
+  padding-right: 7%;
+}
+
+/* .local{
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #828796;
   margin: -3% 0 3% 0;
 }
-
 .data{
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #828796;
   margin: -6% 0 5% 55%;
-}
+} */
 
-
-.delete-button {
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
-  color: #6f727a;
-  background-color: #96979431;
-  box-shadow: 0px 3px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 5px;
-  margin: 5% auto;
+.delete-edit{
+  display: flex;
+  flex-direction: column;
+  margin: -3% 0 -2% 80%;
+  width: 13%;
   /* padding: 2% 2%; */
-  text-align: center;
-  width: 13%;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  margin: -3% 0 -2% 80%;
 }
 
-.edit-button {
+.delete-button, .edit-button{
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #6f727a;
@@ -280,20 +263,17 @@
   box-shadow: 0px 3px 4px rgba(73, 73, 73, 0.25);
   border: none;
   border-radius: 5px;
-  margin: 20%, 5%, auto, auto;
-  /*padding: 2% 2%;*/ 
   text-align: center;
-  width: 13%;
-  display: flex;
   justify-content: center;
   cursor: pointer;
-  margin: -3% 0 -2% 80%;
+  /* margin: -3% 0 -2% 80%; */
 }
+
 
 .tipo{
   font-size: 18px;
   color: #ffffff;
-  background-color: #aaf19c;
+  background-color: var(--green-color);
   text-align: center;
   width: 25%;
   right: 10%;
