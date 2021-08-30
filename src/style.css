@@ -1,0 +1,299 @@
+body {
+  background-color: #fff;
+  font-family: "Monda", sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+img.image-desktop {
+  display: none;
+}
+div.main-login,
+div.google-github-login,
+div.main-register,
+div.register,
+div.login-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+div.main-login {
+  width: 100vw;
+  height: 100vh;
+}
+form.login-input,
+form.register-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input.login-input,
+input.register-input {
+  width: 300px;
+  height: 35px;
+  background-color: rgb(220, 250, 230);
+  border-radius: 5px;
+  border: solid 2px black;
+  margin-top: 40px;
+  font-family: "Monda", sans-serif;
+  text-align: center;
+  font-size: 16px;
+}
+
+button.login-input,
+button.login-google,
+button.login-github,
+button.register-input {
+  width: 300px;
+  height: 35px;
+  background-color: rgb(174, 252, 200);
+  border-radius: 5px;
+  border: solid 2px black;
+  font-family: "Monda", sans-serif;
+  text-align: center;
+  font-size: 16px;
+}
+
+button.login-input,
+button.login-github {
+  margin-top: 40px;
+}
+
+button.register-input {
+  margin-top: 10px;
+}
+
+p.without-register {
+  text-align: center;
+  align-items: center;
+  color: #00000070;
+  font-size: 10px;
+}
+
+a.register {
+  text-decoration: none;
+  color: #000000bb;
+  font-size: 10px;
+}
+
+header.home {
+  display: flex;
+  background-color: #8293a8;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 10px #efeee9;
+}
+
+img.logo-home {
+  width: 50px;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+button#sgnOutBtn,
+button#form-button,
+button.btn-submitEdit {
+  width: 70px;
+  height: 30px;
+  background-color: #8293a8;
+  border-radius: 5px;
+  border: solid 2px black;
+  font-family: "Monda", sans-serif;
+  text-align: center;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+button.btn-edit,
+button.btn-delete,
+button.btn-like,
+button.btn-dislike {
+  width: 30px;
+  height: 30px;
+  background-color: #8293a8;
+  border-radius: 5px;
+  border: solid 2px black;
+  font-family: "Monda", sans-serif;
+  text-align: center;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+button#form-button {
+  margin: 15px 0;
+}
+
+div.profile-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 15px;
+}
+
+div.post-profile {
+  display: flex;
+  margin-top: 15px;
+  border-bottom: solid 10px #efeee9;
+}
+
+img.profile-img {
+  width: 80px;
+  height: 80px;
+}
+
+h2.profile-displayName {
+  display: none;
+}
+
+form#post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+input#post-text {
+  height: 80px;
+  width: 65vw;
+  font-family: "Monda", sans-serif;
+  text-align: center;
+  font-size: 14px;
+  padding: 0;
+}
+
+div.post-profile-info {
+  margin: 15px 0px 0px 15px;
+  display: flex;
+  align-items: center;
+}
+
+span.post-displayName-info,
+p.post-content,
+p.post-date,
+span.counter-likes,
+button.btn-like,
+button.btn-dislike {
+  margin-left: 15px;
+}
+
+p.post-content {
+  word-wrap: break-word;
+}
+
+p.post-date {
+  font-size: 10px;
+}
+
+div.btns-area {
+  padding-bottom: 15px;
+  border-bottom: solid 10px #efeee9;
+}
+
+footer.footer {
+  display: flex;
+  background-color: #8293a8;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  font-size: 10px;
+}
+
+@media screen and (min-width: 678px) {
+  input#post-text {
+    width: 80vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  div.main-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  div.login-images,
+  div.login-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img.logo {
+    width: 0px;
+  }
+
+  div.login-data {
+    background-image: linear-gradient(
+      rgb(255, 255, 255),
+      rgba(179, 255, 204, 0.5)
+    );
+    width: 500px;
+    height: 550px;
+  }
+
+  img.image-desktop {
+    display: initial;
+    width: 400px;
+  }
+
+  div.agreement {
+    margin-top: 0;
+  }
+
+  a.register {
+    margin-left: 3px;
+  }
+
+  header.home,
+  div.post-profile {
+    border-bottom: solid 15px #efeee9;
+  }
+
+  img.logo-home {
+    width: 10px;
+  }
+
+  button#sgnOutBtn,
+  button#form-button,
+  button.btn-submitEdit {
+    width: 80px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  img.profile-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  input#post-text {
+    height: 100px;
+    width: 85vw;
+    font-size: 16px;
+  }
+
+  button.btn-edit,
+  button.btn-delete,
+  button.btn-like,
+  button.btn-dislike {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  img.post-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  span.post-displayName-info,
+  p.post-content,
+  p.post-date,
+  span.counter-likes,
+  button.btn-like,
+  button.btn-dislike {
+    font-size: 16px;
+  }
+}
