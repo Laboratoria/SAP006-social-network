@@ -4,20 +4,29 @@ export default () => {
   const container = document.createElement('div');
 
   const template = `
-  <img src="" alt="" class="logo">
-    <p id="error-message" class="error-message"></p>
-    <h2 class="title">Login</h2>
-      <form class="form-login" action="">
-        <label for="get-email" class="label-login">Email</label><br>
-        <input type="text" name="email" id="email-user" class="input-login"><br>
-        <label for="get-password" class="label-login">Senha</label><br>
-        <input type="text" name="password" id="password-user">
-      </form> 
-      <div class="button">
-        <button id="google-button" class="google-button"><img src="img/google-logo.png" alt=""></button>
-        <button id="login-button" class="login-button">Login</button>  
-      </div>
-  `;
+  <div class= "container">
+    <img src="" alt="" class="logo">
+    <div class= "card">
+      <h2 class="title">Login</h2>
+        <form class="form-login" action="">
+          <label for="get-email" class="label-login">Email</label><br>
+          <input type="text" name="email" id="email-user" class="input-login"><br>
+          <label for="get-password" class="label-login">Senha</label><br>
+          <input type="password" name="password" id="password-user">
+        </form> 
+        <div class="button">
+          <button id="google-button" class="google-button" ><img src="img/google-logo.png" alt=""></button>
+          <button id="login-button" class="login-button">Login</button>  
+        </div>
+        <div> 
+          <hr> 
+        </div>
+        <p> Não tem uma conta? 
+        <a href=""> Cadastre-se </a>
+        </p>
+    </div>
+  </div>
+`;
 
   container.innerHTML = template;
 
