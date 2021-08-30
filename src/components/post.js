@@ -23,9 +23,9 @@ export const addPost = (post) => {
         ${isAuthor ? deleteButton : ''}
     </article>
     <div class="like-post" data-like>
-    <button class="btn-like" data-like="${post.id}" id="btn-like" >
-      <img src="./img/heart.png" alt="like-icon" data-like id="likeBtn" class="" width="15px">
-      <span id="likes" data-like>${post.data().likes.length}</span>
+    <button class="btn-like" id="btn-like">
+      <i class="far fa-heart ${(post.data().likes.includes(getUserIdOnLocalStorage())) ? "fas" : ''} " data-like id="likeBtn"></i>
+      <span id="likes" class="deslike" data-like="${post.id}">${post.data().likes.length}</span>
     </button>
     </div>
   `;

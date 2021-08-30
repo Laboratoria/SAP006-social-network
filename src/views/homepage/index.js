@@ -40,6 +40,8 @@ export const home = () => {
     });
   });
 
+  loadPosts();
+
   container.querySelector('#postForm')
     .addEventListener('submit', (event) => {
       event.preventDefault();
@@ -73,27 +75,33 @@ export const home = () => {
   postsList.addEventListener('click', (e) => {
     e.preventDefault();
     const target = e.target;
-    const buttonLike = document.querySelector("#likeBtn")
     if (target.dataset.delete === '') {
       const getPost = target.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
       deletePost(id)
         .then(getPost.remove());
     }
-    if (target.dataset.like == '') {
+    if (target.dataset.like === '' && !target.classList.contains('fas')) {
       const getPost = target.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
+      const numberLikes = container.querySelector(`[data-like="${id}"]`)
+      console.log (numberLikes.textContent)
+      e.target.classList.add('fas');
       likesPost(id)
-      const buttonLike = document.querySelector("#likeBtn")
-      buttonLike.classList.add('liked');
+      const quantLikes = Number(numberLikes.textContent) + 1
+      numberLikes.innerHTML = quantLikes 
 
-    } if (buttonLike.className === "liked") {
-      const buttonLike = document.querySelector("#likeBtn")
-      console.log(buttonLike)
-      buttonLike.removeAttribute('class');
+    } else if (target.dataset.like === '' && target.classList.contains('fas')) {
+      const getPost = target.parentNode.parentNode.parentNode;
+      const id = getPost.getAttribute('data-id');
+      const numberLikes = container.querySelector(`[data-like="${id}"]`)
+      e.target.classList.remove('fas');
+      const quantLikes = Number(numberLikes.textContent) - 1
+      numberLikes.innerHTML = quantLikes 
+      likesPost(id)
     }
 
   });
 
-  return container;
+  return container
 };

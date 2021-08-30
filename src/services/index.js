@@ -105,46 +105,26 @@ export const deletePost = (id) => firebase
   .collection('posts').doc(id).delete();
 
 
-
-
-
-
-    /*export const likedPost = () =>
+export const likesPost = (postId) => {
   firebase
     .firestore()
-    .collection('posts').add({
-      likes: true,
-    })
-    .then(() => {
-      return Promise.resolve(true);
-    })
-    .catch((error) => {
-      return Promise.reject(error);
-    })*/
-
-    
-
-    export const likesPost = (postId) => {
-        firebase
+    .collection('posts').doc(postId).get()
+    .then((post) => {
+      const arrayLikes = post.data().likes;
+      console.log(arrayLikes)
+      const likesInPost = firebase
         .firestore()
-        .collection('posts').doc(postId).get()
-        .then((post) => {
-          const arrayLikes = post.data().likes;
-          console.log(arrayLikes)
-          const likesInPost = firebase
-            .firestore()
-            .collection('posts').doc(postId);
+        .collection('posts').doc(postId);
       if (getUserIdOnLocalStorage()) {
         likesInPost.update({
-  
+
           likes: firebase.firestore.FieldValue.arrayUnion(getUserIdOnLocalStorage()),
         });
       }
-       if (arrayLikes.includes(getUserIdOnLocalStorage()) ) {
+      if (arrayLikes.includes(getUserIdOnLocalStorage())) {
         likesInPost.update({
-           likes: firebase.firestore.FieldValue.arrayRemove(getUserIdOnLocalStorage()),
-         });
-       }
+          likes: firebase.firestore.FieldValue.arrayRemove(getUserIdOnLocalStorage()),
+        });
+      }
     });
-  }
-
+}
