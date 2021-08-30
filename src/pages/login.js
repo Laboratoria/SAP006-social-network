@@ -19,6 +19,7 @@ export const login = () => {
       <h4>OU</h4>
       <div class="google-login">
         <button class="login-google" type="submit">Entrar com Google</button>
+
       </div>
       <div class="new-register">
         <p class="without-register">Ainda não tem uma conta?</p>
@@ -33,6 +34,7 @@ export const login = () => {
   const loginBtn = div.querySelector('#lgn-btn');
   const getEmail = div.querySelector('#email-login');
   const getPass = div.querySelector('#password-login');
+  const googleBtn = div.querySelector('.login-google');
 
   loginBtn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -40,22 +42,28 @@ export const login = () => {
       .auth()
       .signInWithEmailAndPassword(getEmail.value, getPass.value)
       .then((userCredential) => {
+        window.location.hash = '#feed';
         // Signed in
         const user = userCredential.user;
         // ...
         console.log(user);
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
-        const errorMessage = error.message;
-        console.log(errorMessage);
+      .catch(() => {
+        alert('Tente novamente');
       });
-    console.log(loginBtn);
-    console.log(getEmail.value);
-    console.log(getPass.value);
   });
 
-  // const getGoogle = new firebase.auth.GoogleAuthProvider('login-google');
+  googleBtn.addEventListener('click', () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(() => {
+        window.location.hash = '#feed';
+      })
+      .catch(() => {
+        alert('Erro. Tente novamente.');
+      });
+  });
   return div;
 };
