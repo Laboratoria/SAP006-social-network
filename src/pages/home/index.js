@@ -40,9 +40,6 @@ export const home = () => {
   </main>
 </div>
 `;
-  // <div class='data-locations'>
-
-  // </div>
 
   const btnLogout = rootElement.querySelector('#btnLogout');
   const btnGoPost = rootElement.querySelector('#goPost');
@@ -62,19 +59,25 @@ export const home = () => {
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
           
       <div class='fotoPerfil'>
+
           <img src=${doc.data().image} class='imgUser'> 
-          <p class="user"> ${doc.data().nome}</p>
-          <p class="data-locations">${doc.data().nomeLocalReceita}</p> 
-          <p class="data-locations"> • ${doc.data().data.toDate().toLocaleDateString()}</p>
+          <div class="irma"> 
+            <p class="user"> ${doc.data().nome}</p>
+          <div class='data-locations'>
+            <p class="locations">${doc.data().nomeLocalReceita}</p> 
+            <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
           </div>
-          
-     
-          
-          <div class="delete-edit">
-          <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
-          <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
           </div>
-          
+      </div>
+              
+                   
+    ${firebase.auth().currentUser.uid === doc.data().user_id
+    ? `<div class="delete-edit">
+               <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
+            <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
+          </div>`
+    : ''}
+         
           <p class="descr">${doc.data().descricao}</p> 
           <p class="hashs">${doc.data().hashTags}</p>
         
@@ -92,22 +95,6 @@ export const home = () => {
             <button class ='goComent' id='goComent' img class='addCom' src='./img/addCom.svg' data-item='comment'/>enviar comentário</button>
           </div>
             <hr> `;
-
-      const deleteBtn = div.querySelector('.delete-button');
-      const editBtn = div.querySelector('.edit-button');
-      function disableBtn() {
-        if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-          // btnLike.style.display = 'none';
-          deleteBtn.hidden = false;
-          editBtn.hidden = false;
-        } else {
-          deleteBtn.hidden = true;
-          editBtn.hidden = true;
-          div.querySelector('.delete-button').style.display = 'none';
-          div.querySelector('.edit-button').style.display = 'none';
-        }
-      }
-      disableBtn();
 
       timeline.insertBefore(div, timeline.childNodes[0]);
     });
