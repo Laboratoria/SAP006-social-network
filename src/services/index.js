@@ -3,7 +3,7 @@
 // const email = 'bruna.belo@gmail.com';
 // const password = '123456';
 
-// Criar usuario
+// Criar usuário
 
 export const createUser = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -28,7 +28,7 @@ export const loginUser = (email, password) => firebase.auth()
 
 // Login com google
 
-export const signInWithGloogle = () => {
+export const signInWithGoogle = () => {
   const auth = firebase.auth();
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   return auth.signInWithPopup(googleProvider);
