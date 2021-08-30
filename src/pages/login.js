@@ -33,6 +33,7 @@ export const login = () => {
   const loginBtn = div.querySelector('#lgn-btn');
   const getEmail = div.querySelector('#email-login');
   const getPass = div.querySelector('#password-login');
+
   loginBtn.addEventListener('click', (event) => {
     event.preventDefault();
     firebase
@@ -54,5 +55,7 @@ export const login = () => {
     console.log(getEmail.value);
     console.log(getPass.value);
   });
+
+  // const getGoogle = new firebase.auth.GoogleAuthProvider('login-google');
   return div;
 };
