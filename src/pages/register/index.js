@@ -4,28 +4,31 @@ export default () => {
   const container = document.createElement('div');
 
   const template = `
-  <img src="" alt="" class="logo">
-    <h2 class="title">Cadastrar</h2>
-      <form class="form-register" action="">
-        <label for="get-full-name" id="labelName" class="label-register">Nome completo</label><br>
-        <input type="text" name="name" id="fullName" class="input-register"><br>
-        <label for="get-email" id="labelEmail" class="label-register">Email</label><br>
-        <input type="text" name="email" id="emailUser" class="input-register"><br>
-        <label for="get-password" id="labelPassword" class="label-register">Senha</label><br>
-        <input type="password" name="password" id="passwordUser">
-        <i class="fa fa-eye" aria-hidden="true"></i><br>
-          
-      </form>
+    <div class= "container">
+      <img src="" alt="" class="logo">
+      <div class= "card">
+        <p id="error-message" class="error-message"></p>
 
-      <div id='msgError'></div>
-      <div id='msgSuccess'></div>
-      <div class="button">
-        <a href="/#login">
-          <button id="verSenha" class="register-button">Cadastrar</button>
-        </a>  
+        <h2 class="title">Cadastrar</h2>
+          <form class="form-register" action="">
+            <label for="get-full-name" id="labelName" class="label-register">Nome completo</label><br>
+            <input type="text" name="name" id="fullName" class="input-register"><br>
+            <label for="get-email" id="labelEmail" class="label-register">Email</label><br>
+            <input type="text" name="email" id="emailUser" class="input-register"><br>
+            <label for="get-password" id="labelPassword" class="label-register">Senha</label><br>
+            <input type="password" name="password" id="passwordUser">
+            <i class="fa fa-eye" aria-hidden="true"></i><br>
+          </form>
+
+          <div id='msgError'></div>
+          <div id='msgSuccess'></div>
+          <div class="button">
+            <a href="/#login">
+              <button id="verSenha" class="register-button">Cadastrar</button>
+            </a>  
       </div>
-      
-  `;
+    </div>
+    `;
 
   container.innerHTML = template;
 
@@ -43,7 +46,7 @@ export default () => {
   const validPassword = false;
 
   // let msgError = document.querySelector('#msgError')
-// let msgSuccess = document.querySelector('#msgSuccess')
+  // let msgSuccess = document.querySelector('#msgSuccess')
 
   fullName.addEventListener('click', () => {
     if (fullName.value.length <= 2) {

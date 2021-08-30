@@ -7,9 +7,9 @@ export default () => {
   <div class= "container">
     <img src="" alt="" class="logo">
     <div class= "card">
-      <p id="error-message" class="error-message"></p>
       <h2 class="title">Login</h2>
         <form class="form-login" action="">
+          <p id="error-message" class="error-message"></p>
           <label for="get-email" class="label-login">Email</label><br>
           <input type="text" name="email" id="email-user" class="input-login"><br>
           <label for="get-password" class="label-login">Senha</label><br>
@@ -17,8 +17,8 @@ export default () => {
           <i class="fa fa-eye" aria-hidden="true"></i><br>
         </form> 
         <div class="button">
+          <button id="login-button" class="login-button">Login</button>  <br>
           <button id="google-button" class="google-button" ><img src="img/google-logo.png" alt=""></button>
-          <button id="login-button" class="login-button">Login</button>  
         </div>
         <div> 
           <hr> 
