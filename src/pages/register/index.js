@@ -19,7 +19,6 @@ export default () => {
 
       <div id='msgError'></div>
       <div id='msgSuccess'></div>
-
       <div class="button">
         <a href="/#login">
           <button id="verSenha" class="register-button">Cadastrar</button>
