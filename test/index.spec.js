@@ -1,12 +1,16 @@
 // importamos a função que vamos testar
-// import { signInWithGoogle } from '../src/services/index.js';
+import { signIn } from '../src/services/index.js';
 
-// describe('myFunction', () => {
-//   it('should be a function', () => {
-//     expect(typeof signInWithGoogle).toBe('function');
-//   });
-//   it('auth with firebase', () => {
-//     signInWithGoogle('provider');
-//     expect(firebase.auth).tobeCalled();
-//   })
-// });
+describe('myFunction', () => {
+  const mockUser = [
+    { name: 'Danila', password: '7startup20' },
+    { name: 'Nadir', password: 'naruto' },
+    { name: 'Iris', password: 'starttrek' },
+  ];
+  it('should be a function', () => {
+    expect(typeof signIn).toBe('function');
+  });
+  it('auth with firebase', () => {
+    expect(mockUser).tobeCalled(signIn(mockUser.name));
+  });
+});
