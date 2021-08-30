@@ -54,17 +54,13 @@ textarea {
   border-radius: 5px;
   align-items: flex-end;
   border: none;
+  width: 100%;
   background: var(--rose-light);
   outline: none;
 }
 
 .text {
   margin-top: 1.5rem;
-}
-
-.post-form {
-  margin: 1rem;
-  width: -webkit-fill-available;
 }
 
 .post-text {
@@ -92,25 +88,26 @@ textarea {
   background-color: var(--rose-light);
 }
 
+#postList {
+  margin: inherit;
+}
+
 .send-post {
   width: 3.75rem;
   background-color: var(--orange-color);
   outline: none;
   border-radius: 0.25rem;
   border: none;
-  margin: 10px 10px;
-  padding: 5px;
-  text-align: center;
-}
-
-.send-post {
-  width: 60px;
-  background-color: var(--orange-color);
-  outline: none;
-  border-radius: 0.25rem;
-  border: none;
-  margin: 2px 10px 10px;
   padding: 8px;
+  text-align: center;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--white-color);
+  position: relative;
+  right: 2%;
+  bottom: 8%;
+  cursor: pointer;
+  margin: 8px;
 }
 
 .user-photo {
@@ -179,9 +176,13 @@ textarea {
 
 .delete-post {
   display: flex;
-  margin: 10px;
+  margin: 8px;
   align-self: flex-end;
-  width: 30px;
+  position: absolute;
+}
+
+.delete-text {
+  width: 100%;
 }
 
 .delete-btn {
@@ -194,11 +195,22 @@ textarea {
 
 .liked {
   background-color: rgb(201, 43, 43);
+  cursor: pointer;
+}
+
+.btn-likee {
+  cursor: pointer;
 }
 
 .btn-like {
   background: none;
+  display: flex;
   border: none;
+  align-items: center;
+}
+
+.number-likes{
+  margin: 5px;
 }
 
 .modal {
@@ -252,6 +264,7 @@ textarea {
   border-radius: 5px;
   font-family: inherit;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .delete-container {
@@ -267,6 +280,18 @@ textarea {
 .date-post {
   font-size: 15px;
   color: rgb(110, 118, 125);
+}
+
+.user-interations{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: inherit;
+}
+
+.like-post {
+  display: flex;
+  margin: 10px;
+  width: 30px;
 }
 
 @media(min-width: 1200px) {

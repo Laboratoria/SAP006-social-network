@@ -72,8 +72,6 @@ export const home = () => {
   postsList.addEventListener('click', (e) => {
     e.preventDefault();
     const target = e.target;
-    // const buttonLike = document.querySelector('[data-like]');
-    // console.log(buttonLike);
 
     if (target.dataset.delete === '') {
       const modal = document.getElementById('myModal');
@@ -86,9 +84,9 @@ export const home = () => {
     }
 
     if (target.dataset.deletepost === '') {
-      const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
+      const getPost = target.parentNode
+        .parentNode.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
-      console.log(id);
       deletePost(id)
         .then(getPost.remove());
     }

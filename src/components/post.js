@@ -21,20 +21,28 @@ export const addPost = (post) => {
   const isAuthor = getUserIdOnLocalStorage() === post.data().userId;
   const postDiv = document.createElement('div');
   postDiv.setAttribute('data-id', post.id);
+
   const postTemplate = `
-    <article id="${post.data().createdAt}" class="post">
-      <div class= "user-perfil" data-user="${post.data().userId}">
+      <article id="${post.data().createdAt}" class="post">
+      <div class="user-perfil" data-user="${post.data().userId}">
         <img src="./img/Perfil.png" alt="user-photo" class="user-photo">
         <h4 class="user-name">@${post.data().userName} - </h4>
         <p class="date-post">${post.data().createdAt}</p>
       </div>
       <div class="post-field">
         <p class="user-post">${post.data().text}</p>
-        </div>
+      </div>
+      <div class="user-interations">
         ${isAuthor ? deleteButton : ''}
+        <div class="like-post">
+          <button class="btn-like" id="btn-like">
+            <img src="./img/heart.png" alt="like-icon" data-like id="likeBtn" width="20px" class="like">
+            <p class="number-likes" id="likes">${post.data().likes.length}</p>
+          </button>
+        </div>
+      </div>
     </article>
-    </div>
-  `;
+        `;
   postDiv.innerHTML = postTemplate;
 
   return postDiv;
