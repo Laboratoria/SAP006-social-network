@@ -16,16 +16,12 @@ export const Feed = () => {
         </span>
       </button>
     </header>
-
     <button class="btn-logout">Logout</button>
-
     <hr class="line">
-
     <h4>POSTAGENS RECENTES</h4>
-
     <section class="post">
       <form action="" id="published-form">
-        <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
+        <input type="text" id="text-post" class="space-post" placeholder="Mana, o que você quer compatilhar?">
         <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
@@ -33,7 +29,6 @@ export const Feed = () => {
     <section class="get-post" id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
-
     <nav class="navbar mobile-list">
       <ul>
         <li>
@@ -63,6 +58,7 @@ export const Feed = () => {
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
+    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
 
     const date = new Date();
@@ -75,7 +71,11 @@ export const Feed = () => {
       comments: [],
     };
 
-    addPosts(post);
+    if (text === '') {
+      console.log('Deu bom');
+    } else {
+      addPosts(post);
+    }
   });
 
   const navbarBottom = document.getElementsByClassName('navbar');
@@ -94,12 +94,10 @@ export const Feed = () => {
   //   container.classList.add("sign-up-mode");
   // });
 
-  loadPosts()
-    .then((snap) => {
-      snap
-        .forEach((post) => {
-          printPost(post);
-        });
+  loadPosts().then((snap) => {
+    snap.forEach((post) => {
+      printPost(post);
     });
+  });
   return rootElement;
 };

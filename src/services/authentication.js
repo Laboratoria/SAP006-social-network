@@ -87,10 +87,10 @@ export const signInGoogle = () => {
 };
 
 export const keepLogged = () => {
-    firebase
-      .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-    } 
+  firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+};
 
 export const resetPassword = (email) => {
   firebase
