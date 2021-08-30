@@ -27,22 +27,20 @@ export const Welcome = () => {
     </section>
 
 `;
-  const rootElement = document.createElement('div')
-  rootElement.setAttribute('class', 'container')
+  const rootElement = document.createElement('div');
+  rootElement.setAttribute('class', 'container');
   rootElement.innerHTML = template;
 
-  const continueBtn = rootElement.querySelector('.btn-continue')
+  const continueBtn = rootElement.querySelector('.btn-continue');
   continueBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    navigation('/conecte')
+    event.preventDefault();
+    navigation('/conecte');
   });
 
-  const skipBtn = rootElement.querySelector('.skip')
+  const skipBtn = rootElement.querySelector('.skip');
   skipBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    navigation('/login')
+    event.preventDefault();
+    navigation('/login');
   });
-  
   return rootElement;
-
-} 
+};
