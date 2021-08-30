@@ -103,7 +103,7 @@ body {
   margin-right: 5px;
 }
 
-button:hover {
+button::before {
   cursor: pointer;
 }
 
@@ -226,7 +226,6 @@ button:hover {
   margin-top: 1.5rem;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
   color: red;
   justify-content: space-evenly;
 }
@@ -251,6 +250,11 @@ button:hover {
   width: 40px;
 }
 
+#recipeLikes {
+  background-color: transparent;
+  border: none;
+}
+
 
 /* =================================  Página de Perfil: =================================== */
 
@@ -267,6 +271,10 @@ button:hover {
 
 .div-profile {
   width: 100%;
+}
+
+.recipe-content p {
+  margin-left: 0.5rem;
 }
 
 .profileInfo{
@@ -303,6 +311,13 @@ button:hover {
 
 .profile-nav-bar-options:hover{
   background-color: rgb(102, 102, 93);
+}
+
+
+.recipeInfo-box p, .recipeInfo-box span {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 0px;
 }
 
 .profileInfo section p{
@@ -350,7 +365,7 @@ button:hover {
 
 /* icons */ 
 
-.test {
+.fas, .far {
   color: red;
 }
 
@@ -492,7 +507,6 @@ footer {
   text-align: center;
 }
 
-
 /* =================================  Página de feed: =================================== */
 
 .div-recipe {
@@ -520,10 +534,6 @@ footer {
   display: flex;
   flex-wrap: wrap;
   margin-top: 1rem;
-}
-
-.recipe-content p {
-  margin-left: 0.5rem;
 }
 
 .recipeBody {
@@ -587,18 +597,12 @@ footer {
   align-items: center;
 }
 
-.recipeInfo-box p, .recipeInfo-box span {
-  flex-basis: 100%;
-  text-align: center;
-  margin: 0px;
-}
 
-
-@media screen and (min-width: 481px) and (max-width: 768px){
+/* @media screen and (min-width: 481px) and (max-width: 768px){
 
 }
 
 @media screen and (min-width: 769px){
 
 }
-
+ */

@@ -1,4 +1,4 @@
-import { likesPost, numLikes } from '../../services/index.js';
+import { likesPost, numLikes, getUserData } from '../../services/index.js';
 
 export function addPost(post) {
   const postContainer = document.createElement('div');
@@ -53,8 +53,8 @@ export function addPost(post) {
 
     <div id="recipe-footer" class="div-width100 recipe-title">
       <div class="like">
-        <button id="recipeLikes" class="material-icons heart favoriteIcon" data-like= ${post.id}><i class="fas fa-heart"></i></button>
-          <p class="numLikes"> ${post.data().likes.length} </p>
+        <button id="recipeLikes" data-like= ${post.id}><i id="likes-${post.id}" class="far fa-heart"></i></button>
+          <p class="numLikes"> ${post.data().likes.length || 0}</p>
         <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
       </div>
       <p> Por ${post.data().autor} </p>
@@ -70,19 +70,29 @@ export function addPost(post) {
   });
 
   const button = postContainer.querySelector('#recipeLikes');
-
-  const likes = postContainer.querySelector('.heart');
+  const likes = postContainer.querySelector(`#likes-${post.id}`);
   const numberLikes = postContainer.querySelector('.numLikes');
+
+  const postLikes = post.data().likes;
+  if (postLikes.includes(getUserData().uid)) {
+    likes.classList.add('fas');
+  } else {
+    likes.classList.add('far');
+  }
 
   function likesNum() {
     likesPost(post.id)
-      .then(() => likes.classList.toggle('test'))
       .then(() => numLikes(post.id)
         .then((massa) => {
-          numberLikes.innerHTML = massa.data().likes.length;
+          if (!massa.data().likes.includes(post.id)) {
+            likes.classList.toggle('fas');
+            numberLikes.innerHTML = massa.data().likes.length;
+          } if (massa.data().likes.includes(post.id)) {
+            likes.classList.toggle('far');
+            numberLikes.innerHTML = massa.data().likes.length;
+          }
         }));
   }
-
   button.addEventListener('click', likesNum);
 
   return postContainer;
