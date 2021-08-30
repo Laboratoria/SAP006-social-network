@@ -61,7 +61,7 @@ export const home = () => {
       <div class='fotoPerfil'>
 
           <img src=${doc.data().image} class='imgUser'> 
-          <div class="irma"> 
+          <div class="user-data"> 
             <p class="user"> ${doc.data().nome}</p>
           <div class='data-locations'>
             <p class="locations">${doc.data().nomeLocalReceita}</p> 
