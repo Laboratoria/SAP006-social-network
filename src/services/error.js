@@ -31,9 +31,9 @@ export const errorPassword = (error) => {
       errorMessage = '';
       break;
     case 'The password is invalid or the user does not have a password.':
-      errorMessage = 'Senha inválida.';
+      errorMessage = 'E-mail ou senha inválidos. Verifique-os.';
       errorEmailPasswordField.innerHTML = errorMessage;
-      errorMessage = '';
+      // errorMessage = '';
       break;
     default:
       break;

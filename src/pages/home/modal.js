@@ -1,8 +1,5 @@
 const modalElement = document.createElement('div');
-/*
-  Chupinhado com orgulho de:
-  https://codepen.io/thecodingpie/pen/XWXaYqy
- */
+
 export const modal = {
   confirm: (message, callback) => {
     const template = `<div id="modal-confirm" class="modal-background">
