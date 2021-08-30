@@ -1,4 +1,4 @@
-import { loginUser, signInWithGloogle } from '../../services/index.js';
+import { loginUser, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -15,7 +15,7 @@ export default () => {
       </form> 
       <div class="button">
         <button id="google-button" class="google-button"><img src="img/google-logo.png" alt=""></button>
-        <button id="login-button" class="login-button">Login</button>  
+        <button id="login-button" class="button">Login</button>  
       </div>
   `;
 
@@ -42,7 +42,7 @@ export default () => {
         let errorMessage = error.message;
         const errorMsg = document.querySelector('#error-message');
         if (errorCode === 'auth/invalid-email') {
-          errorMessage = 'Email inavlido. Tente novamente, ou cadastre-se';
+          errorMessage = 'Email inválido. Tente novamente, ou cadastre-se';
           errorMsg.innerHTML = errorMessage;
         } else if (errorCode === 'auth/wrong-password') {
           errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
@@ -59,7 +59,7 @@ export default () => {
 
   googleButton.addEventListener('click', (event) => {
     event.preventDefault();
-    signInWithGloogle()
+    signInWithGoogle()
       .then(() => {
         window.location.hash = '#feed';
       })

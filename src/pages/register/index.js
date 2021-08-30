@@ -1,4 +1,4 @@
-// import { createeUser } from '../../services/index.js';
+// import { createUser } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -16,7 +16,7 @@ export default () => {
       </form> 
       <div class="button">
         <a href="/#login">
-          <button class="register-button">Cadastrar</button>
+          <button id="register-button" class="button" >Cadastrar</button>
         </a>  
       </div>
       
