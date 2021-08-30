@@ -65,8 +65,8 @@ export default () => {
         window.location.hash = '#feed';
       })
       // eslint-disable-next-line arrow-parens
-      .catch(error => {
-        console.error(error);
+      .catch(() => {
+        window.location.hash = '#not-found';
       });
   });
 

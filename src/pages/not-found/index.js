@@ -3,16 +3,9 @@ export default () => {
 
   const template = `
     <header>
-      <nav class="menu">
-      </nav> 
-      <a href="/#feed">
-        <img src="img/google-logo.png" alt="" class="logo">
-      </a>
+     <h1>Error 404</h1>
     </header>
-    <h5>Post</h5>
-      <form action=".">
-        <textarea name="post-feed" id="post" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
-      </form>
+    <p>Essa pagina não pode ser encontrada tente novamente ou <a href="/#home">Clique aqui</a> para ir para a tela inicial</p>
   `;
 
   container.innerHTML = template;
