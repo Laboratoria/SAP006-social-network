@@ -7,12 +7,14 @@ export default () => {
   <div class= "container">
     <img src="" alt="" class="logo">
     <div class= "card">
+      <p id="error-message" class="error-message"></p>
       <h2 class="title">Login</h2>
         <form class="form-login" action="">
           <label for="get-email" class="label-login">Email</label><br>
           <input type="text" name="email" id="email-user" class="input-login"><br>
           <label for="get-password" class="label-login">Senha</label><br>
           <input type="password" name="password" id="password-user">
+          <i class="fa fa-eye" aria-hidden="true"></i><br>
         </form> 
         <div class="button">
           <button id="google-button" class="google-button" ><img src="img/google-logo.png" alt=""></button>
