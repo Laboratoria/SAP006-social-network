@@ -36,9 +36,6 @@ export default () => {
 `;
   login.innerHTML = container;
 
-
-  
-
   const loginButton = login.querySelector('#login-btn')
   loginButton.addEventListener('click', (event) => {
     event.preventDefault();
