@@ -1,4 +1,4 @@
-import { createUser } from '../../services/index.js';
+// import { createUser } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -25,6 +25,7 @@ export default () => {
           <div class="button">
             <a href="/#login">
               <button id="verSenha" class="register-button">Cadastrar</button>
+              <!-- <button id="register-button" class="button" >Cadastrar</button> --!>
             </a>  
       </div>
     </div>
@@ -33,17 +34,18 @@ export default () => {
   container.innerHTML = template;
 
   const btn = container.querySelector('#verSenha');
+
   const fullName = container.querySelector('#fullName');
   const labelName = container.querySelector('#labelName');
-  const validName = false;
+  // const validName = false;
 
   const emailUser = container.querySelector('#emailUser');
   const labelEmail = container.querySelector('#labelEmail');
-  const validEmail = false;
+  // const validEmail = false;
 
   const passwordUser = container.querySelector('#passwordUser');
   const labelPassword = container.querySelector('#labelPassword');
-  const validPassword = false;
+  // const validPassword = false;
 
   // let msgError = document.querySelector('#msgError')
   // let msgSuccess = document.querySelector('#msgSuccess')
@@ -53,12 +55,12 @@ export default () => {
       labelName.setAttribute('style', 'color: red');
       labelName.innerHTML = 'Nome *Insira no minimo 3 caracteres';
       fullName.setAttribute('style', 'border-color: red');
-      validName = false;
+      // validName = false;
     } else {
       labelName.setAttribute('style', 'color: green');
       labelName.innerHTML = 'Nome';
       fullName.setAttribute('style', 'border-color: green');
-      validName = true;
+      // validName = true;
     }
   });
 
@@ -67,12 +69,12 @@ export default () => {
       labelEmail.setAttribute('style', 'color: red');
       labelEmail.innerHTML = 'Email *Insira no minimo 5 caracteres';
       emailUser.setAttribute('style', 'border-color: red');
-      validEmail = false;
+      // validEmail = false;
     } else {
       labelEmail.setAttribute('style', 'color: green');
       labelEmail.innerHTML = 'Email';
       emailUser.setAttribute('style', 'border-color: green');
-      validEmail = true;
+      // validEmail = true;
     }
   });
 
@@ -81,60 +83,54 @@ export default () => {
       labelPassword.setAttribute('style', 'color: red');
       labelPassword.innerHTML = 'Senha *Insira no minimo 6 caracteres';
       passwordUser.setAttribute('style', 'border-color: red');
-      validSenha = false;
+      // validSenha = false;
     } else {
       labelPassword.setAttribute('style', 'color: green');
       labelPassword.innerHTML = 'Senha';
       passwordUser.setAttribute('style', 'border-color: green');
-      validPassword = true;
+      // validPassword = true;
     }
   });
 
   /* function register(){
-  if(validName && validEmail && validPassword){
-    let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
-
-    listaUser.push(
-    {
-      nomeCad: fullName.value,
-      emailCad: emailUser.value,
-      senhaCad: passwordUser.value
+    if(validName && validEmail && validPassword){
+      let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
+      listaUser.push(
+      {
+        nomeCad: fullName.value,
+        emailCad: emailUser.value,
+        senhaCad: passwordUser.value
+      }
+      )
+      localStorage.setItem('listaUser', JSON.stringify(listaUser))
+      msgSuccess.setAttribute('style', 'display: block')
+      msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
+      msgError.setAttribute('style', 'display: none')
+      msgError.innerHTML = ''
+      setTimeout(()=>{
+          window.location.href = 'https://cdpn.io/Souto-Nogueira/debug/wvdVgdo/dGrXWjqLvKeM'
+      }, 3000)
+    } else {
+      msgError.setAttribute('style', 'display: block')
+      msgError.innerHTML =
+      '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
+      msgSuccess.innerHTML = ''
+      msgSuccess.setAttribute('style', 'display: none')
     }
-    )
-
-    localStorage.setItem('listaUser', JSON.stringify(listaUser))
-
-    msgSuccess.setAttribute('style', 'display: block')
-    msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
-    msgError.setAttribute('style', 'display: none')
-    msgError.innerHTML = ''
-
-    setTimeout(()=>{
-        window.location.href = 'https://cdpn.io/Souto-Nogueira/debug/wvdVgdo/dGrXWjqLvKeM'
-    }, 3000)
-
-  } else {
-    msgError.setAttribute('style', 'display: block')
-    msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
-    msgSuccess.innerHTML = ''
-    msgSuccess.setAttribute('style', 'display: none')
-  }
-} */
+  } */
 
   btn.addEventListener('click', (event) => {
     event.preventDefault();
-    createUser(emailUser.value, passwordUser.value);
+    // createUser(emailUser.value, passwordUser.value);
   });
-
   /* btn.addEventListener('click', ()=>{
-  let inputSenha = document.querySelector('#passwordUser')
-
-  if(inputSenha.getAttribute('type') == 'password'){
-    inputSenha.setAttribute('type', 'text')
-  } else {
-    inputSenha.setAttribute('type', 'password')
-  }
-}) */
+    let inputSenha = document.querySelector('#passwordUser')
+    if(inputSenha.getAttribute('type') == 'password'){
+      inputSenha.setAttribute('type', 'text')
+    } else {
+      inputSenha.setAttribute('type', 'password')
+    }
+  }) */
 
   return container;
 };

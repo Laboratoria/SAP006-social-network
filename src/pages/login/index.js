@@ -1,4 +1,4 @@
-import { loginUser, signInWithGloogle } from '../../services/index.js';
+import { loginUser, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -41,14 +41,43 @@ export default () => {
 
   btnLogin.addEventListener('click', (event) => {
     event.preventDefault();
-    loginUser(email.value, password.value);
+    loginUser(email.value, password.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        window.location.hash = '#feed';
+        return user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        let errorMessage = error.message;
+        const errorMsg = document.querySelector('#error-message');
+        if (errorCode === 'auth/invalid-email') {
+          errorMessage = 'Email inválido. Tente novamente, ou cadastre-se';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/wrong-password') {
+          errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        } else {
+          errorMessage = 'Usuário não cadastrado';
+          errorMsg.innerHTML = errorMessage;
+        }
+        return error;
+      });
   });
 
   // Login Google
 
   googleButton.addEventListener('click', (event) => {
     event.preventDefault();
-    signInWithGloogle();
+    signInWithGoogle()
+      .then(() => {
+        window.location.hash = '#feed';
+      })
+      // eslint-disable-next-line arrow-parens
+      .catch(() => {
+        window.location.hash = '#not-found';
+      });
   });
 
   return container;
