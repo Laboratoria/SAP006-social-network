@@ -4,6 +4,7 @@ import {
   loadPosts,
   logOut,
   deletePost,
+  likesPost,
 
 } from '../../services/index.js';
 import { addPost } from '../../components/post.js';
@@ -93,7 +94,7 @@ export const home = () => {
         .then(getPost.remove());
     }
     if (target.dataset.like === '' && !target.classList.contains('fas')) {
-      const getPost = target.parentNode.parentNode.parentNode;
+      const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
       const numberLikes = container.querySelector(`[data-like="${id}"]`)
       console.log (numberLikes.textContent)
@@ -103,7 +104,7 @@ export const home = () => {
       numberLikes.innerHTML = quantLikes 
 
     } else if (target.dataset.like === '' && target.classList.contains('fas')) {
-      const getPost = target.parentNode.parentNode.parentNode;
+      const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
       const numberLikes = container.querySelector(`[data-like="${id}"]`)
       e.target.classList.remove('fas');

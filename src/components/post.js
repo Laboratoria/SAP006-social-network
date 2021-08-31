@@ -37,7 +37,7 @@ export const addPost = (post) => {
       <div class="like-post" data-like>
        <button class="btn-like" id="btn-like">
         <i class="far fa-heart ${(post.data().likes.includes(getUserIdOnLocalStorage())) ? "fas" : ''} " data-like id="likeBtn"></i>
-        <span id="likes" class="deslike" data-like="${post.id}">${post.data().likes.length}</span>
+        <span id="likes" class="likes" data-like="${post.id}">${post.data().likes.length}</span>
        </button>
       </div>
         
