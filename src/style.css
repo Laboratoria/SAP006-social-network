@@ -1,3 +1,6 @@
+@import url('./pages/feed/style.css');
+@import url('./pages/login/style.css');
+@import url('./pages/signup/style.css');
 @import url('https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap');
 
 * {
@@ -24,7 +27,7 @@ body{
      background-attachment: fixed;
 }
 
-.container {
+/*.container {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -68,7 +71,7 @@ h3 {
 
 
 .box-input input:focus {
-    /* editar */
+    
     border-bottom: 2px solid #4038a0;
 }
 
@@ -141,11 +144,11 @@ a {
 
 a:hover {
     color: #272262;
-}
+}/*
 
 /* pagina de cadastro */
 
-@import url('https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Georama:wght@300&display=swap');
 
 * {
     margin: 0;
@@ -201,7 +204,7 @@ h1 {
 }
 
 .box-input input:focus {
-    /* editar */
+  
     border-bottom: 2px solid #4038a0;
 }
 
@@ -241,13 +244,12 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* padding-top: 1.2rem; */
+    
     padding-top: 0.2rem;
 }
 
 hr {
-    /* margin-top: 10%;
-    margin-bottom: 10%; */
+  
     margin-top: 7%;
     margin-bottom: 0%;
     width: 100%;
@@ -272,6 +274,9 @@ a {
 a:hover {
     color: #272262;
 }
+
+
+
 
 /* 
  @media only screen and (max-width: 320px){
