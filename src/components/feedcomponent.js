@@ -1,4 +1,6 @@
-import { deletePost, updatePosts } from '../services/database.js';
+import {
+  deletePost, updatePosts, likePost, unlikePost, getLikes,
+} from '../services/database.js';
 
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
@@ -32,21 +34,18 @@ export const printPost = (post) => {
         
         <div class="align-post-like">
           <div class="content">
-              <textarea id="text-post"
-                class="post-content text-post"
-                id="${post.id}" disabled>${post.data().text}
-              </textarea>
+              <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
           </div>
-          <section class="actions">
-          <p data-num='num' data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length}</p>
-            <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i>
-            </button>
+          <section class="actions" data-section>
+            <p data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
+            <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
           </section>
         </div>
         
       </div>
     </section>
   `;
+
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
@@ -54,6 +53,7 @@ export const printPost = (post) => {
   const btnDelete = postTemplate.querySelector('[data-delete]');
   const btnSave = postTemplate.querySelector('[data-save]');
   const postText = postTemplate.querySelector('#text-post');
+  const datasection = postTemplate.querySelector('[data-section]');
 
   btnEdit.addEventListener('click', (e) => {
     e.preventDefault();
@@ -108,6 +108,37 @@ export const printPost = (post) => {
 
   btnDelete.addEventListener('click', () => {
     deletePopUp();
+  });
+
+  datasection.addEventListener('click', (e) => {
+    console.log('clicou');
+    const { target } = e;
+    const postId = target.dataset.like;
+    console.log(postId);
+    const userId = firebase.auth().currentUser.uid;
+    const likeIcon = postTemplate.querySelector('[data-like]');
+    function sendLike() {
+      const numLikeArray = postTemplate.querySelector('[data-numLike]');
+      const likesNumber = Number(numLikeArray.innerText);
+      getLikes(postId).then((posts) => {
+        if (!posts.data().likes.includes(userId)) {
+          likePost(userId, postId)
+            .then(() => {
+              numLikeArray.innerText = likesNumber + 1;
+              likeIcon.classList.replace('far', 'fas');
+            })
+            .catch('error');
+        } else {
+          unlikePost(userId, postId)
+            .then(() => {
+              numLikeArray.innerText = likesNumber - 1;
+              likeIcon.classList.replace('fas', 'far');
+            })
+            .catch('error');
+        }
+      });
+    }
+    if (target) { sendLike(); }
   });
 };
 

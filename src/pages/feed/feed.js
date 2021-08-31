@@ -1,5 +1,5 @@
 import {
-  addPosts, getLikes, likePost, loadPosts, unlikePost,
+  addPosts, loadPosts,
 } from '../../services/database.js';
 import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
@@ -54,40 +54,36 @@ export const Feed = () => {
   rootElement.innerHTML = container;
 
   // likes:
-  const datasection = rootElement.querySelector('[data-section]');
-  datasection.addEventListener('click', (e) => {
-    const { target } = e;
-    console.log(target);
-    const postId = target.dataset.like;
-    console.log(postId);
-    const userId = firebase.auth().currentUser.uid;
-    const likeIcon = rootElement.querySelector('[data-like]');
-    function sendLike() {
-      const numLikeArray = rootElement.querySelector('[data-numLike]');
-      let likesNumber = Number(numLikeArray.innerText);
-      console.log(likesNumber);
-      // const likesElement = likesNumber;
-      getLikes(postId).then((post) => {
-        console.log(post.data().likes);
-        if (!post.data().likes.includes(userId)) {
-          likePost(userId, postId)
-            .then(() => {
-              likesNumber += likesNumber + 1;
-              likeIcon.classList.replace('far', 'fas');
-            })
-            .catch('error');
-        } else {
-          unlikePost(userId, postId)
-            .then(() => {
-              likesNumber += likesNumber - 1;
-              likeIcon.classList.replace('fas', 'far');
-            })
-            .catch('error');
-        }
-      });
-    }
-    if (target) { sendLike(); }
-  });
+  // const datasection = rootElement.querySelector('[data-section]');
+  // datasection.addEventListener('click', (e) => {
+  //   const { target } = e;
+  //   const postId = target.dataset.like;
+  //   const userId = firebase.auth().currentUser.uid;
+  //   const likeIcon = rootElement.querySelector('[data-like]');
+  //   function sendLike() {
+  //     const numLikeArray = rootElement.querySelector('[data-numLike]');
+  //     let likesNumber = Number(numLikeArray.innerText);
+  //     // const likesElement = likesNumber;
+  //     getLikes(postId).then((post) => {
+  //       if (!post.data().likes.includes(userId)) {
+  //         likePost(userId, postId)
+  //           .then(() => {
+  //             likesNumber.innerText += likesNumber + 1;
+  //             likeIcon.classList.replace('far', 'fas');
+  //           })
+  //           .catch('error');
+  //       } else {
+  //         unlikePost(userId, postId)
+  //           .then(() => {
+  //             likesNumber += likesNumber - 1;
+  //             likeIcon.classList.replace('fas', 'far');
+  //           })
+  //           .catch('error');
+  //       }
+  //     });
+  //   }
+  //   if (target) { sendLike(); }
+  // });
 
   // datasection.addEventListener('click', (e) => {
   //   const { target } = e;
@@ -128,7 +124,6 @@ export const Feed = () => {
       text,
       user_id: useruid,
       date: date.toLocaleString(),
-      // date: firebase.firestore.FieldValue.serverTimestamp(),
       likes: [],
       comments: [],
     };
