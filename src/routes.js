@@ -1,4 +1,3 @@
-// import { feed } from './pages/feed/index.js';
 import { login } from './pages/login.js';
 import { register } from './pages/register.js';
 import { feed } from './pages/feed.js';

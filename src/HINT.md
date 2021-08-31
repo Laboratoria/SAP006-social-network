@@ -11,7 +11,7 @@ A social network created to meet various needs of travelers around the world.
 
 ## Índice
 
-- [1. Prefácio](#1-prefácio)
+- [1. Introdução](#1-prefácio)
 - [2. Resumo do projeto](#2-resumo-do-projeto)
 - [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
 - [4. Considerações gerais](#4-considerações-gerais)
@@ -29,5 +29,4 @@ Trata-se de uma aplicação de página única (Single Page Application - SPA), u
 sistema de autenticação fornecido pelo Firebase. A lógica do projeto é 
 implementada em JavaScript (ES6+), HTML e CSS.
 
-Baseado em resultados de uma pesquisa realizada através de form, concluímos que ...
 

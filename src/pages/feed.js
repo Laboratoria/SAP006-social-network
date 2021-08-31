@@ -8,3 +8,9 @@ export const feed = () => {
   div.innerHTML = content;
   return div;
 };
+
+/* firebase.auth().signOut().then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+}); */

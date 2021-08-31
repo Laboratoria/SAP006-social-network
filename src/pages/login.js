@@ -9,25 +9,23 @@ export const login = () => {
     <div class="login-data">
       <div class="mail-login">
         <form class="login-input">
-          <input class="login-input" id="email-login" type="text" placeholder="E-mail ou nome do usuário">
+          <input class="login-input" id="email-login" type="text" placeholder="Enter your e-mail adress">
           </input>
-          <input class="login-input" id="password-login" type="password" placeholder="Insira sua senha">
+          <input class="login-input" id="password-login" type="password" placeholder="Password">
           </input>
-          <a> <button class="login-input" id="lgn-btn" type="submit">Login</button> </a>
+          <a> <button class="login-input" id="lgn-btn" type="submit">Sign In</button> </a>
         </form>
       </div>
       <h4>OU</h4>
       <div class="google-login">
-        <button class="login-google" type="submit">Entrar com Google</button>
-
+        <button class="login-google" type="submit">Login with Google</button>
       </div>
       <div class="new-register">
-        <p class="without-register">Ainda não tem uma conta?</p>
-        <a href="#register" class="register" id="btn-register">Cadastre-se aqui!</a>
+        <p class="without-register">Not a user?</p>
+        <a href="#register" class="register" id="btn-register">Register here!</a>
       </div>
     </div>
   </div>
-
   `;
 
   div.innerHTML = content;
@@ -45,7 +43,6 @@ export const login = () => {
         window.location.hash = '#feed';
         // Signed in
         const user = userCredential.user;
-        // ...
         console.log(user);
       })
       .catch(() => {
