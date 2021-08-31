@@ -9,6 +9,7 @@ export const register = () => {
           </input>
           <input class="register-input" id="register-email" type="text" placeholder="Your e-mail">
           </input>
+          <p id="email-error" class="error-message font-work"></p>
           <input class="register-input" id="register-pass" type="password" minlength="8" required placeholder="Create a password">
           </input>
           <p id="doesntMatch"></p>
@@ -23,6 +24,7 @@ export const register = () => {
   // const registerUser = div.querySelector('#register-userID');
   const registerEmail = div.querySelector('#register-email');
   const registerPass = div.querySelector('#register-pass');
+  const emailError = register.querySelector('#email-error');
 
   registerBtn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -30,20 +32,21 @@ export const register = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(
-        // registerUser.value,
         registerEmail.value,
         registerPass.value,
       )
       .then(() => {
-        // Signed in
-        // const user = userCredential.user;
         window.location.hash = '#feed';
       })
       .catch((error) => {
         const errorCode = error.code;
-        console.log(errorCode);
-        const errorMessage = error.message;
-        console.log(errorMessage);
+        if (errorCode === 'auth/email-already-in-use') {
+          emailError.style.color = 'red';
+          emailError.innerHTML = 'E-mail já cadastrado';
+        } else if (errorCode === 'auth/invalid-email') {
+          emailError.style.color = 'red';
+          emailError.innerHTML = 'Insira um e-mail válido';
+        }
       });
   });
   return div;
