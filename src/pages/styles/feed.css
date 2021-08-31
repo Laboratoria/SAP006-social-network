@@ -1,6 +1,4 @@
-body,
-section,
-#bell {
+.background-color-main {
   background-color: #f0eae7;
 }
 
@@ -79,19 +77,12 @@ a {
   align-self: flex-end;
 } */
 
-input {
-    border-radius: 20px;
-    background: var(--color-white);
-    border: 1px solid var(--color-background);
-    box-shadow: 0px 4px 4px 0px #00000040;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: medium;
-    color: var(--color-gray);
-    padding: 5%;
-    margin: 1% 4% 8%;
-    display: inline-flex;
-}
+.warn-input-add{
+  color: #fb1d30;
+  font-size: 0.8rem;
+  margin-bottom: 2vh;
+} 
+
 
 form {
   justify-content: center;

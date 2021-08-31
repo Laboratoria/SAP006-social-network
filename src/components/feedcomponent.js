@@ -1,5 +1,4 @@
 import { deletePost, updatePosts } from '../services/database.js';
-
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
 
@@ -41,7 +40,7 @@ export const printPost = (post) => {
           <div>
             <textarea id="text-post"
               class="post-content text-post"
-              id="${post.id}" disabled>${post.data().text}
+              id="${post.id}">${post.data().text}
             </textarea>
           </div>
         </div>
@@ -55,6 +54,7 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
+  /*
   postTemplate.addEventListener('click', (e) => {
     const target = e.target;
     console.log(target.dataset.like);
@@ -62,11 +62,12 @@ export const printPost = (post) => {
       console.log('cliquei no botão de like');
     }
   });
+*/
 
-  const btnEdit = postTemplate.querySelector('[data-edit]')
-  const btnDelete = postTemplate.querySelector('[data-delete]')
-  const btnSave = postTemplate.querySelector('[data-save]')
-  const postText = postTemplate.querySelector("#text-post")
+  const btnEdit = postTemplate.querySelector('[data-edit]');
+  const btnDelete = postTemplate.querySelector('[data-delete]');
+  const btnSave = postTemplate.querySelector('[data-save]');
+  const postText = postTemplate.querySelector('#text-post');
 
   btnEdit.addEventListener('click', (e) => {
     e.preventDefault();
@@ -77,7 +78,6 @@ export const printPost = (post) => {
   btnSave.addEventListener('click', (e) => {
     e.preventDefault();
     const postId = e.target.dataset.save;
-    console.log(postId);
     updatePosts(postId, postText.value);
     postText.setAttribute('disabled', '');
   });

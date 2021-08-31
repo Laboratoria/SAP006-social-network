@@ -31,5 +31,5 @@ export const deletePost = (postId) => firebase
   // .then(() => window.location.reload());
 
 export const likePost = (postId) => {
-  
-}
+
+};

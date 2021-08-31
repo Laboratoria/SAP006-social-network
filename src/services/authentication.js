@@ -28,7 +28,8 @@ export const signInEmailPassword = (email, password) => {
   const signIn = firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .catch((error) => {
+ /*
+   .catch((error) => {
       const errorCode = error.code;
 
       if (errorCode === 'auth/invalid-email') {
@@ -43,6 +44,7 @@ export const signInEmailPassword = (email, password) => {
         alert('Algo deu errado. Por favor, tente novamente.');
       }
     });
+ */ 
   return signIn;
 };
 
@@ -55,9 +57,6 @@ export const logout = () => {
       const popStateEvent = new PopStateEvent('popstate', {});
       dispatchEvent(popStateEvent);
     });
-  // .catch((error) => {
-  // // An error happened.
-  // });
 };
 
 export const signInGoogle = () => {

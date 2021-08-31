@@ -9,7 +9,7 @@ export const Feed = () => {
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
       <button>
         <span id="bell"
-              class="iconify"
+              class="iconify background-color-main"
               data-inline="false"
               data-icon="clarity:notification-outline-badged"
               style="color: #F78563;">
@@ -20,20 +20,18 @@ export const Feed = () => {
     <button class="btn-logout">Logout</button>
 
     <hr class="line">
-
     <h4>POSTAGENS RECENTES</h4>
-
     <section class="post">
       <form action="" id="published-form">
-        <input type="text" id="text-post" placeholder="Mana, o que você quer compatilhar?">
+        <input type="text" id="text-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
+        <p class="warn-input-add" hidden>Por favor, digite algo para compartilhar.</p>
         <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
    
-    <section class="get-post" id="postTemplate"> 
+    <section class="get-post background-color-main" id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
-
     <nav class="navbar mobile-list">
       <ul>
         <li>
@@ -63,7 +61,6 @@ export const Feed = () => {
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
 
     const date = new Date();
@@ -71,14 +68,20 @@ export const Feed = () => {
       text,
       user_id: useruid,
       date: date.toLocaleString(),
+      // date: firebase.firestore.FieldValue.serverTimestamp(),
       likes: [],
       comments: [],
     };
 
-    if (text.value === ''){
-      return;
+    const textValidationAddPost = rootElement.querySelector('.warn-input-add'); 
+    
+    if (text === '') { 
+      textValidationAddPost.hidden = true;
+    } else {
+      textValidationAddPost.hidden = false; 
+      addPosts(post);
     }
-    addPosts(post);
+
   });
 
   const navbarBottom = document.getElementsByClassName('navbar');
@@ -90,12 +93,6 @@ export const Feed = () => {
   }
 
   window.onscroll = stickyFilter();
-
-  // slider post
-  // const newPostBtn = document.querySelector('#new-post-btn');
-  // newPostBtn.addEventListener('click', () => {
-  //   container.classList.add("sign-up-mode");
-  // });
 
   loadPosts()
     .then((snap) => {
