@@ -9,7 +9,7 @@ export const login = () => {
       <div class="img-ball">
         <img class="ball" src="../img/bolinhas.png" alt="balls" width="100" />
       </div>
-      <h1 class="logo">Pet</h1>
+      <h1 class="logo">Plush</h1>
     </div>
     <p class="subtitle">Uma rede para tutores e amantes de animais.</p>
     <form class="form-login">
