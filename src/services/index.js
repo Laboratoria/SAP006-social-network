@@ -9,6 +9,7 @@ export const createUser = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
     // Signed in
     const user = userCredential.user;
+    window.location.hash = '#login';
     console.log('deu bom', user);
     // ...
   })
@@ -29,22 +30,6 @@ export const loginUser = (email, password) => {
       const user = userCredential.user;
       window.location.hash = '#feed';
       return user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      let errorMessage = error.message;
-      const errorMsg = document.querySelector('#error-message');
-      if (errorCode === 'auth/user-not-found') {
-        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
-        errorMsg.innerHTML = errorMessage;
-      } else if (errorCode === 'auth/wrong-password') {
-        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
-        errorMsg.innerHTML = errorMessage;
-      } else {
-        errorMessage = 'Usuário não cadastrado';
-        errorMsg.innerHTML = errorMessage;
-      }
-      return error;
     });
 };
 
@@ -56,11 +41,6 @@ export const signInWithGloogle = () => {
   auth.signInWithPopup(googleProvider)
     .then(() => {
       window.location.hash = '#feed';
-      return googleProvider;
-    })
-    // eslint-disable-next-line arrow-parens
-    .catch(error => {
-      console.error(error);
     });
 };
 
@@ -68,9 +48,17 @@ export const signInWithGloogle = () => {
 
 export const logout = () => {
   firebase.auth().signOut().then(() => {
+    window.location.hash = '#home';
     // Sign-out successful.
   }).catch((error) => {
     // An error happened.
     console.log('Erro', error);
   });
+};
+
+// Post
+
+export const newPost = (postInf) => {
+  const db = firebase.firestore();
+  return db.collection('posts').add(postInf);
 };
