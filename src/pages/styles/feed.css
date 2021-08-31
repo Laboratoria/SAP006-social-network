@@ -489,3 +489,9 @@ circle {
   color: red;
   background-color: #ffffff;
 }
+
+.active {
+  content: url('./src/img/heart-filled.png');
+  animation: animateHeart 1s;
+
+}

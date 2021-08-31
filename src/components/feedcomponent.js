@@ -38,15 +38,16 @@ export const printPost = (post) => {
               </textarea>
           </div>
           <section class="actions">
-          <p data-numLike="${post.id}">${post.data().likes.length || 0}</p>
-            <button class="btn-like"><span data-like="${post.id}" class="iconify heart" data-icon="icon-park-outline:like" style="color: red;"></span></button>
+          <p data-num='num' data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length}</p>
+            <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i>
+            </button>
           </section>
         </div>
         
       </div>
     </section>
   `;
-
+  
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 

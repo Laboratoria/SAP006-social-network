@@ -1,4 +1,6 @@
-import { addPosts, likePost, loadPosts } from '../../services/database.js';
+import {
+  addPosts, getLikes, likePost, loadPosts, unlikePost,
+} from '../../services/database.js';
 import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
 
@@ -54,38 +56,58 @@ export const Feed = () => {
   // likes:
   const datasection = rootElement.querySelector('[data-section]');
   datasection.addEventListener('click', (e) => {
-    const target = e.target;
+    const { target } = e;
     const likeId = target.dataset.like;
-    if (likeId) {
-      const numberLikes = rootElement.querySelector(`[data-numLike='${likeId}']`);
-      const beforLike = numberLikes.classList.contains('beforLike');
-      const number = Number(numberLikes.textContent);
-      if (beforLike === true) {
-        numberLikes.classList.replace('beforLike', 'afterLike');
-        numberLikes.innerHTML = number + 1;
-        likePost(likeId);
-      } else {
-        numberLikes.classList.replace('afterLike', 'beforeLike');
-        numberLikes.innerHTML = number - 1;
-        likePost(likeId);
-      }
+    console.log(likeId);
+    const userId = firebase.auth().currentUser.uid;
+    function sendLike(likeIcon) {
+      const numLikeArray = rootElement.querySelector('[data-numLike]');
+      const likesNumber = Number(numLikeArray.innerText);
+      // const likesElement = likesNumber;
+      getLikes(likeId).then((post) => {
+        console.log(post.data());
+        if (!post.data().likes.includes(userId)) {
+          likePost(userId, likeId)
+            .then(() => {
+              console.log('deu certo');
+              likesNumber.innerHTML = likesNumber + 1;
+              likeIcon.classList.replace('far', 'fas');
+            })
+            .catch('error');
+        } else {
+          unlikePost(userId, likeId)
+            .then(() => {
+              likesNumber.innerHTML = likesNumber - 1;
+              likeIcon.classList.replace('fas', 'far');
+            })
+            .catch('error');
+        }
+      });
     }
-    // // console.log(target.dataset.like);
-    // if (target.dataset.like === '') {
-    //   // console.log('cliquei no like');
-    //   likePost()
-    //     .then((returnLiked) => {
-    //       console.log(returnLiked);
-    //       const likesCount = `
-    //         <p>${document.data().likes}</p>
-    //       `;
-    //       rootElement.innerHTML = likesCount;
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // }
+    if (likeId) { sendLike(); }
   });
+
+  // datasection.addEventListener('click', (e) => {
+  //   const { target } = e;
+  //   const likeId = target.dataset.like;
+  //   if (likeId) {
+  //     let numberLikesData = rootElement.querySelector(`[data-numLike='${likeId}']`);
+  //     const userId = firebase.auth().currentUser.uid;
+  //     const numberOfLikes = Number(numberLikesData.textContent);
+  //     console.log(numberOfLikes);
+  //     const heart = datasection.querySelector(`[data-like='${likeId}']`);
+
+  //     if (likeId.includes(userId)) {
+  //       numberLikesData.innerHTML = numberOfLikes + 1;
+  //       heart.src = '/src/img/heart-filled.png';
+  //       likePost(likeId);
+  //     } else {
+  //       numberLikesData.innerHTML = numberOfLikes - 1;
+  //       heart.src = 'src/img/heart.png';
+  //       likePost(likeId);
+  //     }
+  //   }
+  // });
 
   const logoutButton = rootElement.querySelector('.btn-logout');
   logoutButton.addEventListener('click', () => {
