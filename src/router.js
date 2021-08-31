@@ -2,12 +2,7 @@ import { cadastro } from './pages/cadastro/index.js';
 import { home } from './pages/home/index.js';
 import { postar } from './pages/postar/index.js';
 import { login } from './pages/login/index.js';
-<<<<<<< HEAD
 import { route } from './routes/navigator.js';
-=======
-// import { route } from './routes/navigator.js';
-
->>>>>>> 4eceadfafd488dd1b874974fd24d24267165d14a
 
 export const routeRender = () => {
   const elemento = document.getElementById('root');
@@ -28,7 +23,6 @@ window.addEventListener('load', () => {
   routeRender();
 });
 
-<<<<<<< HEAD
 const verUser = () => {
   if (localStorage.getItem('displayName') === null) {
     route('/login');
@@ -36,7 +30,3 @@ const verUser = () => {
 };
 
 verUser();
-=======
-
-
->>>>>>> 4eceadfafd488dd1b874974fd24d24267165d14a

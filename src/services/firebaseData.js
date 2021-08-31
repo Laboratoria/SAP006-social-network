@@ -1,5 +1,6 @@
 const db = firebase.firestore();
 const storage = firebase.storage();
+
 export const addPost = (postar) => db.collection('posts').add(postar);
 
 export const getPosts = () => db.collection('posts').orderBy('data').limit(15).get();
@@ -7,6 +8,7 @@ export const getPosts = () => db.collection('posts').orderBy('data').limit(15).g
 export const deletePost = (postID) => {
   const postsCollection = firebase.firestore().collection('posts');
   return postsCollection.doc(postID).delete();
+};
 
 export const liked = (postID) => {
   const post = firebase.firestore().collection('posts').doc(postID);
@@ -35,17 +37,17 @@ export const uploadImage = (folder, file) => {
   return ref.child(folder).child(imageName).put(file, metadata);
 };
 
-export const editPosts = (tagEdited, localEdited, hashtagsEdited, priceEdited,
+export const editPosts = (typeEdit, titleEdit, hashtagsEdited, priceEdited,
   addTextEdited, reviewId) => {
   db
     .collection('posts')
     .doc(reviewId)
     .update({
-      tag: tagEdited,
-      local: localEdited,
-      review: hashtagsEdited,
-      price: priceEdited,
-      addText: addTextEdited,
+      tipo: typeEdit,
+      nomeLocalReceita: titleEdit,
+      hashTags: hashtagsEdited,
+      preco: priceEdited,
+      descrição: addTextEdited,
     }).then(() => {
 
     })

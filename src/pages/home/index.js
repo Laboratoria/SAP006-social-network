@@ -1,7 +1,7 @@
 import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import {
-  getPosts, liked, deletePost,
+  getPosts, liked, deletePost, editPosts,
 } from '../../services/firebaseData.js';
 import { modal } from './modal.js';
 // <img src=${doc.data().image class='imgPost'>
@@ -65,17 +65,23 @@ export const home = () => {
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
           <img src=${doc.data().image} class='imgUser'> 
           <p class="user"> ${doc.data().nome}</p>
-          <p class="local" contentEditable="false" >${doc.data().nomeLocalReceita}</p> 
+          <p class="local" contentEditable="false" data-title="${doc.id}" >${doc.data().nomeLocalReceita}</p> 
           <p class="data"> ${doc.data().data.toDate().toLocaleDateString()}</p>
-          <button type="button" class="delete-button" data-delete="${doc.id}"> Deletar</button>
-          <button type="submit" data-edit="${doc.id}" class="edit-button"> Editar</button>
-          <p class="descr" contentEditable="false" >${doc.data().descricao}</p> 
-          <p class="hashs" contentEditable="false" >${doc.data().hashTags}</p>
+    
+          ${firebase.auth().currentUser.uid === doc.data().user_id
+    ? `<div class="delete-edit">
+                       <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
+                    <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
+                  </div>`
+    : ''}
+            
+          <p class="descr" contentEditable="false" data-text="${doc.id}">${doc.data().descricao}</p> 
+          <p class="hashs" contentEditable="false" data-hashs="${doc.id}">${doc.data().hashTags}</p>
         <div class='botoes'> 
-          <p class="tipo"> ${doc.data().tipo} </p>
+          <p class="tipo" contentEditable="false" data-tag="${doc.id}"> ${doc.data().tipo} </p>
           <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"> </button>
           <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
-          <button type="button" class="price" id="price" contentEditable="false" data-preco>${doc.data().preco}<img class="likePrice" src="./img/dinAmarelo.svg"> <img class="likePrice" src="./img/dinCinza.svg"></button>
+          <button type="button" class="price" id="price" contentEditable="false" data-preco="${doc.id}">${doc.data().preco}></button>
           <div class="coments" id="coments">
           <p class="addComent" id="addComent" placeholder="Comentários">${doc.data().comentarios}</p>
           <button class="more" id="more">ver mais</button>
@@ -83,23 +89,8 @@ export const home = () => {
           </div> </div>
           <hr> `;
 
-      const deleteBtn = div.querySelector('.delete-button');
-      const editBtn = div.querySelector('.edit-button');
-      function disableBtn() {
-        if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-          editBtn.hidden = false;
-          deleteBtn.hidden = false;
-        } else {
-          editBtn.hidden = true;
-          deleteBtn.hidden = true;
-          div.querySelector('.delete-button').style.display = 'none';
-          div.querySelector('.edit-button').style.display = 'none';
-        }
-      }
-      disableBtn();
-
       timeline.insertBefore(div, timeline.childNodes[0]);
-    });
+    
     const dataPost = rootElement.querySelector('[data-post]');
     dataPost.addEventListener('click', (e) => {
       const { target } = e;
@@ -131,10 +122,18 @@ export const home = () => {
       }
       if (editId) {
         modal.confirm('Deseja editar sua postagem?', () => {
+          const editBtn = rootElement.querySelector(`[data-edit="${editId}"]`);
+          editBtn.textContent = 'Salvar';
           const editElements = rootElement.querySelectorAll('[contenteditable=false]');
-          for (let i = 0; i < editElements.length; i++) editElements[i].setAttribute('contenteditable', true);
-        });
-      }
-    });
-  });
+          for (let i = 0; i < editElements.length; i + 1) editElements[i].setAttribute('contenteditable', true);
+          const title = rootElement.querySelector(`[data-title="${editId}"]`);
+          const text = rootElement.querySelector(`[data-text="${editId}"]`);
+          const priceTag = rootElement.querySelector(`[data-preco="${editId}"]`);
+          const hashtags = rootElement.querySelector(`[data-hashs="${editId}"]`);
+          const tagType = rootElement.querySelector(`[data-tag="${editId}"]`);
+          editPosts(tagType, title, hashtags, priceTag,
+            text, editId);
+        })}
+ })     
+  return rootElement;
 };
