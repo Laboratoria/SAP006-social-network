@@ -57,34 +57,36 @@ export const Feed = () => {
   const datasection = rootElement.querySelector('[data-section]');
   datasection.addEventListener('click', (e) => {
     const { target } = e;
-    const likeId = target.dataset.like;
-    console.log(likeId);
+    console.log(target);
+    const postId = target.dataset.like;
+    // console.log(likeId);
     const userId = firebase.auth().currentUser.uid;
-    function sendLike(likeIcon) {
+    const likeIcon = rootElement.querySelector('[data-like]');
+    function sendLike() {
       const numLikeArray = rootElement.querySelector('[data-numLike]');
-      const likesNumber = Number(numLikeArray.innerText);
+      let likesNumber = Number(numLikeArray.innerText);
+      console.log(likesNumber);
       // const likesElement = likesNumber;
-      getLikes(likeId).then((post) => {
+      getLikes(postId).then((post) => {
         console.log(post.data());
         if (!post.data().likes.includes(userId)) {
-          likePost(userId, likeId)
+          likePost(userId, postId)
             .then(() => {
-              console.log('deu certo');
-              likesNumber.innerHTML = likesNumber + 1;
+              likesNumber += likesNumber + 1;
               likeIcon.classList.replace('far', 'fas');
             })
             .catch('error');
         } else {
-          unlikePost(userId, likeId)
+          unlikePost(userId, postId)
             .then(() => {
-              likesNumber.innerHTML = likesNumber - 1;
+              likesNumber += likesNumber - 1;
               likeIcon.classList.replace('fas', 'far');
             })
             .catch('error');
         }
       });
     }
-    if (likeId) { sendLike(); }
+    if (target) { sendLike(); }
   });
 
   // datasection.addEventListener('click', (e) => {

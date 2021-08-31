@@ -47,7 +47,6 @@ export const printPost = (post) => {
       </div>
     </section>
   `;
-  
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
