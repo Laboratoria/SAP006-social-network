@@ -53,60 +53,6 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
-  // likes:
-  // const datasection = rootElement.querySelector('[data-section]');
-  // datasection.addEventListener('click', (e) => {
-  //   const { target } = e;
-  //   const postId = target.dataset.like;
-  //   const userId = firebase.auth().currentUser.uid;
-  //   const likeIcon = rootElement.querySelector('[data-like]');
-  //   function sendLike() {
-  //     const numLikeArray = rootElement.querySelector('[data-numLike]');
-  //     let likesNumber = Number(numLikeArray.innerText);
-  //     // const likesElement = likesNumber;
-  //     getLikes(postId).then((post) => {
-  //       if (!post.data().likes.includes(userId)) {
-  //         likePost(userId, postId)
-  //           .then(() => {
-  //             likesNumber.innerText += likesNumber + 1;
-  //             likeIcon.classList.replace('far', 'fas');
-  //           })
-  //           .catch('error');
-  //       } else {
-  //         unlikePost(userId, postId)
-  //           .then(() => {
-  //             likesNumber += likesNumber - 1;
-  //             likeIcon.classList.replace('fas', 'far');
-  //           })
-  //           .catch('error');
-  //       }
-  //     });
-  //   }
-  //   if (target) { sendLike(); }
-  // });
-
-  // datasection.addEventListener('click', (e) => {
-  //   const { target } = e;
-  //   const likeId = target.dataset.like;
-  //   if (likeId) {
-  //     let numberLikesData = rootElement.querySelector(`[data-numLike='${likeId}']`);
-  //     const userId = firebase.auth().currentUser.uid;
-  //     const numberOfLikes = Number(numberLikesData.textContent);
-  //     console.log(numberOfLikes);
-  //     const heart = datasection.querySelector(`[data-like='${likeId}']`);
-
-  //     if (likeId.includes(userId)) {
-  //       numberLikesData.innerHTML = numberOfLikes + 1;
-  //       heart.src = '/src/img/heart-filled.png';
-  //       likePost(likeId);
-  //     } else {
-  //       numberLikesData.innerHTML = numberOfLikes - 1;
-  //       heart.src = 'src/img/heart.png';
-  //       likePost(likeId);
-  //     }
-  //   }
-  // });
-
   const logoutButton = rootElement.querySelector('.btn-logout');
   logoutButton.addEventListener('click', () => {
     logout();

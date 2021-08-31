@@ -53,7 +53,7 @@ export const printPost = (post) => {
   const btnDelete = postTemplate.querySelector('[data-delete]');
   const btnSave = postTemplate.querySelector('[data-save]');
   const postText = postTemplate.querySelector('#text-post');
-  const datasection = postTemplate.querySelector('[data-section]');
+  const datasection = document.querySelector('[data-section]');
 
   btnEdit.addEventListener('click', (e) => {
     e.preventDefault();
