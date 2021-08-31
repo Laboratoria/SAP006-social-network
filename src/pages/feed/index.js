@@ -7,7 +7,13 @@ export default () => {
   </a>
   <nav class="menu">
   </nav> 
-  <p>Feed</p>
+
+  <div class= "container">
+    <div class= "card">
+      <h2 class="title">Feed</h2>
+    </div> 
+  </div>
+
   `;
 
   container.innerHTML = template;
