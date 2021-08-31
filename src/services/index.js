@@ -45,3 +45,10 @@ export const logout = () => {
       console.log('Erro', error);
     });
 };
+
+// Post
+
+export const newPost = (postInf) => {
+  const db = firebase.firestore();
+  return db.collection('posts').add(postInf);
+};
