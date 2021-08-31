@@ -24,7 +24,7 @@ export const register = () => {
   // const registerUser = div.querySelector('#register-userID');
   const registerEmail = div.querySelector('#register-email');
   const registerPass = div.querySelector('#register-pass');
-  const emailError = register.querySelector('#email-error');
+  // const emailError = register.querySelector('#email-error');
 
   registerBtn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -40,13 +40,9 @@ export const register = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        if (errorCode === 'auth/email-already-in-use') {
-          emailError.style.color = 'red';
-          emailError.innerHTML = 'E-mail já cadastrado';
-        } else if (errorCode === 'auth/invalid-email') {
-          emailError.style.color = 'red';
-          emailError.innerHTML = 'Insira um e-mail válido';
-        }
+        console.log(errorCode);
+        const errorMessage = error.message;
+        console.log(errorMessage);
       });
   });
   return div;
