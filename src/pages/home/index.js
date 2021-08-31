@@ -7,7 +7,6 @@ export default () => {
     <img src="" alt="" class="logo">
     <div class= "card">
       <a href="/#home"> 
-        <img src="" alt="" class="logo">
         <h2>SO.MU.S</h2> </a>
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et ante 
           id risus semper sollicitudin ut non odio. Sed dignissim, diam quis sagittis congue,

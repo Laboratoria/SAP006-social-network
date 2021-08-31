@@ -25,6 +25,10 @@ main{
     margin-top: 10%;
 }
 
+.img-top{
+    margin: 0;
+}
+
 .card{
     width: 18%;
     height: 30em;
