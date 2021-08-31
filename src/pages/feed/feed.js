@@ -59,7 +59,7 @@ export const Feed = () => {
     const { target } = e;
     console.log(target);
     const postId = target.dataset.like;
-    // console.log(likeId);
+    console.log(postId);
     const userId = firebase.auth().currentUser.uid;
     const likeIcon = rootElement.querySelector('[data-like]');
     function sendLike() {
@@ -68,7 +68,7 @@ export const Feed = () => {
       console.log(likesNumber);
       // const likesElement = likesNumber;
       getLikes(postId).then((post) => {
-        console.log(post.data());
+        console.log(post.data().likes);
         if (!post.data().likes.includes(userId)) {
           likePost(userId, postId)
             .then(() => {
