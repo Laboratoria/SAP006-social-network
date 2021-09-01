@@ -1,4 +1,5 @@
 export default () => {
+  console.log("cadastro")
   const container = document.createElement("div");
 
   const template = `
@@ -8,7 +9,7 @@ export default () => {
     <div class="container">
     <div class="card">
     <h3>CRIAR UMA NOVA CONTA</h3>
-    <form method='post'>
+    <form>
       <input required="required" autocomplete="off" type="text" placeholder="Insira seu nome" id="username"
         class='login-area'>
       <input required="required" autocomplete="off" type="email" placeholder="example@example.com" id="register-email"
@@ -32,6 +33,7 @@ export default () => {
 
   registerBtn.addEventListener('click', (event) => {
     event.preventDefault();
+    console.log('click')
     registerLogin(email.value, password.value,
       name.value);
     });

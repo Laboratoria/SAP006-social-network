@@ -15,7 +15,7 @@ export default () => {
   <button class='button-area btn signIn' id='start'>Entrar</button>
   <p class="or-area">━━━━━━━━━ OU ━━━━━━━━━</p>
   <button class='button-area btn btnGoogle'><img src='imagens/google_small_icon.png' alt='Google' class='google-icon'>Entrar com o google</button>
-  <p class='font-small'>Se não tem uma conta, <a href='/#cadastre-se' style="color:black;font-weight: 600"
+  <p class='font-small'>Se não tem uma conta, <a href='/#cadastro' style="color:black;font-weight: 600"
       id='sign-up-login'>Cadastre-se.</a>
   </p>
 </div>  
