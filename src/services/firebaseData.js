@@ -1,5 +1,6 @@
 const db = firebase.firestore();
 const storage = firebase.storage();
+
 export const addPost = (postar) => db.collection('posts').add(postar);
 
 export const getPosts = () => db.collection('posts').orderBy('data').limit(15).get();
@@ -18,11 +19,12 @@ export const liked = (postID) => {
       post.update({
         curtidas: firebase.firestore.FieldValue.arrayRemove(userId),
       });
-    } else {
-      post.update({
-        curtidas: firebase.firestore.FieldValue.arrayUnion(userId),
-      });
+      return false;
     }
+    post.update({
+      curtidas: firebase.firestore.FieldValue.arrayUnion(userId),
+    });
+    return true;
   });
 };
 
@@ -36,15 +38,13 @@ export const uploadImage = (folder, file) => {
 };
 
 export const editPosts = (typeEdit, titleEdit, hashtagsEdited, priceEdited,
-  addTextEdited, reviewId) => {
-  db
-    .collection('posts')
-    .doc(reviewId)
-    .update({
-      tipo: typeEdit,
-      nomeLocalReceita: titleEdit,
-      hashTags: hashtagsEdited,
-      preco: priceEdited,
-      descrição: addTextEdited,
-    });
+  addTextEdited, postID) => {
+  const post = firebase.firestore().collection('posts').doc(postID);
+  post.update({
+    tipo: typeEdit,
+    nomeLocalReceita: titleEdit,
+    hashTags: hashtagsEdited,
+    preco: priceEdited,
+    descricao: addTextEdited,
+  });
 };

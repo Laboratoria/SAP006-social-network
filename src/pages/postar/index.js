@@ -91,8 +91,8 @@ export const postar = () => {
       errorHashtagsField.focus();
       return false;
     }
-    // aqui não sei como validar o radio, acho que nem precisa //
-    const pricePost = rootElement.querySelector('input[name="valor"]:checked').value;
+
+    const pricePost = rootElement.querySelector('input[name=valor]:checked').value;
 
     const descPost = rootElement.querySelector('#addText').value;
     if (descPost === '' || descPost.length < 3) {

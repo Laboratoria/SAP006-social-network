@@ -265,7 +265,7 @@
   /* padding: 2% 2%; */
 }
 
-.delete-button, .edit-button{
+.delete-button, .edit-button, .savEdit-button{
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #6f727a;
