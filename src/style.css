@@ -5,28 +5,96 @@
 }
 
 body{
-    background-image: url(./img/bg-purple-top.png);
-    background-repeat: no-repeat;
-    
-    
-    /*background: #B78CB9;*/
+    /*background-image: url(./img/bg-purple-top.png);
+    background-repeat: no-repeat;*/
+    background: #B78CB9;
 }
 
 main{
     display: block;
     /*background: #B78CB9;*/
     margin-top: 1em;
-   
     margin-left: 2em;
-  
     border-radius: 10px;
 }
 
-h1{
+.container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10%;
+}
+
+.img-top{
+    margin: 0;
+}
+
+.card{
+    width: 18%;
+    height: 30em;
+    min-width: 13em;
+    min-height: 13em;
+    background-color: white;
+    padding: 30px;
+    border-radius: 4%;
+    box-shadow: 3px 3px 1px 0px #00000060;
+}
+
+h2{
+    margin-bottom: 20px;
+    color: #701A73;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 49px;
+}
+
+.form-login input, .form-register input{
+    width: 85%;
+    padding: 5px 5px;
+    display: inline-block;
+    border: 1px solid #701A73;
+    border-radius: 10px;
+    background-color: white;
+    min-width: 180px;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 20px;
+    color: #701A73;
+}
+
+.form-login label {
+    color: #701A73;
+    font-size: 14px;
+    font-weight: bold;
+}
+/*h1{
     padding: 5%;
      margin-top: 6em;
     margin-right: 2em;
     margin-left: 2em;
+}*/
+
+button {
+    background-color: transparent;
+    color: #701A73;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    /*outline:#701A73;*/
+    transition: all .4s ease-out;
+    /*align-items: right;*/
+    border: 2px solid #701A73;
+    border-radius: 10px;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-top: 10px;
+
+}
+
+button:hover{
+    color: white;
+    background-color: #701A73;
 }
 
 .google-button {
@@ -34,30 +102,19 @@ h1{
     margin: 1%;
 }
 
-.name-footer{ 
-    color: rgb(56, 2, 44);
-    font-weight: bold;
-    font-size: 10px;
+.btn-box{
+    align-items: ;
 }
 
 footer{
-    background-image: url(./img/bg-purple-foot.png);
-    background-repeat: no-repeat;
-    position: absolute;
+    /*background-image: url(./img/bg-purple-foot.png);*/
+    position:fixed;
     width: 100%;
-    height: 150px;
+    height: 50px;
     bottom: 0;
     z-index: -10;
-    
-    
+    text-align: center;
 }
-
-.git-link{
-    bottom: 0%;
-    float: inline-start;
-
-}
-  
 
 
 /*#wave {

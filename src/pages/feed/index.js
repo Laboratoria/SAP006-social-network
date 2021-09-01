@@ -3,7 +3,7 @@ import { newPost } from '../../services/index.js';
 export default () => {
   const container = document.createElement('div');
 
-  const template = `
+  const template = `  
     <header>
       <nav class="menu">
       </nav> 
@@ -11,14 +11,19 @@ export default () => {
         <img src="img/google-logo.png" alt="" class="logo">
       </a>
     </header>
-    <h5>Post</h5>
-    <p id="error-message" class="error-message"></p>
-      <form>
-        <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
-        <button type="button" id="post-button" class="button">Postar</button>
-      </form>
-    <p id="add-new-post"></p>
-  `;
+      <div class= "container">
+        <div class= "card">
+          <h2 class="title">Feed</h2>
+          <p id="error-message" class="error-message"></p>
+          <form>
+            <h5>Post</h5>
+              <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
+              <button type="button" id="post-button" class="button">Publicar</button>
+            </form>
+            <p id="add-new-post"></p>
+        </div> 
+      </div> 
+    `;
 
   container.innerHTML = template;
 
@@ -32,6 +37,7 @@ export default () => {
       name: 'jessica',
       message: postMsg,
     };
+
     newPost(postInf)
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);
