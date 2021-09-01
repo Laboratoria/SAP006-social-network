@@ -5,8 +5,8 @@ export default () => {
 
   const template = `
   <img src="" alt="" class="logo">
-    <p id="error-message" class="error-message"></p>
     <h2 class="title">Login</h2>
+      <p id="error-message" class="error-message"></p>
       <form class="form-login" action="">
         <label for="get-email" class="label-login">Email</label><br>
         <input type="email" name="email" id="email-user" class="input-login"><br>

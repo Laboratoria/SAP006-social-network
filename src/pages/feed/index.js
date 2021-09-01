@@ -12,18 +12,22 @@ export default () => {
       </a>
     </header>
     <h5>Post</h5>
+    <p id="error-message" class="error-message"></p>
       <form>
         <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
         <button type="button" id="post-button" class="button">Postar</button>
       </form>
+    <p id="add-new-post"></p>
   `;
 
   container.innerHTML = template;
 
   const postButton = container.querySelector('#post-button');
-
+  const postMessage = container.querySelector('#post-message');
   postButton.addEventListener('click', () => {
-    const postMsg = container.querySelector('#post-message').value;
+    const postMsg = postMessage.value;
+    const addNewPost = container.querySelector('#add-new-post');
+    console.log(postMsg);
     const postInf = {
       name: 'jessica',
       message: postMsg,
@@ -34,7 +38,19 @@ export default () => {
       })
       .catch((error) => {
         console.error('Error adding document: ', error);
+        // let errorMessage = error.message;
+        // const errorMsg = document.querySelector('#error-message');
+        // if (postMsg === '') {
+        //   errorMessage = 'O post está vazio, não foi possivel publicar. Tente novamente';
+        //   errorMsg.innerHTML = errorMessage;
+        // } else {
+        //   errorMessage = 'Mensagem inválida. Tente novamente';
+        //   errorMsg.innerHTML = errorMessage;
+        // }
+        // return error;
       });
+    postMessage.innerHTML = '';
+    addNewPost.innerHTML = postMsg;
   });
 
   return container;
