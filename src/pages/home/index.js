@@ -65,7 +65,7 @@ export const home = () => {
           <div class="user-data"> 
             <p class="user"> ${doc.data().nome}</p>
           <div class='data-locations'>
-            <p class="locations">${doc.data().nomeLocalReceita}</p> 
+            <p class="locations" >${doc.data().nomeLocalReceita}</p> 
             <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
           </div>
           </div>
@@ -106,6 +106,21 @@ export const home = () => {
       const likeId = target.dataset.like;
       const deleteId = target.dataset.delete;
       const editId = target.dataset.edit;
+       // if (likeId) {
+      //   const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
+      //   const beforLike = numberLikes.classList.contains('beforLike');
+      //   eye.src = './img/eyesClose.svg';
+      //   const number = Number(numberLikes.textContent);
+      //   if (beforLike === true) {
+      //     numberLikes.classList.replace('beforLike', 'afterLike');
+      //     numberLikes.innerHTML = number + 1;
+      //     liked(likeId);
+      //   } else {
+      //     numberLikes.classList.replace('afterLike', 'beforLike');
+      //     numberLikes.innerHTML = number - 1;
+      //     liked(likeId);
+      //   }
+      // }
       if (likeId) {
         const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
         const beforLike = numberLikes.classList.contains('beforLike');
@@ -129,20 +144,52 @@ export const home = () => {
           deletePost(deleteId).then(postDiv.remove());
         });
       }
+      // timeline.insertBefore(div, timeline.childNodes[0]);
+      //       const editBtn = div.querySelector('.edit-button');
+      //       function disableEditBtn() {
+      //         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
+      //           // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
+      //           disableEditBtn.hidden = false;
+      //         } else {
+      //           // editBtn.hidden = true;
+      //           disableEditBtn.hidden = true;
+      //           div.querySelector('.edit-button').style.display = 'none';
+      //         }
+      //       }
+      //       disableEditBtn();
+      //       editBtn.addEventListener('click', (e) => {
+      //         const { target } = e;
+      //         const postID = target.parentNode.parentNode.id;
+      //         if (editBtn) {
+
+      //
       if (editId) {
         modal.confirm('Deseja editar sua postagem?', () => {
           const editBtn = rootElement.querySelector(`[data-edit="${editId}"]`);
           editBtn.textContent = 'Salvar';
           const editElements = rootElement.querySelectorAll('[contenteditable=false]');
-          for (let i = 0; i < editElements.length; i + 1) editElements[i].setAttribute('contenteditable', true);
+          editElements.forEach((elemento) => elemento.setAttribute('contenteditable', true));
           const title = rootElement.querySelector(`[data-title="${editId}"]`);
           const text = rootElement.querySelector(`[data-text="${editId}"]`);
           const priceTag = rootElement.querySelector(`[data-preco="${editId}"]`);
           const hashtags = rootElement.querySelector(`[data-hashs="${editId}"]`);
           const tagType = rootElement.querySelector(`[data-tag="${editId}"]`);
-          editPosts(tagType, title, hashtags, priceTag,
-            text, editId);
-        })}
- })     
+          // editPosts(tagType, title, hashtags, priceTag,
+          //   text, editId);
+        });
+      };
+ });    
   return rootElement;
 };
+
+// function changeColorRed(td) {
+//   td.style.backgroundColor = "#c516168a";
+// };
+
+// if (prompt1 == 1) {
+//   document.getElementById('resul1').innerHTML = 'Certa';
+//   changeColorGreen(resul1)
+// } else {
+//   document.getElementById('resul1').innerHTML = 'Errada';
+//   changeColorRed(resul1)
+// }
