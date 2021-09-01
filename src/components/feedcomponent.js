@@ -35,12 +35,17 @@ export const printPost = (post) => {
         <div class="align-post-like">
           <div class="content">
               <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
+         
           </div>
           <section class="actions" data-section>
             <p data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
             <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
           </section>
         </div>
+
+        <section class="actions">
+          <button class="btn-like" data-like>5 ❤️</button>
+        </section>
         
       </div>
     </section>
@@ -49,40 +54,65 @@ export const printPost = (post) => {
   const postTemplate = document.querySelector('#postTemplate');
   postTemplate.innerHTML += areaOfPost;
 
+  /*
+  postTemplate.addEventListener('click', (e) => {
+    const target = e.target;
+    console.log(target.dataset.like);
+    if (target.dataset.like === '') {
+      console.log('cliquei no botão de like');
+    }
+  });
+*/
+  
   const btnEdit = postTemplate.querySelector('[data-edit]');
   const btnDelete = postTemplate.querySelector('[data-delete]');
   const btnSave = postTemplate.querySelector('[data-save]');
   const postText = postTemplate.querySelector('#text-post');
+
   const datasection = postTemplate.querySelector('[data-section]');
 
-  btnEdit.addEventListener('click', (e) => {
-    e.preventDefault();
-    postText.removeAttribute('disabled');
-    postText.focus();
-  });
+  const postContainer = postTemplate.querySelector('[data-container]');
+
+  postContainer.addEventListener('click', (e) => {
+    const { target } = e;
+    const editButton = target.dataset.edit;
+    const saveButton = target.dataset.save;
+    const deleteButton = target.dataset.delete;
+    const postText = document.querySelector('[data-textpost]');
 
   btnSave.addEventListener('click', (e) => {
     e.preventDefault();
     const postId = e.target.dataset.save;
-    console.log(postId);
     updatePosts(postId, postText.value);
     postText.setAttribute('disabled', '');
+
+    if (editButton) {
+      postText.removeAttribute('disabled');
+      postText.focus();
+    }
+    if (saveButton) {
+      const postId = e.target.dataset.save;
+      updatePosts(postId, postText.value);
+      postText.setAttribute('disabled', '');
+    }
+    if (deleteButton) {
+      const postId = e.target.dataset.delete;
+      deletePopUp(postId, postContainer);
+    }
   });
 
   // UM EVENTLISTENER PRA CADA BOTÃO //
-
-  // eslint-disable-next-line no-shadow
-  const deletePopUp = () => {
+  const deletePopUp = (postId, post) => {
     const popUpContainer = document.createElement('div');
 
-    popUpContainer.innerHTML = ` 
+    popUpContainer.innerHTML = `
       <div class='popup-wrapper' data-popup>
           <div class='popup'>
             <div class='popup-content'>
               <h3>Tem certeza que deseja apagar esse post?</h3>
-                <button id='yes' data-delete class='yes answer'>DELETAR</button>
+                <button id='yes' data-confirm class='yes answer'>DELETAR</button>
                 <button id='no' data-cancel class='no answer'>CANCELAR</button>
-            </div>                
+            </div>
           </div>
         </div>
     `;
@@ -91,24 +121,19 @@ export const printPost = (post) => {
     const popUpWrapper = postTemplate.querySelector('.popup-wrapper');
     popUpWrapper.style.display = 'block';
 
-    const confirmButton = document.querySelector('[data-delete]');
-    confirmButton.addEventListener('click', (e) => {
-      const idDelete = e.target.dataset.delete;
-      console.log(idDelete);
-      deletePost(idDelete);
+    const confirmButton = document.querySelector('[data-confirm]');
+    confirmButton.addEventListener('click', () => {
+      deletePost(postId)
+        .then(post.remove());
+      popUpWrapper.style.display = 'none';
+
     });
 
     const cancelButton = document.querySelector('[data-cancel]');
     cancelButton.addEventListener('click', () => {
       popUpWrapper.style.display = 'none';
     });
-
-    return postTemplate;
   };
-
-  btnDelete.addEventListener('click', () => {
-    deletePopUp();
-  });
 
   datasection.addEventListener('click', (e) => {
     console.log('clicou');
@@ -178,3 +203,5 @@ export const printPost = (post) => {
 //   });
 //   return root;
 // };
+
+};

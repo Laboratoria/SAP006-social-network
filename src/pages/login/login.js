@@ -3,6 +3,7 @@ import {
   signInGoogle,
   keepLogged,
 } from '../../services/authentication.js';
+
 import { navigation } from '../../navigation.js';
 
 export const Login = () => {
@@ -15,45 +16,103 @@ export const Login = () => {
     </header>
     <section class="content-opacity">
       <div class="without-opacity">
-        <h4>Nova por aqui? <span><a href="/signup" id="signup">Cadastre-se</a></span></h4>
-        <div class="inputAndReset">
-          <input type="text" id="email" class="input" placeholder="Email">
-          <input type="password" id="password" class="input" placeholder="Senha">
+        <h4>Nova por aqui? <span><a href="/signup" id="signup" class="link-signup">Cadastre-se</a></span></h4>
+        <div class="inputAndReset input-form">
+          <input type="text" id="email" class="login-input-email" placeholder="Email">
+          <input type="password" id="password" class="login-input-password" placeholder="Senha">
           <button class="reset-password" id="reset">Esqueceu a senha?</button><br>
+          <div class='warning'></div>
         </div>
         <div class="google">
           <button id="btn-login" class="login btn">LOGIN</button>
-          <img id="icon-google" src="./pages/login/img/icon-google-white.png">
+          <img id="icon-google" class="btn-google" src="./pages/login/img/icon-google-white.png">
         </div>
       </div>
     </section>
   `;
   rootElement.innerHTML = container;
 
-  const btnLogin = rootElement.querySelector('#btn-login');
-  const btnGoogle = rootElement.querySelector('#icon-google');
-  const email = rootElement.querySelector('#email');
-  const password = rootElement.querySelector('#password');
-  const signUpBtn = rootElement.querySelector('#signup');
+  const warningPage = rootElement.querySelector('.warning');
+  const btnLogin = rootElement.querySelector('.login');
+  const btnGoogle = rootElement.querySelector('.btn-google');
+  const signUpBtn = rootElement.querySelector('.link-signup');
+  const resetLink = rootElement.querySelector('#reset');
+
+
+  function validationLogin() {
+    const email = rootElement.querySelector('.login-input-email').value;
+    console.log(email);
+    const password = rootElement.querySelector('#password').value;
+
+    if (email === '' || password === '') {
+      warningPage.innerHTML = '<p>Preencha todos os campos</p>';
+    } else {
+      signInEmailPassword(email, password)
+        .then(() => {
+          navigation('/feed');
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          switch (errorCode) {
+            case 'auth/invalid-email':
+              warningPage.innerHTML = '<p>Usuário ou email inválido</p>';
+              break;
+            case 'auth/user-disabled':
+              warningPage.innerHTML = '<p>Usuário desabilitado</p>';
+              break;
+            case 'auth/user-not-found':
+              warningPage.innerHTML = '<p>Usuário não encontrado</p>';
+              break;
+            case 'auth/wrong-password':
+              warningPage.innerHTML = '<p>Usuário ou senha inválidos</p>'
+              break;
+            default:
+              warningPage.innerHTML = `<p>${errorMessage}</p>`;
+              break;
+          }
+          throw new Error(errorMessage);
+        });
+    }
+  };
+
+  btnLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    validationLogin();
+  });
+
+  function validationWithGoogle() {
+    signInGoogle()
+      .then(() => {
+        navigation('/feed');
+      })
+      .cath((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        switch (errorCode) {
+          case 'auth/credential-already-in-use':
+            warningPage.innerHTML = '<p>Está credencial já está sendo utilizada</p>';
+            break;
+          default:
+            warningPage.innerHTML = `<p>${errorMessage}</p>`
+
+        }
+        throw new Error(errorMessage);
+      })
+  };
+
+  btnGoogle.addEventListener('click', () => {
+    validationWithGoogle();
+    navigation('/feed');
+    keepLogged();
+  });  
 
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
     navigation('/signup');
   });
 
-  btnLogin.addEventListener('click', () => {
-    signInEmailPassword(email.value, password.value);
-    navigation('/feed');
-    keepLogged();
-  });
-
-  btnGoogle.addEventListener('click', () => {
-    signInGoogle();
-    navigation('/feed');
-    keepLogged();
-  });
-
-  const resetLink = rootElement.querySelector('#reset');
   resetLink.addEventListener('click', (event) => {
     event.preventDefault();
     navigation('/reset');
