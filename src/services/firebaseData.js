@@ -38,15 +38,13 @@ export const uploadImage = (folder, file) => {
 };
 
 export const editPosts = (typeEdit, titleEdit, hashtagsEdited, priceEdited,
-  addTextEdited, reviewId) => {
-  db
-    .collection('posts')
-    .doc(reviewId)
-    .update({
-      tipo: typeEdit,
-      nomeLocalReceita: titleEdit,
-      hashTags: hashtagsEdited,
-      preco: priceEdited,
-      descrição: addTextEdited,
-    });
+  addTextEdited, postID) => {
+  const post = firebase.firestore().collection('posts').doc(postID);
+  post.update({
+    tipo: typeEdit,
+    nomeLocalReceita: titleEdit,
+    hashTags: hashtagsEdited,
+    preco: priceEdited,
+    descricao: addTextEdited,
+  });
 };

@@ -1,10 +1,11 @@
 const modalElement = document.createElement('div');
+
 export const modal = {
   confirm: (message, callback) => {
     const template = `<div id="modal-confirm" class="modal-background">
         <div class="modal">
-          <span class="close-btn" id="close-btn">&times;</span>
-          <p>${(message) || '???'}</p>
+          <span id="close-btn">&times;</span>
+          <p> ${(message) || '???'}</p>
           <div class="buttons">
             <button class="yes" id="confirm-btn">
               Sim
