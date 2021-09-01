@@ -10,6 +10,7 @@ export const createUser = (email, password) => {
     .then((userCredential) => {
     // Signed in
       const user = userCredential.user;
+      window.location.hash = '#login';
       console.log('deu bom', user);
       // ...
     })

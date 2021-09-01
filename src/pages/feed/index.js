@@ -14,10 +14,10 @@ export default () => {
       <div class= "container">
         <div class= "card">
           <h2 class="title">Feed</h2>
-          <h5>Post</h5>
-            <form>
+          <form>
+            <h5>Post</h5>
               <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
-              <button type="button" id="post-button" class="button">Postar</button>
+              <button type="button" id="post-button" class="button">Publicar</button>
             </form>
         </div> 
       </div> 
@@ -29,10 +29,12 @@ export default () => {
 
   postButton.addEventListener('click', () => {
     const postMsg = container.querySelector('#post-message').value;
+
     const postInf = {
       name: 'jessica',
       message: postMsg,
     };
+
     newPost(postInf)
       .then((docRef) => {
         console.log('Document written with ID: ', docRef.id);

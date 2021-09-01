@@ -13,8 +13,10 @@ export default () => {
           <label for="get-email" class="label-login">Email</label><br>
           <input type="text" name="email" id="email-user" class="input-login"><br>
           <label for="get-password" class="label-login">Senha</label><br>
-          <input type="password" name="password" id="password-user">
-          <i class="fa fa-eye" aria-hidden="true"></i><br>
+          <div class="show-password">
+            <i id="eye-register" class="fa fa-eye" aria-hidden="true"></i>
+          </div>
+          <input type="password" name="password" id="password-user"><br>
         </form> 
         <div class="button">
           <button id="login-button" class="login-button">Login</button>  <br>
@@ -24,7 +26,7 @@ export default () => {
           <hr> 
         </div>
         <p> Não tem uma conta? 
-        <a href=""> Cadastre-se </a>
+        <a href="/#register"> Cadastre-se </a>
         </p>
     </div>
   </div>
@@ -80,5 +82,15 @@ export default () => {
       });
   });
 
+  container.querySelector('#eye-register')
+    .addEventListener('click', (event) => {
+      event.preventDefault();
+      const inputPassword = document.querySelector('#password-user');
+      if (inputPassword.getAttribute('type') === 'password') {
+        inputPassword.setAttribute('type', 'text');
+      } else {
+        inputPassword.setAttribute('type', 'password');
+      }
+    });
   return container;
 };
