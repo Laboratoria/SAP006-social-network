@@ -52,12 +52,9 @@ export default () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-
-        // console.log('não logou');
         let errorMessage = error.message;
         const errorMsg = document.querySelector('#errormsg');
         if (errorCode === 'auth/user-not-found') {
-
           errorMessage = 'Email incorreto. Tente novamente';
           errorMsg.innerHTML = errorMessage;
         } else if (errorCode === 'auth/wrong-password') {
