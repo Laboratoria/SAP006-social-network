@@ -1,4 +1,6 @@
-import { addPosts, loadPosts } from '../../services/database.js';
+import {
+  addPosts, loadPosts,
+} from '../../services/database.js';
 import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
 
@@ -21,7 +23,7 @@ export const Feed = () => {
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
       <form action="" id="published-form">
-        <input type="text" id="text-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
+        <input type="text" id="text-post" class="space-post" placeholder="Mana, o que você quer compatilhar?">
         <p class="warn-input-add" hidden>Por favor, digite algo para compartilhar.</p>
         <button class="btn" id="send-post">Enviar</button>
       </form>
@@ -66,7 +68,6 @@ export const Feed = () => {
       text,
       user_id: useruid,
       date: date.toLocaleString(),
-      // date: firebase.firestore.FieldValue.serverTimestamp(),
       likes: [],
       comments: [],
     };
@@ -74,9 +75,9 @@ export const Feed = () => {
     const textValidationAddPost = rootElement.querySelector('.warn-input-add');
 
     if (text === '') {
-      textValidationAddPost.hidden = true;
-    } else {
       textValidationAddPost.hidden = false;
+    } else {
+      textValidationAddPost.hidden = true;
       addPosts(post);
     }
   });
@@ -92,13 +93,7 @@ export const Feed = () => {
       navbarBottom.classList.add('sticky');
     }
   }
-
   window.onscroll = stickyFilter();
 
-  // slider post
-  // const newPostBtn = document.querySelector('#new-post-btn');
-  // newPostBtn.addEventListener('click', () => {
-  //   container.classList.add("sign-up-mode");
-  // });
   return rootElement;
 };

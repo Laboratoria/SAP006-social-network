@@ -1,4 +1,6 @@
-import { deletePost, updatePosts } from '../services/database.js';
+import { updatePosts } from '../services/database.js';
+import { sendLike } from './like.js';
+import { deletePopUp } from './popup.js';
 
 export const printPost = (snap) => {
   const postTemplate = document.querySelector('#postTemplate');
@@ -7,28 +9,25 @@ export const printPost = (snap) => {
     const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
 
     const areaOfPost = `
-    <section data-container="${post.id}" id="${post.id}>
+    <section class="container-areaPost" data-container="${post.id}" id="${post.id}>
       <div class="box">
         <div class="header-post">
           <p class="username">username</p>
-          <menu
-            class="dropdown" 
-            style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
-
+          
+          <menu class="dropdown" style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
             <button id="btn-drop"  class="dropbtn">
               <span class="iconify" data-icon="ph:dots-three-duotone"></span>
             </button>
-
             <div id="myDropdown" class="dropdown-content">
-              <button data-edit="${post.id}" class="edit-button">
+              <button data-edit="${post.id}" class="edit-button dropbtn">
                 <span class="iconify btn-more" data-icon="bytesize:edit"></span>
                 Editar
               </button>
-              <button data-delete="${post.id}" class="delete-button">
+              <button data-delete="${post.id}" class="delete-button dropbtn">
                 <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
                 Deletar
               </button>
-              <button data-save="${post.id}" class="save-button">
+              <button data-save="${post.id}" class="save-button dropbtn">
                 <span class="iconify btn-more" data-icon="carbon:save"></span>
                 Salvar
               </button>
@@ -36,24 +35,21 @@ export const printPost = (snap) => {
           </menu>
         </div>
         
-        <div class="content">
-          <button>
-            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
-          </button>
-          
-          <div>
-            <textarea 
-              data-textpost
-              id="text-post"
-              class="post-content text-post"
-              id="${post.id}"
-              disabled>${post.data().text}
-            </textarea>
+        <div class="align-post-like">
+          <div class="content">
+              <textarea id="text-post"
+                data-textpost="${post.id}
+                class="post-content text-post"
+                id="${post.id}"
+                disabled>${post.data().text}
+          </textarea>
+         
           </div>
+          <section class="actions" data-section>
+            <p data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
+            <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
+          </section>
         </div>
-        <section class="actions">
-          <button class="btn-like" data-like>5 ❤️</button>
-        </section>
       </div>
     </section>
   `;
@@ -61,24 +57,17 @@ export const printPost = (snap) => {
     postTemplate.innerHTML += areaOfPost;
   });
 
-  /*
-  postTemplate.addEventListener('click', (e) => {
-    const target = e.target;
-    console.log(target.dataset.like);
-    if (target.dataset.like === '') {
-      console.log('cliquei no botão de like');
-    }
-  });
-  */
-
   const postContainer = document.querySelector('[data-postcontainer]');
-  console.log(postContainer);
 
   postContainer.addEventListener('click', (e) => {
     const { target } = e;
+    const userId = firebase.auth().currentUser.uid;
+
     const editButton = target.dataset.edit;
     const saveButton = target.dataset.save;
     const deleteButton = target.dataset.delete;
+    const likeButton = postTemplate.querySelector('[data-like]');
+
     const postText = target.parentNode.parentNode.parentNode.parentNode.querySelector('[data-textpost]');
 
     if (editButton) {
@@ -94,38 +83,9 @@ export const printPost = (snap) => {
       const postId = e.target.dataset.delete;
       deletePopUp(postId, postContainer);
     }
+    if (likeButton) {
+      const likeIcon = e.target.dataset.like;
+      sendLike(likeIcon, userId, likeButton);
+    }
   });
-
-  // UM EVENTLISTENER PRA CADA BOTÃO //
-  const deletePopUp = (postId, post) => {
-    const popUpContainer = document.createElement('div');
-
-    popUpContainer.innerHTML = `
-      <div class='popup-wrapper' data-popup>
-        <div class='popup'>
-          <div class='popup-content'>
-            <h3>Tem certeza que deseja apagar esse post?</h3>
-              <button id='yes' data-confirm class='yes answer'>DELETAR</button>
-              <button id='no' data-cancel class='no answer'>CANCELAR</button>
-          </div>
-        </div>
-      </div>
-    `;
-    postTemplate.appendChild(popUpContainer);
-
-    const popUpWrapper = postTemplate.querySelector('.popup-wrapper');
-    popUpWrapper.style.display = 'block';
-
-    const confirmButton = document.querySelector('[data-confirm]');
-    confirmButton.addEventListener('click', () => {
-      deletePost(postId)
-        .then(post.remove());
-      popUpWrapper.style.display = 'none';
-    });
-
-    const cancelButton = document.querySelector('[data-cancel]');
-    cancelButton.addEventListener('click', () => {
-      popUpWrapper.style.display = 'none';
-    });
-  };
 };
