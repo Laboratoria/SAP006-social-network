@@ -1,21 +1,3 @@
-export const handleError = () => {
-  //   if (error.code) {
-  //     switch (error.code) {
-  //       default 'auth/account-exists-with-different-credential':
-  //         alert('Você já possui uma conta!');
-  //         break;
-  // :
-  //       case 'auth/credential-already-in-use'
-  //                 || errorCode === 'auth/account-exists-with-different-credential'
-  //                 || email === 'auth/credential-already-in-use'
-  //                 || email === 'auth/email-already-in-use'
-  //                 || credential === 'auth/credential-already-in-use'
-  //                 || credential === 'auth/email-already-in-use'
-
-  //     }
-  //   }
-};
-
 export const errorPassword = (error) => {
   const errorEmailPasswordField = document.getElementById('textErrorEmailPassword');
   let errorMessage = error.message;
@@ -34,6 +16,50 @@ export const errorPassword = (error) => {
       errorMessage = 'E-mail ou senha inválidos. Verifique-os.';
       errorEmailPasswordField.innerHTML = errorMessage;
       // errorMessage = '';
+      break;
+    default:
+      break;
+  }
+};
+
+export const handleError = (error) => {
+  const errorEmailField = document.getElementById('textErrorEmail');
+  const errorPasswordField = document.getElementById('textErrorPassword');
+  let errorMessage = error.message;
+  switch (errorMessage) {
+    case 'The email address is badly formatted.':
+      errorMessage = 'Por favor, insira um email válido.';
+      errorEmailField.innerHTML = errorMessage;
+      errorMessage = '';
+      break;
+    case 'The password must be 6 characters long or more.': // || 'Password should be at least 6 characters':
+      errorMessage = 'A senha deve ter 6 caracteres ou mais.';
+      errorPasswordField.innerHTML = errorMessage;
+      errorMessage = '';
+      break;
+    case 'Password should be at least 6 characters.':
+      errorMessage = 'A senha deve ter pelo menos 6 caracteres';
+      errorPasswordField.innerHTML = errorMessage;
+      errorMessage = '';
+      break;
+    case 'The email address is already in use by another account.':
+      errorMessage = 'O email já está cadastrado.';
+      errorEmailField.innerHTML = errorMessage;
+      errorMessage = '';
+      break;
+    default:
+      break;
+  }
+};
+
+export const errorGoogle = (error) => {
+  const errorField = document.getElementById('error-message');
+  let errorMessage = error.message;
+  switch (errorMessage) {
+    case 'The popup has been closed by the user before finalizing the operation.':
+      errorMessage = 'Login com Google cancelado, tente novamente.';
+      errorField.innerHTML = errorMessage;
+      errorMessage = '';
       break;
     default:
       break;

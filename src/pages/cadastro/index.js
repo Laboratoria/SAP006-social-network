@@ -98,7 +98,7 @@ export const cadastro = () => {
     const emailUser = rootElement.querySelector('#emailUser').value;
     if (emailUser === '' || emailUser.indexOf('@') === -1 || emailUser.indexOf('.') === -1) {
       const errorEmailField = document.getElementById('textErrorEmail');
-      errorEmailField.innerHTML = 'Preencha campo EMAIL corretamente';
+      errorEmailField.innerHTML = 'Preencha campo E-MAIL corretamente';
       emailUser.focus();
       return false;
     }
@@ -126,7 +126,8 @@ export const cadastro = () => {
             route('/home');
           });
       })
-      .catch((handleError()));
+
+      .catch((handleError));
     return false;
   });
   pageLogin.addEventListener('click', (e) => {
