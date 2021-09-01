@@ -8,24 +8,32 @@ export default () => {
       <nav class="menu">
       </nav> 
       <a href="/#feed">
-        <img src="img/google-logo.png" alt="" class="logo">
+        <img src="" alt="" class="logo">
       </a>
     </header>
+
       <div class= "container">
-        <div class= "card">
-          <h2 class="title">Feed</h2>
+
+        <div class= "card-post">
           <form>
-            <h5>Post</h5>
+            <h2>Post</h2>
               <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
               <button type="button" id="post-button" class="button">Publicar</button>
             </form>
         </div> 
+
+        <div class= "card-feed"> <br>
+          <h2 class="title">Feed</h2>
+          <ul id="postList" class="post-list" data-section></ul>
+
+        </div>
       </div> 
     `;
 
   container.innerHTML = template;
 
   const postButton = container.querySelector('#post-button');
+  const showPosts = container.querySelector('#postList');
 
   postButton.addEventListener('click', () => {
     const postMsg = container.querySelector('#post-message').value;
