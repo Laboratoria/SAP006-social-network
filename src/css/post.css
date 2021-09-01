@@ -3,12 +3,10 @@
   color: #FC0;
 } */
 
-
 /* .low input:checked + label {
   background-color: #ffd600;
   color: #ffd600;
 } */
-
 
 /* #low:checked + .low {
   background-color: #ffd600;
@@ -137,9 +135,10 @@
 .publicar-cancelar {
   display: flex;
   justify-content: space-between;
- }
+}
 
- .sendPost, .btnCancel {
+.sendPost,
+.btnCancel {
   margin: 2% auto 5% auto;
   justify-content: space-between;
   /* width: 30%; */
@@ -153,15 +152,14 @@
     rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
-.sendPost:hover{
-  color: rgba(95, 95, 95, 0.933)
-};
-
-
-.btnCancel {
-background-color: blanchedalmond;
+.sendPost:hover {
+  color: rgba(95, 95, 95, 0.933);
 }
 
-.btnCancel:hover{
+.btnCancel {
+  background-color: blanchedalmond;
+}
+
+.btnCancel:hover {
   background-color: #97cf6e;
-};
+}

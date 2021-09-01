@@ -63,52 +63,57 @@
 #buttonLogin img {
   width: 100%;
 }
-.inputPass, .inputConf {
+.inputPass,
+.inputConf {
   display: flex;
   align-items: center;
- }
- #passwordRegister, #confPass {
-   width: 80%;
- }
- #seePass, #seeConfPass {
-   padding-inline: 1%;
-   width: 7%;
-   cursor: pointer;
-  }
-@media (max-width: 600px){
-
-.title {
-  width: 50%;
-  padding: 8% 0 8% 0;
 }
-
-#nameUser,
-#emailUser,
 #passwordRegister,
 #confPass {
-  padding: 5%;
-  font-size: 60%;
-}
-.register {
-  padding: 5%;
-  margin: 5% auto;
-  font-size: 80%;
-  width: 50%;
-}
-#buttonLogin {
-  margin: 5% auto;
-  width: 30%
-}
-}
-.inputPass, .inputConf {
- display: flex;
- align-items: center;
-}
-#passwordRegister, #confPass {
   width: 80%;
 }
-#seePass, #seeConfPass {
+#seePass,
+#seeConfPass {
   padding-inline: 1%;
   width: 7%;
   cursor: pointer;
- }
+}
+@media (max-width: 600px) {
+  .title {
+    width: 50%;
+    padding: 8% 0 8% 0;
+  }
+
+  #nameUser,
+  #emailUser,
+  #passwordRegister,
+  #confPass {
+    padding: 5%;
+    font-size: 60%;
+  }
+  .register {
+    padding: 5%;
+    margin: 5% auto;
+    font-size: 80%;
+    width: 50%;
+  }
+  #buttonLogin {
+    margin: 5% auto;
+    width: 30%;
+  }
+}
+.inputPass,
+.inputConf {
+  display: flex;
+  align-items: center;
+}
+#passwordRegister,
+#confPass {
+  width: 80%;
+}
+#seePass,
+#seeConfPass {
+  padding-inline: 1%;
+  width: 7%;
+  cursor: pointer;
+}

@@ -149,15 +149,3 @@ export const home = () => {
   });
   return rootElement;
 };
-
-// function changeColorRed(td) {
-//   td.style.backgroundColor = "#c516168a";
-// };
-
-// if (prompt1 == 1) {
-//   document.getElementById('resul1').innerHTML = 'Certa';
-//   changeColorGreen(resul1)
-// } else {
-//   document.getElementById('resul1').innerHTML = 'Errada';
-//   changeColorRed(resul1)
-// }
