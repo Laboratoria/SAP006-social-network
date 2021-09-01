@@ -134,9 +134,15 @@
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
-.sendPost {
+.publicar-cancelar {
+  display: flex;
+  justify-content: space-between;
+ }
+
+ .sendPost, .btnCancel {
   margin: 2% auto 5% auto;
-  width: 30%;
+  justify-content: space-between;
+  /* width: 30%; */
   font-family: "Russo One", sans-serif;
   font-size: 100%;
   background: #97cf6e;
@@ -146,6 +152,16 @@
   box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
     rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
+
 .sendPost:hover{
   color: rgba(95, 95, 95, 0.933)
+};
+
+
+.btnCancel {
+background-color: blanchedalmond;
 }
+
+.btnCancel:hover{
+  background-color: #97cf6e;
+};

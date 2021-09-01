@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 import { route } from '../routes/navigator.js';
-import { handleError } from './error.js';
+import { handleError, errorGoogle } from './error.js';
 
 firebase.auth().useDeviceLanguage();
 
@@ -34,7 +34,7 @@ export const googleLogin = () => {
       localStorage.setItem('displayName', result.user.displayName);
       localStorage.setItem('email', result.user.email);
     })
-    .catch(handleError);
+    .catch((errorGoogle));
 };
 
 //* SIGN OUT  */

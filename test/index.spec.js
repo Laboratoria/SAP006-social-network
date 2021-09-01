@@ -23,3 +23,11 @@ describe('login with Google', () => {
 //   it('garanta que o helper client-side helper seja exibido para campos vazios', function() { });
 //   it('garanta que ao pressionar enter no campo de senha envie o formulário', function() { });
 // });
+
+// import loginScreen from '../src/pages/login/index.js';
+
+// describe('myFunction', () => {
+//   it('should return loginScreen', () => {
+//     const screnPage = loginScreen();
+//     expect(screnPage).toBeTruthy();
+//   });
