@@ -13,7 +13,8 @@ export const postar = () => {
      <ul class="nav" id="nav">
        <li class="links"><a href=""><img src="./img/lupa.svg">Busca</a></li>
        <li class="links"><a href=""><img src="./img/perfil.svg">Perfil</a></li>
-      <li class="links"><a href=""><img src="./img/home.svg">Página Inicial</a></li>
+       <button class="links" id="btnHome"><img src="./img/home.svg">Página Inicial</button>
+      <li class="links"><a href=""><img src="./img/home.svg">p Inicial</a></li>
      </ul>
      </nav>
     </header>
@@ -44,10 +45,15 @@ export const postar = () => {
 
      <textarea class="addText" id="addText" placeholder="Conte sua experiência aos amigos!" style="resize:none"></textarea>
      <p id="errorDesc"></p>
-     <button class="sendPost" id="sendPost">Publicar</button>
+      <div class="publicar-cancelar">
+        <button class="sendPost" id="sendPost">Publicar</button>
+        <button class="btnCancel" id="btnCancel">Cancelar</button>
+      </div>
      </main>
     </div>
   `;
+  // const btnCancel = rootElement.querySelector('#cancel');
+  // btnCancel.addEventListener('click'
 
   let postType = '';
 
@@ -63,14 +69,16 @@ export const postar = () => {
     rootElement.querySelector('#type').innerHTML = 'Receita';
     postType = 'receita';
   };
+  rootElement.querySelector('#btnHome').addEventListener('click', () => route('/home'));
+  rootElement.querySelector('#btnCancel').addEventListener('click', () => route('/home'));
   rootElement.querySelector('#rest').addEventListener('click', restBtn);
   rootElement.querySelector('#market').addEventListener('click', marketBtn);
   rootElement.querySelector('#recipe').addEventListener('click', recipeBtn);
 
   rootElement.querySelector('#sendPost').addEventListener('click', () => {
     // pegando e validando as infos //
-    const localPost = rootElement.querySelector('#typePost').value;
-    if (localPost === '' || localPost.length < 3) {
+    const localPost = rootElement.querySelector('#typePost');
+    if (localPost.value === '' || localPost.value.length < 3) {
       const errorTittleField = document.getElementById('errorType');
       errorTittleField.innerHTML = 'Preencha com o nome do Restaurante, Mercado ou Receita';
       localPost.focus();
@@ -98,7 +106,7 @@ export const postar = () => {
       user_id: firebase.auth().currentUser.uid,
       nome: firebase.auth().currentUser.displayName,
       image: firebase.auth().currentUser.photoURL,
-      nomeLocalReceita: localPost, // inputs do post, como nome do lugar //
+      nomeLocalReceita: localPost.value, // inputs do post, como nome do lugar //
       tipo: postType,
       hashTags: hashtagsPost, // se é restaurante, mercado ou receita //
       preco: pricePost, // hashtags //

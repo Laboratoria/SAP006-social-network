@@ -19,7 +19,7 @@ describe('should render page register correctly', () => {
 });
 
 describe('should upload img when btn clickled', () => {
-// cadastro.dispateEvent('click', )
+// cadastro().dispateEvent('click', )
 });
 
 describe('should fail with invalid name', () => {
