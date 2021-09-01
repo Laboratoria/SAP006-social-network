@@ -6,9 +6,9 @@
   justify-content: center;
   align-items: center;
   padding: 25%;
-  background-image: url(https://www.imagemhost.com.br/images/2021/07/23/background.jpg);
+  background-image: url(../../img/opacobg.jpeg);
   background-repeat: repeat;
-  filter: opacity(70%);
+  /* filter: opacity(70%); */
 }
 
 .logoimg {
