@@ -24,13 +24,12 @@ export const Feed = () => {
     <section class="post">
       <form action="" id="published-form">
         <input type="text" id="text-post" class="space-post" placeholder="Mana, o que você quer compatilhar?">
-
+        <p class="warn-input-add" hidden>Por favor, digite algo para compartilhar.</p>
         <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
    
-    <section class="get-post" id="postTemplate" data-section> 
-
+    <section class="get-post background-color-main" data-postcontainer id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
     <nav class="navbar mobile-list">
@@ -53,60 +52,6 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
-  // likes:
-  // const datasection = rootElement.querySelector('[data-section]');
-  // datasection.addEventListener('click', (e) => {
-  //   const { target } = e;
-  //   const postId = target.dataset.like;
-  //   const userId = firebase.auth().currentUser.uid;
-  //   const likeIcon = rootElement.querySelector('[data-like]');
-  //   function sendLike() {
-  //     const numLikeArray = rootElement.querySelector('[data-numLike]');
-  //     let likesNumber = Number(numLikeArray.innerText);
-  //     // const likesElement = likesNumber;
-  //     getLikes(postId).then((post) => {
-  //       if (!post.data().likes.includes(userId)) {
-  //         likePost(userId, postId)
-  //           .then(() => {
-  //             likesNumber.innerText += likesNumber + 1;
-  //             likeIcon.classList.replace('far', 'fas');
-  //           })
-  //           .catch('error');
-  //       } else {
-  //         unlikePost(userId, postId)
-  //           .then(() => {
-  //             likesNumber += likesNumber - 1;
-  //             likeIcon.classList.replace('fas', 'far');
-  //           })
-  //           .catch('error');
-  //       }
-  //     });
-  //   }
-  //   if (target) { sendLike(); }
-  // });
-
-  // datasection.addEventListener('click', (e) => {
-  //   const { target } = e;
-  //   const likeId = target.dataset.like;
-  //   if (likeId) {
-  //     let numberLikesData = rootElement.querySelector(`[data-numLike='${likeId}']`);
-  //     const userId = firebase.auth().currentUser.uid;
-  //     const numberOfLikes = Number(numberLikesData.textContent);
-  //     console.log(numberOfLikes);
-  //     const heart = datasection.querySelector(`[data-like='${likeId}']`);
-
-  //     if (likeId.includes(userId)) {
-  //       numberLikesData.innerHTML = numberOfLikes + 1;
-  //       heart.src = '/src/img/heart-filled.png';
-  //       likePost(likeId);
-  //     } else {
-  //       numberLikesData.innerHTML = numberOfLikes - 1;
-  //       heart.src = 'src/img/heart.png';
-  //       likePost(likeId);
-  //     }
-  //   }
-  // });
-
   const logoutButton = rootElement.querySelector('.btn-logout');
   logoutButton.addEventListener('click', () => {
     logout();
@@ -114,11 +59,10 @@ export const Feed = () => {
 
   const submitButton = rootElement.querySelector('#published-form');
   submitButton.addEventListener('submit', (event) => {
+    const postContainer = postTemplate.querySelector('[data-container]');
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
-
     const date = new Date();
     const post = {
       text,
@@ -128,15 +72,18 @@ export const Feed = () => {
       comments: [],
     };
 
-    const textValidationAddPost = rootElement.querySelector('.warn-input-add'); 
-    
-    if (text === '') { 
-      textValidationAddPost.hidden = true;
+    const textValidationAddPost = rootElement.querySelector('.warn-input-add');
+
+    if (text === '') {
+      textValidationAddPost.hidden = false;
     } else {
-      textValidationAddPost.hidden = false; 
+      textValidationAddPost.hidden = true;
       addPosts(post);
     }
+  });
 
+  loadPosts().then((snap) => {
+    printPost(snap);
   });
 
   const navbarBottom = document.getElementsByClassName('navbar');
@@ -148,20 +95,5 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
-  loadPosts()
-    .then((snap) => {
-      snap
-        .forEach((post) => {
-          printPost(post);
-        });
-
-  // slider post
-  // const newPostBtn = document.querySelector('#new-post-btn');
-  // newPostBtn.addEventListener('click', () => {
-  //   container.classList.add("sign-up-mode");
-  // });
-    
-    });
-  });
   return rootElement;
 };
