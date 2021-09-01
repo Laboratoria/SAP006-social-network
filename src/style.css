@@ -63,7 +63,3 @@ input::placeholder {
 /* @media 
 .links a img{
 width: 20%;} */
-
-input::placeholder {
-  color: rgb(0, 0, 0)
-}
