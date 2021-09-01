@@ -18,6 +18,7 @@ export const login = () => {
         <span class="eye"><img id="eye" src="./img/eyesOpen.svg"></span> 
       </div>
       <p id="textErrorEmailPassword"></p>
+      
       <div class="justify-enter">
         <button type="button" name="botao" class="entrar" id="entrar">ENTRAR</button>
       </div>

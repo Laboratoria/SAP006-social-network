@@ -8,26 +8,18 @@ import { modal } from './modal.js';
 export const home = () => {
   const rootElement = document.createElement('div');
   rootElement.innerHTML = ` 
+  <nav class="menu1">
+  <a class="buscar" href="">Buscar</a>
+ 
+  <div class="goPost">
+ 
+  <a id="goPost" class="postar" href="" <img class="tomato" src="./img/tomato.svg"> postar</a>
+  </div>
+  <button class='btn' id='btnLogout'>Sair</button>
+</nav>
   <div class="containerHome">
   <header>
-  <nav class="menu">
-     <ul class="nav" id="nav">
-     <li class="links" ><a href=""></a>Buscar</li>
-     <li class="links" ><a href=""></a>Perfil</li>
-     </ul>
-     </nav>
-
-    <div class="goPost">
-    <img class="tomato" src="./img/tomato.svg">
-    <a id="goPost" href="">postar</a>
-
-    </div>
-
-    <button class='btn' id='btnLogout'>Sair</button>
-
-    <img src="./img/govegGreen.png" />
-
-    </nav>
+  <img class='logoHome' src="./img/govegGreen.png"/>
   <div class="lines">
   <hr>
   </div>
@@ -43,7 +35,9 @@ export const home = () => {
   
   </header>
   <main>
-    <div class="publish" id="timeline" data-post> </div>
+    <div class="publish" id='timeline' data-post>
+    </div>
+ 
   </main>
 </div>
 `;
@@ -61,36 +55,51 @@ export const home = () => {
   getPosts().then((collectionContent) => {
     collectionContent.forEach((doc) => {
       const div = document.createElement('div');
+      div.id = doc.id;
       const timeline = rootElement.querySelector('#timeline');
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
+          
+      <div class='fotoPerfil'>
+
           <img src=${doc.data().image} class='imgUser'> 
-          <p class="user"> ${doc.data().nome}</p>
-          <p class="local" contentEditable="false" data-title="${doc.id}" >${doc.data().nomeLocalReceita}</p> 
-          <p class="data"> ${doc.data().data.toDate().toLocaleDateString()}</p>
-    
-          ${firebase.auth().currentUser.uid === doc.data().user_id
+          <div class="user-data"> 
+            <p class="user"> ${doc.data().nome}</p>
+          <div class='data-locations'>
+            <p class="locations">${doc.data().nomeLocalReceita}</p> 
+            <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
+          </div>
+          </div>
+      </div>
+              
+                   
+    ${firebase.auth().currentUser.uid === doc.data().user_id
     ? `<div class="delete-edit">
-                       <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
-                    <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
-                  </div>`
+               <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
+            <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
+          </div>`
     : ''}
-            
-          <p class="descr" contentEditable="false" data-text="${doc.id}">${doc.data().descricao}</p> 
-          <p class="hashs" contentEditable="false" data-hashs="${doc.id}">${doc.data().hashTags}</p>
-        <div class='botoes'> 
-          <p class="tipo" contentEditable="false" data-tag="${doc.id}"> ${doc.data().tipo} </p>
-          <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"> </button>
+         
+          <p class="descr">${doc.data().descricao}</p> 
+          <p class="hashs">${doc.data().hashTags}</p>
+        
+          <div class='botoes'> 
+          <p class="tipo"> ${doc.data().tipo} </p>
+          <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"></button>
           <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
-          <button type="button" class="price" id="price" contentEditable="false" data-preco="${doc.id}">${doc.data().preco}></button>
+          <span class="price" id="price" data-preco>${doc.data().preco}</span>
+         
+          </div>
+
           <div class="coments" id="coments">
-          <p class="addComent" id="addComent" placeholder="Comentários">${doc.data().comentarios}</p>
-          <button class="more" id="more">ver mais</button>
-          <button class="goComent" id="goComent"> <img class="addCom" src="./img/addCom.svg"> adicionar comentário</button>
-          </div> </div>
-          <hr> `;
+            <textarea class='addComent' data-item='add-comment' placeholder='Escreva um comentário!'></textarea>
+            <button class="more" id="more">ver mais</button>
+            <button class ='goComent' id='goComent' img class='addCom' src='./img/addCom.svg' data-item='comment'/>enviar comentário</button>
+          </div>
+            <hr> `;
 
       timeline.insertBefore(div, timeline.childNodes[0]);
-    
+    });
+
     const dataPost = rootElement.querySelector('[data-post]');
     dataPost.addEventListener('click', (e) => {
       const { target } = e;

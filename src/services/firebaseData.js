@@ -48,11 +48,6 @@ export const editPosts = (typeEdit, titleEdit, hashtagsEdited, priceEdited,
       hashTags: hashtagsEdited,
       preco: priceEdited,
       descrição: addTextEdited,
-    }).then(() => {
-
-    })
-    .catch((error) => {
-      console.log('Error updating documents:', error);
     });
 };
 
@@ -61,6 +56,3 @@ export const saveEdit = (userId, postId) => db
     userId,
     postId,
   });
-// "${(doc.data().curtidas) ? doc.data().curtidas.length : '0'};"
-// '../../services/firebaseData.js';}
-// const userFilter = curtidas.filter(userId);

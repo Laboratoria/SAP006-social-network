@@ -28,16 +28,20 @@ export const postar = () => {
      </div>
      <div class="titleType">
      <p id="type">selecione uma tag acima</p>
-     <input type="text" id="typePost" name="typePost" placeholder="Título da Publicação"/>
+     <input type="text" id="typePost" name="typePost" placeholder="Local"/>
      <p id="errorType"></p>
      </div>
      <input type:"text" id="hashtags" class="hashtags" name="hashtags" placeholder="#pizza #sp #vegano"/>
      <p id="errorHashtags"></p>
+     
      <div class="addPrice">
-      <label class="low"><input  id="low" type="radio" name="valor" value="$"/> $ </label>
-      <label class="med"><input  id="med" type="radio" name="valor" value="$$"/> $ </label>
-      <label class="high"><input  id="high" type="radio" name="valor" value="$$$"/> $ </label>
+      <label class="low"> 
+      <input id="low" type="radio" name="valor" value="$" class="check" />$ </label>
+      <label class="med"> <input id="med" type="radio" name="valor" value="$$"/>$</label>
+      
+      <label class="high"> <input id="high" type="radio" name="valor" value="$$$" checked/>$</label>
       </div>
+
      <textarea class="addText" id="addText" placeholder="Conte sua experiência aos amigos!" style="resize:none"></textarea>
      <p id="errorDesc"></p>
      <button class="sendPost" id="sendPost">Publicar</button>
@@ -85,7 +89,7 @@ export const postar = () => {
     const descPost = rootElement.querySelector('#addText').value;
     if (descPost === '' || descPost.length < 3) {
       const errorDescField = document.getElementById('errorDesc');
-      errorDescField.innerHTML = 'Preencha com ao menos uma #';
+      errorDescField.innerHTML = 'Preencha o campo acima com ao menos uma palavra.';
       errorDescField.focus();
       return false;
     }

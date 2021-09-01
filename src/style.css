@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  --green-color: #97CF6E;
 
  /* input::placeholder {
     color: rgb(0, 0, 0); */

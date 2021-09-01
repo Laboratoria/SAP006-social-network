@@ -108,11 +108,12 @@
   }
   
   .yes {
-    background-color: #007700;
+    background-color: #97CF6E
+    ;
   }
   
   .no {
-    background-color: #ff0000;
+    background-color: #FF7171;
   }
   
   #close-btn {
