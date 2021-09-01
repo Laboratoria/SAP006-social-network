@@ -1,4 +1,8 @@
-import { createAccountWithEmailAndPassword, loginWithGoogleAccount } from '../../services/index.js';
+import {
+  createAccountWithEmailAndPassword,
+  loginWithGoogleAccount,
+  userUpdateProfile,
+} from '../../services/index.js';
 import { onNavigate } from '../../navigate.js';
 
 export const signup = () => {
@@ -56,7 +60,10 @@ export const signup = () => {
           userEmail,
           userPassword,
           confirmPassword,
-        )
+        ).then(() => onNavigate('/'))
+          .then(() => {
+            userUpdateProfile(userName);
+          })
           .catch((error) => {
             errorField = document.getElementById('error-sign-up-message');
             let errorMessage = error.message;

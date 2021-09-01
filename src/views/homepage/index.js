@@ -4,7 +4,8 @@ import {
   loadPosts,
   logOut,
   deletePost,
-
+  likesPost,
+  editPost,
 } from '../../services/index.js';
 import { addPost } from '../../components/post.js';
 
@@ -39,6 +40,8 @@ export const home = () => {
     });
   });
 
+  loadPosts();
+
   container.querySelector('#postForm')
     .addEventListener('submit', (event) => {
       event.preventDefault();
@@ -53,6 +56,7 @@ export const home = () => {
             userId: user.uid,
             text: textPost,
             createdAt: date.toLocaleString(),
+            likes: [],
           }),
         };
         const newPostElement = addPost(createdPost);
@@ -71,11 +75,69 @@ export const home = () => {
   postsList.addEventListener('click', (e) => {
     e.preventDefault();
     const target = e.target;
+
     if (target.dataset.delete === '') {
-      const getPost = target.parentNode.parentNode.parentNode.parentNode;
+      const modal = document.getElementById('myModal');
+      modal.style.display = 'block';
+      const span = document.getElementsByClassName('close-button')[0];
+      span.addEventListener('click', () => {
+        e.preventDefault();
+        modal.style.display = 'none';
+      });
+    }
+
+    if (target.dataset.deletepost === '') {
+      const getPost = target.parentNode
+        .parentNode.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
       deletePost(id)
         .then(getPost.remove());
+    }
+
+    if (target.dataset.like === '' && !target.classList.contains('fas')) {
+      const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
+      const id = getPost.getAttribute('data-id');
+      const numberLikes = container.querySelector(`[data-like="${id}"]`);
+      e.target.classList.add('fas');
+      likesPost(id);
+      const quantLikes = Number(numberLikes.textContent) + 1;
+      numberLikes.innerHTML = quantLikes;
+    } else if (target.dataset.like === '' && target.classList.contains('fas')) {
+      const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
+      const id = getPost.getAttribute('data-id');
+      const numberLikes = container.querySelector(`[data-like="${id}"]`);
+      e.target.classList.remove('fas');
+      const quantLikes = Number(numberLikes.textContent) - 1;
+      numberLikes.innerHTML = quantLikes;
+      likesPost(id);
+    }
+
+    if (target.dataset.edit === '') {
+      const confirmEdit = document.querySelector('#confirm-edit');
+      confirmEdit.style.display = 'inline';
+      const editArea = document.querySelector('.user-post');
+      const postField = document.querySelector('.post-field');
+      postField.setAttribute('id', 'edit-area');
+      editArea.setAttribute('contentEditable', 'true');
+
+      confirmEdit.addEventListener('click', () => {
+        editArea.removeAttribute('contentEditable');
+        postField.removeAttribute('id');
+        const newText = editArea.textContent;
+        const getPost = target.parentNode.parentNode.parentNode.parentNode;
+        const postId = getPost.getAttribute('data-id');
+        editPost(newText, postId)
+          .then(() => {
+            confirmEdit.style.display = 'none';
+          }).then(() => {
+            const modal = document.querySelector('.modal');
+            const close = document.querySelector('.close');
+            modal.style.display = 'block';
+            close.onclick = () => {
+              modal.style.display = 'none';
+            };
+          });
+      });
     }
   });
 

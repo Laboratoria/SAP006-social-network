@@ -1,16 +1,6 @@
 import { onNavigate } from '../navigate.js';
 
-export const getNewUserData = (userData, userName) => {
-  const usersCollection = firebase.firestore().collection('users');
-  const user = {
-    id: userData.uid,
-    name: userName,
-    email: userData.email,
-  };
-  usersCollection.add(user);
-};
-
-const saveUserIdOnLocalStorage = (uid) => {
+export const saveUserIdOnLocalStorage = (uid) => {
   localStorage.uid = uid;
 };
 
@@ -20,47 +10,28 @@ const clearLocalStorage = () => localStorage.clear();
 
 export const loginWithGoogleAccount = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  await firebase.auth().signInWithPopup(provider)
-    .then((user) => {
-      const userName = user.user.displayName;
-      firebase.firestore().collection('users')
-        .where('id', '==', user.user.uid).get()
-        .then((firestoreUser) => {
-          if (firestoreUser.docs.length === 0) {
-            getNewUserData(user.user, userName);
-          }
-          saveUserIdOnLocalStorage(user.user.uid);
-          onNavigate('/home');
-        });
-    });
+  await firebase.auth().signInWithPopup(provider);
 };
 
 export const loginWithEmailAndPassword = (
   userEmail,
   userPassword,
 ) => firebase.auth()
-  .signInWithEmailAndPassword(userEmail, userPassword)
-  .then((doc) => {
-    saveUserIdOnLocalStorage(doc.user.uid);
-    onNavigate('/home');
-  });
+  .signInWithEmailAndPassword(userEmail, userPassword);
 
 export const createAccountWithEmailAndPassword = (
   userName,
   userEmail,
   userPassword,
-) => firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
-  .then((userData) => {
-    getNewUserData(userData.user, userName);
-  })
-  .then(() => onNavigate('/'))
-  .then(() => {
-    const user = firebase.auth().currentUser;
-    user.updateProfile({
-      displayName: userName,
-    });
-    saveUserIdOnLocalStorage(user.uid);
+) => firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword);
+
+export const userUpdateProfile = (userName) => {
+  const user = firebase.auth().currentUser;
+  user.updateProfile({
+    displayName: userName,
   });
+  saveUserIdOnLocalStorage(user.uid);
+};
 
 export const logOut = () => {
   firebase.auth().signOut()
@@ -96,18 +67,41 @@ export const createPost = (textPost) => {
 
 export const currentUser = () => firebase.auth().currentUser;
 
-export const editPost = (newText, postId) =>
-  firebase.firestore().collection('posts').doc(postId)
-    .update({
-      text: newText
-    })
+export const editPost = (newText, postId) => firebase
+  .firestore().collection('posts').doc(postId)
+  .update({
+    text: newText,
+  });
 
 firebase.auth().onAuthStateChanged(() => {
-  if(!firebase.auth().currentUser){
-    onNavigate('/')
+  if (!firebase.auth().currentUser) {
+    onNavigate('/');
   }
-})
+});
 
 export const deletePost = (id) => firebase
   .firestore()
   .collection('posts').doc(id).delete();
+
+export const likesPost = (postId) => {
+  firebase
+    .firestore()
+    .collection('posts').doc(postId).get()
+    .then((post) => {
+      const arrayLikes = post.data().likes;
+      const likesInPost = firebase
+        .firestore()
+        .collection('posts').doc(postId);
+      if (getUserIdOnLocalStorage()) {
+        likesInPost.update({
+
+          likes: firebase.firestore.FieldValue.arrayUnion(getUserIdOnLocalStorage()),
+        });
+      }
+      if (arrayLikes.includes(getUserIdOnLocalStorage())) {
+        likesInPost.update({
+          likes: firebase.firestore.FieldValue.arrayRemove(getUserIdOnLocalStorage()),
+        });
+      }
+    });
+};
