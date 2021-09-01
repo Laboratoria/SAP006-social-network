@@ -1,24 +1,23 @@
 import { getLikes, likePost, unlikePost } from '../services/database.js';
 
-export const sendLike = (likeIcon, userId, likeButton) => {
-  const numLikeArray = document.querySelector('[data-numLike]');
-  const likesNumber = Number(numLikeArray.innerText);
-
-  getLikes(likeIcon)
+export const sendLike = (likeId, userId, likeCount, likeIcon) => {
+  const likesNumber = Number(likeCount.innerText);
+  console.log(likeCount.nextSibling);
+  getLikes(likeId)
     .then((posts) => {
       const postData = posts.data();
       if (!postData.likes.includes(userId)) {
-        likePost(userId, likeIcon)
+        likePost(userId, likeId)
           .then(() => {
-            numLikeArray.innerText = likesNumber + 1;
-            likeButton.classList.replace('far', 'fas');
+            likeCount.innerText = likesNumber + 1;
+            likeIcon.classList.replace('far', 'fas');
           })
           .catch('error');
       } else {
-        unlikePost(userId, likeIcon)
+        unlikePost(userId, likeId)
           .then(() => {
-            numLikeArray.innerText = likesNumber - 1;
-            likeButton.classList.replace('fas', 'far');
+            likeCount.innerText = likesNumber - 1;
+            likeIcon.classList.replace('fas', 'far');
           })
           .catch('error');
       }
