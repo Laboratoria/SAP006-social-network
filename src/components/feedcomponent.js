@@ -1,5 +1,4 @@
 import { deletePost, updatePosts } from '../services/database.js';
-
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
 
@@ -43,7 +42,7 @@ export const printPost = (post) => {
               data-textpost
               id="text-post"
               class="post-content text-post"
-              disabled>${post.data().text}
+              id="${post.id}">${post.data().text}
             </textarea>
           </div>
         </div>
@@ -65,8 +64,12 @@ export const printPost = (post) => {
       console.log('cliquei no botão de like');
     }
   });
-  */
-
+*/
+  
+  const btnEdit = postTemplate.querySelector('[data-edit]');
+  const btnDelete = postTemplate.querySelector('[data-delete]');
+  const btnSave = postTemplate.querySelector('[data-save]');
+  const postText = postTemplate.querySelector('#text-post');
   const postContainer = postTemplate.querySelector('[data-container]');
 
   postContainer.addEventListener('click', (e) => {
@@ -75,6 +78,12 @@ export const printPost = (post) => {
     const saveButton = target.dataset.save;
     const deleteButton = target.dataset.delete;
     const postText = document.querySelector('[data-textpost]');
+
+  btnSave.addEventListener('click', (e) => {
+    e.preventDefault();
+    const postId = e.target.dataset.save;
+    updatePosts(postId, postText.value);
+    postText.setAttribute('disabled', '');
 
     if (editButton) {
       postText.removeAttribute('disabled');
