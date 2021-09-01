@@ -8,12 +8,16 @@ import home from './pages/home/index.js';
 import register from './pages/register/index.js';
 import login from './pages/login/index.js';
 import feed from './pages/feed/index.js';
+import notFound from './pages/not-found/index.js';
 
 const init = () => {
   const page = document.querySelector('#root');
   page.innerHTML = '';
   switch (window.location.hash) {
     case '#home':
+      page.appendChild(home());
+      break;
+    case '':
       page.appendChild(home());
       break;
     case '#register':
@@ -26,7 +30,7 @@ const init = () => {
       page.appendChild(feed());
       break;
     default:
-      page.appendChild(home());
+      page.appendChild(notFound());
   }
 };
 
