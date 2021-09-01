@@ -37,5 +37,10 @@
   },
   "dependencies": {
     "cycle-import-check": "^1.0.17"
+  },
+  "jest": {
+    "setupFiles": [
+      "./jestSetup.js"
+    ]
   }
 }

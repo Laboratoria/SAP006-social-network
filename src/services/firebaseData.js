@@ -35,7 +35,8 @@ export const uploadImage = (folder, file) => {
   return ref.child(folder).child(imageName).put(file, metadata);
 };
 
-export const editPosts = (tagEdited, localEdited, hashtagsEdited, priceEdited, addTextEdited, reviewId) => db
+export const editPosts = (tagEdited, localEdited, hashtagsEdited, priceEdited,
+  addTextEdited, reviewId) => db
   .collection('posts')
   .doc(reviewId)
   .update({
