@@ -46,6 +46,7 @@ export const printPost = (snap) => {
               data-textpost
               id="text-post"
               class="post-content text-post"
+              id="${post.id}"
               disabled>${post.data().text}
             </textarea>
           </div>
@@ -72,6 +73,7 @@ export const printPost = (snap) => {
 
   const postContainer = document.querySelector('[data-postcontainer]');
   console.log(postContainer);
+
   postContainer.addEventListener('click', (e) => {
     const { target } = e;
     const editButton = target.dataset.edit;
@@ -85,8 +87,8 @@ export const printPost = (snap) => {
     }
     if (saveButton) {
       const postId = e.target.dataset.save;
-      updatePosts(postId, postText.value);
-      postText.setAttribute('disabled', '');
+      updatePosts(postId, postText.value)
+        .then(() => postText.setAttribute('disabled', ''));
     }
     if (deleteButton) {
       const postId = e.target.dataset.delete;

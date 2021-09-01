@@ -9,7 +9,7 @@ export const Feed = () => {
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
       <button>
         <span id="bell"
-              class="iconify"
+              class="iconify background-color-main"
               data-inline="false"
               data-icon="clarity:notification-outline-badged"
               style="color: #F78563;">
@@ -21,12 +21,13 @@ export const Feed = () => {
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
       <form action="" id="published-form">
-        <input type="text" id="text-post" class="space-post" placeholder="Mana, o que você quer compatilhar?">
+        <input type="text" id="text-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
+        <p class="warn-input-add" hidden>Por favor, digite algo para compartilhar.</p>
         <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
    
-    <section class="get-post" data-postcontainer id="postTemplate"> 
+    <section class="get-post background-color-main" data-postcontainer id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
     <nav class="navbar mobile-list">
@@ -70,9 +71,12 @@ export const Feed = () => {
       comments: [],
     };
 
+    const textValidationAddPost = rootElement.querySelector('.warn-input-add');
+
     if (text === '') {
-      console.log('Deu ruim');
+      textValidationAddPost.hidden = true;
     } else {
+      textValidationAddPost.hidden = false;
       addPosts(post);
     }
   });
@@ -96,6 +100,5 @@ export const Feed = () => {
   // newPostBtn.addEventListener('click', () => {
   //   container.classList.add("sign-up-mode");
   // });
-
   return rootElement;
 };
