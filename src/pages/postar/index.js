@@ -77,8 +77,8 @@ export const postar = () => {
 
   rootElement.querySelector('#sendPost').addEventListener('click', () => {
     // pegando e validando as infos //
-    const localPost = rootElement.querySelector('#typePost').value;
-    if (localPost === '' || localPost.length < 3) {
+    const localPost = rootElement.querySelector('#typePost');
+    if (localPost.value === '' || localPost.value.length < 3) {
       const errorTittleField = document.getElementById('errorType');
       errorTittleField.innerHTML = 'Preencha com o nome do Restaurante, Mercado ou Receita';
       localPost.focus();
@@ -106,7 +106,7 @@ export const postar = () => {
       user_id: firebase.auth().currentUser.uid,
       nome: firebase.auth().currentUser.displayName,
       image: firebase.auth().currentUser.photoURL,
-      nomeLocalReceita: localPost, // inputs do post, como nome do lugar //
+      nomeLocalReceita: localPost.value, // inputs do post, como nome do lugar //
       tipo: postType,
       hashTags: hashtagsPost, // se é restaurante, mercado ou receita //
       preco: pricePost, // hashtags //

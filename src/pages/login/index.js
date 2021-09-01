@@ -14,9 +14,9 @@ export const login = () => {
         <input class="login" name="usuario" type="text" id="usuario" placeholder="E-mail">
       </div>
       <div class="inputPass" id="inputPass">
-        <input class="password" type="password" id="senha" placeholder="Senha"/>
-        <span class="eye"><img id="eye" src="./img/eyesOpen.svg"></span> 
-      </div>
+      <input class="password" type="password" id="senha" placeholder="Senha"/>
+      <span class="eye"><img id="eye" src="./img/eyesOpen.svg"></span> 
+    </div>
       <p id="textErrorEmailPassword"></p>
       
       <div class="justify-enter">
