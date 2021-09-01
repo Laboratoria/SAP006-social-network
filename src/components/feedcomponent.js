@@ -1,9 +1,12 @@
 import { deletePost, updatePosts } from '../services/database.js';
 
-export const printPost = (post) => {
-  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
+export const printPost = (snap) => {
+  const postTemplate = document.querySelector('#postTemplate');
 
-  const areaOfPost = `
+  snap.forEach((post) => {
+    const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
+
+    const areaOfPost = `
     <section data-container="${post.id}" id="${post.id}>
       <div class="box">
         <div class="header-post">
@@ -54,8 +57,8 @@ export const printPost = (post) => {
     </section>
   `;
 
-  const postTemplate = document.querySelector('#postTemplate');
-  postTemplate.innerHTML += areaOfPost;
+    postTemplate.innerHTML += areaOfPost;
+  });
 
   /*
   postTemplate.addEventListener('click', (e) => {
@@ -67,14 +70,14 @@ export const printPost = (post) => {
   });
   */
 
-  const postContainer = postTemplate.querySelector('[data-container]');
-
+  const postContainer = document.querySelector('[data-postcontainer]');
+  console.log(postContainer);
   postContainer.addEventListener('click', (e) => {
     const { target } = e;
     const editButton = target.dataset.edit;
     const saveButton = target.dataset.save;
     const deleteButton = target.dataset.delete;
-    const postText = document.querySelector('[data-textpost]');
+    const postText = target.parentNode.parentNode.parentNode.parentNode.querySelector('[data-textpost]');
 
     if (editButton) {
       postText.removeAttribute('disabled');
@@ -97,14 +100,14 @@ export const printPost = (post) => {
 
     popUpContainer.innerHTML = `
       <div class='popup-wrapper' data-popup>
-          <div class='popup'>
-            <div class='popup-content'>
-              <h3>Tem certeza que deseja apagar esse post?</h3>
-                <button id='yes' data-confirm class='yes answer'>DELETAR</button>
-                <button id='no' data-cancel class='no answer'>CANCELAR</button>
-            </div>
+        <div class='popup'>
+          <div class='popup-content'>
+            <h3>Tem certeza que deseja apagar esse post?</h3>
+              <button id='yes' data-confirm class='yes answer'>DELETAR</button>
+              <button id='no' data-cancel class='no answer'>CANCELAR</button>
           </div>
         </div>
+      </div>
     `;
     postTemplate.appendChild(popUpContainer);
 

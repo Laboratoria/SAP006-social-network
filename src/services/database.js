@@ -4,13 +4,11 @@ export const loadPosts = () => firebase
   .orderBy('text', 'desc')
   .get();// aqui vai gerar uma promisse
 
-export const addPosts = (post) => firebase
+export const addPosts = (postId) => firebase
   .firestore()
   .collection('posts')
-  .add(post)
-  .then(() => {
-    window.location.reload();
-  });
+  .add(postId);
+  // .then(() => window.location.reload());
 
 export const updatePosts = (postId, newText) => firebase
   .firestore()
