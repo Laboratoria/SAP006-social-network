@@ -4,6 +4,7 @@ import {
   getPosts, liked, deletePost, editPosts,
 } from '../../services/firebaseData.js';
 import { modal } from './modal.js';
+
 // <img src=${doc.data().image class='imgPost'>
 export const home = () => {
   const rootElement = document.createElement('div');
@@ -55,17 +56,15 @@ export const home = () => {
   getPosts().then((collectionContent) => {
     collectionContent.forEach((doc) => {
       const div = document.createElement('div');
-      div.id = doc.id;
       const timeline = rootElement.querySelector('#timeline');
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
           
       <div class='fotoPerfil'>
-
           <img src=${doc.data().image} class='imgUser'> 
           <div class="user-data"> 
             <p class="user"> ${doc.data().nome}</p>
           <div class='data-locations'>
-            <p class="locations" >${doc.data().nomeLocalReceita}</p> 
+            <p class="locations">${doc.data().nomeLocalReceita}</p> 
             <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
           </div>
           </div>
@@ -74,9 +73,9 @@ export const home = () => {
                    
     ${firebase.auth().currentUser.uid === doc.data().user_id
     ? `<div class="delete-edit">
-               <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
-            <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
-          </div>`
+        <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
+       <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
+      </div>`
     : ''}
          
           <p class="descr">${doc.data().descricao}</p> 
@@ -89,7 +88,6 @@ export const home = () => {
           <span class="price" id="price" data-preco>${doc.data().preco}</span>
          
           </div>
-
           <div class="coments" id="coments">
             <textarea class='addComent' data-item='add-comment' placeholder='Escreva um comentário!'></textarea>
             <button class="more" id="more">ver mais</button>
@@ -103,24 +101,9 @@ export const home = () => {
     const dataPost = rootElement.querySelector('[data-post]');
     dataPost.addEventListener('click', (e) => {
       const { target } = e;
+      const editId = target.dataset.edit;
       const likeId = target.dataset.like;
       const deleteId = target.dataset.delete;
-      const editId = target.dataset.edit;
-       // if (likeId) {
-      //   const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
-      //   const beforLike = numberLikes.classList.contains('beforLike');
-      //   eye.src = './img/eyesClose.svg';
-      //   const number = Number(numberLikes.textContent);
-      //   if (beforLike === true) {
-      //     numberLikes.classList.replace('beforLike', 'afterLike');
-      //     numberLikes.innerHTML = number + 1;
-      //     liked(likeId);
-      //   } else {
-      //     numberLikes.classList.replace('afterLike', 'beforLike');
-      //     numberLikes.innerHTML = number - 1;
-      //     liked(likeId);
-      //   }
-      // }
       if (likeId) {
         const numberLikes = rootElement.querySelector(`[data-numLike="${likeId}"]`);
         const beforLike = numberLikes.classList.contains('beforLike');
@@ -138,31 +121,13 @@ export const home = () => {
           liked(likeId);
         }
       }
+
       if (deleteId) {
         modal.confirm('Essa postagem será excluída, deseja continuar?', () => {
           const postDiv = rootElement.querySelector(`[data-id="${deleteId}"]`);
           deletePost(deleteId).then(postDiv.remove());
         });
       }
-      // timeline.insertBefore(div, timeline.childNodes[0]);
-      //       const editBtn = div.querySelector('.edit-button');
-      //       function disableEditBtn() {
-      //         if (firebase.auth().currentUser.uid === `${doc.data().user_id}`) {
-      //           // fazer a mesma mesma lógica p botão de editar = editBtn.hidden = false;
-      //           disableEditBtn.hidden = false;
-      //         } else {
-      //           // editBtn.hidden = true;
-      //           disableEditBtn.hidden = true;
-      //           div.querySelector('.edit-button').style.display = 'none';
-      //         }
-      //       }
-      //       disableEditBtn();
-      //       editBtn.addEventListener('click', (e) => {
-      //         const { target } = e;
-      //         const postID = target.parentNode.parentNode.id;
-      //         if (editBtn) {
-
-      //
       if (editId) {
         modal.confirm('Deseja editar sua postagem?', () => {
           const editBtn = rootElement.querySelector(`[data-edit="${editId}"]`);
@@ -177,19 +142,8 @@ export const home = () => {
           // editPosts(tagType, title, hashtags, priceTag,
           //   text, editId);
         });
-      };
- });    
+      }
+    });
+  });
   return rootElement;
 };
-
-// function changeColorRed(td) {
-//   td.style.backgroundColor = "#c516168a";
-// };
-
-// if (prompt1 == 1) {
-//   document.getElementById('resul1').innerHTML = 'Certa';
-//   changeColorGreen(resul1)
-// } else {
-//   document.getElementById('resul1').innerHTML = 'Errada';
-//   changeColorRed(resul1)
-// }

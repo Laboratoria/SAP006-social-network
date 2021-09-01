@@ -50,9 +50,3 @@ export const editPosts = (typeEdit, titleEdit, hashtagsEdited, priceEdited,
       descrição: addTextEdited,
     });
 };
-
-export const saveEdit = (userId, postId) => db
-  .collection('posts').add({
-    userId,
-    postId,
-  });
