@@ -85,7 +85,7 @@ export default () => {
     const addPost = msg.value;
     const addPostMsg = feed.querySelector('#addPost');
      console.log(addPost);
-//todas as infromações vai ficar aqui/data/foto/post/
+//todas as informações vai ficar aqui/data/foto/post/
     const postagem = {
       mensagem: addPost,
       autora:'Magna'
@@ -95,12 +95,14 @@ export default () => {
       .add(postagem)
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
+        // console.log(msg);
+        msg.value = '';
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
        
-      msg.innerHTML='';
+     
     addPostMsg.innerHTML = addPost;
       
 

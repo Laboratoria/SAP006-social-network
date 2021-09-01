@@ -104,8 +104,8 @@
     text-decoration: none;
 }
 
-/*fim do menu hamburguer*/
-/* .profile {
+/*fim do menu hamburguer
+.profile {
     height: 100%;
     width: 200px;
     position: fixed;
@@ -119,7 +119,9 @@
     border-radius: 20px;
     margin: 25px;
     text-align: center;
-} */
+}
+
+*/
 
 .profile img {
     border-radius: 100%;
