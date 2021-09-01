@@ -2,15 +2,13 @@ export const loadPosts = () => firebase
   .firestore()
   .collection('posts')
   .orderBy('text', 'desc')
-  .get();
+  .get();// aqui vai gerar uma promise
 
-export const addPosts = (post) => firebase
+export const addPosts = (postId) => firebase
   .firestore()
   .collection('posts')
-  .add(post)
-  .then(() => {
-    window.location.reload();
-  });
+  .add(postId);
+  // .then(() => window.location.reload());
 
 export const updatePosts = (postId, newText) => firebase
   .firestore()
@@ -18,7 +16,7 @@ export const updatePosts = (postId, newText) => firebase
   .doc(postId)
   .update({ text: newText })
   .then(() => {
-    window.location.reload();
+    // window.location.reload();
   });
 
 export const deletePost = (postId) => firebase

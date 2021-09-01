@@ -1,11 +1,14 @@
-import {
-  deletePost, updatePosts, likePost, unlikePost, getLikes,
-} from '../services/database.js';
+import { updatePosts } from '../services/database.js';
+import { sendLike } from './like.js';
+import { deletePopUp } from './popup.js';
 
-export const printPost = (post) => {
-  const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
+export const printPost = (snap) => {
+  const postTemplate = document.querySelector('#postTemplate');
 
-  const areaOfPost = `
+  snap.forEach((post) => {
+    const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
+
+    const areaOfPost = `
     <section class="container-areaPost" data-container="${post.id}" id="${post.id}>
       <div class="box">
         <div class="header-post">
@@ -32,49 +35,40 @@ export const printPost = (post) => {
           </menu>
         </div>
         
-        <div class="content">
-          <button>
-            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
-          </button>
-          
-          <div>
-            <textarea 
-              data-textpost
-              id="text-post"
-              class="post-content text-post"
-              id="${post.id}">${post.data().text}
-            </textarea>
+        <div class="align-post-like">
+          <div class="content">
+              <textarea id="text-post"
+                data-textpost="${post.id}
+                class="post-content text-post"
+                id="${post.id}"
+                disabled>${post.data().text}
+          </textarea>
+         
           </div>
           <section class="actions" data-section>
             <p data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
             <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
           </section>
         </div>
-        
       </div>
     </section>
   `;
 
-  const postTemplate = document.querySelector('#postTemplate');
-  postTemplate.innerHTML += areaOfPost;
-
-  const btnEdit = postTemplate.querySelector('[data-edit]');
-  const btnDelete = postTemplate.querySelector('[data-delete]');
-  const btnSave = postTemplate.querySelector('[data-save]');
-  const postText = postTemplate.querySelector('#text-post');
-  const datasection = document.querySelector('[data-section]');
-
-  btnEdit.addEventListener('click', (e) => {
-    e.preventDefault();
-    postText.removeAttribute('disabled');
-    postText.focus();
+    postTemplate.innerHTML += areaOfPost;
   });
 
-  btnSave.addEventListener('click', (e) => {
-    e.preventDefault();
-    const postId = e.target.dataset.save;
-    updatePosts(postId, postText.value);
-    postText.setAttribute('disabled', '');
+  const postContainer = document.querySelector('[data-postcontainer]');
+
+  postContainer.addEventListener('click', (e) => {
+    const { target } = e;
+    const userId = firebase.auth().currentUser.uid;
+
+    const editButton = target.dataset.edit;
+    const saveButton = target.dataset.save;
+    const deleteButton = target.dataset.delete;
+    const likeButton = postTemplate.querySelector('[data-like]');
+
+    const postText = target.parentNode.parentNode.parentNode.parentNode.querySelector('[data-textpost]');
 
     if (editButton) {
       postText.removeAttribute('disabled');
@@ -82,117 +76,16 @@ export const printPost = (post) => {
     }
     if (saveButton) {
       const postId = e.target.dataset.save;
-      updatePosts(postId, postText.value);
-      postText.setAttribute('disabled', '');
+      updatePosts(postId, postText.value)
+        .then(() => postText.setAttribute('disabled', ''));
     }
     if (deleteButton) {
       const postId = e.target.dataset.delete;
       deletePopUp(postId, postContainer);
     }
-  });
-
-  // UM EVENTLISTENER PRA CADA BOTÃO //
-  const deletePopUp = (postId, post) => {
-    const popUpContainer = document.createElement('div');
-
-    popUpContainer.innerHTML = `
-      <div class='popup-wrapper' data-popup>
-          <div class='popup'>
-            <div class='popup-content'>
-              <h3>Tem certeza que deseja apagar esse post?</h3>
-                <button id='yes' data-confirm class='yes answer'>DELETAR</button>
-                <button id='no' data-cancel class='no answer'>CANCELAR</button>
-            </div>
-          </div>
-        </div>
-    `;
-    postTemplate.appendChild(popUpContainer);
-
-    const popUpWrapper = postTemplate.querySelector('.popup-wrapper');
-    popUpWrapper.style.display = 'block';
-
-    const confirmButton = document.querySelector('[data-confirm]');
-    confirmButton.addEventListener('click', () => {
-      deletePost(postId)
-        .then(post.remove());
-      popUpWrapper.style.display = 'none';
-    });
-
-    const cancelButton = document.querySelector('[data-cancel]');
-    cancelButton.addEventListener('click', () => {
-      popUpWrapper.style.display = 'none';
-    });
-  };
-
-  btnDelete.addEventListener('click', () => {
-    deletePopUp();
-  });
-
-  datasection.addEventListener('click', (e) => {
-    console.log('clicou');
-    const { target } = e;
-    const postId = target.dataset.like;
-    console.log(postId);
-    const userId = firebase.auth().currentUser.uid;
-    const likeIcon = postTemplate.querySelector('[data-like]');
-    function sendLike() {
-      const numLikeArray = postTemplate.querySelector('[data-numLike]');
-      const likesNumber = Number(numLikeArray.innerText);
-      getLikes(postId).then((posts) => {
-        if (!posts.data().likes.includes(userId)) {
-          likePost(userId, postId)
-            .then(() => {
-              numLikeArray.innerText = likesNumber + 1;
-              likeIcon.classList.replace('far', 'fas');
-            })
-            .catch('error');
-        } else {
-          unlikePost(userId, postId)
-            .then(() => {
-              numLikeArray.innerText = likesNumber - 1;
-              likeIcon.classList.replace('fas', 'far');
-            })
-            .catch('error');
-        }
-      });
+    if (likeButton) {
+      const likeIcon = e.target.dataset.like;
+      sendLike(likeIcon, userId, likeButton);
     }
-    if (target) { sendLike(); }
   });
 };
-
-// const deletePopUp = () => {
-//   const root = document.querySelector('#root');
-//   const popUpContainer = document.createElement('div');
-
-//   popUpContainer.innerHTML = `
-//     <div class='popup-wrapper' data-popup>
-//         <div class='popup'>
-//           <div class='popup-content'>
-//             <h3>Tem certeza que deseja apagar esse post?</h3>
-//               <button id='yes' data-answer="yes" class='yes answer'>DELETAR</button>
-//               <button id='no' data-answer="no" class='no answer'>CANCELAR</button>
-//           </div>
-//         </div>
-//       </div>
-//   `;
-//   root.appendChild(popUpContainer);
-
-//   const popUpWrapper = root.querySelector('.popup-wrapper');
-//   popUpWrapper.style.display = 'block';
-
-//   const deleteButton = document.querySelector('[data-answer]');
-
-//   deleteButton.addEventListener('click', (e) => {
-//     const userAnswer = e.target.dataset.answer;
-//     console.log(userAnswer);
-
-//     if (userAnswer === 'yes') {
-//       deletePost();
-//       // document.querySelector('[data-container]').remove();
-//       popUpWrapper.style.display = 'none';
-//     } else {
-//       popUpWrapper.style.display = 'none';
-//     }
-//   });
-//   return root;
-// };

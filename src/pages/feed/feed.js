@@ -29,7 +29,7 @@ export const Feed = () => {
       </form>
     </section>
    
-    <section class="get-post background-color-main" id="postTemplate"> 
+    <section class="get-post background-color-main" data-postcontainer id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
     <nav class="navbar mobile-list">
@@ -59,11 +59,10 @@ export const Feed = () => {
 
   const submitButton = rootElement.querySelector('#published-form');
   submitButton.addEventListener('submit', (event) => {
+    const postContainer = postTemplate.querySelector('[data-container]');
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
-
     const date = new Date();
     const post = {
       text,
@@ -76,11 +75,15 @@ export const Feed = () => {
     const textValidationAddPost = rootElement.querySelector('.warn-input-add');
 
     if (text === '') {
-      textValidationAddPost.hidden = true;
-    } else {
       textValidationAddPost.hidden = false;
+    } else {
+      textValidationAddPost.hidden = true;
       addPosts(post);
     }
+  });
+
+  loadPosts().then((snap) => {
+    printPost(snap);
   });
 
   const navbarBottom = document.getElementsByClassName('navbar');
@@ -92,12 +95,5 @@ export const Feed = () => {
   }
   window.onscroll = stickyFilter();
 
-  loadPosts()
-    .then((snap) => {
-      snap
-        .forEach((post) => {
-          printPost(post);
-        });
-    });
   return rootElement;
 };
