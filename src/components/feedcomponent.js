@@ -1,54 +1,56 @@
 import { deletePost, updatePosts } from '../services/database.js';
+
 export const printPost = (post) => {
   const isMyPost = firebase.auth().currentUser.uid === post.data().user_id;
 
   const areaOfPost = `
-    <section data-container="${post.id}" id="${post.id}>
-      <div class="box">
-        <div class="header-post">
-          <p class="username">username</p>
-          <menu
-            class="dropdown" 
-            style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
-
-            <button id="btn-drop"  class="dropbtn">
-              <span class="iconify" data-icon="ph:dots-three-duotone"></span>
-            </button>
-
-            <div id="myDropdown" class="dropdown-content">
-              <button data-edit="${post.id}" class="edit-button">
-                <span class="iconify btn-more" data-icon="bytesize:edit"></span>
-                Editar
-              </button>
-              <button data-delete="${post.id}" class="delete-button">
-                <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
-                Deletar
-              </button>
-              <button data-save="${post.id}" class="save-button">
-                <span class="iconify btn-more" data-icon="carbon:save"></span>
-                Salvar
-              </button>
-            </div>
-          </menu>
-        </div>
-        
-        <div class="content">
-          <button>
-            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
+  <section class="container-areaPost" data-container="${post.id}" id="${post.id}>
+  <div class='box'>
+    <div class='header-post'>
+      <p class="username">username</p>
+      
+      <menu class="dropdown" style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
+        <button id="btn-drop"  class="dropbtn">
+          <span class="iconify" data-icon="ph:dots-three-duotone"></span>
+        </button>
+        <div id="myDropdown" class="dropdown-content">
+          <button data-edit="${post.id}" class="edit-button dropbtn">
+            <span class="iconify btn-more" data-icon="bytesize:edit"></span>
+            Editar
           </button>
-          
-          <div>
-            <textarea id="text-post"
-              class="post-content text-post"
-              id="${post.id}">${post.data().text}
-            </textarea>
-          </div>
+          <button data-delete="${post.id}" class="delete-button dropbtn">
+            <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
+            Deletar
+          </button>
+          <button data-save="${post.id}" class="save-button dropbtn">
+            <span class="iconify btn-more" data-icon="carbon:save"></span>
+            Salvar
+          </button>
         </div>
-        <section class="actions">
-          <button class="btn-like" data-like>5 ❤️</button>
-        </section>
+      </menu>
+    </div>
+    
+    <div class="content">
+      <button>
+        <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
+      </button>
+      
+      <div>
+        <textarea 
+          data-textpost
+          id="text-post"
+          class="post-content text-post"
+          id="${post.id}">${post.data().text}
+        </textarea>
       </div>
-    </section>
+      <section class="actions" data-section>
+        <p data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
+        <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
+      </section>
+    </div>
+    
+  </div>
+</section>
   `;
 
   const postTemplate = document.querySelector('#postTemplate');

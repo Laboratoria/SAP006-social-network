@@ -73,15 +73,14 @@ export const Feed = () => {
       comments: [],
     };
 
-    const textValidationAddPost = rootElement.querySelector('.warn-input-add'); 
-    
-    if (text === '') { 
-      textValidationAddPost.hidden = true;
+    const textValidationAddPost = rootElement.querySelector('.warn-input-add');
+
+    if (text === '') {
+      textValidationAddPost.hidden = false;
     } else {
-      textValidationAddPost.hidden = false; 
+      textValidationAddPost.hidden = true;
       addPosts(post);
     }
-
   });
 
   const navbarBottom = document.getElementsByClassName('navbar');
