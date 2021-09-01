@@ -11,7 +11,7 @@ export const Reset = () => {
     </div>
     <h4> Insira seu e-mail abaixo para receber o link de redefinição de senha</h4>
     <div class="inputAndReset">
-      <input type="email" id="email" class="input" placeholder="Email">
+      <input type="email" id="email" class="reset-input-layout" placeholder="Email">
     </div>
     <div class="google">
       <button id="btn-reset" class="login btn">Enviar</button>

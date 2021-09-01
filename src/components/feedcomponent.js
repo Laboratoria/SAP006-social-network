@@ -32,9 +32,18 @@ export const printPost = (post) => {
           </menu>
         </div>
         
-        <div class="align-post-like">
-          <div class="content">
-              <textarea id="text-post" class="post-content text-post" id="${post.id}" disabled>${post.data().text}</textarea>
+        <div class="content">
+          <button>
+            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
+          </button>
+          
+          <div>
+            <textarea 
+              data-textpost
+              id="text-post"
+              class="post-content text-post"
+              id="${post.id}">${post.data().text}
+            </textarea>
           </div>
           <section class="actions" data-section>
             <p data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
@@ -64,25 +73,36 @@ export const printPost = (post) => {
   btnSave.addEventListener('click', (e) => {
     e.preventDefault();
     const postId = e.target.dataset.save;
-    console.log(postId);
     updatePosts(postId, postText.value);
     postText.setAttribute('disabled', '');
+
+    if (editButton) {
+      postText.removeAttribute('disabled');
+      postText.focus();
+    }
+    if (saveButton) {
+      const postId = e.target.dataset.save;
+      updatePosts(postId, postText.value);
+      postText.setAttribute('disabled', '');
+    }
+    if (deleteButton) {
+      const postId = e.target.dataset.delete;
+      deletePopUp(postId, postContainer);
+    }
   });
 
   // UM EVENTLISTENER PRA CADA BOTÃO //
-
-  // eslint-disable-next-line no-shadow
-  const deletePopUp = () => {
+  const deletePopUp = (postId, post) => {
     const popUpContainer = document.createElement('div');
 
-    popUpContainer.innerHTML = ` 
+    popUpContainer.innerHTML = `
       <div class='popup-wrapper' data-popup>
           <div class='popup'>
             <div class='popup-content'>
               <h3>Tem certeza que deseja apagar esse post?</h3>
-                <button id='yes' data-delete class='yes answer'>DELETAR</button>
+                <button id='yes' data-confirm class='yes answer'>DELETAR</button>
                 <button id='no' data-cancel class='no answer'>CANCELAR</button>
-            </div>                
+            </div>
           </div>
         </div>
     `;
@@ -91,19 +111,17 @@ export const printPost = (post) => {
     const popUpWrapper = postTemplate.querySelector('.popup-wrapper');
     popUpWrapper.style.display = 'block';
 
-    const confirmButton = document.querySelector('[data-delete]');
-    confirmButton.addEventListener('click', (e) => {
-      const idDelete = e.target.dataset.delete;
-      console.log(idDelete);
-      deletePost(idDelete);
+    const confirmButton = document.querySelector('[data-confirm]');
+    confirmButton.addEventListener('click', () => {
+      deletePost(postId)
+        .then(post.remove());
+      popUpWrapper.style.display = 'none';
     });
 
     const cancelButton = document.querySelector('[data-cancel]');
     cancelButton.addEventListener('click', () => {
       popUpWrapper.style.display = 'none';
     });
-
-    return postTemplate;
   };
 
   btnDelete.addEventListener('click', () => {

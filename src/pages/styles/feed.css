@@ -1,6 +1,4 @@
-body,
-section,
-#bell {
+.background-color-main {
   background-color: #f0eae7;
 }
 
@@ -79,19 +77,12 @@ a {
   align-self: flex-end;
 } */
 
-input {
-  border-radius: 20px;
-  background: var(--color-white);
-  border: 1px solid var(--color-background);
-  box-shadow: 0px 4px 4px 0px #00000040;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: medium;
-  color: var(--color-gray);
-  padding: 5%;
-  margin: 1% 4%;
-  display: inline-flex;
-}
+.warn-input-add{
+  color: #fb1d30;
+  font-size: 0.8rem;
+  margin-bottom: 2vh;
+} 
+
 
 form {
   justify-content: center;
@@ -101,17 +92,17 @@ form {
 }
 
 .btn {
-  height: 53px;
-  width: 245px;
-  border-radius: 50px;
-  background: var(--color-primary);
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 20px;
-  letter-spacing: 0.0168em;
-  color: #ffd2bf;
-  margin: 0% 20% 3% 20%;
+    height: 5vh;
+    width: 17vh;
+    border-radius: 50px;
+    background: var(--color-primary);
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px;
+    letter-spacing: 0.0168em;
+    color: #FFD2BF;
+    margin: 0% 20% 3% 20%;
 }
 
 section#postTemplate {
