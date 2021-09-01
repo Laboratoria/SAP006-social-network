@@ -5,6 +5,7 @@ import signUpScreen from './pages/signUp/index.js';
 import profileInfo from './pages/profile/profileInfo.js';
 import myRecipes from './pages/profile/myRecipes.js';
 import addRecipe from './pages/AddRecipe/index.js';
+import resetPassword from './pages/resetPassword/index.js';
 
 const main = document.getElementById('root');
 
@@ -28,6 +29,9 @@ const routes = () => {
       break;
     case '#postRecipe':
       main.appendChild(addRecipe());
+      break;
+    case '#recuperarSenha':
+      main.appendChild(resetPassword());
       break;
     default:
       main.appendChild(loginScreen());

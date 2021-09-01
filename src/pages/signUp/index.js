@@ -5,23 +5,24 @@ export default () => {
   signUpScreenContainer.setAttribute('class', 'screenContainer');
 
   const signUpForm = `
-  <div class="div-width90 verticalCenter">
+  <div class="div-width90 flexRowReverse">
     <img class="logo" src="image/logotipo.png">
     
     <form id="signUp-form" class="initialForm">
       <h1 class="title">Criar conta</h1>
       
-      <input type="text" class="signUp-input" id="signUp-name" placeholder="Nome do usuário" data-required-message-error:"Escreva um nome de usuário" required>
+      <input type="text" class="signUp-input" id="signUp-name" placeholder="Nome do usuário" required>
       
-      <input type="email" class="signUp-input" id="signUp-email" placeholder="E-mail" minlength="6" data-required-message-error:"Escreva um email válido" required>
+      <input type="email" class="signUp-input" id="signUp-email" placeholder="E-mail" required>
     
-      <input type="password" class="signUp-input" id="signUp-password" placeholder="Senha (mín 6 caracteres)" required>
+      <input type="password" class="signUp-input" id="signUp-password" minlength="6" placeholder="Senha (mín 6 caracteres)" required>
     
       <input type="password" class="signUp-input" id="repeat-password" placeholder="Repita sua senha" required>
       <div id="notice" class="notice"> </div>
       
       <button type="button" id="btn-signUp" class="btn-login">Cadastrar</button>
       
+      <p id="loginAcc"> Já tem uma conta? <a href="#" class="ancor"> Entre </a> </p> 
     </form>
   </div>
   `;

@@ -4,3 +4,21 @@ coverage/
 node_modules/
 .yarn.lock
 package-lock.json
+src/image/food-with-ingredients.jpg
+src/image/42008.jpg
+src/image/table-with-some-vegetables.jpg
+src/image/table-with-some-vegetablesHorizontal.jpg
+src/anotacoes.txt
+src/image/table-with-some-vegetablesVertical.jpg
+src/image/tabua de legumes cleared.jpg
+firebase-debug.log
+.vscode/settings.json
+src/image/7(2).png
+src/image/8(2).png
+src/image/9(2).png
+src/image/11(2).png
+src/image/10(2).png
+src/image/12(2).png
+src/image/logo3.png
+src/image/Logotipo2.png
+src/image/ComidaLogotipo.png

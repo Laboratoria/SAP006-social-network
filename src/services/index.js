@@ -40,11 +40,31 @@ export const updateRecipeAuthorName = (name) => {
   });
 };
 
+export const updateRecipePost = (postID, ingredients, preparation,
+  time, difficulty, category, cost) => db.collection('recipes').doc(postID).update({
+  ingredientes: ingredients,
+  'modo de preparo': preparation,
+  'tempo de preparo': time,
+  dificuldade: difficulty,
+  categoria: category,
+  preco: cost,
+});
+
 export const updateUserDisplayName = (data) => firebase.auth().currentUser.updateProfile({
   displayName: data,
 }).then(() => updateRecipeAuthorName(data));
 
-export const updateUserAuthEmail = (data) => firebase.auth().currentUser.updateEmail(data);
+export const updateUserAuthEmail = (data) => firebase.auth().currentUser.updateEmail(data)
+  .then(() => {
+    const user = firebase.auth().currentUser;
+
+    // TODO(you): prompt the user to re-provide their sign-in credentials
+    const credential = promptForCredentials();
+
+    user.reauthenticateWithCredential(credential).then(() => {
+      // User re-authenticated.
+    });
+  });
 
 export const updateUserLevel = (data, uid) => db.collection('levels').doc(uid).set({
   level: data,
@@ -54,6 +74,7 @@ export const getUserLevel = (uid) => db.collection('levels').doc(uid).get();
 
 export const signUp = (email, password, signUpName) => firebase.auth()
   .createUserWithEmailAndPassword(email, password)
+  .then((credential) => updateUserLevel('Nível não selecionado', credential.user.uid))
   .then(() => updateUserDisplayName(signUpName))
   .then(() => setUserData())
   .then(() => updateUserLevel('Nível não selecionado', getUserData().uid))
@@ -68,22 +89,29 @@ export const signIn = (email, password) => firebase.auth()
 
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  return firebase.auth().signInWithPopup(provider);
+  return firebase.auth().signInWithPopup(provider)
+    .then((credentials) => {
+      setUserData();
+      const userInfo = credentials;
+      getUserLevel(userInfo.user.uid)
+        .then((userDoc) => {
+          let level = '';
+          if (userDoc.exists) {
+            level = userDoc.data().level;
+          } else {
+            level = 'Nível não selecionado';
+          }
+          return level;
+        })
+        .then((level) => {
+          localStorage.setItem('level', level);
+        });
+    });
 };
 
 export const signOut = () => firebase.auth().signOut();
 
-export const userData = (name, email, uid) => db.collection('users').doc(uid).set({
-  name,
-  email,
-  level: '',
-});
-
-export const postRecipe = (recipe) => db.collection('recipes').add({
-  likes: [],
-  comments: [],
-  ...recipe,
-});
+export const postRecipe = (recipe) => db.collection('recipes').add(recipe);
 
 export const loadRecipe = () => db.collection('recipes').get();
 
@@ -117,3 +145,5 @@ export const uploadFoodPhoto = (file) => {
   const task = storeageRef.put(file);
   return task;
 };
+
+export const resetPassword = (email) => firebase.auth().sendPasswordResetEmail(email);

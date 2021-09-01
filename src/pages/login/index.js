@@ -1,4 +1,4 @@
-import { signIn, signInWithGoogle, setUserData } from '../../services/index.js';
+import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -71,7 +71,6 @@ export default () => {
   function signInWithGoogleDom() {
     signInWithGoogle()
       .then(() => {
-        setUserData();
         window.location.hash = '#feed';
       })
       .catch((error) => {
