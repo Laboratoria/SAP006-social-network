@@ -1,4 +1,6 @@
-import { addPosts, loadPosts } from '../../services/database.js';
+import {
+  addPosts, loadPosts,
+} from '../../services/database.js';
 import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
 
@@ -21,13 +23,14 @@ export const Feed = () => {
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
       <form action="" id="published-form">
-        <input type="text" id="text-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
-        <p class="warn-input-add" hidden>Por favor, digite algo para compartilhar.</p>
+        <input type="text" id="text-post" class="space-post" placeholder="Mana, o que você quer compatilhar?">
+
         <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
    
-    <section class="get-post background-color-main" id="postTemplate"> 
+    <section class="get-post" id="postTemplate" data-section> 
+
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
     <nav class="navbar mobile-list">
@@ -50,6 +53,60 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
+  // likes:
+  // const datasection = rootElement.querySelector('[data-section]');
+  // datasection.addEventListener('click', (e) => {
+  //   const { target } = e;
+  //   const postId = target.dataset.like;
+  //   const userId = firebase.auth().currentUser.uid;
+  //   const likeIcon = rootElement.querySelector('[data-like]');
+  //   function sendLike() {
+  //     const numLikeArray = rootElement.querySelector('[data-numLike]');
+  //     let likesNumber = Number(numLikeArray.innerText);
+  //     // const likesElement = likesNumber;
+  //     getLikes(postId).then((post) => {
+  //       if (!post.data().likes.includes(userId)) {
+  //         likePost(userId, postId)
+  //           .then(() => {
+  //             likesNumber.innerText += likesNumber + 1;
+  //             likeIcon.classList.replace('far', 'fas');
+  //           })
+  //           .catch('error');
+  //       } else {
+  //         unlikePost(userId, postId)
+  //           .then(() => {
+  //             likesNumber += likesNumber - 1;
+  //             likeIcon.classList.replace('fas', 'far');
+  //           })
+  //           .catch('error');
+  //       }
+  //     });
+  //   }
+  //   if (target) { sendLike(); }
+  // });
+
+  // datasection.addEventListener('click', (e) => {
+  //   const { target } = e;
+  //   const likeId = target.dataset.like;
+  //   if (likeId) {
+  //     let numberLikesData = rootElement.querySelector(`[data-numLike='${likeId}']`);
+  //     const userId = firebase.auth().currentUser.uid;
+  //     const numberOfLikes = Number(numberLikesData.textContent);
+  //     console.log(numberOfLikes);
+  //     const heart = datasection.querySelector(`[data-like='${likeId}']`);
+
+  //     if (likeId.includes(userId)) {
+  //       numberLikesData.innerHTML = numberOfLikes + 1;
+  //       heart.src = '/src/img/heart-filled.png';
+  //       likePost(likeId);
+  //     } else {
+  //       numberLikesData.innerHTML = numberOfLikes - 1;
+  //       heart.src = 'src/img/heart.png';
+  //       likePost(likeId);
+  //     }
+  //   }
+  // });
+
   const logoutButton = rootElement.querySelector('.btn-logout');
   logoutButton.addEventListener('click', () => {
     logout();
@@ -67,7 +124,6 @@ export const Feed = () => {
       text,
       user_id: useruid,
       date: date.toLocaleString(),
-      // date: firebase.firestore.FieldValue.serverTimestamp(),
       likes: [],
       comments: [],
     };
@@ -90,7 +146,6 @@ export const Feed = () => {
       navbarBottom.classList.add('sticky');
     }
   }
-
   window.onscroll = stickyFilter();
 
   loadPosts()
