@@ -16,9 +16,7 @@ export const Feed = () => {
         </span>
       </button>
     </header>
-
     <button class="btn-logout">Logout</button>
-
     <hr class="line">
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
@@ -61,6 +59,7 @@ export const Feed = () => {
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
+    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
 
     const date = new Date();
@@ -100,6 +99,14 @@ export const Feed = () => {
         .forEach((post) => {
           printPost(post);
         });
+
+  // slider post
+  // const newPostBtn = document.querySelector('#new-post-btn');
+  // newPostBtn.addEventListener('click', () => {
+  //   container.classList.add("sign-up-mode");
+  // });
+    
     });
+  });
   return rootElement;
 };
