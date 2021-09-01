@@ -1,42 +1,43 @@
- export default () => {
-    const container = document.createElement("div");
+export default () => {
+  const container = document.createElement("div");
 
-    const template = `
-    <body>
+  const template = `
+    <h2>Ellas</h2>
+  <p>Uma filmografia repleta de mulheres incríveis para te inspirar!</p>
+    <link rel="stylesheet" href="style.CSS">
     <div class="container">
     <div class="card">
-      <h1>Cadastrar :</h1>
-      <div class="label-float">
-      <input type="text" id="nome" placeholder="">
-      <label for="nome">Nome Completo</label>
-    </div>
-    <div class="label-float">
-    <input type="text" id="email" placeholder="">
-    <label for="email">E-mail</label>
+    <h3>CRIAR UMA NOVA CONTA</h3>
+    <form method='post'>
+      <input required="required" autocomplete="off" type="text" placeholder="Insira seu nome" id="username"
+        class='login-area'>
+      <input required="required" autocomplete="off" type="email" placeholder="example@example.com" id="register-email"
+        class="login-area">
+      <input required="required" autocomplete="off" type="password" placeholder="Insira uma senha (Min. 6 digítos)"
+        id="register-password" class="login-area">
+      <div></div>
+      <button class="btn button-area" id="button-register">Cadastre-se</button>
+    </form>
   </div>
-  <div class="label-float"></div>
-  <input type="password" id="senha" placeholder="">
-  <label for="senha">Senha</label>
-  <div class="justify-center">
-    <button onclick = "cadastrar()">Cadastrar</button>
-  </div>
-  </body>
+  
   `;
 
-    container.innerHTML = template;
 
-    return container;
+  container.innerHTML = template;
+  
+  const name = container.querySelector("#username");
+  const email = container.querySelector('#register-email');
+  const password = container.querySelector('#register-password');
+  const registerBtn = container.querySelector('#button-register');
+
+  registerBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    registerLogin(email.value, password.value,
+      name.value);
+    });
+  return container;
 }
-// Js cadastro
 
-// let btn = document.querySelector(".fa-eye")
 
-// btn.addEventListener("click" , () => {
-//   let inputSenha = documen.querySelector("#senha")
-//   if(inputSenha.getAttribute("type") == "password"){
-//     inputSenha.setAttribute("type","text")
-//   }else{
-//     inputSenha.getAttribute("type" , "password")
-//   }
-// })
+  
 
