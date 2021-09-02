@@ -26,40 +26,30 @@ export default () => {
 
     `;
 
-  container.innerHTML = template;
-
+  container.innerHTML += template;
+  // const firebaseAuth = firebase.auth().currentUser;
   const postButton = container.querySelector('#post-button');
   const postMessage = container.querySelector('#post-message');
 
   postButton.addEventListener('click', () => {
+    // console.log(firebaseAuth);
     const postMsg = postMessage.value;
     // const addNewPost = container.querySelector('#add-new-post');
-    const firebaseAuth = firebase.auth().currentUser;
-    console.log(firebaseAuth.displayName);
-    const postInf = {
-      name: 'Jessica',
-      user: firebaseAuth,
-      message: postMsg,
-      data: (new Date()).toString().slice(4, 21),
-      like: [],
-
-    };
-
-    newPost(postInf)
-      .then((docRef) => {
-        console.log('Document written with ID: ', docRef.id);
-        postMessage.value = '';
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-        // let errorMessage = error.message;
-        // const errorMsg = document.querySelector('#error-message');
-        // if (postMessage === '') {
-        //   errorMessage = 'O post está vazio, não foi possivel publicar. Tente novamente';
-        //   errorMsg.innerHTML = errorMessage;
-        // }
-        // return error;
-      });
+    newPost(postMsg);
+    // .then((docRef) => {
+    //   console.log('Document written with ID: ', docRef.id);
+    //   postMessage.value = '';
+    // })
+    // .catch((error) => {
+    //   console.error('Error adding document: ', error);
+    // let errorMessage = error.message;
+    // const errorMsg = document.querySelector('#error-message');
+    // if (postMessage === '') {
+    //   errorMessage = 'O post está vazio, não foi possivel publicar. Tente novamente';
+    //   errorMsg.innerHTML = errorMessage;
+    // }
+    // return error;
+    // });
     //  addNewPost.innerHTML = postMsg;
   });
 
