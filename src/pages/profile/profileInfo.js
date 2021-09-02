@@ -3,32 +3,32 @@ import {
 }
   from '../../services/index.js';
 import profile from './index.js';
+import footer from '../../components/footer/index.js';
 
 export default () => {
   const profileInfoContainer = document.createElement('div');
   profileInfoContainer.append(profile());
   const profileSection = document.createElement('section');
   const profileInfoContent = `
-          <aside class="editProfileForm">
-            <div class="profileChangesDiv">
-              <form id="profileChanges">
-                <input id="name" placeholder="nome"></input>
-                <input id="email" placeholder="email"></input>
-                <select id="userLevel" name="level"> 
-                <option value="" selected disabled;>Nível de Cozinha:</option>
-                <option value="Queima-panela">Queima-panela</option>
-                <option value="Cotidiano">Cotidiano</option>
-                <option value="Amador(a)">Amador(a)</option>
-                <option value="Profissional/Chef">Profissional/Chef</option>
-                <option value="Master/Nível vovó">Master/Nível vovó</option>
-                </select>
-                <div id="notice"></div>
-                <button id="saveChanges" class="btn-logging">Salvar alterações</button>
-              </form>
-            </div>
-          <aside>
-  
-          `;
+    <aside class="editProfileForm">
+      <div class="profileChangesDiv">
+        <form id="profileChanges">
+          <input id="name" class="inputProfile" placeholder="nome"></input>
+          <input id="email" class="inputProfile" placeholder="email"></input>
+          <select id="userLevel" class="inputProfile" name="level"> 
+          <option value="" selected disabled;>Nível de Cozinha:</option>
+          <option value="Queima-panela">Queima-panela</option>
+          <option value="Cotidiano">Cotidiano</option>
+          <option value="Amador(a)">Amador(a)</option>
+          <option value="Profissional/Chef">Profissional/Chef</option>
+          <option value="Master/Nível vovó">Master/Nível vovó</option>
+          </select>
+          <div id="notice"></div>
+          <button id="saveChanges" class="saveChanges">Salvar alterações</button>
+        </form>
+      </div>
+    <aside>
+  `;
   profileSection.innerHTML = profileInfoContent;
   profileInfoContainer.append(profileSection);
 
@@ -80,5 +80,6 @@ export default () => {
     EditProfileDom();
   });
 
+  profileInfoContainer.append(footer());
   return profileInfoContainer;
 };
