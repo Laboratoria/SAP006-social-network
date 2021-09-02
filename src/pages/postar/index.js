@@ -91,6 +91,7 @@ export const postar = () => {
     const post = {
       data: new Date(),
       nome: firebase.auth().currentUser.displayName,
+      email: firebase.auth().currentUser.email,
       user_id: firebase.auth().currentUser.uid,
       image: firebase.auth().currentUser.photoURL,
       nomeLocalReceita: localPost, // inputs do post, como nome do lugar //

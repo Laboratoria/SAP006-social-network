@@ -24,10 +24,11 @@ window.addEventListener('load', () => {
   routeRender();
 });
 
-// const verUser = () => {
-//   if (firebase.auth().currentUser.uid !== data().user_id) {
-//     route('/login');
-//   }
-// };
+const verUser = () => {
+  if (localStorage.getItem.'email' = doc.data().);
+  ) {
+    route('/login');
+  }
+};
 
-// verUser();
+verUser();
