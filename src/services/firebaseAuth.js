@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 import { route } from '../routes/navigator.js';
-import { handleError, errorGoogle } from './error.js';
+import { handleError, errorGoogle, errorPassword } from './error.js';
 
 firebase.auth().useDeviceLanguage();
 
@@ -17,7 +17,12 @@ export const atualizarUsuario = (nome, photoProfile) => firebase.auth().currentU
 
 // ** SIGN IN E-MAIL AND PASSOWORD //
 export const SignIn = (usuario, passwordLogin) => {
-  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin);
+  return firebase.auth().signInWithEmailAndPassword(usuario, passwordLogin).then((result) => {
+    route('/home');
+    localStorage.setItem('displayName', result.user.displayName);
+    localStorage.setItem('email', result.user.email);
+  })
+    .catch((errorPassword));
 };
 
 // export const stayLogged = () => {
