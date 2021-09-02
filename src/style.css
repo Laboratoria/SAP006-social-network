@@ -22,10 +22,14 @@ input::placeholder {
 }
 
 .menu {
+  display: flex;
   position: fixed;
   top: auto;
   left: 0%;
+  flex-flow: column nowrap;
   width: 15%;
+  padding: 1%;
+  margin: 3% -2%;
 }
 .nav {
   padding: 0;
@@ -33,31 +37,25 @@ input::placeholder {
   list-style: none;
 }
 .links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
   background: #97cf6e;
   margin: 2% 5% 5% -1.5%;
   padding: 2%;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 35px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    border: none;
+  box-shadow: rgb(0 0 0 / 25%) 0px 30px 35px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+  border: none;
+  font-family: "Russo One", sans-serif;
 }
-.links a {
-  margin-left: 0;
-  text-decoration: none;
-  color: black;
-  font-size: 75%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  width: 100%;
-}
-.links a img {
-  padding: 2%;
+
+.links img {
+  padding: 5%;
   width: 13%;
 }
-.links a:hover {
-  color: rgba(95, 95, 95, 0.933);
+.links:hover {
+  background-color: rgba(95, 95, 95, 0.933);
 }
 
 /* @media 

@@ -3,21 +3,13 @@
   padding: 0;
 }
 .allPosts{
-  background-color: #96cf6e7c;
+  background-color: #c8f4a97c
+  ;
 }
 .logoHome {
-  margin-bottom: 8%;
-  width: 35%;
-  color: #fff;
+  margin-top: 40%;;
+  width: 50%;
 }
-.menu1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  width: 12%;
-  margin: 6% 0% 0% 0%;
-}
-
 .containerHome {
   background: #fffdfd;
   display: flex;
@@ -25,40 +17,6 @@
   justify-content: center;
   width: 50%;
   margin: -16% auto;
-}
-
-.buscar,
-.btn,
-.postar {
-  margin: 2% 5% 16% -1.5%;
-  padding: 10%;
-  border-radius: 15px;
-  margin-left: 0;
-  text-decoration: none;
-  color: black;
-  font-size: 89%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  font-family: "Russo One", sans-serif;
-  cursor: pointer;
-}
-
-.buscar,
-.btn {
-  background: #eeffe2;
-}
-
-.postar {
-  background-color: var(--green-color);
-}
-
-.tomato {
-  width: 25px;
-  height: 25px;
-  padding: 0px 13px 0px 0px;
 }
 
 .lines {
@@ -72,9 +30,9 @@
   padding-left: 0.9px;
 }
 
-#mercados,
-#receitas,
-#restaurantes {
+.mercados,
+.receitas,
+.restaurantes {
   border-radius: 10px;
   font-size: 100%;
   font-family: "Russo One", sans-serif;
@@ -86,19 +44,19 @@
   color: rgb(255, 255, 255);
   text-shadow: 1px 1px rgb(156, 155, 155);
 }
-#mercados {
+.mercados {
   background: #2ac2f3;
 }
-#receitas {
+.receitas {
   background: #ff7171;
 }
-#restaurantes {
+.restaurantes {
   background: #f3b949;
 }
 
-#restaurantes:hover,
-#receitas:hover,
-#mercados:hover {
+.restaurantes:hover,
+.receitas:hover,
+.mercados:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
@@ -123,7 +81,7 @@
   flex-direction: row;
 }
 .price {
-  color: #fc0;
+  color:  #f3b949;
   font-size: 1.5rem;
   margin: 2% 0% 0% 0%;
 }
@@ -274,24 +232,34 @@
     justify-content: center;
     font-size: 50%;
   }
-  .logoHome {
-    width: 70%;
-  }
-  .menu1 {
-    width: 20%;
-    margin: 6% 0% 0% 0%;
-  }
+ .logoHome{
+   width: 50%;
+ }
   .containerHome {
-    width: 50%;
+    width: 80%;
     margin: -30% auto;
   }
-  .delete-button, .edit-button {
-    margin: 30% 3% 1% 80%;
+  .delete-button,
+  .edit-button {
     width: 60px;
   }
- 
-  .tipo{
-    align-self: flex-end;
+  .botoes {
+    display: flex;
+    /* justify-content: space-evenly; */
+    width: 100%;
   }
-
+  .tipo {
+    display: flex;
+    align-self: flex-end;
+    font-size: 12px;
+  }
+  .title{
+    font-size: 18px;
+  }
+  .descr{
+    font-size: 14px;
+  }
+  .data {
+    font-size: 15px;
+  }
 }
