@@ -32,6 +32,7 @@ export const Feed = () => {
     <section class="get-post background-color-main" data-postcontainer id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
+
     <nav class="navbar mobile-list">
       <ul>
         <li>
@@ -52,6 +53,8 @@ export const Feed = () => {
 
   rootElement.innerHTML = container;
 
+  const postTemplate = rootElement.querySelector('#postTemplate');
+
   const logoutButton = rootElement.querySelector('.btn-logout');
   logoutButton.addEventListener('click', () => {
     logout();
@@ -59,7 +62,6 @@ export const Feed = () => {
 
   const submitButton = rootElement.querySelector('#published-form');
   submitButton.addEventListener('submit', (event) => {
-    const postContainer = postTemplate.querySelector('[data-container]');
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
     const useruid = firebase.auth().currentUser.uid;
@@ -78,13 +80,34 @@ export const Feed = () => {
       textValidationAddPost.hidden = false;
     } else {
       textValidationAddPost.hidden = true;
-      addPosts(post);
+      addPosts(post)
+        .then((doc) => {
+          const objPost = {
+            id: doc.id,
+            ...post,
+          };
+          const element = printPost(objPost);
+          postTemplate.prepend(element);
+        });
     }
   });
 
-  loadPosts().then((snap) => {
-    printPost(snap);
-  });
+  loadPosts()
+    .then((snap) => {
+      snap.forEach((doc) => {
+        const post = {
+          id: doc.id,
+          text: doc.data().text,
+          user_id: doc.data().user_id,
+          likes: doc.data().likes,
+          date: doc.data().date,
+          comments: doc.data().comments,
+        };
+
+        const print = printPost(post);
+        postTemplate.appendChild(print);
+      });
+    });
 
   const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
@@ -97,3 +120,5 @@ export const Feed = () => {
 
   return rootElement;
 };
+
+// prepend para colocar post no inicio
