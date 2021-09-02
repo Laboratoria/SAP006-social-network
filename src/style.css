@@ -494,19 +494,6 @@ background-color: var(--coral-haze);
 
 /* final do header */
 
-
-/* ========================================  FOOTER ===================================== */
-
-footer {
-  position: fixed;
-  /* left: 0; */
-  bottom: 0;
-  width: 100%;
-  background-color:gray;
-  height: 20px;
-  text-align: center;
-}
-
 /* =================================  Página de feed: =================================== */
 
 .div-recipe {
