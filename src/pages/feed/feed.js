@@ -23,7 +23,7 @@ export const Feed = () => {
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
       <form action="" id="published-form">
-        <input type="text" id="text-post" class="space-post" placeholder="Mana, o que você quer compatilhar?">
+        <input type="text" id="text-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
         <p class="warn-input-add" hidden>Por favor, digite algo para compartilhar.</p>
         <button class="btn" id="send-post">Enviar</button>
       </form>
