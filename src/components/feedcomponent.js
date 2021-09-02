@@ -84,7 +84,8 @@ export const printPost = (snap) => {
       deletePopUp(postId, postContainer);
     }
     if (likeButton) {
-      const likeIcon = e.target.dataset.like;
+      const likeIcn = target.dataset.like;
+      console.log(likeIcon);
       sendLike(likeIcon, userId, likeButton);
     }
   });
