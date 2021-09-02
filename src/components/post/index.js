@@ -97,5 +97,3 @@ export function addPost(post) {
 
   return postContainer;
 }
-
-// comentario
