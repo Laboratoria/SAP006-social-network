@@ -1,45 +1,47 @@
 export default () => {
-  console.log("cadastro")
+  console.log("cadastro");
   const container = document.createElement("div");
 
   const template = `
     <h2>Ellas</h2>
-  <p>Uma filmografia repleta de mulheres incríveis para te inspirar!</p>
+    <p>Uma filmografia repleta de mulheres incríveis para te inspirar!</p>
     <link rel="stylesheet" href="style.CSS">
     <div class="container">
-    <div class="card">
-    <h3>CRIAR UMA NOVA CONTA</h3>
-    <form>
-      <input required="required" autocomplete="off" type="text" placeholder="Insira seu nome" id="username"
-        class='login-area'>
-      <input required="required" autocomplete="off" type="email" placeholder="example@example.com" id="register-email"
-        class="login-area">
-      <input required="required" autocomplete="off" type="password" placeholder="Insira uma senha (Min. 6 digítos)"
-        id="register-password" class="login-area">
-      <div></div>
-      <button class="btn button-area" id="button-register">Cadastre-se</button>
-    </form>
-  </div>
-  
+      <div class="card">
+        <h3>CRIAR UMA NOVA CONTA</h3>
+        <form>
+          <input required="required" autocomplete="off" type="text" placeholder="Insira seu nome" id="username"
+          class='login-area'>
+          <input required="required" autocomplete="off" type="email" placeholder="example@example.com" id="register-email"
+          class="login-area">
+          <input required="required" autocomplete="off" type="password" placeholder="Insira uma senha (Min. 6 digítos)"
+          id="register-password" class="login-area">
+          <div></div>
+          <button class="btn button-area" id="button-register">Cadastre-se</button>
+        </form>
+      </div>
+    </div>  
   `;
 
+  // <div class="label-float"></div>
+  // <input type="password" id="senha" placeholder="">
+  // <label for="senha">Senha</label>
+  // <div class="justify-center">
+  //   <button onclick="cadastro()">Cadastrar</button>
+  // </div>
+  // </body>
 
   container.innerHTML = template;
-  
+
   const name = container.querySelector("#username");
-  const email = container.querySelector('#register-email');
-  const password = container.querySelector('#register-password');
-  const registerBtn = container.querySelector('#button-register');
+  const email = container.querySelector("#register-email");
+  const password = container.querySelector("#register-password");
+  const registerBtn = container.querySelector("#button-register");
 
-  registerBtn.addEventListener('click', (event) => {
+  registerBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log('click')
-    registerLogin(email.value, password.value,
-      name.value);
-    });
+    console.log("click");
+    registerLogin(email.value, password.value, name.value);
+  });
   return container;
-}
-
-
-  
-
+};
