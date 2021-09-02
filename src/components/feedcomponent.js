@@ -46,7 +46,7 @@ export const printPost = (snap) => {
          
           </div>
           <section class="actions" data-section>
-            <p data-numLike='numLike-${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
+            <p data-numLike='${post.id}' class='numLikes'>${post.data().likes.length || 0}</p>
             <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
           </section>
         </div>
@@ -73,7 +73,7 @@ export const printPost = (snap) => {
     const editButton = target.dataset.edit;
     const saveButton = target.dataset.save;
     const deleteButton = target.dataset.delete;
-    const likeButton = postTemplate.querySelector('[data-like]');
+    const likeButton = target.dataset.like;
 
     const postText = target.parentNode.parentNode.parentNode.parentNode.querySelector('[data-textpost]');
 
@@ -91,8 +91,10 @@ export const printPost = (snap) => {
       deletePopUp(postId, postContainer);
     }
     if (likeButton) {
-      const likeIcon = e.target.dataset.like;
-      sendLike(likeIcon, userId, likeButton);
+      const likeId = e.target.dataset.like;
+      const likeCount = postTemplate.querySelector(`[data-numLike="${likeId}"]`);
+      const likeIcon = postTemplate.querySelector(`.btn-like i[data-like="${likeId}"]`);
+      sendLike(likeId, userId, likeCount, likeIcon);
     }
   });
 };
