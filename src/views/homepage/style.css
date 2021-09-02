@@ -137,7 +137,6 @@ textarea {
   right: 140%;
   color: var(--white-color);
   cursor: pointer;
-  font-family: inherit;
   height: auto;
 }
 
@@ -314,44 +313,6 @@ textarea {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-  color: var(--orange-color);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.delete-confirm:hover,
-.close-button:hover {
-  cursor: pointer;
-}
-
-.delete-confirm:hover {
-  background: var(--orange-light-color);
-  transition: 0.5s;
-}
-
-.close-button:hover {
-  background: var(--orange-light-color);
-  transition: 0.5s;
-}
-
-.delete-confirm, .close-button {
-  background: var(--orange-color);
-  width: auto;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.delete-container {
-  justify-content: center;
-  width: 100%;
-} 
-
 .close-button {
   background: var(--white-color);
   border: 1px solid var(--orange-color);
@@ -373,6 +334,44 @@ textarea {
   position: relative;
   bottom: 83%;
   right: 8%;
+}
+
+.delete-confirm, .close-button {
+  background: var(--orange-color);
+  width: auto;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.delete-container {
+  justify-content: center;
+  width: 100%;
+} 
+
+.close:hover,
+.close:focus {
+  color: var(--orange-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-confirm:hover,
+.close-button:hover {
+  cursor: pointer;
+}
+
+.delete-confirm:hover {
+  background: var(--orange-light-color);
+  transition: 0.5s;
+}
+
+.close-button:hover {
+  background: var(--orange-light-color);
+  transition: 0.5s;
 }
 
 @media(min-width: 1024px) {
