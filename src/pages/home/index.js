@@ -89,7 +89,11 @@ export const home = () => {
           <span class="price" contenteditable="false" id="price" data-preco="${doc.id}">${doc.data().preco}</span>
          
           </div>
-      
+          <div class="coments" id="coments">
+            <textarea class='addComent' data-item='add-comment' placeholder='Escreva um comentário!'></textarea>
+            <button class="more" id="more">ver mais</button>
+            <button class ='goComent' id='goComent' img class='addCom' src='./img/addCom.svg' data-item='comment'/>enviar comentário</button>
+          </div>
             <hr> `;
 
       timeline.insertBefore(div, timeline.childNodes[0]);
@@ -160,4 +164,6 @@ export const home = () => {
     });
   });
   return rootElement;
+
 };
+
