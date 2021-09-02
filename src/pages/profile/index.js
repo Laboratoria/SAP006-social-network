@@ -1,5 +1,4 @@
 import header from '../../components/header/index.js';
-import footer from '../../components/footer/index.js';
 
 export default () => {
   const perfilContainer = document.createElement('div');
@@ -30,6 +29,6 @@ export default () => {
   // perfilContainer.innerHTML = perfilContent;
   perfilSection.innerHTML = perfilContent;
   perfilContainer.append(perfilSection);
-  perfilContainer.append(footer());
+
   return perfilContainer;
 };
