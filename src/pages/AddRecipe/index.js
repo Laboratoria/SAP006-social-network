@@ -1,6 +1,5 @@
 import { postRecipe } from '../../services/index.js';
 import header from '../../components/header/index.js';
-import footer from '../../components/footer/index.js';
 
 export default () => {
   const addRecipeContainer = document.createElement('div');
@@ -170,6 +169,5 @@ export default () => {
     window.location.hash = '#feed';
   });
 
-  addRecipeContainer.append(footer());
   return addRecipeContainer;
 };
