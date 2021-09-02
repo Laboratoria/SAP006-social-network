@@ -9,18 +9,14 @@ import { modal } from './modal.js';
 export const home = () => {
   const rootElement = document.createElement('div');
   rootElement.innerHTML = ` 
-  <nav class="menu1">
-  <a class="buscar" href="">Buscar</a>
- 
-  <div class="goPost">
- 
-  <a id="goPost" class="postar" href="" <img class="tomato" src="./img/tomato.svg"> postar</a>
-  </div>
-  <button class='btn' id='btnLogout'>Sair</button>
-</nav>
+  <nav class="menu">
+   <button class="links" href=""><img src="./img/lupa.svg"> Buscar</button>
+   <button class="links" id="goPost"><img src="./img/tomato.svg"> Postar</button>
+   <button class="links" id="btnLogout"> Sair</button>
+  </nav>
   <div class="containerHome">
   <header>
-  <img class='logoHome' src="./img/govegGreen.png"/>
+  <img class="logoHome" src="./img/govegGreen.png">
   <div class="lines">
   <hr>
   </div>
@@ -36,7 +32,7 @@ export const home = () => {
   
   </header>
   <main>
-    <div class="publish" id='timeline' data-post>
+    <div class="publish" id="timeline" data-post>
     </div>
  
   </main>

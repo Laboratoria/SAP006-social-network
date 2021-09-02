@@ -10,12 +10,9 @@ export const postar = () => {
     <div class="containerPost">
     <header>
      <nav class="menu">
-     <ul class="nav" id="nav">
-       <li class="links"><a href=""><img src="./img/lupa.svg">Busca</a></li>
-       <li class="links"><a href=""><img src="./img/perfil.svg">Perfil</a></li>
-       <button class="links" id="btnHome"><img class="imgHome" src="./img/home.svg">  Home</button>
-      <li class="links" id="btnHome"><a href=""><img src="./img/home.svg">p Inicial</a></li>
-     </ul>
+      <button class="links"><img src="./img/lupa.svg">Busca</button>
+      <button class="links"><img src="./img/perfil.svg">Perfil</button>
+      <button class="links" id="btnHome"><img class="imgHome" src="./img/home.svg">Home</button>
      </nav>
     </header>
      <main class="boxInputs">
