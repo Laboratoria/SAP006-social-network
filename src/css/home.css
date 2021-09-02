@@ -2,7 +2,9 @@
   margin: 0;
   padding: 0;
 }
-
+.allPosts{
+  background-color: #96cf6e7c;
+}
 .logoHome {
   margin-bottom: 8%;
   width: 35%;
@@ -70,44 +72,6 @@
   padding-left: 0.9px;
 }
 
-@media (max-width: 500px) {
-  .filters {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    padding: 2% 13%;
-  }
-  .receitas,
-  .mercado,
-  .restaurante {
-    justify-content: center;
-    font-size: 50%;
-  }
-  .logoHome {
-    width: 70%;
-  }
-  .menu1 {
-    width: 20%;
-    margin: 6% 0% 0% 0%;
-  }
-  .containerHome {
-    width: 50%;
-    margin: -30% auto;
-  }
-  .delete-button, .edit-button {
-    margin: 30% 3% 1% 80%;
-    width: 60px;
-  }
-  /* .botoes {
-    justify-content: space-between;
-    width: 100%;
-  } */
-  .tipo{
-    align-self: flex-end;
-  }
-
-}
-
 #mercados,
 #receitas,
 #restaurantes {
@@ -141,14 +105,13 @@
 
 .botoes {
   display: flex;
-  /* flex-direction: row; */
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
 }
 
 .like {
   border: none;
-  margin: 0% -22% 0% 0%;
+  margin: 0% -15% 0% 0%;
   cursor: pointer;
   text-decoration: none;
   background: none;
@@ -173,14 +136,17 @@
 
 .coments {
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
+  width: 100%;
+  margin: auto;
 }
 
 .addComent {
-  width: 70%;
-  height: 50%;
-  align-items: right;
-  margin: 5px;
+  text-align: center;
+  resize: none;
+  width: 90%;
+  margin: 2%;
+  padding: 2%;
 }
 
 .more {
@@ -190,16 +156,18 @@
   box-shadow: none;
   background: none;
   color: #939393;
-
   cursor: pointer;
   display: inline-block;
 }
 .addCom {
+  text-align: center;
+  border: solid 1px #939393;
   width: 25px;
   height: 25px;
 }
 
 .goComent {
+  font-family: "Russo One", sans-serif;
   font-size: 15px;
   justify-content: space-evenly;
   border: none;
@@ -207,61 +175,80 @@
   background: none;
   cursor: pointer;
 }
-
-.imgUser {
-  width: 15%;
-  height: 15%;
-  border-radius: 50%;
+.goComent img {
+ width: 100%;
 }
 
-.user {
-  font-size: 20px;
-  color: var(--green-color);
-  margin: 0;
-}
-
-.data-locations {
+.headPost{
+  background-color:#97cf6e;
+  border-bottom-right-radius: 40%;
+  border-bottom-left-radius: 40%;
   display: flex;
-  width: 100%;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 2%;
+  justify-content: center;
+  margin-top: 0;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
 }
-
-.locations {
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
-  color: #828796;
-  margin: 0;
+.imgUser {
+  padding: 2%;
+  margin-left: 22%;
+  width: 15%;
+  border-radius: 20%;
+}
+.user {
+  font-size: 24px;
+  margin: auto;
 }
 .data {
-  font-size: 15px;
+  font-size: 20px;
   font-family: "Roboto", sans-serif;
-  color: #828796;
-  margin: 0;
+  color: #000000;
+  margin: auto;
 }
-
-.fotoPerfil {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.user-data{
+  margin-right: 15%;
+  width: 100%;
 }
-
+.title {
+  font-size: 23px;
+  padding-bottom: 1%;
+  width: 70%;
+  border-bottom: solid 2px #000;
+}
+.descr{
+  margin: 3%;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.hashs {
+  font-size: 15px;
+}
 .delete-edit {
   display: flex;
-  flex-direction: column;
-  margin: -3% 0 -2% 80%;
-  width: 13%;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
 }
 
 .delete-button, .edit-button, .savEdit-button{
+  margin: 5%;
+  padding: 2%;
+  font-weight: bold;
   font-size: 15px;
   font-family: "Roboto", sans-serif;
-  color: #6f727a;
-  background-color: #96979431;
+  color: #3e3e3f;
+  background-color: #6c946e52;
   box-shadow: 0px 3px 4px rgba(73, 73, 73, 0.25);
   border: none;
   border-radius: 5px;
   text-align: center;
   justify-content: center;
   cursor: pointer;
+}
+.delete-button:hover, .edit-button:hover, .savEdit-button:hover{
+  background-color: #6c946e98;
 }
 
 .tipo {
@@ -272,4 +259,39 @@
   width: 25%;
   right: 10%;
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .filters {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding: 2% 13%;
+  }
+  .receitas,
+  .mercado,
+  .restaurante {
+    justify-content: center;
+    font-size: 50%;
+  }
+  .logoHome {
+    width: 70%;
+  }
+  .menu1 {
+    width: 20%;
+    margin: 6% 0% 0% 0%;
+  }
+  .containerHome {
+    width: 50%;
+    margin: -30% auto;
+  }
+  .delete-button, .edit-button {
+    margin: 30% 3% 1% 80%;
+    width: 60px;
+  }
+ 
+  .tipo{
+    align-self: flex-end;
+  }
+
 }

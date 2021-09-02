@@ -1,4 +1,3 @@
-/* eslint-disable eol-last */
 import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import {
@@ -59,42 +58,39 @@ export const home = () => {
       const div = document.createElement('div');
       const timeline = rootElement.querySelector('#timeline');
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
-          
-      <div class='fotoPerfil'>
-          <img src=${doc.data().image} class='imgUser'> 
-          <div class="user-data"> 
-            <p class="user"> ${doc.data().nome}</p>
-          <div class='data-locations'>
-            <p class="locations" contenteditable="false" data-title="${doc.id}">${doc.data().nomeLocalReceita}</p> 
-            <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
-          </div>
-          </div>
-      </div>   
-                   
-    ${firebase.auth().currentUser.uid === doc.data().user_id
+      <div class="headPost">  
+        <img src=${doc.data().image} class='imgUser'> 
+      <div class="user-data"> 
+        <p class="user"> ${doc.data().nome}</p>
+        <p class="data">• ${doc.data().data.toDate().toLocaleDateString()} •</p>
+      </div>
+      </div> 
+      ${firebase.auth().currentUser.uid === doc.data().user_id
     ? `<div class="delete-edit">
-        <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
-       <button type="button" class="edit-button" data-edit="${doc.id}">Editar</button>
-       <button type="button" style="display: none;" class="savEdit-button" data-savedits="${doc.id}"> Salvar</button>
-      </div>`
-    : ''}
+            <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
+           <button type="button" class="edit-button" data-edit="${doc.id}">Editar</button>
+           <button type="button" style="display: none;" class="savEdit-button" data-savedits="${doc.id}"> Salvar</button>
+          </div>`
+    : ''}  
+      <p class="title" contenteditable="false" data-title="${doc.id}">${doc.data().nomeLocalReceita}</p> 
+    
          
-          <p class="descr" contenteditable="false" data-text="${doc.id}">${doc.data().descricao}</p> 
-          <p class="hashs" contenteditable="false" data-hashs="${doc.id}">${doc.data().hashTags}</p>
-        
-          <div class='botoes'> 
-          <p class="tipo" contenteditable="false" data-tag="${doc.id}"> ${doc.data().tipo} </p>
-          <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"></button>
-          <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
-          <span class="price" contenteditable="false" id="price" data-preco="${doc.id}">${doc.data().preco}</span>
+      <p class="descr" contenteditable="false" data-text="${doc.id}">${doc.data().descricao}</p> 
+      <p class="hashs" contenteditable="false" data-hashs="${doc.id}">${doc.data().hashTags}</p>
          
-          </div>
-          <div class="coments" id="coments">
-            <textarea class='addComent' data-item='add-comment' placeholder='Escreva um comentário!'></textarea>
-            <button class="more" id="more">ver mais</button>
-            <button class ='goComent' id='goComent' img class='addCom' src='./img/addCom.svg' data-item='comment'/>enviar comentário</button>
-          </div>
-            <hr> `;
+      <div class='botoes'> 
+      <p class="tipo" contenteditable="false" data-tag="${doc.id}"> ${doc.data().tipo} </p>
+      <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"></button>
+      <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
+      <span class="price" contenteditable="false" id="price" data-preco="${doc.id}">${doc.data().preco}</span>
+      </div>
+
+      <div class="coments" id="coments">
+        <textarea class='addComent' data-item='add-comment' placeholder='Escreva um comentário!'></textarea>
+        <button class="more" id="more">ver mais</button>
+        <button class ='goComent' id='goComent' img class='addCom' src='./img/addCom.svg' data-item='comment'/>enviar comentário</button>
+      </div>
+        <hr> `;
 
       timeline.insertBefore(div, timeline.childNodes[0]);
     });
@@ -139,6 +135,7 @@ export const home = () => {
           const editElements = post.querySelectorAll('[contenteditable="false"]');
           editElements.forEach((elemento) => {
             elemento.setAttribute('contenteditable', true);
+            // eslint-disable-next-line no-param-reassign
             elemento.style.border = 'solid 2px #51fa02';
           });
         });
@@ -154,6 +151,7 @@ export const home = () => {
             const editElements = post.querySelectorAll('[contenteditable="true"]');
             editElements.forEach((elemento) => {
               elemento.setAttribute('contenteditable', false);
+              // eslint-disable-next-line no-param-reassign
               elemento.style.border = 'none';
             });
             editPosts(tagType, title, hashtags, priceTag,
@@ -164,6 +162,4 @@ export const home = () => {
     });
   });
   return rootElement;
-
 };
-
