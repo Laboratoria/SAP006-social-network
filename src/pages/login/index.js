@@ -19,8 +19,8 @@ export default () => {
           <input type="password" name="password" id="password-user"><br>
         </form> 
         <div class="button">
-          <button id="login-button" class="login-button">Login</button>  <br>
-          <button id="google-button" class="google-button" ><img src="img/google-logo.png" alt=""></button>
+          <button id="login-button" class="login-button">Login</button><br>
+          <button id="google-button" class="google-button"><img src="img/google-logo.png" alt=""></button>
         </div>
         <div> 
           <hr> 
