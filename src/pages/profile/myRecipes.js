@@ -1,4 +1,5 @@
 import profile from './index.js';
+import footer from '../../components/footer/index.js';
 import { addPost } from '../../components/post/index.js';
 import { getUserData, loadRecipe } from '../../services/index.js';
 
@@ -23,8 +24,12 @@ export default () => {
           </div>
         `;
       }
+    })
+    .then(() => {
+      myRecipesContainer.append(footer());
     });
 
   myRecipesContainer.append(myRecipesSection);
+
   return myRecipesContainer;
 };

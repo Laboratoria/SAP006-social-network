@@ -10,6 +10,7 @@ export default () => {
   feedContainer.append(header());
 
   const feedSection = document.createElement('section');
+  feedSection.setAttribute('class', 'feedSection');
 
   feedSection.innerHTML = `
     <h2 id="recipes-title" class="title">Receitas</h2>
@@ -24,10 +25,12 @@ export default () => {
       querySnapshot.forEach((post) => {
         feedSection.append(addPost(post));
       });
+    })
+    .then(() => {
+      feedContainer.append(footer());
     });
 
   feedContainer.append(feedSection);
 
-  feedContainer.append(footer());
   return feedContainer;
 };
