@@ -11,16 +11,15 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  --green-color: #97CF6E;
+  --green-color: #97cf6e;
 
- /* input::placeholder {
+  /* input::placeholder {
     color: rgb(0, 0, 0); */
 }
 
 input::placeholder {
   color: rgb(0, 0, 0);
 }
-
 
 .menu {
   position: fixed;
@@ -41,6 +40,7 @@ input::placeholder {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 35px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border: none;
 }
 .links a {
   margin-left: 0;

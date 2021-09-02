@@ -13,8 +13,8 @@ export const postar = () => {
      <ul class="nav" id="nav">
        <li class="links"><a href=""><img src="./img/lupa.svg">Busca</a></li>
        <li class="links"><a href=""><img src="./img/perfil.svg">Perfil</a></li>
-       <button class="links" id="btnHome"><img src="./img/home.svg">Página Inicial</button>
-      <li class="links"><a href=""><img src="./img/home.svg">p Inicial</a></li>
+       <button class="links" id="btnHome"><img class="imgHome" src="./img/home.svg">  Home</button>
+      <li class="links" id="btnHome"><a href=""><img src="./img/home.svg">p Inicial</a></li>
      </ul>
      </nav>
     </header>
@@ -30,10 +30,10 @@ export const postar = () => {
      <div class="titleType">
      <p id="type">selecione uma tag acima</p>
      <input type="text" id="typePost" name="typePost" placeholder="Local"/>
-     <p id="errorType"></p>
+     <p id="errorType" class="error"></p>
      </div>
      <input type:"text" id="hashtags" class="hashtags" name="hashtags" placeholder="#pizza #sp #vegano"/>
-     <p id="errorHashtags"></p>
+     <p id="errorHashtags" class="error"></p>
      
      <div class="addPrice">
       <label class="low"> 
@@ -44,10 +44,11 @@ export const postar = () => {
       </div>
 
      <textarea class="addText" id="addText" placeholder="Conte sua experiência aos amigos!" style="resize:none"></textarea>
-     <p id="errorDesc"></p>
+     <p id="errorDesc" class="error"></p>
       <div class="publicar-cancelar">
+      <button class="btnCancel" id="btnCancel">Cancelar</button>
         <button class="sendPost" id="sendPost">Publicar</button>
-        <button class="btnCancel" id="btnCancel">Cancelar</button>
+
       </div>
      </main>
     </div>

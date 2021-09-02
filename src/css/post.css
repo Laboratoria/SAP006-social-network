@@ -3,17 +3,19 @@
   color: #FC0;
 } */
 
-
 /* .low input:checked + label {
   background-color: #ffd600;
   color: #ffd600;
 } */
 
-
 /* #low:checked + .low {
   background-color: #ffd600;
   color: #ffd600;
 } */
+
+.imgHome{
+  width: 17%
+}
 
 .boxInputs {
   display: flex;
@@ -136,13 +138,14 @@
 }
 .publicar-cancelar {
   display: flex;
+  width: 100%;
   justify-content: space-between;
- }
+}
 
- .sendPost, .btnCancel {
+.sendPost,
+.btnCancel {
   margin: 2% auto 5% auto;
   justify-content: space-between;
-  /* width: 30%; */
   font-family: "Russo One", sans-serif;
   font-size: 100%;
   background: #97cf6e;
@@ -153,15 +156,22 @@
     rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
-.sendPost:hover{
-  color: rgba(95, 95, 95, 0.933)
-};
-
-
-.btnCancel {
-background-color: blanchedalmond;
+.sendPost:hover {
+  color: rgba(77, 74, 74, 0.933);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; 
 }
 
-.btnCancel:hover{
-  background-color: #97cf6e;
-};
+.btnCancel {
+  background-color: #cbc8c3;
+}
+
+.btnCancel:hover {
+  color: rgba(77, 74, 74, 0.933);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+  rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.error{
+  color:#ff7171;
+}

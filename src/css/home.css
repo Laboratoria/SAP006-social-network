@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.logoHome{
+.logoHome {
   margin-bottom: 8%;
   width: 35%;
   color: #fff;
@@ -14,8 +14,6 @@
   justify-content: left;
   width: 12%;
   margin: 6% 0% 0% 0%;
-  /* padding: 2% 2%; */
-
 }
 
 .containerHome {
@@ -27,7 +25,9 @@
   margin: -16% auto;
 }
 
-.buscar, .btn, .postar {
+.buscar,
+.btn,
+.postar {
   margin: 2% 5% 16% -1.5%;
   padding: 10%;
   border-radius: 15px;
@@ -44,8 +44,9 @@
   cursor: pointer;
 }
 
-.buscar, .btn {
-  background: #EEFFE2;
+.buscar,
+.btn {
+  background: #eeffe2;
 }
 
 .postar {
@@ -61,36 +62,51 @@
 .lines {
   margin: 1% auto;
   width: 100%;
- }
+}
 
 .filters {
   display: flex;
- justify-content: space-evenly;
-  /* flex-flow: row nowrap; */
-  /* justify-content: center; */
+  justify-content: space-evenly;
   padding-left: 0.9px;
-  /* padding: 0px 0.5px 0px; */
- 
 }
 
-@media (max-width: 500px){
+@media (max-width: 500px) {
   .filters {
-   display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  padding: 2% 14%;
-}
-}
-
-@media (max-width: 500px){
-  .receitas, 
-  .mercado, 
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding: 2% 13%;
+  }
+  .receitas,
+  .mercado,
   .restaurante {
     justify-content: center;
-    font-size:50%;
+    font-size: 50%;
   }
-}
+  .logoHome {
+    width: 70%;
+  }
+  .menu1 {
+    width: 20%;
+    margin: 6% 0% 0% 0%;
+  }
+  .containerHome {
+    width: 50%;
+    margin: -30% auto;
+  }
+  .delete-button, .edit-button {
+    margin: 30% 3% 1% 80%;
+    width: 60px;
+  }
+  /* .botoes {
+    justify-content: space-between;
+    width: 100%;
+  } */
+  .tipo{
+    align-self: flex-end;
+  }
 
+}
 
 #mercados,
 #receitas,
@@ -110,7 +126,7 @@
   background: #2ac2f3;
 }
 #receitas {
-  background: #FF7171;
+  background: #ff7171;
 }
 #restaurantes {
   background: #f3b949;
@@ -123,17 +139,14 @@
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.botoes{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   width: 100%;
+.botoes {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+  width: 100%;
 }
 
-
 .like {
- /* width: 30px;
-  height: 30px; */
   border: none;
   margin: 0% -22% 0% 0%;
   cursor: pointer;
@@ -142,27 +155,25 @@
   box-shadow: none;
 }
 
-.addPrice{
+.addPrice {
   display: flex;
   flex-direction: row;
 }
-.price{
-  /* border: none;
-  background: none; */
-  color: #FC0;
+.price {
+  color: #fc0;
   font-size: 1.5rem;
-  margin: 2% 0% 0% 0%
+  margin: 2% 0% 0% 0%;
 }
 
-.likePrice, .likeImg{
+.likePrice,
+.likeImg {
   width: 25px;
   height: 25px;
 }
 
-.coments{
+.coments {
   display: flex;
   flex-direction: column;
-  /* flex-direction: row; */
 }
 
 .addComent {
@@ -170,99 +181,74 @@
   height: 50%;
   align-items: right;
   margin: 5px;
-
 }
 
-.more{
+.more {
   border: none;
   font-size: 15px;
   text-decoration: none;
   box-shadow: none;
   background: none;
-  color:#939393;
+  color: #939393;
 
-  cursor:pointer;
-  display:inline-block;
-
+  cursor: pointer;
+  display: inline-block;
 }
-.addCom{
+.addCom {
   width: 25px;
   height: 25px;
 }
 
-.goComent{
-  /* width: 200px;
-  height: 30px; */
+.goComent {
   font-size: 15px;
   justify-content: space-evenly;
   border: none;
-  color:#939393;
+  color: #939393;
   background: none;
   cursor: pointer;
-  
 }
 
 .imgUser {
   width: 15%;
   height: 15%;
   border-radius: 50%;
-
 }
 
-.user{
+.user {
   font-size: 20px;
   color: var(--green-color);
   margin: 0;
 }
 
-.data-locations{
+.data-locations {
   display: flex;
   width: 100%;
 }
 
-.locations{
+.locations {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #828796;
   margin: 0;
-  /* margin: 1% 0% 0% 13%; */
 }
-.data{
+.data {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #828796;
   margin: 0;
-
 }
 
-
-.fotoPerfil{
+.fotoPerfil {
   display: flex;
   flex-direction: row;
-  justify-content: center;  
-  /* padding-right: 7%; */
-  /* margin: 0% -25% 5% 0%; */
+  justify-content: center;
 }
 
-/* .local{
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
-  color: #828796;
-  margin: -3% 0 3% 0;
-}
-.data{
-  font-size: 15px;
-  font-family: "Roboto", sans-serif;
-  color: #828796;
-  margin: -6% 0 5% 55%;
-} */
-
-.delete-edit{
+.delete-edit {
   display: flex;
   flex-direction: column;
   margin: -3% 0 -2% 80%;
   width: 13%;
-  /* padding: 2% 2%; */
 }
 
 .delete-button, .edit-button, .savEdit-button{
@@ -276,11 +262,9 @@
   text-align: center;
   justify-content: center;
   cursor: pointer;
-  /* margin: -3% 0 -2% 80%; */
 }
 
-
-.tipo{
+.tipo {
   font-size: 18px;
   color: #ffffff;
   background-color: var(--green-color);

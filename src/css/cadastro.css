@@ -63,7 +63,8 @@
 #buttonLogin img {
   width: 100%;
 }
-.inputPass, .inputConf {
+.inputPass,
+.inputConf {
   display: flex;
   align-items: center;
  }
