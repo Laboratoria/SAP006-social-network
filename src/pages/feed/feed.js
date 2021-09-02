@@ -32,6 +32,7 @@ export const Feed = () => {
     <section class="get-post background-color-main" data-postcontainer id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
+
     <nav class="navbar mobile-list">
       <ul>
         <li>
@@ -51,6 +52,8 @@ export const Feed = () => {
     `;
 
   rootElement.innerHTML = container;
+
+  const postTemplate = rootElement.querySelector('#postTemplate');
 
   const logoutButton = rootElement.querySelector('.btn-logout');
   logoutButton.addEventListener('click', () => {
@@ -78,13 +81,34 @@ export const Feed = () => {
       textValidationAddPost.hidden = false;
     } else {
       textValidationAddPost.hidden = true;
-      addPosts(post);
+      addPosts(post)
+        .then((doc) => {
+          const objPost = {
+            id: doc.id,
+            ...post,
+          };
+          const seila = printPost(objPost);
+          postTemplate.prepend(seila);
+        });
     }
   });
 
-  loadPosts().then((snap) => {
-    printPost(snap);
-  });
+  loadPosts()
+    .then((snap) => {
+      snap.forEach((post) => {
+        const naosei = {
+          id: post.id,
+          text: post.data().text,
+          user_id: post.data().user_id,
+          likes: post.data().likes,
+          date: post.data().date,
+          comments: post.data().comments,
+        };
+
+        const print = printPost(naosei);
+        postTemplate.appendChild(print);
+      });
+    });
 
   const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
@@ -97,3 +121,5 @@ export const Feed = () => {
 
   return rootElement;
 };
+
+// prepend para colocar post no inicio
