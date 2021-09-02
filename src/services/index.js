@@ -6,11 +6,11 @@ export const saveUserIdOnLocalStorage = (uid) => {
 
 export const getUserIdOnLocalStorage = () => localStorage.uid;
 
-const clearLocalStorage = () => localStorage.clear();
+export const clearLocalStorage = () => localStorage.clear();
 
-export const loginWithGoogleAccount = async () => {
+export const loginWithGoogleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  await firebase.auth().signInWithPopup(provider);
+  return firebase.auth().signInWithPopup(provider);
 };
 
 export const loginWithEmailAndPassword = (
@@ -20,24 +20,16 @@ export const loginWithEmailAndPassword = (
   .signInWithEmailAndPassword(userEmail, userPassword);
 
 export const createAccountWithEmailAndPassword = (
-  userName,
   userEmail,
   userPassword,
 ) => firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword);
 
-export const userUpdateProfile = (userName) => {
-  const user = firebase.auth().currentUser;
-  user.updateProfile({
+export const userUpdateProfile = (userName) => firebase.auth().currentUser
+  .updateProfile({
     displayName: userName,
   });
-  saveUserIdOnLocalStorage(user.uid);
-};
 
-export const logOut = () => {
-  firebase.auth().signOut()
-    .then(clearLocalStorage())
-    .then(onNavigate('/'));
-};
+export const logOut = () => firebase.auth().signOut();
 
 export const loadPosts = () => {
   const postsCollection = firebase

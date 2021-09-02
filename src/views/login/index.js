@@ -74,8 +74,8 @@ export const login = () => {
     .addEventListener('click', (event) => {
       event.preventDefault();
       loginWithGoogleAccount()
-        .then((user) => {
-          saveUserIdOnLocalStorage(user.user.uid);
+        .then((doc) => {
+          saveUserIdOnLocalStorage(doc.user.uid);
           onNavigate('/home');
         })
         .catch((error) => {

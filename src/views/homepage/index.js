@@ -6,8 +6,10 @@ import {
   deletePost,
   likesPost,
   editPost,
+  clearLocalStorage,
 } from '../../services/index.js';
 import { addPost } from '../../components/post.js';
+import { onNavigate } from '../../navigate.js';
 
 export const home = () => {
   const container = document.createElement('div');
@@ -68,7 +70,9 @@ export const home = () => {
   container.querySelector('.loading-posts').innerHTML = 'Carregando...';
   container.querySelector('#logout').addEventListener('click', (e) => {
     e.preventDefault();
-    logOut();
+    logOut()
+      .then(clearLocalStorage())
+      .then(onNavigate('/'));
   });
 
   const postsList = container.querySelector('[data-postsList]');

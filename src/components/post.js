@@ -19,19 +19,19 @@ export const addPost = (post) => {
     </div>`;
 
   const editButton = `
-  <div class="edit-post">
-    <button id="confirm-edit" class="confirm-edit" style="display:none">Confirmar</button>
-    <button data-edit class="edit-btn" id="edit-btn">
-      <img src="./img/pencil-icon.png" data-edit alt="edit-icon" class="edit-icon">
-    </button>
-  </div>
-  <div class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Falha ao editar post</p>
+    <div class="edit-post">
+      <button id="confirm-edit" class="confirm-edit" style="display:none">Confirmar</button>
+      <button data-edit class="edit-btn" id="edit-btn">
+        <img src="./img/pencil-icon.png" data-edit alt="edit-icon" class="edit-icon">
+      </button>
     </div>
-  </div>
-  `;
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Falha ao editar post</p>
+      </div>
+    </div>
+    `;
 
   const isAuthor = getUserIdOnLocalStorage() === post.data().userId;
   const postDiv = document.createElement('div');
@@ -56,6 +56,7 @@ export const addPost = (post) => {
         <span id="likes" class="likes" data-like="${post.id}">${post.data().likes.length}</span>
        </button>
       </div>
+        
       </div>
     </article>
     
