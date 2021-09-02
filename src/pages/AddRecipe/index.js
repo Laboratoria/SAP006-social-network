@@ -97,7 +97,7 @@ export default () => {
   addRecipeSection.innerHTML = addRecipeTemplate;
   addRecipeContainer.append(addRecipeSection);
 
-  const form = addRecipeContainer.querySelector('.initialForm');
+  const form = addRecipeContainer.querySelector('.postRecipeForm');
   const alert = addRecipeContainer.querySelector('#alert');
   const btnPostRecipe = addRecipeContainer.querySelector('#post-recipe');
   const overlay = addRecipeContainer.querySelector('.overlay');
@@ -109,7 +109,7 @@ export default () => {
 
   function addRecipeDom() {
     const recipe = {
-      'nome da receita': addRecipeContainer.querySelector('#recipe-title').value.toUpperCase(),
+      'nome da receita': addRecipeContainer.querySelector('#addRecipe-title').value.toUpperCase(),
       ingredientes: addRecipeContainer.querySelector('#ingredients-recipe').value.replace(/\n/g, '<br />'),
       'modo de preparo': addRecipeContainer.querySelector('#howToDo-recipe').value.replace(/\n/g, '<br />'),
       'tempo de preparo': addRecipeContainer.querySelector('#time-select').value,

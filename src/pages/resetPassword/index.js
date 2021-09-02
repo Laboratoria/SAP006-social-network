@@ -3,7 +3,7 @@ import errorModal from '../../components/error/index.js';
 
 export default () => {
   const resetPasswordContainer = document.createElement('div');
-  resetPasswordContainer.setAttribute('class', 'screenContainer');
+  resetPasswordContainer.setAttribute('class', 'screenContainerBody');
 
   const resetPasswordContent = `
   <div class="div-width90 flexRowReverse">

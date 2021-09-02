@@ -2,7 +2,7 @@ import { signIn, signInWithGoogle, setUserData } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
-  loginScreenContainer.setAttribute('class', 'screenContainer');
+  loginScreenContainer.setAttribute('class', 'screenContainerBody');
 
   const loginScreenButtons = `
   <div class = "div-width90 flexRowReverse">

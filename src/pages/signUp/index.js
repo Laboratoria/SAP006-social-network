@@ -2,7 +2,7 @@ import { signUp } from '../../services/index.js';
 
 export default () => {
   const signUpScreenContainer = document.createElement('div');
-  signUpScreenContainer.setAttribute('class', 'screenContainer');
+  signUpScreenContainer.setAttribute('class', 'screenContainerBody');
 
   const signUpForm = `
   <div class="div-width90 flexRowReverse">
