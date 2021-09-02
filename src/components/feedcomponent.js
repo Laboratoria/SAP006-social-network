@@ -85,37 +85,28 @@ export const printPost = (post) => {
     }
   });
 
-  // postTemplate.addEventListener('click', (e) => {
-  //   const { target } = e;
+  postTemplate.addEventListener('click', (e) => {
+    const editButton = postTemplate.querySelector('.edit-button dropbtn');
+    const saveButton = postTemplate.querySelector('.save-button dropbtn');
+    const deleteButton = postTemplate.querySelector('.delete-button dropbtn');
 
-  //   const editButton = postTemplate.querySelector('.edit-button dropbtn');
-  //   const saveButton = postTemplate.querySelector('.save-button dropbtn');
-  //   const deleteButton = postTemplate.querySelector('.delete-button dropbtn');
-  //   const likeButton = target.dataset.like;
+    const postText = postTemplate.querySelector('[data-textpost]');
 
-  //   const postText = postTemplate.querySelector('[data-textpost]');
-
-  //   if (editButton) {
-  //     postText.removeAttribute('disabled');
-  //     postText.focus();
-  //   }
-  //   if (saveButton) {
-  //     const postId = e.target.dataset.save;
-  //     updatePosts(postId, postText.value)
-  //       .then(() => postText.setAttribute('disabled', ''));
-  //   }
-  //   if (deleteButton) {
-  //     const postId = e.target.dataset.delete;
-  //     const postArea = document.querySelector(`[data-container="${postId}"]`);
-  //     deletePopUp(postId, postArea);
-  //   }
-  //   if (likeButton) {
-  //     const likeId = e.target.dataset.like;
-  //     const likeCount = postTemplate.querySelector(`[data-numLike="${likeId}"]`);
-  //     const likeIcon = postTemplate.querySelector(`.btn-like i[data-like="${likeId}"]`);
-  //     sendLike(likeId, userId, likeCount, likeIcon);
-  //   }
-  // });
+    if (editButton) {
+      postText.removeAttribute('disabled');
+      postText.focus();
+    }
+    if (saveButton) {
+      const postId = e.target.dataset.save;
+      updatePosts(postId, postText.value)
+        .then(() => postText.setAttribute('disabled', ''));
+    }
+    if (deleteButton) {
+      const postId = e.target.dataset.delete;
+      const postArea = document.querySelector(`[data-container="${postId}"]`);
+      deletePopUp(postId, postArea);
+    }
+  });
 
   return postTemplate;
 };

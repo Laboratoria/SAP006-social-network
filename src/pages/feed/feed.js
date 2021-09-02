@@ -62,7 +62,6 @@ export const Feed = () => {
 
   const submitButton = rootElement.querySelector('#published-form');
   submitButton.addEventListener('submit', (event) => {
-    const postContainer = postTemplate.querySelector('[data-container]');
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
     const useruid = firebase.auth().currentUser.uid;
@@ -87,25 +86,25 @@ export const Feed = () => {
             id: doc.id,
             ...post,
           };
-          const seila = printPost(objPost);
-          postTemplate.prepend(seila);
+          const element = printPost(objPost);
+          postTemplate.prepend(element);
         });
     }
   });
 
   loadPosts()
     .then((snap) => {
-      snap.forEach((post) => {
-        const naosei = {
-          id: post.id,
-          text: post.data().text,
-          user_id: post.data().user_id,
-          likes: post.data().likes,
-          date: post.data().date,
-          comments: post.data().comments,
+      snap.forEach((doc) => {
+        const post = {
+          id: doc.id,
+          text: doc.data().text,
+          user_id: doc.data().user_id,
+          likes: doc.data().likes,
+          date: doc.data().date,
+          comments: doc.data().comments,
         };
 
-        const print = printPost(naosei);
+        const print = printPost(post);
         postTemplate.appendChild(print);
       });
     });
