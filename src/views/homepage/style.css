@@ -234,6 +234,10 @@ textarea {
   width: 100%;
 }
 
+.edit-text {
+  margin: 7px;
+}
+
 .delete-btn {
   outline: none;
   border: none;
@@ -304,10 +308,20 @@ textarea {
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
-  -webkit-animation-name: slideIn;
-  -webkit-animation-duration: 0.4s;
-  animation-name: slideIn;
-  animation-duration: 0.4s;
+}
+
+.close {
+  color: var(--orange-light-color);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--orange-color);
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .delete-confirm:hover,

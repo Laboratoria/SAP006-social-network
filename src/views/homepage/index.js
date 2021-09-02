@@ -118,9 +118,11 @@ export const home = () => {
 
     if (target.dataset.edit === '') {
       const confirmEdit = document.querySelector('#confirm-edit');
-      confirmEdit.style.display = 'inline';
-      const editArea = document.querySelector('.user-post');
-      const postField = document.querySelector('.post-field');
+      confirmEdit.style.display = 'flex';
+      const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
+      const id = getPost.getAttribute('data-id');
+      const editArea = container.querySelector(`[data-post="${id}"]`);
+      const postField = container.querySelector(`[data-post="${id}"]`);
       postField.setAttribute('id', 'edit-area');
       editArea.setAttribute('contentEditable', 'true');
 
@@ -128,12 +130,10 @@ export const home = () => {
         editArea.removeAttribute('contentEditable');
         postField.removeAttribute('id');
         const newText = editArea.textContent;
-        const getPost = target.parentNode.parentNode.parentNode.parentNode;
-        const postId = getPost.getAttribute('data-id');
-        editPost(newText, postId)
+        editPost(newText, id)
           .then(() => {
             confirmEdit.style.display = 'none';
-          }).then(() => {
+          }).catch(() => {
             const modal = document.querySelector('.modal');
             const close = document.querySelector('.close');
             modal.style.display = 'block';
