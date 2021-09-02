@@ -3,6 +3,9 @@
 */
 
 import { cadastro } from '../../../src/pages/cadastro/index.js';
+import * as auth from '../../../src/services/firebaseAuth.js';
+
+jest.mock('../../../src/services/firebaseAuth.js');
 
 describe('should render page register correctly', () => {
   test('should be true', () => {
@@ -13,6 +16,7 @@ describe('should render page register correctly', () => {
 
 describe('should route to home when register is valid', () => {
   test('should be true', () => {
+    auth.cadastrarComEmailSenha.mockResolvedValueOnce('deu bom');
     const divRegister = cadastro();
     divRegister.querySelector('#nameUser').value = 'aline';
     divRegister.querySelector('#emailUser').value = 'aline@gmail.com';
@@ -20,6 +24,7 @@ describe('should route to home when register is valid', () => {
     divRegister.querySelector('#confPass').value = '654321';
     const enterButton = divRegister.querySelector('#enter');
     enterButton.dispatchEvent(new Event('click'));
-    expect(enterButton.click).toBeCalled();
+    expect(auth.cadastrarComEmailSenha).toBeCalled();
+    expect(auth.cadastrarComEmailSenha).toHaveBeenCalledWith('aline@gmail.com', '654321');
   });
 });
