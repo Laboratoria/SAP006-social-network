@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
 });
 
 const verUser = () => {
-  if (localStorage.getItem('displayName') === null) {
+  if ( localStorage.getItem('email') = null ){
     route('/login');
   }
 };
