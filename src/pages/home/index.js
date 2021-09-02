@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 import { outLogin } from '../../services/firebaseAuth.js';
 import { route } from '../../routes/navigator.js';
 import {
@@ -60,41 +61,35 @@ export const home = () => {
       div.innerHTML = `<div class="allPosts" data-id="${doc.id}">
           
       <div class='fotoPerfil'>
-
           <img src=${doc.data().image} class='imgUser'> 
           <div class="user-data"> 
             <p class="user"> ${doc.data().nome}</p>
           <div class='data-locations'>
-            <p class="locations">${doc.data().nomeLocalReceita}</p> 
+            <p class="locations" contenteditable="false" data-title="${doc.id}">${doc.data().nomeLocalReceita}</p> 
             <p class="data">• ${doc.data().data.toDate().toLocaleDateString()}</p>
           </div>
           </div>
-      </div>
-              
+      </div>   
                    
     ${firebase.auth().currentUser.uid === doc.data().user_id
     ? `<div class="delete-edit">
-               <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
-            <button type="submit" data-editPostButton="${doc.id}" class="edit-button">Editar</button>
-          </div>`
+        <button type="button" class="delete-button" data-delete="${doc.id}">Deletar</button>
+       <button type="button" class="edit-button" data-edit="${doc.id}">Editar</button>
+       <button type="button" style="display: none;" class="savEdit-button" data-savedits="${doc.id}"> Salvar</button>
+      </div>`
     : ''}
          
-          <p class="descr">${doc.data().descricao}</p> 
-          <p class="hashs">${doc.data().hashTags}</p>
+          <p class="descr" contenteditable="false" data-text="${doc.id}">${doc.data().descricao}</p> 
+          <p class="hashs" contenteditable="false" data-hashs="${doc.id}">${doc.data().hashTags}</p>
         
           <div class='botoes'> 
-          <p class="tipo"> ${doc.data().tipo} </p>
+          <p class="tipo" contenteditable="false" data-tag="${doc.id}"> ${doc.data().tipo} </p>
           <button type="button" class="like"> <img id="like" data-like="${doc.id}" class="likeImg"  src="./img/coracao.svg"></button>
           <p class="beforLike" id="numberLikes" data-numLike="${doc.id}">${doc.data().curtidas.length || 0}</p>
-          <span class="price" id="price" data-preco>${doc.data().preco}</span>
+          <span class="price" contenteditable="false" id="price" data-preco="${doc.id}">${doc.data().preco}</span>
          
           </div>
-
-          <div class="coments" id="coments">
-            <textarea class='addComent' data-item='add-comment' placeholder='Escreva um comentário!'></textarea>
-            <button class="more" id="more">ver mais</button>
-            <button class ='goComent' id='goComent' img class='addCom' src='./img/addCom.svg' data-item='comment'/>enviar comentário</button>
-          </div>
+      
             <hr> `;
 
       timeline.insertBefore(div, timeline.childNodes[0]);
@@ -131,18 +126,35 @@ export const home = () => {
         });
       }
       if (editId) {
+        const post = rootElement.querySelector(`[data-id="${editId}"]`);
+        const editBtn = post.querySelector(`[data-edit="${editId}"]`);
+        const saveBtn = post.querySelector(`[data-savedits="${editId}"]`);
         modal.confirm('Deseja editar sua postagem?', () => {
-          const editBtn = rootElement.querySelector(`[data-edit="${editId}"]`);
-          editBtn.textContent = 'Salvar';
-          const editElements = rootElement.querySelectorAll('[contenteditable=false]');
-          editElements.forEach((elemento) => elemento.setAttribute('contenteditable', true));
-          const title = rootElement.querySelector(`[data-title="${editId}"]`);
-          const text = rootElement.querySelector(`[data-text="${editId}"]`);
-          const priceTag = rootElement.querySelector(`[data-preco="${editId}"]`);
-          const hashtags = rootElement.querySelector(`[data-hashs="${editId}"]`);
-          const tagType = rootElement.querySelector(`[data-tag="${editId}"]`);
-          // editPosts(tagType, title, hashtags, priceTag,
-          //   text, editId);
+          editBtn.style.display = 'none';
+          saveBtn.style.display = 'flex';
+          const editElements = post.querySelectorAll('[contenteditable="false"]');
+          editElements.forEach((elemento) => {
+            elemento.setAttribute('contenteditable', true);
+            elemento.style.border = 'solid 2px #51fa02';
+          });
+        });
+        saveBtn.addEventListener('click', () => {
+          modal.confirm('As alterações feitas serão salvas, deseja prosseguir?', () => {
+            const title = rootElement.querySelector(`[data-title="${editId}"]`).innerText;
+            const text = rootElement.querySelector(`[data-text="${editId}"]`).innerText;
+            const priceTag = rootElement.querySelector(`[data-preco="${editId}"]`).innerText;
+            const hashtags = rootElement.querySelector(`[data-hashs="${editId}"]`).innerText;
+            const tagType = rootElement.querySelector(`[data-tag="${editId}"]`).innerText;
+            editBtn.style.display = 'flex';
+            saveBtn.style.display = 'none';
+            const editElements = post.querySelectorAll('[contenteditable="true"]');
+            editElements.forEach((elemento) => {
+              elemento.setAttribute('contenteditable', false);
+              elemento.style.border = 'none';
+            });
+            editPosts(tagType, title, hashtags, priceTag,
+              text, editId);
+          });
         });
       }
     });

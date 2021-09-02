@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
 });
 
 // const verUser = () => {
-//   if (localStorage.getItem('uid') === null) {
+//   if (localStorage.getItem('displayName') === null) {
 //     route('/login');
 //   }
 // };

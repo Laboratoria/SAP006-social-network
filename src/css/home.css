@@ -75,7 +75,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    padding: 2% 14%;
+    padding: 2% 13%;
   }
   .receitas,
   .mercado,
@@ -94,6 +94,18 @@
     width: 50%;
     margin: -30% auto;
   }
+  .delete-button, .edit-button {
+    margin: 30% 3% 1% 80%;
+    width: 60px;
+  }
+  /* .botoes {
+    justify-content: space-between;
+    width: 100%;
+  } */
+  .tipo{
+    align-self: flex-end;
+  }
+
 }
 
 #mercados,
@@ -129,14 +141,12 @@
 
 .botoes {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: space-between;
   width: 100%;
 }
 
 .like {
-  /* width: 30px;
-  height: 30px; */
   border: none;
   margin: 0% -22% 0% 0%;
   cursor: pointer;
@@ -150,8 +160,6 @@
   flex-direction: row;
 }
 .price {
-  /* border: none;
-  background: none; */
   color: #fc0;
   font-size: 1.5rem;
   margin: 2% 0% 0% 0%;
@@ -166,7 +174,6 @@
 .coments {
   display: flex;
   flex-direction: column;
-  /* flex-direction: row; */
 }
 
 .addComent {
@@ -193,8 +200,6 @@
 }
 
 .goComent {
-  /* width: 200px;
-  height: 30px; */
   font-size: 15px;
   justify-content: space-evenly;
   border: none;
@@ -246,8 +251,7 @@
   width: 13%;
 }
 
-.delete-button,
-.edit-button {
+.delete-button, .edit-button, .savEdit-button{
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #6f727a;

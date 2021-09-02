@@ -13,6 +13,10 @@
   color: #ffd600;
 } */
 
+.imgHome{
+  width: 17%
+}
+
 .boxInputs {
   display: flex;
   flex-flow: column nowrap;
@@ -134,6 +138,7 @@
 }
 .publicar-cancelar {
   display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -141,7 +146,6 @@
 .btnCancel {
   margin: 2% auto 5% auto;
   justify-content: space-between;
-  /* width: 30%; */
   font-family: "Russo One", sans-serif;
   font-size: 100%;
   background: #97cf6e;
@@ -153,13 +157,21 @@
 }
 
 .sendPost:hover {
-  color: rgba(95, 95, 95, 0.933);
+  color: rgba(77, 74, 74, 0.933);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; 
 }
 
 .btnCancel {
-  background-color: blanchedalmond;
+  background-color: #cbc8c3;
 }
 
 .btnCancel:hover {
-  background-color: #97cf6e;
+  color: rgba(77, 74, 74, 0.933);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+  rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.error{
+  color:#ff7171;
 }

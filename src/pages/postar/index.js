@@ -13,8 +13,8 @@ export const postar = () => {
      <ul class="nav" id="nav">
        <li class="links"><a href=""><img src="./img/lupa.svg">Busca</a></li>
        <li class="links"><a href=""><img src="./img/perfil.svg">Perfil</a></li>
-       <button class="links" id="btnHome"><img src="./img/home.svg">Página Inicial</button>
-      <li class="links"><a href=""><img src="./img/home.svg">p Inicial</a></li>
+       <button class="links" id="btnHome"><img class="imgHome" src="./img/home.svg">  Home</button>
+      <li class="links" id="btnHome"><a href=""><img src="./img/home.svg">p Inicial</a></li>
      </ul>
      </nav>
     </header>
@@ -30,10 +30,10 @@ export const postar = () => {
      <div class="titleType">
      <p id="type">selecione uma tag acima</p>
      <input type="text" id="typePost" name="typePost" placeholder="Local"/>
-     <p id="errorType"></p>
+     <p id="errorType" class="error"></p>
      </div>
      <input type:"text" id="hashtags" class="hashtags" name="hashtags" placeholder="#pizza #sp #vegano"/>
-     <p id="errorHashtags"></p>
+     <p id="errorHashtags" class="error"></p>
      
      <div class="addPrice">
       <label class="low"> 
@@ -44,10 +44,11 @@ export const postar = () => {
       </div>
 
      <textarea class="addText" id="addText" placeholder="Conte sua experiência aos amigos!" style="resize:none"></textarea>
-     <p id="errorDesc"></p>
+     <p id="errorDesc" class="error"></p>
       <div class="publicar-cancelar">
+      <button class="btnCancel" id="btnCancel">Cancelar</button>
         <button class="sendPost" id="sendPost">Publicar</button>
-        <button class="btnCancel" id="btnCancel">Cancelar</button>
+
       </div>
      </main>
     </div>
@@ -77,8 +78,8 @@ export const postar = () => {
 
   rootElement.querySelector('#sendPost').addEventListener('click', () => {
     // pegando e validando as infos //
-    const localPost = rootElement.querySelector('#typePost').value;
-    if (localPost === '' || localPost.length < 3) {
+    const localPost = rootElement.querySelector('#typePost');
+    if (localPost.value === '' || localPost.value.length < 3) {
       const errorTittleField = document.getElementById('errorType');
       errorTittleField.innerHTML = 'Preencha com o nome do Restaurante, Mercado ou Receita';
       localPost.focus();
@@ -91,8 +92,8 @@ export const postar = () => {
       errorHashtagsField.focus();
       return false;
     }
-    // aqui não sei como validar o radio, acho que nem precisa //
-    const pricePost = rootElement.querySelector('input[name="valor"]:checked').value;
+
+    const pricePost = rootElement.querySelector('input[name=valor]:checked').value;
 
     const descPost = rootElement.querySelector('#addText').value;
     if (descPost === '' || descPost.length < 3) {
@@ -106,7 +107,7 @@ export const postar = () => {
       user_id: firebase.auth().currentUser.uid,
       nome: firebase.auth().currentUser.displayName,
       image: firebase.auth().currentUser.photoURL,
-      nomeLocalReceita: localPost, // inputs do post, como nome do lugar //
+      nomeLocalReceita: localPost.value, // inputs do post, como nome do lugar //
       tipo: postType,
       hashTags: hashtagsPost, // se é restaurante, mercado ou receita //
       preco: pricePost, // hashtags //

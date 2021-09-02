@@ -5,7 +5,7 @@ export const modal = {
     const template = `<div id="modal-confirm" class="modal-background">
         <div class="modal">
           <span id="close-btn">&times;</span>
-          <p>${(message) || '???'}</p>
+          <p> ${(message) || '???'}</p>
           <div class="buttons">
             <button class="yes" id="confirm-btn">
               Sim
