@@ -21,7 +21,7 @@ export const addPost = (post) => {
     <div class="edit-post">
       <button id="confirm-edit" class="confirm-edit" style="display:none">Confirmar</button>
       <button data-edit="" class="edit-btn" id="edit-btn">
-        <img src="./img/pencil-icon.png" data-edit alt="edit-icon" class="edit-icon">
+        <img src="./img/pencil-icon.png" data-edit alt="edit-icon" class="edit-icon" width="27px">
       </button>
     </div>
     <div class="modal">

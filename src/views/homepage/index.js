@@ -125,6 +125,8 @@ export const home = () => {
       const postField = container.querySelector(`[data-post="${id}"]`);
       postField.setAttribute('id', 'edit-area');
       editArea.setAttribute('contentEditable', 'true');
+      const editButton = target;
+      editButton.style.display = 'none';
 
       confirmEdit.addEventListener('click', () => {
         editArea.removeAttribute('contentEditable');
@@ -133,6 +135,7 @@ export const home = () => {
         editPost(newText, id)
           .then(() => {
             confirmEdit.style.display = 'none';
+            editButton.style.display = 'block';
           }).catch(() => {
             const modal = document.querySelector('.modal');
             const close = document.querySelector('.close');

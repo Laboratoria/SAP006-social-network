@@ -117,18 +117,27 @@ textarea {
   border-radius: 50%;
 }
 
-.edit-icon {
-  width: 1.9rem;
-  cursor: pointer;
-}
-
 .edit-btn {
   background-color: transparent;
   border: none;
 }
 
 .confirm-edit {
-  width: 76px;
+  width: fit-content;
+  background-color: var(--orange-color);
+  outline: none;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 8px;
+  text-align: center;
+  font-family: inherit;
+  font-weight: 600;
+  position: relative;
+  bottom: 24%;
+  right: 140%;
+  color: var(--white-color);
+  cursor: pointer;
+  font-family: inherit;
   height: auto;
 }
 
@@ -181,7 +190,7 @@ textarea {
 
 .user-post {
   display: flex;
-  margin: 3rem;
+  padding: 1rem;
   word-break: break-word;
 }
 
@@ -216,18 +225,11 @@ textarea {
   padding: 3px;
 }
 
-.edit-post {
-  position: absolute;
-  right: 8%;
-}
-
-.delete-post, .edit-post {
+.delete-post, .edit-post, .like-post  {
   display: flex;
-  margin: 8px;
   align-self: flex-end;
-  width: 30px;
-  justify-content: flex-end;
   position: absolute;
+  width: 45px;
 }
 
 .delete-text {
@@ -260,14 +262,9 @@ textarea {
 }
 
 .like-post {
-  display: flex;
-  margin: 20px;
-  width: 45px;
-  height: 1em;
-  margin-top: 1px;
-  padding: 5px;
-  flex-direction: none;
-  justify-content: space-evenly;
+  position: relative;
+  left: 3%;
+  align-self: flex-start;
 }
 
 .btn-like {
@@ -369,9 +366,16 @@ textarea {
   display: flex;
   justify-content: flex-start;
   flex-direction: inherit;
+  height: 2rem;
 }
 
-@media(min-width: 1200px) {
+.edit-post {
+  position: relative;
+  bottom: 83%;
+  right: 8%;
+}
+
+@media(min-width: 1024px) {
 
   textarea {
     width: 100%;
@@ -439,5 +443,11 @@ textarea {
   .delete-text {
     width: 100%;
     font-size: 1rem;
+  }
+
+  .edit-post {
+    position: relative;
+    bottom: 83%;
+    right: 5%;
   }
 }
