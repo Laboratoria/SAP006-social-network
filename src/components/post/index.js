@@ -26,10 +26,8 @@ export function addPost(post) {
       
       <h3 class="title recipe-title"> ${post.data()['nome da receita']} </h3>
     
-      <div> 
-        <img class="post-photo" src="image/nissin.jpg">
-      </div>
-      
+      <img class="post-photo" src="image/nissin.jpg">
+
       <div class="recipeBody"> 
         <div class="recipe-info">
 
@@ -154,7 +152,7 @@ export function addPost(post) {
 
   const userUid = getUserData().uid;
   if (userUid === post.data().user_id) {
-    menuButton.style.display = 'block';
+    menuButton.style.visibility = 'visible';
   }
 
   return postContainer;
