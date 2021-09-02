@@ -1,18 +1,16 @@
-import home from "./pages/home/index.js";
 import login from "./pages/login/index.js";
 import cadastro from "./pages/cadastro/index.js";
 import feed from "./pages/feed/index.js";
 import perfil from "./pages/perfil/index.js";
-import addPost from "./pages/addPost/index.js";
 
 const main = document.querySelector("#root");
 
 const init = () => {
   window.addEventListener("hashchange", () => {
-    main.innerHTML = ""
+    main.innerHTML = "";
     switch (window.location.hash) {
       case "":
-        main.appendChild(home());
+        main.appendChild(login());
         break;
       case "#login":
         main.appendChild(login());
@@ -26,17 +24,12 @@ const init = () => {
       case "#perfil":
         main.appendChild(perfil());
         break;
-      case "#addPost":
-        main.appendChild(addPost())
-        break;
       default:
-        main.appendChild(home());
-
+        main.appendChild(login());
     }
-
-  })
-}
+  });
+};
 window.addEventListener("load", () => {
-  main.appendChild(home());
+  main.appendChild(login());
   init();
 });

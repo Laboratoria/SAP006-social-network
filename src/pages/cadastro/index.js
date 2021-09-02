@@ -18,7 +18,7 @@
   <input type="password" id="senha" placeholder="">
   <label for="senha">Senha</label>
   <div class="justify-center">
-    <button onclick = "cadastrar()">Cadastrar</button>
+    <button onclick="cadastro()">Cadastrar</button>
   </div>
   </body>
   `;

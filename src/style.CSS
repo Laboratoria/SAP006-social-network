@@ -1,17 +1,20 @@
-* {
+@import url("pages/feed/feed.css");
+
+
+/* * {
     margin : 0;
     padding : 0;
     font-family: sans-serif;
 }
 
 body {
-    background-color: darkviolet;
+    background-color: darkviolet; */
     /* background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed; */
-}
+    background-attachment: fixed; 
+} */
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -119,7 +122,7 @@ transition: all .3s ease-out;
 }
 a:hover{
     color:#272262;
-    }
+    } */
 
 
 
