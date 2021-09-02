@@ -103,10 +103,10 @@ export const cadastro = () => {
       return false;
     }
 
-    if (urlImage === null) {
-      const errorImgField = document.getElementById('textErrorImg');
-      errorImgField.innerHTML = 'Precisamos da sua foto.';
-    }
+    // if (urlImage === null) {
+    //   const errorImgField = document.getElementById('textErrorImg');
+    //   errorImgField.innerHTML = 'Precisamos da sua foto.';
+    // }
 
     const passwordRegister = rootElement.querySelector('#passwordRegister').value;
     const passwordConfirm = rootElement.querySelector('#confPass').value;
