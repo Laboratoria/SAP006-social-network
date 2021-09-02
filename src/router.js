@@ -6,6 +6,7 @@ import { route } from './routes/navigator.js';
 
 export const routeRender = () => {
   const elemento = document.getElementById('root');
+  const destiny = window.location.pathname;
   const routes = {
     '/': login,
     '/login': login,
@@ -14,8 +15,6 @@ export const routeRender = () => {
     '/posts': postar,
   };
   elemento.innerHTML = '';
-  const destiny = window.location.pathname;
-
   elemento.appendChild(routes[destiny]());
 };
 
@@ -25,8 +24,7 @@ window.addEventListener('load', () => {
 });
 
 const verUser = () => {
-  if (localStorage.getItem.'email' = doc.data().);
-  ) {
+  if ( localStorage.getItem('email') = null ){
     route('/login');
   }
 };

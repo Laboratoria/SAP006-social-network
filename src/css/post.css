@@ -1,40 +1,177 @@
-.menu {
-    overflow: hidden;
-    background-color: #333;
-    position: relative;
-  }
-  
-  /* Hide the links inside the navigation menu (except for logo/home) */
-  .topnav #myLinks {
-    display: none;
-  }
-  
-  /* Style navigation menu links */
-  .topnav a {
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    display: block;
-  }
-  
-  /* Style the hamburger menu */
-  .topnav a.icon {
-    background: black;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  
-  /* Add a grey background color on mouse-over */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  /* Style the active link (or home/logo) */
-  .active {
-    background-color: #04AA6D;
-    color: white;
-  }
+/* .addPrice label.valor:before {
+ 
+  color: #FC0;
+} */
+
+/* .low input:checked + label {
+  background-color: #ffd600;
+  color: #ffd600;
+} */
+
+/* #low:checked + .low {
+  background-color: #ffd600;
+  color: #ffd600;
+} */
+
+.imgHome{
+  width: 17%
+}
+
+.boxInputs {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+}
+.boxImg,
+.addImg {
+  background: #c4c4c4;
+}
+.boxImg {
+  border: solid 2px #51fa02;
+  width: 40%;
+  padding: 10% 0 10% 0;
+  margin: 15% auto 5%;
+}
+.addfilter {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 70%;
+}
+.tag {
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+#market,
+#recipe,
+#rest {
+  border-radius: 10px;
+  font-size: 100%;
+  font-family: "Russo One", sans-serif;
+  margin: 1%;
+  padding: 2%;
+}
+#market {
+  background: #2ac2f3;
+}
+#recipe {
+  background: #ff7171;
+}
+#rest {
+  background: #f3b949;
+}
+#typePost {
+  text-align: center;
+  font-size: 100%;
+  border-style: solid;
+  border-color: #51fa02;
+  border-bottom-width: 2px;
+  border-top-width: 0;
+  border-right-width: 0;
+  border-left-width: 0;
+}
+#market:hover,
+#recipe:hover,
+#rest:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.hashtags {
+  text-align: center;
+  border: none;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 1px 2px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.addPrice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+#low,
+#med,
+#high {
+  display: none;
+}
+.low,
+.med,
+.high {
+  margin: auto 3%;
+  width: 30%;
+  text-align: center;
+  padding: 5%;
+  border-radius: 50%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.low {
+  border: solid 4px rgb(73, 73, 73);
+  font-size: 80%;
+}
+.med {
+  border: solid 5px rgb(73, 73, 73);
+  font-size: 90%;
+}
+.high {
+  border: solid 6px rgb(73, 73, 73);
+  font-size: 100%;
+}
+.low:hover,
+.med:hover,
+.high:hover {
+  color: #ffd600;
+  border-color: #ffd600;
+}
+.addText {
+  margin: 2% auto;
+  text-align: center;
+  padding: 10%;
+  width: 80%;
+  border: solid 1px #51fa02;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.publicar-cancelar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.sendPost,
+.btnCancel {
+  margin: 2% auto 5% auto;
+  justify-content: space-between;
+  font-family: "Russo One", sans-serif;
+  font-size: 100%;
+  background: #97cf6e;
+  border: none;
+  border-radius: 10px;
+  padding: 2%;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.sendPost:hover {
+  color: rgba(77, 74, 74, 0.933);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; 
+}
+
+.btnCancel {
+  background-color: #cbc8c3;
+}
+
+.btnCancel:hover {
+  color: rgba(77, 74, 74, 0.933);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+  rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.error{
+  color:#ff7171;
+}

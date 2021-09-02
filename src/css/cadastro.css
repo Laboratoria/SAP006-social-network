@@ -34,13 +34,13 @@
   padding: initial;
   border: initial;
   cursor: unset;
+  position: relative;
 }
-#loadImg {
-  width: 10%;
-  height: 40%;
+/* #loadImg {
+  width: 25%;
+  height: 25%;
   border: 1px solid #51fa02;
-  box-shadow: 0px 4px 4px 0px rgba(73, 73, 73, 0.25) inset;
-}
+} */
 .register {
   font-family: "Russo One", sans-serif;
   font-size: 20px;
@@ -63,7 +63,8 @@
 #buttonLogin img {
   width: 100%;
 }
-.inputPass, .inputConf {
+.inputPass,
+.inputConf {
   display: flex;
   align-items: center;
  }
@@ -77,38 +78,27 @@
   }
 @media (max-width: 600px){
 
-.title {
-  width: 50%;
-  padding: 8% 0 8% 0;
-}
+  .title {
+    width: 50%;
+    padding: 8% 0 8% 0;
+  }
 
-#nameUser,
-#emailUser,
-#passwordRegister,
-#confPass {
-  padding: 5%;
-  font-size: 60%;
-}
-.register {
-  padding: 5%;
-  margin: 5% auto;
-  font-size: 80%;
-  width: 50%;
-}
-#buttonLogin {
-  margin: 5% auto;
-  width: 30%
-}
-}
-.inputPass, .inputConf {
- display: flex;
- align-items: center;
-}
-#passwordRegister, #confPass {
-  width: 80%;
-}
-#seePass, #seeConfPass {
-  padding-inline: 1%;
-  width: 7%;
-  cursor: pointer;
- }
+  #nameUser,
+  #emailUser,
+  #passwordRegister,
+  #confPass {
+    padding: 5%;
+    font-size: 60%;
+  }
+  .register {
+    padding: 5%;
+    margin: 5% auto;
+    font-size: 80%;
+    width: 50%;
+  }
+  #buttonLogin {
+    margin: 5% auto;
+    width: 30%
+  }
+  }
+ 

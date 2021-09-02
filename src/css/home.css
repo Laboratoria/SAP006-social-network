@@ -2,10 +2,18 @@
   margin: 0;
   padding: 0;
 }
-.menu {
-    overflow: hidden;
-    background-color: #333;
-    position: relative;
+
+.logoHome {
+  margin-bottom: 8%;
+  width: 35%;
+  color: #fff;
+}
+.menu1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 12%;
+  margin: 6% 0% 0% 0%;
 }
 
 .containerHome {
@@ -14,189 +22,131 @@
   flex-direction: column;
   justify-content: center;
   width: 50%;
-  margin: 3% auto;
+  margin: -16% auto;
 }
-  
-  /* Hide the links inside the navigation menu (except for logo/home) */
-  .topnav #myLinks {
-    display: none;
-  }
-  
-  /* Style navigation menu links */
-  .topnav a {
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    display: block;
-  }
-  
-  /* Style the hamburger menu */
-  .topnav a.icon {
-    background: black;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  
-  /* Add a grey background color on mouse-over */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  /* Style the active link (or home/logo) */
-  .active {
-    background-color: #04AA6D;
-    color: white;
-  }
 
-.links,
-.btn {
-  font-family: "Russo One", sans-serif;
-  width: 100%;
-  font-size: 18px;
-  background: #EEFFE2;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  width: 25%;
+.buscar,
+.btn,
+.postar {
+  margin: 2% 5% 16% -1.5%;
+  padding: 10%;
+  border-radius: 15px;
+  margin-left: 0;
   text-decoration: none;
-  color: rgb(0, 0, 0);
-  cursor: pointer;
-}
-
-.goPost {
-  background: #97CF6E;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  width: 20%;
-  display: flex;
-  align-items: center;
+  color: black;
+  font-size: 89%;
   justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  border: none;
+  font-family: "Russo One", sans-serif;
+  cursor: pointer;
 }
 
-.postar{
-  font-family: "Russo One", sans-serif;
-  font-size: 18px;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-  margin: 5% auto;
-  cursor: pointer;
-  text-align: center;
+.buscar,
+.btn {
+  background: #eeffe2;
+}
+
+.postar {
+  background-color: var(--green-color);
 }
 
 .tomato {
   width: 25px;
   height: 25px;
-  padding: 0px 3px 0px 0px;
+  padding: 0px 13px 0px 0px;
 }
 
 .lines {
   margin: 1% auto;
   width: 100%;
- }
+}
 
 .filters {
   display: flex;
- 
-  /* flex-flow: row nowrap; */
-  /* justify-content: center; */
+  justify-content: space-evenly;
   padding-left: 0.9px;
-  /* padding: 0px 0.5px 0px; */
- 
 }
 
-@media (max-width: 500px){
+@media (max-width: 500px) {
   .filters {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
-  justify-content: center;
-  padding: 15px 20px;
-}
-}
-
-.receitas {
-  width: 35%;
-  font-family: "Russo One", sans-serif;
-  font-size: 18px;
-  background: #FF7171;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  margin: 15px 10px;
-}
-      
-.mercados {
-  font-family: "Russo One", sans-serif;
-  width: 100%;
-  font-size: 18px;
-  background: #2AC2F3;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  text-align: center;
-  width: 35%;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  margin: 15px 10px;
-  }
-    
-.restaurantes {
-  font-family: "Russo One", sans-serif;
-  width: 100%;
-  font-size: 18px;
-  background: #F3B949;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
-  width: 35%;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  text-align: center;
-  margin: 15px 10px;
-}
-
-@media (max-width: 500px){
-  .receitas, 
-  .mercado, 
-  .restaurante {
-    width: 100px;
+    display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
-    font-size:50%;
+    padding: 2% 13%;
   }
+  .receitas,
+  .mercado,
+  .restaurante {
+    justify-content: center;
+    font-size: 50%;
+  }
+  .logoHome {
+    width: 70%;
+  }
+  .menu1 {
+    width: 20%;
+    margin: 6% 0% 0% 0%;
+  }
+  .containerHome {
+    width: 50%;
+    margin: -30% auto;
+  }
+  .delete-button, .edit-button {
+    margin: 30% 3% 1% 80%;
+    width: 60px;
+  }
+  /* .botoes {
+    justify-content: space-between;
+    width: 100%;
+  } */
+  .tipo{
+    align-self: flex-end;
+  }
+
 }
 
-
-.botoes{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   width: 100%;
+#mercados,
+#receitas,
+#restaurantes {
+  border-radius: 10px;
+  font-size: 100%;
+  font-family: "Russo One", sans-serif;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  margin: 2%;
+  padding: 2%;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(156, 155, 155);
+}
+#mercados {
+  background: #2ac2f3;
+}
+#receitas {
+  background: #ff7171;
+}
+#restaurantes {
+  background: #f3b949;
 }
 
+#restaurantes:hover,
+#receitas:hover,
+#mercados:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 20px 30px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.botoes {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+  width: 100%;
+}
 
 .like {
- /* width: 30px;
-  height: 30px; */
   border: none;
   margin: 0% -22% 0% 0%;
   cursor: pointer;
@@ -205,30 +155,25 @@
   box-shadow: none;
 }
 
-.price{
-  border: none;
-  background: none;
+.addPrice {
+  display: flex;
+  flex-direction: row;
+}
+.price {
+  color: #fc0;
+  font-size: 1.5rem;
+  margin: 2% 0% 0% 0%;
 }
 
-.numLikes {
-  border: none;
-  
-  /* margin: 4% ​0% 0% -30%; */
-}
-
-.likePrice{
+.likePrice,
+.likeImg {
   width: 25px;
   height: 25px;
-  
-  /* padding: 1px ​0px 0px -19px; */
-
 }
 
-
-.coments{
+.coments {
   display: flex;
   flex-direction: column;
-  /* flex-direction: row; */
 }
 
 .addComent {
@@ -236,65 +181,77 @@
   height: 50%;
   align-items: right;
   margin: 5px;
-
 }
 
-.more{
+.more {
   border: none;
   font-size: 15px;
   text-decoration: none;
   box-shadow: none;
   background: none;
-  color:#939393;
+  color: #939393;
 
-  cursor:pointer;
-  display:inline-block;
-
+  cursor: pointer;
+  display: inline-block;
 }
-.addCom{
+.addCom {
   width: 25px;
   height: 25px;
 }
 
-.goComent{
-  /* width: 200px;
-  height: 30px; */
+.goComent {
   font-size: 15px;
   justify-content: space-evenly;
   border: none;
-  color:#939393;
+  color: #939393;
   background: none;
   cursor: pointer;
-  
 }
 
 .imgUser {
-  width: 50px;
-  height: 50px;
+  width: 15%;
+  height: 15%;
+  border-radius: 50%;
 }
 
-.user{
+.user {
   font-size: 20px;
-  color: #97CF6E;
-
+  color: var(--green-color);
+  margin: 0;
 }
 
-.local{
+.data-locations {
+  display: flex;
+  width: 100%;
+}
+
+.locations {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #828796;
-  margin: -3% 0 3% 0;
+  margin: 0;
 }
-
-.data{
+.data {
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #828796;
-  margin: -6% 0 5% 55%;
+  margin: 0;
 }
 
+.fotoPerfil {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
-.delete-button{
+.delete-edit {
+  display: flex;
+  flex-direction: column;
+  margin: -3% 0 -2% 80%;
+  width: 13%;
+}
+
+.delete-button, .edit-button, .savEdit-button{
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   color: #6f727a;
@@ -302,21 +259,15 @@
   box-shadow: 0px 3px 4px rgba(73, 73, 73, 0.25);
   border: none;
   border-radius: 5px;
-  margin: 3% auto;
-  /* padding: 2% 2%; */
   text-align: center;
-  width: 13%;
-  display: flex;
   justify-content: center;
   cursor: pointer;
-  margin: -3% 0 -2% 80%;
 }
 
-
-.tipo{
+.tipo {
   font-size: 18px;
   color: #ffffff;
-  background-color: #aaf19c;
+  background-color: var(--green-color);
   text-align: center;
   width: 25%;
   right: 10%;

@@ -1,9 +1,9 @@
 /* eslint-disable arrow-body-style */
 import { route } from '../routes/navigator.js';
-import { handleError } from './error.js';
+import { handleError, errorGoogle, errorPassword } from './error.js';
 
 firebase.auth().useDeviceLanguage();
-// cadastro
+
 export const cadastrarComEmailSenha = (emailUser, passwordRegister) => {
   return firebase
     .auth()
@@ -22,12 +22,12 @@ export const SignIn = (usuario, passwordLogin) => {
     localStorage.setItem('displayName', result.user.displayName);
     localStorage.setItem('email', result.user.email);
   })
-    .catch(handleError);
+    .catch((errorPassword));
 };
 
-export const stayLogged = () => {
-  return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-};
+// export const stayLogged = () => {
+//   return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+// };
 
 // ** SIGN IN GOOGLE //
 export const googleLogin = () => {
@@ -39,7 +39,7 @@ export const googleLogin = () => {
       localStorage.setItem('displayName', result.user.displayName);
       localStorage.setItem('email', result.user.email);
     })
-    .catch(handleError);
+    .catch((errorGoogle));
 };
 
 //* SIGN OUT  */
@@ -53,16 +53,15 @@ export const outLogin = () => {
 
 export const resetPass = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {
-      console.log('E-mail enviado com sucesso!');
+    .then((result) => {
+      localStorage.setItem('displayName', result.user.displayName);
+      localStorage.setItem('email', result.user.email);
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+    .catch(handleError);
 };
 
-export const deletePost = (postID) => {
-  const postsCollection = firebase.firestore().collection('posts');
-  return postsCollection.doc(postID).delete().then();
-};
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (!user) {
+//     route('/login');
+//   }
+// });
