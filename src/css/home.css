@@ -14,7 +14,6 @@
   justify-content: left;
   width: 12%;
   margin: 6% 0% 0% 0%;
-  /* padding: 2% 2%; */
 }
 
 .containerHome {
@@ -68,10 +67,7 @@
 .filters {
   display: flex;
   justify-content: space-evenly;
-  /* flex-flow: row nowrap; */
-  /* justify-content: center; */
   padding-left: 0.9px;
-  /* padding: 0px 0.5px 0px; */
 }
 
 @media (max-width: 500px) {
@@ -88,22 +84,15 @@
     font-size: 50%;
   }
   .logoHome {
-    width: 60%;
+    width: 70%;
   }
   .menu1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
     width: 20%;
     margin: 6% 0% 0% 0%;
   }
   .containerHome {
-    background: #fffdfd;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     width: 50%;
-    margin: -16% auto;
+    margin: -30% auto;
   }
 }
 
