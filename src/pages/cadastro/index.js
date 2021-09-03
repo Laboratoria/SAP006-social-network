@@ -1,7 +1,7 @@
 export default () => {
-    const container = document.createElement("div");
+  const container = document.createElement("div");
 
-    const template = `
+  const template = `
     <body>
     <div class="container">
     <div class="card">
@@ -23,7 +23,7 @@ export default () => {
   </body>
   `;
 
-    container.innerHTML = template;
-    let name = contrainer.querySelector("username")
-    return container;
-}
+  container.innerHTML = template;
+  let name = container.querySelector("username");
+  return container;
+};
