@@ -1,4 +1,5 @@
 import { onNavigate } from '../navigate.js';
+import { getFirebase } from './firebase.js';
 
 export const saveUserIdOnLocalStorage = (uid) => {
   localStorage.uid = uid;
@@ -16,7 +17,7 @@ export const loginWithGoogleAccount = () => {
 export const loginWithEmailAndPassword = (
   userEmail,
   userPassword,
-) => firebase.auth()
+) => getFirebase().auth()
   .signInWithEmailAndPassword(userEmail, userPassword);
 
 export const createAccountWithEmailAndPassword = (
@@ -46,7 +47,7 @@ export const createPost = (textPost) => {
     userId: user.uid,
     userName: user.displayName,
     userEmail: user.email,
-    createdAt: date.toLocaleString(),
+    createdAt: date.toLocaleString('en-US'),
     likes: [],
     comments: [],
   };

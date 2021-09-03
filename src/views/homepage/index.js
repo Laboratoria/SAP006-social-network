@@ -57,7 +57,7 @@ export const home = () => {
             userName: user.displayName,
             userId: user.uid,
             text: textPost,
-            createdAt: date.toLocaleString(),
+            createdAt: date.toLocaleString('en-US'),
             likes: [],
           }),
         };
