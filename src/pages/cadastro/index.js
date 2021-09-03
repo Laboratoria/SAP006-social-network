@@ -8,36 +8,34 @@ export const cadastro = () => {
   let urlImage = null;
   const rootElement = document.createElement('div');
   rootElement.innerHTML = `<fieldset class="box">
-    <legend class="title"><img src="./img/cadastro.png" alt="Título: Cadastro"></legend>
+    <legend class="titleCads"><img src="./img/cadastro.png" alt="Título: Cadastro"></legend>
     <form class="forms">
       
-        <input type="text" id="nameUser" placeholder="Nome">
+        <input type="text" id="nameUser" class="nameUser" placeholder="Nome">
         <p id="textErrorName"></p>
-        <input type="email" id="emailUser" placeholder="seuemail@dominio.com">
+        <input type="email" id="emailUser" class="emailUser" placeholder="seuemail@dominio.com">
         <p id="textErrorEmail"></p>
       <section class="inputPhoto">
         <input class="addImg" id="addImg" type="file" alt="Adicionar imagem de perfil"/>
-        <button class="upload" type="button" name="upload" id="upload">Salvar</button>
-        <p id="textErrorImg"></p>
-        <div id="loadedImg">
+        <button class="upload" type="button" name="upload" id="upload" class="upload">Salvar</button>
+        <p id="textErrorImg" class="textErrorImg"></p>
+        <div id="loadedImg" class="loadedImg">
         </div>
       </section>
         <div class="inputPass">
-        <input type="password" id="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
-        <img src="./img/eyesOpen.svg" id ='seePass'  aria-hidden="true">
-        <p id="textErrorPassword"></p>
-      </section>
-      <section class="inputConf">
-        <input type="password" id="confPass" placeholder="Confirme sua senha">
-        <img src="./img/eyesOpen.svg" id ='seeConfPass' aria-hidden="true">
-        <p id="textErrorConfPassword"></p>
+        <input type="password" id="passwordRegister" class="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
+        <img src="./img/eyesOpen.svg" class="sePass" id="seePass" aria-hidden="true">
+        <p id="textErrorPassword" class="textErrorPassoword"></p>
+        <input type="password" class="confPass" id="confPass" placeholder="Confirme sua senha">
+        <img src="./img/eyesOpen.svg" id="seeConfPass" class="seeConfPass">
+        <p id="textErrorConfPassword" class="textErrorConfPassoword"></p>
       </section>
     
     </form>
     
     <button class="register" type="button" name="botao" id="enter">ENTRAR</button> 
   
-    <a id="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
+    <a id="buttonLogin" class="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
   </fieldset>`;
   // olho para mostrar/ocultar senha
   const btnEye = rootElement.querySelector('#seePass');
@@ -57,10 +55,10 @@ export const cadastro = () => {
     const inputConfirmSenha = rootElement.querySelector('#confPass');
     inputConfirmSenha.classList.toggle('visible');
     if (inputConfirmSenha.classList.contains('visible')) {
-      btnEye.src = './img/eyesClose.svg';
+      btnConfirmEye.src = './img/eyesClose.svg';
       inputConfirmSenha.type = 'text';
     } else {
-      btnEye.src = './img/eyesOpen.svg';
+      btnConfirmEye.src = './img/eyesOpen.svg';
       inputConfirmSenha.type = 'password';
     }
   });

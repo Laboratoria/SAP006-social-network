@@ -1,104 +1,89 @@
-.title,
-.box,
-.forms,
-.enter {
-  margin: auto;
-  border: none;
+.box{
+  margin-inline: 10%;
+  margin-bottom: 2%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.title {
-  width: 30%;
-  padding: 5% 0 3% 0;
+  flex-flow: column nowrap;
 }
 .forms {
-  width: 50%;
+  border: none;
 }
-
-#nameUser,
-#emailUser,
-#addImgProfile,
-#passwordRegister,
-#confPass {
-  text-align: center;
+.titleCads {
   padding: 3%;
-  margin: 1%;
-  border: 1px solid #51fa02;
-  box-shadow: 0px 4px 4px 0px rgba(73, 73, 73, 0.25) inset;
-  font-size: 100%;
 }
-.inputPhoto {
-  /* width: 50%; */
-  background-color: initial;
-  padding: initial;
-  border: initial;
-  cursor: unset;
-  position: relative;
-}
-/* #loadImg {
-  width: 25%;
-  height: 25%;
-  border: 1px solid #51fa02;
-} */
-.register {
-  font-family: "Russo One", sans-serif;
-  font-size: 20px;
-  background: #97cf6e;
-  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
-  border: none;
-  border-radius: 10px;
-  margin: 3% auto;
-  padding: 2% 2%;
+.nameUser,
+.emailUser,
+.addImg,
+.passwordRegister,
+.confPass {
+  width: 60%;
   text-align: center;
-  width: 40%;
+  border: 1px solid #51fa02;
+  box-shadow: 0px 4px 4px 0px rgb(73 73 73 / 25%) inset;
+  font-size: 100%;
+  padding: 2%;
 }
-#buttonLogin {
-  background-color: #fff;
+.inputPhoto{
+  text-align: center;
+  margin: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 60%;
+  align-items: center;
+}
+.boxImg,
+.addImg {
+  width: 80%;
+  padding-bottom: 6%;
+  height: 0;
+}
+.upload, .register{
+  font-family: 'Russo One' sans-serif;
+  font-size: 100%;
+  padding: 1%;
+  width: 20%;
   border: none;
-  box-shadow: none;
-  width: 30%;
-  margin: 4% auto;
+  box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
+  background: #97cf6e;
+  text-align: center;
+  border-radius: 10px;
 }
-#buttonLogin img {
-  width: 100%;
+.upload{
+  margin: 2% 0 2% 5%;
 }
 .inputPass,
 .inputConf {
   display: flex;
   align-items: center;
- }
- #passwordRegister, #confPass {
-   width: 80%;
- }
- #seePass, #seeConfPass {
-   padding-inline: 1%;
-   width: 7%;
-   cursor: pointer;
-  }
-@media (max-width: 600px){
+  flex-flow: column nowrap;
+  margin: 2%;
+}
 
-  .title {
-    width: 50%;
-    padding: 8% 0 8% 0;
-  }
-
-  #nameUser,
-  #emailUser,
-  #passwordRegister,
-  #confPass {
-    padding: 5%;
-    font-size: 60%;
-  }
-  .register {
-    padding: 5%;
-    margin: 5% auto;
-    font-size: 80%;
-    width: 50%;
-  }
-  #buttonLogin {
-    margin: 5% auto;
-    width: 30%
-  }
-  }
- 
+.seePass img, .seeConfPass img {
+width: 40%;
+}
+.seePass {
+  cursor: pointer;
+  position: absolute;
+  top: 29%;
+  right: 60%;
+}
+.seeConfPass {
+  cursor: pointer;
+  position: relative;
+  top: 79%;
+  right: 30%;
+}
+.buttonLogin {
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+  width: 30%;
+  margin: 4% auto;
+  padding: 2%;
+}
+.buttonLogin img {
+  width: 60%;
+}
+@media (max-width: 600px) {
+  /* so falta o responsivo e o olhinho ali em cima (.seePass, .seeConfPass) */
+}
