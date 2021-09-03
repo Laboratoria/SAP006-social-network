@@ -57,7 +57,9 @@ input::placeholder {
 .links:hover {
   background-color: rgba(95, 95, 95, 0.933);
 }
-
+#btnLogout{
+  padding: 10px;
+}
 /* @media 
 .links a img{
 width: 20%;} */

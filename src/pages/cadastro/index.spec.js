@@ -1,5 +1,5 @@
 // importamos a função que vamos testar
-import { googleLogin } from '../src/services/firebaseAuth';
+import { googleLogin } from '../../services/firebaseAuth';
 // import { cadastro } from '../src/pages/cadastro/index';
 
 describe('login with Google', () => {
