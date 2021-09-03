@@ -39,7 +39,11 @@ main{
     border-radius: 4%;
     box-shadow: 3px 3px 1px 0px #00000060;
 }
-
+.show-password {
+    cursor: pointer;
+    text-align: right;
+    color: #60006b;
+}
 h2{
     margin-bottom: 20px;
     color: #701A73;
