@@ -47,7 +47,7 @@ export const printPost = (post) => {
         </textarea>
         
         </div>
-        <section class="actions" data-section display:${isMyPost ? 'inline-end' : 'none'}>
+        <section class="actions" data-section style="display:${isMyPost ? 'none' : 'inline-end'}">
           <p data-numLike='${post.id}' class='numLikes'>${post.likes.length || 0}</p>
           <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
         </section>
@@ -59,6 +59,10 @@ export const printPost = (post) => {
 
   const userId = firebase.auth().currentUser.uid;
   const likeBtn = postTemplate.querySelector('.btn-like');
+  const editButton = postTemplate.querySelector(`[data-edit="${post.id}"]`);
+  const saveButton = postTemplate.querySelector(`[data-save="${post.id}"]`);
+  const deleteButton = postTemplate.querySelector(`[data-delete="${post.id}"]`);
+  const postText = postTemplate.querySelector('[data-textpost]');
 
   likeBtn.addEventListener('click', () => {
     const likeCount = postTemplate.querySelector(`[data-numLike="${post.id}"]`);
@@ -85,27 +89,19 @@ export const printPost = (post) => {
     }
   });
 
-  postTemplate.addEventListener('click', (e) => {
-    const editButton = postTemplate.querySelector('.edit-button dropbtn');
-    const saveButton = postTemplate.querySelector('.save-button dropbtn');
-    const deleteButton = postTemplate.querySelector('.delete-button dropbtn');
+  editButton.addEventListener('click', () => {
+    postText.removeAttribute('disabled');
+    postText.focus();
+  });
 
-    const postText = postTemplate.querySelector('[data-textpost]');
+  saveButton.addEventListener('click', () => {
+    updatePosts(post.id, postText.value)
+      .then(() => postText.setAttribute('disabled', ''));
+  });
 
-    if (editButton) {
-      postText.removeAttribute('disabled');
-      postText.focus();
-    }
-    if (saveButton) {
-      const postId = e.target.dataset.save;
-      updatePosts(postId, postText.value)
-        .then(() => postText.setAttribute('disabled', ''));
-    }
-    if (deleteButton) {
-      const postId = e.target.dataset.delete;
-      const postArea = document.querySelector(`[data-container="${postId}"]`);
-      deletePopUp(postId, postArea);
-    }
+  deleteButton.addEventListener('click', (e) => {
+    const postArea = document.querySelector(`[data-container="${post.id}"]`);
+    deletePopUp(post.id, postArea);
   });
 
   return postTemplate;
