@@ -40,7 +40,7 @@ export const Login = () => {
 
   function validationLogin() {
     const email = rootElement.querySelector('.login-input-email').value;
-    console.log(email);
+
     const password = rootElement.querySelector('#password').value;
 
     if (email === '' || password === '') {

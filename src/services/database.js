@@ -2,7 +2,7 @@ export const loadPosts = () => firebase
   .firestore()
   .collection('posts')
   .orderBy('text', 'desc')
-  .get();// aqui vai gerar uma promise
+  .get();
 
 export const addPosts = (postId) => firebase
   .firestore()

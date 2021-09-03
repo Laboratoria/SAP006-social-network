@@ -2,7 +2,6 @@ import { getLikes, likePost, unlikePost } from '../services/database.js';
 
 export const sendLike = (likeId, userId, likeCount, likeIcon) => {
   const likesNumber = Number(likeCount.innerText);
-  console.log(likeCount.nextSibling);
   getLikes(likeId)
     .then((posts) => {
       const postData = posts.data();

@@ -1,50 +1,12 @@
-export const createAccount = (email, password, confirmPassword) => {
-  if (password !== confirmPassword) {
-    alert('Algo errado não está certo, verifique a senha digitada!');
-    return false;
-  }
-
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      firebase.auth().currentUser.sendEmailVerification();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/email-already-in-use') {
-        alert('E-mail já cadastrado');
-      } else if (errorCode === 'auth/invalid-email') {
-        alert('E-mail inválido');
-      } else if (errorCode === 'auth/weak-password') {
-        alert('Senha fraca');
-      } else {
-        alert('Algo deu errado. Por favor, tente novamente.');
-      }
-    });
+export const createAccount = (email, password) => {
+  firebase.auth()
+  .createUserWithEmailAndPassword(email, password);
 };
 
 export const signInEmailPassword = (email, password) => {
   const signIn = firebase
     .auth()
-    .signInWithEmailAndPassword(email, password)
- /*
-   .catch((error) => {
-      const errorCode = error.code;
-
-      if (errorCode === 'auth/invalid-email') {
-        alert('Poxa, mana, digita um e-mail válido');
-      } else if (errorCode === 'auth/user-disabled') {
-        alert('ihhh... parece que essa conta foi desativada');
-      } else if (errorCode === 'auth/user-not-found') {
-        alert('Para tudooo, vai se cadastrar primeiro!');
-      } else if (errorCode === 'auth/wrong-password') {
-        alert('Deu ruim! A senha ou o e-mail estão errados...');
-      } else {
-        alert('Algo deu errado. Por favor, tente novamente.');
-      }
-    });
- */ 
+    .signInWithEmailAndPassword(email, password);
   return signIn;
 };
 
