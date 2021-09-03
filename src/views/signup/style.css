@@ -45,26 +45,6 @@
 .login-text {
   font-size: 0.80rem;
 }
-  
-.input-field,
-.button,
-#user-name,
-#user-email,
-#new-password,
-#confirm-password {
-  width: 15rem;
-  height: 2.813rem;
-  font-family: inherit;
-  background: var(--bege-color);
-  margin: 0.40rem;
-  text-decoration: none;
-  border: none;
-  border-radius: 0.25rem;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: 5px;
-}
 
 .input-field {
   font-size: 1rem;
@@ -141,6 +121,20 @@
   padding: 0px;
   position: absolute;
   float: left;
+}
+
+.input-field, .button, #user-name, #user-email, #new-password, #confirm-password {
+  height: 2.813rem;
+  margin: 0.40rem;
+  background: var(--bege-color);
+  text-decoration: none;
+  border: none;
+  border-radius: 0.25rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 5px;
+  width: 15rem;
 }
 
 @media screen and (min-width: 640px) {

@@ -117,14 +117,16 @@ export const home = () => {
     }
 
     if (target.dataset.edit === '') {
-      const confirmEdit = document.querySelector('#confirm-edit');
-      confirmEdit.style.display = 'flex';
       const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
+      const confirmEdit = container.querySelector(`[data-edit="${id}"]`);
+      confirmEdit.style.display = 'flex';
       const editArea = container.querySelector(`[data-post="${id}"]`);
       const postField = container.querySelector(`[data-post="${id}"]`);
       postField.setAttribute('id', 'edit-area');
       editArea.setAttribute('contentEditable', 'true');
+      const editButton = target;
+      editButton.style.display = 'none';
 
       confirmEdit.addEventListener('click', () => {
         editArea.removeAttribute('contentEditable');
@@ -133,6 +135,7 @@ export const home = () => {
         editPost(newText, id)
           .then(() => {
             confirmEdit.style.display = 'none';
+            editButton.style.display = 'block';
           }).catch(() => {
             const modal = document.querySelector('.modal');
             const close = document.querySelector('.close');

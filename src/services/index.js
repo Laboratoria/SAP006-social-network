@@ -46,7 +46,7 @@ export const createPost = (textPost) => {
     userId: user.uid,
     userName: user.displayName,
     userEmail: user.email,
-    createdAt: date.toLocaleString('pt-BR'),
+    createdAt: date.toLocaleString(),
     likes: [],
     comments: [],
   };

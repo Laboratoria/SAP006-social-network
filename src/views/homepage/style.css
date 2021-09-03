@@ -117,18 +117,26 @@ textarea {
   border-radius: 50%;
 }
 
-.edit-icon {
-  width: 1.9rem;
-  cursor: pointer;
-}
-
 .edit-btn {
   background-color: transparent;
   border: none;
 }
 
 .confirm-edit {
-  width: 76px;
+  width: fit-content;
+  background-color: var(--orange-color);
+  outline: none;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 8px;
+  text-align: center;
+  font-family: inherit;
+  font-weight: 600;
+  position: relative;
+  bottom: 24%;
+  right: 140%;
+  color: var(--white-color);
+  cursor: pointer;
   height: auto;
 }
 
@@ -181,7 +189,7 @@ textarea {
 
 .user-post {
   display: flex;
-  margin: 3rem;
+  padding: 1rem;
   word-break: break-word;
 }
 
@@ -216,18 +224,11 @@ textarea {
   padding: 3px;
 }
 
-.edit-post {
-  position: absolute;
-  right: 8%;
-}
-
-.delete-post, .edit-post {
+.delete-post, .edit-post, .like-post  {
   display: flex;
-  margin: 8px;
   align-self: flex-end;
-  width: 30px;
-  justify-content: flex-end;
   position: absolute;
+  width: 45px;
 }
 
 .delete-text {
@@ -260,14 +261,9 @@ textarea {
 }
 
 .like-post {
-  display: flex;
-  margin: 20px;
-  width: 45px;
-  height: 1em;
-  margin-top: 1px;
-  padding: 5px;
-  flex-direction: none;
-  justify-content: space-evenly;
+  position: relative;
+  left: 3%;
+  align-self: flex-start;
 }
 
 .btn-like {
@@ -340,19 +336,22 @@ textarea {
   cursor: pointer;
 }
 
-.delete-confirm:hover,
-.close-button:hover {
-  cursor: pointer;
+.date-post {
+  font-size: 15px;
+  color: rgb(110, 118, 125);
 }
 
-.delete-confirm:hover {
-  background: var(--orange-light-color);
-  transition: 0.5s;
+.user-interations{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: inherit;
+  height: 2rem;
 }
 
-.close-button:hover {
-  background: var(--orange-light-color);
-  transition: 0.5s;
+.edit-post {
+  position: relative;
+  bottom: 83%;
+  right: 8%;
 }
 
 .delete-container {
@@ -365,13 +364,17 @@ textarea {
   color: rgb(110, 118, 125);
 }
 
-.user-interations{
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: inherit;
+.delete-confirm:hover {
+  background: var(--orange-light-color);
+  transition: 0.5s;
 }
 
-@media(min-width: 1200px) {
+.close-button:hover {
+  background: var(--orange-light-color);
+  transition: 0.5s;
+}
+
+@media(min-width: 1024px) {
 
   textarea {
     width: 100%;
@@ -388,7 +391,6 @@ textarea {
     justify-content: center;
     position: fixed;
 }
-  
 
   .container-timeline {
     align-items: inherit;
@@ -439,5 +441,11 @@ textarea {
   .delete-text {
     width: 100%;
     font-size: 1rem;
+  }
+
+  .edit-post {
+    position: relative;
+    bottom: 83%;
+    right: 5%;
   }
 }
