@@ -271,6 +271,7 @@ button.btn-actions {
 section.actions {
   margin-top: 3vh;
   float: right;
+  display: inline-flex;
 }
 
 .btn-more {
