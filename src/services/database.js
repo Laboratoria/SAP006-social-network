@@ -1,7 +1,7 @@
 export const loadPosts = () => firebase
   .firestore()
   .collection('posts')
-  .orderBy('text', 'desc')
+  .orderBy('datePost', 'desc')
   .get();
 
 export const addPosts = (postId) => firebase
