@@ -1,5 +1,5 @@
 import {
-  likesPost, deletePost, getUserData, numLikes, updateRecipePost,
+  likesPost, deletePost, getUserData, numLikes, updateRecipePost, getRecipesCollectionDoc,
 } from '../../services/index.js';
 import errorModal from '../error/index.js';
 
@@ -27,10 +27,10 @@ export function addPost(post) {
     <ul id="recipeConfirmEditMenu" class="recipeMenu">
       <li id="confirmEditButton" class="edit-button">
         <p> Salvar alterações
-          <!---<span class="material-icons"> edit </span> ---> </p>
+        <i class="fas fa-save"></i> </p>
       </li>
-      <li id="cancelEditButton" class="delete-button"> <p> Cancelar 
-        <!---<span class="material-icons"> deletep </span> ---> </p> 
+      <li id="cancelEditButton" class="delete-button"> <p> Cancelar &nbsp
+      <i class="fas fa-undo-alt"></i> </p> 
       </li>
     </ul>
 
@@ -38,9 +38,7 @@ export function addPost(post) {
 
 
     <div class="toggle-section">
-      
       <h3 class="title recipe-title"> ${post.data()['nome da receita']} </h3>
-    
       <div> 
         <img class="post-photo" src="image/nissin.jpg">
       </div>
@@ -92,7 +90,7 @@ export function addPost(post) {
         </div>
         
         <div class="recipeInfo-box">
-        <select id="editDifficulty">
+        <select class="select-edit-recipe" id="editDifficulty">
               <option class="current-option-edit-recipe" value=${post.data().dificuldade}>${post.data().dificuldade}</option>
               <option class="option-edit-recipe" value="Fácil"> Fácil </option>
               <option class="option-edit-recipe" value="Média"> Média </option>
@@ -102,7 +100,7 @@ export function addPost(post) {
         </div>
         
         <div class="recipeInfo-box">
-        <select id="editCost">
+        <select class="select-edit-recipe id="editCost">
           <option class="current-option-edit-recipe" value=${post.data().preco}>${post.data().preco}</option>
           <option class="option-edit-recipe" value="$"> $ </option>
           <option class="option-edit-recipe" value="$$"> $$ </option>
@@ -113,7 +111,7 @@ export function addPost(post) {
         </div>
         
         <div class="recipeInfo-box">
-        <select id="editCategory">
+        <select class="select-edit-recipe id="editCategory">
           <option class="current-option-edit-recipe" value=${post.data().categoria}>${post.data().categoria}</option>
           <option class="option-edit-recipe" value="Carnes"> Carnes </option>
           <option class="option-edit-recipe" value="Bebidas"> Bebidas </option>
@@ -144,13 +142,21 @@ export function addPost(post) {
     </div>
 
     <div class="div-width100 recipe-title recipe-footer">
+
+      <div class="like-date">
       <div class="like">
         <span class="material-icons heart favoriteIcon">favorite</span> 
             <p class="numLikes"> ${post.data().likes.length || 0} </p>
         <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
         <button class="recipeLikes" data-like= ${post.id} >Curtir</button>
       </div>
-      <p> Por ${post.data().autor} </p>
+      <p class="post-date"> ${post.data().data} </p>
+      </div>
+
+      <div class="title-level">
+      <p class="userAuthor"> Por ${post.data().autor} </p>
+      <p class="userLevel">${post.data().nivel}</p>
+      </div>
     </div>
 
     <div class="popup" data-toggle="popup">
@@ -175,6 +181,17 @@ export function addPost(post) {
   const postPhoto = postContainer.querySelector('.post-photo');
   const recipeMenu = postContainer.querySelector('.recipeMenu');
   const recipeConfirmEditMenu = postContainer.querySelector('#recipeConfirmEditMenu');
+  const userUid = getUserData().uid;
+
+  const button = postContainer.querySelector('.recipeLikes');
+  const likes = postContainer.querySelector('.heart');
+  const numberLikes = postContainer.querySelector('.numLikes');
+
+  const confirmDelete = postContainer.querySelector('.btn-yes');
+  const cancelDelete = postContainer.querySelector('.btn-no');
+  const deleteButton = postContainer.querySelector('.delete-button');
+  const menuButton = postContainer.querySelector('.menu-recipeButton');
+  const editButton = postContainer.querySelector('.edit-button');
 
   const editRecipeTime = postContainer.querySelector('#editTime');
   const editRecipeDifficulty = postContainer.querySelector('#editDifficulty');
@@ -198,11 +215,6 @@ export function addPost(post) {
     }
   });
 
-  const button = postContainer.querySelector('.recipeLikes');
-
-  const likes = postContainer.querySelector('.heart');
-  const numberLikes = postContainer.querySelector('.numLikes');
-
   function likesNum() {
     likesPost(post.id)
       .then(() => likes.classList.toggle('test'))
@@ -219,7 +231,6 @@ export function addPost(post) {
     toggleClassElements.forEach((elem) => elem.classList.toggle('active'));
   }
 
-  const confirmDelete = postContainer.querySelector('.btn-yes');
   confirmDelete.addEventListener('click', () => {
     deletePost(post.id)
       .then(() => {
@@ -235,20 +246,17 @@ export function addPost(post) {
       });
   });
 
-  const cancelDelete = postContainer.querySelector('.btn-no');
   cancelDelete.addEventListener('click', () => {
     toggleClass();
+    recipeMenu.classList.remove('showMenu');
   });
 
-  const deleteButton = postContainer.querySelector('.delete-button');
-  deleteButton.addEventListener('click', () => toggleClass());
+  deleteButton.addEventListener('click', toggleClass);
 
-  const menuButton = postContainer.querySelector('.menu-recipeButton');
   menuButton.addEventListener('click', () => {
     recipeMenu.classList.toggle('showMenu');
   });
 
-  const editButton = postContainer.querySelector('.edit-button');
   editButton.addEventListener('click', () => {
     if (recipeBody.classList.contains('showBlock')) {
       recipeBody.classList.remove('showBlock');
@@ -257,7 +265,7 @@ export function addPost(post) {
     recipeConfirmEditMenu.classList.toggle('showMenu');
   });
 
-  confirmEditButton.addEventListener('click', () => {
+  function confirmEditButtonDom() {
     updateRecipePost(`${post.id}`,
       editRecipeIngredients.value.replaceAll(/\n/g, '<br />'),
       editRecipePreparationMode.value.replaceAll(/\n/g, '<br />'),
@@ -266,16 +274,14 @@ export function addPost(post) {
       editRecipeCategory.value,
       editRecipeCost.value)
       .then(() => {
-        console.log('hora de reescrever os valores no card');
-        recipeTime.value = `${post.data()['tempo de preparo']}`;
-        recipeDifficulty.value = `${post.data().dificuldade}`;
-        recipeCost.value = `${post.data().preco}`;
-        recipeCategory.value = `${post.data().categoria}`;
-        recipeIngredients.value = `${post.data().ingredientes}`;
-        recipePreparationMode.value = `${post.data()['modo de preparo']}`;
+        recipeTime.innerHTML = editRecipeTime.value;
+        recipeDifficulty.innerHTML = editRecipeDifficulty.value;
+        recipeCost.innerHTML = editRecipeCost.value;
+        recipeCategory.innerHTML = editRecipeCategory.value;
+        recipeIngredients.innerHTML = editRecipeIngredients.value;
+        recipePreparationMode.innerHTML = editRecipePreparationMode.value;
       })
       .then(() => {
-        console.log('hora do toggle');
         recipeConfirmEditMenu.classList.remove('showMenu');
         recipeMenu.classList.remove('showMenu');
         recipeEditBody.classList.remove('showBlock');
@@ -284,21 +290,26 @@ export function addPost(post) {
         postContainer.append(errorModal());
         throw Error(error);
       });
-  });
+  }
+  confirmEditButton.addEventListener('click', confirmEditButtonDom);
 
-  cancelEditButton.addEventListener('click', () => {
+  function cancelEditButtonDom() {
     recipeConfirmEditMenu.classList.remove('showMenu');
     recipeMenu.classList.remove('showMenu');
     recipeEditBody.classList.remove('showBlock');
-    editRecipeIngredients.value = `${post.data().ingredientes}`.replaceAll('<br />', '\n');
-    editRecipePreparationMode.value = `${post.data()['modo de preparo']}`.replaceAll('<br />', '\n');
-    editRecipeTime.value = `${post.data()['tempo de preparo']}`;
-    editRecipeDifficulty.value = `${post.data().dificuldade}`;
-    editRecipeCategory.value = `${post.data().categoria}`;
-    editRecipeCost.value = `${post.data().preco}`;
-  });
+    getRecipesCollectionDoc(`${post.id}`)
+      .then((response) => {
+        editRecipeIngredients.value = response.data().ingredientes.replaceAll('<br />', '\n');
+        editRecipePreparationMode.value = response.data()['modo de preparo'].replaceAll('<br />', '\n');
+        editRecipeTime.value = response.data()['tempo de preparo'];
+        editRecipeDifficulty.value = response.data().dificuldade;
+        editRecipeCategory.value = response.data().categoria;
+        editRecipeCost.value = response.data().preco;
+      });
+  }
 
-  const userUid = getUserData().uid;
+  cancelEditButton.addEventListener('click', cancelEditButtonDom);
+
   if (userUid === post.data().user_id) {
     menuButton.style.display = 'block';
   }

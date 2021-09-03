@@ -1,4 +1,4 @@
-import { postRecipe } from '../../services/index.js';
+import { getUserData, postRecipe } from '../../services/index.js';
 import header from '../../components/header/index.js';
 import footer from '../../components/footer/index.js';
 import errorModal from '../../components/error/index.js';
@@ -108,6 +108,7 @@ export default () => {
   }
 
   function addRecipeDom() {
+    const data = new Date();
     const recipe = {
       'nome da receita': addRecipeContainer.querySelector('#addRecipe-title').value.toUpperCase(),
       ingredientes: addRecipeContainer.querySelector('#ingredients-recipe').value.replaceAll(/\n/g, '<br />'),
@@ -116,10 +117,12 @@ export default () => {
       dificuldade: addRecipeContainer.querySelector('#difficult-select').value,
       categoria: addRecipeContainer.querySelector('#food-type-select').value,
       preco: addRecipeContainer.querySelector('#price-select').value,
-      autor: localStorage.getItem('displayName'),
-      user_id: localStorage.getItem('uid'),
+      autor: getUserData().displayName,
+      user_id: getUserData().uid,
       likes: [],
       comments: [],
+      data: data.toLocaleString('en-us', { timeStyle: 'short', dateStyle: 'short' }),
+      nivel: getUserData().level,
     };
 
     const inputs = addRecipeContainer.querySelectorAll('.required');
