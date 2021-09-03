@@ -9,21 +9,15 @@ export const Feed = () => {
   const container = `
     <header class="searchBell">
       <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
-      <button>
-        <span id="bell"
-              class="iconify background-color-main"
-              data-inline="false"
-              data-icon="clarity:notification-outline-badged"
-              style="color: #F78563;">
-        </span>
+      <button class="btn-logout">
+        <span class="iconify" data-icon="ic:round-logout" style="color: #f78563;"></span>
       </button>
     </header>
-    <button class="btn-logout">Logout</button>
     <hr class="line">
     <h4>POSTAGENS RECENTES</h4>
     <section class="post">
       <form action="" id="published-form">
-        <input type="text" id="text-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
+        <input type="text" id="text-post" name="new-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
         <p class="warn-input-add" hidden>Por favor, digite algo para compartilhar.</p>
         <button class="btn" id="send-post">Enviar</button>
       </form>
@@ -40,7 +34,7 @@ export const Feed = () => {
           </span>
         </li>
         <li>
-          <span class="iconify" id="new-post-btn" data-inline="false" data-icon="clarity:plus-circle-line">
+          <a href="#text-post"><span class="iconify" id="new-post-btn" data-inline="false" data-icon="clarity:plus-circle-line"></a>
           </span>
         </li>
         <li>
@@ -69,7 +63,7 @@ export const Feed = () => {
     const post = {
       text,
       user_id: useruid,
-      date: date.toLocaleString(),
+      datePost: date,
       likes: [],
       comments: [],
     };

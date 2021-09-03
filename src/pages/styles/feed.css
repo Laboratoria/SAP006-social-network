@@ -27,15 +27,12 @@ input.searchBar {
 }
 
 .btn-logout {
-  background-color: var(--color-primary);
-  border-radius: 50px;
+  background-color: #F8F0ED;
   width: min-content;
   padding: 0.2rem 0.5rem;
   color: var(--color-background);
   font-size: 0.8rem;
   font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
 }
 
 .line {
@@ -58,31 +55,11 @@ section.post {
   margin-top: 5%;
 }
 
-/* a {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-weight: normal;
-    color: var(--color-gray);
-    line-height: 20px;
-    letter-spacing: 0.0168em;
-    padding: 2% 0% 5% 5%;
-}
-
-a {
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--color-gray);
-  padding: 0%;
-  align-self: flex-end;
-} */
-
 .warn-input-add{
   color: #fb1d30;
   font-size: 0.8rem;
   margin-bottom: 2vh;
 } 
-
 
 form {
   justify-content: center;
@@ -278,6 +255,11 @@ section.actions {
   color: #706f6b;
   background-color: #f9f9f9;
   font-size: 1.3vh;
+}
+
+.fa, .fas, .fa-heart, .fa::before {
+  color: red;
+  background-color: #ffffff;
 }
 
 nav {
@@ -480,10 +462,4 @@ circle {
   stroke-width: 4;
   color: red;
   background-color: #ffffff;
-}
-
-.active {
-  content: url('./src/img/heart-filled.png');
-  animation: animateHeart 1s;
-
 }
