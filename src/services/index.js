@@ -11,7 +11,7 @@ export const clearLocalStorage = () => localStorage.clear();
 
 export const loginWithGoogleAccount = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  return firebase.auth().signInWithPopup(provider);
+  return getFirebase().auth().signInWithPopup(provider);
 };
 
 export const loginWithEmailAndPassword = (
@@ -23,17 +23,17 @@ export const loginWithEmailAndPassword = (
 export const createAccountWithEmailAndPassword = (
   userEmail,
   userPassword,
-) => firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword);
+) => getFirebase().auth().createUserWithEmailAndPassword(userEmail, userPassword);
 
-export const userUpdateProfile = (userName) => firebase.auth().currentUser
+export const userUpdateProfile = (userName) => getFirebase().auth().currentUser
   .updateProfile({
     displayName: userName,
   });
 
-export const logOut = () => firebase.auth().signOut();
+export const logOut = () => getFirebase().auth().signOut();
 
 export const loadPosts = () => {
-  const postsCollection = firebase
+  const postsCollection = getFirebase()
     .firestore()
     .collection('posts');
   return postsCollection.orderBy('createdAt', 'desc').get();
@@ -41,7 +41,7 @@ export const loadPosts = () => {
 
 export const createPost = (textPost) => {
   const date = new Date();
-  const user = firebase.auth().currentUser;
+  const user = getFirebase().auth().currentUser;
   const post = {
     text: textPost,
     userId: user.uid,
@@ -52,48 +52,50 @@ export const createPost = (textPost) => {
     comments: [],
   };
 
-  const postsCollection = firebase
+  const postsCollection = getFirebase()
     .firestore()
     .collection('posts');
   return postsCollection.add(post);
 };
 
-export const currentUser = () => firebase.auth().currentUser;
+export const currentUser = () => getFirebase().auth().currentUser;
 
-export const editPost = (newText, postId) => firebase
+export const editPost = (newText, postId) => getFirebase()
   .firestore().collection('posts').doc(postId)
   .update({
     text: newText,
   });
 
-firebase.auth().onAuthStateChanged(() => {
-  if (!firebase.auth().currentUser) {
+getFirebase().auth().onAuthStateChanged(() => {
+  if (!getFirebase().auth().currentUser) {
     onNavigate('/');
   }
 });
 
-export const deletePost = (id) => firebase
+export const deletePost = (id) => getFirebase()
   .firestore()
-  .collection('posts').doc(id).delete();
+  .collection('posts').doc(id)
+  .delete();
 
 export const likesPost = (postId) => {
-  firebase
+  getFirebase()
     .firestore()
-    .collection('posts').doc(postId).get()
+    .collection('posts').doc(postId)
+    .get()
     .then((post) => {
       const arrayLikes = post.data().likes;
-      const likesInPost = firebase
+      const likesInPost = getFirebase()
         .firestore()
         .collection('posts').doc(postId);
       if (getUserIdOnLocalStorage()) {
         likesInPost.update({
 
-          likes: firebase.firestore.FieldValue.arrayUnion(getUserIdOnLocalStorage()),
+          likes: getFirebase().firestore.FieldValue.arrayUnion(getUserIdOnLocalStorage()),
         });
       }
       if (arrayLikes.includes(getUserIdOnLocalStorage())) {
         likesInPost.update({
-          likes: firebase.firestore.FieldValue.arrayRemove(getUserIdOnLocalStorage()),
+          likes: getFirebase().firestore.FieldValue.arrayRemove(getUserIdOnLocalStorage()),
         });
       }
     });

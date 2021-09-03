@@ -318,6 +318,24 @@ textarea {
   border: 1px solid var(--orange-color);
 }
 
+.delete-confirm, .close-button {
+  background: var(--orange-color);
+  width: auto;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--orange-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .date-post {
   font-size: 15px;
   color: rgb(110, 118, 125);
@@ -336,33 +354,10 @@ textarea {
   right: 8%;
 }
 
-.delete-confirm, .close-button {
-  background: var(--orange-color);
-  width: auto;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: 15px;
-  cursor: pointer;
-}
-
 .delete-container {
   justify-content: center;
   width: 100%;
 } 
-
-.close:hover,
-.close:focus {
-  color: var(--orange-color);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.delete-confirm:hover,
-.close-button:hover {
-  cursor: pointer;
-}
 
 .delete-confirm:hover {
   background: var(--orange-light-color);
@@ -391,7 +386,6 @@ textarea {
     justify-content: center;
     position: fixed;
 }
-  
 
   .container-timeline {
     align-items: inherit;
@@ -400,6 +394,14 @@ textarea {
     grid-template-columns: 18rem auto;
     grid-template-rows: 10rem auto;
   }
+
+  .send-post {
+    bottom: 30px;
+  }
+
+  /* .post-form {
+    padding: 1%;
+  } */
   
   .post-form, .post {
     grid-column: 2;

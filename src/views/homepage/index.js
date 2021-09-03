@@ -117,10 +117,10 @@ export const home = () => {
     }
 
     if (target.dataset.edit === '') {
-      const confirmEdit = document.querySelector('#confirm-edit');
-      confirmEdit.style.display = 'flex';
       const getPost = target.parentNode.parentNode.parentNode.parentNode.parentNode;
       const id = getPost.getAttribute('data-id');
+      const confirmEdit = container.querySelector(`[data-edit="${id}"]`);
+      confirmEdit.style.display = 'flex';
       const editArea = container.querySelector(`[data-post="${id}"]`);
       const postField = container.querySelector(`[data-post="${id}"]`);
       postField.setAttribute('id', 'edit-area');
