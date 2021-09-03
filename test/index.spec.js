@@ -1,4 +1,3 @@
-// importamos a função que vamos testar
 import { createAccountWithEmailAndPassword } from '../src/services/index';
 
 describe('myFunction', () => {
