@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 
-import { cadastro } from '../../../src/pages/cadastro/index.js';
+import { cadastro } from '../src/pages/cadastro/index.js';
 
 // describe('myFunction', () => {
 //   it('should return loginScreen', () => {

@@ -35,6 +35,7 @@
 .eye{
   position: absolute;
   right: 30%;
+  cursor: pointer;
 }
 .eye img {
   width: 40%;
@@ -49,6 +50,7 @@
   margin-top: 25px;
   border-radius: 7px;
   cursor: pointer;
+  font-family: "Russo One", sans-serif;
 }
 .forgetPass {
   background: transparent;
