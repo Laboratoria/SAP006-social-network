@@ -85,7 +85,7 @@ export const Login = () => {
       .then(() => {
         navigation('/feed');
       })
-      .cath((error) => {
+      .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         switch (errorCode) {
