@@ -30,6 +30,11 @@ h2 {
     margin-top: 10%;
 }
 
+.warning {
+    color: red;
+    background-color: white;
+}
+
 /*
 
 body {

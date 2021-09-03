@@ -36,12 +36,11 @@ export const Login = () => {
   const btnLogin = rootElement.querySelector('.login');
   const btnGoogle = rootElement.querySelector('.btn-google');
   const signUpBtn = rootElement.querySelector('.link-signup');
-  const resetLink = rootElement.querySelector('#reset');
-
+  const resetLink = rootElement.querySelector('.reset-password');
 
   function validationLogin() {
     const email = rootElement.querySelector('.login-input-email').value;
-    console.log(email);
+
     const password = rootElement.querySelector('#password').value;
 
     if (email === '' || password === '') {
@@ -54,7 +53,6 @@ export const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode);
           switch (errorCode) {
             case 'auth/invalid-email':
               warningPage.innerHTML = '<p>Usuário ou email inválido</p>';
@@ -66,7 +64,7 @@ export const Login = () => {
               warningPage.innerHTML = '<p>Usuário não encontrado</p>';
               break;
             case 'auth/wrong-password':
-              warningPage.innerHTML = '<p>Usuário ou senha inválidos</p>'
+              warningPage.innerHTML = '<p>Usuário ou senha inválidos</p>';
               break;
             default:
               warningPage.innerHTML = `<p>${errorMessage}</p>`;
@@ -75,7 +73,7 @@ export const Login = () => {
           throw new Error(errorMessage);
         });
     }
-  };
+  }
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
@@ -95,18 +93,17 @@ export const Login = () => {
             warningPage.innerHTML = '<p>Está credencial já está sendo utilizada</p>';
             break;
           default:
-            warningPage.innerHTML = `<p>${errorMessage}</p>`
-
+            warningPage.innerHTML = `<p>${errorMessage}</p>`;
         }
         throw new Error(errorMessage);
-      })
-  };
+      });
+  }
 
   btnGoogle.addEventListener('click', () => {
     validationWithGoogle();
     navigation('/feed');
     keepLogged();
-  });  
+  });
 
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();

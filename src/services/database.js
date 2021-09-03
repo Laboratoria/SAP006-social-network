@@ -2,7 +2,7 @@ export const loadPosts = () => firebase
   .firestore()
   .collection('posts')
   .orderBy('text', 'desc')
-  .get();// aqui vai gerar uma promise
+  .get();
 
 export const addPosts = (postId) => firebase
   .firestore()
@@ -24,8 +24,6 @@ export const deletePost = (postId) => firebase
   .collection('posts')
   .doc(postId)
   .delete();
-  // then deverá ser aplicado no addEventListener do feed.js
-  // .then(() => window.location.reload());
 
 export const getLikes = (postId) => firebase
   .firestore()

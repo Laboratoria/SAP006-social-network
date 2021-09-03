@@ -1,6 +1,5 @@
-import { createAccount } from "../../services/authentication.js";
+import { createAccount } from '../../services/authentication.js';
 import { navigation } from '../../navigation.js';
-
 
 export const signUp = () => {
   const rootElement = document.createElement('div');
@@ -21,7 +20,7 @@ export const signUp = () => {
         <input class="value-register signup-input-password" type="password" name="confirm-user-password" id="user-confirm-password"
           class="style-input" placeholder="Confirme a senha">
       </div>
-
+      <div id='warning-signup' class='warning'></div>
       <div class="btn-form">
         <button id="btn-signup" class="btn">Cadastrar</button>
       </div>
@@ -36,16 +35,58 @@ export const signUp = () => {
 
   rootElement.innerHTML = container;
 
-  const userEmail = rootElement.querySelector('#useremail');
-  const userPassword = rootElement.querySelector('#userpassword');
-  const userConfirmPassword = rootElement.querySelector('#user-confirm-password');
-  const signUpBtn = rootElement.querySelector('#btn-signup');
+  function signUpDom() {
+    const userEmail = rootElement.querySelector('#useremail').value;
+    const userPassword = rootElement.querySelector('#userpassword').value;
+    const userConfirmPassword = rootElement.querySelector('#user-confirm-password').value;
+    const validationSignup = rootElement.querySelector('#warning-signup');
+    
+    if (userEmail === '') {
+      validationSignup.innerHTML = '<p>Digite um e-mail</p>';
+    } else if (userPassword === '') {
+      validationSignup.innerHTML = '<p>Digite uma senha</p>';
+    } else if (userConfirmPassword === '') {
+      validationSignup.innerHTML = '<p>Confirme a senha</p>';
+    } else if (userPassword !== userConfirmPassword) {
+      validationSignup.innerHTML = '<p>As senhas não conferem</p>';
+    } else {
+      createAccount(userEmail, userPassword)
+      .then(() =>{
+        navigation('/feed')
+      })
+      .catch((error) => {
+          const errorCode = error.code;
+          function errorWarning(errorMessage) {
+            const errorsCode = {
+              'auth/weak-password': 'A senha deve ter no mínimo 6 caracteres',
+              'auth/email-already-in-use': 'E-mail já cadastrado',
+              'auth/invalid-email': 'Insira um e-mail válido',
+            };
+            
 
-  signUpBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    createAccount(userEmail.value, userPassword.value, userConfirmPassword.value);
-    navigation('/feed');
+            if (errorsCode[errorMessage] === undefined) {
+              validationSignup.innerHTML = `<span class="material-icons">error</span><p>${errorsCode[errorMessage]}</p>`;
+            } else {
+              validationSignup.innerHTML = `<span class="material-icons">error</span><p>${errorsCode[errorMessage]}</p>`;
+            }
+          }
+          errorWarning(errorCode)
+        })
+     
+    }
+  }
+
+  const signUpBtn = rootElement.querySelector('.btn');
+
+  signUpBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    signUpDom();
   });
+
 
   return rootElement;
 };
+
+
+
+
