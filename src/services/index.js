@@ -5,12 +5,16 @@
 
 // Criar usuário
 
-export const createUser = (email, password) => {
+export const createUser = (name, email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
     // Signed in
       const user = userCredential.user;
+      console.log(user);
       window.location.hash = '#login';
+      user.updateProfile({
+        displayName: name,
+      });
       console.log('deu bom', user);
       // ...
     })
@@ -47,9 +51,29 @@ export const logout = () => {
     });
 };
 
+// Manter logado
+
+export const stayConected = (callback) => firebase.auth().onAuthStateChanged(callback);
+
+// User
+
+export const userData = () => firebase.auth().currentUser;
+
 // Post
 
-export const newPost = (postInf) => {
-  const db = firebase.firestore();
-  return db.collection('posts').add(postInf);
+export const newPost = (postMsg) => {
+  // const userInf = firebase.auth().currentUser;
+  const postInf = {
+    name: userData().displayName,
+    user: userData().uid,
+    email: userData().email,
+    message: postMsg,
+    data: (new Date()).toString().slice(4, 21),
+    like: [],
+  };
+
+  const postCollection = firebase
+    .firestore()
+    .collection('posts');
+  return postCollection.add(postInf);
 };
