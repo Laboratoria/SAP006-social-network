@@ -14,9 +14,10 @@ export const Login = () => {
         <h2>FORT</h2>
       </section>
     </header>
-    <section class="content-opacity">
+    <section class="mainSection-background-opacity">
       <div class="without-opacity">
-        <h4>Nova por aqui? <span><a href="/signup" id="signup" class="link-signup">Cadastre-se</a></span></h4>
+        <h4 class="login-redirect-signup">Nova por aqui? <span><a href="/signup" id="signup" class="link-signup">Cadastre-se</a></span></h4>
+        <h3 class="login-title-community">Encontre a sua comunidade!</h3>
         <div class="inputAndReset input-form">
           <input type="text" id="email" class="login-input-email" placeholder="Email">
           <input type="password" id="password" class="login-input-password" placeholder="Senha">
@@ -28,6 +29,7 @@ export const Login = () => {
           <img id="icon-google" class="btn-google" src="./pages/login/img/icon-google-white.png">
         </div>
       </div>
+      <div class="logo-above-bg"></div>
     </section>
   `;
   rootElement.innerHTML = container;
