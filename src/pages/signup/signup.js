@@ -40,7 +40,7 @@ export const signUp = () => {
     const userPassword = rootElement.querySelector('#userpassword').value;
     const userConfirmPassword = rootElement.querySelector('#user-confirm-password').value;
     const validationSignup = rootElement.querySelector('#warning-signup');
-    
+
     if (userEmail === '') {
       validationSignup.innerHTML = '<p>Digite um e-mail</p>';
     } else if (userPassword === '') {
@@ -51,10 +51,10 @@ export const signUp = () => {
       validationSignup.innerHTML = '<p>As senhas não conferem</p>';
     } else {
       createAccount(userEmail, userPassword)
-      .then(() =>{
-        navigation('/feed')
-      })
-      .catch((error) => {
+        .then(() => {
+          navigation('/feed');
+        })
+        .catch((error) => {
           const errorCode = error.code;
           function errorWarning(errorMessage) {
             const errorsCode = {
@@ -62,7 +62,6 @@ export const signUp = () => {
               'auth/email-already-in-use': 'E-mail já cadastrado',
               'auth/invalid-email': 'Insira um e-mail válido',
             };
-            
 
             if (errorsCode[errorMessage] === undefined) {
               validationSignup.innerHTML = `<span class="material-icons">error</span><p>${errorsCode[errorMessage]}</p>`;
@@ -70,9 +69,8 @@ export const signUp = () => {
               validationSignup.innerHTML = `<span class="material-icons">error</span><p>${errorsCode[errorMessage]}</p>`;
             }
           }
-          errorWarning(errorCode)
-        })
-     
+          errorWarning(errorCode);
+        });
     }
   }
 
@@ -83,10 +81,5 @@ export const signUp = () => {
     signUpDom();
   });
 
-
   return rootElement;
 };
-
-
-
-
