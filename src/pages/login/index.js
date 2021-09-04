@@ -1,4 +1,4 @@
-import { loginUser, signInWithGoogle } from '../../services/index.js';
+import { loginUser, signInWithGoogle, setUserLocalStorage } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -47,6 +47,7 @@ export default () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        setUserLocalStorage(user);
         window.location.hash = '#feed';
         return user;
       })

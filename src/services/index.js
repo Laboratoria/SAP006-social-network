@@ -57,8 +57,23 @@ export const stayConected = (callback) => firebase.auth().onAuthStateChanged(cal
 
 // User
 
-export const userData = () => firebase.auth().currentUser;
+export const userData = () => {
+  const uid = localStorage.getItem('uid');
+  const displayName = localStorage.getItem('displayName');
+  const email = localStorage.getItem('email');
+  const user = {
+    uid,
+    displayName,
+    email,
+  };
+  return user;
+};
 
+export const setUserLocalStorage = (user) => {
+  localStorage.setItem('uid', user.uid);
+  localStorage.setItem('displayName', user.displayName);
+  localStorage.setItem('email', user.email);
+};
 // Post
 
 export const newPost = (postMsg) => {
