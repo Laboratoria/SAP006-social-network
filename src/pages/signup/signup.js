@@ -5,13 +5,13 @@ export const signUp = () => {
   const rootElement = document.createElement('div');
 
   const container = `
-  <header class="esmaeceHeader logotipo-text">
+  <header class="esmaeceHeader-signup logotipo-text-signup">
     <section class="title">
       <h2>FORT</h2>
     </section>
   </header>
   <section class="content-signup">
-    <div class="form-register inputAndReset">
+    <div class="form-register">
       <div class="infos-user input-form">
         <input class="value-register signup-input-email" type="email" name="adress-email" id="useremail" class="style-input"
           placeholder="E-mail">
@@ -22,7 +22,7 @@ export const signUp = () => {
       </div>
       <div id='warning-signup' class='warning'></div>
       <div class="btn-form">
-        <button id="btn-signup" class="btn">Cadastrar</button>
+        <button id="btn-signup" class="btn-Signup">Cadastrar</button>
       </div>
 
       <div>
@@ -76,7 +76,7 @@ export const signUp = () => {
     }
   }
 
-  const signUpBtn = rootElement.querySelector('.btn');
+  const signUpBtn = rootElement.querySelector('.btn-Signup');
 
   signUpBtn.addEventListener('click', (e) => {
     e.preventDefault();

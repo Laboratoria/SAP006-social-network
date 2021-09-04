@@ -115,4 +115,3 @@ export const Feed = () => {
   return rootElement;
 };
 
-// prepend para colocar post no inicio
