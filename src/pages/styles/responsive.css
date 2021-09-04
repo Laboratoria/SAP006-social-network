@@ -1,28 +1,4 @@
-@media (min-width:1400px) {
-    /* header.esmaeceHeader, .logotipo-text {
-        display: none;
-    }
-
-    .login-title-community {
-        display:flex;
-    }
-
-    .mainSection-background-opacity {
-        background-image: url(../../img/opacobg.jpeg);
-        background-color: var(--color-background);
-        background-attachment: fixed;
-        background-repeat: repeat-x no-repeat;
-        background-position-x: right;
-        background-size: 50%;
-    }
-
-    .without-opacity {
-        filter: none;
-        width: 50%;
-        background-color: var(--color-background);
-    } */
-}
-
+/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media (min-width: 1200px) {
     header.esmaeceHeader, .logotipo-text {
         display: none;
@@ -120,21 +96,16 @@
         font-size: 1.2vw;
         filter: drop-shadow(0px 5.28302px 5.28302px rgba(0, 0, 0, 0.15));
     }
-
+    
     img#icon-google {
         width: none;
-
     }
 }
 
-/* @media (min-width: 1200px) and (max-width: 1400px) {
-
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
     header.esmaeceHeader, .logotipo-text {
         display: none;
-    }
-
-    .login-title-community {
-        display:flex;
     }
 
     .mainSection-background-opacity {
@@ -144,71 +115,96 @@
         background-repeat: repeat-x no-repeat;
         background-position-x: right;
         background-size: 50%;
+        padding: 0% 5% 0% 0%;
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .logo-above-bg{
+        background-image: url(../../img/logo.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 20vw;
+        height: 20vw;
+        margin-left: 16vw;
     }
 
     .without-opacity {
         filter: none;
-        width: 50%;
+        width: 52%;
+        height: 100vh;
         background-color: var(--color-background);
     }
-} */
 
-
-/* @media (max-width: 1024px) {
-    header.esmaeceHeader, .logotipo-text {
-        display: none;
-    }
+    .login-redirect-signup {
+        text-align: left;
+        padding-top: 6%;
+        font-weight: 600;
+        font-size: 1.4vw;
+        color: #706F6B;
+        text-shadow: 0px 8.32363px 8.32363px rgba(0, 0, 0, 0.1);
+    } 
 
     .login-title-community {
-        display:flex;
+        display: flex;
+        justify-content: center;
+        margin-top: 10%;
+        font-size: 1.8vw;
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 0.0168em;
+        color: #706F6B;
+        text-shadow: 0px 9.00986px 9.00986px rgba(0, 0, 0, 0.1);
     }
 
-    .mainSection-background-opacity {
-        background-image: url(../../img/opacobg.jpeg);
+    .inputAndReset {
+        margin-top: 15%;
+    }
+
+    .login-input-email, .login-input-password {
+        height: 2vw;
+        width: 30vw;
+        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
+    }
+
+    .login-input-password {
+        margin-bottom: 1.2%;
+    }
+
+    .reset-password {
+        margin-right: -38%;
         background-color: var(--color-background);
-        background-attachment: fixed;
-        background-repeat: repeat-x no-repeat;
-        background-position-x: right;
-        background-size: 50%;
+        font-size: 1em;
+        font-weight: 900;
+        color: #706F6B;
+        letter-spacing: 0.0168em;
     }
 
-    .without-opacity {
-        filter: none;
-        width: 50%;
-        background-color: var(--color-background);
+    .google {
+        margin-top: 3.2%;
     }
-} */
 
+    button#btn-login {
+        height: 8vh;
+        width: 33vh;
+        font-size: 1.2vw;
+        margin-bottom: 0.5vw;
+    }
 
-
-/* tablet */
-@media only screen and (min-width: 600px) {
+    .btn-google {
+        width: 34vh;
+        height: 30%;
+        font-size: 1.2vw;
+        filter: drop-shadow(0px 5.28302px 5.28302px rgba(0, 0, 0, 0.15));
+    }
+    
+    img#icon-google {
+        width: none;
+    }
 }
-
-@media (max-width: 1200px) {
-}
-
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 1024px) and (min-width:496px) {
-}
-
-@media (max-width:768px) {
-}
-
-@media (max-width: 576px) {
-}
-
-@media(max-width: 496px) {
-}
-
-@media(max-width: 340px) {
-}
-
-@media(max-width: 280px) {
-}
-
 
 
 /* Extra small devices (phones, 600px and down)
@@ -220,30 +216,4 @@ Small devices (portrait tablets and large phones, 600px and up)
 Medium devices (landscape tablets, 768px and up)
 @media only screen and (min-width: 768px) {...} */
 
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (min-width: 992px) {
-    header.esmaeceHeader, .logotipo-text {
-        display: none;
-    }
 
-    .login-title-community {
-        display:flex;
-    }
-
-    .mainSection-background-opacity {
-        background-image: url(../../img/opacobg.jpeg);
-        background-color: var(--color-background);
-        background-attachment: fixed;
-        background-repeat: repeat-x no-repeat;
-        background-position-x: right;
-        background-size: 50%;
-    }
-
-    .without-opacity {
-        filter: none;
-        width: 50%;
-        background-color: var(--color-background);
-    }
-} */
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
