@@ -5,7 +5,7 @@
 header {
   justify-content: flex-start;
   width: 100%;
-  padding-top: 10%;
+  padding-top: 5%;
   display: flex;
   flex-wrap: nowrap;
   align-content: center;
@@ -14,12 +14,29 @@ header {
 
 .searchBar {
   width: 80%;
-  height: 0.6vh;
-  color: #706f6b;
-  background-color: var(--color-white);
-  border-radius: 5px;
+  height: 10vw;
+  padding: 0.5em;
+  margin: 1em;
+  font-size: 2.5vw;
   box-sizing: border-box;
   border: 1px solid #ffffff;
+  border-right-width: 14px;
+  border-radius: 5px;
+  /* background-color: var(--color-white); */
+  color: #706f6b;
+  background: url(../../img/search.png) white no-repeat;
+  background-position-x: right;
+  background-position-y: center;
+  background-size: 4vw;
+}
+
+.iconify[data-icon="akar-icons:search"] {
+  color: #706f6b;
+  stroke-width: 1.67px;
+  background-color: var(--color-white);
+}
+
+.btn-search-icon {
 }
 
 input.searchBar {
@@ -27,12 +44,15 @@ input.searchBar {
 }
 
 .btn-logout {
-  background-color: #F8F0ED;
   width: min-content;
   padding: 0.2rem 0.5rem;
   color: var(--color-background);
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.iconify[data-icon="ic:round-logout"], .btn-logout {
+  background-color: #f0eae7;
 }
 
 .line {
@@ -348,8 +368,8 @@ circle {
   display: inline-end;
   float: right;
 }
-.dropbtn {
-  background-color: #f9f9f9;
+.dropbtn, .btn-like, .post-content {
+  background-color: #ffffff;
 
 }
 

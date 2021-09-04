@@ -1,5 +1,5 @@
 import {
-  addPosts, loadPosts,
+  addPosts, loadPosts, searchPosts,
 } from '../../services/database.js';
 import { printPost } from '../../components/feedcomponent.js';
 import { logout } from '../../services/authentication.js';
@@ -8,13 +8,13 @@ export const Feed = () => {
   const rootElement = document.createElement('div');
   const container = `
     <header class="searchBell">
-      <input type="search" class="searchBar" name="searchPost" placeholder="Pesquise no Fort">
+      <input type="search" id="input-search" class="searchBar btn-search-icon" name="searchPost" placeholder="Pesquise no Fort">
+      <button id="search"><span class="iconify" data-icon="akar-icons:search" style="color: #706f6b;"></span></button>
       <button class="btn-logout">
-        <span class="iconify" data-icon="ic:round-logout" style="color: #f78563;"></span>
+        <span class="iconify logout-icon-bcgcolor" data-icon="ic:round-logout" style="color: #f78563;"></span>
       </button>
     </header>
     <hr class="line">
-    <h4>POSTAGENS RECENTES</h4>
     <section class="post">
       <form action="" id="published-form">
         <input type="text" id="text-post" name="new-post" class="form-input-newpost" placeholder="Mana, o que você quer compatilhar?">
@@ -22,7 +22,10 @@ export const Feed = () => {
         <button class="btn" id="send-post">Enviar</button>
       </form>
     </section>
+    <h4>POSTAGENS RECENTES</h4>
    
+    <div class="search-result"></div>
+    
     <section class="get-post background-color-main" data-postcontainer id="postTemplate"> 
       <!--Aqui vem todo o template do areaOfPost-->
     </section>
@@ -49,6 +52,35 @@ export const Feed = () => {
 
   const postTemplate = rootElement.querySelector('#postTemplate');
 
+  const searchButton = rootElement.querySelector('#search');
+  const containerSearch = rootElement.querySelector('.search-result');
+
+  searchButton.addEventListener('click', () => {
+    const textSearched = rootElement.querySelector('#input-search').value;
+    const termsArray = textSearched.toLowerCase().split(' ');
+    containerSearch.innerHTML = `
+      <span class="result-text">Resultados para ${textSearched}: </span>
+      `;
+
+    loadPosts(searchPosts(termsArray))
+      .then((snap) => {
+        snap.forEach((doc) => {
+          const post = {
+            id: doc.id,
+            text: doc.data().text,
+            user_id: doc.data().user_id,
+            likes: doc.data().likes,
+            date: doc.data().date,
+            comments: doc.data().comments,
+            terms: doc.data().text.toLowerCase().split(' '),
+          };
+
+          const print = printPost(post);
+          postTemplate.appendChild(print);
+        });
+      });
+  });
+
   const logoutButton = rootElement.querySelector('.btn-logout');
   logoutButton.addEventListener('click', () => {
     logout();
@@ -66,6 +98,7 @@ export const Feed = () => {
       datePost: date,
       likes: [],
       comments: [],
+      terms: text.toLowerCase().split(' '),
     };
 
     const textValidationAddPost = rootElement.querySelector('.warn-input-add');
@@ -114,5 +147,3 @@ export const Feed = () => {
 
   return rootElement;
 };
-
-// prepend para colocar post no inicio

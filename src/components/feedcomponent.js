@@ -44,8 +44,7 @@ export const printPost = (post) => {
               class="post-content text-post"
               id="${post.id}"
               disabled>${post.text}
-        </textarea>
-        
+            </textarea>
         </div>
         <section class="actions" data-section display:${isMyPost ? 'inline-end' : 'none'}>
           <p data-numLike='${post.id}' class='numLikes'>${post.likes.length || 0}</p>
