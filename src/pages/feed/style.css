@@ -145,6 +145,13 @@
     text-align: center;
 }
 
+.logo{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+}
+
 @media screen and (max-height: 450px) {
     .profile {
         padding-top: 15px;

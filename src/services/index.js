@@ -10,6 +10,7 @@ export const criarPost = (text) => {
     const post = {
      user_id: usuario.uid,
      mensagem: text.value,
+     data: new Date(),
      like:[],
      comentario:[],
     }

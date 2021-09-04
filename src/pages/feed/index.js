@@ -28,6 +28,10 @@ export default () => {
         <textarea class="profile-description"></textarea>
       </section>-->
 
+          <figure class="logo">
+      <img src="./img/ellas-dev-logo.png">
+    </figure>
+
     <article class="post-area">
       <div class="post-container">
           <h3>O que você quer publicar?</h3>
@@ -73,33 +77,21 @@ export default () => {
     overlay.classList.toggle("overlay");
   });
 
-  //   const btn = feed.querySelector('#btn-postar');
-  //   btn.addEventListener('click', () => {
-  //     const msg = feed.querySelector('#mensagem');
-  //     const addPost = msg.value;
-  //     const addPostMsg = feed.querySelector('#addPost');
-  //      console.log(addPost);
-  // //todas as informações vai ficar aqui/data/foto/post/
-
-  //     const postagem = {
-  //       mensagem: addPost,
-  //       user_id:'Magna',
-  //       likes:0,
-  //       comments:[]
-
-  //     }
-
-
   //ADD POST NA LISTA
 
   const listaDePost = feed.querySelector('#addPost');
 
-  const addPost = (post) => {
+  const addPost = (doc) => {
+
 
     const postTemplate = `
+    
+<div class="post-publicado">
 
- <input type="text" id="post-publicado">
+
+ <textarea class="post-publicado" id="post-publicado">${doc.data().mensagem}</textarea>
  <button class="like" id="btn-publicar">like</button>
+
 
 `;
 
@@ -111,19 +103,19 @@ export default () => {
   //LISTAS DE POSTS
 
   const loadPosts = () => {
-    collectionPosts().orderBy('data', 'desc').get().then((snap) => {
+    collectionPosts().orderBy('data', 'desc').get().then((collection) => {
       listaDePost.innerHTML = '';
-      snap.forEach((post) => {
-        addPost(post);
+      collection.forEach((doc) => {
+        addPost(doc);
+        
       })
     })
   }
-  console.log(loadPosts);
 
+
+  loadPosts();
 
   const mensagem = feed.querySelector('#mensagem');
-
-
   const containerPost = feed.querySelector('#post-container');
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -133,9 +125,6 @@ export default () => {
 
     })
   })
-  console.log(containerPost);
-
-
 
 
   return main.appendChild(feed);
