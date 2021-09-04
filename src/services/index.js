@@ -1,9 +1,6 @@
-// Firebase
+// métodos que fazem conexão com o firebase
 
-// const email = 'bruna.belo@gmail.com';
-// const password = '123456';
-
-// Criar usuário
+// Cadastrar Usuário
 
 export const createUser = (name, email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -69,11 +66,14 @@ export const userData = () => {
   return user;
 };
 
+// manter usuário logado
+
 export const setUserLocalStorage = (user) => {
   localStorage.setItem('uid', user.uid);
   localStorage.setItem('displayName', user.displayName);
   localStorage.setItem('email', user.email);
 };
+
 // Post
 
 export const newPost = (postMsg) => {
@@ -82,8 +82,8 @@ export const newPost = (postMsg) => {
     name: userData().displayName,
     user: userData().uid,
     email: userData().email,
-    message: postMsg,
-    data: (new Date()).toString().slice(4, 21),
+    content: postMsg,
+    date: (new Date()).toString().slice(4, 21),
     like: [],
   };
 
@@ -92,3 +92,5 @@ export const newPost = (postMsg) => {
     .collection('posts');
   return postCollection.add(postInf);
 };
+
+export const getPostCollection = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();

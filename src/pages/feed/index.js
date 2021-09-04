@@ -1,4 +1,4 @@
-import { newPost } from '../../services/index.js';
+import { newPost, getPostCollection } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -24,8 +24,8 @@ export default () => {
 
         <div class= "card-feed"> <br>
           <h2 class="title">Feed</h2>
-          <ul id="feed-collection" class="feed-collection" data-section></ul>
-
+          <ul id="feed-container" class="feed-container" data-section></ul>
+          
         </div>
     `;
 
@@ -34,16 +34,20 @@ export default () => {
   // const firebaseAuth = firebase.auth().currentUser;
   const postButton = container.querySelector('#post-button');
   const postInputMsg = container.querySelector('#post-input');
-  const showPostsFeed = container.querySelector('#feed-collection');
+  const feedContainer = container.querySelector('#feed-container');
+
+  const clearPost = () => {
+    postInputMsg.value = '';
+  };
 
   postButton.addEventListener('click', () => {
     // console.log(firebaseAuth);
-    const postMsg = postInputMsg.value;
+    const newPostMsg = postInputMsg.value;
     // const addNewPost = container.querySelector('#add-new-post');
-    newPost(postMsg);
-    // .then((docRef) => {
-    //   console.log('Document written with ID: ', docRef.id);
-    //   postMessage.value = '';
+    newPost(newPostMsg);
+    //   .then((docRef) => {
+    //  console.log('Document written with ID: ', docRef.id);
+    //    postMessage.value = '';
     // })
     // .catch((error) => {
     //   console.error('Error adding document: ', error);
@@ -55,27 +59,8 @@ export default () => {
     // }
     // return error;
     // });
-    //  addNewPost.innerHTML = postMsg;
+    //  addNewPost.innerHTML = newPostMsg;
+    clearPost();
   });
-
-  const viewPost = (data) => {
-    const templateFeed = `
-    <div id="${data.id}">
-    <section>
-      <div id="userName">${data.data().name}</div>
-      <div id="userEmail">${data.data().email}</div>
-      <div id="datePost">${data.data().data}</div>
-    </section>
-    <div id="getPosts">${data.data().post}</div>
-    <button id="like">LIKE</button>
-    <span id="numberLike">${data.data().like.length}</span>
-    `;
-
-    showPostsFeed.innerHTML += templateFeed;
-  };
-  // eslint-disable-next-line no-undef
-  // postCollection(viewPost);
   return container;
 };
-
-// função para mostrar os dados dos posts
