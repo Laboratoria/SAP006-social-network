@@ -27,7 +27,7 @@ section.title {
   z-index: -1;
 }
 
-.content-opacity {
+.mainSection-background-opacity {
     background-image: url(../../img/opacobg.jpeg);
     /* filter: opacity(0.4); */
     z-index: -1;
@@ -131,7 +131,7 @@ form {
   margin-top: 2%;
 }
 
-img#icon-google {
+.btn-google {
   width: 50%;
   height: 30%;
   border-radius: 25%;
@@ -140,71 +140,3 @@ img#icon-google {
 
 
 
-/* tablet */
-@media only screen and (min-width: 600px) {
-    .h2 {
-        font-size: 5vh;
-        line-height: none;
-    }
-
-    .logotipo-text {
-        height: 15vh;
-    }
-
-    section.title {
-        padding: 16% 0% 1% 5%;
-    }
-
-    .content-opacity {
-        padding: none;
-    }
-
-    .inputAndReset {
-        margin-top: 32.5vh;
-    }
-
-    input {
-        height: 5vh;
-        width: 40vh;
-    }
-
-    .reset-password {
-        margin-right: 16vh;
-    }
-
-    .btn {
-        height: 6vh;
-        width: 20vh;
-        font-size: 1.5vh;
-    }
-
-    img#icon-google {
-        width: 20vh;
-        height: 5vh;
-    }
-
-    .checkbox {
-        height: 1.7vh;
-        width: 1.7vh;
-    }
-}
-
- /* desktop */
- @media (min-width: 1200px) {
-    .logotipo-text {
-        width: 50%;
-        height: 100vh;
-    }
-    
-    section.title {
-        padding: none;
-    }
-
-    h2 {
-        display: none;
-    }
-
-    .content-opacity {
-        background-image: none;
-    }    
- }

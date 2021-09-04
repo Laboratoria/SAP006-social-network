@@ -9,7 +9,9 @@ export const Feed = () => {
   const container = `
     <header class="searchBell">
       <input type="search" id="input-search" class="searchBar btn-search-icon" name="searchPost" placeholder="Pesquise no Fort">
-      <button id="search"><span class="iconify" data-icon="akar-icons:search" style="color: #706f6b;"></span></button>
+      <button id="search">
+        <span class="iconify" data-icon="akar-icons:search" style="color: #706f6b;"></span>
+      </button>
       <button class="btn-logout">
         <span class="iconify logout-icon-bcgcolor" data-icon="ic:round-logout" style="color: #f78563;"></span>
       </button>
