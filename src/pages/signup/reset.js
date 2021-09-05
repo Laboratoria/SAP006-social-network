@@ -3,7 +3,7 @@ import { resetPassword } from '../../services/authentication.js';
 export const Reset = () => {
   const rootElement = document.createElement('div');
   const container = `
-    <header class="header-container">
+    <header class="reset-header-container">
       <section class="resetSection-header-title">
         <h2 class="reset-header-title">FORT</h2>
       </section>
