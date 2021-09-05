@@ -15,10 +15,13 @@ export function addPost(post) {
     <ul class="recipeMenu">
       <li class="edit-button">
         <p> Editar 
-          <span class="material-icons"> edit </span> </p>
+          <span class="material-icons"> edit </span> 
+        </p>
       </li>
-      <li class="delete-button"> <p> Excluir 
-        <span class="material-icons"> deletep </span> </p> 
+      <li class="delete-button"> 
+        <p> Excluir 
+          <span class="material-icons"> deletep </span>
+        </p> 
       </li>
     </ul>
 
@@ -67,7 +70,7 @@ export function addPost(post) {
     <div class="div-width100 recipe-title recipe-footer">
       <div class="like">
         <span class="material-icons heart favoriteIcon">favorite</span> 
-            <p class="numLikes"> ${post.data().likes.length || 0} </p>
+          <p class="numLikes"> ${post.data().likes.length || 0} </p>
         <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
         <button class="recipeLikes" data-like= ${post.id} >Curtir</button>
       </div>
