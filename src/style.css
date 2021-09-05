@@ -419,7 +419,7 @@ button:hover {
   color: #F6C324;
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 98;
 }
 
 #header,  #headerSearchPage {
@@ -458,7 +458,7 @@ button:hover {
   display: block;
   position: absolute;
   width: 70%;
-  z-index: 100;
+  z-index: 98;
   background-color: var(--coral-haze);
   /* transition: .2s; */
   visibility: hidden;

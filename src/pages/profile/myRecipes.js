@@ -1,6 +1,7 @@
 import profile from './index.js';
 import { addPost } from '../../components/post/index.js';
 import { getUserData, loadRecipe } from '../../services/index.js';
+import errorModal from '../../components/error/index.js';
 
 export default () => {
   const myRecipesContainer = document.createElement('div');
@@ -23,6 +24,15 @@ export default () => {
           </div>
         `;
       }
+    })
+    .catch((error) => {
+      myRecipesSection.innerHTML = `
+        <div class="overlay"></div>
+      `;
+      const overlay = myRecipesSection.querySelector('.overlay');
+      overlay.classList.add('active');
+      myRecipesContainer.append(errorModal());
+      throw Error(error);
     });
 
   myRecipesContainer.append(myRecipesSection);
