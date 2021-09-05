@@ -43,7 +43,7 @@ export const unlikePost = (userId, postId) => firebase
   .doc(postId)
   .update({ likes: firebase.firestore.FieldValue.arrayRemove(userId) });
 
-export const searchDrinks = (array) => firebase
+export const searchPosts = (array) => firebase
   .firestore()
   .collection('posts')
   .where('terms', 'array-contains-any', array)
