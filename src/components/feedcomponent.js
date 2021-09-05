@@ -48,7 +48,7 @@ export const printPost = (post) => {
         
         </div>
         <section class="actions" data-section style="display:${isMyPost ? 'none' : 'inline-end'}">
-          <p data-numLike='${post.id}' class='numLikes'>${post.likes.length || 0}</p>
+          <p data-numLike='${post.id}' class='numLikes'>${post.likes.length}</p>
           <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
         </section>
       </div>
@@ -99,7 +99,7 @@ export const printPost = (post) => {
       .then(() => postText.setAttribute('disabled', ''));
   });
 
-  deleteButton.addEventListener('click', (e) => {
+  deleteButton.addEventListener('click', () => {
     const postArea = document.querySelector(`[data-container="${post.id}"]`);
     deletePopUp(post.id, postArea);
   });
