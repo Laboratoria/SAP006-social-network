@@ -18,7 +18,7 @@ export const criarPost = (text) => {
     return collectionPosts().add(post)
 }
 
-//     .add(postagem)
+//     .add(posts)
 //     .then((docRef) => {
 //         console.log("Document written with ID: ", docRef.id);
 //         msg.value = '';
