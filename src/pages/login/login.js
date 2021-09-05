@@ -9,9 +9,9 @@ import { navigation } from '../../navigation.js';
 export const Login = () => {
   const rootElement = document.createElement('div');
   const container = `
-    <header class="esmaeceHeader logotipo-text">
-      <section class="title">
-        <h2>FORT</h2>
+    <header class="header-container">
+      <section class="section-header-title">
+        <h2 class="header-title">FORT</h2>
       </section>
     </header>
     <section class="mainSection-background-opacity">
@@ -19,13 +19,13 @@ export const Login = () => {
         <h4 class="login-redirect-signup">Nova por aqui? <span><a href="/signup" id="signup" class="link-signup">Cadastre-se</a></span></h4>
         <h3 class="login-title-community">Encontre a sua comunidade!</h3>
         <div class="inputAndReset input-form">
-          <input type="text" id="email" class="login-input-email" placeholder="Email">
+          <input type="text" id="email" class="login-input-email" placeholder="E-mail">
           <input type="password" id="password" class="login-input-password" placeholder="Senha">
           <button class="reset-password" id="reset">Esqueceu a senha?</button><br>
           <div class='warning'></div>
         </div>
-        <div class="google">
-          <button id="btn-login" class="login btn">LOGIN</button>
+        <div class="container-btn-login">
+          <button id="btn-login" class="btn-login login btn">LOGIN</button>
           <img id="icon-google" class="btn-google" src="./pages/login/img/icon-google-white.png">
         </div>
       </div>
