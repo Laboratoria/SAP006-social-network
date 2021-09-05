@@ -13,9 +13,10 @@ export default () => {
   feedSection.setAttribute('class', 'feedSection');
 
   feedSection.innerHTML = `
-    <h2 id="recipes-title" class="title">Receitas</h2>
-    <div class="loading">
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <div>
+      <h2 id="recipes-title" class="title">Receitas</h2>
+      <div class="loading">
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
     </div>
   `;
 
@@ -25,12 +26,15 @@ export default () => {
       querySnapshot.forEach((post) => {
         feedSection.append(addPost(post));
       });
-    })
-    .then(() => {
-      feedContainer.append(footer());
     });
 
-  feedContainer.append(feedSection);
+  const body = document.querySelector('body');
+  const footerTag = body.querySelector('footer');
 
+  if (footerTag === null) {
+    body.appendChild(footer());
+  }
+
+  feedContainer.append(feedSection);
   return feedContainer;
 };

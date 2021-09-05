@@ -1,5 +1,4 @@
 import profile from './index.js';
-import footer from '../../components/footer/index.js';
 import { addPost } from '../../components/post/index.js';
 import { getUserData, loadRecipe } from '../../services/index.js';
 
@@ -19,14 +18,11 @@ export default () => {
       });
       if (myRecipesSection.childElementCount === 0) {
         myRecipesSection.innerHTML = `
-          <div id="notice" class="notice">
+          <div id="notice" class="notice" style="margin-top:2rem;">
             <p> Você ainda não publicou nenhuma receita </p>
           </div>
         `;
       }
-    })
-    .then(() => {
-      myRecipesContainer.append(footer());
     });
 
   myRecipesContainer.append(myRecipesSection);

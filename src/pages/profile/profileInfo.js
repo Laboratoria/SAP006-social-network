@@ -3,10 +3,10 @@ import {
 }
   from '../../services/index.js';
 import profile from './index.js';
-import footer from '../../components/footer/index.js';
 
 export default () => {
   const profileInfoContainer = document.createElement('div');
+  profileInfoContainer.setAttribute('class', 'padding-bottom25');
   profileInfoContainer.append(profile());
   const profileSection = document.createElement('section');
   const profileInfoContent = `
@@ -80,6 +80,5 @@ export default () => {
     EditProfileDom();
   });
 
-  profileInfoContainer.append(footer());
   return profileInfoContainer;
 };

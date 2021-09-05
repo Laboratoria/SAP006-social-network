@@ -10,7 +10,7 @@ export default () => {
   addRecipeContainer.append(header());
 
   const addRecipeSection = document.createElement('section');
-  addRecipeSection.classList.add('div-width90');
+  addRecipeSection.setAttribute('class', 'postRecipeSection div-width90');
 
   const addRecipeTemplate = `
     <h2 id="post-recipe-title" class="title">Postar Receita</h2>
@@ -163,6 +163,12 @@ export default () => {
     window.location.hash = '#feed';
   });
 
-  addRecipeContainer.append(footer());
+  const body = document.querySelector('body');
+  const footerTag = body.querySelector('footer');
+
+  if (footerTag === null) {
+    body.appendChild(footer());
+  }
+
   return addRecipeContainer;
 };

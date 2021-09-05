@@ -1,7 +1,9 @@
 import header from '../../components/header/index.js';
+import footer from '../../components/footer/index.js';
 
 export default () => {
   const perfilContainer = document.createElement('div');
+  perfilContainer.setAttribute('class', 'screenContainer');
 
   perfilContainer.append(header());
 
@@ -25,10 +27,17 @@ export default () => {
       </div>
   
     </div>
-    `;
+  `;
 
   perfilSection.innerHTML = perfilContent;
   perfilContainer.append(perfilSection);
+
+  const body = document.querySelector('body');
+  const footerTag = body.querySelector('footer');
+
+  if (footerTag === null) {
+    body.appendChild(footer());
+  }
 
   return perfilContainer;
 };
