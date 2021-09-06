@@ -60,14 +60,15 @@ export const Feed = () => {
   searchButton.addEventListener('click', () => {
     const textSearched = rootElement.querySelector('#input-search').value;
     const termsArray = textSearched.toLowerCase().split(' ');
+
     containerSearch.innerHTML = `
       <span class="result-text">Resultados para ${textSearched}: </span>
       `;
 
-    loadPosts(searchPosts(termsArray))
+    searchPosts(termsArray)
       .then((snap) => {
         snap.forEach((doc) => {
-          const post = {
+          const obj = {
             id: doc.id,
             text: doc.data().text,
             user_id: doc.data().user_id,
@@ -77,8 +78,8 @@ export const Feed = () => {
             terms: doc.data().text.toLowerCase().split(' '),
           };
 
-          const print = printPost(post);
-          postTemplate.appendChild(print);
+          const print = printPost(obj);
+          postTemplate.prepend(print);
         });
       });
   });
@@ -92,6 +93,7 @@ export const Feed = () => {
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
+    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
     const date = new Date();
     const post = {

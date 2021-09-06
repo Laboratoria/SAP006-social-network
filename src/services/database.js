@@ -47,5 +47,5 @@ export const searchPosts = (array) => firebase
   .firestore()
   .collection('posts')
   .where('terms', 'array-contains-any', array)
-  .orderBy('datePost', 'desc')
+  .orderBy('datePost', 'desc') // trocar pra asc num futuro distante
   .get();

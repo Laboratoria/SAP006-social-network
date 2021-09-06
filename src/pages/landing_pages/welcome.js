@@ -14,14 +14,10 @@ export const Welcome = () => {
         </header>
         <main class="welcome-paragraph">
           <p>Fort é uma rede social exclusiva para mulheres!</p> 
-        </section>
-
-        <section class="continuebutton">
+        
           <button class="btn-continue" id="btn-continue">Continuar</button>
-        </section>
 
-        <section class="skipbutton">
-          <button class="skip">Pular</button>
+          <button class="skipbutton">Pular</button>
         </section>
       </div>   
     </section>
@@ -37,7 +33,7 @@ export const Welcome = () => {
     navigation('/conecte');
   });
 
-  const skipBtn = rootElement.querySelector('.skip');
+  const skipBtn = rootElement.querySelector('.skipbutton');
   skipBtn.addEventListener('click', (event) => {
     event.preventDefault();
     navigation('/login');

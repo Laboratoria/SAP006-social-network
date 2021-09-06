@@ -1,5 +1,5 @@
 import { updatePosts, likePost, unlikePost } from '../services/database.js';
-import { deletePopUp } from './popup.js';
+import { deleteConfirm } from './popup.js';
 
 export const printPost = (post) => {
   const likeArray = post.likes;
@@ -39,15 +39,14 @@ export const printPost = (post) => {
       
       <div class="align-post-like">
         <div class="content">
-            <textarea id="text-post"
-              data-textpost="${post.id}
+            <div id="text-post"
+              data-textpost="${post.id}"
               class="post-content text-post"
-              id="${post.id}"
-              disabled>${post.text}
-            </textarea>
+              id="${post.id}">${post.text}
+            </div>
         </div>
         <section class="actions" data-section style="display:${isMyPost ? 'none' : 'inline-end'}">
-          <p data-numLike='${post.id}' class='numLikes'>${post.likes.length || 0}</p>
+          <p data-numLike='${post.id}' class='numLikes'>${post.likes.length}</p>
           <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
         </section>
       </div>
@@ -61,7 +60,8 @@ export const printPost = (post) => {
   const editButton = postTemplate.querySelector(`[data-edit="${post.id}"]`);
   const saveButton = postTemplate.querySelector(`[data-save="${post.id}"]`);
   const deleteButton = postTemplate.querySelector(`[data-delete="${post.id}"]`);
-  const postText = postTemplate.querySelector('[data-textpost]');
+  const postText = postTemplate.querySelector(`[data-textpost="${post.id}"]`);
+  console.log(postText.innerText);
 
   likeBtn.addEventListener('click', () => {
     const likeCount = postTemplate.querySelector(`[data-numLike="${post.id}"]`);
@@ -89,18 +89,18 @@ export const printPost = (post) => {
   });
 
   editButton.addEventListener('click', () => {
-    postText.removeAttribute('disabled');
+    postText.setAttribute('contentEditable', '');
     postText.focus();
   });
 
   saveButton.addEventListener('click', () => {
-    updatePosts(post.id, postText.value)
-      .then(() => postText.setAttribute('disabled', ''));
+    updatePosts(post.id, postText.innerText)
+      .then(() => postText.removeAttribute('contentEditable', ''));
   });
 
-  deleteButton.addEventListener('click', (e) => {
+  deleteButton.addEventListener('click', () => {
     const postArea = document.querySelector(`[data-container="${post.id}"]`);
-    deletePopUp(post.id, postArea);
+    deleteConfirm(post.id, postArea);
   });
 
   return postTemplate;
