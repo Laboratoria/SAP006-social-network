@@ -26,7 +26,6 @@ export default () => {
           <a  class="editProfile" href="#profileInfo"> <li class="profile-nav-bar-options">Editar perfil</li> </a>
         </ul>
       </div>
-  
     </div>
   `;
 

@@ -43,6 +43,7 @@ body {
 
 .postRecipeSection  {
   margin-top: 90px;
+  margin-bottom: 25px;
 }
 
 .initialForm, .postRecipeForm {
@@ -112,11 +113,13 @@ body {
 }
 
 .material-icons {
+  background-color: transparent;
+  border: none;
   font-size: 1.2rem;
   margin-right: 5px;
 }
 
-button:hover {
+button::before {
   cursor: pointer;
 }
 
@@ -307,6 +310,11 @@ button:hover {
   width: 40px;
 }
 
+.recipeLikes {
+  background-color: transparent;
+  border: none;
+}
+
 input[type="file"] {
   display: none;
 }
@@ -330,6 +338,10 @@ input[type="file"] {
 
 .div-profile {
   width: 100%;
+}
+
+.recipe-content p {
+  margin-left: 0.5rem;
 }
 
 .profileInfo{
@@ -371,6 +383,13 @@ input[type="file"] {
 
 .profile-nav-bar-options:hover{
   background-color: rgb(102, 102, 93);
+}
+
+
+.recipeInfo-box p, .recipeInfo-box span {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 0px;
 }
 
 .profileInfo section p{
@@ -415,11 +434,8 @@ input[type="file"] {
 }
 
 /* icons */ 
-.heart {
-  color: black;
-}
 
-.test {
+.recipeLikes i {
   color: red;
 }
 
@@ -436,9 +452,14 @@ input[type="file"] {
   align-items: center;
   margin: 1.3rem auto;
 }
+
 /*   Fim da página de perfil:  */
 
 /* =====================================  HEADER ===================================== */
+.icons-header {
+  font-size: 24px;
+
+}
 
 #headerContainer {
   width: 100%;
@@ -611,10 +632,6 @@ footer a {
   margin-top: 1rem;
 }
 
-.recipe-content p {
-  margin-left: 0.5rem;
-}
-
 .recipeBody {
   margin: 0.5rem;
   display: none;
@@ -641,8 +658,7 @@ footer a {
 }
 
 .recipe-footer {
-  border-radius: 0 0 5px 5px;
-  display: flex;
+  border-radius: 0 0 5px 5px;  /* display flex removido por Thais */
 }
 
 .like {
@@ -674,6 +690,7 @@ footer a {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;   /* adicionado - para função editar receita  */
 }
 
 .recipeInfo-box p, .recipeInfo-box span {
@@ -752,6 +769,58 @@ footer a {
 .feedSection {
   margin-top: 90px;
 }
+
+.numLikes {
+  margin-left: 5px;
+}
+
+/* Função de editar receitas:  */
+
+.current-option-edit-recipe {
+  display: none;
+}
+
+.textarea-edit-recipe {
+  resize: none;
+  width: 200px;
+  height: 100px;
+  border: 1px solid rgb(247, 193, 245);
+}
+
+.input-edit-recipe, .option-edit-recipe, .select-edit-recipe {
+  width: 100px;
+  background-color: rgb(248, 222, 247);
+}
+
+.post-date {
+  font-size: 14px;
+}
+
+.userLevel {
+  align-self: center;
+}
+
+.title-level {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.like-date {
+  justify-content: space-between;
+  display: flex;
+}
+
+.userAuthor {
+  font-size: 14px;
+  width: 50%;
+}
+/* Fim de função de editar receitas:  */
+
+
+
+
 /* =================================  Página de search =================================== */
 
 .searchBox {
@@ -814,7 +883,6 @@ footer a {
   text-align: center;
   cursor: pointer;
   color: #dcddd8;
-  /* background: #172b3c;  */
   background-color: transparent;
   margin: auto 1rem;
 }

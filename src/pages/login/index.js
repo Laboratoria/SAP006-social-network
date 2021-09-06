@@ -1,4 +1,4 @@
-import { signIn, signInWithGoogle, setUserData } from '../../services/index.js';
+import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -6,7 +6,7 @@ export default () => {
 
   const loginScreenButtons = `
   <div class = "div-width90 flexRowReverse">
-      <img class="logo" src="image/logotipo.png">
+    <img class="logo" src="image/logotipo.png">
     
     <form class="initialForm">
       <h1 class="title"> Entrar </h1>
@@ -72,7 +72,6 @@ export default () => {
   function signInWithGoogleDom() {
     signInWithGoogle()
       .then(() => {
-        setUserData();
         window.location.hash = '#feed';
       })
       .catch((error) => {

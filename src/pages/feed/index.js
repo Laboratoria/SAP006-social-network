@@ -1,7 +1,7 @@
 import { loadRecipe } from '../../services/index.js';
 import header from '../../components/header/index.js';
-import footer from '../../components/footer/index.js';
 import { addPost } from '../../components/post/index.js';
+import footer from '../../components/footer/index.js';
 import errorModal from '../../components/error/index.js';
 
 export default () => {
