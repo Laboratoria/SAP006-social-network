@@ -5,7 +5,15 @@
         display: none;
     }
 
-    .mainSection-background-opacity, .content-signup{
+    .mainSection-background-opacity, .content-signup, .resetSection-header-title {
+        padding: 3% 0% 3% 5%;
+    }
+
+    .reset-header-title {
+        font-size: 7vh;
+    }
+
+    .mainSection-background-opacity, .resetSection-background-opacity {
         background-image: url(../../img/opacobg.jpeg);
         background-color: var(--color-background);
         background-attachment: fixed;
@@ -20,7 +28,22 @@
         align-items: center;
     }
 
-    .logo-above-bg, .logo-above-bg-signup{
+    .logo-above-bg, .logo-above-bg-signup, .resetSection-background-opacity {
+        background-size: cover;
+        padding: 0;
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .reset-text {
+        font-size: 3vh;
+    }
+
+    .logo-above-bg{
         background-image: url(../../img/logo.png);
         background-size: cover;
         background-repeat: no-repeat;
@@ -81,6 +104,12 @@
         font-size: 1.0vw;
         margin-bottom: 1.5vw;
     }
+    
+    .reset-input-layout {
+        height: 11vh;
+        width: 66vh;
+        font-size: 1.3rem;
+    }
 
     .reset-password {
         margin-right: -38%;
@@ -91,15 +120,21 @@
         letter-spacing: 0.0168em;
     }
 
-    .google {
+    .container-btn-login  {
         margin-top: 3.2%;
     }
 
-    button#btn-login  {
+    .btn-login {
         height: 8vh;
         width: 33vh;
         font-size: 1.2vw;
         margin-bottom: 0.5vw;
+    }
+
+    .btn-reset {
+        height: 9vh;
+        width: 21vh;
+        font-size: 1.3rem;
     }
 
     .btn-google {
@@ -213,11 +248,11 @@
         letter-spacing: 0.0168em;
     }
 
-    .google {
+    .container-btn-login  {
         margin-top: 3.2%;
     }
 
-    button#btn-login {
+    .btn-login {
         height: 8vh;
         width: 33vh;
         font-size: 1.2vw;
@@ -326,10 +361,17 @@
 
      .go-login {
       font-size: 0.9rem;
-     }
+    }
+
+    .reset-input-layout {
+        height: 8vh;
+        width: 43vh;
+        font-size: 1.1rem;
+    }
+
+    .btn-reset {
+        height: 7vh;
+        width: 19vh;
+        font-size: 1.2rem;
+    }
 }
-
-
-
-
-

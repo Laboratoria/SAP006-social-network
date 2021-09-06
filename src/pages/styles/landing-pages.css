@@ -3,7 +3,7 @@
 /** WELCOME PAGE **/
 .logotipo {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   padding: 25%;
   background-image: url(../../img/opacobg.jpeg);
@@ -14,15 +14,15 @@
 .logoimg {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 60%;
 }
 
 .welcome-bar {
   padding: 0;
-  height: 40vh;
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background-color: var(--color-background);
   color: var(--color-primary)
@@ -30,14 +30,17 @@
 
 .welcome-content {
   width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   user-select: none;
+  margin-top: 20px;
 }
 
 .welcome-content header {
+  justify-content: space-evenly;
   font-weight: 700;
   font-size: 1.3rem;
   padding: 1rem;
@@ -60,6 +63,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  margin-top: 20px;
 }
 
 .container {
@@ -71,24 +75,24 @@
 .sidebar {
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background-color: var(--color-background);
   color: var(--color-primary);
   padding: 0;
 }
 
-.content {
-  max-height: 40vh;
+.sidebar-content {
+  max-height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   user-select: none;
 }
 
-.content header {
+.sidebar-content header {
   font-weight: 700;
   font-size: 1.2rem;
   padding: 1rem;
@@ -107,28 +111,43 @@
   padding-bottom: 60px;
 }
 
-.content p {
+.sidebar-content p {
   display: flex;
   text-align: center;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   max-width: 50%;
 }
 
-
-/** CONFIG GERAL **/
-
-.continuebutton, .skipbutton {
-  background-color: var(--color-background);
+.sidebar-content header {
   display: flex;
   justify-content: center;
+}
+
+
+/** CONFIG GERAL **/
+.skipbutton {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
   width: 100%;
   padding: 0;
+  margin-left: 70%;
+  margin-top: 25px;
+  padding-bottom: 10%;
+  
+  color: var(--color-primary);
+  background: transparent;
+
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  text-transform: uppercase;
 }
 
 .btn-continue {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  margin-top: 55%;
   background-color: var(--color-primary);
   border-radius: 50px;
   width: 130px;
@@ -144,7 +163,7 @@
 .skip {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   color: var(--color-primary);
   background: transparent;
   margin-top: 20px;
