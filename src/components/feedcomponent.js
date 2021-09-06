@@ -1,5 +1,5 @@
 import { updatePosts, likePost, unlikePost } from '../services/database.js';
-import { deletePopUp } from './popup.js';
+import { deleteConfirm } from './popup.js';
 
 export const printPost = (post) => {
   const likeArray = post.likes;
@@ -100,7 +100,7 @@ export const printPost = (post) => {
 
   deleteButton.addEventListener('click', () => {
     const postArea = document.querySelector(`[data-container="${post.id}"]`);
-    deletePopUp(post.id, postArea);
+    deleteConfirm(post.id, postArea);
   });
 
   return postTemplate;

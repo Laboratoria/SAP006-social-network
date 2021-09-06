@@ -1,34 +1,54 @@
 import { deletePost } from '../services/database.js';
 
-export const deletePopUp = (postId, post) => {
-  const popUpContainer = document.createElement('div');
-  const postTemplate = document.querySelector('#postTemplate');
-
-  popUpContainer.innerHTML = `
-    <div class='popup-wrapper' data-popup>
-      <div class='popup'>
-        <div class='popup-content'>
-          <h3>Tem certeza que deseja apagar esse post?</h3>
-            <button id='yes' data-confirm class='yes answer'>DELETAR</button>
-            <button id='no' data-cancel class='no answer'>CANCELAR</button>
+export const modal = {
+  confirm: (message, callback) => {
+    const template = `<div id="modal-confirm" class="modal-background">
+        <div class="modal">
+          <span id="close-btn">&times;</span>
+          <p class='modalMensage'>${(message) || '???'}</p>
+          <div class="buttons">
+            <button class="yes" id="confirm-btn"> Sim </button>
+            <button class="no" id="no-btn"> Não </button>
+          </div>
         </div>
-      </div>
-    </div>
-  `;
-  postTemplate.appendChild(popUpContainer);
+      </div>`;
 
-  const popUpWrapper = postTemplate.querySelector('.popup-wrapper');
-  popUpWrapper.style.display = 'block';
+    const modalElement = document.createElement('div');
 
-  const confirmButton = document.querySelector('[data-confirm]');
-  confirmButton.addEventListener('click', () => {
-    deletePost(postId)
-      .then(post.remove());
-    popUpWrapper.style.display = 'none';
-  });
+    modalElement.innerHTML = template;
 
-  const cancelButton = document.querySelector('[data-cancel]');
-  cancelButton.addEventListener('click', () => {
-    popUpWrapper.style.display = 'none';
+    document.body.appendChild(modalElement);
+
+    const confirmBtn = modalElement.querySelector('#confirm-btn');
+    const modalBackground = modalElement.querySelector('.modal-background');
+    const closeBtn = modalElement.querySelector('#close-btn');
+    const noBtn = modalElement.querySelector('#no-btn');
+
+    confirmBtn.addEventListener('click', () => {
+      callback();
+      modalBackground.style.display = 'none';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modalBackground.style.display = 'none';
+    });
+
+    noBtn.addEventListener('click', () => {
+      modalBackground.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === modalBackground) {
+        modalBackground.style.display = 'none';
+      }
+    });
+  },
+};
+
+export const deleteConfirm = (idPost, post) => {
+  modal.confirm('Essa postagem será excluída, deseja continuar?', () => { 
+    // const postDiv = rootElement.querySelector(`[data-id="${deleteId}"]`);
+    deletePost(idPost)
+      .then(() => post.remove());
   });
 };
