@@ -72,6 +72,7 @@ export const Feed = () => {
             id: doc.id,
             text: doc.data().text,
             user_id: doc.data().user_id,
+            displayName: doc.data().userName,
             likes: doc.data().likes,
             date: doc.data().date,
             comments: doc.data().comments,
@@ -93,9 +94,9 @@ export const Feed = () => {
   submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const text = rootElement.querySelector('#text-post').value;
-    console.log(text);
     const useruid = firebase.auth().currentUser.uid;
     const date = new Date();
+    const displayName = firebase.auth().currentUser.displayName;
     const post = {
       text,
       user_id: useruid,
@@ -103,6 +104,7 @@ export const Feed = () => {
       likes: [],
       comments: [],
       terms: text.toLowerCase().split(' '),
+      displayName,
     };
 
     const textValidationAddPost = rootElement.querySelector('.warn-input-add');
@@ -133,6 +135,7 @@ export const Feed = () => {
           likes: doc.data().likes,
           date: doc.data().date,
           comments: doc.data().comments,
+          displayName: doc.data().displayName,
         };
 
         const print = printPost(post);

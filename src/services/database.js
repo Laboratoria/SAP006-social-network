@@ -14,7 +14,9 @@ export const updatePosts = (postId, newText) => firebase
   .firestore()
   .collection('posts')
   .doc(postId)
-  .update({ text: newText })
+  .update({
+    text: newText,
+  })
   .then(() => {
     // window.location.reload();
   });

@@ -57,7 +57,8 @@ ol, ul {
 .login-input-email, 
 .login-input-password, 
 .signup-input-email, 
-.signup-input-password {
+.signup-input-password,
+.signup-input-name {
   border-radius: 20px;
   background: var(--color-white);
   border: 1px solid var(--color-background);

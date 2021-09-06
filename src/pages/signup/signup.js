@@ -1,4 +1,4 @@
-import { createAccount } from '../../services/authentication.js';
+import { createAccount, updateProfile } from '../../services/authentication.js';
 import { navigation } from '../../navigation.js';
 
 export const signUp = () => {
@@ -13,6 +13,9 @@ export const signUp = () => {
   <section class="content-signup">
     <div class="form-register form-register-responsive">
       <div class="infos-user input-form">
+      <h3>Vamos começar?</h3>
+      <input class="value-register signup-input-name" id="username" class="style-input"
+      placeholder="Nome">
         <input class="value-register signup-input-email" type="email" name="adress-email" id="useremail" class="style-input"
           placeholder="E-mail">
         <input class="value-register signup-input-password" type="password" name="user-password" id="userpassword" class="style-input"
@@ -35,13 +38,16 @@ export const signUp = () => {
   rootElement.innerHTML = container;
 
   function signUpDom() {
+    const userName = rootElement.querySelector('#username').value;
     const userEmail = rootElement.querySelector('#useremail').value;
     const userPassword = rootElement.querySelector('#userpassword').value;
     const userConfirmPassword = rootElement.querySelector('#user-confirm-password').value;
     const validationSignup = rootElement.querySelector('#warning-signup');
 
-    if (userEmail === '') {
-      validationSignup.innerHTML = '<p>Digite um e-mail</p>';
+    if (userName === '') {
+      validationSignup.innerHTML = '<p>Digite seu nome</p>';
+    } else if (userEmail === '') {
+      validationSignup.innerHTML = '<p>Digite seu nome</p>';
     } else if (userPassword === '') {
       validationSignup.innerHTML = '<p>Digite uma senha</p>';
     } else if (userConfirmPassword === '') {
@@ -49,7 +55,7 @@ export const signUp = () => {
     } else if (userPassword !== userConfirmPassword) {
       validationSignup.innerHTML = '<p>As senhas não conferem</p>';
     } else {
-      createAccount(userEmail, userPassword)
+      createAccount(userEmail, userPassword, userName)
         .then(() => {
           navigation('/feed');
         })
