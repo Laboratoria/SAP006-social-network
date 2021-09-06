@@ -415,6 +415,11 @@ input[type="file"] {
   height: 28px;
 }
 
+.editProfileForm form select {
+  padding: 0;
+  height: 32px;
+}
+
 .profile-container{
   display: flex;
   justify-content: center;

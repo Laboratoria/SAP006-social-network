@@ -19,7 +19,7 @@ export default () => {
           <input id="name" class="inputProfile" placeholder="Nome"></input>
           <input id="email" class="inputProfile" placeholder="email"></input>
           <select id="userLevel" class="inputProfile" name="level"> 
-          <option value="" selected disabled;>Nível de Cozinha:</option>
+          <option value="" selected disabled>Nível de Cozinha:</option>
           <option value="<i class='fas fa-fire-extinguisher'></i>&nbspQueima-panela">Queima-panela</option>
           <option value="<i class='fas fa-cookie'></i>&nbspCotidiano">Cotidiano</option>
           <option value="<i class='fas fa-cocktail'></i>&nbspAmador(a)">Amador(a)</option>
