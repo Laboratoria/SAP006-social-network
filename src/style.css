@@ -132,6 +132,24 @@ button:hover {
   color: rgb(51, 51, 211);
 }
 
+.btn-uploadImage {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: var(--limeade);
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn-uploadImage:hover {
+  cursor: pointer;
+}
 /* =================================  Página de Reset Password: ================================ */
 
 #resetPassword-email {
@@ -273,10 +291,6 @@ button:hover {
   justify-content: space-evenly;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
 .btn-popup {
   width: 4rem;
   height: 2rem;
@@ -293,6 +307,9 @@ button:hover {
   width: 40px;
 }
 
+input[type="file"] {
+  display: none;
+}
 
 /* =================================  Página de Perfil: =================================== */
 
@@ -408,6 +425,16 @@ button:hover {
 
 .empty-heart{
   color: red;
+}
+
+.welcomeProfile {
+  display: none;
+  font-family: 'Comfortaa', cursive;
+  letter-spacing: 2px;
+  color:rgb(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  margin: 1.3rem auto;
 }
 /*   Fim da página de perfil:  */
 
@@ -548,6 +575,7 @@ footer {
   flex-shrink: 0;
   padding: 10px;
   text-align: center;
+  height: 58px;
 }
 
 footer a {
@@ -865,7 +893,8 @@ footer a {
   }
   
   .div-recipe {
-    width: 500px;
+    max-width: 500px;
+    width: 90%;
   }
 
   .post-photo {
@@ -902,9 +931,61 @@ footer a {
   }
 
   #header {
-    /* width: 80%; */
     justify-content: space-around;
   }
+
+  .mainContent {
+    justify-content: flex-start;
+    margin: 0;
+  }
+
+  .profile-nav-bar {
+    position: fixed;
+    float: left;
+    width: 300px;
+    margin-top: 70px;
+    margin-bottom: 0;
+    border-radius: 0;
+    /* height: calc(100% - 109px); */
+    height: calc(100% - 70px);
+  }
+
+  .profileInfo {
+    margin-top: 60px;
+  }
+
+  footer {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    height: 39px;
+  }
+
+  footer a {
+    margin-left: 1rem;
+  }
+
+  .editProfileForm {
+    top: 100px;
+  }
+
+  .myrecipesSection, .profileSection {
+    float: left;
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    margin-top: 70px;
+  }
+
+  .welcomeProfile {
+    position: absolute;
+    top: 70px;
+    left: 300px;
+    width: calc(100% - 300px);
+    height: calc(100% - 109px);
+    font-size: 2rem;
+    margin: 0;
+  }
+
 
 }
 

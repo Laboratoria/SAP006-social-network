@@ -6,6 +6,8 @@ import errorModal from '../../components/error/index.js';
 export default () => {
   const myRecipesContainer = document.createElement('div');
   const myRecipesSection = document.createElement('section');
+  myRecipesSection.setAttribute('class', 'myrecipesSection');
+
   myRecipesContainer.append(profile());
 
   const userUid = getUserData().uid;

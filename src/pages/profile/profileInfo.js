@@ -8,7 +8,10 @@ export default () => {
   const profileInfoContainer = document.createElement('div');
   profileInfoContainer.setAttribute('class', 'padding-bottom25');
   profileInfoContainer.append(profile());
+
   const profileSection = document.createElement('section');
+  profileSection.setAttribute('class', 'profileSection');
+
   const profileInfoContent = `
     <aside class="editProfileForm">
       <div class="profileChangesDiv">

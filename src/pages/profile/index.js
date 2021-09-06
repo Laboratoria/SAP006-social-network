@@ -1,5 +1,6 @@
 import header from '../../components/header/index.js';
 import footer from '../../components/footer/index.js';
+import { getUserData } from '../../services/index.js';
 
 export default () => {
   const perfilContainer = document.createElement('div');
@@ -29,8 +30,20 @@ export default () => {
     </div>
   `;
 
+  const welcomeProfileSection = document.createElement('section');
+  welcomeProfileSection.setAttribute('class', 'welcomeProfile');
+  welcomeProfileSection.innerHTML = `
+    <div>Bem vinde ${getUserData().displayName}</div>
+  `;
+
   perfilSection.innerHTML = perfilContent;
+
   perfilContainer.append(perfilSection);
+  perfilContainer.append(welcomeProfileSection);
+
+  if (window.location.hash === '#profile') {
+    welcomeProfileSection.style.display = 'flex';
+  }
 
   const body = document.querySelector('body');
   const footerTag = body.querySelector('footer');
