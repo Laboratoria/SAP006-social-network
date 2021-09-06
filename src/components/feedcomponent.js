@@ -14,8 +14,7 @@ export const printPost = (post) => {
   const areaOfPost = `
     <div class="box">
       <div class="header-post">
-        <p class="username">username</p>
-        
+        <p class='username' id='user-name' data-name="${post.id}">${post.displayName}</p>
         <menu class="dropdown" style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
           <button id="btn-drop"  class="dropbtn">
             <span class="iconify" data-icon="ph:dots-three-duotone"></span>
@@ -61,7 +60,6 @@ export const printPost = (post) => {
   const saveButton = postTemplate.querySelector(`[data-save="${post.id}"]`);
   const deleteButton = postTemplate.querySelector(`[data-delete="${post.id}"]`);
   const postText = postTemplate.querySelector(`[data-textpost="${post.id}"]`);
-  console.log(postText.innerText);
 
   likeBtn.addEventListener('click', () => {
     const likeCount = postTemplate.querySelector(`[data-numLike="${post.id}"]`);
