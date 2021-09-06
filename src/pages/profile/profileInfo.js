@@ -1,5 +1,5 @@
 import {
-  updateUserDisplayName, updateUserLevel, updateUserAuthEmail, getUserData,
+  updateUserDisplayName, updateUserLevel, updateUserAuthEmail, getUserData, updateRecipeLevel,
 }
   from '../../services/index.js';
 import profile from './index.js';
@@ -16,11 +16,11 @@ export default () => {
                 <input id="email" placeholder="email"></input>
                 <select id="userLevel" name="level"> 
                 <option value="" selected disabled;>Nível de Cozinha:</option>
-                <option value="Queima-panela">Queima-panela</option>
-                <option value="Cotidiano">Cotidiano</option>
-                <option value="Amador(a)">Amador(a)</option>
-                <option value="Profissional/Chef">Profissional/Chef</option>
-                <option value="Master/Nível vovó">Master/Nível vovó</option>
+                <option value="<i class='fas fa-fire-extinguisher'></i>&nbspQueima-panela">Queima-panela</option>
+                <option value="<i class='fas fa-cookie'></i>&nbspCotidiano">Cotidiano</option>
+                <option value="<i class='fas fa-cocktail'></i>&nbspAmador(a)">Amador(a)</option>
+                <option value="<i class='fas fa-bread-slice'></i>&nbspProfissional/Chef">Profissional/Chef</option>
+                <option value="<i class='fas fa-mitten'></i>&nbspMaster/Nível vovó">Master/Nível vovó</option>
                 </select>
                 <div id="notice"></div>
                 <button id="saveChanges" class="btn-logging">Salvar alterações</button>
@@ -68,6 +68,7 @@ export default () => {
       updateUserLevel(userLevel.value, userUid)
         .then(localStorage.setItem('level', userLevel.value))
         .then(levelDisplayedOnScreen.innerHTML = `${getUserData().level}`)
+        .then(updateRecipeLevel(userLevel.value))
         .catch(() => {
           notice.innerHTML = '<p>Não foi possível atualizar o nível de cozinha</p>';
         });

@@ -1,20 +1,30 @@
 import profile from './index.js';
+import { addPost } from '../../components/post/index.js';
+import { getUserData, loadRecipe } from '../../services/index.js';
 
 export default () => {
   const myRecipesContainer = document.createElement('div');
   const myRecipesSection = document.createElement('section');
   myRecipesContainer.append(profile());
-  const myRecipesContent = `
-            <aside>
-              <div>
-                <form>
-    
-                </form>
-              </div>
-            <aside>
-    
-            `;
-  myRecipesSection.innerHTML = myRecipesContent;
+
+  const userUid = getUserData().uid;
+
+  loadRecipe(userUid)
+    .then((querySnapshot) => {
+      querySnapshot.forEach((post) => {
+        if (post.data().user_id === userUid) {
+          myRecipesSection.append(addPost(post));
+        }
+      });
+      if (myRecipesSection.childElementCount === 0) {
+        myRecipesSection.innerHTML = `
+          <div id="notice" class="notice">
+            <p> Você ainda não publicou nenhuma receita </p>
+          </div>
+        `;
+      }
+    });
+
   myRecipesContainer.append(myRecipesSection);
   return myRecipesContainer;
 };
