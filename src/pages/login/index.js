@@ -1,4 +1,4 @@
-import { signIn, signInWithGoogle, setUserData } from '../../services/index.js';
+import { signIn, signInWithGoogle } from '../../services/index.js';
 
 export default () => {
   const loginScreenContainer = document.createElement('div');
@@ -14,7 +14,6 @@ export default () => {
       <input type="password" id="input-password" class="signIn-input" placeholder="Senha">
       <p id=passwordReset> Esqueceu sua senha? <a href="#recuperarSenha" class="ancor"> Clique aqui </a></p>
       <div id="notice" class="notice"> </div>
-
       <button type="button" id="enter-acc"  class="btn-login">Entrar</button>
       <button type="button" id="btn-google" class="btn-login"> <span class="google-icon"></span>Entrar com Google</button>
       <button type="button" id="sign-up"  class="btn-login">Criar conta</button>
@@ -72,7 +71,6 @@ export default () => {
   function signInWithGoogleDom() {
     signInWithGoogle()
       .then(() => {
-        setUserData();
         window.location.hash = '#feed';
       })
       .catch((error) => {
