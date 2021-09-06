@@ -29,8 +29,8 @@ export function addPost(post) {
       
       <h3 class="title recipe-title"> ${post.data()['nome da receita']} </h3>
     
-      <img class="post-photo" src="image/nissin.jpg">
-
+      <div id="photo-${post.id}"> </div>
+      
       <div class="recipeBody"> 
         <div class="recipe-info">
 
@@ -92,8 +92,15 @@ export function addPost(post) {
   postContainer.innerHTML = postTemplate;
   const popup = postContainer.querySelector('.popup');
   const overlay = postContainer.querySelector('.overlay');
-  const toggleDiv = postContainer.querySelector('.toggle-section');
 
+  const recipePhoto = postContainer.querySelector(`#photo-${post.id}`);
+  if (post.data().fotoUrl === null) {
+    recipePhoto.innerHTML = '<img class="post-photo" src="image/nissin.jpg"></img>';
+  } else {
+    recipePhoto.innerHTML = `<img class="post-photo" src=${post.data().fotoUrl}></img>`;
+  }
+
+  const toggleDiv = postContainer.querySelector('.toggle-section');
   toggleDiv.addEventListener('click', () => {
     toggleDiv.querySelector('.recipeBody').classList.toggle('showBlock');
   });

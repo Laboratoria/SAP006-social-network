@@ -110,13 +110,15 @@ export const numLikes = (postId) => db.collection('recipes').doc(postId).get();
 
 export const deletePost = (postId) => db.collection('recipes').doc(postId).delete();
 
+export const resetPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
+
 export const uploadFoodPhoto = (file) => {
+  const imageName = ((new Date().getTime() / 1000) * Math.random()).toString();
+
   // create storage ref
-  const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${file.name}`);
+  const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${imageName}`);
 
   // upload file
-  const task = storeageRef.put(file);
-  return task;
+  return storeageRef.put(file)
+    .then((snapshot) => snapshot.ref.getDownloadURL());
 };
-
-export const resetPassword = (email) => firebase.auth().sendPasswordResetEmail(email);

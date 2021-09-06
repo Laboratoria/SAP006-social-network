@@ -1,4 +1,4 @@
-import { postRecipe } from '../../services/index.js';
+import { postRecipe, uploadFoodPhoto } from '../../services/index.js';
 import header from '../../components/header/index.js';
 import footer from '../../components/footer/index.js';
 import errorModal from '../../components/error/index.js';
@@ -19,10 +19,11 @@ export default () => {
       
       <input type="text" id="addRecipe-title" class="signUp-input required" placeholder="Nome da receita">
       
-      <div id="recipe-photo" class="recipe-photo"></div>
-
-      <progress id="file" value="0" max="100"> 0% </progress>
-      <input type="file" value="upload" id="fileButton" class="btn-login" />
+      <label for="fileImage" class="btn-uploadImage"> <i class="fa fa-cloud-upload">
+        </i> Upload Foto da Receita
+      </label>
+      <input type="file" value="upload" id="fileImage" accept="image/*" />
+      <div class="fileUploadName"></div>
 
       <div class="info-recipe-container-flex">
         <div class="width-90">
@@ -84,7 +85,7 @@ export default () => {
     </form>
 
     <div class="popup" id="popup">
-      Deseja adicionar outra receita?
+      Adicionar outra receita?
         
       <div class="div-btns-popup">
         <button type="button" id="btn-yes" class="btn-popup btn-yes">Sim</button>
@@ -99,12 +100,34 @@ export default () => {
 
   const form = addRecipeContainer.querySelector('.postRecipeForm');
   const alert = addRecipeContainer.querySelector('#alert');
-  const btnPostRecipe = addRecipeContainer.querySelector('#post-recipe');
+
   const overlay = addRecipeContainer.querySelector('.overlay');
   const toggle = addRecipeContainer.querySelectorAll('.overlay, #popup');
 
   function toggleClass() {
     toggle.forEach((elem) => elem.classList.toggle('active'));
+  }
+
+  const outputFileName = addRecipeContainer.querySelector('.fileUploadName');
+  const btnAddPhoto = addRecipeContainer.querySelector('#fileImage');
+
+  let file;
+  btnAddPhoto.addEventListener('change', (e) => {
+    // get file
+    file = e.target.files[0];
+    outputFileName.innerHTML = `<i class="far fa-file-image"></i> ${file.name}`;
+  });
+
+  function addRecipeFirestore(recipe) {
+    postRecipe(recipe)
+      .then(() => {
+        toggleClass();
+      })
+      .catch((error) => {
+        overlay.classList.add('active');
+        addRecipeContainer.append(errorModal());
+        throw Error(error);
+      });
   }
 
   function addRecipeDom() {
@@ -120,9 +143,31 @@ export default () => {
       user_id: localStorage.getItem('uid'),
       likes: [],
       comments: [],
+      fotoUrl: null,
     };
 
-    const inputs = addRecipeContainer.querySelectorAll('.required');
+    if (file !== undefined) {
+      uploadFoodPhoto(file)
+        .then((url) => {
+          recipe.fotoUrl = url;
+        })
+        .then(() => {
+          addRecipeFirestore(recipe);
+        })
+        .catch((error) => {
+          overlay.classList.add('active');
+          addRecipeContainer.append(errorModal());
+          throw Error(error);
+        });
+    } else {
+      addRecipeFirestore(recipe);
+    }
+  }
+
+  const btnPostRecipe = addRecipeContainer.querySelector('#post-recipe');
+  const inputs = addRecipeContainer.querySelectorAll('.required');
+  btnPostRecipe.addEventListener('click', (e) => {
+    e.preventDefault();
 
     let valid = true;
     inputs.forEach((input) => {
@@ -134,26 +179,14 @@ export default () => {
     if (valid === false) {
       alert.innerHTML = '<span class="material-icons">error</span><p>Preencha todos os campos</p>';
     } else {
-      postRecipe(recipe)
-        .then(() => {
-          toggleClass();
-        })
-        .catch((error) => {
-          overlay.classList.add('active');
-          addRecipeContainer.append(errorModal());
-          throw Error(error);
-        });
+      addRecipeDom();
     }
-  }
-
-  btnPostRecipe.addEventListener('click', (e) => {
-    e.preventDefault();
-    addRecipeDom();
   });
 
   const addNewRecipe = addRecipeContainer.querySelector('#btn-yes');
   addNewRecipe.addEventListener('click', () => {
     form.reset();
+    outputFileName.innerHTML = '';
     toggleClass();
     window.scrollTo(0, 0);
   });
