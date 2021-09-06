@@ -1,10 +1,11 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media (min-width: 1200px) {
-    header.esmaeceHeader, .logotipo-text {
+
+    header.esmaeceHeader, .logotipo-text, .esmaeceHeader-signup, .logotipo-text-signup {
         display: none;
     }
 
-    .mainSection-background-opacity {
+    .mainSection-background-opacity, .content-signup{
         background-image: url(../../img/opacobg.jpeg);
         background-color: var(--color-background);
         background-attachment: fixed;
@@ -19,7 +20,7 @@
         align-items: center;
     }
 
-    .logo-above-bg{
+    .logo-above-bg, .logo-above-bg-signup{
         background-image: url(../../img/logo.png);
         background-size: cover;
         background-repeat: no-repeat;
@@ -28,11 +29,15 @@
         margin-left: 16vw;
     }
 
-    .without-opacity {
+    .without-opacity, .form-register-responsive {
         filter: none;
         width: 52%;
         height: 100vh;
         background-color: var(--color-background);
+    }
+
+    .infos-user {
+        margin-top: 30%;
     }
 
     .login-redirect-signup {
@@ -60,7 +65,7 @@
         margin-top: 15%;
     }
 
-    .login-input-email, .login-input-password {
+    .login-input-email, .login-input-password, .value-register {
         height: 2vw;
         width: 30vw;
         filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
@@ -68,6 +73,13 @@
 
     .login-input-password {
         margin-bottom: 1.2%;
+    }
+
+    .btn-Signup {
+        height: 3vw;
+        width: 14vw;
+        font-size: 1.0vw;
+        margin-bottom: 1.5vw;
     }
 
     .reset-password {
@@ -83,7 +95,7 @@
         margin-top: 3.2%;
     }
 
-    button#btn-login {
+    button#btn-login  {
         height: 8vh;
         width: 33vh;
         font-size: 1.2vw;
@@ -99,16 +111,20 @@
     
     img#icon-google {
         width: none;
+    }
+
+    p {
+        font-size: 1.0rem;
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    header.esmaeceHeader, .logotipo-text {
+@media (min-width: 992px) and (max-width: 1200px) {
+    header.esmaeceHeader, .logotipo-text, .esmaeceHeader-signup, .logotipo-text-signup {
         display: none;
     }
 
-    .mainSection-background-opacity {
+    .mainSection-background-opacity, .content-signup {
         background-image: url(../../img/opacobg.jpeg);
         background-color: var(--color-background);
         background-attachment: fixed;
@@ -123,7 +139,7 @@
         align-items: center;
     }
 
-    .logo-above-bg{
+    .logo-above-bg, .logo-above-bg-signup{
         background-image: url(../../img/logo.png);
         background-size: cover;
         background-repeat: no-repeat;
@@ -132,11 +148,19 @@
         margin-left: 16vw;
     }
 
-    .without-opacity {
+    .without-opacity, .form-register-responsive {
         filter: none;
         width: 52%;
         height: 100vh;
         background-color: var(--color-background);
+    }
+
+    .form-register-responsive {
+        margin-top: 0;
+    }
+
+    .infos-user {
+        margin-top: 40%;
     }
 
     .login-redirect-signup {
@@ -170,6 +194,12 @@
         filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
     }
 
+    .value-register {
+        height: 5vw;
+        width: 30vw;
+        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
+    }
+
     .login-input-password {
         margin-bottom: 1.2%;
     }
@@ -194,6 +224,13 @@
         margin-bottom: 0.5vw;
     }
 
+    .btn-Signup {
+        height: 7vh;
+        width: 30vh;
+        font-size: 1.5vw;
+         margin-bottom: 1.5vw; 
+    }
+
     .btn-google {
         width: 34vh;
         height: 30%;
@@ -204,16 +241,95 @@
     img#icon-google {
         width: none;
     }
+
+    p {
+        font-size: 1.0rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .form-register-responsive {
+        height: 100vh;
+    }
+
+    h2 {
+     font-size: 5.0vw;
+    }
+
+    .value-register {
+        height: 3vw;
+        width: 55vw;
+    }
+
+    .btn-Signup {
+        height: 9vh;
+        width: 40vh;
+        font-size: 1.2rem;
+   }
+
+   .infos-user {
+       margin-top: 30%;
+   }
+
+   p {
+    font-size: 1.2rem;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px)  {
+    .form-register-responsive {
+        height: 100vh;
+    }
+    
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .infos-user {
+        margin-top: 20%;
+    }
+ 
+    .value-register {
+        height: 11vw;
+        width: 55vw;
+    }
+
+     .btn-Signup {
+        height: 7vh;
+        width: 30vh;
+        font-size: 1.0rem;
+   }
+
+   p {
+    font-size: 1.1rem;
+   }
+}
+
+@media (min-width: 320px) and (max-width: 576px) {
+    .form-register-responsive {
+        height: 100vh;
+    }
+
+    .infos-user {
+        margin-top: 40%;
+    }
+  
+      .value-register {
+        height: 12vw;
+        width: 65vw;
+      }
+  
+      .btn-Signup {
+          height: 8vw;
+          width: 35vw;
+     }
+
+     .go-login {
+      font-size: 0.9rem;
+     }
 }
 
 
-/* Extra small devices (phones, 600px and down)
-@media only screen and (max-width: 600px) {...}
 
-Small devices (portrait tablets and large phones, 600px and up)
-@media only screen and (min-width: 600px) {...}
-
-Medium devices (landscape tablets, 768px and up)
-@media only screen and (min-width: 768px) {...} */
 
 

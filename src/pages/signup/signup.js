@@ -11,7 +11,7 @@ export const signUp = () => {
     </section>
   </header>
   <section class="content-signup">
-    <div class="form-register">
+    <div class="form-register form-register-responsive">
       <div class="infos-user input-form">
         <input class="value-register signup-input-email" type="email" name="adress-email" id="useremail" class="style-input"
           placeholder="E-mail">
@@ -19,17 +19,16 @@ export const signUp = () => {
           placeholder="Senha">
         <input class="value-register signup-input-password" type="password" name="confirm-user-password" id="user-confirm-password"
           class="style-input" placeholder="Confirme a senha">
-      </div>
-      <div id='warning-signup' class='warning'></div>
-      <div class="btn-form">
-        <button id="btn-signup" class="btn-Signup">Cadastrar</button>
-      </div>
-
-      <div>
+          <div id='warning-signup' class='warning'></div>
+          <div class="btn-form">
+          <button id="btn-signup" class="btn-Signup">Cadastrar</button>
+        </div>
+        <div>
         <p class="go-link">Já tem uma conta? <span><a href="/login">Faça seu login aqui</a></span></p>
       </div>
-
+      </div>
     </div>
+    <div class="logo-above-bg-signup"></div>
   </section>
   `;
 

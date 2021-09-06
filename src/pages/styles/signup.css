@@ -27,7 +27,7 @@ h2 {
     z-index: -1;
 }
 
-.form-register {
+.infos-user {
     filter: none;
     margin-top: 40%;
     display: flex;
@@ -41,8 +41,8 @@ h2 {
 }
 
 .btn-Signup {
-    height: 53px;
-    width: 245px;
+    height: 7vh;
+    width: 32vh;
     border-radius: 50px;
     background: var(--color-primary);
     font-family: 'Poppins', sans-serif;
@@ -54,38 +54,7 @@ h2 {
     margin: 10% auto;
 }
 
-.go-login {
-    font-size: 5.2rem;
+p {
+    font-size: 0.8rem;
 }
 
-@media (min-width: 1200px) and (max-width: 1400px) {
-  
-    /*
-      .esmaeceHeader-signup {
-        width: 50%;
-    }
-    */
-    
-    .content-signup {
-        width: 50vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 100vw;
-        height: auto;
-        margin-right: 0;
-        background-position-x: right;
-        background-repeat: no-repeat; 
-    }
-
-    .value-register {
-        width: 45vh;
-    }
-
-    .form-register {
-        height: auto;
-    }
-}

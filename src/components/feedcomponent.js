@@ -39,12 +39,11 @@ export const printPost = (post) => {
       
       <div class="align-post-like">
         <div class="content">
-            <textarea id="text-post"
+            <div id="text-post"
               data-textpost="${post.id}
               class="post-content text-post"
-              id="${post.id}"
-              disabled>${post.text}
-            </textarea>
+              id="${post.id}">${post.text}
+            </div>
         </div>
         <section class="actions" data-section style="display:${isMyPost ? 'none' : 'inline-end'}">
           <p data-numLike='${post.id}' class='numLikes'>${post.likes.length || 0}</p>
@@ -89,16 +88,16 @@ export const printPost = (post) => {
   });
 
   editButton.addEventListener('click', () => {
-    postText.removeAttribute('disabled');
+    postText.setAttribute('contentEditable', '');
     postText.focus();
   });
 
   saveButton.addEventListener('click', () => {
     updatePosts(post.id, postText.value)
-      .then(() => postText.setAttribute('disabled', ''));
+      .then(() => postText.removeAttribute('contentEditable', ''));
   });
 
-  deleteButton.addEventListener('click', (e) => {
+  deleteButton.addEventListener('click', () => {
     const postArea = document.querySelector(`[data-container="${post.id}"]`);
     deletePopUp(post.id, postArea);
   });
