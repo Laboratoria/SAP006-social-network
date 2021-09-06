@@ -135,20 +135,15 @@ export function addPost(post) {
 
     </div>
 
-
-
-
-
     </div>
 
     <div class="div-width100 recipe-title recipe-footer">
 
       <div class="like-date">
       <div class="like">
-        <span class="material-icons heart favoriteIcon">favorite</span> 
-            <p class="numLikes"> ${post.data().likes.length || 0} </p>
+        <button class="recipeLikes" data-like= ${post.id}><i id="likes-${post.id}" class="far fa-heart"></i></button>
+          <p class="numLikes"> ${post.data().likes.length || 0}</p>
         <span class="material-icons commentIcon">insert_comment</span> ${post.data().comments.length}
-        <button class="recipeLikes" data-like= ${post.id} >Curtir</button>
       </div>
       <p class="post-date"> ${post.data().data} </p>
       </div>
@@ -183,8 +178,8 @@ export function addPost(post) {
   const recipeConfirmEditMenu = postContainer.querySelector('#recipeConfirmEditMenu');
   const userUid = getUserData().uid;
 
+  const likes = postContainer.querySelector(`#likes-${post.id}`);
   const button = postContainer.querySelector('.recipeLikes');
-  const likes = postContainer.querySelector('.heart');
   const numberLikes = postContainer.querySelector('.numLikes');
 
   const confirmDelete = postContainer.querySelector('.btn-yes');
@@ -209,6 +204,13 @@ export function addPost(post) {
   const recipeIngredients = postContainer.querySelector(`#ingredients-${post.id}`);
   const recipePreparationMode = postContainer.querySelector(`#preparationMode-${post.id}`);
 
+  const postLikes = post.data().likes;
+  if (postLikes.includes(getUserData().uid)) {
+    likes.classList.add('fas');
+  } else {
+    likes.classList.add('far');
+  }
+
   postPhoto.addEventListener('click', () => {
     if (!recipeEditBody.classList.contains('showBlock')) {
       recipeBody.classList.toggle('showBlock');
@@ -217,13 +219,17 @@ export function addPost(post) {
 
   function likesNum() {
     likesPost(post.id)
-      .then(() => likes.classList.toggle('test'))
       .then(() => numLikes(post.id)
         .then((massa) => {
-          numberLikes.innerHTML = massa.data().likes.length;
+          if (!massa.data().likes.includes(post.id)) {
+            likes.classList.toggle('fas');
+            numberLikes.innerHTML = massa.data().likes.length;
+          } if (massa.data().likes.includes(post.id)) {
+            likes.classList.toggle('far');
+            numberLikes.innerHTML = massa.data().likes.length;
+          }
         }));
   }
-
   button.addEventListener('click', likesNum);
 
   function toggleClass() {

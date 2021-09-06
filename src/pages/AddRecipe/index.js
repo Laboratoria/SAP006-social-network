@@ -1,6 +1,5 @@
 import { getUserData, postRecipe } from '../../services/index.js';
 import header from '../../components/header/index.js';
-import footer from '../../components/footer/index.js';
 import errorModal from '../../components/error/index.js';
 
 export default () => {
@@ -166,6 +165,5 @@ export default () => {
     window.location.hash = '#feed';
   });
 
-  addRecipeContainer.append(footer());
   return addRecipeContainer;
 };

@@ -98,11 +98,13 @@ body {
 }
 
 .material-icons {
+  background-color: transparent;
+  border: none;
   font-size: 1.2rem;
   margin-right: 5px;
 }
 
-button:hover {
+button::before {
   cursor: pointer;
 }
 
@@ -278,6 +280,11 @@ button:hover {
   width: 40px;
 }
 
+.recipeLikes {
+  background-color: transparent;
+  border: none;
+}
+
 
 /* =================================  Página de Perfil: =================================== */
 
@@ -294,6 +301,10 @@ button:hover {
 
 .div-profile {
   width: 100%;
+}
+
+.recipe-content p {
+  margin-left: 0.5rem;
 }
 
 .profileInfo{
@@ -330,6 +341,13 @@ button:hover {
 
 .profile-nav-bar-options:hover{
   background-color: rgb(102, 102, 93);
+}
+
+
+.recipeInfo-box p, .recipeInfo-box span {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 0px;
 }
 
 .profileInfo section p{
@@ -376,17 +394,12 @@ button:hover {
 }
 
 /* icons */ 
-.heart {
-  color: black;
-}
 
-.test {
+.recipeLikes i {
   color: red;
 }
 
-.empty-heart{
-  color: red;
-}
+
 /*   Fim da página de perfil:  */
 
 /* Função de editar receitas:  */
@@ -552,20 +565,6 @@ background-color: var(--coral-haze);
 
 /* final do header */
 
-
-/* ========================================  FOOTER ===================================== */
-
-footer {
-  position: fixed;
-  /* left: 0; */
-  bottom: 0;
-  width: 100%;
-  background-color:gray;
-  height: 20px;
-  text-align: center;
-}
-
-
 /* =================================  Página de feed: =================================== */
 
 .div-recipe {
@@ -594,10 +593,6 @@ footer {
   display: flex;
   flex-wrap: wrap;
   margin-top: 1rem;
-}
-
-.recipe-content p {
-  margin-left: 0.5rem;
 }
 
 .recipeBody {
@@ -772,4 +767,3 @@ footer {
 
   
 }
-
