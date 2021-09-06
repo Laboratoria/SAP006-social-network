@@ -4,21 +4,16 @@ export const Conecte = () => {
   const template = `
 
   <section class="sidebar">
-    <div class="content">
+    <div class="sidebar-content">
       <header>
         Conecte-se...
       </header>
       <section class="sidebar-paragraph">
         <p>Acompanhe mulheres incríveis e tudo o que elas têm a dizer!</p> 
-      </section>
 
-      <section class="continuebutton">
         <button class="btn-continue" id="btn-continue">Continuar</button>
-      </section>
 
-      <section class="skipbutton">
-       <button class="skip">Pular</button>
-      </section>
+        <button class="skipbutton">Pular</button>
     </div>
   </section>
 
@@ -34,7 +29,7 @@ export const Conecte = () => {
     navigation('/comunique');
   });
 
-  const skipBtn = rootElement.querySelector('.skip');
+  const skipBtn = rootElement.querySelector('.skipbutton');
   skipBtn.addEventListener('click', () => {
     navigation('/login');
   });
