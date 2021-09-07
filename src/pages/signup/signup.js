@@ -1,4 +1,4 @@
-import { createAccount, updateProfile } from '../../services/authentication.js';
+import { createAccount } from '../../services/authentication.js';
 import { navigation } from '../../navigation.js';
 
 export const signUp = () => {
