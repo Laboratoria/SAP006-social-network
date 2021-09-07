@@ -1,3 +1,4 @@
+
 export default () => {
     const container = document.createElement('div');
 
@@ -42,5 +43,26 @@ export default () => {
     
     `;
     container.innerHTML = template;
-    return container
-}
+
+//     const postButton = container.querySelector('#button-publicar');
+
+//   postButton.addEventListener('click', () => {
+//     const postMsg = container.querySelector('#post-message').value;
+
+//     const postInf = {
+//       name: 'pauline',
+//       message: postMsg,
+//     };
+
+//     addPost(postInf)
+//       .then((docRef) => {
+//         console.log('Document written with ID: ', docRef.id);
+//       })
+//       .catch((error) => {
+//         console.error('Error adding document: ', error);
+//       });
+//   });
+
+  return container;
+};
+    

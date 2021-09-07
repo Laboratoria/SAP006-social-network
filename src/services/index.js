@@ -1,27 +1,8 @@
-// const email = "julie_sp1990@hotmail.com";
-// const password = "123456";
-// firebase
-// .auth()
-// .createUserWithEmailAndPassword(email , password)
-// .then(userCredential) => {
-
-//   const user = userCredential.user;
-
-// })
-
-// .catch((error) => {
-//   const errorCode = error.code;
-//   const errorMessage = error.message;
-
-// });
-
-
-
 export const registerLogin = (email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userIdentification) => {
+      .then((userCredential) => {
       // Signed in
-        const user = userIdentification.user;
+        const user = userCredential.user;
         window.location.hash = '#login';
         console.log('deu bom', user);
         // ...
@@ -61,7 +42,7 @@ export const loginWithGoogle = () => {
   
   // Post
   
-  export const newPost = (postInf) => {
+  export const addPost = (postInf) => {
     const db = firebase.firestore();
     return db.collection('posts').add(postInf);
   };
