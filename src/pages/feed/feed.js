@@ -203,6 +203,24 @@ export const Feed = () => {
     profileSection.style.display = 'block';
   });
 
+  loadPosts()
+    .then((snap) => {
+      snap.forEach((doc) => {
+        const post = {
+          id: doc.id,
+          text: doc.data().text,
+          user_id: doc.data().user_id,
+          likes: doc.data().likes,
+          date: doc.data().date,
+          comments: doc.data().comments,
+          displayName: doc.data().displayName,
+        };
+
+        const print = printPost(post);
+        postTemplate.appendChild(print);
+      });
+    });
+
   const navbarBottom = document.getElementsByClassName('navbar');
   const sticky = navbarBottom.offsetBottom;
   function stickyFilter() {

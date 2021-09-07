@@ -2,7 +2,7 @@ import { navigation } from '../../navigation.js';
 
 export const Welcome = () => {
   const template = `
-
+    <section class="content-welcome">
     <section class="logotipo">
       <img src="./img/logo.png" alt="Logotipo do Fort" class="logoimg">
     </section>
@@ -21,7 +21,8 @@ export const Welcome = () => {
         </section>
       </div>   
     </section>
-
+    <div class="logo-above-bg-welcome"></div>
+    </section>
 `;
   const rootElement = document.createElement('div');
   rootElement.setAttribute('class', 'container');

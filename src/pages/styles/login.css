@@ -21,16 +21,16 @@
 }
 
 .sectionLogin-header-title {
-  padding: 20% 0% 5% 5%;
+    padding: 20% 0% 5% 5%;
 }
 
 .mainSectionLogin-background-opacity {
-  background-image: url(../../img/opacobg.jpeg);
-  background-color: var(--color-background);
-  background-attachment: fixed;
-  background-repeat: repeat-x no-repeat;
-  z-index: -1;
-  padding: 10% 5% 5% 5%;
+    background-image: url(../../img/opacobg.jpeg);
+    background-color: var(--color-background);
+    background-attachment: fixed;
+    background-repeat: repeat-x no-repeat;
+    z-index: -1;
+    padding: 10% 5% 5% 5%;
 }
 
 .without-opacity {
@@ -92,18 +92,18 @@ form {
 }
 
 .btn-login {
-  height: 8vh;
-  width: 30vh;
-  border-radius: 50px;
-  background: var(--color-primary);
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.3rem;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 20px;
-  letter-spacing: 0.0168em;
-  color: #FFD2BF;
-  margin: 0% 20% 3% 20%;
+    height: 8vh;
+    width: 30vh;
+    border-radius: 50px;
+    background: var(--color-primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px;
+    letter-spacing: 0.0168em;
+    color: #FFD2BF;
+    margin: 0% 20% 3% 20%;
 }
 
 .container-btn-login  {
@@ -122,3 +122,6 @@ form {
   border-radius: 25%;
   filter: drop-shadow(0px 3.60976px 3.60976px rgba(0, 0, 0, 0.15));
 }
+
+
+

@@ -469,6 +469,10 @@ input[type='file'] {
   max-height: 40px;
 }
 
+.dropbtn, .btn-like, .post-content {
+  background-color: #ffffff;
+}
+
 .profile-username {
   display: flex;
   font-size: 0.8rem;

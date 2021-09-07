@@ -10,11 +10,11 @@ export const Login = () => {
   const rootElement = document.createElement('div');
   const container = `
     <header class="header-container">
-      <section class="section-header-title">
+      <section class="sectionLogin-header-title">
         <h2 class="header-title">FORT</h2>
       </section>
     </header>
-    <section class="mainSection-background-opacity">
+    <section class="mainSectionLogin-background-opacity">
       <div class="without-opacity">
         <h4 class="login-redirect-signup">Nova por aqui? <span><a href="/signup" id="signup" class="link-signup">Cadastre-se</a></span></h4>
         <h3 class="login-title-community">Encontre a sua comunidade!</h3>
@@ -25,7 +25,7 @@ export const Login = () => {
           <div class='warning'></div>
         </div>
         <div class="container-btn-login">
-          <button id="btn-login" class="btn-login login btn">LOGIN</button>
+          <button id="btn-login" class="btn-login login">LOGIN</button>
           <img id="icon-google" class="btn-google" src="./pages/login/img/icon-google-white.png">
         </div>
       </div>
@@ -35,7 +35,7 @@ export const Login = () => {
   rootElement.innerHTML = container;
 
   const warningPage = rootElement.querySelector('.warning');
-  const btnLogin = rootElement.querySelector('.login');
+  const btnLogin = rootElement.querySelector('.btn-login');
   const btnGoogle = rootElement.querySelector('.btn-google');
   const signUpBtn = rootElement.querySelector('.link-signup');
   const resetLink = rootElement.querySelector('.reset-password');
