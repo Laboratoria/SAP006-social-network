@@ -14,7 +14,7 @@ describe('should render page register correctly', () => {
   });
 });
 
-describe('should route to home when register is valid', () => {
+describe('should register new user', () => {
   test('should be true', () => {
     auth.cadastrarComEmailSenha.mockResolvedValueOnce('deu bom');
     const divRegister = cadastro();

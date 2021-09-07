@@ -16,24 +16,28 @@ export const cadastro = () => {
         <input type="email" id="emailUser" class="emailUser" placeholder="seuemail@dominio.com">
         <p id="textErrorEmail"></p>
       <section class="inputPhoto">
-        <input class="addImg" id="addImg" type="file" alt="Adicionar imagem de perfil"/>
-        <button class="upload" type="button" name="upload" id="upload" class="upload">Salvar</button>
+        <input class="addImgReg" id="addImg" type="file" alt="Adicionar imagem de perfil"/>
+        <button class="upload" type="button" name="upload" id="upload">Salvar</button>
         <p id="textErrorImg" class="textErrorImg"></p>
         <div id="loadedImg" class="loadedImg">
         </div>
       </section>
-        <div class="inputPass">
-        <input type="password" id="passwordRegister" class="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
-        <img src="./img/eyesOpen.svg" class="sePass" id="seePass" aria-hidden="true">
-        <p id="textErrorPassword" class="textErrorPassoword"></p>
-        <input type="password" class="confPass" id="confPass" placeholder="Confirme sua senha">
-        <img src="./img/eyesOpen.svg" id="seeConfPass" class="seeConfPass">
-        <p id="textErrorConfPassword" class="textErrorConfPassoword"></p>
+      <section class="inputPass">
+        <div class="eyeGroupPass">
+          <input type="password" id="passwordRegister" class="passwordRegister" placeholder="Senha: mín. 6 carac. alfanuméricos">
+          <img src="./img/eyesOpen.svg" class="seePass" id="seePass" aria-hidden="true">
+          <p id="textErrorPassword" class="textErrorPassoword"></p>
+        </div>
+        <div class="eyeGroupPass">
+          <input type="password" class="confPass" id="confPass" placeholder="Confirme sua senha">
+          <img src="./img/eyesOpen.svg" id="seeConfPass" class="seeConfPass">
+          <p id="textErrorConfPassword" class="textErrorConfPassoword"></p>
+        </div>
       </section>
-    
+      <button class="register" type="button" name="botao" id="enter">ENTRAR</button>
     </form>
     
-    <button class="register" type="button" name="botao" id="enter">ENTRAR</button> 
+     
   
     <a id="buttonLogin" class="buttonLogin" href="#"> <img src="./img/login.png" alt="Entrar - Página de Login" </a>
   </fieldset>`;
