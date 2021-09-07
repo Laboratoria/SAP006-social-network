@@ -1,14 +1,26 @@
-export const createAccount = (email, password) => {
+export const updateProfile = (userName) => {
+  firebase.auth()
+    .currentUser.updateProfile({
+      displayName: userName,
+      return: updateProfile,
+    });
+};
+
+export const createAccount = (email, password, userName) => {
   firebase
     .auth()
-    .createUserWithEmailAndPassword(email, password);
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      updateProfile(userName);
+    });
 };
 
 export const signInEmailPassword = (email, password) => {
-  const signIn = firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password);
-  return signIn;
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((user) => {
+      localStorage.setItem('displayName', user.user.displayName);
+      localStorage.setItem('email', user.user.email);
+    });
 };
 
 export const logout = () => {
@@ -22,29 +34,16 @@ export const logout = () => {
     });
 };
 
-export const signInGoogle = () => {
+export const signInGoogle = (userName) => {
   const provider = new firebase.auth.GoogleAuthProvider();
-
   return firebase
     .auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      const credential = result.credential;
-
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
+    .signInWithPopup(provider).then((user) => {
+      localStorage.setItem('displayName', user.user.displayName);
+      localStorage.setItem('email', user.user.email);
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credentialError = error.credential;
-      // ...
+    .then(() => {
+      updateProfile(userName);
     });
 };
 
@@ -57,12 +56,5 @@ export const keepLogged = () => {
 export const resetPassword = (email) => {
   firebase
     .auth()
-    .sendPasswordResetEmail(email)
-    .then(() => {
-      alert('Corre lá e muda sua senha, miga!');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+    .sendPasswordResetEmail(email);
 };

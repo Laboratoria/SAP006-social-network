@@ -1,6 +1,12 @@
-.background-color-main {
+.background-color-main-signup {
     background-color: none;
-  }
+}
+
+
+.esmaeceHeader-signup {
+    opacity: 100%;
+    background-color: #ffd2bf;
+}
 
 h2 {
     font-family: 'Poppins', sans-serif;
@@ -11,23 +17,31 @@ h2 {
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: var(--color-primary);
     background-color: #FFD2BF;
+    padding: 10%;
+}
+
+h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--color-gray);
+    padding: 5%;
+    font-weight: 600;
 }
 
 .content-signup {
-    background-image: url(../signup/img/paleta3.jpg);
+    background-image: url(../../img/opacobg.jpeg);
     padding: 10% 5% 5% 5%;
     height: 100%; 
     width: 100%; 
+    z-index: -1;
 }
 
-.inputAndReset {
+.infos-user {
+    filter: none;
+    margin-top: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.form-register {
-    margin-top: 10%;
 }
 
 .warning {
@@ -35,68 +49,12 @@ h2 {
     background-color: white;
 }
 
-/*
-
-body {
-    background-color: #FFD2BF;
-}
-
-.image-page {
-    filter: opacity(0.4);
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-} 
-
-.banner {
-    opacity: 100%;
-    background-color: #FFD2BF;
-    height: 10vh;
-}
-    
-h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bolder;
-    font-size: 2.1rem;
-    padding: 10% 5%;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: var(--color-primary);
-}
-
-.form-register {
-    justify-content: center;
-    text-align: center;
-    font-size: small;
-    margin-top: 40%;
-    display: flex;
-    flex-direction: column;
-}
-
-.infos-user {
-    margin: -18vh auto 1vh;
-}
-
-.style-input {
-    border-radius: 20px;
-    background: var(--color-white);
-    border: 1px solid var(--color-background);
-    box-shadow: 0px 4px 4px 0px #00000040;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: medium;
-    color: var(--color-gray);
-    padding: 5%;
-    margin: 1% 4% 2%;
-    display: inline-flex;
-}
-
-.btn-signup {
-    font-size: 1.4rem;
-    height: 6vh;
-    width: 30vh;
+.btn-Signup {
+    height: 7vh;
+    width: 32vh;
     border-radius: 50px;
     background: var(--color-primary);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 800;
     line-height: 20px;
@@ -104,8 +62,8 @@ h2 {
     color: #FFD2BF;
     margin: 10% auto;
 }
-*/
 
-.go-login {
-    font-size: 5.2rem;
+p {
+    font-size: 0.8rem;
 }
+
