@@ -24,8 +24,8 @@
   text-align: center;
   border: 1px solid #51fa02;
   box-shadow: 0px 4px 4px 0px rgb(73 73 73 / 25%) inset;
-  font-size: 100%;
   padding: 2%;
+  font-size: 75%;
 }
 
 input[type='file'] {
@@ -56,15 +56,19 @@ input[type='file'] {
   font-family: 'Russo One', sans-serif;
   font-size: 100%;
   padding: 1%;
-  width: 20%;
   border: none;
   box-shadow: 0px 4px 4px rgba(73, 73, 73, 0.25);
   background: #97cf6e;
   text-align: center;
   border-radius: 10px;
+  width: max-content;
 }
 .upload{
-  margin: 6% 0 0% 5%;
+  margin: 4% 0 0% 5%;
+}
+.upload:hover, .register:hover{
+  color: rgb(119, 117, 117);
+  cursor: pointer;
 }
 .inputPass,
 .inputConf {
@@ -75,16 +79,13 @@ input[type='file'] {
   width: 100%;
 }
 
-.seePass img, .seeConfPass img {
-width: 20%;
-
-}
 .seePass, .seeConfPass {
   cursor: pointer;
   position: absolute;
-  top: 20%;
+  top: 25%;
   right: 20%;
   width: 5%;
+  width: 2%;
 }
 
 .eyeGroupPass {
@@ -92,7 +93,7 @@ width: 20%;
   position: relative;
 }
 .register {
-  width: 60%;
+  margin-top: 5%;
   line-height: 2;
 }
 .buttonLogin {
@@ -104,8 +105,24 @@ width: 20%;
   padding: 2%;
 }
 .buttonLogin img {
-  width: 60%;
+  width: 30%;
+}
+.buttonLogin img:hover{
+  background-color: #97cf6e;
+  border-radius: 10px;
 }
 @media (max-width: 600px) {
-  /* so falta o responsivo e o olhinho ali em cima (.seePass, .seeConfPass) */
+  .upload{
+    margin: 6% 0 0% 5%;
+    padding: 4%;
+    width: max-content;
+  }
+  .register{
+  width: 25%;
+  }
+  .buttonLogin img{
+    width: 65%;
+    margin-top: 15%;
+  }
+
 }
