@@ -1,128 +1,107 @@
-import { updatePosts } from '../services/database.js';
+import { updatePosts, likePost, unlikePost } from '../services/database.js';
+import { deleteConfirm } from './popup.js';
 
 export const printPost = (post) => {
+  console.log(post.photoPost);
+  const likeArray = post.likes;
+
+  const postTemplate = document.createElement('section');
+  postTemplate.setAttribute('class', 'container-areaPost');
+  postTemplate.setAttribute('data-container', post.id);
+  postTemplate.setAttribute('id', post.id);
+
+  const isMyPost = firebase.auth().currentUser.uid === post.user_id;
+
   const areaOfPost = `
-  <section class="all-posts">
-
-    <section data-container>
-      <div class="box">
-        <div class="header-post">
-          <p class="username">username</p>
-          <menu class="dropdown" style="float:right;">
-            <button id="btn-drop" onclick="dropdownFunction()" class="dropbtn"><span class="iconify" data-icon="ph:dots-three-duotone"></span></button>
-            <div id="myDropdown" class="dropdown-content">
-              <a class="edit-button" id="edit" value='${post.data().id}' href="#"><span class="iconify btn-more" data-icon="bytesize:edit"></span>  Editar</a>
-              <a href="#"><span class="iconify btn-more" data-inline="false"
-              data-icon="bytesize:trash"></span>  Deletar</a>
-              <a href="#"><span class="iconify btn-more" data-icon="carbon:save"></span></span>  Salvar</a>
-            </div>
-          </menu>
-        </div>
-        
-        <div class="content">
-          <button>
-            <span class="iconify no-pic" data-inline="false" data-icon="bi:person-circle" style="color: #706F6B;"></span>
+    <div class="box">
+      <div class="header-post">
+      <img id='photoPost-${post.id}' class='imageCirclePostUser' src='${post.photoPost}' height="40px" width="40px"/>
+        <p class='username' id='user-name' data-name="${post.id}">${post.displayName}</p>
+        <menu class="dropdown" style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
+          <button id="btn-drop"  class="dropbtn">
+            <span class="iconify" data-icon="ph:dots-three-duotone"></span>
           </button>
-          
-          <div>
-            <textarea maxlength="200" name="post-text" class="post-content text-post" id="${post.data().id}">${post.data().text}</textarea>
+          <div id="myDropdown" class="dropdown-content">
+            <button data-edit="${post.id}" class="edit-button dropbtn">
+              <span class="iconify btn-more" data-icon="bytesize:edit"></span>
+              Editar
+            </button>
+            <button data-delete="${post.id}" class="delete-button dropbtn">
+              <span class="iconify btn-more" data-inline="false" data-icon="bytesize:trash"></span> 
+              Deletar
+            </button>
+            <button data-save="${post.id}" class="save-button dropbtn">
+              <span class="iconify btn-more" data-icon="carbon:save"></span>
+              Salvar
+            </button>
           </div>
-          
-        </div>
-        <section class="actions">
-          <button>13 ❤️</button>
-        </section>
-
-        <!---
-        <section class='edit-text'>
-          <div class='edit-btn-area'>
-            <button id="edit" class="edit-button" value='${post.data().id}'>Editar post</button>
-          </div>
-        </section>
-        -->
-
+        </menu>
       </div>
-    </section>
-  </section>
+      
+      <div class="align-post-like">
+        <div class="content-post">
+            <div id="text-post"
+              data-textpost="${post.id}"
+              class="post-content text-post"
+              id="${post.id}">${post.text}
+            </div>
+        </div>
+        <section class="actions" data-section style="display:${isMyPost ? 'none' : 'inline-end'}">
+          <p data-numLike='${post.id}' class='numLikes'>${post.likes.length}</p>
+          <button class="btn-like"><i id="${post.id}" data-like='${post.id}' class='far fa-heart'></i></button>
+        </section>
+      </div>
+    </div>
   `;
 
-  const postTemplate = document.querySelector('#postTemplate');
-  postTemplate.innerHTML += areaOfPost;
+  postTemplate.innerHTML = areaOfPost;
 
-  updatePosts('4pVdpwtzW4OFz5Lk4xUe', 'banana');
+  const userId = firebase.auth().currentUser.uid;
+  const likeBtn = postTemplate.querySelector('.btn-like');
+  const editButton = postTemplate.querySelector(`[data-edit="${post.id}"]`);
+  const saveButton = postTemplate.querySelector(`[data-save="${post.id}"]`);
+  const deleteButton = postTemplate.querySelector(`[data-delete="${post.id}"]`);
+  const postText = postTemplate.querySelector(`[data-textpost="${post.id}"]`);
 
-  const editButton = postTemplate.querySelector('.edit-button');
-  editButton.addEventListener('click', () => {
-    const valueText = areaOfPost.querySelector('.post-content text-post').value;
-    console.log(valueText);
+  likeBtn.addEventListener('click', () => {
+    const likeCount = postTemplate.querySelector(`[data-numLike="${post.id}"]`);
+    const likeIcon = postTemplate.querySelector(`.btn-like i[data-like="${post.id}"]`);
+    const likesNumber = Number(likeCount.innerText);
+
+    if (!likeArray.includes(userId)) {
+      likePost(userId, post.id)
+        .then(() => {
+          likeArray.push(userId);
+          likeCount.innerText = likesNumber + 1;
+          likeIcon.classList.replace('far', 'fas');
+        })
+        .catch('error');
+    } else {
+      unlikePost(userId, post.id)
+        .then(() => {
+          const likeIndex = likeArray.indexOf(userId);
+          likeArray.splice(likeIndex, 1);
+          likeCount.innerText = likesNumber - 1;
+          likeIcon.classList.replace('fas', 'far');
+        })
+        .catch('error');
+    }
   });
 
-  // const eachPost = `
-  //   <textarea name="post-text" class="post-content text-post"
-  // id="${post.data().id}">${post.data().text}</textarea>
-  //   <section class="actions">
-  //     <button>❤️ ${post.likes}</button>
-  //   </section>
-  // `;
+  editButton.addEventListener('click', () => {
+    postText.setAttribute('contentEditable', '');
+    postText.focus();
+  });
 
-  // const textBox = document.querySelector('.textBox');
-  // const showEachPost = textBox.appendChild(eachPost);
-  // showEachPost.forEach((posts) => { // com o resultado itera no post
-  //   console.log(post);
-  //   printPost(posts); // chama printPost com o que foi retornado, no caso é posts
-  // });
+  saveButton.addEventListener('click', () => {
+    updatePosts(post.id, postText.innerText)
+      .then(() => postText.removeAttribute('contentEditable', ''));
+  });
 
-  // postTemplate.innerHTML += textBox;
+  deleteButton.addEventListener('click', () => {
+    const postArea = document.querySelector(`[data-container="${post.id}"]`);
+    deleteConfirm(post.id, postArea);
+  });
 
-  //     <div class="btn-inside">
-  //   <button class="btn-actions"><span class="iconify" data-inline="false"
-  //   data-icon='ri:image-add-fill'></span>
-  // </button>
-  // <button class="btn-actions"><span class="iconify" data-inline="false"
-  //   data-icon="mdi:send-circle"></span>
-  // </button>
-  // </div>
-
-  /*
-  const elementPost = addPost(post);
-  rootElement.querySelector('#get-post').appendChild(elementPost)
-   */
-
-  // const editPost = () => {
-  //   const valueInput = document.querySelector('.area-edit').value;
-  //   const posts = document.querySelector('all-posts');
-  //   updatePost(valueInput, posts)
-  //     .then(() => {
-  //       const containerEditText = document.querySelector('.edit-text');
-  //       containerEditText.style.display = 'block';
-  //       const areaForEdit = document.querySelector('.area-edit');
-  //       const divTextPublished = document.querySelector('.text-published');
-  //       const textReady = document.querySelector('.text-published').innerHTML;
-
-  //       divTextPublished.style.display = 'none';
-
-  //       areaForEdit.value = textReady;
-  //     })
-  //     .catch((error) => {
-  //       console.log('Não foi', error);
-  //     });
-  // };
-
-  // ;
-
-  // const saveUpdatedPost = () => {
-  //   const valueInput = document.querySelector('.area-edit').value;
-  //   const divTextPublished = document.querySelector('.text-published');
-  //   document.querySelector('.text-published');
-  //   const containerEdit = document.querySelector('.edit-text');
-
-  //   containerEdit.style.display = 'none';
-  //   divTextPublished.style.display = 'block';
-
-  //   divTextPublished.innerHTML = valueInput;
-  // };
-
-  // document.querySelector('.save-button').addEventListener('click', () => {
-  //   saveUpdatedPost();
-  // });
+  return postTemplate;
 };

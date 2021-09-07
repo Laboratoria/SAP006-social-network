@@ -3,71 +3,115 @@ import {
   signInGoogle,
   keepLogged,
 } from '../../services/authentication.js';
+
 import { navigation } from '../../navigation.js';
 
 export const Login = () => {
   const rootElement = document.createElement('div');
   const container = `
-    <header class="esmaeceHeader logotipo-text">
-      <section class="title">
-        <h2>FORT</h2>
+    <header class="header-container">
+      <section class="section-header-title">
+        <h2 class="header-title">FORT</h2>
       </section>
     </header>
-    <section class="content-opacity">
+    <section class="mainSection-background-opacity">
       <div class="without-opacity">
-        <h4>Nova por aqui? <span><a href="/signup" id="signup">Cadastre-se</a></span></h4>
-        <div class="inputAndReset">
-          <input type="text" id="email" class="input" placeholder="Email">
-          <input type="password" id="password" class="input" placeholder="Senha">
+        <h4 class="login-redirect-signup">Nova por aqui? <span><a href="/signup" id="signup" class="link-signup">Cadastre-se</a></span></h4>
+        <h3 class="login-title-community">Encontre a sua comunidade!</h3>
+        <div class="inputAndReset input-form">
+          <input type="text" id="email" class="login-input-email" placeholder="E-mail">
+          <input type="password" id="password" class="login-input-password" placeholder="Senha">
           <button class="reset-password" id="reset">Esqueceu a senha?</button><br>
+          <div class='warning'></div>
         </div>
-        <div class="google">
-          <button id="btn-login" class="login btn">LOGIN</button>
-          <img id="icon-google" src="./pages/login/img/icon-google-white.png">
+        <div class="container-btn-login">
+          <button id="btn-login" class="btn-login login btn">LOGIN</button>
+          <img id="icon-google" class="btn-google" src="./pages/login/img/icon-google-white.png">
         </div>
-        <form>
-          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
-        </form>
       </div>
+      <div class="logo-above-bg"></div>
     </section>
   `;
   rootElement.innerHTML = container;
 
-  const btnLogin = rootElement.querySelector('#btn-login');
-  const btnGoogle = rootElement.querySelector('#icon-google');
-  const email = rootElement.querySelector('#email');
-  const password = rootElement.querySelector('#password');
-  const checkbox = rootElement.querySelector('.checkbox');
-  const signUpBtn = rootElement.querySelector('#signup');
+  const warningPage = rootElement.querySelector('.warning');
+  const btnLogin = rootElement.querySelector('.login');
+  const btnGoogle = rootElement.querySelector('.btn-google');
+  const signUpBtn = rootElement.querySelector('.link-signup');
+  const resetLink = rootElement.querySelector('.reset-password');
+
+  function validationLogin() {
+    const email = rootElement.querySelector('.login-input-email').value;
+
+    const password = rootElement.querySelector('#password').value;
+
+    if (email === '' || password === '') {
+      warningPage.innerHTML = '<p>Preencha todos os campos</p>';
+    } else {
+      signInEmailPassword(email, password)
+        .then(() => {
+          navigation('/feed');
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          switch (errorCode) {
+            case 'auth/invalid-email':
+              warningPage.innerHTML = '<p>Usuário ou email inválido</p>';
+              break;
+            case 'auth/user-disabled':
+              warningPage.innerHTML = '<p>Usuário desabilitado</p>';
+              break;
+            case 'auth/user-not-found':
+              warningPage.innerHTML = '<p>Usuário não encontrado</p>';
+              break;
+            case 'auth/wrong-password':
+              warningPage.innerHTML = '<p>Usuário ou senha inválidos</p>';
+              break;
+            default:
+              warningPage.innerHTML = `<p>${errorMessage}</p>`;
+              break;
+          }
+          throw new Error(errorMessage);
+        });
+    }
+  }
+
+  btnLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    validationLogin();
+  });
+
+  function validationWithGoogle() {
+    signInGoogle()
+      .then(() => {
+        navigation('/feed');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        switch (errorCode) {
+          case 'auth/credential-already-in-use':
+            warningPage.innerHTML = '<p>Está credencial já está sendo utilizada</p>';
+            break;
+          default:
+            warningPage.innerHTML = `<p>${errorMessage}</p>`;
+        }
+        throw new Error(errorMessage);
+      });
+  }
+
+  btnGoogle.addEventListener('click', () => {
+    validationWithGoogle();
+    navigation('/feed');
+    keepLogged();
+  });
 
   signUpBtn.addEventListener('click', (event) => {
     event.preventDefault();
     navigation('/signup');
   });
 
-  const loginWithEmail = btnLogin.addEventListener('click', () => {
-    signInEmailPassword(email.value, password.value);
-    navigation('/feed');
-  });
-
-  const loginWithGoogle = btnGoogle.addEventListener('click', () => {
-    signInGoogle();
-    navigation('/feed');
-  });
-
-  checkbox.addEventListener('change', () => {
-    const none = firebase.auth.Auth.Persistence.NONE;
-    const local = firebase.auth.Auth.Persistence.LOCAL;
-
-    if (checkbox.checked === true && loginWithGoogle) {
-      keepLogged(local);
-    } else if (checkbox.checked === true && loginWithEmail) {
-      keepLogged(local);
-    }
-    keepLogged(none);
-  });
-
-  const resetLink = rootElement.querySelector('#reset');
   resetLink.addEventListener('click', (event) => {
     event.preventDefault();
     navigation('/reset');

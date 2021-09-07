@@ -1,62 +1,26 @@
-export const createAccount = (email, password, confirmPassword) => {
-  if (password !== confirmPassword) {
-    alert('Algo errado não está certo, verifique a senha digitada!');
-    return false;
-  }
+export const updateProfile = (userName) => {
+  firebase.auth()
+    .currentUser.updateProfile({
+      displayName: userName,
+      return: updateProfile,
+    });
+};
 
+export const createAccount = (email, password, userName) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      firebase.auth().currentUser.sendEmailVerification();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      if (errorCode === 'auth/email-already-in-use') {
-        alert('E-mail já cadastrado');
-      } else if (errorCode === 'auth/invalid-email') {
-        alert('E-mail inválido');
-      } else if (errorCode === 'auth/weak-password') {
-        alert('Senha fraca');
-      } else {
-        alert('Algo deu errado. Por favor, tente novamente.');
-      }
-    });
-};
-
-const verifyUser = () => {
-  firebase
-    .auth()
-    .onAuthStateChanged((user) => {
-      if (user) {
-        localStorage.setItem('uid', user.uid);
-      }
+      updateProfile(userName);
     });
 };
 
 export const signInEmailPassword = (email, password) => {
-  const signIn = firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(() => {
-      verifyUser();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-
-      if (errorCode === 'auth/invalid-email') {
-        alert('Poxa, mana, digita um e-mail válido');
-      } else if (errorCode === 'auth/user-disabled') {
-        alert('ihhh... parece que essa conta foi desativada');
-      } else if (errorCode === 'auth/user-not-found') {
-        alert('Para tudooo, vai se cadastrar primeiro!');
-      } else if (errorCode === 'auth/wrong-password') {
-        alert('Deu ruim! A senha ou o e-mail estão errados...');
-      } else {
-        alert('Algo deu errado. Por favor, tente novamente.');
-      }
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((user) => {
+      localStorage.setItem('displayName', user.user.displayName);
+      localStorage.setItem('email', user.user.email);
     });
-  return signIn;
 };
 
 export const logout = () => {
@@ -68,60 +32,50 @@ export const logout = () => {
       const popStateEvent = new PopStateEvent('popstate', {});
       dispatchEvent(popStateEvent);
     });
-  // .catch((error) => {
-  // // An error happened.
-  // });
 };
 
-export const signInGoogle = () => {
+export const signInGoogle = (userName) => {
   const provider = new firebase.auth.GoogleAuthProvider();
-
   return firebase
     .auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      const credential = result.credential;
-
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
+    .signInWithPopup(provider).then((user) => {
+      localStorage.setItem('displayName', user.user.displayName);
+      localStorage.setItem('email', user.user.email);
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credentialError = error.credential;
-      // ...
+    .then(() => {
+      updateProfile(userName);
     });
 };
 
-export const keepLogged = (persistence) => {
+export const keepLogged = () => {
   firebase
     .auth()
-    .setPersistence(persistence)
-    .then(() => {
-      const provider = new firebase.Auth();
-      return firebase.auth().signInWithRedirect(provider);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+    .setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 };
 
 export const resetPassword = (email) => {
   firebase
     .auth()
-    .sendPasswordResetEmail(email)
-    .then(() => {
-      alert('Corre lá e muda sua senha, miga!');
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+    .sendPasswordResetEmail(email);
+};
+
+export const uploadPicture = (userId, file) => {
+  firebase
+    .storage()
+    .ref(`images/${userId}`)
+    .put(file);
+};
+
+export const downloadPicture = (userId, currentUser) => {
+  firebase
+    .storage()
+    .ref()
+    .child(`images/${userId}`)
+    .getDownloadURL()
+    .then((url) => {
+      currentUser
+        .updateProfile({
+          photoURL: url,
+        });
     });
 };

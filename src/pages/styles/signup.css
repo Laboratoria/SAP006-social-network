@@ -1,56 +1,60 @@
-.image-page {
-    height: 100%;
-    width: 100%;
-} 
-
-.banner {
-    opacity: 100%;
-    background-color: #FFD2BF;
-    height: 10vh;
+.background-color-main-signup {
+    background-color: none;
 }
-    
+
+
+.esmaeceHeader-signup {
+    opacity: 100%;
+    background-color: #ffd2bf;
+}
+
 h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: bolder;
-    font-size: 2.1rem;
-    padding: 10% 5%;
+    font-size: 27px;
+    line-height: 31px;
+    letter-spacing: 0.35px;
     font-feature-settings: 'pnum' on, 'lnum' on;
     color: var(--color-primary);
+    background-color: #FFD2BF;
+    padding: 10%;
 }
 
-.form-register {
-    justify-content: center;
+h3 {
     text-align: center;
-    font-size: small;
-    margin-top: 40%;
-    display: flex;
-    flex-direction: column;
+    font-size: 1.8rem;
+    color: var(--color-gray);
+    padding: 5%;
+    font-weight: 600;
+}
+
+.content-signup {
+    background-image: url(../../img/opacobg.jpeg);
+    padding: 10% 5% 5% 5%;
+    height: 100%; 
+    width: 100%; 
+    z-index: -1;
 }
 
 .infos-user {
-    margin: auto;
+    filter: none;
+    margin-top: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-input {
-    border-radius: 10px;
-    background: var(--color-white);
-    border: 1px solid var(--color-background);
-    box-shadow: 0px 4px 4px 0px #00000040;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: medium;
-    color: var(--color-gray);
-    padding: 5%;
-    margin: 2%;
+.warning {
+    color: red;
+    background-color: white;
 }
 
-.btn-signup {
-    font-size: 1.4rem;
-    height: 6vh;
-    width: 30vh;
+.btn-Signup {
+    height: 7vh;
+    width: 32vh;
     border-radius: 50px;
     background: var(--color-primary);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 800;
     line-height: 20px;
@@ -59,6 +63,7 @@ input {
     margin: 10% auto;
 }
 
-.go-login {
-    font-size: 1.2rem;
+p {
+    font-size: 0.8rem;
 }
+

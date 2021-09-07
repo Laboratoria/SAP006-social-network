@@ -1,32 +1,53 @@
 export const loadPosts = () => firebase
   .firestore()
   .collection('posts')
-  .orderBy('text', 'desc')
-  .get();// aqui vai gerar uma promisse
+  .orderBy('datePost', 'desc')
+  .get();
 
-export const addPosts = (post) => firebase
+export const addPosts = (postId) => firebase
   .firestore()
   .collection('posts')
-  .add(post)
-  .then(() => loadPosts());
+  .add(postId);
+  // .then(() => window.location.reload());
 
 export const updatePosts = (postId, newText) => firebase
   .firestore()
   .collection('posts')
   .doc(postId)
-  .update({ text: newText })
-  .then(() => {
-    // console.log('Caiu no load');
+  .update({
+    text: newText,
   })
-  .catch(() => {
-    console.log('Não foi dessa vez');
+  .then(() => {
+    // window.location.reload();
   });
 
 export const deletePost = (postId) => firebase
   .firestore()
   .collection('posts')
   .doc(postId)
-  .delete()
-  .then(() => {
-  })
-  .then(() => loadPosts());
+  .delete();
+
+export const getLikes = (postId) => firebase
+  .firestore()
+  .collection('posts')
+  .doc(postId)
+  .get();
+
+export const likePost = (userId, postId) => firebase
+  .firestore()
+  .collection('posts')
+  .doc(postId)
+  .update({ likes: firebase.firestore.FieldValue.arrayUnion(userId) });
+
+export const unlikePost = (userId, postId) => firebase
+  .firestore()
+  .collection('posts')
+  .doc(postId)
+  .update({ likes: firebase.firestore.FieldValue.arrayRemove(userId) });
+
+export const searchPosts = (array) => firebase
+  .firestore()
+  .collection('posts')
+  .where('terms', 'array-contains-any', array)
+  .orderBy('datePost', 'desc') // trocar pra asc num futuro distante
+  .get();

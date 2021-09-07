@@ -51,3 +51,22 @@ a {
 ol, ul {
 	list-style: none;
 }
+
+.reset-input-layout, 
+.login-input-email, 
+.login-input-password, 
+.signup-input-email, 
+.signup-input-password,
+.signup-input-name {
+  border-radius: 20px;
+  background: var(--color-white);
+  border: 1px solid var(--color-background);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: medium;
+  color: var(--color-gray);
+  padding: 5%;
+  margin: 2%;
+  display: inline-flex;
+}

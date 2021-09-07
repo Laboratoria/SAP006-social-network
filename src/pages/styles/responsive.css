@@ -1,0 +1,378 @@
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+    header.esmaeceHeader, .logotipo-text, .esmaeceHeader-signup, .logotipo-text-signup {
+        display: none;
+    }
+
+    .mainSection-background-opacity, .content-signup{
+        background-image: url(../../img/opacobg.jpeg);
+        background-color: var(--color-background);
+        background-attachment: fixed;
+        background-repeat: repeat-x no-repeat;
+        background-position-x: right;
+        background-size: 50%;
+        padding: 0% 5% 0% 0%;
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .logo-above-bg, .logo-above-bg-signup{
+        background-image: url(../../img/logo.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 20vw;
+        height: 20vw;
+        margin-left: 16vw;
+    }
+
+    .without-opacity, .form-register-responsive {
+        filter: none;
+        width: 52%;
+        height: 100vh;
+        background-color: var(--color-background);
+    }
+
+    .infos-user {
+        margin-top: 10%;
+    }
+
+    .login-redirect-signup {
+        text-align: left;
+        padding-top: 6%;
+        font-weight: 600;
+        font-size: 1.4vw;
+        color: #706F6B;
+        text-shadow: 0px 8.32363px 8.32363px rgba(0, 0, 0, 0.1);
+    } 
+
+    .login-title-community {
+        display: flex;
+        justify-content: center;
+        margin-top: 10%;
+        font-size: 1.8vw;
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 0.0168em;
+        color: #706F6B;
+        text-shadow: 0px 9.00986px 9.00986px rgba(0, 0, 0, 0.1);
+    }
+
+    .inputAndReset {
+        margin-top: 15%;
+    }
+
+    .login-input-email, .login-input-password, .value-register {
+        height: 2vw;
+        width: 30vw;
+        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
+    }
+
+    .login-input-password {
+        margin-bottom: 1.2%;
+    }
+
+    .btn-Signup {
+        height: 3vw;
+        width: 14vw;
+        font-size: 1.0vw;
+        margin-bottom: 1.5vw;
+    }
+
+    .reset-password {
+        margin-right: -38%;
+        background-color: var(--color-background);
+        font-size: 1em;
+        font-weight: 900;
+        color: #706F6B;
+        letter-spacing: 0.0168em;
+    }
+
+    .container-btn-login  {
+        margin-top: 3.2%;
+    }
+
+    button#btn-login  {
+        height: 8vh;
+        width: 33vh;
+        font-size: 1.2vw;
+        margin-bottom: 0.5vw;
+    }
+
+    .btn-reset {
+        height: 9vh;
+        width: 21vh;
+        font-size: 1.3rem;
+    }
+
+    .btn-google {
+        width: 34vh;
+        height: 30%;
+        font-size: 1.2vw;
+        filter: drop-shadow(0px 5.28302px 5.28302px rgba(0, 0, 0, 0.15));
+    }
+    
+    img#icon-google {
+        width: none;
+    }
+
+    p {
+        font-size: 1.0rem;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1200px) {
+    header.esmaeceHeader, .logotipo-text, .esmaeceHeader-signup, .logotipo-text-signup {
+        display: none;
+    }
+
+    .mainSection-background-opacity, .content-signup {
+        background-image: url(../../img/opacobg.jpeg);
+        background-color: var(--color-background);
+        background-attachment: fixed;
+        background-repeat: repeat-x no-repeat;
+        background-position-x: right;
+        background-size: 50%;
+        padding: 0% 5% 0% 0%;
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .logo-above-bg, .logo-above-bg-signup{
+        background-image: url(../../img/logo.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 20vw;
+        height: 20vw;
+        margin-left: 16vw;
+    }
+
+    .without-opacity, .form-register-responsive {
+        filter: none;
+        width: 52%;
+        height: 100vh;
+        background-color: var(--color-background);
+    }
+
+    .form-register-responsive {
+        margin-top: 0;
+    }
+
+    .infos-user {
+        margin-top: 40%;
+    }
+
+    .login-redirect-signup {
+        text-align: left;
+        padding-top: 6%;
+        font-weight: 600;
+        font-size: 1.4vw;
+        color: #706F6B;
+        text-shadow: 0px 8.32363px 8.32363px rgba(0, 0, 0, 0.1);
+    } 
+
+    .login-title-community {
+        display: flex;
+        justify-content: center;
+        margin-top: 10%;
+        font-size: 1.8vw;
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 0.0168em;
+        color: #706F6B;
+        text-shadow: 0px 9.00986px 9.00986px rgba(0, 0, 0, 0.1);
+    }
+
+    .inputAndReset {
+        margin-top: 15%;
+    }
+
+    .login-input-email, .login-input-password {
+        height: 2vw;
+        width: 30vw;
+        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
+    }
+
+    .value-register {
+        height: 5vw;
+        width: 30vw;
+        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
+    }
+
+    .login-input-password {
+        margin-bottom: 1.2%;
+    }
+
+    .reset-password {
+        margin-right: -38%;
+        background-color: var(--color-background);
+        font-size: 1em;
+        font-weight: 900;
+        color: #706F6B;
+        letter-spacing: 0.0168em;
+    }
+
+    .container-btn-login  {
+        margin-top: 3.2%;
+    }
+
+    .btn-login {
+        height: 8vh;
+        width: 33vh;
+        font-size: 1.2vw;
+        margin-bottom: 0.5vw;
+    }
+
+    .btn-Signup {
+        height: 7vh;
+        width: 30vh;
+        font-size: 1.5vw;
+         margin-bottom: 1.5vw; 
+    }
+
+    .btn-google {
+        width: 34vh;
+        height: 30%;
+        font-size: 1.2vw;
+        filter: drop-shadow(0px 5.28302px 5.28302px rgba(0, 0, 0, 0.15));
+    }
+    
+    img#icon-google {
+        width: none;
+    }
+
+    p {
+        font-size: 1.0rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .esmaeceHeader-signup {
+        height: 20vh;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+        padding: 5%;
+        color: var(--color-primary);
+    }
+
+    .form-register-responsive {
+        height: 100vh;
+    }
+
+    h2 {
+     font-size: 5.0vw;
+    }
+
+    .value-register {
+        height: 3vw;
+        width: 55vw;
+    }
+
+    .btn-Signup {
+        height: 9vh;
+        width: 40vh;
+        font-size: 1.2rem;
+   }
+
+   .infos-user {
+       margin-top: 30%;
+   }
+
+   p {
+    font-size: 1.2rem;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px)  {
+    .esmaeceHeader-signup {
+        height: 20vh;
+    }
+
+    .form-register-responsive {
+        height: 100vh;
+    }
+    
+    h2 {
+        font-size: 2.0rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        padding: 5%;
+        color: var(--color-primary);
+    }
+
+    .infos-user {
+        margin-top: 20%;
+    }
+ 
+    .value-register {
+        height: 11vw;
+        width: 55vw;
+    }
+
+     .btn-Signup {
+        height: 7vh;
+        width: 30vh;
+        font-size: 1.0rem;
+   }
+
+   p {
+    font-size: 1.1rem;
+   }
+}
+
+@media (min-width: 320px) and (max-width: 576px) {
+    .esmaeceHeader-signup {
+        height: 20vh;
+    }
+
+    .form-register-responsive {
+        height: 100vh;
+    }
+
+    .infos-user {
+        margin-top: 40%;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        padding: 10%;
+        color: var(--color-primary);
+    }
+  
+    .value-register {
+        height: 12vw;
+        width: 65vw;
+    }
+  
+      .btn-Signup {
+          height: 8vw;
+          width: 35vw;
+     }
+
+     .go-login {
+      font-size: 0.9rem;
+     }
+
+    .reset-input-layout {
+        height: 8vh;
+        width: 43vh;
+        font-size: 1.1rem;
+    }
+
+    .btn-reset {
+        height: 7vh;
+        width: 19vh;
+        font-size: 1.2rem;
+    }
+}
