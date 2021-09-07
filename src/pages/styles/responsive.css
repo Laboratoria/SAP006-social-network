@@ -347,6 +347,28 @@
         height: 20vh;
     }
 
+    .sectionLogin-header-title {
+        padding: 0% 0% 5% 5%;
+    }
+
+    .header-title {
+        font-size: 2.2em;
+    }
+
+    .login-redirect-signup {
+        font-size: 1.5em;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .mainSectionLogin-background-opacity {
+        padding: 0% 5% 5% 5%;
+    }
+
+    .inputAndReset {
+        margin-top: 40%;
+    }
+
     h3 {
         font-size: 1.8rem;
         padding: 5%;
@@ -372,6 +394,22 @@
         width: 30vh;
         font-size: 1.2rem;
     }
+
+   .reset-password {
+        font-size: 1.2rem;
+        margin-right: -27%;
+   }
+
+   .btn-login {
+        height: 8vh;
+        width: 30vh;
+        font-size: 1.3rem;
+        font-weight: 700;
+   }
+
+   .btn-google {
+       width: 32%;
+   }
 
    .infos-user {
        margin-top: 30%;
@@ -401,7 +439,7 @@
    } 
 }
 
-@media (min-width: 576px) and (max-width: 768px)  {
+@media (min-width: 576px) and (max-width: 768px)  { 
     .esmaeceHeader-signup {
         height: 20vh;
     }
@@ -462,8 +500,16 @@
         height: 20vh;
     }
 
+    .sectionLogin-header-title {
+        padding: 0% 0% 5% 5%;
+    }
+
+    .mainSectionLogin-background-opacity {
+        height: 92vh;
+    }
+    
     h2 {
-        font-size: 2.0rem;
+        font-size: 2rem;
         padding-left: 20%;
     }
 
@@ -489,6 +535,21 @@
       .btn-Signup {
           height: 8vw;
           width: 35vw;
+     }
+
+     .login-input-email, .login-input-password {
+        width: 38vh;
+     }
+
+     .btn-login {
+        height: 6vh;
+        width: 25vh;
+        font-weight: 600;
+        font-size: 1.25rem;
+     }
+
+     .btn-google {
+         width: 72%;
      }
 
      .go-login {
