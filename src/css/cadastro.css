@@ -10,6 +10,9 @@
 .titleCads {
   padding: 3%;
 }
+.titleCads img {
+  width: 90%;
+}
 .nameUser,
 .emailUser,
 .addImg,

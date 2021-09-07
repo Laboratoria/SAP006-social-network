@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
 });
 
 const verUser = () => {
-  if (localStorage.getItem('email') == null) {
+  if (localStorage.getItem('email') == null || localStorage.getItem('email') !== firebase.auth().currentUser.email) {
     route('/login');
   }
 };
