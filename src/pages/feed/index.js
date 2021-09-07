@@ -47,20 +47,53 @@ export default () => {
 };
 
 //CRIAR POST
-document.getElementById("post-form").addEventListener("submit", function (event){
-  event.preventDefault();
-  const text = document.getElementById("post-text").value;
-  const filmName = document.getElementById("name-film").value;
-  const filmImage = document.getElementById("input-img-film").value;
-  const post = {
-    text: text;
-    img_film: filmImage;
-    name_film: filmName;
-    user_id: "Julio";
-    likes: 0;
-    comments: [];
-  }
-   const postCollection = firebase.firestore().collection("post")        postsCollection.add(post)                                           
-})
+document
+  .getElementById("post-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    const text = document.getElementById("post-text").value;
+    const filmName = document.getElementById("name-film").value;
+    const filmImage = document.getElementById("input-img-film").value;
+    const post = {
+      text: text,
+      img_film: filmImage,
+      name_film: filmName,
+      user_id: "Julio",
+      likes: 0,
+      comments: [],
+    };
+    const postCollection = firebase.firestore().collection("post");
+
+    postsCollection.add(post).then(res => {
+      document.getElementById("post-text").value = ""
+      loadPosts()
+    });
+  });
 
 //MOSTRAR POST NA TELA
+function addPost(post) {
+  const postTemplate = `
+  <li id="${post.id}">
+  ${post.data().text} 🤍${post.data().likes}
+  </li>
+  `;
+  document.getElementById("posts").innerHTML += postTemplate;
+}
+
+function loadPosts() {
+  const postCollection = firebase.firestore().collection("post");
+  document.getElementById("posts").innerHTML = "Carregando...";
+  postsCollection.get().then((snap) => {
+    document.getElementById("posts").innerHTML = "";
+    snap.forEach((post) => {
+      addPost(post);
+    });
+  });
+}
+
+//DELETAR POST
+function deletePost(postId){
+  postsCollection.doc(postId).delete().then(doc => { 
+    loadPosts()
+  });
+}
