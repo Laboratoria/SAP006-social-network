@@ -20,17 +20,17 @@
   color: var(--color-primary);
 }
 
-.section-header-title {
-    padding: 20% 0% 5% 5%;
+.sectionLogin-header-title {
+  padding: 20% 0% 5% 5%;
 }
 
-.mainSection-background-opacity {
-    background-image: url(../../img/opacobg.jpeg);
-    background-color: var(--color-background);
-    background-attachment: fixed;
-    background-repeat: repeat-x no-repeat;
-    z-index: -1;
-    padding: 10% 5% 5% 5%;
+.mainSectionLogin-background-opacity {
+  background-image: url(../../img/opacobg.jpeg);
+  background-color: var(--color-background);
+  background-attachment: fixed;
+  background-repeat: repeat-x no-repeat;
+  z-index: -1;
+  padding: 10% 5% 5% 5%;
 }
 
 .without-opacity {
@@ -64,17 +64,17 @@ a {
 }
 
 .inputAndReset {
-    margin-top: 55%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-top: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
 .reset-password {
   margin-right: -38%;
   background-color: transparent;
-  font-size: 1em;
+  font-size: 1.2rem;
   font-weight: 900;
   color: #706F6B;
 }
@@ -91,27 +91,13 @@ form {
   background-color: white;
 }
 
-.checkbox {
-  border: 1px solid #cacece;
-  border-radius: 3px;
-  padding: 1px;
-  margin-right: 5px;
-  margin-left: 5px;
-  vertical-align: middle;
-}
-
-.checkbox:checked {
-  background-color: rgb(69, 69, 230);
-  border: 1px solid #adb8c0;
-  color: #99a1a7;
-}
-
-.btn {
-  height: 53px;
-  width: 245px;
+.btn-login {
+  height: 8vh;
+  width: 30vh;
   border-radius: 50px;
   background: var(--color-primary);
   font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
   font-style: normal;
   font-weight: 800;
   line-height: 20px;
@@ -136,6 +122,3 @@ form {
   border-radius: 25%;
   filter: drop-shadow(0px 3.60976px 3.60976px rgba(0, 0, 0, 0.15));
 }
-
-
-

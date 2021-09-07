@@ -1,378 +1,124 @@
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-    header.esmaeceHeader, .logotipo-text, .esmaeceHeader-signup, .logotipo-text-signup {
-        display: none;
-    }
-
-    .mainSection-background-opacity, .content-signup{
-        background-image: url(../../img/opacobg.jpeg);
-        background-color: var(--color-background);
-        background-attachment: fixed;
-        background-repeat: repeat-x no-repeat;
-        background-position-x: right;
-        background-size: 50%;
-        padding: 0% 5% 0% 0%;
-        display: flex;
-        justify-content: flex-start;
-        align-content: center;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .logo-above-bg, .logo-above-bg-signup{
-        background-image: url(../../img/logo.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 20vw;
-        height: 20vw;
-        margin-left: 16vw;
-    }
-
-    .without-opacity, .form-register-responsive {
-        filter: none;
-        width: 52%;
-        height: 100vh;
-        background-color: var(--color-background);
-    }
-
-    .infos-user {
-        margin-top: 10%;
-    }
-
-    .login-redirect-signup {
-        text-align: left;
-        padding-top: 6%;
-        font-weight: 600;
-        font-size: 1.4vw;
-        color: #706F6B;
-        text-shadow: 0px 8.32363px 8.32363px rgba(0, 0, 0, 0.1);
-    } 
-
-    .login-title-community {
-        display: flex;
-        justify-content: center;
-        margin-top: 10%;
-        font-size: 1.8vw;
-        font-style: normal;
-        font-weight: bold;
-        letter-spacing: 0.0168em;
-        color: #706F6B;
-        text-shadow: 0px 9.00986px 9.00986px rgba(0, 0, 0, 0.1);
-    }
-
-    .inputAndReset {
-        margin-top: 15%;
-    }
-
-    .login-input-email, .login-input-password, .value-register {
-        height: 2vw;
-        width: 30vw;
-        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
-    }
-
-    .login-input-password {
-        margin-bottom: 1.2%;
-    }
-
-    .btn-Signup {
-        height: 3vw;
-        width: 14vw;
-        font-size: 1.0vw;
-        margin-bottom: 1.5vw;
-    }
-
-    .reset-password {
-        margin-right: -38%;
-        background-color: var(--color-background);
-        font-size: 1em;
-        font-weight: 900;
-        color: #706F6B;
-        letter-spacing: 0.0168em;
-    }
-
-    .container-btn-login  {
-        margin-top: 3.2%;
-    }
-
-    button#btn-login  {
-        height: 8vh;
-        width: 33vh;
-        font-size: 1.2vw;
-        margin-bottom: 0.5vw;
-    }
-
-    .btn-reset {
-        height: 9vh;
-        width: 21vh;
-        font-size: 1.3rem;
-    }
-
-    .btn-google {
-        width: 34vh;
-        height: 30%;
-        font-size: 1.2vw;
-        filter: drop-shadow(0px 5.28302px 5.28302px rgba(0, 0, 0, 0.15));
-    }
-    
-    img#icon-google {
-        width: none;
-    }
-
-    p {
-        font-size: 1.0rem;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1200px) {
-    header.esmaeceHeader, .logotipo-text, .esmaeceHeader-signup, .logotipo-text-signup {
-        display: none;
-    }
-
-    .mainSection-background-opacity, .content-signup {
-        background-image: url(../../img/opacobg.jpeg);
-        background-color: var(--color-background);
-        background-attachment: fixed;
-        background-repeat: repeat-x no-repeat;
-        background-position-x: right;
-        background-size: 50%;
-        padding: 0% 5% 0% 0%;
-        display: flex;
-        justify-content: flex-start;
-        align-content: center;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .logo-above-bg, .logo-above-bg-signup{
-        background-image: url(../../img/logo.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 20vw;
-        height: 20vw;
-        margin-left: 16vw;
-    }
-
-    .without-opacity, .form-register-responsive {
-        filter: none;
-        width: 52%;
-        height: 100vh;
-        background-color: var(--color-background);
-    }
-
-    .form-register-responsive {
-        margin-top: 0;
-    }
-
-    .infos-user {
-        margin-top: 40%;
-    }
-
-    .login-redirect-signup {
-        text-align: left;
-        padding-top: 6%;
-        font-weight: 600;
-        font-size: 1.4vw;
-        color: #706F6B;
-        text-shadow: 0px 8.32363px 8.32363px rgba(0, 0, 0, 0.1);
-    } 
-
-    .login-title-community {
-        display: flex;
-        justify-content: center;
-        margin-top: 10%;
-        font-size: 1.8vw;
-        font-style: normal;
-        font-weight: bold;
-        letter-spacing: 0.0168em;
-        color: #706F6B;
-        text-shadow: 0px 9.00986px 9.00986px rgba(0, 0, 0, 0.1);
-    }
-
-    .inputAndReset {
-        margin-top: 15%;
-    }
-
-    .login-input-email, .login-input-password {
-        height: 2vw;
-        width: 30vw;
-        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
-    }
-
-    .value-register {
-        height: 5vw;
-        width: 30vw;
-        filter: drop-shadow(0px 4.97967px 3.73476px rgba(0, 0, 0, 0.15));
-    }
-
-    .login-input-password {
-        margin-bottom: 1.2%;
-    }
-
-    .reset-password {
-        margin-right: -38%;
-        background-color: var(--color-background);
-        font-size: 1em;
-        font-weight: 900;
-        color: #706F6B;
-        letter-spacing: 0.0168em;
-    }
-
-    .container-btn-login  {
-        margin-top: 3.2%;
-    }
-
-    .btn-login {
-        height: 8vh;
-        width: 33vh;
-        font-size: 1.2vw;
-        margin-bottom: 0.5vw;
-    }
-
-    .btn-Signup {
-        height: 7vh;
-        width: 30vh;
-        font-size: 1.5vw;
-         margin-bottom: 1.5vw; 
-    }
-
-    .btn-google {
-        width: 34vh;
-        height: 30%;
-        font-size: 1.2vw;
-        filter: drop-shadow(0px 5.28302px 5.28302px rgba(0, 0, 0, 0.15));
-    }
-    
-    img#icon-google {
-        width: none;
-    }
-
-    p {
-        font-size: 1.0rem;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 992px) {
-    .esmaeceHeader-signup {
-        height: 20vh;
-    }
-
-    h3 {
-        font-size: 1.8rem;
-        padding: 5%;
-        color: var(--color-primary);
-    }
-
-    .form-register-responsive {
-        height: 100vh;
-    }
-
-    h2 {
-     font-size: 5.0vw;
-    }
-
-    .value-register {
-        height: 3vw;
-        width: 55vw;
-    }
-
-    .btn-Signup {
-        height: 9vh;
-        width: 40vh;
-        font-size: 1.2rem;
-   }
-
-   .infos-user {
-       margin-top: 30%;
-   }
-
-   p {
+.background-color-main {
+    background-color: none;
+  }
+  
+  .header-container {
+    opacity: 100%;
+    background-color: #ffd2bf;
+    height: 20%;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  .header-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+    font-size: 27px;
+    line-height: 31px;
+    letter-spacing: 0.35px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: var(--color-primary);
+  }
+  
+  .sectionLogin-header-title {
+      padding: 20% 0% 5% 5%;
+  }
+  
+  .mainSectionLogin-background-opacity {
+    background-image: url(../../img/opacobg.jpeg);
+    background-color: var(--color-background);
+    background-attachment: fixed;
+    background-repeat: repeat-x no-repeat;
+    z-index: -1;
+    padding: 10% 5% 5% 5%;
+  }
+  
+  .without-opacity {
+      filter: none;
+  }
+  
+  span {
+    color: var(--color-primary);
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+  }
+  
+  h4,
+  a {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-weight: normal;
+    color: var(--color-gray);
+    line-height: 20px;
+    letter-spacing: 0.0168em;
+    padding: 2% 0% 5% 5%;
+  }
+  
+  a {
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-gray);
+    padding: 0%;
+    align-self: flex-end;
+  }
+  
+  .inputAndReset {
+    margin-top: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  .reset-password {
+    margin-right: -38%;
+    background-color: transparent;
     font-size: 1.2rem;
-   }
-}
-
-@media (min-width: 576px) and (max-width: 768px)  {
-    .esmaeceHeader-signup {
-        height: 20vh;
-    }
-
-    .form-register-responsive {
-        height: 100vh;
-    }
-    
-    h2 {
-        font-size: 2.0rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-        padding: 5%;
-        color: var(--color-primary);
-    }
-
-    .infos-user {
-        margin-top: 20%;
-    }
- 
-    .value-register {
-        height: 11vw;
-        width: 55vw;
-    }
-
-     .btn-Signup {
-        height: 7vh;
-        width: 30vh;
-        font-size: 1.0rem;
-   }
-
-   p {
-    font-size: 1.1rem;
-   }
-}
-
-@media (min-width: 320px) and (max-width: 576px) {
-    .esmaeceHeader-signup {
-        height: 20vh;
-    }
-
-    .form-register-responsive {
-        height: 100vh;
-    }
-
-    .infos-user {
-        margin-top: 40%;
-    }
-
-    h3 {
-        font-size: 1.4rem;
-        padding: 10%;
-        color: var(--color-primary);
-    }
+    font-weight: 900;
+    color: #706F6B;
+  }
   
-    .value-register {
-        height: 12vw;
-        width: 65vw;
-    }
+  form {
+    justify-content: center;
+    text-align: center;
+    font-size: small;
+    margin-top: 1%;
+  }
   
-      .btn-Signup {
-          height: 8vw;
-          width: 35vw;
-     }
-
-     .go-login {
-      font-size: 0.9rem;
-     }
-
-    .reset-input-layout {
-        height: 8vh;
-        width: 43vh;
-        font-size: 1.1rem;
-    }
-
-    .btn-reset {
-        height: 7vh;
-        width: 19vh;
-        font-size: 1.2rem;
-    }
-}
+  .warning {
+    color: red;
+    background-color: white;
+  }
+  
+  .btn-login {
+    height: 8vh;
+    width: 30vh;
+    border-radius: 50px;
+    background: var(--color-primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 20px;
+    letter-spacing: 0.0168em;
+    color: #FFD2BF;
+    margin: 0% 20% 3% 20%;
+  }
+  
+  .container-btn-login  {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    margin-top: 2%;
+  }
+  
+  .btn-google {
+    width: 50%;
+    height: 30%;
+    border-radius: 25%;
+    filter: drop-shadow(0px 3.60976px 3.60976px rgba(0, 0, 0, 0.15));
+  }
