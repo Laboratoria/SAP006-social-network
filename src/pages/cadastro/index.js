@@ -1,3 +1,5 @@
+import {registerLogin} from '../../services/index.js';
+
 export default () => {
   console.log("cadastro");
   const container = document.createElement("div");
@@ -17,19 +19,13 @@ export default () => {
           <input required="required" autocomplete="off" type="password" placeholder="Insira uma senha (Min. 6 digítos)"
           id="register-password" class="login-area">
           <div></div>
-          <button class="btn button-area" id="button-register">Cadastre-se</button>
+          <button class="btn button-area" id="button-register">Cadastrar</button>
         </form>
       </div>
     </div>  
   `;
 
-  // <div class="label-float"></div>
-  // <input type="password" id="senha" placeholder="">
-  // <label for="senha">Senha</label>
-  // <div class="justify-center">
-  //   <button onclick="cadastro()">Cadastrar</button>
-  // </div>
-  // </body>
+  
 
   container.innerHTML = template;
 
@@ -40,8 +36,10 @@ export default () => {
 
   registerBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log("click");
     registerLogin(email.value, password.value, name.value);
+    // then(() => {
+    //   window.location.hash = '#feed';
   });
+
   return container;
 };
