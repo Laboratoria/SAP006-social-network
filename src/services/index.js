@@ -18,8 +18,23 @@ export const criarPost = (text) => {
 export const authState = localStorage.getItem('user');
 // delete posts
 export const delPost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
-// edit posts
-//     .add(postagem)
+
+    //USUÁRIO
+    const usuario = firebase.auth().currentUser;
+
+    const post = {
+     user_id: usuario.uid,
+     mensagem: text.value,
+     data: new Date(),
+     like:[],
+     comentario:[],
+    }
+
+    return collectionPosts().add(post)
+}
+
+//     .add(posts)
+
 //     .then((docRef) => {
 //         console.log("Document written with ID: ", docRef.id);
 //         msg.value = '';
