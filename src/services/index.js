@@ -8,7 +8,6 @@
 export const createUser = (name, email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-    // Signed in
       const user = userCredential.user;
       console.log(user);
       window.location.hash = '#login';

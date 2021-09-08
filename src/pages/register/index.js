@@ -27,7 +27,8 @@ export default () => {
 
           <div class="button">
             <a href="/#login">
-              <button id="btn-register" class="register-button">Cadastrar</button>
+              <button onclick='register' id="btn-register" class="register-button">Cadastrar</button>
+              <button onclick='register' id="btn-home" class="home-button">Início</button>
             </a> 
       </div>
     </div>
@@ -36,6 +37,8 @@ export default () => {
   container.innerHTML = template;
 
   const btnRegister = container.querySelector('#btn-register');
+  const btnHome = container.querySelector('#btn-home');
+
   const fullName = container.querySelector('#fullName');
   const labelName = container.querySelector('#labelName');
 
@@ -45,7 +48,9 @@ export default () => {
   const passwordUser = container.querySelector('#passwordUser');
   const labelPassword = container.querySelector('#labelPassword');
 
-  fullName.addEventListener('click', () => {
+  const mailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  fullName.addEventListener('keyup', () => {
     if (fullName.value.length <= 2) {
       labelName.setAttribute('style', 'color: red');
       labelName.innerHTML = 'Nome *Insira no minimo 3 caracteres';
@@ -57,9 +62,10 @@ export default () => {
     }
   });
 
-  emailUser.addEventListener('click', () => {
+  emailUser.addEventListener('keyup', () => {
     if (emailUser.value.length <= 6) {
       labelEmail.setAttribute('style', 'color: red');
+      mailFormat.test(emailUser);
       labelEmail.innerHTML = 'Email *Insira no minimo 5 caracteres';
       emailUser.setAttribute('style', 'border-color: red');
     } else {
@@ -69,7 +75,7 @@ export default () => {
     }
   });
 
-  passwordUser.addEventListener('click', () => {
+  passwordUser.addEventListener('keyup', () => {
     if (passwordUser.value.length <= 5) {
       labelPassword.setAttribute('style', 'color: red');
       labelPassword.innerHTML = 'Senha *Insira no minimo 6 caracteres';
@@ -85,15 +91,12 @@ export default () => {
     event.preventDefault();
     createUser(fullName.value, emailUser.value, passwordUser.value);
   });
-  /* btn.addEventListener('click', ()=>{
-    let inputSenha = document.querySelector('#passwordUser')
 
-    if(inputSenha.getAttribute('type') == 'password'){
-      inputSenha.setAttribute('type', 'text')
-    } else {
-      inputSenha.setAttribute('type', 'password')
-    }
-  }) */
+  btnHome.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.hash = '#home';
+  });
+
   container.querySelector('#eye-show-register')
     .addEventListener('click', (event) => {
       event.preventDefault();
@@ -103,6 +106,28 @@ export default () => {
       } else {
         inputPassword.setAttribute('type', 'password');
       }
-    });
-  return container;
+    }); return container;
 };
+
+/*  .then((userCredential) => {
+        const user = userCredential.user;
+        window.location.hash = '#login';
+        return user;
+      });
+  })
+    .catch((error) => {
+      const errorCode = error.code;
+      let errorMessage = error.message;
+      const errorMsg = document.querySelector('#msgError');
+      if (errorCode === 'auth/invalid-email') {
+        errorMessage = 'Email inválido. Insira um e-mail válido';
+        errorMsg.innerHTML = errorMessage;
+      } else if (errorCode === 'auth/weak-password') {
+        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
+        errorMsg.innerHTML = errorMessage;
+      } else {
+        errorMessage = 'Preencha todos os campos';
+        errorMsg.innerHTML = errorMessage;
+      }
+      return error;
+    });  */
