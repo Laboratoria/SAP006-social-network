@@ -33,7 +33,7 @@ export default () => {
 
   const postButton = container.querySelector('#post-button');
   const postMessage = container.querySelector('#post-message');
-  const errorMsg = document.querySelector('#error-message');
+  const errorMsg = container.querySelector('#error-message');
 
   postButton.addEventListener('click', () => {
     const postMsg = postMessage.value;
@@ -53,7 +53,7 @@ export default () => {
         <div class="cards-post">
           <div class="header-post">
             <h3>${data.data().name}</h3>
-            <h4>${data.data().data}</h4>
+            <h5>${data.data().date}</h5>
           </div>
           <p>${data.data().message}</p>
           <button>Like ${data.data().like}</button>
@@ -63,7 +63,9 @@ export default () => {
   };
 
   showPost().then((item) => {
-    item.forEach((post) => showNewPost(post));
+    item.forEach((post) => {
+      showNewPost(post);
+    });
   });
 
   const singOut = container.querySelector('#sing-out');
