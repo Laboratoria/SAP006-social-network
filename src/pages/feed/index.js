@@ -1,6 +1,16 @@
 // import { auth } from '../../lib/authentication.js';
-import { onNavigate } from '../../navigate.js';
-import { collectionPosts, criarPost } from '../../services/index.js'
+import {
+  onNavigate,
+} from '../../navigate.js';
+import {
+  collectionPosts,
+  criarPost,
+  delPost,
+  usuario,
+} from '../../services/index.js';
+import {
+  modal,
+} from '../popup/index.js';
 
 export default () => {
   const main = document.getElementById('root');
@@ -48,13 +58,13 @@ export default () => {
           <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
-                <li class="social-media-list-item">
+          <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
-                <li class="social-media-list-item">
+          <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
-                      <li class="social-media-list-item">
+          <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
         </ul>
@@ -73,45 +83,76 @@ export default () => {
   const burgerMenu = feed.querySelector('#burger-menu');
   const overlay = feed.querySelector('#menu');
   burgerMenu.addEventListener('click', function () {
-    this.classList.toggle("close");
-    overlay.classList.toggle("overlay");
+    this.classList.toggle('close');
+    overlay.classList.toggle('overlay');
   });
+  // ADD POST NA LISTA
 
-  //ADD POST NA LISTA
-
-  const listaDePost = feed.querySelector('#addPost');
+  const postList = feed.querySelector('#addPost');
 
   const addPost = (doc) => {
-
-
+    const element = document.createElement('li');
     const postTemplate = `
     
-<div class="post-publicado">
+<div data-post="${doc.id}" class="post-publicado">
 
-
- <textarea class="post-publicado" id="post-publicado">${doc.data().mensagem}</textarea>
- <button class="like" id="btn-publicar">like</button>
-
-
+ <textarea data-textarea="${doc.id}" class="post-publicado" id="post-publicado" disabled>${doc.data().mensagem}</textarea>
+ <button data-like="${doc.id}" class="like" id="btn-publicar">like</button>
+ <button data-del="${doc.id}" class="del" id="btn-del">delete</button>
+ <button data-edit="${doc.id}" class="edit" id="btn-edit">edit</button>
+    <section data-editBtn="${doc.id} class="edit-btns">
+    <button data-editBtnSave="${doc.id}" class="edit-btns-save">salvar</button>
+    <button data-editBtnCancel="${doc.id}" class="edit-btns-cancel">cancelar</button>    
+    </section>
+ </div>
 `;
 
-    listaDePost.innerHTML += postTemplate;
+    element.innerHTML += postTemplate;
+    postList.append(element);
 
-  }
-  console.log(listaDePost);
+    // deu ruim aqui com o display none!
+    // const delBtn = element.querySelector('[data-del]');
+    // const editBtn = element.querySelector('[data-edit]');
+    // console.log(delBtn, editBtn);
+    // if (usuario.uid !== doc.data().user_id) {
+    //   delBtn.style.display = 'none';
+    //   editBtn.style.display = 'none';
+    // }
 
-  //LISTAS DE POSTS
+    const sectionBtn = element.querySelector('[data-editBtn]');
+    sectionBtn.style.display = 'none';
+    const dataPost = element.querySelector('[data-post]');
+
+    dataPost.addEventListener('click', (event) => {
+      const {
+        target,
+      } = event;
+
+      if (target.dataset.del) {
+        const postSelect = element.querySelector(`[data-post="${target.dataset.del}"]`);
+        delPost(target.dataset.del);
+        postSelect.remove();
+      }
+      console.log('dentro do event', target.dataset.edit);
+
+      if (target.dataset.edit) {
+        sectionBtn.style.display = 'block';
+        const editText = element.querySelector('[data-textarea]');
+        console.log(editText);
+      }
+    });
+    return element;
+  };
+  // LISTAS DE POSTS
 
   const loadPosts = () => {
     collectionPosts().orderBy('data', 'desc').get().then((collection) => {
-      listaDePost.innerHTML = '';
+      postList.innerHTML = '';
       collection.forEach((doc) => {
         addPost(doc);
-        
-      })
-    })
-  }
-
+      });
+    });
+  };
 
   loadPosts();
 
@@ -120,17 +161,10 @@ export default () => {
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
     criarPost(mensagem).then(() => {
-      mensagem.value = "";
+      mensagem.value = '';
       loadPosts();
-
-    })
-  })
-
+    });
+  });
 
   return main.appendChild(feed);
-
 };
-
-
-
-// Quando a pessoas vai cair dentro dessa UL
