@@ -38,15 +38,7 @@ export const signInWithGoogle = () => {
 
 // Logout
 
-export const logout = () => {
-  firebase.auth().signOut()
-    .then(() => {
-      // Sign-out successful.
-    }).catch((error) => {
-      // An error happened.
-      console.log('Erro', error);
-    });
-};
+export const logOut = () => firebase.auth().signOut();
 
 // Manter logado
 
@@ -74,7 +66,7 @@ export const setUserLocalStorage = (user) => {
   localStorage.setItem('email', user.email);
 };
 
-// Post
+// Criar post
 
 export const newPost = (postMsg) => {
   // const userInf = firebase.auth().currentUser;
@@ -82,8 +74,8 @@ export const newPost = (postMsg) => {
     name: userData().displayName,
     user: userData().uid,
     email: userData().email,
-    content: postMsg,
-    date: (new Date()).toString().slice(4, 21),
+    message: postMsg,
+    date: (new Date()).toLocaleString('pt-BR'),
     like: [],
   };
 
@@ -93,4 +85,6 @@ export const newPost = (postMsg) => {
   return postCollection.add(postInf);
 };
 
-export const getPostCollection = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();
+// Printar post
+
+export const showPost = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();

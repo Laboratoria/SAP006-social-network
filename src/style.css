@@ -71,12 +71,6 @@ h2{
     font-size: 14px;
     font-weight: bold;
 }
-/*h1{
-    padding: 5%;
-     margin-top: 6em;
-    margin-right: 2em;
-    margin-left: 2em;
-}*/
 
 button {
     background-color: transparent;
@@ -119,64 +113,3 @@ footer{
     z-index: -10;
     text-align: center;
 }
-
-
-/*#wave {
-    position: relative;
-    height: 6em;
-    width: 100%;
-    background-color: #701A73;
-     border-radius: 7%; 
-    z-index: -9;
-}
-
-#wave:before {
-    content: "";
-    display: block;
-    position: absolute;
-    border-radius: 85% 50%;
-    width: 64%;
-    height: 100%;
-    background-color: #B78CB9;
-    right: -28%;
-    top: 40%;
-}
-
-#wave:after {
-    content: "";
-    display: block;
-    position: absolute;
-    border-radius: 90% 60%;
-    width: 75%;
-    height: 100%;
-    background-color: #701A73;
-    left: -9%;
-    top: 40%;
-    z-index: -8;
-}*/
-
- /*.background {
-    position: absolute;
-    width: 768.62px;
-    height: 1129.93px;
-    left: -171.14px;
-    top: -118.44px;
-} */
-
-
-/* 
-.background-2 {
-  
-
-}
-
-.background-3 {
-    
-
-}
-
-.background-1 {
-  
-
-}  */
-
