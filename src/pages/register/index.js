@@ -27,8 +27,8 @@ export default () => {
 
           <div class="button">
             <a href="/#login">
-              <button onclick='register' id="btn-register" class="register-button">Cadastrar</button>
-              <button onclick='register' id="btn-home" class="home-button">Início</button>
+              <button id="btn-register" class="register-button">Cadastrar</button>
+              <button id="btn-home" class="home-button">Início</button>
             </a> 
       </div>
     </div>
@@ -108,26 +108,3 @@ export default () => {
       }
     }); return container;
 };
-
-/*  .then((userCredential) => {
-        const user = userCredential.user;
-        window.location.hash = '#login';
-        return user;
-      });
-  })
-    .catch((error) => {
-      const errorCode = error.code;
-      let errorMessage = error.message;
-      const errorMsg = document.querySelector('#msgError');
-      if (errorCode === 'auth/invalid-email') {
-        errorMessage = 'Email inválido. Insira um e-mail válido';
-        errorMsg.innerHTML = errorMessage;
-      } else if (errorCode === 'auth/weak-password') {
-        errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
-        errorMsg.innerHTML = errorMessage;
-      } else {
-        errorMessage = 'Preencha todos os campos';
-        errorMsg.innerHTML = errorMessage;
-      }
-      return error;
-    });  */

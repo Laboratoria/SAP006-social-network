@@ -21,7 +21,7 @@ export default () => {
         <div class="button">
           <button id="login-button" class="login-button">Login</button><br>
           <button id="google-button" class="google-button"><img src="img/google-logo.png" alt=""></button>
-          <button onclick='register' id="btn-home" class="home-button">Início</button>
+          <button id="btn-home" class="home-button">Início</button>
         </div>
         <div> 
           <hr> 
@@ -63,7 +63,7 @@ export default () => {
         let errorMessage = error.message;
         const errorMsg = document.querySelector('#error-message');
         if (errorCode === 'auth/invalid-email') {
-          errorMessage = 'Email inválido. Tente novamente, ou cadastre-se';
+          errorMessage = 'Email inválido. Insira um e-mail válido';
           errorMsg.innerHTML = errorMessage;
         } else if (errorCode === 'auth/wrong-password') {
           errorMessage = 'Seu email ou senha está incorreto. Tente novamente';

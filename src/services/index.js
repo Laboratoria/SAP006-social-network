@@ -19,9 +19,22 @@ export const createUser = (name, email, password) => {
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      console.log('deu ruim', errorCode, errorMessage);
+      let errorMessage = error.message;
+      const errorMsg = document.querySelector('#msgError');
+      if (errorCode === 'auth/invalid-email') {
+        errorMessage = 'Insira um e-mail válido';
+        errorMsg.innerHTML = errorMessage;
+      } else if (errorCode === 'auth/weak-password') {
+        errorMessage = 'Insira um nome de usuário';
+        errorMsg.innerHTML = errorMessage;
+      } else if (errorCode === 'auth/weak-password') {
+        errorMessage = 'Crie uma senha';
+        errorMsg.innerHTML = errorMessage;
+      } else {
+        errorMessage = 'Preencha todos os campos';
+        errorMsg.innerHTML = errorMessage;
+      }
+      return error;
     });
 };
 
