@@ -67,12 +67,15 @@ export const setUserLocalStorage = (user) => {
 // Criar post
 
 export const newPost = (postMsg) => {
+  // const data = new Date();
   const postInf = firebase.firestore().collection('posts').add({
     name: userData().displayName,
     user: userData().uid,
     email: userData().email,
     message: postMsg,
+    // date: (new Date()).toString().slice(4, 21),
     date: (new Date()).toLocaleString('pt-BR'),
+    // date: data.toLocaleString('pt-BR', { timeStyle: 'short', dateStyle: 'short' }),
     like: [],
   });
   return postInf;
@@ -80,4 +83,4 @@ export const newPost = (postMsg) => {
 
 // Printar post
 
-export const showPost = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();
+export const showPost = () => firebase.firestore().collection('posts').orderBy('date', 'desc').get();
