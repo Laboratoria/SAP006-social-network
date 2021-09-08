@@ -8,7 +8,6 @@ export default () => {
     <nav class="menu">
     </nav> 
       <a href="/#feed">
-        <img src="img/google-logo.png" alt="" class="logo">
       </a>
       <button id="sing-out" class="button">Sair</div>
   </header>
@@ -17,7 +16,7 @@ export default () => {
       <div class= "card-post">
         <p id="error-message"></p>
         <form>
-          <h5>Post</h5>
+          <h2>Post</h2>
             <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
             <button type="button" id="post-button" class="button">Publicar</button>
         </form>
@@ -28,16 +27,16 @@ export default () => {
       </div>
       
     </div> 
-
     `;
 
   container.innerHTML += template;
+
   const postButton = container.querySelector('#post-button');
   const postMessage = container.querySelector('#post-message');
+  const errorMsg = document.querySelector('#error-message');
 
   postButton.addEventListener('click', () => {
     const postMsg = postMessage.value;
-    const errorMsg = document.querySelector('#error-message');
     if (postMsg === '') {
       errorMsg.innerHTML = 'O post está vazio, não foi possivel publicar. Tente novamente';
     } else {
@@ -46,30 +45,6 @@ export default () => {
         errorMsg.innerHTML = '';
       });
     }
-    // });
-    //  addNewPost.innerHTML = postMsg;
-    // const fbData = data().posts();
-    //   const postCollection = () => {
-    //     let allPosts = [];
-    //     for (let post of fbData){
-    //       allPosts.push(post);
-    //     }
-    //     return allPosts;
-    //   };
-    //   const addNewPost = container.querySelector('#add-new-post');
-    //   const showNewPost = (data) => {
-    //     data.map((fbCollection) => {
-    //       addNewPost.innerHTML += `
-    //       <div class="cards-post">
-    //         <h3>${fbCollection.displayName}</h3>
-    //         <h4>${fbCollection.data}</h4>
-    //       </div>
-    //         <p>${fbCollection.message}</p>
-    //         <button>Like ${fbCollection.like}</button>
-    //     `;
-    //     });
-    //   };
-    // showNewPost(showPost);
   });
 
   const addNewPost = container.querySelector('#add-new-post');
@@ -77,16 +52,19 @@ export default () => {
     const postTemplate = `
         <div class="cards-post">
           <div class="header-post">
-            <h3>${data.displayName}</h3>
-            <h4>${data.data}</h4>
+            <h3>${data.data().name}</h3>
+            <h4>${data.data().data}</h4>
           </div>
-          <p>${data.message}</p>
-          <button>Like ${data.like}</button>
+          <p>${data.data().message}</p>
+          <button>Like ${data.data().like}</button>
         </div>
       `;
     addNewPost.innerHTML += postTemplate;
   };
-  showNewPost(showPost());
+
+  showPost().then((item) => {
+    item.forEach((post) => showNewPost(post));
+  });
 
   const singOut = container.querySelector('#sing-out');
   singOut.addEventListener('click', (event) => {
@@ -95,10 +73,6 @@ export default () => {
       .then(() => {
         window.location.hash = '#home';
       });
-    // .catch((error) => {
-    //   // An error happened.
-    //   console.log('Erro', error);
-    // });
   });
 
   return container;

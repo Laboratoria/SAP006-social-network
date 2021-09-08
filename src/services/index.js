@@ -1,8 +1,5 @@
 // Firebase
 
-// const email = 'bruna.belo@gmail.com';
-// const password = '123456';
-
 // Criar usuário
 
 export const createUser = (name, email, password) => {
