@@ -11,7 +11,7 @@ export default () => {
 
         <h2 class="title">Cadastrar</h2>
           <form class="form-register" action="">
-            <label for="get-full-name" id="labelName" class="label-register">Nome completo</label><br>
+            <label for="get-full-name" id="labelName" class="label-register">Nome de Usuário</label><br>
             <input type="text" name="name" id="fullName" class="input-register"><br>
             <label for="get-email" id="labelEmail" class="label-register">Email</label><br>
             <input type="email" name="email" id="emailUser" class="input-register"><br>
@@ -106,5 +106,6 @@ export default () => {
       } else {
         inputPassword.setAttribute('type', 'password');
       }
-    }); return container;
+    });
+  return container;
 };
