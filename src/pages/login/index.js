@@ -1,4 +1,4 @@
-import { loginUser, signInWithGoogle } from '../../services/index.js';
+import { loginUser, signInWithGoogle, setUserLocalStorage } from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -19,8 +19,8 @@ export default () => {
           <input type="password" name="password" id="password-user"><br>
         </form> 
         <div class="button">
-          <button id="login-button" class="login-button">Login</button>  <br>
-          <button id="google-button" class="google-button" ><img src="img/google-logo.png" alt=""></button>
+          <button id="login-button" class="login-button">Login</button><br>
+          <button id="google-button" class="google-button"><img src="img/google-logo.png" alt=""></button>
         </div>
         <div> 
           <hr> 
@@ -47,6 +47,7 @@ export default () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        setUserLocalStorage(user);
         window.location.hash = '#feed';
         return user;
       })

@@ -83,7 +83,7 @@ export default () => {
 
   btnRegister.addEventListener('click', (event) => {
     event.preventDefault();
-    createUser(emailUser.value, passwordUser.value);
+    createUser(fullName.value, emailUser.value, passwordUser.value);
   });
   /* btn.addEventListener('click', ()=>{
     let inputSenha = document.querySelector('#passwordUser')

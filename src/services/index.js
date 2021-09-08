@@ -1,16 +1,17 @@
 // Firebase
 
-// const email = 'bruna.belo@gmail.com';
-// const password = '123456';
-
 // Criar usuário
 
-export const createUser = (email, password) => {
+export const createUser = (name, email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
     // Signed in
       const user = userCredential.user;
+      console.log(user);
       window.location.hash = '#login';
+      user.updateProfile({
+        displayName: name,
+      });
       console.log('deu bom', user);
       // ...
     })
@@ -37,19 +38,49 @@ export const signInWithGoogle = () => {
 
 // Logout
 
-export const logout = () => {
-  firebase.auth().signOut()
-    .then(() => {
-      // Sign-out successful.
-    }).catch((error) => {
-      // An error happened.
-      console.log('Erro', error);
-    });
+export const logOut = () => firebase.auth().signOut();
+
+// Manter logado
+
+export const stayConected = (callback) => firebase.auth().onAuthStateChanged(callback);
+
+// User
+
+export const userData = () => {
+  const uid = localStorage.getItem('uid');
+  const displayName = localStorage.getItem('displayName');
+  const email = localStorage.getItem('email');
+  const user = {
+    uid,
+    displayName,
+    email,
+  };
+  return user;
 };
 
-// Post
-
-export const newPost = (postInf) => {
-  const db = firebase.firestore();
-  return db.collection('posts').add(postInf);
+export const setUserLocalStorage = (user) => {
+  localStorage.setItem('uid', user.uid);
+  localStorage.setItem('displayName', user.displayName);
+  localStorage.setItem('email', user.email);
 };
+
+// Criar post
+
+export const newPost = (postMsg) => {
+  // const data = new Date();
+  const postInf = firebase.firestore().collection('posts').add({
+    name: userData().displayName,
+    user: userData().uid,
+    email: userData().email,
+    message: postMsg,
+    // date: (new Date()).toString().slice(4, 21),
+    date: (new Date()).toLocaleString('pt-BR'),
+    // date: data.toLocaleString('pt-BR', { timeStyle: 'short', dateStyle: 'short' }),
+    like: [],
+  });
+  return postInf;
+};
+
+// Printar post
+
+export const showPost = () => firebase.firestore().collection('posts').orderBy('date', 'desc').get();
