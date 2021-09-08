@@ -2,7 +2,6 @@ import { updatePosts, likePost, unlikePost } from '../services/database.js';
 import { deleteConfirm } from './popup.js';
 
 export const printPost = (post) => {
-  console.log(post.photoPost);
   const likeArray = post.likes;
 
   const postTemplate = document.createElement('section');
@@ -15,8 +14,8 @@ export const printPost = (post) => {
   const areaOfPost = `
     <div class="box">
       <div class="header-post">
-      <img id='photoPost-${post.id}' class='imageCirclePostUser' src='${post.photoPost}' height="40px" width="40px"/>
-        <p class='username' id='user-name' data-name="${post.id}">${post.displayName}</p>
+      <img id='photoPost-${post.id}' class='imageCirclePostUser' src='${post.photoUser}' height="40px" width="40px"/>
+        <p class='username' id='user-name' data-name="${post.id}">${post.displayName ? post.displayName : 'Usuária'}</p>
         <menu class="dropdown" style="float:right; display:${isMyPost ? 'inline-end' : 'none'}">
           <button id="btn-drop"  class="dropbtn">
             <span class="iconify" data-icon="ph:dots-three-duotone"></span>

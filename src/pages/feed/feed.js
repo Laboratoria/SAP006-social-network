@@ -2,7 +2,7 @@ import {
   addPosts, loadPosts, searchPosts,
 } from '../../services/database.js';
 import { printPost } from '../../components/feedcomponent.js';
-import { logout, uploadPicture, downloadPicture } from '../../services/authentication.js';
+import { logout, uploadPicture, downloadPicture, updateProfile } from '../../services/authentication.js';
 
 export const Feed = () => {
   const rootElement = document.createElement('div');
@@ -16,7 +16,7 @@ export const Feed = () => {
     <hr class="line">
     <section class="post">
       <div class="post-before">
-        <p>POST</p>
+        <p class="header-post-before">POST</p>
       </div>
 
       <form action="" id="published-form" class="published-form">
@@ -63,7 +63,7 @@ export const Feed = () => {
         </div>
       </div>
 
-      <input type="text" class="profile-username" placeholder="Nome de usuária...">
+      <input type="text" class="profile-username" id="profile-username" placeholder="Nome de usuária...">
 
       <div class="profile-buttons">
         <button class="btn-logout">
@@ -82,9 +82,9 @@ export const Feed = () => {
   const postSection = rootElement.querySelector('.post');
 
   const currentUser = firebase.auth().currentUser;
-  const useruid = currentUser.uid;
-  const displayName = currentUser.displayName;
-  const photo = currentUser.photoURL;
+  const useruid = firebase.auth().currentUser.uid;
+  const displayName = firebase.auth().currentUser.displayName;
+  const photo = firebase.auth().currentUser.photoURL;
 
   const containerSearch = rootElement.querySelector('.search-result');
   const searchButton = rootElement.querySelector('#search');
@@ -112,7 +112,7 @@ export const Feed = () => {
             date: doc.data().date,
             comments: doc.data().comments,
             terms: doc.data().text.toLowerCase().split(' '),
-            photoPost: doc.data().photoURL,
+            // photoPost: doc.data().photoURL,
           };
 
           const print = printPost(obj);
@@ -139,7 +139,7 @@ export const Feed = () => {
       comments: [],
       terms: text.toLowerCase().split(' '),
       displayName,
-      photo,
+      photoUser: photo,
     };
 
     const textValidationAddPost = rootElement.querySelector('.warn-input-add');
@@ -176,12 +176,13 @@ export const Feed = () => {
   newPostButton.addEventListener('click', () => {
     postTemplate.style.display = 'none';
     postSection.style.display = 'block';
+    postTemplate.style.display = 'block';
   });
 
   const profileBtn = rootElement.querySelector('#profilebtn');
   const profileSection = rootElement.querySelector('#profile-section');
   const inputImg = rootElement.querySelector('.profile-img');
-  const input = rootElement.querySelector('label[for="input-file"]');
+  const input = rootElement.querySelector('label[for="input-file"]').nextElementSibling
 
   function showPhoto() {
     if (photo) {
@@ -192,6 +193,7 @@ export const Feed = () => {
 
   input.addEventListener('change', (e) => {
     const { target } = e;
+    console.log(target);
     const file = target.files[0];
     uploadPicture(useruid, file);
     downloadPicture(useruid, currentUser);
@@ -201,6 +203,13 @@ export const Feed = () => {
   profileBtn.addEventListener('click', () => {
     postTemplate.style.display = 'none';
     profileSection.style.display = 'block';
+  });
+
+  const usernameInput = rootElement.querySelector('#profile-username');
+  const saveUsernameBtn = rootElement.querySelector('.profile-save');
+  saveUsernameBtn.addEventListener('click', () => {
+    console.log(usernameInput.value);
+    updateProfile(usernameInput.value);
   });
 
   loadPosts()
@@ -214,6 +223,7 @@ export const Feed = () => {
           date: doc.data().date,
           comments: doc.data().comments,
           displayName: doc.data().displayName,
+          photoUser: doc.data().photoUser,
         };
 
         const print = printPost(post);

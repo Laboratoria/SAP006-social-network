@@ -84,16 +84,32 @@ h4.recent {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 1rem;
+  justify-content:flex-start;
+  align-items: flex-start;
   color: var(--color-gray);
   padding: 3%;
   margin-bottom: 5px;
   margin-top: 10%;
   display: inline-flex;
+  height: 30%;
 }
 
 section.post {
-  margin-top: 5%;
+  margin-top: 60%;
   display: none;
+  box-shadow: 1px 1px 40px 1px var(--color-secondary);
+  border-radius: 50px;
+}
+
+.header-post-before {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30%;
+  padding-top: 5%;
 }
 
 .warn-input-add{
@@ -136,7 +152,6 @@ section#postTemplate {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 100vh;
 }
 
 .published-form {
@@ -144,7 +159,7 @@ section#postTemplate {
   background-color: var(--color-white);
   border-radius: 50px;
   height: 100vh;
-  margin-top: 30%;
+  margin-top: 5%;
 }
 
 .header-post {
@@ -448,7 +463,7 @@ input[type='file'] {
 }
 
 .profile-img {
-  object-fit: contain;
+  object-fit: cover;
   max-width: 200px;
   max-height: 200px;
   border-radius: 50%;
