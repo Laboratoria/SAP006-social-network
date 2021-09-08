@@ -1,5 +1,4 @@
-import { loginWithEmailAndPassword, signInWithGloogle } from '../../lib/authentication.js';
-import { onNavigate } from '../../navigate.js';
+import { loginWithEmailAndPassword, signInWithGoogle } from '../../lib/authentication.js';
 
 export default () => {
   const login = document.createElement('div');
@@ -29,14 +28,13 @@ export default () => {
     <p> Não tem uma conta?
       <a id="btn-signup" href="/#signUp"> Cadastre-se </a>
     </p>
-
   </section>
 </section>
 
 `;
   login.innerHTML = container;
 
-  const loginButton = login.querySelector('#login-btn')
+  const loginButton = login.querySelector('#login-btn');
   loginButton.addEventListener('click', (event) => {
     event.preventDefault();
     const inputEmail = login.querySelector('#user-email');
@@ -46,9 +44,9 @@ export default () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log('logou!');
-        window.location.hash = "#feed"
-        return user
+        window.location.hash = '#feed';
+        localStorage.setItem('user', user.uid);
+        return user;
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -63,37 +61,41 @@ export default () => {
         }
         return error;
       });
-      
   });
 
   const googleButton = login.querySelector('#google-btn');
-  googleButton.addEventListener('click',(event) => {
+  googleButton.addEventListener('click', (event) => {
     event.preventDefault();
-    signInWithGloogle()
+    signInWithGoogle()
 
       .then(() => {
         window.location.hash = '#feed';
       })
-      .catch(error => {
-        console.error(error);
+      .catch((error) => {
+        const errorCode = error.code;
+        let errorMessage = error.message;
+        const errorMsg = document.querySelector('#errormsg');
+        if (errorCode === 'auth/user-not-found') {
+          errorMessage = 'Email incorreto. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/wrong-password') {
+          errorMessage = 'Senha incorreta. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        }
+        return error;
       });
   });
 
-  const signUp = login.querySelector('#btn-signup');
-  // signUp.addEventListener('click', () => onNavigate('#signUp'));
-
   login.querySelector('.fa-eye')
-    .addEventListener('click', (event) => {
+    .addEventListener('click', () => {
       const inputPassword = document.querySelector('#user-password');
 
-      if (inputPassword.getAttribute('type') == 'password') {
+      if (inputPassword.getAttribute('type') === 'password') {
         inputPassword.setAttribute('type', 'text');
       } else {
         inputPassword.setAttribute('type', 'password');
       }
     });
 
-  
   return login;
-
 };

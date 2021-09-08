@@ -204,6 +204,12 @@
 
 }
 
+.logo {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
 .post-publicado{
 
     display: flex;
@@ -225,17 +231,6 @@
 
 
 }
-
-
-/* .logo{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 100%;
-    height: 50px;
-    
-    }
-     */
 
 @media screen and (max-height: 450px) {
     .profile {

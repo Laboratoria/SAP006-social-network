@@ -1,6 +1,16 @@
 // import { auth } from '../../lib/authentication.js';
-import { onNavigate } from '../../navigate.js';
-import { collectionPosts, criarPost } from '../../services/index.js'
+import {
+  onNavigate,
+} from '../../navigate.js';
+import {
+  collectionPosts,
+  criarPost,
+  delPost,
+  authState,
+} from '../../services/index.js';
+// import {
+//   modal,
+// } from '../popup/index.js';
 
 export default () => {
   const main = document.getElementById('root');
@@ -55,13 +65,13 @@ export default () => {
           <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
-                <li class="social-media-list-item">
+          <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
-                <li class="social-media-list-item">
+          <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
-                      <li class="social-media-list-item">
+          <li class="social-media-list-item">
             <a href="" class="social-media-list-item-link"><i></i></a>
           </li>
         </ul>
@@ -72,58 +82,85 @@ export default () => {
   feed.innerHTML = container;
 
   const logout = feed.querySelector('#logout');
-  logout.addEventListener('click', () => onNavigate('#login'));
+  logout.addEventListener('click', () => {
+    localStorage.removeItem('user');
+    onNavigate('#login');
+  });
 
   const home = feed.querySelector('#home');
   home.addEventListener('click', () => onNavigate('#feed'));
 
   const burgerMenu = feed.querySelector('#burger-menu');
   const overlay = feed.querySelector('#menu');
-  burgerMenu.addEventListener('click', function () {
-    this.classList.toggle("close");
-    overlay.classList.toggle("overlay");
+  burgerMenu.addEventListener('click', function a() {
+    this.classList.toggle('close');
+    overlay.classList.toggle('overlay');
   });
+  // ADD POST NA LISTA
 
 
-
-  const listaDePost = feed.querySelector('#addPost');
+  const postList = feed.querySelector('#addPost');
   const mensagem = feed.querySelector('#mensagem');
   const containerPost = feed.querySelector('#post-container');
 
+
   //ADD POST NA LISTA
   const addPost = (doc) => {
-
-
+    // console.log(doc.data(), doc.data().user_id);
+    const element = document.createElement('li');
     const postTemplate = `
-    
-<div class="post-publicado">
 
-
- <textarea class="post-publicado"  id="post-publicado">${doc.data().mensagem}</textarea>
- <button class="like" id="btn-publicar">like</button>
-
-</div>
-
-<div class = "icons>
-</div>
-
-
+<div data-post="${doc.id}" class="post-publicado">
+ <textarea data-textarea="${doc.id}" class="post-publicado" id="post-publicado" disabled>${doc.data().mensagem}</textarea>
+ <button data-like="${doc.id}" class="like" id="btn-publicar">like</button>
+ <button data-del="${doc.id}" class="del" id="btn-del">delete</button>
+ <button data-edit="${doc.id}" class="edit" id="btn-edit">edit</button>
+    <section data-editBtn="${doc.id} class="edit-btns">
+    <button data-editBtnSave="${doc.id}" class="edit-btns-save">salvar</button>
+    <button data-editBtnCancel="${doc.id}" class="edit-btns-cancel">cancelar</button>    
+    </section>
+ </div>
 `;
+    element.innerHTML += postTemplate;
+    postList.append(element);
 
-    listaDePost.innerHTML += postTemplate;
+    // deu ruim aqui com o display none!
+    const delBtn = element.querySelector('[data-del]');
+    const editBtn = element.querySelector('[data-edit]');
+    if (authState !== doc.data().user_id) {
+      delBtn.style.display = 'none';
+      editBtn.style.display = 'none';
+    }
 
-  }
-  console.log(listaDePost);
+    const sectionBtn = element.querySelector('[data-editBtn]');
+    sectionBtn.style.display = 'none';
+    const dataPost = element.querySelector('[data-post]');
 
+    dataPost.addEventListener('click', (event) => {
+      const {
+        target,
+      } = event;
 
+      if (target.dataset.del) {
+        const postSelect = element.querySelector(`[data-post="${target.dataset.del}"]`);
+        delPost(target.dataset.del);
+        postSelect.remove();
+      }
+
+      if (target.dataset.edit) {
+        sectionBtn.style.display = 'block';
+        element.querySelector('[data-textarea]');
+      }
+    });
+    return element;
+  };
 
   // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
   const loadPosts = () => {
     collectionPosts().orderBy('data', 'desc').get().then((collection) => {
-      listaDePost.innerHTML = '';
+      postList.innerHTML = '';
       collection.forEach((doc) => {
         addPost(doc);
-
       });
     });
   };
@@ -133,17 +170,11 @@ export default () => {
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
     criarPost(mensagem).then(() => {
-      mensagem.value = "";
+      mensagem.value = '';
       loadPosts();
-
     });
   });
 
 
   return main.appendChild(feed);
-
 };
-
-
-
-// Quando a pessoas vai cair dentro dessa UL
