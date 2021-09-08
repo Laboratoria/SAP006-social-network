@@ -1,6 +1,6 @@
 import { onNavigate } from '../../navigate.js';
 // import { auth } from '../../lib/authentication.js';
- import { cadastrarsenha } from '../../lib/authentication.js';
+import { cadastrarsenha } from '../../lib/authentication.js';
 
 export default () => {
   const signUp = document.createElement('div');
@@ -36,26 +36,24 @@ export default () => {
   signupForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const email = form['signup-email'].value;
-    const password = form['signup-password'].value;
-    
-    cadastrarsenha(email, password).then(cred => {
-      console.log(cred.user);
-      const modal = document.querySelector('#modal-signup');
-      M.Modal.getInstance(modal).close();
-      signupForm.reset();
+    const email = signupForm['signup-email'].value;
+    const password = signupForm['signup-password'].value;
 
-    })
+    cadastrarsenha(email, password).then(() => {
+      const modal = document.querySelector('#modal-signup');
+      modal.getInstance(modal).close();
+      signupForm.reset();
+    });
   });
 
   const signUpButton = signUp.querySelector('#btn-signup');
   signUpButton.addEventListener('click', () => onNavigate('signUp'));
 
   signUp.querySelector('.fa-eye')
-    .addEventListener('click', (event) => {
+    .addEventListener('click', () => {
       const inputPassword = document.querySelector('#signup-password');
 
-      if (inputPassword.getAttribute('type') == 'password') {
+      if (inputPassword.getAttribute('type') === 'password') {
         inputPassword.setAttribute('type', 'text');
       } else {
         inputPassword.setAttribute('type', 'password');

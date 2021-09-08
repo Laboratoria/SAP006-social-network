@@ -15,7 +15,7 @@ export const criarPost = (text) => {
 
   return collectionPosts().add(post);
 };
-export const usuario = firebase.auth().currentUser;
+export const authState = localStorage.getItem('user');
 // delete posts
 export const delPost = (idPost) => firebase.firestore().collection('posts').doc(idPost).delete();
 // edit posts

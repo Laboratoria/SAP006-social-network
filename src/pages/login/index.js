@@ -45,6 +45,7 @@ export default () => {
         // Signed in
         const user = userCredential.user;
         window.location.hash = '#feed';
+        localStorage.setItem('user', user.uid);
         return user;
       })
       .catch((error) => {
@@ -71,15 +72,22 @@ export default () => {
         window.location.hash = '#feed';
       })
       .catch((error) => {
-        console.error(error);
+        const errorCode = error.code;
+        let errorMessage = error.message;
+        const errorMsg = document.querySelector('#errormsg');
+        if (errorCode === 'auth/user-not-found') {
+          errorMessage = 'Email incorreto. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/wrong-password') {
+          errorMessage = 'Senha incorreta. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        }
+        return error;
       });
   });
 
-  const signUp = login.querySelector('#btn-signup');
-  // signUp.addEventListener('click', () => onNavigate('#signUp'));
-
   login.querySelector('.fa-eye')
-    .addEventListener('click', (event) => {
+    .addEventListener('click', () => {
       const inputPassword = document.querySelector('#user-password');
 
       if (inputPassword.getAttribute('type') === 'password') {

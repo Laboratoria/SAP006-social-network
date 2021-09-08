@@ -6,11 +6,11 @@ import {
   collectionPosts,
   criarPost,
   delPost,
-  usuario,
+  authState,
 } from '../../services/index.js';
-import {
-  modal,
-} from '../popup/index.js';
+// import {
+//   modal,
+// } from '../popup/index.js';
 
 export default () => {
   const main = document.getElementById('root');
@@ -75,14 +75,17 @@ export default () => {
   feed.innerHTML = container;
 
   const logout = feed.querySelector('#logout');
-  logout.addEventListener('click', () => onNavigate('#login'));
+  logout.addEventListener('click', () => {
+    localStorage.removeItem('user');
+    onNavigate('#login');
+  });
 
   const home = feed.querySelector('#home');
   home.addEventListener('click', () => onNavigate('#feed'));
 
   const burgerMenu = feed.querySelector('#burger-menu');
   const overlay = feed.querySelector('#menu');
-  burgerMenu.addEventListener('click', function () {
+  burgerMenu.addEventListener('click', function a() {
     this.classList.toggle('close');
     overlay.classList.toggle('overlay');
   });
@@ -91,6 +94,7 @@ export default () => {
   const postList = feed.querySelector('#addPost');
 
   const addPost = (doc) => {
+    // console.log(doc.data(), doc.data().user_id);
     const element = document.createElement('li');
     const postTemplate = `
     
@@ -111,13 +115,12 @@ export default () => {
     postList.append(element);
 
     // deu ruim aqui com o display none!
-    // const delBtn = element.querySelector('[data-del]');
-    // const editBtn = element.querySelector('[data-edit]');
-    // console.log(delBtn, editBtn);
-    // if (usuario.uid !== doc.data().user_id) {
-    //   delBtn.style.display = 'none';
-    //   editBtn.style.display = 'none';
-    // }
+    const delBtn = element.querySelector('[data-del]');
+    const editBtn = element.querySelector('[data-edit]');
+    if (authState !== doc.data().user_id) {
+      delBtn.style.display = 'none';
+      editBtn.style.display = 'none';
+    }
 
     const sectionBtn = element.querySelector('[data-editBtn]');
     sectionBtn.style.display = 'none';
@@ -133,12 +136,10 @@ export default () => {
         delPost(target.dataset.del);
         postSelect.remove();
       }
-      console.log('dentro do event', target.dataset.edit);
 
       if (target.dataset.edit) {
         sectionBtn.style.display = 'block';
-        const editText = element.querySelector('[data-textarea]');
-        console.log(editText);
+        element.querySelector('[data-textarea]');
       }
     });
     return element;
