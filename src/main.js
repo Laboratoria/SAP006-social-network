@@ -9,7 +9,7 @@ import register from './pages/register/index.js';
 import login from './pages/login/index.js';
 import feed from './pages/feed/index.js';
 import notFound from './pages/not-found/index.js';
-// import { stayConected } from './services/index.js';
+import { stayConected } from './services/index.js';
 
 const init = () => {
   const page = document.querySelector('#root');
@@ -37,13 +37,13 @@ const init = () => {
 
 window.addEventListener('hashchange', init);
 window.addEventListener('load', init);
-// window.addEventListener('load', (event) => {
-//   event.preventDefault();
-//   stayConected((user) => {
-//     if (user) {
-//       window.location.hash = '#feed';
-//     // } else {
-//     //   window.location.hash = '#login';
-//     }
-//   });
-// });
+window.addEventListener('hashchange', (event) => {
+  event.preventDefault();
+  stayConected((user) => {
+    if (user) {
+      window.location.hash = '#feed';
+    } else {
+      window.location.hash = '#login';
+    }
+  });
+});
