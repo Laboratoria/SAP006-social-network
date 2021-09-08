@@ -1,3 +1,4 @@
+import { registerLogin } from "../../services/index.js";
 export default () => {
   const container = document.createElement("div");
 
@@ -18,12 +19,24 @@ export default () => {
   <input type="password" id="senha" placeholder="">
   <label for="senha">Senha</label>
   <div class="justify-center">
-    <button onclick = "cadastrar()">Cadastrar</button>
+    <button type = "submit" class="btnCadastro" id="cadastrar">cadastrar</button>
   </div>
   </body>
   `;
 
   container.innerHTML = template;
-  let name = container.querySelector("username");
+
+  const name = container.querySelector("#nome");
+  const email = container.querySelector("#email");
+  const password = container.querySelector("senha");
+  const registerBtn = container.querySelector("#cadastrar");
+
+  registerBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    registerLogin(email.value, password.value, name.value);
+    // then(() => {
+    //   window.location.hash = '#feed';
+  });
+
   return container;
 };
