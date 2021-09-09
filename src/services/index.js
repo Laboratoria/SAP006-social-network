@@ -1,42 +1,45 @@
-// métodos que fazem conexão com o firebase
+// Firebase
 
-<<<<<<< HEAD
-// Cadastrar Usuário
-=======
 // Criar usuário
->>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86
+export const setUserLocalStorage = (user) => {
+  localStorage.setItem('uid', user.uid);
+  localStorage.setItem('displayName', user.displayName);
+  localStorage.setItem('email', user.email);
+};
 
 export const createUser = (name, email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-      window.location.hash = '#login';
-      user.updateProfile({
-        displayName: name,
+  const errorMsg = document.querySelector('#msgError');
+  if (!name) {
+    errorMsg.innerHTML = 'Insira um nome';
+  } else {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUserLocalStorage(user);
+        window.location.hash = '#login';
+        user.updateProfile({
+          displayName: name,
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        let errorMessage = error.message;
+        if (errorCode === 'auth/invalid-email') {
+          errorMessage = 'Insira um e-mail válido';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/email-already-in-use') {
+          errorMessage = 'E-mail já cadastrado';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/weak-password') {
+          errorMessage = 'Crie uma senha';
+          errorMsg.innerHTML = errorMessage;
+        } else {
+          errorMessage = 'Preencha todos os campos';
+          errorMsg.innerHTML = errorMessage;
+        }
+        return error;
       });
-      console.log('deu bom', user);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      let errorMessage = error.message;
-      const errorMsg = document.querySelector('#msgError');
-      if (errorCode === 'auth/invalid-email') {
-        errorMessage = 'Insira um e-mail válido';
-        errorMsg.innerHTML = errorMessage;
-      } else if (errorCode === 'auth/weak-password') {
-        errorMessage = 'Insira um nome de usuário';
-        errorMsg.innerHTML = errorMessage;
-      } else if (errorCode === 'auth/weak-password') {
-        errorMessage = 'Crie uma senha';
-        errorMsg.innerHTML = errorMessage;
-      } else {
-        errorMessage = 'Preencha todos os campos';
-        errorMsg.innerHTML = errorMessage;
-      }
-      return error;
-    });
+  }
 };
 
 // Login com email cadastrado
@@ -66,20 +69,15 @@ export const userData = () => {
   const uid = localStorage.getItem('uid');
   const displayName = localStorage.getItem('displayName');
   const email = localStorage.getItem('email');
+  if (!uid && !displayName && !email) {
+    return null;
+  }
   const user = {
     uid,
     displayName,
     email,
   };
   return user;
-};
-
-// manter usuário logado
-
-export const setUserLocalStorage = (user) => {
-  localStorage.setItem('uid', user.uid);
-  localStorage.setItem('displayName', user.displayName);
-  localStorage.setItem('email', user.email);
 };
 
 export const removeUserLocalStorage = () => {
@@ -93,13 +91,8 @@ export const removeUserLocalStorage = () => {
 // Criar post
 
 export const newPost = (postMsg) => {
-<<<<<<< HEAD
-  // const userInf = firebase.auth().currentUser;
-  const postInf = {
-=======
   // const data = new Date();
   const postInf = firebase.firestore().collection('posts').add({
->>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86
     name: userData().displayName,
     user: userData().uid,
     email: userData().email,
@@ -108,12 +101,8 @@ export const newPost = (postMsg) => {
     date: (new Date()).toLocaleString('pt-BR'),
     // date: data.toLocaleString('pt-BR', { timeStyle: 'short', dateStyle: 'short' }),
     like: [],
-  };
-
-  const postCollection = firebase
-    .firestore()
-    .collection('posts');
-  return postCollection.add(postInf);
+  });
+  return postInf;
 };
 
 // Printar post
