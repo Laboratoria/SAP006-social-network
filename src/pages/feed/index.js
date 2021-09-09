@@ -1,4 +1,7 @@
-import { newPost, showPost, logOut } from '../../services/index.js';
+import {
+  newPost, showPost,
+  logOut, removeUserLocalStorage,
+} from '../../services/index.js';
 
 export default () => {
   const container = document.createElement('div');
@@ -75,7 +78,10 @@ export default () => {
       .then(() => {
         window.location.hash = '#home';
       });
+    removeUserLocalStorage()
+      .then(() => {
+        window.location.hash = '#home';
+      });
   });
-
   return container;
 };

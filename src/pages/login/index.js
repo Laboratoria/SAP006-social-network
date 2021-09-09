@@ -21,6 +21,7 @@ export default () => {
         <div class="button">
           <button id="login-button" class="login-button">Login</button><br>
           <button id="google-button" class="google-button"><img src="img/google-logo.png" alt=""></button>
+          <button id="btn-home" class="home-button">Início</button>
         </div>
         <div> 
           <hr> 
@@ -37,9 +38,15 @@ export default () => {
   // Login
 
   const btnLogin = container.querySelector('#login-button');
+  const btnHome = container.querySelector('#btn-home');
   const email = container.querySelector('#email-user');
   const password = container.querySelector('#password-user');
   const googleButton = container.querySelector('#google-button');
+
+  btnHome.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.hash = '#home';
+  });
 
   btnLogin.addEventListener('click', (event) => {
     event.preventDefault();
@@ -56,7 +63,7 @@ export default () => {
         let errorMessage = error.message;
         const errorMsg = document.querySelector('#error-message');
         if (errorCode === 'auth/invalid-email') {
-          errorMessage = 'Email inválido. Tente novamente, ou cadastre-se';
+          errorMessage = 'Email inválido. Insira um e-mail válido';
           errorMsg.innerHTML = errorMessage;
         } else if (errorCode === 'auth/wrong-password') {
           errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
@@ -74,7 +81,9 @@ export default () => {
   googleButton.addEventListener('click', (event) => {
     event.preventDefault();
     signInWithGoogle()
-      .then(() => {
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUserLocalStorage(user);
         window.location.hash = '#feed';
       })
       // eslint-disable-next-line arrow-parens
