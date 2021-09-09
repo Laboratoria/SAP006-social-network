@@ -1,4 +1,3 @@
-
 export default () => {
   const container = document.createElement("div");
 
@@ -21,7 +20,7 @@ export default () => {
       <input type="file" id="input-img-film" accept="image/*" />
       <textarea
         name="post-input"
-        id="text"
+        id="post-text"
         cols="30"
         rows="10"
         placeholder="Escreva sobre o filme..."
@@ -44,13 +43,12 @@ export default () => {
     
     `;
   container.innerHTML = template;
-  container
-  .querySelector("#button-publicar")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    const text = document.getElementById("post-text").value;
-    const filmName = document.getElementById("name-film").value;
-    const filmImage = document.getElementById("input-img-film").value;
+  //CRIAR POST
+  const btn = container.querySelector("#button-publicar");
+  btn.addEventListener("click", () => {
+    const text = container.querySelector("#post-text").value;
+    const filmName = container.querySelector("#name-film").value;
+    const filmImage = container.querySelector("#input-img-film").value;
     const post = {
       text: text,
       img_film: filmImage,
@@ -61,16 +59,14 @@ export default () => {
     };
     const postCollection = firebase.firestore().collection("post");
 
-    postsCollection.add(post).then(res => {
-      document.getElementById("post-text").value = ""
-      loadPosts()
+    postsCollection.add(post).then((res) => {
+      document.getElementById("post-text").value = "";
+      loadPosts();
     });
   });
 
   return container;
 };
-
-//CRIAR POST
 
 //MOSTRAR POST NA TELA
 function addPost(post) {
@@ -100,7 +96,7 @@ function loadPosts() {
 
 // //DELETAR POST
 // function deletePost(postId){
-//   postsCollection.doc(postId).delete().then(doc => { 
+//   postsCollection.doc(postId).delete().then(doc => {
 //     loadPosts()
 //   });
 // }

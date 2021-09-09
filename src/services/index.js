@@ -5,12 +5,12 @@ export const registerLogin = (email, password) => {
         const user = userCredential.user;
         window.location.hash = '#login';
         console.log('deu bom', user);
-        // ...
+        
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
+        
         console.log('deu ruim', errorCode, errorMessage);
       });
   };
@@ -33,14 +33,14 @@ export const loginWithGoogle = () => {
   export const logout = () => {
     firebase.auth().signOut()
       .then(() => {
-        // Sign-out successful.
+  
       }).catch((error) => {
-        // An error happened.
+    
         console.log('Erro', error);
       });
   };
   
-  // Post
+  // Fazer Post
   
   export const addPost = (postInf) => {
     const db = firebase.firestore();

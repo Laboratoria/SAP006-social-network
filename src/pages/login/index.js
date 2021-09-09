@@ -51,10 +51,10 @@ export default () => {
       errorMessage = 'Email inválido. Tente novamente, ou cadastre-se';
       errorMsg.innerHTML = errorMessage;
     } else if (errorCode === 'auth/wrong-password') {
-      errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
+      errorMessage = ' Email ou senha incorretos. Tente novamente';
       errorMsg.innerHTML = errorMessage;
     } else {
-      errorMessage = 'Usuário não cadastrado';
+      errorMessage = 'Usuário ainda não cadastrado';
       errorMsg.innerHTML = errorMessage;
     }
     return error;
@@ -69,19 +69,13 @@ googleButton.addEventListener('click', (event) => {
     .then(() => {
       window.location.hash = '#feed';
     })
-    // eslint-disable-next-line arrow-parens
+  
     .catch(() => {
       window.location.hash = '#not-found';
     });
 });
 
 
-    // const inputPassword = document.querySelector('#password-user');
-    // if (inputPassword.getAttribute('type') === 'password') {
-    //   inputPassword.setAttribute('type', 'text');
-    // } else {
-    //   inputPassword.setAttribute('type', 'password');
-    // }
   
 return container;
 };
