@@ -81,7 +81,9 @@ export default () => {
   googleButton.addEventListener('click', (event) => {
     event.preventDefault();
     signInWithGoogle()
-      .then(() => {
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUserLocalStorage(user);
         window.location.hash = '#feed';
       })
       // eslint-disable-next-line arrow-parens
