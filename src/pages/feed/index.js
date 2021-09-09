@@ -15,7 +15,7 @@ export default () => {
     </nav> 
       <a href="/#feed">
       </a>
-      <button id="sing-out" class="button">Sair</div>
+      <button id="sign-out" class="button">Sair</div>
   </header>
   
     <div class= "container">
@@ -40,10 +40,11 @@ export default () => {
   const postButton = container.querySelector('#post-button');
   const postMessage = container.querySelector('#post-message');
   const errorMsg = container.querySelector('#error-message');
-  const singOut = container.querySelector('#sing-out');
+  const signOut = container.querySelector('#sign-out');
   const addNewPost = container.querySelector('#add-new-post');
 
   const showNewPost = (data) => {
+    const post = document.createElement('div');
     const postTemplate = `
         <div class="post-feed">
           <div class="header-post">
@@ -51,13 +52,19 @@ export default () => {
             <h5>${data.data().date}</h5>
           </div>
           <p>${data.data().message}</p>
-          <button>Like ${data.data().like}</button>
-          <button id="btn-edit' class="btn-edit"> Editar </button>
-          <button id="btn-bin' class="btn-bin"> Excluir </button>
-
+          <button class="btn-like">Like ${data.data().like}</button>
+          <button class="btn-edit"> Editar </button>
+          <button class="btn-bin"> Excluir </button>
         </div>
       `;
-    addNewPost.innerHTML += postTemplate;
+    post.innerHTML += postTemplate;
+
+    const likeButton = post.querySelector('.btn-like');
+    likeButton.addEventListener('click', () => {
+      console.log('clicou no like', likeButton);
+    });
+
+    addNewPost.appendChild(post);
   };
 
   showPost().then((item) => {
@@ -78,7 +85,8 @@ export default () => {
     }
   });
 
-  singOut.addEventListener('click', (event) => {
+  signOut.addEventListener('click', (event) => {
+    console.log(signOut);
     event.preventDefault();
     logOut()
       .then(() => {
@@ -86,5 +94,37 @@ export default () => {
         window.location.hash = '#home';
       });
   });
+
   return container;
 };
+
+/* const database = {
+  'abc123': {
+      likes: []
+  },
+  'bcd234': {
+      likes:[]
+  }
+}
+
+const firstUser = 'uid456'
+
+const like = (uid, postId) => {
+  let likes = database[postId].likes;
+  if (likes.includes(uid)) {
+  likes = likes.filter((id) => uid !== id)
+  } else {
+      likes.push(uid)
+  }
+  database[postId].likes = likes
+}
+
+like(firstUser, 'abc123')
+
+console.log(database)
+
+like(firstUser, 'bcd234')
+console.log(database)
+
+like(firstUser, 'abc123')
+console.log(database) */
