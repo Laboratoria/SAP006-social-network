@@ -1,11 +1,14 @@
 // métodos que fazem conexão com o firebase
 
+<<<<<<< HEAD
 // Cadastrar Usuário
+=======
+// Criar usuário
+>>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86
 
 export const createUser = (name, email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-    // Signed in
       const user = userCredential.user;
       console.log(user);
       window.location.hash = '#login';
@@ -17,9 +20,22 @@ export const createUser = (name, email, password) => {
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      console.log('deu ruim', errorCode, errorMessage);
+      let errorMessage = error.message;
+      const errorMsg = document.querySelector('#msgError');
+      if (errorCode === 'auth/invalid-email') {
+        errorMessage = 'Insira um e-mail válido';
+        errorMsg.innerHTML = errorMessage;
+      } else if (errorCode === 'auth/weak-password') {
+        errorMessage = 'Insira um nome de usuário';
+        errorMsg.innerHTML = errorMessage;
+      } else if (errorCode === 'auth/weak-password') {
+        errorMessage = 'Crie uma senha';
+        errorMsg.innerHTML = errorMessage;
+      } else {
+        errorMessage = 'Preencha todos os campos';
+        errorMsg.innerHTML = errorMessage;
+      }
+      return error;
     });
 };
 
@@ -66,16 +82,31 @@ export const setUserLocalStorage = (user) => {
   localStorage.setItem('email', user.email);
 };
 
+export const removeUserLocalStorage = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      localStorage.clear();
+    }
+  });
+};
+
 // Criar post
 
 export const newPost = (postMsg) => {
+<<<<<<< HEAD
   // const userInf = firebase.auth().currentUser;
   const postInf = {
+=======
+  // const data = new Date();
+  const postInf = firebase.firestore().collection('posts').add({
+>>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86
     name: userData().displayName,
     user: userData().uid,
     email: userData().email,
     message: postMsg,
+    // date: (new Date()).toString().slice(4, 21),
     date: (new Date()).toLocaleString('pt-BR'),
+    // date: data.toLocaleString('pt-BR', { timeStyle: 'short', dateStyle: 'short' }),
     like: [],
   };
 
@@ -87,4 +118,4 @@ export const newPost = (postMsg) => {
 
 // Printar post
 
-export const showPost = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();
+export const showPost = () => firebase.firestore().collection('posts').orderBy('date', 'desc').get();
