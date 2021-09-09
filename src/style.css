@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   margin: 0;
   border: 0;
@@ -149,3 +150,7 @@ form button[type="submit"]:hover {
   white-space: nowrap;
   overflow: hidden;
 }
+=======
+@import url(pages/login/login.css);
+@import url(pages/cadastro/cadastro.css);
+>>>>>>> be98ac9df65cf0361228471343b6b086316e238f

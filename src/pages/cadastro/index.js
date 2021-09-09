@@ -1,8 +1,12 @@
+import { registerLogin } from "../../services/index.js";
 export default () => {
   const container = document.createElement("div");
 
   const template = `
+<<<<<<< HEAD
   
+=======
+>>>>>>> be98ac9df65cf0361228471343b6b086316e238f
     <div class="container">
     <div class="card">
       <h1>Cadastrar :</h1>
@@ -18,11 +22,27 @@ export default () => {
   <input type="password" id="senha" placeholder="">
   <label for="senha">Senha</label>
   <div class="justify-center">
-    <button onclick = "cadastrar()">Cadastrar</button>
+    <button type = "submit" class="btnCadastro" id="cadastrar">cadastrar</button>
   </div>
   `;
 
   container.innerHTML = template;
+<<<<<<< HEAD
   const name = container.querySelector("email");
+=======
+
+  const name = container.querySelector("#nome");
+  const email = container.querySelector("#email");
+  const password = container.querySelector("senha");
+  const registerBtn = container.querySelector("#cadastrar");
+
+  registerBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    registerLogin(email.value, password.value, name.value);
+    // then(() => {
+    //   window.location.hash = '#feed';
+  });
+
+>>>>>>> be98ac9df65cf0361228471343b6b086316e238f
   return container;
 };
