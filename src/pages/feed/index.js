@@ -1,3 +1,5 @@
+import { postarMensagem } from  '../../services/index.js';
+
 export default () => {
   const container = document.createElement("div");
 
@@ -49,7 +51,7 @@ export default () => {
     const text = container.querySelector("#post-text").value;
     const filmName = container.querySelector("#name-film").value;
     const filmImage = container.querySelector("#input-img-film").value;
-    const post = {
+    const postagem = {
       text: text,
       img_film: filmImage,
       name_film: filmName,
@@ -57,42 +59,44 @@ export default () => {
       likes: 0,
       comments: [],
     };
-    const postCollection = firebase.firestore().collection("post");
-
-    postsCollection.add(post).then((res) => {
-      document.getElementById("post-text").value = "";
-      loadPosts();
-    });
+   
+      postarMensagem(postagem)
+      .then(() => {
+        console.log("Document successfully written!");
+      })
+      .catch((error) => {
+        console.error("Error writing document: ", error);
+      });
   });
 
   return container;
 };
 
-//MOSTRAR POST NA TELA
-function addPost(post) {
-  const postTemplate = `
-  <li id="${post.id}">
-  ${post.data().user_id};
-  ${post.data().filmImage};
-  ${post.data().filmName};
-  ${post.data().text};
-  🤍${post.data().likes};
-  ${post.data().comments}
-  </li>
-  `;
-  document.getElementById("posts").innerHTML += postTemplate;
-}
+// MOSTRAR POST NA TELA
+// function addPost(postagem) {
+//   const postTemplate = `
+//   <li id="${post.id}">
+//   ${postagem.data().user_id};
+//   ${postagem.data().filmImage};
+//   ${postagem.data().filmName};
+//   ${postagem.data().text};
+//   🤍${postagem.data().likes};
+//   ${postagem.data().comments}
+//   </li>
+//   `;
+//   document.getElementById("posts").innerHTML += postTemplate;
+// }
 
-function loadPosts() {
-  const postCollection = firebase.firestore().collection("post");
-  document.getElementById("posts").innerHTML = "Carregando...";
-  postsCollection.get().then((snap) => {
-    document.getElementById("posts").innerHTML = "";
-    snap.forEach((post) => {
-      addPost(post);
-    });
-  });
-}
+// function loadPosts() {
+//   const postCollection = firebase.firestore().collection("postagem");
+//   document.getElementById("posts").innerHTML = "Carregando...";
+//   postsCollection.get().then((snap) => {
+//     document.getElementById("posts").innerHTML = "";
+//     snap.forEach((postagem) => {
+//       addPost(postagem);
+//     });
+//   });
+// }
 
 // //DELETAR POST
 // function deletePost(postId){
@@ -100,3 +104,4 @@ function loadPosts() {
 //     loadPosts()
 //   });
 // }
+

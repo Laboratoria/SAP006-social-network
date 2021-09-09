@@ -30,19 +30,12 @@ export const loginWithGoogle = () => {
 };
   // Logout
   
-  export const logout = () => {
-    firebase.auth().signOut()
-      .then(() => {
-  
-      }).catch((error) => {
+  export const logOut = () => firebase.auth().signOut();
     
-        console.log('Erro', error);
-      });
-  };
   
   // Fazer Post
   
-  export const addPost = (postInf) => {
+  export const postarMensagem = (postagem) => {
     const db = firebase.firestore();
-    return db.collection('posts').add(postInf);
+   return db.collection("postagens").add(postagem);
   };
