@@ -7,7 +7,7 @@
     flex-wrap: wrap;
 }
 
-.card-post, .card-feed{
+.card-post, .feed-container{
     width: 70%;
     height: auto;
     min-width: 13em;
@@ -17,6 +17,10 @@
     border-radius: 10px;
     box-shadow: 3px 3px 1px 0px #00000060;
     margin: 5%;
+}
+
+.post-feed {
+    margin: 2%;
 }
 
 textarea {
@@ -32,7 +36,3 @@ textarea {
     margin-bottom: 20px;
     color: #701A73;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86

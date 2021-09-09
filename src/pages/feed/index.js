@@ -24,7 +24,7 @@ export default () => {
             <button type="button" id="post-button" class="button">Publicar</button>
         </form>
       </div> 
-      <div class= "card-feed"> 
+      <div class= "feed-container"> 
       <h2 class="title">Feed</h2><br>
       <div id="add-new-post" class="new-post"></div>
       </div>
@@ -37,6 +37,31 @@ export default () => {
   const postButton = container.querySelector('#post-button');
   const postMessage = container.querySelector('#post-message');
   const errorMsg = container.querySelector('#error-message');
+  const singOut = container.querySelector('#sing-out');
+  const addNewPost = container.querySelector('#add-new-post');
+
+  const showNewPost = (data) => {
+    const postTemplate = `
+        <div class="post-feed">
+          <div class="header-post">
+            <h3>${data.data().name}</h3>
+            <h5>${data.data().date}</h5>
+          </div>
+          <p>${data.data().message}</p>
+          <button>Like ${data.data().like}</button>
+          <button id="btn-edit' class="btn-edit"> Editar </button>
+          <button id="btn-bin' class="btn-bin"> Excluir </button>
+
+        </div>
+      `;
+    addNewPost.innerHTML += postTemplate;
+  };
+
+  showPost().then((item) => {
+    item.forEach((post) => {
+      showNewPost(post);
+    });
+  });
 
   postButton.addEventListener('click', () => {
     const postMsg = postMessage.value;
@@ -50,28 +75,6 @@ export default () => {
     }
   });
 
-  const addNewPost = container.querySelector('#add-new-post');
-  const showNewPost = (data) => {
-    const postTemplate = `
-        <div class="cards-post">
-          <div class="header-post">
-            <h3>${data.data().name}</h3>
-            <h5>${data.data().date}</h5>
-          </div>
-          <p>${data.data().message}</p>
-          <button>Like ${data.data().like}</button>
-        </div>
-      `;
-    addNewPost.innerHTML += postTemplate;
-  };
-
-  showPost().then((item) => {
-    item.forEach((post) => {
-      showNewPost(post);
-    });
-  });
-
-  const singOut = container.querySelector('#sing-out');
   singOut.addEventListener('click', (event) => {
     event.preventDefault();
     logOut()

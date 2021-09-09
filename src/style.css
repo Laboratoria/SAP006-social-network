@@ -11,19 +11,11 @@ body{
 }
 
 main{
-<<<<<<< HEAD
-    /*display: block;
-    /*background: #B78CB9;*/
-    margin-top: 1em;
-    /*margin-left: 2em;*/
-    border-radius: 10px;
-=======
   /*display: block;
   /*background: #B78CB9;*/
   margin-top: 1em;
   /*margin-left: 2em;*/
   border-radius: 10px;
->>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86
 }
 
 .container{
@@ -38,16 +30,6 @@ main{
 }
 
 .card{
-<<<<<<< HEAD
-    width: 18%;
-    height: 30em;
-    min-width: 13em;
-    min-height: 13em;
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 1px 0px #00000060;
-=======
   width: 18%;
   height: 30em;
   min-width: 13em;
@@ -56,7 +38,6 @@ main{
   padding: 30px;
   border-radius: 10px;
   box-shadow: 3px 3px 1px 0px #00000060;
->>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86
 }
 
 .show-password {
@@ -126,20 +107,10 @@ button:hover{
 }
 
 footer{
-<<<<<<< HEAD
-    /*background-image: url(./img/bg-purple-foot.png);*/
-    position:fixed;
-    width: 100%;
-    height: 50px;
-    bottom: 0;
-    z-index: -10;
-    text-align: center;
-=======
   position:fixed;
   width: 100%;
   height: 50px;
   bottom: 0;
   z-index: -10;
   text-align: center;
->>>>>>> 9002f4153b9cf8b05fcfefa761c6bc64110c7c86
 }
