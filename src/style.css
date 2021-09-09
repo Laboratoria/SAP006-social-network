@@ -126,3 +126,26 @@ form button[type="submit"]:hover {
   margin-top: 2rem;
   padding: 0.4rem;
 }
+
+.container {
+  background: yellow;
+}
+@media (max-width: 787px) {
+  .container_login {
+    position: relative;
+    width: 100%;
+  }
+  .container_form ul li {
+    padding-right: 0px;
+    margin: 5px;
+  }
+  .titulo h2 {
+    padding: 6px;
+  }
+}
+.footer span {
+  padding: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+}

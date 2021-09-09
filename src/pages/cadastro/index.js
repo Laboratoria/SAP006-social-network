@@ -2,7 +2,7 @@ export default () => {
   const container = document.createElement("div");
 
   const template = `
-    <body>
+  
     <div class="container">
     <div class="card">
       <h1>Cadastrar :</h1>
@@ -20,10 +20,9 @@ export default () => {
   <div class="justify-center">
     <button onclick = "cadastrar()">Cadastrar</button>
   </div>
-  </body>
   `;
 
   container.innerHTML = template;
-  let name = container.querySelector("username");
+  const name = container.querySelector("email");
   return container;
 };
