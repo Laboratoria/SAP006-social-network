@@ -12,13 +12,21 @@ export const createUser = (name, email, password) => {
   if (!name) {
     errorMsg.innerHTML = 'Insira um nome';
   } else {
+    let user;
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        setUserLocalStorage(user);
-        window.location.hash = '#login';
+        user = userCredential.user;
+        console.log(user);
         user.updateProfile({
           displayName: name,
+        }).then(() => {
+          const localUser = {
+            displayName: name,
+            email,
+            uid: user.uid,
+          };
+          setUserLocalStorage(localUser);
+          window.location.hash = '#login';
         });
       })
       .catch((error) => {

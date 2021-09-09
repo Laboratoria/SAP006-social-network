@@ -1,12 +1,15 @@
 import {
   newPost, showPost,
-  logOut, removeUserLocalStorage,
+  logOut, removeUserLocalStorage, userData,
 } from '../../services/index.js';
 
 export default () => {
+  const user = userData();
+  if (!user) {
+    window.location.hash = '#home';
+  }
   const container = document.createElement('div');
-
-  const template = `  
+  const template = `
   <header>
     <nav class="menu">
     </nav> 
@@ -76,10 +79,7 @@ export default () => {
     event.preventDefault();
     logOut()
       .then(() => {
-        window.location.hash = '#home';
-      });
-    removeUserLocalStorage()
-      .then(() => {
+        removeUserLocalStorage();
         window.location.hash = '#home';
       });
   });
