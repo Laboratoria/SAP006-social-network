@@ -1,6 +1,7 @@
-import { loginWithGoogle, buttonEntrar } from "../../services/index.js";
+import { loginWithGoogle, buttonEntrar } from '../../services/index.js';
+
 export default () => {
-  const container = document.createElement("div");
+  const container = document.createElement('div');
 
   const template = `
  <div class= "container_login">
@@ -24,74 +25,55 @@ export default () => {
             <div class="rede_social">
             <button type="submit" class="btn" id="google-button">Gmail</button>
 </div>
-<p class="p-sign-in">Não tem uma conta? <a href=""
+<p class="p-sign-in">Não tem uma conta? <a href="#cadastro"
 class="forget-password-link" id="signup-link">Cadastre-se</a></p>    
  </div>
  </div>
   `;
   container.innerHTML = template;
 
-  const email = container.querySelector("#username");
-  const password = container.querySelector("#password");
-  const googleButton = container.querySelector("#google-button");
-  const signInButton = container.querySelector("#entrar");
-  signInButton.addEventListener("click", (event) => {
+  const email = container.querySelector('#username');
+  const password = container.querySelector('#password');
+  const googleButton = container.querySelector('#google-button');
+  const signInButton = container.querySelector('#entrar');
+  signInButton.addEventListener('click', (event) => {
     event.preventDefault();
-    buttonEntrar(email.value, password.value);
-     then((userCredential) => {
+    buttonEntrar(email.value, password.value)
+    .then((userCredential) => {
       const user = userCredential.user;
-        window.location.hash = '#feed';
-        return user;
-   })
-      
-   .catch((error) => {
-    const errorCode = error.code;
-    let errorMessage = error.message;
-    const errorMsg = document.querySelector('#error-message');
-    if (errorCode === 'auth/invalid-email') {
-      errorMessage = 'Email inválido. Tente novamente, ou cadastre-se';
-      errorMsg.innerHTML = errorMessage;
-    } else if (errorCode === 'auth/wrong-password') {
-      errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
-      errorMsg.innerHTML = errorMessage;
-    } else {
-      errorMessage = 'Usuário não cadastrado';
-      errorMsg.innerHTML = errorMessage;
-    }
-    return error;
-  });
-});
-
-
-
-googleButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  loginWithGoogle()
-    .then(() => {
       window.location.hash = '#feed';
+      return user;
     })
+
+      .catch((error) => {
+        const errorCode = error.code;
+        let errorMessage = error.message;
+        const errorMsg = document.querySelector('#error-message');
+        if (errorCode === 'auth/invalid-email') {
+          errorMessage = 'Email inválido. Tente novamente, ou cadastre-se';
+          errorMsg.innerHTML = errorMessage;
+        } else if (errorCode === 'auth/wrong-password') {
+          errorMessage = 'Seu email ou senha está incorreto. Tente novamente';
+          errorMsg.innerHTML = errorMessage;
+        } else {
+          errorMessage = 'Usuário não cadastrado';
+          errorMsg.innerHTML = errorMessage;
+        }
+        return error;
+      });
+  });
+
+  googleButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    loginWithGoogle()
+      .then(() => {
+        window.location.hash = '#feed';
+      })
     // eslint-disable-next-line arrow-parens
-    .catch(() => {
-      window.location.hash = '#not-found';
-    });
-});
+      .catch(() => {
+        window.location.hash = '#not-found';
+      });
+  });
 
-
-    // const inputPassword = document.querySelector('#password-user');
-    // if (inputPassword.getAttribute('type') === 'password') {
-    //   inputPassword.setAttribute('type', 'text');
-    // } else {
-    //   inputPassword.setAttribute('type', 'password');
-    // }
-  
-return container;
+  return container;
 };
-
-
-
-
-  // //const entrar = container.querySelector(".button");
-  // entrar.addEventListener("click", () => {
-  //   window.location.hash = "#feed";
-  // });
-

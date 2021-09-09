@@ -3,7 +3,6 @@ export default () => {
   const container = document.createElement("div");
 
   const template = `
-    <body>
     <div class="container">
     <div class="card">
       <h1>Cadastrar :</h1>
@@ -21,7 +20,6 @@ export default () => {
   <div class="justify-center">
     <button type = "submit" class="btnCadastro" id="cadastrar">cadastrar</button>
   </div>
-  </body>
   `;
 
   container.innerHTML = template;
