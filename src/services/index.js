@@ -116,3 +116,13 @@ export const newPost = (postMsg) => {
 // Printar post
 
 export const showPost = () => firebase.firestore().collection('posts').orderBy('date', 'desc').get();
+
+// Collection
+
+export const getPost = (postId) => firebase.firestore().collection('posts').doc(postId).get();
+
+// Like
+
+export const liked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayUnion(uid) });
+
+export const unLiked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayRemove(uid) });

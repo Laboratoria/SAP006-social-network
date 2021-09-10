@@ -1,10 +1,12 @@
 import {
   newPost, showPost,
-  logOut, removeUserLocalStorage, userData,
+  logOut, removeUserLocalStorage, userData, unLiked, liked,
+  // getPost,
 } from '../../services/index.js';
 
 export default () => {
-  const user = userData();
+  const user = userData().uid;
+  // console.log(user);
   if (!user) {
     window.location.hash = '#home';
   }
@@ -44,6 +46,8 @@ export default () => {
   const addNewPost = container.querySelector('#add-new-post');
 
   const showNewPost = (data) => {
+    // console.log(data.id);
+    const likesPost = data.data().like;
     const post = document.createElement('div');
     const postTemplate = `
         <div class="post-feed">
@@ -52,7 +56,8 @@ export default () => {
             <h5>${data.data().date}</h5>
           </div>
           <p>${data.data().message}</p>
-          <button class="btn-like">Like ${data.data().like}</button>
+          <p>${likesPost.length}</p>
+          <button data-like="${data.id}" class="btn-like">Like</button>
           <button class="btn-edit"> Editar </button>
           <button class="btn-bin"> Excluir </button>
         </div>
@@ -60,8 +65,28 @@ export default () => {
     post.innerHTML += postTemplate;
 
     const likeButton = post.querySelector('.btn-like');
-    likeButton.addEventListener('click', () => {
-      console.log('clicou no like', likeButton);
+    likeButton.addEventListener('click', (event) => {
+      const { target } = event;
+      const btnLike = target.dataset.like;
+      console.log(btnLike);
+      // liked(user, data.id);
+      // unLiked(user, data.id);
+      if (!likesPost.includes(user, data.id)) {
+        liked(user, data.id);
+        // .then(() => {
+        //   likesPost.push(data.id);
+        // });
+      } else {
+        unLiked(user, data.id);
+      }
+      // let likes = getPost(postId).like;
+      // getPost(postId)
+      // if (!likesPost.includes(user)) {
+      //   likesPost = data.like.filter(() => data.id !== user);
+      // } else {
+      //   likes.push(uid);
+      // }
+      // getPost(postId).like = likes;
     });
 
     addNewPost.appendChild(post);
@@ -103,20 +128,20 @@ export default () => {
       likes: []
   },
   'bcd234': {
-      likes:[]
+      arrlikes:[]
   }
 }
 
 const firstUser = 'uid456'
 
 const like = (uid, postId) => {
-  let likes = database[postId].likes;
+  let likes = database[postId].arrlikes;
   if (likes.includes(uid)) {
-  likes = likes.filter((id) => uid !== id)
+  likes = arrlikes.filter((id) => uid !== id)
   } else {
-      likes.push(uid)
+      arrlikes.push(uid)
   }
-  database[postId].likes = likes
+  database[postId].arrlikes = likes
 }
 
 like(firstUser, 'abc123')
