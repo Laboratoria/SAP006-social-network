@@ -45,64 +45,11 @@ export default () => {
   const signOut = container.querySelector('#sign-out');
   const addNewPost = container.querySelector('#add-new-post');
 
-  // const showNewPost = (data) => {
-  //   // console.log(data.id);
-  //   let likesPost = data.like;
-  //   const post = document.createElement('div');
-  //   const postTemplate = `
-  //       <div class="post-feed">
-  //         <div class="header-post">
-  //           <h3>${data.name}</h3>
-  //           <h5>${data.date}</h5>
-  //         </div>
-  //         <p>${data.message}</p>
-  //         <p data-number>${likesPost.length}</p>
-  //         <button data-like="${data.id}" class="btn-like">Like</button>
-  //         <button class="btn-edit"> Editar </button>
-  //         <button class="btn-bin"> Excluir </button>
-  //       </div>
-  //     `;
-  //   post.innerHTML += postTemplate;
-
-  //   const likeButton = post.querySelector('.btn-like');
-  //   likeButton.addEventListener('click', (event) => {
-  //     const { target } = event;
-  //     const likeP = target.previousElementSibling;
-  //     let likeNumber = Number(likeP.innerHTML);
-  //     // const btnLike = target.dataset.like;
-  //     // liked(user, data.id);
-  //     // unLiked(user, data.id);
-  //     if (!likesPost.includes(user, data.id)) {
-  //       liked(user, data.id)
-  //         .then(() => {
-  //           likesPost.push(user);
-  //           likeNumber += 1;
-  //           likeP.innerHTML = likeNumber;
-  //         });
-  //     } else {
-  //       unLiked(user, data.id)
-  //         .then(() => {
-  //           likesPost = likesPost.filter((item) => item !== user);
-  //           likeNumber -= 1;
-  //           likeP.innerHTML = likeNumber;
-  //         });
-  //     }
-  //     // let likes = getPost(postId).like;
-  //     // getPost(postId)
-  //     // if (!likesPost.includes(user)) {
-  //     //   likesPost = data.like.filter(() => data.id !== user);
-  //     // } else {
-  //     //   likes.push(uid);
-  //     // }
-  //     // getPost(postId).like = likes;
-  //   });
-  //   return post;
-  // };
-
   showPost().then((allColletion) => {
     allColletion.forEach((doc) => {
       const post = {
         id: doc.id,
+        user: doc.data().user,
         name: doc.data().name,
         email: doc.data().email,
         date: doc.data().date,
@@ -121,7 +68,6 @@ export default () => {
     } else {
       newPost(postMsg)
         .then((newDoc) => {
-          console.log(newDoc);
           const newPostDiv = showNewPost(newDoc);
           addNewPost.prepend(newPostDiv);
           postMessage.value = '';
@@ -141,34 +87,3 @@ export default () => {
 
   return container;
 };
-
-/* const database = {
-  'abc123': {
-      likes: []
-  },
-  'bcd234': {
-      arrlikes:[]
-  }
-}
-
-const firstUser = 'uid456'
-
-const like = (uid, postId) => {
-  let likes = database[postId].arrlikes;
-  if (likes.includes(uid)) {
-  likes = arrlikes.filter((id) => uid !== id)
-  } else {
-      arrlikes.push(uid)
-  }
-  database[postId].arrlikes = likes
-}
-
-like(firstUser, 'abc123')
-
-console.log(database)
-
-like(firstUser, 'bcd234')
-console.log(database)
-
-like(firstUser, 'abc123')
-console.log(database) */
