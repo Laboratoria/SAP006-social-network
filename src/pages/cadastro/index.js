@@ -3,35 +3,46 @@ export default () => {
   const container = document.createElement("div");
 
   const template = `
-<<<<<<< HEAD
+  <div class="container">
+  <div class="card">
+     <h1 class="titulo">Cadastra-se</h1>
   
-=======
->>>>>>> be98ac9df65cf0361228471343b6b086316e238f
-    <div class="container">
-    <div class="card">
-      <h1>Cadastrar :</h1>
-      <div class="label-float">
-      <input type="text" id="nome" placeholder="">
-      <label for="nome">Nome Completo</label>
-    </div>
-    <div class="label-float">
-    <input type="text" id="email" placeholder="">
-    <label for="email">E-mail</label>
+
+   <form>
+    <label for="name">
+      <span>Nome</span>
+        <input type="text" id="name" name="name">
+  </label>
+
+  <label for="email">
+    <span>E-mail</span>
+     <input type="email" id="email" name="emailG">
+  </label>
+
+<label for="password">
+  <span>Senha</span>
+    <input type="password" id="senha" name="passwordP">
+ </label>
+ <input type="submit" value="cadastrar" id="cadastrar">
+ </form>
+    
   </div>
-  <div class="label-float"></div>
-  <input type="password" id="senha" placeholder="">
-  <label for="senha">Senha</label>
-  <div class="justify-center">
-    <button type = "submit" class="btnCadastro" id="cadastrar">cadastrar</button>
-  </div>
+</div> 
   `;
 
   container.innerHTML = template;
-<<<<<<< HEAD
-  const name = container.querySelector("email");
-=======
-
   const name = container.querySelector("#nome");
+  const email = container.querySelector("#email");
+  const password = container.querySelector("#senha");
+  const registerBtn = container.querySelector("#cadastrar");
+
+  registerBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    registerLogin(email.value, password.value, name.value);
+    // then(() => {
+    //   window.location.hash = '#feed';
+  });
+  /* const name = container.querySelector("#nome");
   const email = container.querySelector("#email");
   const password = container.querySelector("senha");
   const registerBtn = container.querySelector("#cadastrar");
@@ -42,7 +53,6 @@ export default () => {
     // then(() => {
     //   window.location.hash = '#feed';
   });
-
->>>>>>> be98ac9df65cf0361228471343b6b086316e238f
+*/
   return container;
 };

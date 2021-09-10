@@ -6,7 +6,7 @@ export default () => {
   const template = `
  <div class= "container_login">
  <div class="container_form">
- <h2 class="titulo"> Login</h2>
+ <h1 class="titulo"> Login</h1>
  <form>
  <div class="input-field">
  <input type="text" name="username" id="username"
@@ -32,13 +32,13 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
   `;
   container.innerHTML = template;
 
-  const email = container.querySelector("#username");
+  /*const email = container.querySelector("#username");
   const password = container.querySelector("#password");
   const googleButton = container.querySelector("#google-button");
   const signInButton = container.querySelector("#entrar");
-  signInButton.addEventListener("click", (event) => {
+   signInButton.addEventListener("click", (event) => {
     event.preventDefault();
-    buttonEntrar(email.value, password.value)
+    buttonEntrar(email.value, password.value, googleButton.value)
       .then((userCredential) => {
         const user = userCredential.user;
         window.location.hash = "#feed";
@@ -63,6 +63,7 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
       });
   });
 
+
   googleButton.addEventListener("click", (event) => {
     event.preventDefault();
     loginWithGoogle()
@@ -73,7 +74,7 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
       .catch(() => {
         window.location.hash = "#not-found";
       });
-  });
+  }); */
 
   return container;
 };
