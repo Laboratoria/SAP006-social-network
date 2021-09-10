@@ -1,33 +1,40 @@
-import { registerLogin } from "../../services/index.js";
+import {registerLogin} from '../../services/index.js';
+
 export default () => {
+  console.log("cadastro");
   const container = document.createElement("div");
 
   const template = `
+  <section class= "container-cadastro" >
+    <h2>CADASTRE-SE</h2>
+    <p>Rede social para seu pet</p>
+    <link rel="stylesheet" href="style.css">
     <div class="container">
-    <div class="card">
-      <h1>Cadastrar :</h1>
-      <div class="label-float">
-      <input type="text" id="nome" placeholder="">
-      <label for="nome">Nome Completo</label>
-    </div>
-    <div class="label-float">
-    <input type="text" id="email" placeholder="">
-    <label for="email">E-mail</label>
-  </div>
-  <div class="label-float"></div>
-  <input type="password" id="senha" placeholder="">
-  <label for="senha">Senha</label>
-  <div class="justify-center">
-    <button type = "submit" class="btnCadastro" id="cadastrar">cadastrar</button>
-  </div>
+      <div class="card">
+        <h3>CRIAR UMA NOVA CONTA</h3>
+        <form>
+          <input required="required" autocomplete="off" type="text" placeholder="Insira seu nome" id="username"
+          class='login-area'>
+          <input required="required" autocomplete="off" type="email" placeholder="example@example.com" id="register-email"
+          class="login-area">
+          <input required="required" autocomplete="off" type="password" placeholder="Insira uma senha (Min. 6 digítos)"
+          id="register-password" class="login-area">
+          <div></div>
+          <button class="btn button-area" id="button-register">Cadastrar</button>
+        </form>
+      </div>
+    </div>  
+  </section>
   `;
+
+  
 
   container.innerHTML = template;
 
-  const name = container.querySelector("#nome");
-  const email = container.querySelector("#email");
-  const password = container.querySelector("senha");
-  const registerBtn = container.querySelector("#cadastrar");
+  const name = container.querySelector("#username");
+  const email = container.querySelector("#register-email");
+  const password = container.querySelector("#register-password");
+  const registerBtn = container.querySelector("#button-register");
 
   registerBtn.addEventListener("click", (event) => {
     event.preventDefault();

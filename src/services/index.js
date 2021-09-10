@@ -1,7 +1,5 @@
 export const registerLogin = (email, password) => {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
+  firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;

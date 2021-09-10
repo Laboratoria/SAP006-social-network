@@ -7,9 +7,10 @@ export default () => {
  <div class= "container_login">
  <div class="container_form">
  <h2 class="titulo"> Login</h2>
+ <link rel="stylesheet" href="style.css">
  <form>
  <div class="input-field">
- <input type="text" name="username" id="username"
+ <input type="text" name="username" id="gmail"
      placeholder="Digite seu Email">
  <div class="underline"></div>
 </div>
@@ -32,18 +33,19 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
   `;
   container.innerHTML = template;
 
-  const email = container.querySelector('#username');
+  const email = container.querySelector('#gmail');
   const password = container.querySelector('#password');
   const googleButton = container.querySelector('#google-button');
   const signInButton = container.querySelector('#entrar');
+
   signInButton.addEventListener('click', (event) => {
     event.preventDefault();
     buttonEntrar(email.value, password.value)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      window.location.hash = '#feed';
-      return user;
-    })
+      .then((userCredential) => {
+        const user = userCredential.user;
+        window.location.hash = '#feed';
+        return user;
+      })
 
       .catch((error) => {
         const errorCode = error.code;
