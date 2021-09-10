@@ -7,10 +7,8 @@ export default () => {
   const template = `
   <h1>Ellas</h1>
   <p>Uma filmografia repleta de mulheres incríveis para te inspirar!</p>
-  <link rel="stylesheet" href="style.CSS">
   <div class="container">
-
-    <div class="card">
+  <div class="card">
       <h2>Fazer login :</h2>
       <form method='post'>
         <input required="" autocomplete="off" type='email' placeholder='Email' id='emailArea' class='login-area'>
@@ -19,7 +17,7 @@ export default () => {
       <button class='button-area btn signIn' id='start'>Entrar</button>
       <p class="or-area">━━━━━━━━━ OU ━━━━━━━━━</p>
       <button class='button-area btn btnGoogle' id='google-button'><img src='imagens/google_small_icon.png' alt='Google' class='google-icon'>Entrar com o google</button>
-      <p class='font-small'>Se não tem uma conta, <a href='/#cadastro' style="color:black;font-weight: 600"
+      <p class='font-small'>Se não tem uma conta, <a href='/#cadastro' 
       id='sign-up-login'>Cadastre-se.</a>
       </p>
     </div> 
@@ -34,6 +32,7 @@ export default () => {
   const password = container.querySelector("#passwordArea");
   const googleButton = container.querySelector('#google-button');
   const signInButton = container.querySelector("#start");
+
   signInButton.addEventListener("click", (event) => {
     event.preventDefault();
     signIn(email.value, password.value);
@@ -66,7 +65,8 @@ export default () => {
 googleButton.addEventListener('click', (event) => {
   event.preventDefault();
   loginWithGoogle()
-    .then(() => {
+    .then((userCredential) => {
+      const user = userCredential.user;
       window.location.hash = '#feed';
     })
   

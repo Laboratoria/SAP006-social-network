@@ -7,7 +7,6 @@ export default () => {
   const template = `
     <h2>Ellas</h2>
     <p>Uma filmografia repleta de mulheres incríveis para te inspirar!</p>
-    <link rel="stylesheet" href="style.CSS">
     <div class="container">
       <div class="card">
         <h3>CRIAR UMA NOVA CONTA</h3>

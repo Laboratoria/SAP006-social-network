@@ -72,20 +72,20 @@ export default () => {
   return container;
 };
 
-// MOSTRAR POST NA TELA
-// function addPost(postagem) {
-//   const postTemplate = `
-//   <li id="${post.id}">
-//   ${postagem.data().user_id};
-//   ${postagem.data().filmImage};
-//   ${postagem.data().filmName};
-//   ${postagem.data().text};
-//   🤍${postagem.data().likes};
-//   ${postagem.data().comments}
-//   </li>
-//   `;
-//   document.getElementById("posts").innerHTML += postTemplate;
-// }
+//MOSTRAR POST NA TELA
+function addPost(postagem) {
+  const postTemplate = `
+  <li id="${post.id}">
+  ${postagem.data().user_id};
+  ${postagem.data().filmImage};
+  ${postagem.data().filmName};
+  ${postagem.data().text};
+  🤍${postagem.data().likes};
+  ${postagem.data().comments}
+  </li>
+  `;
+  document.getElementById("posts").innerHTML += postTemplate;
+}
 
 // function loadPosts() {
 //   const postCollection = firebase.firestore().collection("postagem");
