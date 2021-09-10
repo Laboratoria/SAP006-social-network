@@ -5,8 +5,10 @@ export default () => {
 
   const template = `
   <div class= "container">
-    <img src="" alt="" class="logo">
     <div class= "card">
+      <header>
+          <img  class="header-image" src="../img/logo.png">
+      </header>
       <h2 class="title">Login</h2>
         <form class="form-login" action="">
           <p id="error-message" class="error-message"></p>
