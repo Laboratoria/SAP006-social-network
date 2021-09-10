@@ -1,5 +1,11 @@
 import {registerLogin} from '../../services/index.js';
+const validateEmail = (email) => {
+  if (!email.length) {
+    return "Ops!E-mail inválido."
 
+}
+
+}
 export default () => {
   console.log("cadastro");
   const container = document.createElement("div");
@@ -35,8 +41,18 @@ export default () => {
 
   registerBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    registerLogin(email.value, password.value, name.value);
-     window.location.hash = '#feed';
+    registerLogin(email.value, password.value, name.value)
+    .then((user) => {
+      
+      window.location.hash = '#feed';
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      console.log("deu ruim", errorCode, errorMessage);
+    });
+     
   });
 
   return container;

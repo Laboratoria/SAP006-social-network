@@ -34,9 +34,10 @@ export default () => {
   const signInButton = container.querySelector("#start");
 
   signInButton.addEventListener("click", (event) => {
+    console.log(signInButton)
     event.preventDefault();
-    signIn(email.value, password.value);
-     then((userCredential) => {
+    signIn(email.value, password.value)
+     .then((userCredential) => {
       const user = userCredential.user;
         window.location.hash = '#feed';
         return user;

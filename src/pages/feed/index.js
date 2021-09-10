@@ -1,5 +1,4 @@
-import { postarMensagem } from  '../../services/index.js';
-
+import { postarMensagem } from "../../services/index.js";
 export default () => {
   const container = document.createElement("div");
 
@@ -7,7 +6,7 @@ export default () => {
     <header>
       <h1>Ellas</h1>
     </header>
-    <p><form action="" id="post-form" class="form">
+    <form action="" id="post-form" class="form">
       <label for="name-film">Filme</label>
       <input type="text" id="name-film" />
       <label for="img-film">Anexe uma imagem do filme</label>
@@ -28,41 +27,47 @@ export default () => {
         placeholder="Escreva sobre o filme..."
       ></textarea>
       <div class="buttons">
-        <button class="button-post" id="button-publicar">Publicar</button>
-        <button class="button-post" id="button-descartar">Descartar</button>
+        <button class="button-post" type="button" id="button-publicar">Publicar</button>
+        <button class="button-post" type="button" id="button-descartar">Descartar</button>
       </div>
 </form>
-  </p>
-
+<section id="feed">
+  <div id="lista-feed" class="lista-feed"></div>
+</section>
     <footer id="rodape">
       <nav>
         <a href="">Feed</a>
         <a href="">Adicionar</a>
         <a href="">Pesquisar</a>
-        <a href="">Perfil</a>
+        <a href="">Logout</a>
       </nav>
     </footer>
     
     `;
   container.innerHTML = template;
+
+  loadPosts();
+
   //CRIAR POST
   const btn = container.querySelector("#button-publicar");
   btn.addEventListener("click", () => {
+    console.log("clicou aqui!");
     const text = container.querySelector("#post-text").value;
     const filmName = container.querySelector("#name-film").value;
     const filmImage = container.querySelector("#input-img-film").value;
     const postagem = {
       text: text,
-      img_film: filmImage,
-      name_film: filmName,
-      user_id: "Julio",
+      film_name: filmName,
+      film_img: filmImage,
+      user_id: "teste",
       likes: 0,
       comments: [],
     };
-   
-      postarMensagem(postagem)
+
+    postarMensagem(postagem)
       .then(() => {
         console.log("Document successfully written!");
+        loadPosts();
       })
       .catch((error) => {
         console.error("Error writing document: ", error);
@@ -70,38 +75,59 @@ export default () => {
   });
 
   return container;
+
+  // MOSTRAR POST NA TELA
+  function addPost(post) {
+    const postTemplate = `
+      <div id="${post.id}">
+        <div class="usuario-card">
+          <h3>${post.data?.user_id}</h3>
+        </div>
+        <div class="id-filme-card">
+          <h2>${post.data?.film_name}</h2>
+          <section>${post.data?.film_img}</section>
+        </div>
+        <div class="texto-card">
+        <p>${post.data?.text}</p>
+        </div>
+        <div class="interacao-card">
+          <button id="like"><span class="iconify" data-icon="mdi-light:heart" style="color: #111;" data-height="20"></span>${
+            post.data?.likes
+          }</button>
+          <button id="comentar"><span class="iconify" data-icon="mdi-light:comment" style="color: #111;" data-height="20"></span>${
+            post.data?.comments
+          }</button>
+          <button id="deletar" onclick="${() =>
+            deletePost(
+              post.id
+            )}"><span class="iconify" data-icon="mdi-light:delete" style="color: #111;" data-height="20"></span>Deletar</button>
+        </div>
+        
+      </div>
+`;
+    container.querySelector("#lista-feed").innerHTML += postTemplate;
+  }
+
+  function loadPosts() {
+    const postsCollection = firebase.firestore().collection("postagens");
+    container.querySelector("#lista-feed").innerHTML = "Carregando...";
+    postsCollection.get().then((querySnapshot) => {
+      container.querySelector("#lista-feed").innerHTML = "";
+      querySnapshot.forEach((doc) => {
+        const post = { id: doc.id, data: doc.data() };
+        addPost(post);
+      });
+    });
+  }
+
+  //DELETAR POST
+  function deletePost(postId) {
+    const postsCollection = firebase.firestore().collection("postagens");
+    postsCollection
+      .doc(postId)
+      .delete()
+      .then((doc) => {
+        loadPosts();
+      });
+  }
 };
-
-//MOSTRAR POST NA TELA
-function addPost(postagem) {
-  const postTemplate = `
-  <li id="${post.id}">
-  ${postagem.data().user_id};
-  ${postagem.data().filmImage};
-  ${postagem.data().filmName};
-  ${postagem.data().text};
-  🤍${postagem.data().likes};
-  ${postagem.data().comments}
-  </li>
-  `;
-  document.getElementById("posts").innerHTML += postTemplate;
-}
-
-// function loadPosts() {
-//   const postCollection = firebase.firestore().collection("postagem");
-//   document.getElementById("posts").innerHTML = "Carregando...";
-//   postsCollection.get().then((snap) => {
-//     document.getElementById("posts").innerHTML = "";
-//     snap.forEach((postagem) => {
-//       addPost(postagem);
-//     });
-//   });
-// }
-
-// //DELETAR POST
-// function deletePost(postId){
-//   postsCollection.doc(postId).delete().then(doc => {
-//     loadPosts()
-//   });
-// }
-

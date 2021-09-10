@@ -1,8 +1,5 @@
 body {
     background-image: url(imagens/wonder\ lilás.jpg);
-    background-repeat: no-repeat;
-    background-size:contain;
-    background-attachment:fixed; 
     background-position: left;
     background-color:rgb(137, 112, 167);
 }
