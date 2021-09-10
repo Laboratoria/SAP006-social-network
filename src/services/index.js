@@ -99,8 +99,7 @@ export const removeUserLocalStorage = () => {
 // Criar post
 
 export const newPost = (postMsg) => {
-  // const data = new Date();
-  const postInf = firebase.firestore().collection('posts').add({
+  const post = {
     name: userData().displayName,
     user: userData().uid,
     email: userData().email,
@@ -109,7 +108,15 @@ export const newPost = (postMsg) => {
     date: (new Date()).toLocaleString('pt-BR'),
     // date: data.toLocaleString('pt-BR', { timeStyle: 'short', dateStyle: 'short' }),
     like: [],
-  });
+  };
+  const postInf = firebase.firestore().collection('posts').add(post)
+    .then((doc) => {
+      const addedPost = {
+        ...post,
+        id: doc.id,
+      };
+      return addedPost;
+    });
   return postInf;
 };
 

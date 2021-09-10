@@ -1,8 +1,8 @@
 import {
-  newPost, showPost,
-  logOut, removeUserLocalStorage, userData, unLiked, liked,
+  newPost, showPost, logOut, removeUserLocalStorage, userData,
   // getPost,
 } from '../../services/index.js';
+import { showNewPost } from '../../components/index.js';
 
 export default () => {
   const user = userData().uid;
@@ -45,56 +45,72 @@ export default () => {
   const signOut = container.querySelector('#sign-out');
   const addNewPost = container.querySelector('#add-new-post');
 
-  const showNewPost = (data) => {
-    // console.log(data.id);
-    const likesPost = data.data().like;
-    const post = document.createElement('div');
-    const postTemplate = `
-        <div class="post-feed">
-          <div class="header-post">
-            <h3>${data.data().name}</h3>
-            <h5>${data.data().date}</h5>
-          </div>
-          <p>${data.data().message}</p>
-          <p>${likesPost.length}</p>
-          <button data-like="${data.id}" class="btn-like">Like</button>
-          <button class="btn-edit"> Editar </button>
-          <button class="btn-bin"> Excluir </button>
-        </div>
-      `;
-    post.innerHTML += postTemplate;
+  // const showNewPost = (data) => {
+  //   // console.log(data.id);
+  //   let likesPost = data.like;
+  //   const post = document.createElement('div');
+  //   const postTemplate = `
+  //       <div class="post-feed">
+  //         <div class="header-post">
+  //           <h3>${data.name}</h3>
+  //           <h5>${data.date}</h5>
+  //         </div>
+  //         <p>${data.message}</p>
+  //         <p data-number>${likesPost.length}</p>
+  //         <button data-like="${data.id}" class="btn-like">Like</button>
+  //         <button class="btn-edit"> Editar </button>
+  //         <button class="btn-bin"> Excluir </button>
+  //       </div>
+  //     `;
+  //   post.innerHTML += postTemplate;
 
-    const likeButton = post.querySelector('.btn-like');
-    likeButton.addEventListener('click', (event) => {
-      const { target } = event;
-      const btnLike = target.dataset.like;
-      console.log(btnLike);
-      // liked(user, data.id);
-      // unLiked(user, data.id);
-      if (!likesPost.includes(user, data.id)) {
-        liked(user, data.id);
-        // .then(() => {
-        //   likesPost.push(data.id);
-        // });
-      } else {
-        unLiked(user, data.id);
-      }
-      // let likes = getPost(postId).like;
-      // getPost(postId)
-      // if (!likesPost.includes(user)) {
-      //   likesPost = data.like.filter(() => data.id !== user);
-      // } else {
-      //   likes.push(uid);
-      // }
-      // getPost(postId).like = likes;
-    });
+  //   const likeButton = post.querySelector('.btn-like');
+  //   likeButton.addEventListener('click', (event) => {
+  //     const { target } = event;
+  //     const likeP = target.previousElementSibling;
+  //     let likeNumber = Number(likeP.innerHTML);
+  //     // const btnLike = target.dataset.like;
+  //     // liked(user, data.id);
+  //     // unLiked(user, data.id);
+  //     if (!likesPost.includes(user, data.id)) {
+  //       liked(user, data.id)
+  //         .then(() => {
+  //           likesPost.push(user);
+  //           likeNumber += 1;
+  //           likeP.innerHTML = likeNumber;
+  //         });
+  //     } else {
+  //       unLiked(user, data.id)
+  //         .then(() => {
+  //           likesPost = likesPost.filter((item) => item !== user);
+  //           likeNumber -= 1;
+  //           likeP.innerHTML = likeNumber;
+  //         });
+  //     }
+  //     // let likes = getPost(postId).like;
+  //     // getPost(postId)
+  //     // if (!likesPost.includes(user)) {
+  //     //   likesPost = data.like.filter(() => data.id !== user);
+  //     // } else {
+  //     //   likes.push(uid);
+  //     // }
+  //     // getPost(postId).like = likes;
+  //   });
+  //   return post;
+  // };
 
-    addNewPost.appendChild(post);
-  };
-
-  showPost().then((item) => {
-    item.forEach((post) => {
-      showNewPost(post);
+  showPost().then((allColletion) => {
+    allColletion.forEach((doc) => {
+      const post = {
+        id: doc.id,
+        name: doc.data().name,
+        email: doc.data().email,
+        date: doc.data().date,
+        message: doc.data().message,
+        like: doc.data().like,
+      };
+      const postDiv = showNewPost(post);
+      addNewPost.appendChild(postDiv);
     });
   });
 
@@ -103,15 +119,18 @@ export default () => {
     if (postMsg === '') {
       errorMsg.innerHTML = 'O post está vazio, não foi possivel publicar. Tente novamente';
     } else {
-      newPost(postMsg).then(() => {
-        postMessage.value = '';
-        errorMsg.innerHTML = '';
-      });
+      newPost(postMsg)
+        .then((newDoc) => {
+          console.log(newDoc);
+          const newPostDiv = showNewPost(newDoc);
+          addNewPost.prepend(newPostDiv);
+          postMessage.value = '';
+          errorMsg.innerHTML = '';
+        });
     }
   });
 
   signOut.addEventListener('click', (event) => {
-    console.log(signOut);
     event.preventDefault();
     logOut()
       .then(() => {
