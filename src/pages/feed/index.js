@@ -1,6 +1,5 @@
 import {
   newPost, showPost, logOut, removeUserLocalStorage, userData,
-  // getPost,
 } from '../../services/index.js';
 import { showNewPost } from '../../components/index.js';
 
@@ -14,10 +13,10 @@ export default () => {
   const template = `
   <header>
     <nav class="menu">
+      <li><a href="/#feed"></a></li>
+      <li><button id="sign-out" class="sign-out"><i class="fas fa-sign-out-alt"></i></button></li>
     </nav> 
-      <a href="/#feed">
-      </a>
-      <button id="sign-out" class="button">Sair</div>
+      
   </header>
   
     <div class= "container">
