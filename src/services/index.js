@@ -16,7 +16,6 @@ export const createUser = (name, email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         user = userCredential.user;
-        console.log(user);
         user.updateProfile({
           displayName: name,
         }).then(() => {
@@ -67,6 +66,14 @@ export const signInWithGoogle = () => {
 
 export const logOut = () => firebase.auth().signOut();
 
+export const removeUserLocalStorage = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      localStorage.clear();
+    }
+  });
+};
+
 // Manter logado
 
 export const stayConected = (callback) => firebase.auth().onAuthStateChanged(callback);
@@ -88,14 +95,6 @@ export const userData = () => {
   return user;
 };
 
-export const removeUserLocalStorage = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (!user) {
-      localStorage.clear();
-    }
-  });
-};
-
 // Criar post
 
 export const newPost = (postMsg) => {
@@ -104,9 +103,7 @@ export const newPost = (postMsg) => {
     user: userData().uid,
     email: userData().email,
     message: postMsg,
-    // date: (new Date()).toString().slice(4, 21),
     date: (new Date()).toLocaleString('pt-BR'),
-    // date: data.toLocaleString('pt-BR', { timeStyle: 'short', dateStyle: 'short' }),
     like: [],
   };
   const postInf = firebase.firestore().collection('posts').add(post)
@@ -133,5 +130,11 @@ export const getPost = (postId) => firebase.firestore().collection('posts').doc(
 export const liked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayUnion(uid) });
 
 export const unLiked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayRemove(uid) });
+
+// Deletar post
+
+export const deleteDoc = (postId) => firebase.firestore().collection('posts').doc(postId).delete();
+
+// Editar post
 
 export const editPost = (postMsg, postId) => firebase.firestore().collection('posts').doc(postId).update({ message: postMsg });

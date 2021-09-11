@@ -36,3 +36,29 @@ textarea {
     margin-bottom: 20px;
     color: #701A73;
 }
+.header-post{
+    margin: 2%;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.post-buttons{
+    display: inline;
+}
+
+.number-likes{
+    font-weight: bolder;
+    color: #701A73;
+}
+
+.menu{
+    width: 100%;
+    font-weight: bold;
+    position: relative;
+    list-style: none;
+    margin: 0;;
+}
+.sign-out{
+   float: right;
+   border-style: none;
+}

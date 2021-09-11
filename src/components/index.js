@@ -1,42 +1,49 @@
 import {
-  userData, liked, unLiked, editPost,
+  userData, liked, unLiked,
+  deleteDoc, editPost,
 } from '../services/index.js';
 
 export const showNewPost = (data) => {
   const user = userData().uid;
-  // console.log(data.id);
   let likesPost = data.like;
   const post = document.createElement('div');
   const postTemplate = `
       <article class="post-feed">
         <header class="header-post">
-          <h3 class="post-username">${data.name}</h3>
+          <h3 class="post-username" id="${data.name}">${data.name}</h3>
           <h5 class="post-date">${data.date}</h5>
         </header>
         <textarea class="post-message" disabled>${data.message}</textarea>
-        <section>
-          <p data-number>${likesPost.length}</p>
-          <button data-like="${data.id}" class="btn-like">Like</button>
-          <button data-edit="${data.id}" class="btn-edit"> Editar </button>
-          <button data-save="${data.id}" class="btn-save" style="display:none"> Salvar </button>
-          <button class="btn-bin"> Excluir </button>
+        <section class="post-buttons">
+          <p data-number class="number-likes">${likesPost.length}</p>
+          <button data-like="${data.id}" class="btn-like"> Like <i class="fas fa-heart"></i></button> 
+          <button data-edit="${data.id}" class="btn-edit"> <i class="far fa-edit"></i> </button>
+          <button data-save="${data.id}" class="btn-save" style="display:none"> <i class="fas fa-check"></i> </button>
+          <button class="btn-bin"> <i class="fas fa-trash"></i> </button>
         </section>
       </article>
     `;
   post.innerHTML += postTemplate;
 
   const likeButton = post.querySelector('.btn-like');
+  const binButton = post.querySelector('.btn-bin');
   const editButton = post.querySelector('.btn-edit');
   const saveButton = post.querySelector('.btn-save');
   const postMessage = post.querySelector('.post-message');
+  const likeCount = post.querySelector('.number-likes');
+
+  const visibleBtn = () => {
+    if (user !== data.user) {
+      editButton.style.display = 'none';
+      binButton.style.display = 'none';
+    }
+  };
+  visibleBtn();
 
   likeButton.addEventListener('click', (event) => {
     const { target } = event;
     const likeP = target.previousElementSibling;
     let likeNumber = Number(likeP.innerHTML);
-    // const btnLike = target.dataset.like;
-    // liked(user, data.id);
-    // unLiked(user, data.id);
     if (!likesPost.includes(user, data.id)) {
       liked(user, data.id)
         .then(() => {
@@ -50,6 +57,15 @@ export const showNewPost = (data) => {
           likesPost = likesPost.filter((item) => item !== user);
           likeNumber -= 1;
           likeP.innerHTML = likeNumber;
+        });
+    }
+  });
+
+  binButton.addEventListener('click', () => {
+    if (user === data.user) {
+      deleteDoc(data.id)
+        .then(() => {
+          post.remove();
         });
     }
   });
@@ -69,5 +85,6 @@ export const showNewPost = (data) => {
         saveButton.style.display = 'none';
       });
   });
+
   return post;
 };
