@@ -5,9 +5,14 @@
 }
 
 body{
-  /*background-image: url(./img/bg-purple-top.png);
+  /*background-image: url(./img/logo-somus.png);
   background-repeat: no-repeat;*/
   background: #B78CB9;
+}
+
+.header-image {
+  width: 80%;
+  height: 80%;
 }
 
 main{

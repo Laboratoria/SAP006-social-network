@@ -4,10 +4,12 @@ export default () => {
   const template = `
 
   <div class= "container">
-    <img src="" alt="" class="logo">
     <div class= "card">
-      <a href="/#home"> 
-        <h2>SO.MU.S</h2> </a>
+      <a href="/#home">
+       <header>
+        <img  class="header-image" src="img/logo-somus.png">
+       </header>
+      </a>
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et ante 
           id risus semper sollicitudin ut non odio. Sed dignissim, diam quis sagittis congue,
           elit lectus facilisis lacus, a congue ex eros ac nulla. Nunc at enim id sapien 
