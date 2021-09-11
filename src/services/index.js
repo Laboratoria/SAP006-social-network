@@ -133,3 +133,5 @@ export const getPost = (postId) => firebase.firestore().collection('posts').doc(
 export const liked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayUnion(uid) });
 
 export const unLiked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayRemove(uid) });
+
+export const editPost = (postMsg, postId) => firebase.firestore().collection('posts').doc(postId).update({ message: postMsg });

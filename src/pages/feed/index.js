@@ -103,6 +103,7 @@ export default () => {
     allColletion.forEach((doc) => {
       const post = {
         id: doc.id,
+        user: doc.data().user,
         name: doc.data().name,
         email: doc.data().email,
         date: doc.data().date,
