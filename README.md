@@ -7,7 +7,6 @@
 - [3. Pesquisa de usuário](#4-pesquisa-de-usuário)
 - [4. Histórias de usuário](#5-histórias-de-usuários)
 - [5. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-- [6. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
 - [7. Entrega](#7-entrega)
 - [8. Guias, dicas e leituras complementares](#8-guias-dicas-e-leituras-complementares)
 
@@ -25,10 +24,41 @@ Pensando nisso, a Rede Social SO.MU.S. (Rede social para mulheres que viajam, so
 
 Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede social.
 
-[Imgur](https://i.imgur.com/pDfCUmW.jpg)
+![Brainstorm](.src/img/brainstorm.jpg)
 
 Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos as necessidades que precisariam ser atendidas em nossa aplicação.
 
+
+## 3. Pesquisa de usuários
+
+
+
+
+## 4. Histórias de usuário
+
+### 4.1 Histórias de usuário 1
+
+"Eu como usuário quero me cadastrar, para ter acesso á rede social"
+
+### 4.2 Histórias de usuário 2
+
+"Eu como usuário quero fazer login na página, para ter acesso às informações "
+
+### 4.3 Histórias de usuário 3
+
+"Eu como usuário quero poder postar relatos das minhas experiências de viagem para que outros usuários leiam."
+
+### 4.4 Histórias de usuário 4
+
+"Eu como usuário quero editar e excluir meus antigos posts."
+
+### 4.5 Histórias de usuário 5
+
+"Eu como usuário quero ler depoimentos de outros usuários em um feed organizado por ordem de data de postagem."
+
+### 4.6 Histórias de usuário 6
+
+"Eu como usuário quero poder curtir e descurtir os posts de outros usuários da rede social."
 
 ## 5. Objetivos de aprendizagem
 
@@ -91,44 +121,6 @@ qual seja possível **ler e escrever dados.**
 - [ ] Linting
 
 ---
-
-## 3. Pesquisa de usuários
-
-
-
-## 4. Histórias de usuário
-
-### 4.1 Histórias de usuário 1
-
-"Eu como usuário quero me cadastrar, para ter acesso á rede social"
-
-- [x] Conseguir criar a conta com email e senha;
-- [x] Botão de criar conta;
-
-### 4.2 Histórias de usuário 2
-
-"Eu como usuário quero fazer login na página, para ter acesso às informações "
-
-- [x] Conseguir logar com email e senha cadastrados;
-- [x] Botão de logar;
-- [x] Botão de logar com o Google
-- [x] Autenticar conta com Google;
-
-### 4.3 Histórias de usuário 3
-
-"Eu como usuário quero poder postar relatos das minhas experiências de viagem para que outros usuários leiam."
-
-### 4.4 Histórias de usuário 4
-
-"Eu como usuário quero editar e excluir meus antigos posts."
-
-### 4.5 Histórias de usuário 5
-
-"Eu como usuário quero ler depoimentos de outros usuários em um feed organizado por ordem de data de postagem."
-
-### 5.6 Histórias de usuário 6
-
-"Eu como usuário quero poder curtir e descurtir os posts de outros usuários da rede social."
 
 ## 7. Entrega
 
