@@ -7,8 +7,7 @@
 - [3. Pesquisa de usuário](#4-pesquisa-de-usuário)
 - [4. Histórias de usuário](#5-histórias-de-usuários)
 - [5. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-- [7. Entrega](#7-entrega)
-- [8. Guias, dicas e leituras complementares](#8-guias-dicas-e-leituras-complementares)
+- [7. Desenvolvedoras](#7-desenvolvedoras)
 
 ---
 
@@ -24,14 +23,19 @@ Pensando nisso, a Rede Social SO.MU.S. (Rede social para mulheres que viajam, so
 
 Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede social.
 
-![Brainstorm](.src/img/logo.png)
+![Brainstorm](src/img/brainstorm.jpg)
 
 Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos as necessidades que precisariam ser atendidas em nossa aplicação.
 
 
 ## 3. Pesquisa de usuários
 
-
+![Pesquisa](src/img/pag1.jpg)
+![Pesquisa](src/img/pag2.jpg)
+![Pesquisa](src/img/pag3.jpg)
+![Pesquisa](src/img/pag4.jpg)
+![Pesquisa](src/img/pag5.jpg)
+![Pesquisa](src/img/pag6.jpg)
 
 
 ## 4. Histórias de usuário
@@ -122,7 +126,7 @@ qual seja possível **ler e escrever dados.**
 
 ---
 
-## 7. Entrega
+## 7. Desenvolvedoras
 
 O projeto será entregue subindo seu código no GitHub (`commit` /`push`) e a
 interface será hospedada usando o [Firebase Hosting](https://firebase.google.com/docs/hosting) pages ou outro serviço de hospedagem
