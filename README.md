@@ -24,7 +24,7 @@ Pensando nisso, a Rede Social SO.MU.S. (Rede social para mulheres que viajam, so
 
 Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede social.
 
-![Brainstorm](.src/img/brainstorm.jpg)
+![Brainstorm](.src/img/logo.png)
 
 Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos as necessidades que precisariam ser atendidas em nossa aplicação.
 
