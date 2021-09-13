@@ -1,11 +1,5 @@
-import {registerLogin} from '../../services/index.js';
-const validateEmail = (email) => {
-  if (!email.length) {
-    return "Ops!E-mail inválido."
+import { registerLogin } from '../../services/index.js';
 
-}
-
-}
 export default () => {
   console.log("cadastro");
   const container = document.createElement("div");
@@ -17,7 +11,7 @@ export default () => {
       <div class="card">
         <h3>CRIAR UMA NOVA CONTA</h3>
         <form>
-          <input required="required" autocomplete="off" type="text" placeholder="Insira seu nome" id="username"
+          <input required="required" autocomplete="off" type="text" placeholder="Insira seu nome completo" id="username"
           class='login-area'>
           <input required="required" autocomplete="off" type="email" placeholder="example@example.com" id="register-email"
           class="login-area">
@@ -30,7 +24,7 @@ export default () => {
     </div>  
   `;
 
-  
+
 
   container.innerHTML = template;
 
@@ -39,20 +33,24 @@ export default () => {
   const password = container.querySelector("#register-password");
   const registerBtn = container.querySelector("#button-register");
 
+
+
+
+
   registerBtn.addEventListener("click", (event) => {
     event.preventDefault();
     registerLogin(email.value, password.value, name.value)
-    .then((user) => {
-      
-      window.location.hash = '#feed';
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      .then((user) => {
 
-      console.log("deu ruim", errorCode, errorMessage);
-    });
-     
+        window.location.hash = '#feed';
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.log("deu ruim", errorCode, errorMessage);
+      });
+
   });
 
   return container;

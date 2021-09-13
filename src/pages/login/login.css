@@ -1,8 +1,7 @@
 body {
-    background-image: url(imagens/wonder\ lilás.jpg);
-    
     background-position: left;
-    background-color:rgb(137, 112, 167);
+    background-color:white;
+    align-items: flex-end;
 }
 
   .container {
@@ -72,7 +71,8 @@ p{
     border-radius: 10px;
     box-sizing: border-box;
     margin-top: 5px;
-   justify-content:center;
+    justify-content:center;
+    text-align: center;
   }
 
 
@@ -106,3 +106,21 @@ margin-top:10px;
 
  /* responsivo */
 
+ @media screen and (max-width: 768px) {
+    .container {
+      width: 70vw;
+      height: 65vh;
+    }
+  
+     button {
+      font-size: 12px;
+    }
+  
+    input{
+      width: 20%;
+    }
+
+    .img-wonder{
+      background-repeat:no-repeat;
+    }
+}

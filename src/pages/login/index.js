@@ -1,4 +1,4 @@
-import { signIn, loginWithGoogle} from '../../services/index.js';
+import { signIn, loginWithGoogle } from '../../services/index.js';
 
 
 export default () => {
@@ -7,6 +7,7 @@ export default () => {
   const template = `
   <h1>Ellas</h1>
   <p>Uma filmografia repleta de mulheres incríveis para te inspirar!</p>
+  <img class ="img-wonder" src="../imagens/wonderwhite.jpg">
   <div class="container">
   <div class="card">
       <h2>Fazer login :</h2>
@@ -34,7 +35,6 @@ export default () => {
   const signInButton = container.querySelector("#start");
 
   signInButton.addEventListener("click", (event) => {
-    console.log(signInButton)
     event.preventDefault();
     signIn(email.value, password.value)
      .then((userCredential) => {
@@ -57,7 +57,7 @@ export default () => {
       errorMessage = 'Usuário ainda não cadastrado';
       errorMsg.innerHTML = errorMessage;
     }
-    return error;
+     return error;
   });
 });
 
@@ -72,11 +72,9 @@ googleButton.addEventListener('click', (event) => {
     })
   
     .catch(() => {
-      window.location.hash = '#not-found';
+    
     });
 });
 
-
-  
 return container;
 };
