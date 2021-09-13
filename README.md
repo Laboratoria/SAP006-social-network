@@ -13,7 +13,7 @@
 
 A partir dessa proposta, nasceu o  
 <p align='center'>
-<!--   <img src='src/img/ellas-dev-logo.png' widht='40%'> -->
+<img src='src/img/ellas-dev-logo.png' widht='40%'> 
 </p>
 
 
