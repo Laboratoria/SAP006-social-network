@@ -118,33 +118,48 @@ a:link{
   text-decoration: none;
 }
 
-/* @media tablet */
+/* @media */
 
 @media (min-width: 426px) and (max-width: 768px) {
   .card{
     width: 25em;
     height: 32em;
-    min-width: 13em;
-    min-height: 13em;
     background-color: white;
     padding: 4% 6% 2% 6%;
-    border-radius: 10px;
-    box-shadow: 3px 3px 1px 0px #00000060;
   }
 
 }
 
-/* @media web */
+/* @media */
 
-@media (min-width: 901px) and (max-width: 1440px) {
+@media (min-width: 769px) and (max-width: 1439px) {
   .card{
     width: 25em;
-    height: 32em;
-    min-width: 13em;
-    min-height: 13em;
-    background-color: white;
+    height: 30em;
+    padding: 2% 6% 2% 6%;
+  }
+
+  .main-content{
+    margin-top: -2%;
+  }
+
+  .container{
+    margin-top:4%;
+  }
+
+  .git-link{
+    margin-top: 2%;
+  }
+}
+
+@media (min-width: 1440px){
+  .card{
+    width: 50em;
+    height: 47em;
     padding: 4% 6% 2% 6%;
-    border-radius: 10px;
-    box-shadow: 3px 3px 1px 0px #00000060;
+  }
+
+  .main-content{
+    margin-top: -6%;
   }
 }
