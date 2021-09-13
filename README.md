@@ -11,7 +11,7 @@
 - [7. Autoras](#7-autoras)
 
 
-A partir dessa proposta, nasceu o  
+Proposta.
 <p align='center'>
 <img src='src/img/ellas-dev-logo.png' widht='40%'> 
 </p>
