@@ -7,7 +7,7 @@ export default () => {
     <div class= "card">
       <a href="/#home">
        <header>
-        <img  class="header-image" src="img/logo-somus.png">
+        <img class="header-image" src="img/logo-somus.png">
        </header>
       </a>
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et ante 

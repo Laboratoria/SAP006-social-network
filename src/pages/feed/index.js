@@ -1,6 +1,5 @@
 import {
   newPost, showPost, logOut, removeUserLocalStorage, userData,
-  // getPost,
 } from '../../services/index.js';
 import { showNewPost } from '../../components/index.js';
 
