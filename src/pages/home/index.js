@@ -5,8 +5,8 @@ export default () => {
 
   <div class= "container">
     <div class= "card">
-       <header class="header-home">
-        <img class="header-image" src="img/logo-somus.png">
+       <header class="header-pages">
+        <img class="header-image-logo" src="img/logo-somus.png">
        </header>
         <h3 class="title title-home">É uma rede social para mulheres que viajam, sozinhas ou não.</h3>
         <p class="text-home">

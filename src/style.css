@@ -17,11 +17,19 @@ body{
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 10%;
+  margin-top: 8%;
 }
 
 .img-top{
   margin: 0;
+}
+
+.header-pages{
+  text-align: center;
+}
+
+.header-image{
+  width: 70%;
 }
 
 .card{
@@ -39,9 +47,14 @@ body{
   cursor: pointer;
   text-align: right;
   color: #60006b;
+  margin: 2%;
 }
 
-h2{
+.password-content{
+  display: flex;
+}
+
+.title{
   margin-bottom: 20px;
   color: #701A73;
   font-size: 36px;
@@ -59,7 +72,7 @@ h2{
   min-width: 180px;
   font-size: 16px;
   outline: none;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: #701A73;
 }
 
@@ -118,33 +131,50 @@ a:link{
   text-decoration: none;
 }
 
-/* @media tablet */
+/* @media */
 
 @media (min-width: 426px) and (max-width: 768px) {
   .card{
     width: 25em;
-    height: 32em;
-    min-width: 13em;
-    min-height: 13em;
+    height: 34em;
     background-color: white;
     padding: 4% 6% 2% 6%;
-    border-radius: 10px;
-    box-shadow: 3px 3px 1px 0px #00000060;
   }
 
 }
 
-/* @media web */
-
-@media (min-width: 901px) and (max-width: 1440px) {
+@media (min-width: 769px) and (max-width: 1439px) {
   .card{
     width: 25em;
     height: 32em;
-    min-width: 13em;
-    min-height: 13em;
-    background-color: white;
+    padding: 1% 6% 2% 6%;
+  }
+
+  .main-content{
+    margin-top: -2%;
+  }
+
+  .container{
+    margin-top:10%;
+  }
+
+  .git-link{
+    margin-top: 2%;
+  }
+
+  .header-image{
+    width: 65%;
+  }
+}
+
+@media (min-width: 1440px){
+  .card{
+    width: 50em;
+    height: 47em;
     padding: 4% 6% 2% 6%;
-    border-radius: 10px;
-    box-shadow: 3px 3px 1px 0px #00000060;
+  }
+
+  .main-content{
+    margin-top: -6%;
   }
 }
