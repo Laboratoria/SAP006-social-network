@@ -1,6 +1,6 @@
 <img src="https://github.com/belobruna/SAP006-social-network/blob/main/src/img/logo-somus.png?raw=true" width="500">
 
-## Índice
+##  :airplane: Índice
 
 - [1. Sobre o projeto](#1-sobre-o-projeto)
 - [2. Resumo do projeto](#2-resumo-do-projeto)
@@ -14,7 +14,7 @@
 
 ---
 
-## 1. Sobre o projeto
+## 1. 💻 Sobre o projeto 
 
 Viajar é sempre uma experiência incrível e especial para todes. E essa experiência fica melhor ainda quando podemos receber informações detalhadas sobre o lugar que vamos visitar. 
 
@@ -22,7 +22,7 @@ Para nós mulheres essa experiência pode ser bem desafiadora por motivos divers
 
 Pensando nisso, a Rede Social SO.MU.S. (Rede social para mulheres que viajam, sozinhas ou não) foi criada para que todas possam trocar dicas, dificuldades, dúvidas, experiências e informações diversas sobre suas viagens. Tudo isso dentro de um ambiente seguro e acolhedor para que todas se sintam a vontade para compartilhar suas experiências.
 
-## 2. Resumo do projeto
+## 2. 📄 Resumo do projeto
 
 Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede social.
 
@@ -32,48 +32,26 @@ Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede so
 Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos as necessidades que precisariam ser atendidas em nossa aplicação.
 
 
-## 3. Pesquisa de usuários
+## 3. 📊 Pesquisa de usuários
 
-<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag1.jpg" witdth="300">
-<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag2.jpg" witdth="300">
-<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag3.jpg" witdth="300">
-<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag4.jpg" witdth="300">
-<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag5.jpg" witdth="300">
-<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag6.jpg" witdth="300">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag1.jpg" witdth="100">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag2.jpg" witdth="100">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag3.jpg" witdth="100">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag4.jpg" witdth="100">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag5.jpg" witdth="100">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag6.jpg" witdth="100">
 
 
-## 4. Histórias de usuário :newspaper:
+## 4. 📰 Histórias de usuário
 
-### 4.1 Histórias de usuário 1
+<img src="https://i.imgur.com/7RRpR7E.jpg" width="800">
 
-"Eu como usuário quero me cadastrar, para ter acesso á rede social"
-
-### 4.2 Histórias de usuário 2
-
-"Eu como usuário quero fazer login na página, para ter acesso às informações "
-
-### 4.3 Histórias de usuário 3
-
-"Eu como usuário quero poder postar relatos das minhas experiências de viagem para que outros usuários leiam."
-
-### 4.4 Histórias de usuário 4
-
-"Eu como usuário quero editar e excluir meus antigos posts."
-
-### 4.5 Histórias de usuário 5
-
-"Eu como usuário quero ler depoimentos de outros usuários em um feed organizado por ordem de data de postagem."
-
-### 4.6 Histórias de usuário 6
-
-"Eu como usuário quero poder curtir e descurtir os posts de outros usuários da rede social."
-
-## 5. Protótipo
+## 5. 📝 Protótipo
 
 <img src="https://github.com/belobruna/SAP006-social-network/blob/main/src/img/prototipo-de-baixa-fidelidade.JPG?raw=true" width="500">
 
 
-## 6. Aplicação :iphone:
+## 6. 📱 Aplicação
 
 ### Home
 
@@ -95,7 +73,7 @@ Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos
 
 
 
-## 7. Objetivos de aprendizagem
+## 7. ✔️ Objetivos de aprendizagem
 
 O objetivo principal de aprendizagem deste projeto é construir uma [Single-page
 Application
@@ -150,7 +128,7 @@ qual seja possível **ler e escrever dados.**
 - [x] Linting
 
 ---
-## 8. Implementações Futuras 
+## 8. :construction: Implementações Futuras
 
 - Permitir criação e edição de perfil;
 - Permitir postagens com foto e localização;
@@ -158,7 +136,7 @@ qual seja possível **ler e escrever dados.**
 
 ---
 
-## 9. Desenvolvedoras :construction_worker_woman: <br>
+## 9. :construction_worker_woman: Desenvolvedoras <br>
 
 ### :woman_artist: Bruna Belo
 [GitHub](https://github.com/belobruna) | [LinkedIn](https://www.linkedin.com/in/bruna-belo/)
