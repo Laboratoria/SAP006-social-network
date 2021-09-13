@@ -3,7 +3,7 @@
 ## Índice
 
 - [1. Sobre](#1-Sobre)
-- [2. Histórias de Usuários](#2- Histórias-de-Usuários)
+- [2. Histórias de Usuários](#2-Histórias-de-Usuários)
 - [3. Layout](#3-Layout)
 - [4. Produto Final](#4-Produto-Final)
 - [5. Planejamento](#5-Planejamento)
@@ -13,7 +13,7 @@
 
 A partir dessa proposta, nasceu o  
 <p align='center'>
-<!--   <img src='src/img/logo-start.png' widht='40%'> -->
+<!--   <img src='src/img/ellas-dev-logo.png' widht='40%'> -->
 </p>
 
 
