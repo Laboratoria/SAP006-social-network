@@ -19,21 +19,24 @@ Proposta.
 
 ## 1. Sobre
 
-Ellas Dev é uma rede social pensada para alunas e ex alunas da [Laboratoria Brasil](https://www.laboratoria.la/br), com a intenção de facilitar trocas de experiências, network e divisão de conhecimento. A rede permite publicação de post inspirada no Twitter, possibilitando dar like em posts favoritos.
+Ellas Dev é uma rede social pensada para alunas e ex alunas da [Laboratoria Brasil](https://www.laboratoria.la/br), com a intenção de facilitar trocas de experiências, network e divisão de conhecimento. A rede social permite publicação de posts inspirada no Twitter, possibilitando dar like em posts favoritos.
 
 
 
-## 2. Resumo do projeto
+## 2. Histórias de Usuários
+Para o desenvolvimento de produtos voltado para o usuário, utilizamos pesquisas de UX designer, com base no tema as personas são pré estabelecidas, então buscamos identificar o melhor conceito de cores e interface.
 
-Neste projeto você construirá uma Rede Social sobre o que você e sua equipe
-decidirem. Pode ser, por exemplo, sobre alimentação saudável, feminismo,
-educação, saúde, energias renováveis, amantes das
-[Empanadas](https://pt.wikipedia.org/wiki/Empanada), de
-[Tacos](<https://pt.wikipedia.org/wiki/Taco_(culin%C3%A1ria)>), de
-[Feijoada](https://pt.wikipedia.org/wiki/Feijoada), ou do que seja.
+![Pesquisa do usuário um](src/img/HistoriaDeUsuario1.JPG)
 
-Sua Rede Social terá que permitir à qualquer usuário criar uma conta de acesso,
-logar-se com ela, criar, editar, deletar e dar _likes_ em publicações.
+
+Definição de cores:
+
+![Pesquisa do usuário um](src/img/historiaDeUsuario2.JPG)
+
+![Pesquisa do usuário um](src/img/asDuasFridas.JPG)
+
+
+## 3. Layout
 
 ## 3. Objetivos de aprendizagem
 
