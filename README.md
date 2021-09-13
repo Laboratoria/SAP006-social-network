@@ -3,11 +3,11 @@
 ## Índice
 
 - [1. Sobre](#1-Sobre)
-- [2. Histórias de Usuários](#2- Histórias de Usuários)
+- [2. Histórias de Usuários](#2- Histórias-de-Usuários)
 - [3. Layout](#3-Layout)
-- [4. Produto Final](#4-Produto Final)
+- [4. Produto Final](#4-Produto-Final)
 - [5. Planejamento](#5-Planejamento)
-- [6. Metodologias e Tecnologias](#6-Metodologias e Tecnologias)
+- [6. Metodologias e Tecnologias](#6-Metodologias-e-Tecnologias)
 - [7. Autoras](#7-autoras)
 
 
