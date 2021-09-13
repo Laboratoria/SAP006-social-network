@@ -5,10 +5,13 @@
 
 - [1. Sobre o projeto](#1-sobre-o-projeto)
 - [2. Resumo do projeto](#2-resumo-do-projeto)
-- [3. Pesquisa de usuário](#4-pesquisa-de-usuário)
-- [4. Histórias de usuário](#5-histórias-de-usuários)
-- [5. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-- [7. Desenvolvedoras](#7-desenvolvedoras)
+- [3. Pesquisa de usuário](#3-pesquisa-de-usuário)
+- [4. Histórias de usuário](#4-histórias-de-usuários)
+- [5. Protótipo](#5-protótipo)
+- [6. Aplicação](#6-aplicação)
+- [7. Objetivos de aprendizagem](#7-objetivos-de-aprendiagem)
+- [8. Implementações futuras](#8-implementações-futuras)
+- [9. Desenvolvedoras](#9-desenvolvedoras)
 
 ---
 
@@ -26,6 +29,7 @@ Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede so
 
 ![Brainstorm](src/img/brainstorm.jpg)
 
+
 Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos as necessidades que precisariam ser atendidas em nossa aplicação.
 
 
@@ -39,7 +43,7 @@ Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos
 ![Pesquisa](src/img/pag6.jpg)
 
 
-## 4. Histórias de usuário
+## 4. Histórias de usuário :newspaper:
 
 ### 4.1 Histórias de usuário 1
 
@@ -65,7 +69,34 @@ Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos
 
 "Eu como usuário quero poder curtir e descurtir os posts de outros usuários da rede social."
 
-## 5. Objetivos de aprendizagem
+## 5. Protótipo
+
+![Protótipo](src/img/prototipo-de-baixa-fidelidade.JPG)
+
+
+## 6. Aplicação :iphone:
+
+### Home
+
+
+
+### Cadastro
+
+
+
+### Login
+
+
+
+### Feed
+
+
+
+### Not found
+
+
+
+## 7. Objetivos de aprendizagem
 
 O objetivo principal de aprendizagem deste projeto é construir uma [Single-page
 Application
@@ -75,67 +106,68 @@ qual seja possível **ler e escrever dados.**
 
 ### HTML e CSS
 
-- [ ] [HTML
+- [x] [HTML
       semântico](https://developer.mozilla.org/pt-BR/docs/Glossario/Semantica)
-- [ ] [CSS `flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [x] [CSS `flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 ### DOM e Web APIs
 
-- [ ] [Manipulação do
+- [x] [Manipulação do
       DOM](https://developer.mozilla.org/pt-BR/docs/DOM/Referencia_do_DOM/Introdu%C3%A7%C3%A3o)
-- [ ] [History
+- [x] [History
       API](https://developer.mozilla.org/pt-BR/docs/Web/API/History_API)
-- [ ]
+- [x]
   [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
 ### Javascript
 
-- [ ] [Uso de
+- [x] [Uso de
       callbacks](https://developer.mozilla.org/pt-BR/docs/Glossario/Callback_function)
-- [ ] [Consumo de
+- [x] [Consumo de
       Promises](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
-- [ ] Uso de ES modules
+- [x] Uso de ES modules
       ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
       |
       [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
 
 ### Firebase
 
-- [ ] [Firestore](https://firebase.google.com/docs/firestore)
-- [ ] [Firebase Auth](https://firebase.google.com/docs/auth/web/start)
-- [ ] [Firebase security rules](https://firebase.google.com/docs/rules)
-- [ ] [Uso de
+- [x] [Firestore](https://firebase.google.com/docs/firestore)
+- [x] [Firebase Auth](https://firebase.google.com/docs/auth/web/start)
+- [x] [Firebase security rules](https://firebase.google.com/docs/rules)
+- [x] [Uso de
       onSnapshot](https://firebase.google.com/docs/firestore/query-data/listen) |
       [onAuthStateChanged](https://firebase.google.com/docs/auth/web/start#set_an_authentication_state_observer_and_get_user_data)
 
-### Testing
-
-- [ ] [Teste unitários](https://jestjs.io/docs/pt-BR/getting-started)
-- [ ] [Testes assíncronos](https://jestjs.io/docs/pt-BR/asynchronous)
-- [ ] [Mocking](https://jestjs.io/docs/pt-BR/manual-mocks)
-
 ### Git e Github
 
-- [ ] [Colaboração pelo Github](https://docs.github.com/pt/github/setting-up-and-managing-your-github-user-account/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
-- [ ] [Organização pelo Github](https://docs.github.com/en/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
+- [x] [Colaboração pelo Github](https://docs.github.com/pt/github/setting-up-and-managing-your-github-user-account/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
+- [x] [Organização pelo Github](https://docs.github.com/en/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
 
 ### Boas práticas de programação
 
-- [ ] Modularização
-- [ ] Nomenclatura / Semântica
-- [ ] Linting
+- [x] Modularização
+- [x] Nomenclatura / Semântica
+- [x] Linting
+
+---
+## 8. Implementações Futuras 
+
+- Permitir criação e edição de perfil;
+- Permitir postagens com foto e localização;
+- Permitir comentários nos posts;
 
 ---
 
-## 7. Desenvolvedoras
+## 9. Desenvolvedoras :construction_worker_woman: <br>
 
-### Bruna Belo
-[GitHub](https://github.com/belobruna)
+### :woman_artist: Bruna Belo
+[GitHub](https://github.com/belobruna) | [LinkedIn](https://www.linkedin.com/in/bruna-belo/)
 
-### Carla Keyse
-[GitHub](https://github.com/carlakeyse)
+### :woman_artist: Carla Keyse
+[GitHub](https://github.com/carlakeyse) | [LinkedIn](https://www.linkedin.com/in/carlakeyse/)
 
-### Jéssica Inamassu
-[GitHub](https://github.com/jehkaori)
+### :woman_artist: Jéssica Inamassu
+[GitHub](https://github.com/jehkaori) | [LinkedIn](https://www.linkedin.com/in/jessica-inamassu/)
 
 ---
