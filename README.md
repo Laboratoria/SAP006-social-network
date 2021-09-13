@@ -12,7 +12,7 @@
 
 
 A partir dessa proposta, nasceu o  
-<p align='center'>
+<p>
 <img src='src/img/ellas-dev-logo.png' widht='40%'> 
 </p>
 
