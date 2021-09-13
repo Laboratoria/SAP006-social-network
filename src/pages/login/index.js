@@ -6,8 +6,10 @@ export default () => {
   const template = `
   <div class= "container">
     <div class= "card">
-      <header>
-          <img  class="header-image" src="../img/logo.png">
+      <header class="header-pages">
+        <a href="/#home">
+          <img class="header-image" src="../img/logo.png">
+        </a>
       </header>
       <h2 class="title">Login</h2>
         <form class="form-login" action="">
@@ -15,15 +17,16 @@ export default () => {
           <label for="get-email" class="label-login">Email</label><br>
           <input type="text" name="email" id="email-user" class="input-login"><br>
           <label for="get-password" class="label-login">Senha</label><br>
-          <div class="show-password">
-            <i id="eye-register" class="fa fa-eye" aria-hidden="true"></i>
+          <div class="password-content">
+            <input type="password" name="password" id="password-user"><br>
+            <div class="show-password">
+              <i id="eye-register" class="fa fa-eye" aria-hidden="true"></i>
+            </div>
           </div>
-          <input type="password" name="password" id="password-user"><br>
         </form> 
-        <div class="button">
-          <button id="login-button" class="login-button">Login</button><br>
-          <button id="google-button" class="google-button"><img src="img/google-logo.png" alt=""></button>
-          <button id="btn-home" class="home-button">Início</button>
+        <div class="btn-box">
+          <button id="login-button" class="btn login-button">Login</button><br>
+          <button id="google-button" class="btn google-button"><img src="img/google-logo.png" alt=""></button>
         </div>
         <div> 
           <hr> 
@@ -40,15 +43,9 @@ export default () => {
   // Login
 
   const btnLogin = container.querySelector('#login-button');
-  const btnHome = container.querySelector('#btn-home');
   const email = container.querySelector('#email-user');
   const password = container.querySelector('#password-user');
   const googleButton = container.querySelector('#google-button');
-
-  btnHome.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.location.hash = '#home';
-  });
 
   btnLogin.addEventListener('click', (event) => {
     event.preventDefault();

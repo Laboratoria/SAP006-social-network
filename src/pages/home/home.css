@@ -1,9 +1,5 @@
-.header-image {
+.header-image-logo {
   width: 75%;
-}
-
-.header-home{
-  text-align: center;
 }
 
 .title-home{
@@ -43,13 +39,13 @@
     margin-right: 10%;
   }
 
-  .header-image {
+  .header-image-logo {
     width: 70%;
   }
 }
 
 @media (min-width: 1440px){
-  .header-image {
+  .header-image-logo {
     width: 50%;
   }
 

@@ -17,11 +17,19 @@ body{
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 10%;
+  margin-top: 8%;
 }
 
 .img-top{
   margin: 0;
+}
+
+.header-pages{
+  text-align: center;
+}
+
+.header-image{
+  width: 70%;
 }
 
 .card{
@@ -39,9 +47,14 @@ body{
   cursor: pointer;
   text-align: right;
   color: #60006b;
+  margin: 2%;
 }
 
-h2{
+.password-content{
+  display: flex;
+}
+
+.title{
   margin-bottom: 20px;
   color: #701A73;
   font-size: 36px;
@@ -59,7 +72,7 @@ h2{
   min-width: 180px;
   font-size: 16px;
   outline: none;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: #701A73;
 }
 
@@ -123,20 +136,18 @@ a:link{
 @media (min-width: 426px) and (max-width: 768px) {
   .card{
     width: 25em;
-    height: 32em;
+    height: 34em;
     background-color: white;
     padding: 4% 6% 2% 6%;
   }
 
 }
 
-/* @media */
-
 @media (min-width: 769px) and (max-width: 1439px) {
   .card{
     width: 25em;
-    height: 30em;
-    padding: 2% 6% 2% 6%;
+    height: 32em;
+    padding: 1% 6% 2% 6%;
   }
 
   .main-content{
@@ -144,11 +155,15 @@ a:link{
   }
 
   .container{
-    margin-top:4%;
+    margin-top:10%;
   }
 
   .git-link{
     margin-top: 2%;
+  }
+
+  .header-image{
+    width: 65%;
   }
 }
 
