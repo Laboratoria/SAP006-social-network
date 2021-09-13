@@ -7,7 +7,7 @@ export default () => {
     <div class= "container">
        <div class= "card">
         <header>
-          <img  class="header-image" src="../img/logo.png">
+          <img  class="header-image" src="img/logo.png">
         </header>
         <p id="error-message" class="error-message"></p>
 

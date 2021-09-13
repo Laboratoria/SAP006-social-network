@@ -7,7 +7,7 @@ export default () => {
   <div class= "container">
     <div class= "card">
       <header>
-          <img  class="header-image" src="../img/logo.png">
+          <img  class="header-image" src="img/logo.png">
       </header>
       <h2 class="title">Login</h2>
         <form class="form-login" action="">

@@ -119,7 +119,7 @@ export const newPost = (postMsg) => {
 
 // Printar post
 
-export const showPost = () => firebase.firestore().collection('posts').orderBy('date', 'desc').get();
+export const showPostCollection = () => firebase.firestore().collection('posts').orderBy('date', 'desc').get();
 
 // Collection
 
@@ -127,13 +127,13 @@ export const getPost = (postId) => firebase.firestore().collection('posts').doc(
 
 // Like
 
-export const liked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayUnion(uid) });
+export const likedPost = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayUnion(uid) });
 
-export const unLiked = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayRemove(uid) });
+export const unLikedPost = (uid, postId) => firebase.firestore().collection('posts').doc(postId).update({ like: firebase.firestore.FieldValue.arrayRemove(uid) });
 
 // Deletar post
 
-export const deleteDoc = (postId) => firebase.firestore().collection('posts').doc(postId).delete();
+export const deletePost = (postId) => firebase.firestore().collection('posts').doc(postId).delete();
 
 // Editar post
 

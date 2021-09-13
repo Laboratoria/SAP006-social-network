@@ -1,6 +1,6 @@
 import {
-  userData, liked, unLiked,
-  deleteDoc, editPost,
+  userData, likedPost, unLikedPost,
+  deletePost, editPost,
 } from '../services/index.js';
 
 export const showNewPost = (data) => {
@@ -30,7 +30,7 @@ export const showNewPost = (data) => {
   const editButton = post.querySelector('.btn-edit');
   const saveButton = post.querySelector('.btn-save');
   const postMessage = post.querySelector('.post-message');
-  const likeCount = post.querySelector('.number-likes');
+  // const likeCount = post.querySelector('.number-likes');
 
   const visibleBtn = () => {
     if (user !== data.user) {
@@ -45,14 +45,14 @@ export const showNewPost = (data) => {
     const likeP = target.previousElementSibling;
     let likeNumber = Number(likeP.innerHTML);
     if (!likesPost.includes(user, data.id)) {
-      liked(user, data.id)
+      likedPost(user, data.id)
         .then(() => {
           likesPost.push(user);
           likeNumber += 1;
           likeP.innerHTML = likeNumber;
         });
     } else {
-      unLiked(user, data.id)
+      unLikedPost(user, data.id)
         .then(() => {
           likesPost = likesPost.filter((item) => item !== user);
           likeNumber -= 1;
@@ -63,7 +63,7 @@ export const showNewPost = (data) => {
 
   binButton.addEventListener('click', () => {
     if (user === data.user) {
-      deleteDoc(data.id)
+      deletePost(data.id)
         .then(() => {
           post.remove();
         });

@@ -1,5 +1,5 @@
 import {
-  newPost, showPost, logOut, removeUserLocalStorage, userData,
+  newPost, showPostCollection, logOut, removeUserLocalStorage, userData,
 } from '../../services/index.js';
 import { showNewPost } from '../../components/index.js';
 
@@ -44,7 +44,7 @@ export default () => {
   const signOut = container.querySelector('#sign-out');
   const addNewPost = container.querySelector('#add-new-post');
 
-  showPost().then((allColletion) => {
+  showPostCollection().then((allColletion) => {
     allColletion.forEach((doc) => {
       const post = {
         id: doc.id,
