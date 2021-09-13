@@ -14,7 +14,7 @@
 
 ---
 
-## 1. Sobre o projeto  💻
+## 1. 💻 Sobre o projeto
 
 Viajar é sempre uma experiência incrível e especial para todes. E essa experiência fica melhor ainda quando podemos receber informações detalhadas sobre o lugar que vamos visitar. 
 
