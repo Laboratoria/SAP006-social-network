@@ -28,8 +28,19 @@ body{
   text-align: center;
 }
 
+.text-pages{
+  text-align: justify;
+  font-size: 13pt;
+  margin: 4% 10% 75%;
+}
+
 .header-image{
   width: 70%;
+}
+
+.header-img{
+  width: 30%;
+  margin: 5% ;
 }
 
 .card{
@@ -57,9 +68,7 @@ body{
 .title{
   margin-bottom: 20px;
   color: #701A73;
-  font-size: 36px;
   font-weight: 700;
-  line-height: 49px;
 }
 
 .form-login input, .form-register input{
