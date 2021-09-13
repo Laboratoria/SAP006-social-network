@@ -5,16 +5,11 @@
 }
 
 body{
-  /*background-image: url(./img/bg-purple-top.png);
-  background-repeat: no-repeat;*/
   background: #B78CB9;
 }
 
-main{
-  /*display: block;
-  /*background: #B78CB9;*/
-  margin-top: 1em;
-  /*margin-left: 2em;*/
+.main-content{
+  margin-top: -2%;
   border-radius: 10px;
 }
 
@@ -31,11 +26,11 @@ main{
 
 .card{
   width: 18%;
-  height: 30em;
+  height: 29em;
   min-width: 13em;
   min-height: 13em;
   background-color: white;
-  padding: 30px;
+  padding: 6% 8% 2% 8%;
   border-radius: 10px;
   box-shadow: 3px 3px 1px 0px #00000060;
 }
@@ -74,25 +69,22 @@ h2{
   font-weight: bold;
 }
 
-button {
+.btn {
   background-color: transparent;
   color: #701A73;
   padding: 10px;
   font-weight: bold;
   font-size: 18px;
   cursor: pointer;
-  /*outline:#701A73;*/
   transition: all .4s ease-out;
-  /*align-items: right;*/
   border: 2px solid #701A73;
   border-radius: 10px;
   box-sizing: border-box;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   margin-top: 10px;
-
 }
 
-button:hover{
+.btn:hover{
   color: white;
   background-color: #701A73;
 }
@@ -106,11 +98,53 @@ button:hover{
   align-items:center;
 }
 
-footer{
-  position:fixed;
+.git-link{
+  position: inherit;
   width: 100%;
   height: 50px;
+  margin-top: 4%;
   bottom: 0;
   z-index: -10;
   text-align: center;
+  color: white;
+  font-size: 10pt;
+}
+
+.name-footer{
+  color: white;
+}
+
+a:link{
+  text-decoration: none;
+}
+
+/* @media tablet */
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .card{
+    width: 25em;
+    height: 32em;
+    min-width: 13em;
+    min-height: 13em;
+    background-color: white;
+    padding: 4% 6% 2% 6%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 1px 0px #00000060;
+  }
+
+}
+
+/* @media web */
+
+@media (min-width: 901px) and (max-width: 1440px) {
+  .card{
+    width: 25em;
+    height: 32em;
+    min-width: 13em;
+    min-height: 13em;
+    background-color: white;
+    padding: 4% 6% 2% 6%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 1px 0px #00000060;
+  }
 }

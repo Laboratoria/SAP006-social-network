@@ -7,7 +7,7 @@
     flex-wrap: wrap;
 }
 
-.card-post, .card-feed{
+.card-post, .feed-container{
     width: 70%;
     height: auto;
     min-width: 13em;
@@ -17,6 +17,10 @@
     border-radius: 10px;
     box-shadow: 3px 3px 1px 0px #00000060;
     margin: 5%;
+}
+
+.post-feed {
+    margin: 2%;
 }
 
 textarea {
@@ -31,4 +35,30 @@ textarea {
     outline: none;
     margin-bottom: 20px;
     color: #701A73;
+}
+.header-post{
+    margin: 2%;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.post-buttons{
+    display: inline;
+}
+
+.number-likes{
+    font-weight: bolder;
+    color: #701A73;
+}
+
+.menu{
+    width: 100%;
+    font-weight: bold;
+    position: relative;
+    list-style: none;
+    margin: 0;;
+}
+.sign-out{
+   float: right;
+   border-style: none;
 }
