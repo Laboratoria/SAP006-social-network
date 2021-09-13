@@ -1,5 +1,4 @@
-
-![logo](src/img/logo-somus.png)
+<img src="https://github.com/belobruna/SAP006-social-network/blob/main/src/img/logo-somus.png?raw=true" width="500">
 
 ## Índice
 
@@ -27,7 +26,7 @@ Pensando nisso, a Rede Social SO.MU.S. (Rede social para mulheres que viajam, so
 
 Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede social.
 
-![Brainstorm](src/img/brainstorm.jpg)
+<img src="https://i.imgur.com/pDfCUmW.jpg" width="500">
 
 
 Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos as necessidades que precisariam ser atendidas em nossa aplicação.
@@ -35,12 +34,12 @@ Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos
 
 ## 3. Pesquisa de usuários
 
-![Pesquisa](src/img/pag1.jpg)
-![Pesquisa](src/img/pag2.jpg)
-![Pesquisa](src/img/pag3.jpg)
-![Pesquisa](src/img/pag4.jpg)
-![Pesquisa](src/img/pag5.jpg)
-![Pesquisa](src/img/pag6.jpg)
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag1.jpg" witdth="300">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag2.jpg" witdth="300">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag3.jpg" witdth="300">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag4.jpg" witdth="300">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag5.jpg" witdth="300">
+<img src="https://github.com/belobruna/SAP006-social-network/raw/main/src/img/pag6.jpg" witdth="300">
 
 
 ## 4. Histórias de usuário :newspaper:
@@ -71,7 +70,7 @@ Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos
 
 ## 5. Protótipo
 
-![Protótipo](src/img/prototipo-de-baixa-fidelidade.JPG)
+<img src="https://github.com/belobruna/SAP006-social-network/blob/main/src/img/prototipo-de-baixa-fidelidade.JPG?raw=true" width="500">
 
 
 ## 6. Aplicação :iphone:
