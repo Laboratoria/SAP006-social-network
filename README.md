@@ -19,15 +19,9 @@ Proposta.
 
 ## 1. Sobre
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. As redes sociais
-invadiram nossas vidas. Nós as amamos ou odiamos, e muitas pessoas não conseguem
-viver sem elas.
+Ellas Dev é uma rede social pensada para alunas e ex alunas da [Laboratoria Brasil](https://www.laboratoria.la/br), com a intenção de facilitar trocas de experiências, network e divisão de conhecimento. A rede permite publicação de post inspirada no Twitter, possibilitando dar like em posts favoritos.
 
-Há redes sociais de todo tipo para todos os tipos de interesse. Por exemplo: em
-uma rodada de financiamento com investidores, foi apresentada uma rede social
-para químicos onde os usuários podem publicar artigos a respeito de suas
-pesquisas, comentar os artigos de seus colegas e filtrar artigos de acordo com
-determinadas tags ou popularidade, mais recente ou mais comentado.
+
 
 ## 2. Resumo do projeto
 
