@@ -1,0 +1,45 @@
+.header-image {
+  width: 75%;
+}
+
+.header-home{
+  text-align: center;
+}
+
+.title-home{
+  text-align: center;
+  margin: 2%;
+}
+
+.text-home{
+  text-align: justify;
+  font-size: 11pt;
+  margin: 4%;
+}
+
+.btn-box{
+  display:flex;
+  justify-content: space-between;
+}
+
+/* @media tablet */
+
+@media (max-width: 901px) {
+  .btn-box{
+    display:flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+/* @media web */
+
+@media (max-width: 1440px) {
+  .btn-box{
+    display:flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
