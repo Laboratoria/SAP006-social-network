@@ -1,19 +1,23 @@
-# Criando uma Rede Social
+# {Ellas Dev}
 
 ## Índice
 
-- [1. Prefácio](#1-prefácio)
-- [2. Resumo do projeto](#2-resumo-do-projeto)
-- [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-- [4. Considerações gerais](#4-considerações-gerais)
-- [5. Critérios de aceitação mínimos do projeto](#5-criterios-de-aceitação-mínimos-do-projeto)
-- [6. Hacker edition](#6-hacker-edition)
-- [7. Entrega](#7-entrega)
-- [8. Guias, dicas e leituras complementares](#8-guias-dicas-e-leituras-complementares)
+- [1. Sobre](#1-Sobre)
+- [2. Histórias de Usuários](#2- Histórias de Usuários)
+- [3. Layout](#3-Layout)
+- [4. Produto Final](#4-Produto Final)
+- [5. Planejamento](#5-Planejamento)
+- [6. Metodologias e Tecnologias](#6-Metodologias e Tecnologias)
+- [7. Autoras](#7-autoras)
 
----
 
-## 1. Prefácio
+A partir dessa proposta, nasceu o  
+<p align='center'>
+<!--   <img src='src/img/logo-start.png' widht='40%'> -->
+</p>
+
+
+## 1. Sobre
 
 Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. As redes sociais
 invadiram nossas vidas. Nós as amamos ou odiamos, e muitas pessoas não conseguem
