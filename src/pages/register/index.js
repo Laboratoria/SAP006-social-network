@@ -4,49 +4,44 @@ export default () => {
   const container = document.createElement('div');
 
   const template = `
-    <div class= "container">
-       <div class= "card">
-        <header>
-          <img  class="header-image" src="img/logo.png">
-        </header>
-        <p id="error-message" class="error-message"></p>
+  <div class= "container">
+    <div class= "card">
+      <header class="header-pages">
+        <a href="/#home">
+          <img class="header-image" src="../img/logo.png">
+        </a> 
+      </header>
+    <p id="error-message" class="error-message"></p>
 
-        <h2 class="title">Cadastrar</h2>
-          <form class="form-register" action="">
-            <label for="get-full-name" id="labelName" class="label-register">Nome de Usuário</label><br>
-            <input type="text" name="name" id="fullName" class="input-register"><br>
-            <label for="get-email" id="labelEmail" class="label-register">Email</label><br>
-            <input type="email" name="email" id="emailUser" class="input-register"><br>
-            <label for="get-password" id="labelPassword" class="label-register">Senha</label><br>
-            <div class="show-password">
-              <i id="eye-show-register" class="fa fa-eye" aria-hidden="true"></i>
-            </div>
-            <input type="password" name="password" id="passwordUser">
-          </form>
+    <h2 class="title">Cadastrar</h2>
+      <form class="form-register" action="">
+        <label for="get-full-name" id="labelName" class="label-register">Nome de Usuário</label><br>
+          <input type="text" name="name" id="fullName" class="input-register"><br>
+        <label for="get-email" id="labelEmail" class="label-register">Email</label><br>
+          <input type="email" name="email" id="emailUser" class="input-register"><br>
+        <label for="get-password" id="labelPassword" class="label-register">Senha</label><br>
+        <div class="password-content">
+          <input type="password" name="password" id="passwordUser">
+          <div class="show-password">
+            <i id="eye-show-register" class="fa fa-eye" aria-hidden="true"></i>
+          </div>
+        </div>
+      </form>
 
-          <div id='msgError'></div>
-          <div id='msgSuccess'></div>
+      <div id='msgError'></div>
+      <div id='msgSuccess'></div>
 
-          <div class="button">
-            <a href="/#login">
-              <button id="btn-register" class="register-button">Cadastrar</button>
-              <button id="btn-home" class="home-button">Início</button>
-            </a> 
-      </div>
-    </div>
-    `;
+      <button id="btn-register" class="btn register-button">Cadastrar</button>
+  </div>
+  `;
 
   container.innerHTML = template;
 
   const btnRegister = container.querySelector('#btn-register');
-  const btnHome = container.querySelector('#btn-home');
-
   const fullName = container.querySelector('#fullName');
   const labelName = container.querySelector('#labelName');
-
   const emailUser = container.querySelector('#emailUser');
   const labelEmail = container.querySelector('#labelEmail');
-
   const passwordUser = container.querySelector('#passwordUser');
   const labelPassword = container.querySelector('#labelPassword');
 
@@ -92,11 +87,6 @@ export default () => {
   btnRegister.addEventListener('click', (event) => {
     event.preventDefault();
     createUser(fullName.value, emailUser.value, passwordUser.value);
-  });
-
-  btnHome.addEventListener('click', (event) => {
-    event.preventDefault();
-    window.location.hash = '#home';
   });
 
   container.querySelector('#eye-show-register')

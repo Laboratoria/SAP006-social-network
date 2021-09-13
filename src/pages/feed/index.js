@@ -11,29 +11,28 @@ export default () => {
   }
   const container = document.createElement('div');
   const template = `
-  <header>
-    <nav class="menu">
-      <li><a href="/#feed"></a></li>
-      <li><button id="sign-out" class="sign-out"><i class="fas fa-sign-out-alt"></i></button></li>
-    </nav> 
-      
-  </header>
-  
-    <div class= "container">
-      <div class= "card-post">
-        <p id="error-message"></p>
-        <form>
-          <h2>Post</h2>
-            <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência aqui"></textarea>
-            <button type="button" id="post-button" class="button">Publicar</button>
-        </form>
+    <header class="header-feed">
+      <a href="/#feed">
+        <img class="header-img-feed" src="../img/logo.png">
+      </a>
+        <button id="sign-out" class="btn sign-out"><i class="icon fas fa-sign-out-alt"></i></button>
+    </header>
+    
+      <div class= "container-feed">
+        <div class= "card-post">
+          <p id="error-message"></p>
+          <form>
+            <div class="text-area">
+              <textarea type="text" name="post-feed" id="post-message" class="post-text" cols="30" rows="5" maxlength="500" placeholder="Escreva sua experiência de viagem"></textarea>
+            </div> 
+              <button type="button" id="post-button" class="btn">Publicar</button>
+          </form>
+        </div> 
+        <div class= "feed-container"> 
+          <div id="add-new-post" class="new-post"></div>
+        </div>
       </div> 
-      <div class= "feed-container"> 
-        <h2 class="title">Feed</h2><br>
-        <div id="add-new-post" class="new-post"></div>
-      </div>
-    </div> 
-    `;
+  `;
 
   container.innerHTML += template;
 
