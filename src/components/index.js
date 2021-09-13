@@ -16,11 +16,22 @@ export const showNewPost = (data) => {
         <textarea class="post-message" disabled>${data.message}</textarea>
         <section class="post-buttons">
           <p data-number class="number-likes">${likesPost.length}</p>
-          <button data-like="${data.id}" class="btn-like"> Like <i class="fas fa-heart"></i></button> 
+          <button data-like="${data.id}" class="btn-like btn"> Like <i class="fas fa-heart"></i></button> 
           <button data-edit="${data.id}" class="btn-edit"> <i class="far fa-edit"></i> </button>
           <button data-save="${data.id}" class="btn-save" style="display:none"> <i class="fas fa-check"></i> </button>
           <button class="btn-bin"> <i class="fas fa-trash"></i> </button>
         </section>
+        <div class="modal">
+          <div class="modal-container">
+            <div class="modal-window">
+              <div class="modal-close">X</div>
+                <h1>Excluir</h1>
+                  <p>Tem certeza que gostaria de excluir o post?</p>
+                <button class="modal-yes">Sim</button>
+              <button class="modal-no">Não</button>
+            </div>
+          </div>
+        </div>  
       </article>
     `;
   post.innerHTML += postTemplate;
@@ -30,7 +41,10 @@ export const showNewPost = (data) => {
   const editButton = post.querySelector('.btn-edit');
   const saveButton = post.querySelector('.btn-save');
   const postMessage = post.querySelector('.post-message');
-  // const likeCount = post.querySelector('.number-likes');
+  const modal = post.querySelector('.modal');
+  const modalYesDelete = post.querySelector('.modal-yes');
+  const modalNoDelete = post.querySelector('.modal-no');
+  const modalClose = post.querySelector('.modal-close');
 
   const visibleBtn = () => {
     if (user !== data.user) {
@@ -62,12 +76,23 @@ export const showNewPost = (data) => {
   });
 
   binButton.addEventListener('click', () => {
+    modal.style.display = 'block';
+  });
+
+  modalYesDelete.addEventListener('click', () => {
     if (user === data.user) {
       deletePost(data.id)
         .then(() => {
           post.remove();
         });
     }
+  });
+  modalNoDelete.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
   });
 
   editButton.addEventListener('click', () => {

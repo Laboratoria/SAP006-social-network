@@ -5,23 +5,20 @@ export default () => {
 
   <div class= "container">
     <div class= "card">
-      <a href="/#home">
-       <header>
-        <img  class="header-image" src="img/logo-somus.png">
+       <header class="header-home">
+        <img class="header-image" src="img/logo-somus.png">
        </header>
-      </a>
-        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et ante 
-          id risus semper sollicitudin ut non odio. Sed dignissim, diam quis sagittis congue,
-          elit lectus facilisis lacus, a congue ex eros ac nulla. Nunc at enim id sapien 
-          lacinia scelerisque. Vivamus a dictum ligula. Sed convallis consectetur massa at 
-          mollis. Maecenas eget lacus non leo ornare tincidunt. Nam ut placerat mauris. 
+        <h4 class="title title-home">É uma rede social para mulheres que viajam, sozinhas ou não.</h4>
+        <p class="text-home">
+        Aqui você pode compartilhar o que viveu, quer viver ou pode acompanhar o que outras viajantes viveram.
+        Entre agora e encontre um espaço seguro para trocar experiências, dicas de viagens e muito mais!
         </p>
         <div class="btn-box">
           <a href="/#login">
-            <button class="login-button">Login</button>
+            <button class="btn login-button">Login</button>
           </a>
           <a href="/#register">
-            <button class="login-button">Cadastro</button>
+            <button class="btn login-button">Cadastro</button>
           </a>
         </div>
     </div>

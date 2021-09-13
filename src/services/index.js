@@ -74,10 +74,6 @@ export const removeUserLocalStorage = () => {
   });
 };
 
-// Manter logado
-
-export const stayConected = (callback) => firebase.auth().onAuthStateChanged(callback);
-
 // User
 
 export const userData = () => {
@@ -120,10 +116,6 @@ export const newPost = (postMsg) => {
 // Printar post
 
 export const showPostCollection = () => firebase.firestore().collection('posts').orderBy('date', 'desc').get();
-
-// Collection
-
-export const getPost = (postId) => firebase.firestore().collection('posts').doc(postId).get();
 
 // Like
 

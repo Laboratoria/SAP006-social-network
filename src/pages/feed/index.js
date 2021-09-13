@@ -29,10 +29,9 @@ export default () => {
         </form>
       </div> 
       <div class= "feed-container"> 
-      <h2 class="title">Feed</h2><br>
-      <div id="add-new-post" class="new-post"></div>
+        <h2 class="title">Feed</h2><br>
+        <div id="add-new-post" class="new-post"></div>
       </div>
-      
     </div> 
     `;
 
