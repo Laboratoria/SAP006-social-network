@@ -1,5 +1,5 @@
 
-![logo](src/img/logo-somus.png)
+![logo](src/img/logo-somus.png 150x)
 
 ## Índice
 
