@@ -32,11 +32,11 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
   `;
   container.innerHTML = template;
 
-  /*const email = container.querySelector("#username");
+  const email = container.querySelector("#username");
   const password = container.querySelector("#password");
   const googleButton = container.querySelector("#google-button");
   const signInButton = container.querySelector("#entrar");
-   signInButton.addEventListener("click", (event) => {
+  signInButton.addEventListener("click", (event) => {
     event.preventDefault();
     buttonEntrar(email.value, password.value, googleButton.value)
       .then((userCredential) => {
@@ -63,7 +63,6 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
       });
   });
 
-
   googleButton.addEventListener("click", (event) => {
     event.preventDefault();
     loginWithGoogle()
@@ -74,7 +73,7 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
       .catch(() => {
         window.location.hash = "#not-found";
       });
-  }); */
+  });
 
   return container;
 };
