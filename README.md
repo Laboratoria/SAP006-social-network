@@ -2,42 +2,35 @@
 
 ## Índice
 
-- [1. Prefácio](#1-prefácio)
+- [1. Sobre o projeto](#1-sobre-o-projeto)
 - [2. Resumo do projeto](#2-resumo-do-projeto)
-- [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-- [4. Considerações gerais](#4-considerações-gerais)
-- [5. Critérios de aceitação mínimos do projeto](#5-criterios-de-aceitação-mínimos-do-projeto)
-- [6. Hacker edition](#6-hacker-edition)
+- [3. Pesquisa de usuário](#4-pesquisa-de-usuário)
+- [4. Histórias de usuário](#5-histórias-de-usuários)
+- [5. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
+- [6. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
 - [7. Entrega](#7-entrega)
 - [8. Guias, dicas e leituras complementares](#8-guias-dicas-e-leituras-complementares)
 
 ---
 
-## 1. Prefácio
+## 1. Sobre o projeto
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. As redes sociais
-invadiram nossas vidas. Nós as amamos ou odiamos, e muitas pessoas não conseguem
-viver sem elas.
+Viajar é sempre uma experiência incrível e especial para todes. E essa experiência fica melhor ainda quando podemos receber informações detalhadas sobre o lugar que vamos visitar. 
 
-Há redes sociais de todo tipo para todos os tipos de interesse. Por exemplo: em
-uma rodada de financiamento com investidores, foi apresentada uma rede social
-para químicos onde os usuários podem publicar artigos a respeito de suas
-pesquisas, comentar os artigos de seus colegas e filtrar artigos de acordo com
-determinadas tags ou popularidade, mais recente ou mais comentado.
+Para nós mulheres essa experiência pode ser bem desafiadora por motivos diversos. Dentre eles estão a falta de segurança, o julgamento social negativo, o machismo e patriarcado enraizado, por exemplo.
+
+Pensando nisso, a Rede Social SO.MU.S. (Rede social para mulheres que viajam, sozinhas ou não) foi criada para que todas possam trocar dicas, dificuldades, dúvidas, experiências e informações diversas sobre suas viagens. Tudo isso dentro de um ambiente seguro e acolhedor para que todas se sintam a vontade para compartilhar suas experiências.
 
 ## 2. Resumo do projeto
 
-Neste projeto você construirá uma Rede Social sobre o que você e sua equipe
-decidirem. Pode ser, por exemplo, sobre alimentação saudável, feminismo,
-educação, saúde, energias renováveis, amantes das
-[Empanadas](https://pt.wikipedia.org/wiki/Empanada), de
-[Tacos](<https://pt.wikipedia.org/wiki/Taco_(culin%C3%A1ria)>), de
-[Feijoada](https://pt.wikipedia.org/wiki/Feijoada), ou do que seja.
+Fizemos um "brainstorm" e conseguimos levantar algumas ideias para nossa rede social.
 
-Sua Rede Social terá que permitir à qualquer usuário criar uma conta de acesso,
-logar-se com ela, criar, editar, deletar e dar _likes_ em publicações.
+[Imgur](https://i.imgur.com/pDfCUmW.jpg)
 
-## 3. Objetivos de aprendizagem
+Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos as necessidades que precisariam ser atendidas em nossa aplicação.
+
+
+## 5. Objetivos de aprendizagem
 
 O objetivo principal de aprendizagem deste projeto é construir uma [Single-page
 Application
@@ -99,164 +92,43 @@ qual seja possível **ler e escrever dados.**
 
 ---
 
-## 4. Considerações gerais
+## 3. Pesquisa de usuários
 
-- Este projeto deve ser desenvolvido em trios.
 
-- A lógica do projeto deve estar implementada completamente em JavaScript
-  (ES6+), HTML e CSS 😃. Para este projeto **não está permitido** o uso de
-  _frameworks_ ou bibliotecas de CSS e JS.
 
-- A divisão e organização do trabalho deve permitir, sem exceção, que **cada
-  integrante** da equipe pratique a aprendizagem de tudo que está envolvido em
-  **cada história**. _Não dividam o trabalho como em uma fábrica._
+## 4. Histórias de usuário
 
-- Está avançando em seus projetos com alguma fluidez e sem grandes problemas?
-  Seja generosa com suas parceiras, deixe-as aprender e praticar sem restrições,
-  mesmo que demore um pouco mais. Aproveite para _mentorá-las_, para fazer _pair
-  programming_. Uma das melhores formas de aprender é explicar verbalmente.
+### 4.1 Histórias de usuário 1
 
-- Está sentindo dificuldade e para você é mais difícil de avançar? Não fique com
-  as partes "fáceis" do projeto. Converse, negocie, busque sua oportunidade de
-  praticar e aprender o que é mais difícil para você.
+"Eu como usuário quero me cadastrar, para ter acesso á rede social"
 
-- Vocês apenas poderão trabalhar em uma história por vez. Não avancem para a
-  próxima sem completar a anterior. As histórias apenas são concluídas quando se
-  completam **todos** os critérios de aceitação + **toda** sua definição de
-  pronto.
+- [x] Conseguir criar a conta com email e senha;
+- [x] Botão de criar conta;
 
-## 5. Critérios de aceitação mínimos do projeto
+### 4.2 Histórias de usuário 2
 
-### 5.1 Boilerplate
+"Eu como usuário quero fazer login na página, para ter acesso às informações "
 
-Este projeto não inclui um _boilerplate_, portanto você terá que definir a
-estrutura de pastas e escrever seus próprios testes unitários (_tests_). Para
-isso, você pode guiar-se por meio de projetos anteriores.
+- [x] Conseguir logar com email e senha cadastrados;
+- [x] Botão de logar;
+- [x] Botão de logar com o Google
+- [x] Autenticar conta com Google;
 
-### 5.2 Definição do produto
+### 4.3 Histórias de usuário 3
 
-No `README.md`, conte-nos brevemente como você mapeou as necessidades dos seus
-usuários e como você chegou à definição final do seu produto. É importante que
-detalhe:
+"Eu como usuário quero poder postar relatos das minhas experiências de viagem para que outros usuários leiam."
 
-- Quem são os principais usuários do produto.
-- Qual problema o produto resolve/para que ele serve para esses usuários.
+### 4.4 Histórias de usuário 4
 
-### 5.3 Histórias de usuário
+"Eu como usuário quero editar e excluir meus antigos posts."
 
-Depois de entender as necessidades de seus usuários, escreva as Histórias de
-Usuário. Elas representam tudo o que ele precisa fazer/ver na Rede Social. Cada
-uma de suas histórias de usuário deve possuir:
+### 4.5 Histórias de usuário 5
 
-- **Critérios de aceitação:** tudo o que deve acontecer para satisfazer as
-  necessidades do usuário.
+"Eu como usuário quero ler depoimentos de outros usuários em um feed organizado por ordem de data de postagem."
 
-- **Definição de pronto:** todos os aspectos técnicos que devem ser atendidos
-  para que, como equipe, saibam que essa história está finalizada e pronta para
-  ser publicada. **Todas** suas histórias de usuário (com exceções), devem
-  incluir esses aspectos em sua definição de pronto (além de tudo o que precisa
-  adicionar):
+### 5.6 Histórias de usuário 6
 
-  - Ser uma SPA.
-  - Ser _responsivo_.
-  - Receber _code review_ de pelo menos uma parceira de outra equipe.
-  - Fazer _tests_ unitários.
-  - Fazer testes manuais buscando erros e imperfeições simples.
-  - Fazer testes de usabilidade e incorporar o _feedback_ dos usuários como
-    melhorias.
-  - Fazer deploy do aplicativo e marcar a versão (git tag).
-
-### 5.4 Desenho da Interface de Usuário (protótipo de baixa fidelidade)
-
-Você deve definir qual será o fluxo que o usuário seguirá dentro do seu
-aplicativo e, com isso, criar a interface do usuário (UI) que siga este fluxo.
-
-### 5.5 Responsivo
-
-Deve funcionar bem em dispositivos de tela grande (computadores, laptops etc.) e
-pequena (_tablets_, telefones celulares etc.). Sugerimos seguir a técnica
-_`mobile first`_ (mais detalhes sobre essa técnica ao final).
-
-### 5.6 Considerações sobre o comportamento da Interface do Usuário (UI)
-
-Essas considerações ajudarão você a escrever as definições de pronto de sua
-H.U.:
-
-#### Criação e login de conta de usuário
-
-- _Login_ com Firebase:
-  - Para o _login_ e postagens na timeline, você pode usar o
-    [Firebase](https://firebase.google.com/products/database/)
-  - O usuário deve poder criar uma conta de acesso ou autenticar-se com conta de
-    e-mail e senha e também com uma conta do Google.
-- Validações:
-  - Somente usuários com contas válidas têm acesso permitido.
-  - Não haver usuários repetidos.
-  - A conta do usuário deve ser um email válido.
-  - O que o usuário digita no campo de senha (_input_) deve ser secreto.
-- Comportamento:
-  - Quando o formulário de registro ou login é enviado, ele deve ser validado.
-  - Se houver erros, mensagens descritivas devem ser exibidas para ajudar o
-    usuário.
-
-#### Timeline/linha do tempo
-
-- Validações:
-  - Ao publicar, deve ser validado se há conteúdo no _input_.
-- Comportamento:
-  - Ao recarregar o aplicativo, é necessário verificar se o usuário está
-    _logado_ antes de exibir o conteúdo,
-  - Conseguir publicar um _post_.
-  - Poder dar e remover _likes_ em uma publicação. Máximo de um por usuário.
-  - Visualizar contagem de _likes_.
-  - Poder excluir uma postagem específica.
-  - Solicitar confirmação antes de excluir um _post_.
-  - Ao clicar em editar um _post_, você deve alterar o texto para um _input_ que
-    permite editar o texto e salvar as alterações.
-  - Ao salvar as alterações, você deve voltar ao texto normal, mas com a
-    informação editada.
-  - Ao recarregar a página, poder ver os textos editados.
-
-### 5.7 Considerações técnicas sobre front-end
-
-- Separar a manipulação do DOM da lógica (separação de responsabilidades).
-- Ter várias telas. Para isso, seu aplicativo deve ser um [Single Page
-  Application
-  (SPA)](https://pt.wikipedia.org/wiki/Aplicativo_de_p%C3%A1gina_%C3%BAnica)
-- Alterar e persistir dados. Os dados que você adiciona ou modifica devem
-  persistir por todo o aplicativo. Recomendamos que você use o
-  [Firebase](https://firebase.google.com/) para isso também.
-
-#### Testes unitários
-
-- Lembre-se de que não há _setup_ de **testes** definido, isso dependerá da
-  estrutura do seu projeto. Você não deve esquecer de pensar sobre os testes.
-  Eles podem ajudar a definir a estrutura e sua lógica.
-
-- Os testes de unidade devem cobrir no mínimo 70% de _statements_, _functions_,
-  _lines_ e _branches_.
-
-### 5.8 Considerações técnicas UX
-
-- Faça pelo menos 2 entrevistas com os usuários.
-- Faça um protótipo de baixa fidelidade.
-- Verifique se a implementação do código segue as diretrizes do protótipo.
-- Faça sessões de teste de usabilidade com o produto em HTML.
-
-## 6. Hacker Edition
-
-As seções chamadas _Hacker Edition_ são **opcionais**. Se **você terminou** e
-cumpriu todos os requisitos acima e sobrou tempo, tente concluí-las. Dessa
-forma, você pode aprofundar e/ou exercitar mais os objetivos de aprendizagem do
-projeto.
-
-- Criar posts com imagens.
-- Procurar usuários, adicionar e excluir "amigos".
-- Definir a privacidade de _posts_ (público ou apenas para amigos).
-- Permitir ver na linha do tempo de usuários "não amigos" apenas os posts
-  públicos.
-- Permitir comentar ou responder a uma postagem.
-- Editar perfil.
+"Eu como usuário quero poder curtir e descurtir os posts de outros usuários da rede social."
 
 ## 7. Entrega
 
