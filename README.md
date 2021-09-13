@@ -48,7 +48,7 @@ Baseando-se nisso, foi realizada uma pesquisa com usuários para que mapeassemos
 
 ## 5. 📝 Protótipo
 
-<img src="https://github.com/belobruna/SAP006-social-network/blob/main/src/img/prototipo-de-baixa-fidelidade.JPG?raw=true" width="500">
+<img src="https://i.imgur.com/sc2kQEq.jpg" width="500">
 
 
 ## 6. 📱 Aplicação
