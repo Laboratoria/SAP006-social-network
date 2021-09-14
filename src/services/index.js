@@ -17,12 +17,12 @@ export const registerLogin = (email, password) => {
     });
 };
 
-// Login
+// Login do cadastro
 
 export const buttonEntrar = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
-// Login com google
+// Login com a conta google
 
 export const loginWithGoogle = () => {
   const auth = firebase.auth();
@@ -31,22 +31,43 @@ export const loginWithGoogle = () => {
 };
 // Logout
 
-export const logout = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log("Erro", error);
-    });
+export const logOut = () => firebase.auth().signOut();
+
+const db = firebase.firestore();
+
+// Enviar Post para Firestore
+
+export const postarMensagem = (postagem) => {
+  return db.collection("postagens").add(postagem);
 };
 
-// Post
+// Consumir DB
 
-export const addPost = (postInf) => {
-  const db = firebase.firestore();
-  return db.collection("posts").add(postInf);
+export function pegarPosts() {
+  let data = [];
+  db.collection("postagens")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        data.push({ data: doc.data(), id: doc.id });
+      });
+    });
+  return data;
+}
+// Usuário
+
+export const usuarioData = () => {
+  const uid = localStorage.getItem("uid");
+  const displayName = localStorage.getItem("displayName");
+  const email = localStorage.getItem("email");
+  if (!uid && !displayName && !email) {
+    return null;
+  }
+  const user = {
+    uid,
+    displayName,
+    email,
+  };
+  return user;
 };

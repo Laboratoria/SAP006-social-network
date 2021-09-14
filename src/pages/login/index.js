@@ -23,7 +23,7 @@ export default () => {
  <div class="footer">
             <span>Ou Conecte-se com seu email</span>
             <div class="rede_social">
-            <button type="submit" class="btn" id="google-button">Gmail</button>
+            <button type="submit" class="btn" id="google-button">Conta google</button>
 </div>
 <p class="p-sign-in">Não tem uma conta? <a href="#cadastro"
 class="forget-password-link" id="signup-link">Cadastre-se</a></p>    
