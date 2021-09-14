@@ -2,3 +2,6 @@
 @import url("pages/cadastro/cadastro.css");
 @import url("pages/feed/feed.css");
 
+.none{
+    display: none;
+}

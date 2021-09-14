@@ -1,12 +1,19 @@
-import { postarMensagem } from "../../services/index.js";
+import {
+  postarMensagem,
+  receberUsuario,
+  logOut,
+} from "../../services/index.js";
+import { postTemplate } from "../../componentes/index.js";
 export default () => {
   const container = document.createElement("div");
 
   const template = `
-    <header>
-      <h1>Ellas</h1>
-    </header>
-    <form action="" id="post-form" class="form">
+  <header>
+  <h1>Ellas</h1>
+  <button id="logout-perfil" >Logout</button>
+  </header>
+  <section id="conteudo-central">
+  <form action="" id="post-form" class="form">
       <label for="name-film">Filme</label>
       <input type="text" id="name-film" />
       <label for="img-film">Anexe uma imagem do filme</label>
@@ -31,22 +38,30 @@ export default () => {
         <button class="button-post" type="button" id="button-descartar">Descartar</button>
       </div>
 </form>
-<section id="feed">
+<div id="feed">
   <div id="lista-feed" class="lista-feed"></div>
+</div>
 </section>
+<aside id="conteudo-lateral">
+<div id="card-perfil">
+  <img src="" alt=""/>
+  <input type="file" id="foto-usuario" accept="image/*"></input>
+  <div class="username"></div>
+  <button class="btn-editar-perfil">Editar</button>
+</div>
+</aside>
     <footer id="rodape">
       <nav>
         <a href="">Feed</a>
         <a href="">Adicionar</a>
         <a href="">Pesquisar</a>
-        <a href="">Logout</a>
       </nav>
-    </footer>
-    
+    </footer>  
     `;
   container.innerHTML = template;
 
   loadPosts();
+  const userInfo = receberUsuario();
 
   //CRIAR POST
   const btn = container.querySelector("#button-publicar");
@@ -59,9 +74,9 @@ export default () => {
       text: text,
       film_name: filmName,
       film_img: filmImage,
-      user_id: "teste",
+      user_id: userInfo.uid,
+      username: userInfo.displayName,
       likes: 0,
-      comments: [],
     };
 
     postarMensagem(postagem)
@@ -74,39 +89,14 @@ export default () => {
       });
   });
 
+  const logout = container.querySelector("#logout-perfil");
+  logout.addEventListener("click", () => {
+    logOut();
+  });
+
   return container;
 
   // MOSTRAR POST NA TELA
-  function addPost(post) {
-    const postTemplate = `
-      <div id="${post.id}">
-        <div class="usuario-card">
-          <h3>${post.data?.user_id}</h3>
-        </div>
-        <div class="id-filme-card">
-          <h2>${post.data?.film_name}</h2>
-          <section>${post.data?.film_img}</section>
-        </div>
-        <div class="texto-card">
-        <p>${post.data?.text}</p>
-        </div>
-        <div class="interacao-card">
-          <button id="like"><span class="iconify" data-icon="mdi-light:heart" style="color: #111;" data-height="20"></span>${
-            post.data?.likes
-          }</button>
-          <button id="comentar"><span class="iconify" data-icon="mdi-light:comment" style="color: #111;" data-height="20"></span>${
-            post.data?.comments
-          }</button>
-          <button id="deletar" onclick="${() =>
-            deletePost(
-              post.id
-            )}"><span class="iconify" data-icon="mdi-light:delete" style="color: #111;" data-height="20"></span>Deletar</button>
-        </div>
-        
-      </div>
-`;
-    container.querySelector("#lista-feed").innerHTML += postTemplate;
-  }
 
   function loadPosts() {
     const postsCollection = firebase.firestore().collection("postagens");
@@ -115,20 +105,10 @@ export default () => {
       container.querySelector("#lista-feed").innerHTML = "";
       querySnapshot.forEach((doc) => {
         const post = { id: doc.id, data: doc.data() };
-        addPost(post);
+        const componente = postTemplate(post);
+        container.querySelector("#lista-feed").appendChild(componente);
       });
     });
-  }
-
-  //DELETAR POST
-  function deletePost(postId) {
-    const postsCollection = firebase.firestore().collection("postagens");
-    postsCollection
-      .doc(postId)
-      .delete()
-      .then((doc) => {
-        loadPosts();
-      });
-  }
+  };
 };
 

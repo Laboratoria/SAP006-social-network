@@ -1,4 +1,4 @@
-import { registerLogin } from '../../services/index.js';
+import { registerLogin, atualizarPerfil } from "../../services/index.js";
 
 export default () => {
   console.log("cadastro");
@@ -24,8 +24,6 @@ export default () => {
     </div>  
   `;
 
-
-
   container.innerHTML = template;
 
   const name = container.querySelector("#username");
@@ -33,16 +31,11 @@ export default () => {
   const password = container.querySelector("#register-password");
   const registerBtn = container.querySelector("#button-register");
 
-
-
-
-
   registerBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    registerLogin(email.value, password.value, name.value)
+    registerLogin(email.value, password.value)
       .then((user) => {
-
-        window.location.hash = '#feed';
+        window.location.hash = "#feed";
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -50,7 +43,7 @@ export default () => {
 
         console.log("deu ruim", errorCode, errorMessage);
       });
-
+      atualizarPerfil(name.value)
   });
 
   return container;

@@ -1,6 +1,6 @@
-body {
-    
+*{  
     background-color:rgb(239, 187,76);
+    background-repeat: no-repeat;
 }
 
   .container {
@@ -11,7 +11,7 @@ body {
 
 }
  .card {
-     background-color: #ffffff80;
+     
      padding: 30px;
      border-radius: 4%;
      box-shadow: 3px 3px 1px 0px #00000060;
