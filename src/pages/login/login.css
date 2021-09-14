@@ -1,23 +1,21 @@
-body {
-    background-position: left;
-    background-color:white;
-    align-items: flex-end;
-}
 
-  .container {
+
+  .container-login {
     display:flex;
-    justify-content:center;
+    justify-content:right;
     width: 100%;
+    margin-top: 0%;
     
 
 }
- .card {
-     width:30%;
+ .card-login {
+     width:50%;
      height:20em;
      background-color: #ffffff80;
      border-radius: 4%;
      box-shadow: 3px 3px 1px 0px #00000060;
      margin-top:0%;
+     
  }
  
  h1{
@@ -27,6 +25,12 @@ body {
     font-size: 60px;
     font-family:serif;
     margin-top:0%;
+}
+
+.img-wonder{
+   width: 40%;
+   margin-top: 0%;
+   
 }
 
 p{
@@ -44,6 +48,8 @@ p{
      color:#272262;
      margin-top:0%;
  }
+
+ 
 
  .google-icon {
 	height: 15px;
@@ -88,6 +94,7 @@ p{
     outline: none;
     margin-bottom: 20px;
     color: #701A73;
+    justify-content: center;
   }
    
 

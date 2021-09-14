@@ -7,7 +7,7 @@ export default () => {
   const template = `
   <h1>Ellas</h1>
   <p>Uma filmografia repleta de mulheres incríveis para te inspirar!</p>
-  <img class ="img-wonder" src="../imagens/wonderwhite.jpg">
+  <img class ="img-wonder" src="../imagens/wonderwoman.png">
   <div class="container">
   <div class="card">
       <h2>Fazer login :</h2>
