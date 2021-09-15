@@ -2,7 +2,7 @@ import login from './pages/login/index.js';
 import cadastro from './pages/cadastro/index.js';
 import feed from './pages/feed/index.js';
 import perfil from './pages/perfil/index.js';
-import addPost from './pages/addpost/index.js';
+
 
 const main = document.querySelector('#root');
 
@@ -24,9 +24,6 @@ const init = () => {
         break;
       case '#perfil':
         main.appendChild(perfil());
-        break;
-      case '#addPost':
-        main.appendChild(addPost());
         break;
       default:
         main.appendChild(login());
