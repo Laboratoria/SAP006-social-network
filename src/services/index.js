@@ -56,3 +56,12 @@ export const receberUsuario = () => {
 export const deletarPostagem = (postId) => {
   return firebase.firestore().collection("postagens").doc(postId).delete();
 };
+
+// //like curtida 
+// export const curtirPostagem = (uid, postId) => {
+//   return firebase
+//     .firestore()
+//     .collection("postagens")
+//     .doc(postId)
+//     .update({ like: firebase.firestore.FieldValue.arrayUnion(uid) });
+// };
