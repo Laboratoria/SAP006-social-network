@@ -28,7 +28,9 @@ export default () => {
 <p class="p-sign-in">Não tem uma conta? <a href="#cadastro"
 class="forget-password-link" id="signup-link">Cadastre-se</a></p>    
  </div>
+ 
  </div>
+
   `;
   container.innerHTML = template;
 
