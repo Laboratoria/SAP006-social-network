@@ -8,44 +8,49 @@ export default () => {
   const container = document.createElement("div");
 
   const template = `
-  <!-- Logo e Menu -->
   <header class="header-feed">
   <div class="container-feed">
-    <h2 class="logo">Pet Friends</h2>
+  <a href="#" class="logo"><img src="img/pet-friendly.png" alt="pet"></a>
       <nav class=" header_menu">
+   
         <ul>
-          <li><a href="#">Sobre</a></li>				
-          <li><a href="#">Produtos</a></li>				
-          <li><a href="#">Portfólio</a></li>				
-          <li><a href="#">Contato</a></li>			
+       
+          <li><a href="#">Perfil</a></li>				
+          <li><a href="#">Sair</a></li>				
+         	
         </ul>
       </nav>
   </div>
 <nav class="sidenav">
+<div class="container-feed">
   <ul>
-    <li><a href="#"><img src="img/adocao.png" alt="Adoção" width="60" height="60"></a></li>
+  
+    <li><a href="https://ilm.org.br/adote"><img src="img/adocao.png" alt="Adoção" width="60" height="60"></a></li>
     <span class="rotulo">Adoção</span>
-    <li><a href="#"><img src="img/racao.png" alt="Alimentação" width="60" height="60"></a></li>
+    <li><a href="https://www.petlove.com.br/dicas/tipos-de-alimentos-para-caes#:~:text=Hoje%20em%20dia%2C%20al%C3%A9m%20dos,com%20o%20tempo%20ser%20inadequada."><img src="img/racao.png" alt="Alimentação" width="60" height="60"></a></li>
     <span class="rotulo">Alimentação</span>
-    <li><a href="#"><img src="img/walkingdog.png" alt="Parque" width="60" height="60"></a></li>
+    <li><a href="https://www.folhanoroeste.com.br/cotidiano/onde-levar-seu-cachorro-para-passear-em-sao-paulo/"><img src="img/walkingdog.png" alt="Parque" width="60" height="60"></a></li>
     <span class="rotulo">Parques</span>
   </ul>
 </nav>
 </div>
 </header>
 <form class="feede-box">
+
         <label>
-          <textarea id="post-text" name="post-input" cols="30" rows="4" placeholder="Escreva sobre seu pet..."></textarea>
-          <div class="box-btn">
-          <button id="button-publicar" type="button">Publicar</button>
-          </div>
-   <section id="feed-list">
+          <textarea id="post-text" name="post-input" cols="10" rows="3" placeholder="Escreva sobre seu pet..."></textarea>
+          <section id="feed-list">
     <div id="lista-feed" class="lista-feed"></div>
     </section
+          <div class="box-btn">
+          <button id="button-publicar" type="button">Publicar</button>
+          <input class="button-publicar" type="reset"id="button-descartar" value="Descartar">Deletar</button>
+          
+          </div>
+  
   </label>
         
-      </form> 
-    
+</form> 
    
     `;
   container.innerHTML = template;

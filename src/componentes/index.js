@@ -1,12 +1,9 @@
-import {
-    deletarPostagem,
-    receberUsuario,
-  } from "../services/index.js";
-  
-  export function postTemplate(post) {
-    const userInfo = receberUsuario();
-    const componente = document.createElement("div");
-    const conteudo = `
+import { deletarPostagem, receberUsuario } from "../services/index.js";
+
+export function postTemplate(post) {
+  const userInfo = receberUsuario();
+  const componente = document.createElement("div");
+  const conteudo = `
     <div id="${post.id}">
       <div class="usuario-card">
         <h3>${post.data?.username}</h3>
@@ -21,22 +18,19 @@ import {
     
   </div>
   `;
-    componente.innerHTML = conteudo;
-  
-    //DELETAR
-    const btnDeletar = componente.querySelector(".deletar");
-    if (post.data.user_id === userInfo.uid);
-    
-    btnDeletar.addEventListener("click", () => {
-      deletarPostagem(post.id).then(() => {
-        const btnsIntera = btnDeletar.parentNode;
-        const divPost = btnsIntera.parentNode;
-        divPost.remove();
-        // console.log(btnsIntera);
-      });
+  componente.innerHTML = conteudo;
+
+  //DELETAR
+  const btnDeletar = componente.querySelector(".deletar");
+  if (post.data.user_id === userInfo.uid);
+
+  btnDeletar.addEventListener("click", () => {
+    deletarPostagem(post.id).then(() => {
+      const btnsIntera = btnDeletar.parentNode;
+      const divPost = btnsIntera.parentNode;
+      divPost.remove();
+      // console.log(btnsIntera);
     });
-    return componente;
+  });
+  return componente;
 }
-
-
-
