@@ -1,33 +1,60 @@
 import {
     deletarPostagem,
     receberUsuario,
+    adicionarLike,
+    retirarLike,
   } from "../services/index.js";
   
   export function postTemplate(post) {
     const userInfo = receberUsuario();
     const componente = document.createElement("div");
     const conteudo = `
-  <div id="${post.id}">
+  <div id="${post.id}" class="post-id">
     <div class="usuario-card">
       <h3>${post.data?.username}</h3>
-    </div>
-    <div class="id-filme-card">
-      <h2>${post.data?.film_name}</h2>
-      <section>${post.data?.film_img}</section>
     </div>
     <div class="texto-card">
     <p>${post.data?.text}</p>
     </div>
-    <button class="like">${post.data?.likes}Curtir</button>
+    <div class="like">
+    <span class="like-n"> ${post.data?.array_likes.length}</span>
+    <button class="like" data-func="like">Curtir</button>
+    </div>
     <div class="none">
-      <button class="editar">Editar</button>
       <button class="deletar">Deletar</button>
     </div>
     
   </div>
   `;
     componente.innerHTML = conteudo;
-  
+
+    let liked = false;
+    componente.addEventListener("click", (event) => {
+      if (event.target.dataset.func === "like") {
+        const somarLike = () => {
+          const curtir = event.target.previousElementSibling;
+          const curtida = Number(curtir.innerText);
+          curtir.innerText = curtida + 1;
+          liked = true;
+        };
+        const diminuirLike = () => {
+          const curtir = event.target.previousElementSibling;
+          const curtida = Number(curtir.innerText);
+                curtir.innerText = curtida - 1;
+                liked = false;
+      };
+
+      if (liked) {
+      diminuirLike();
+      retirarLike(userInfo.uid, post.id);
+    } 
+      else {
+      somarLike();
+      adicionarLike(userInfo.uid, post.id);
+    }
+  }
+});
+
     //DELETAR
     const btnDeletar = componente.querySelector(".deletar");
     if (post.data.user_id === userInfo.uid) {

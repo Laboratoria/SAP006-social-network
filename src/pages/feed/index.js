@@ -1,11 +1,11 @@
-import { postarMensagem, receberUsuario, logOut } from '../../services/index.js';
+import { postarMensagem, receberUsuario } from '../../services/index.js';
 import { postTemplate } from '../../componentes/index.js';
+
 export default () => {
   const container = document.createElement('div');
 
   const template = `
-    <textarea
-    name="post-input" id="post-text" placeholder="Escreva sobre seu pet..."></textarea>
+    <textarea name="post-input" id="post-text" placeholder="Escreva sobre seu pet..."></textarea>
     <div class="buttons">
     <button class="button-post" type="button" id="button-publicar">Publicar</button>
     </div>
@@ -29,6 +29,7 @@ export default () => {
       user_id: userInfo.uid,
       username: userInfo.displayName,
       likes: 0,
+      array_likes: [],
     };
 
     postarMensagem(postagem)
@@ -45,7 +46,7 @@ export default () => {
   // MOSTRAR POSTAGEM NA TELA
 
   function loadPosts() {
-    const postsCollection = firebase.firestore().collection('postagens');
+    const postsCollection = firebase.firestore().collection("postagens");
     container.querySelector('#lista-feed').innerHTML = 'Carregando...';
     postsCollection.get().then((querySnapshot) => {
       container.querySelector('#lista-feed').innerHTML = '';
