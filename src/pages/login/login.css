@@ -128,3 +128,11 @@ form button[type="submit"]:hover {
   margin-top: 2rem;
   padding: 0.4rem;
 }
+section .images {
+  background: url("../img/mobile.png") no-repeat center;
+  width: 30vw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1rem;
+}

@@ -5,15 +5,15 @@ export const registerLogin = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.hash = '#login';
-      console.log('deu bom', user);
+      window.location.hash = "#login";
+      console.log("deu bom", user);
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
-      console.log('deu ruim', errorCode, errorMessage);
+      console.log("deu ruim", errorCode, errorMessage);
     });
 };
 
@@ -38,7 +38,7 @@ const db = firebase.firestore();
 // Enviar Post para Firestore
 
 export const postarMensagem = (postagem) => {
-  return db.collection('postagens').add(postagem);
+  return db.collection("postagens").add(postagem);
 };
 
 // Usuário
@@ -46,7 +46,6 @@ export const postarMensagem = (postagem) => {
 export const receberUsuario = () => {
   const user = firebase.auth().currentUser;
   if (user !== null) {
-    
     return { displayName: user.displayName, uid: user.uid };
   }
 };
@@ -82,7 +81,7 @@ export const likesPost = (postId) => {
     });
 };
 
-// //like curtida 
+// //like curtida
 // export const curtirPostagem = (uid, postId) => {
 //   return firebase
 //     .firestore()

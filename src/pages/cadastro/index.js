@@ -42,6 +42,6 @@ export default () => {
     // then(() => {
     //   window.location.hash = '#feed';
   });
-  
+
   return container;
 };
