@@ -15,7 +15,7 @@ import {
       <p>${post.data?.text}</p>
       </div>
       <div class="none">
-      <button class="like">${post.data?.likes}Curtir</button>
+      <button class="like">Curtir</button>
       <button class="deletar">Deletar</button>
       </div>
     
@@ -36,7 +36,17 @@ import {
       });
     });
     return componente;
-}
+  }
 
-
-
+  // const btnlike = div.querySelector(".like", () => {
+  //   if (post.data.user_id === userInfo.uid);
+    
+  //   btnLike.addEventListener("click", () => {
+  //     curtirPostagem(post.id).then(() => {
+  //       const btnsIntera = btnLike.parentNode;
+  //       const divPost = btnsIntera.parentNode;
+  //       divPost.remove();
+  //       // console.log(btnsIntera);
+  //     });
+  //   });
+  

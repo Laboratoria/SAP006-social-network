@@ -55,6 +55,31 @@ export const receberUsuario = () => {
 
 export const deletarPostagem = (postId) => {
   return firebase.firestore().collection("postagens").doc(postId).delete();
+  
+};
+
+export const likesPost = (postId) => {
+  getFirebase()
+    .firestore()
+    .collection('posts').doc(postId)
+    .get()
+    .then((post) => {
+      const arrayLikes = post.data().likes;
+      const likesInPost = getFirebase()
+        .firestore()
+        .collection('posts').doc(postId);
+      if (getUserIdOnLocalStorage()) {
+        likesInPost.update({
+
+          likes: getFirebase().firestore.FieldValue.arrayUnion(getUserIdOnLocalStorage()),
+        });
+      }
+      if (arrayLikes.includes(getUserIdOnLocalStorage())) {
+        likesInPost.update({
+          likes: getFirebase().firestore.FieldValue.arrayRemove(getUserIdOnLocalStorage()),
+        });
+      }
+    });
 };
 
 // //like curtida 

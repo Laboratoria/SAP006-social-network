@@ -1,4 +1,4 @@
-import { postarMensagem, receberUsuario, logOut } from '../../services/index.js';
+import { postarMensagem, receberUsuario } from '../../services/index.js';
 import { postTemplate } from '../../componentes/index.js';
 export default () => {
   const container = document.createElement('div');
