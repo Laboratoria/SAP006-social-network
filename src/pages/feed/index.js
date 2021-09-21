@@ -14,11 +14,8 @@ export default () => {
       <nav class=" header_menu">
    
         <ul>
-       
-          <li><a href="#">Perfil</a></li>				
           <li><a href="#">Sair</a></li>				
-         	
-        </ul>
+         	</ul>
       </nav>
   </div>
 <nav class="sidenav">
@@ -35,23 +32,18 @@ export default () => {
 </nav>
 </div>
 </header>
-<form class="feede-box">
-
-        <label>
-          <textarea id="post-text" name="post-input" cols="10" rows="3" placeholder="Escreva sobre seu pet..."></textarea>
-          <section id="feed-list">
-    <div id="lista-feed" class="lista-feed"></div>
-    </section
-          <div class="box-btn">
+<div class="feede-box">
+   <textarea id="post-text" name="post-input" cols="10" rows="3" placeholder="Escreva sobre seu pet..."></textarea>
+      <div class="box-btn">
           <button id="button-publicar" type="button">Publicar</button>
-          <input class="button-publicar" type="reset"id="button-descartar" value="Descartar">Deletar</button>
-          
-          </div>
-  
-  </label>
-        
-</form> 
-   
+ 
+  </textarea>
+  </div>
+<section id="feed-list">
+<div id="lista-feed" class="lista-feed"></div>
+   </section>
+        </div>
+
     `;
   container.innerHTML = template;
 

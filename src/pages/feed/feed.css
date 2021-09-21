@@ -21,7 +21,6 @@ img {
 .header-feed {
   background: linear-gradient(135deg, #8844ee, #b07dfb);
   padding: 20px 0;
-  /*display: grid; */
   position: fixed;
   width: 100%;
   align-items: center;
@@ -38,7 +37,7 @@ img {
   display: inline-block;
   margin-left: 25px;
   margin-top: 20px;
-  /* flex-wrap: wrap;*/
+  position: relative;
 }
 
 .header_menu ul li a {
@@ -92,37 +91,6 @@ img {
 .sidenav li a:hover {
   background: #fff;
 }
-@keyframes seta {
-  from {
-    right: 30px;
-  }
-  to {
-    right: 20px;
-  }
-}
-
-@media (max-width: 760px) {
-  .sidenav {
-    position: fixed;
-    overflow-y: hidden;
-  }
-}
-
-@media only screen and (max-width: 760px) {
-  .header_menu {
-    text-align: center;
-  }
-
-  .header_menu ul li {
-    margin: 5px;
-  }
-
-  .header_menu ul li a {
-    width: 100px;
-    display: block;
-    float: left;
-  }
-}
 
 .sidenav span {
   display: block;
@@ -153,37 +121,24 @@ img {
   margin: 30px 30px 25px;
 }
 #post-text {
-  width: 400px;
-  height: 100px;
-  padding: 80px;
-  /*margin-right: -30px; */
-  margin-left: 100px;
-  margin-bottom: 20px;
-  display: flex;
-  border: solid;
-  border-radius: 5px;
+  padding: 150px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 30px 30px 25px;
+  width: 400px;
+  height: 100px;
+  padding: 80px;
+  margin-left: 100px;
+  margin-bottom: 20px;
+  border: solid;
+  border-radius: 5px;
   background: none;
   overflow-y: hidden;
 }
 
 #button-publicar {
-  margin: 20px 20px 25px auto;
-
-  margin-left: 100px;
-  display: block;
-  width: 80px;
-  height: 30px;
-  background: #49bf9e;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-#button-descartar {
   margin: 20px 20px 25px auto;
   margin-left: 100px;
   display: inline-block;
@@ -195,9 +150,38 @@ img {
   align-items: center;
   text-align: center;
 }
-@media only screen and (max-width: 760px) {
+.deletar {
+  /*margin: 20px 20px 25px auto; */
+  margin-right: -30px;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  background: #49bf9e;
+  align-items: center;
+  text-align: center;
+}
+.like {
+  margin-left: 25px;
+  margin-top: 20px;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  background: #49bf9e;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .sidenav {
+    position: fixed;
+    overflow-y: hidden;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .header_menu {
     text-align: center;
+    width: 100%;
   }
 
   .header_menu ul li {
@@ -205,22 +189,46 @@ img {
   }
 
   .header_menu ul li a {
-    width: 100px;
-    display: block;
+    width: 50px;
+    display: inline-block;
     float: left;
   }
 }
-@media only screen and (max-width: 787px) {
+@media only screen and (max-width: 600px) {
+  .header_menu {
+    text-align: center;
+    width: 100%;
+  }
+
+  .header_menu ul li {
+    margin: 5px;
+  }
+
+  .header_menu ul li a {
+    width: 100%;
+    display: inline-block;
+    float: none;
+  }
+
   .feede-box {
-    position: fixed;
     overflow-y: hidden;
   }
   .header-feed {
-    position: relative;
-    padding-bottom: 0;
+    width: 100%;
   }
-  #post-text {
-    position: relative;
-    justify-items: stretch;
+  #post-text,
+  #button-publicar {
+    margin-top: 20px;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .deletar {
+    display: inline-block;
+    width: 100%;
+  }
+  .like {
+    display: inline-block;
+    width: 100%;
   }
 }
