@@ -40,12 +40,12 @@ export default () => {
   </nav>
   </div>
   </header>
-  <form class="feede-box">
-  <label>
-    <textarea name="post-input" id="post-text" placeholder="Escreva sobre seu pet..."></textarea>
-     <div class="buttons">
-     <button class="button-post" type="button" id="button-publicar">Publicar</button>
-     </div>
+  <div class="feede-box">
+   <textarea id="post-text" name="post-input" cols="10" rows="3" placeholder="Escreva sobre seu pet..."></textarea>
+      <div class="box-btn">
+          <button id="button-publicar" type="button">Publicar</button>
+  </textarea>
+  </div>
     <section id="feed">
     <div id="lista-feed" class="lista-feed"></div>
     </section
