@@ -22,7 +22,7 @@ import {
     </div>
     <div class="none">
       <button class="deletar">Deletar</button>
-    </div>
+      </div>
     
   </div>
   `;
@@ -57,10 +57,8 @@ import {
 
     //DELETAR
     const btnDeletar = componente.querySelector(".deletar");
-    if (post.data.user_id === userInfo.uid) {
-      const divClassNone = componente.querySelector(".none");
-      divClassNone.style.display = "flex";
-    }
+    if (post.data.user_id === userInfo.uid);
+    
     btnDeletar.addEventListener("click", () => {
       deletarPostagem(post.id).then(() => {
         const btnsIntera = btnDeletar.parentNode;
@@ -70,4 +68,17 @@ import {
       });
     });
     return componente;
-}
+  }
+
+  // const btnlike = div.querySelector(".like", () => {
+  //   if (post.data.user_id === userInfo.uid);
+    
+  //   btnLike.addEventListener("click", () => {
+  //     curtirPostagem(post.id).then(() => {
+  //       const btnsIntera = btnLike.parentNode;
+  //       const divPost = btnsIntera.parentNode;
+  //       divPost.remove();
+  //       // console.log(btnsIntera);
+  //     });
+  //   });
+  

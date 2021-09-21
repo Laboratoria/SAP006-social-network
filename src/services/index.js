@@ -5,15 +5,15 @@ export const registerLogin = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.hash = '#login';
-      console.log('deu bom', user);
+      window.location.hash = "#login";
+      console.log("deu bom", user);
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
-      console.log('deu ruim', errorCode, errorMessage);
+      console.log("deu ruim", errorCode, errorMessage);
     });
 };
 
@@ -54,6 +54,7 @@ export const receberUsuario = () => {
 
 export const deletarPostagem = (postId) => {
   return firebase.firestore().collection("postagens").doc(postId).delete();
+  
 };
 
  //Likes e deslike
