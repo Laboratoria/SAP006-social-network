@@ -1,18 +1,11 @@
-import { postarMensagem, receberUsuario } from '../../services/index.js';
-import { postTemplate } from '../../componentes/index.js';
+import { postarMensagem, receberUsuario } from "../../services/index.js";
+import { postTemplate } from "../../componentes/index.js";
 
 export default () => {
   const container = document.createElement("div");
 
-
   const template = `
-    <head>
-      <title>Wildbeast</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link href="https://fonts.googleapis.com/css?family=Vollkorn:400,400i,700" rel="stylesheet">
-      <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
+   
       <header class="header-feed">
     <div class="container-feed">
     <a href="#" class="logo"><img src="img/pet-friendly.png" alt="pet"></a>
@@ -20,14 +13,13 @@ export default () => {
     
           <ul>
         
-            <li><a href="#">Perfil</a></li>
-            <li><a href="#">Sair</a></li>
+          <li><a href="#">Sair</a></li>
             
           </ul>
         </nav>
     </div>
   <nav class="sidenav">
-  <div class="container-feed">
+  
     <ul>
     
       <li><a href="https://ilm.org.br/adote"><img src="img/adocao.png" alt="Adoção" width="60" height="60"></a></li>
@@ -52,7 +44,7 @@ export default () => {
     </div>
        </form> 
       </label>
-    
+    </section>
    
    `;
 
@@ -88,7 +80,7 @@ export default () => {
 
   function loadPosts() {
     const postsCollection = firebase.firestore().collection("postagens");
-    container.querySelector('#lista-feed').innerHTML = 'Carregando...';
+    container.querySelector("#lista-feed").innerHTML = "Carregando...";
     postsCollection.get().then((querySnapshot) => {
       container.querySelector("#lista-feed").innerHTML = "";
       querySnapshot.forEach((doc) => {

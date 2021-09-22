@@ -139,40 +139,48 @@ img {
 }
 
 #button-publicar {
+  text-align: center;
+  padding: 20px;
   margin: 20px 20px 25px auto;
   margin-left: 100px;
-  display: inline-block;
+  display: block;
   width: 80px;
   height: 30px;
   background: #49bf9e;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
+  border-radius: 5px;
 }
 .deletar {
-  /*margin: 20px 20px 25px auto; */
-  margin-right: -30px;
-  display: inline-block;
-  width: 80px;
-  height: 30px;
+  padding: 30px;
   background: #49bf9e;
-
-  align-items: center;
   text-align: center;
+  border-radius: 5px;
+  margin-top: 0.005rem;
+  border: none;
+  margin-right: 50px;
 }
 .like {
-  margin-left: 25px;
-  margin-top: 20px;
+  padding: 30px;
   display: inline-block;
-  width: 80px;
-  height: 30px;
+  margin-right: 10px;
+  display: inline-block;
+  margin-left: 25px;
   background: #49bf9e;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 0.008rem;
+  border: none;
+}
+#lista-feed {
+  padding: 60px;
   align-items: center;
   text-align: center;
+  margin-left: 90px;
+  display: block;
+  font-size: 14px;
 }
-
-@media (max-width: 760px) {
+@media (max-width: 600px) {
   .sidenav {
     position: fixed;
     overflow-y: hidden;
@@ -192,7 +200,6 @@ img {
   .header_menu ul li a {
     width: 50px;
     display: inline-block;
-    float: left;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -217,7 +224,7 @@ img {
   .header-feed {
     width: 100%;
   }
-  #post-text,
+  /*  #post-text,
   #button-publicar {
     margin-top: 20px;
     width: 100%;
@@ -227,5 +234,9 @@ img {
   .deletar .like {
     display: inline-block;
     width: 100%;
+    margin-top: 50px;
+    padding: 50px;
+
   }
+  */
 }
