@@ -140,7 +140,7 @@ img {
 
 #button-publicar {
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   margin: 20px 20px 25px auto;
   margin-left: 100px;
   display: block;
@@ -152,7 +152,7 @@ img {
   border-radius: 5px;
 }
 .deletar {
-  padding: 30px;
+  padding: 5px;
   background: #49bf9e;
   text-align: center;
   border-radius: 5px;
@@ -161,7 +161,7 @@ img {
   margin-right: 50px;
 }
 .like {
-  padding: 30px;
+  padding: 5px;
   display: inline-block;
   margin-right: 10px;
   display: inline-block;
@@ -173,7 +173,7 @@ img {
   border: none;
 }
 #lista-feed {
-  padding: 60px;
+  padding: 10px;
   align-items: center;
   text-align: center;
   margin-left: 90px;
