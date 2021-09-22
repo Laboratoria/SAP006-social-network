@@ -5,7 +5,6 @@ export default () => {
   const container = document.createElement("div");
 
   const template = `
-   
       <header class="header-feed">
     <div class="container-feed">
     <a href="#" class="logo"><img src="img/pet-friendly.png" alt="pet"></a>
