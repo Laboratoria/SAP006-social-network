@@ -30,7 +30,7 @@ Pensando nessses usuários criamos a Pet Friends, uma rede social totalmente vol
 Para o desenvolvimento da rede social fizemos uma pesquisa com usuários na faixa etária entre 18 e 50 anos.
 
 ### 3.Pesquisa
-![alt text](src/img/pesquisa.jpg)
+![alt text](src/img/Pesquisa.jpg)
 ![alt text](src/img/Paletadecores.jpg)
 
 ### 4.Funcionalidades
@@ -41,9 +41,9 @@ O usuário pode publicar texto, e também podem deletar seus posts após publica
 Os usuários podem dar like ou desfazê-lo.
 
 ### 5. Protótipos
-![alt text](src/img/FazerOlogin.jpg)
+![alt text](src/img/FazerOlogin.jpeg)
 ![alt text](src/img/TelaCadastro.jpg)
-![alt text](src/img/TelaFeed.jpg)
+![alt text](src/img/Feed.jpg)
 
 
 ### 6. Aprendizado
