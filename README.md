@@ -1,6 +1,5 @@
 # Criando uma Rede Social
-![alt text](src/img/)
-![alt text](src/img/)
+![alt text](src/img/redesocial.png)
 
 <b> *Acesse a aplicação [Aqui](https://social-network-pet-friends.web.app/) 
 
@@ -8,10 +7,12 @@
 
 - [1. Introdução](#1-introdução)
 - [2. Resumo do projeto](#2-resumo-do-projeto)
-- [3. Personas](#3-personas)
+- [3. Pesquisa](#3-Pesquisa)
 - [4. Funcionalidades](#4-funcionalidades)
 - [5. Protótipos](#5-protótipos)
-- [6. Aprendizado](#4-aprendizado)
+- [6. Aprendizado](#6-aprendizado)
+- [7. Melhorias Futuras] (#7-Melhorias Futuras)
+
 - [. Desenvolvido por](#-desenvolvido-por)
 
 ---
@@ -27,8 +28,10 @@ Obeservamos dois fatores o primeiro é sobre algumas pesquisas informando que os
 Pensando nessses usuários criamos a Pet Friends, uma rede social totalmente voltada aos amantes de pets no geral.
 
 Para o desenvolvimento da rede social fizemos uma pesquisa com usuários na faixa etária entre 18 e 50 anos.
-Na Pet Friends o usuário terá contato com profissionais voltados a todo tipo de atendimento pet, e o contato com outros amantes e donos de pets, para compartilhar informações e dicas sobre pets.
 
+### 3.Pesquisa
+![alt text](src/img/pesquisa.jpg)
+![alt text](src/img/Paletadecores.jpg)
 
 ### 4.Funcionalidades
 Novos usuários podem se cadastrar na rede através do cadastro do próprio site ou pelo login do Google;
@@ -38,7 +41,10 @@ O usuário pode publicar texto, e também podem deletar seus posts após publica
 Os usuários podem dar like ou desfazê-lo.
 
 ### 5. Protótipos
-![alt text]()
+![alt text](src/img/FazerOlogin.jpg)
+![alt text](src/img/TelaCadastro.jpg)
+![alt text](src/img/TelaFeed.jpg)
+
 
 ### 6. Aprendizado
 Aprendizado:
@@ -59,6 +65,14 @@ Tecnologias Ultilizadas:
  * Notion
  Node.js
  Firebase
+
+### 7. Melhorias Futuras:
+
+![alt text](src/img/Melhoriasfuturas.jpg)
+
+* Adicionar Galeria de fotos
+* Adicionar imagens na publicação
+
 
 ### .Desenvolvido por:
 * [Beatriz Ferraz](https://github.com/bea-ferraz)
