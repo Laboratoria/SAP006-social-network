@@ -31,7 +31,6 @@ const init = () => {
   });
 };
 
-// window.addEventListener("hashchange", init);
 window.addEventListener('load', () => {
   main.appendChild(login());
   init();

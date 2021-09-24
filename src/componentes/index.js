@@ -55,7 +55,6 @@ import {
   }
 });
 
-    //DELETAR
     const btnDeletar = componente.querySelector(".deletar");
     if (post.data.user_id === userInfo.uid);
     
@@ -64,8 +63,8 @@ import {
         const btnsIntera = btnDeletar.parentNode;
         const divPost = btnsIntera.parentNode;
         divPost.remove();
-        // console.log(btnsIntera);
+
       });
     });
     return componente;
-  }
+}

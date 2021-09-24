@@ -71,7 +71,6 @@ class="forget-password-link" id="signup-link">Cadastre-se</a></p>
       .then(() => {
         window.location.hash = "#feed";
       })
-      // eslint-disable-next-line arrow-parens
       .catch(() => {
         window.location.hash = "#not-found";
       });

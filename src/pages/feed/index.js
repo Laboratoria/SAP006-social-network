@@ -51,8 +51,6 @@ export default () => {
 
   loadPosts();
   const userInfo = receberUsuario();
-
-  //CRIAR POSTAGENS
   const btn = container.querySelector("#button-publicar");
   btn.addEventListener("click", () => {
     console.log("clicou aqui!");
@@ -75,8 +73,6 @@ export default () => {
       });
   });
   return container;
-
-  // MOSTRAR POSTAGEM NA TELA
 
   function loadPosts() {
     const postsCollection = firebase.firestore().collection("postagens");

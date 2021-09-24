@@ -19,7 +19,7 @@ img {
   border-radius: 5px;
 }
 .header-feed {
-  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  background: linear-gradient(135deg, #49bf9e, #d930ac);
   padding: 20px 0;
   position: fixed;
   width: 100%;
@@ -224,19 +224,4 @@ img {
   .header-feed {
     width: 100%;
   }
-  /*  #post-text,
-  #button-publicar {
-    margin-top: 20px;
-    width: 100%;
-    display: inline-block;
-  }
-
-  .deletar .like {
-    display: inline-block;
-    width: 100%;
-    margin-top: 50px;
-    padding: 50px;
-
-  }
-  */
 }
