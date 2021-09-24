@@ -61,6 +61,7 @@ export default () => {
       text: text,
       user_id: userInfo.uid,
       username: userInfo.displayName,
+      likes: 0,
       array_likes: [],
     };
 

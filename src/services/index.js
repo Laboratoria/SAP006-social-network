@@ -5,15 +5,15 @@ export const registerLogin = (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.hash = "#login";
-      console.log("deu bom", user);
+      window.location.hash = '#login';
+      console.log('deu bom', user);
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
-      console.log("deu ruim", errorCode, errorMessage);
+      console.log('deu ruim', errorCode, errorMessage);
     });
 };
 
@@ -45,7 +45,7 @@ export const postarMensagem = (postagem) => {
 
 export const receberUsuario = () => {
   const user = firebase.auth().currentUser;
-  if (user !== null) {  
+  if (user !== null) {
     return { displayName: user.displayName, uid: user.uid };
   }
 };
@@ -54,23 +54,20 @@ export const receberUsuario = () => {
 
 export const deletarPostagem = (postId) => {
   return firebase.firestore().collection("postagens").doc(postId).delete();
-  
 };
 
- //Likes e deslike
+//Likes e deslike
 
 export const adicionarLike = (uid, postId) => {
   return db
-  .collection("postagens")
-  .doc(postId)
-  .update ({ array_likes: firebase.firestore.fieldValue.arrayUnion(uid) });
-  
+    .collection("postagens")
+    .doc(postId)
+    .update({ array_likes: firebase.firestore.FieldValue.arrayUnion(uid) });
 };
 
 export const retirarLike = (uid, postId) => {
   return db
-  .collection("postagens")
-  .doc(postId)
-  .update ({array_likes: firebase.firestore.fieldValue.arrayRemove(uid)});
-
+    .collection("postagens")
+    .doc(postId)
+    .update({ array_likes: firebase.firestore.FieldValue.arrayRemove(uid) });
 };
