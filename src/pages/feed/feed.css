@@ -1,0 +1,10 @@
+header{
+    background-color: (239,187,76);
+    padding-left: 5px;
+}
+
+.form{
+    display: grid;
+  place-items: center;
+     
+}
