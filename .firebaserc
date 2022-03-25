@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "social-network-bcj",
+    "development": "social-network-bcj"
+  }
+}
